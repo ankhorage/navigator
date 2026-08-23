@@ -10,6 +10,8 @@ Responsive, theme-aware navigation components for ZORA on React Native and React
 
 Application-specific routes, authentication state, authorization policy, and Studio generation remain with their respective owners.
 
+Implementation work is tracked through this repository's GitHub Issues.
+
 ## Development
 
 ```bash
