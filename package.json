@@ -51,7 +51,12 @@
     "docs": "paradox",
     "test": "bun test src",
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "lint": "ankhorage-eslint . --max-warnings=0",
+    "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
+    "format": "ankhorage-prettier --write .",
+    "format:check": "ankhorage-prettier --check .",
+    "knip": "ankhorage-knip"
   },
   "devDependencies": {
     "@ankhorage/devtools": "^1.6.0",
