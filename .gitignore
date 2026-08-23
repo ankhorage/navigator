@@ -1,0 +1,13 @@
+node_modules
+
+dist
+coverage
+tsconfig.tsbuildinfo
+
+.DS_Store
+.swp
+
+.expo/
+expo-env.d.ts
+android/
+ios/

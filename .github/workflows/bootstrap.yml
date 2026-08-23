@@ -1,0 +1,51 @@
+name: Bootstrap repository
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.14'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install bootstrap dependencies
+        run: bun install
+
+      - name: Synchronize Ankhorage Devtools
+        run: bunx @ankhorage/ankh devtools sync .
+
+      - name: Prove synchronization idempotence
+        run: |
+          bunx @ankhorage/ankh devtools sync .
+          bunx @ankhorage/ankh devtools status .
+
+      - name: Remove one-time bootstrap workflow
+        run: rm .github/workflows/bootstrap.yml
+
+      - name: Commit synchronized repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Complete Ankhorage repository bootstrap"
+          git push
