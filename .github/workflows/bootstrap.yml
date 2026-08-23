@@ -2,9 +2,6 @@ name: Bootstrap repository
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -40,8 +37,10 @@ jobs:
           bunx @ankhorage/ankh devtools sync .
           bunx @ankhorage/ankh devtools status .
 
-      - name: Remove one-time bootstrap workflow
-        run: rm .github/workflows/bootstrap.yml
+      - name: Leave workflow files for the GitHub connector
+        run: |
+          rm .github/workflows/ci.yml
+          rm .github/workflows/release.yml
 
       - name: Commit synchronized repository
         run: |
