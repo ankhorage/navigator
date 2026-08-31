@@ -208,7 +208,7 @@
             <div class="summary">
               <div><strong>0</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>1</strong><span class="muted">modules</span></div>
+              <div><strong>2</strong><span class="muted">modules</span></div>
               <div><strong>1</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -219,6 +219,12 @@
 
           <section class="panel">
             <h2>Modules</h2>
+            <article class="item" data-search="src/index.test.ts src/index.ts">
+              <h3>src/index.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
             <article class="item" data-search="src/index.ts">
               <h3>src/index.ts</h3>
               <p class="muted">Configured entrypoint</p>
@@ -244,7 +250,11 @@
               <div class="mermaid">
                 graph TD package__ankhorage_zora_navigation[&quot;ZORA Navigation&quot;]
                 entrypoint_src_index_ts[&quot;src/index.ts&quot;] package__ankhorage_zora_navigation
-                --&gt; entrypoint_src_index_ts module_src_index_ts[&quot;src/index.ts&quot;]
+                --&gt; entrypoint_src_index_ts
+                module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+                package__ankhorage_zora_navigation -.-&gt; module_src_index_test_ts
+                module_src_index_test_ts --&gt; module_src_index_ts
+                module_src_index_ts[&quot;src/index.ts&quot;]
               </div>
               <details>
                 <summary>View Mermaid source</summary>
@@ -253,6 +263,9 @@ graph TD
   package__ankhorage_zora_navigation[&quot;ZORA Navigation&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_zora_navigation --&gt; entrypoint_src_index_ts
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  package__ankhorage_zora_navigation -.-&gt; module_src_index_test_ts
+  module_src_index_test_ts --&gt; module_src_index_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
 </pre>
               </details>
@@ -263,23 +276,33 @@ graph TD
             >
               <h3>Module relationships</h3>
               <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
-              <div class="mermaid">graph LR module_src_index_ts[&quot;src/index.ts&quot;]</div>
+              <div class="mermaid">
+                graph LR module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+                module_src_index_ts[&quot;src/index.ts&quot;] module_src_index_test_ts --&gt;
+                module_src_index_ts
+              </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 graph LR
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_test_ts --&gt; module_src_index_ts
 </pre>
               </details>
             </article>
             <article class="item" data-search="Export graph diagrams/export-graph.mmd">
               <h3>Export graph</h3>
               <p class="muted"><code>diagrams/export-graph.mmd</code></p>
-              <div class="mermaid">graph LR module_src_index_ts[&quot;src/index.ts&quot;]</div>
+              <div class="mermaid">
+                graph LR module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+                module_src_index_ts[&quot;src/index.ts&quot;]
+              </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 graph LR
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
 </pre>
               </details>
