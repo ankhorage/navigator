@@ -2,6 +2,7 @@
   "packageName": "ZORA Navigation",
   "packageId": "@ankhorage/zora-navigation",
   "description": "Responsive, theme-aware navigation components for ZORA on React Native and React Native Web.",
+  "collaborators": null,
   "donation": null,
   "badges": [
     {
@@ -68,6 +69,12 @@
   "entrypoints": ["src/index.ts"],
   "modules": [
     {
+      "path": "src/index.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
@@ -79,8 +86,33 @@
   "sourceFunctions": [],
   "sequenceScenarios": [],
   "graphs": {
-    "imports": [],
-    "calls": [],
+    "imports": [
+      {
+        "fromPath": "src/index.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/index.test.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/index.test.ts"
+      }
+    ],
     "typeReferences": [],
     "componentComposition": []
   }
