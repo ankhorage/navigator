@@ -1,25 +1,38 @@
 import type { NavigatorPreset, NavigatorType } from '@ankhorage/contracts/navigator';
 
-const PRESET_LAYERS = {
-  stack: ['stack'],
-  tabs: ['tabs'],
-  'tabs-stack': ['tabs', 'stack'],
-  drawer: ['drawer'],
-  'drawer-stack': ['drawer', 'stack'],
-  'drawer-tabs': ['drawer', 'tabs'],
-  'drawer-tabs-stack': ['drawer', 'tabs', 'stack'],
-  'root-stack-tabs': ['stack', 'tabs'],
-  'root-stack-tabs-stack': ['stack', 'tabs', 'stack'],
-  'root-stack-drawer': ['stack', 'drawer'],
-  'root-stack-drawer-stack': ['stack', 'drawer', 'stack'],
-  'root-stack-drawer-tabs': ['stack', 'drawer', 'tabs'],
-  'root-stack-drawer-tabs-stack': ['stack', 'drawer', 'tabs', 'stack'],
-} as const satisfies Record<NavigatorPreset, readonly NavigatorType[]>;
-
 /*** Resolve a canonical navigator preset into its ordered topology layers. */
 export function resolveNavigatorPreset(
   preset: NavigatorPreset | undefined,
   fallbackType: NavigatorType,
 ): readonly NavigatorType[] {
-  return preset === undefined ? [fallbackType] : PRESET_LAYERS[preset];
+  switch (preset) {
+    case undefined:
+      return [fallbackType];
+    case 'stack':
+      return ['stack'];
+    case 'tabs':
+      return ['tabs'];
+    case 'tabs-stack':
+      return ['tabs', 'stack'];
+    case 'drawer':
+      return ['drawer'];
+    case 'drawer-stack':
+      return ['drawer', 'stack'];
+    case 'drawer-tabs':
+      return ['drawer', 'tabs'];
+    case 'drawer-tabs-stack':
+      return ['drawer', 'tabs', 'stack'];
+    case 'root-stack-tabs':
+      return ['stack', 'tabs'];
+    case 'root-stack-tabs-stack':
+      return ['stack', 'tabs', 'stack'];
+    case 'root-stack-drawer':
+      return ['stack', 'drawer'];
+    case 'root-stack-drawer-stack':
+      return ['stack', 'drawer', 'stack'];
+    case 'root-stack-drawer-tabs':
+      return ['stack', 'drawer', 'tabs'];
+    case 'root-stack-drawer-tabs-stack':
+      return ['stack', 'drawer', 'tabs', 'stack'];
+  }
 }
