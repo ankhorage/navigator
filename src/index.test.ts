@@ -85,9 +85,9 @@ describe('@ankhorage/navigator tabs planning', () => {
   });
 
   test('maps JavaScript bottom and top tabs to their stable Router entry points', () => {
-    expect(resolveTabsNavigatorPlan({ implementation: 'javascript' }, 'web', 'compact').module).toBe(
-      'expo-router/js-tabs',
-    );
+    expect(
+      resolveTabsNavigatorPlan({ implementation: 'javascript' }, 'web', 'compact').module,
+    ).toBe('expo-router/js-tabs');
     expect(
       resolveTabsNavigatorPlan(
         { implementation: 'javascript', presentation: 'top' },
@@ -98,9 +98,9 @@ describe('@ankhorage/navigator tabs planning', () => {
   });
 
   test('rejects explicit native tabs for Web', () => {
-    expect(() =>
-      resolveTabsNavigatorPlan({ implementation: 'native' }, 'web', 'compact'),
-    ).toThrow('Native tabs are not available');
+    expect(() => resolveTabsNavigatorPlan({ implementation: 'native' }, 'web', 'compact')).toThrow(
+      'Native tabs are not available',
+    );
   });
 });
 

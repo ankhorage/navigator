@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_resolveCustomTabsPresentation as resolveCustomTabsPresentation
+  participant participant_resolveResponsivePresentation as resolveResponsivePresentation
+  participant_resolveCustomTabsPresentation->>participant_resolveResponsivePresentation: resolveResponsivePresentation()
+  participant_resolveResponsivePresentation-->>participant_resolveCustomTabsPresentation: return

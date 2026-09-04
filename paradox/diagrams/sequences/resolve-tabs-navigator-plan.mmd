@@ -1,0 +1,27 @@
+sequenceDiagram
+  participant participant_createAdaptiveTabsPlan as createAdaptiveTabsPlan
+  participant participant_createCustomTabsPlan as createCustomTabsPlan
+  participant participant_createJavaScriptTabsPlan as createJavaScriptTabsPlan
+  participant participant_createNativeTabsPlan as createNativeTabsPlan
+  participant participant_resolveAdaptiveConfig as resolveAdaptiveConfig
+  participant participant_resolveCustomTabsPresentation as resolveCustomTabsPresentation
+  participant participant_resolveResponsivePresentation as resolveResponsivePresentation
+  participant participant_resolveTabsNavigatorPlan as resolveTabsNavigatorPlan
+  participant_resolveTabsNavigatorPlan->>participant_createAdaptiveTabsPlan: createAdaptiveTabsPlan()
+  participant_createAdaptiveTabsPlan->>participant_createNativeTabsPlan: createNativeTabsPlan()
+  participant_createNativeTabsPlan-->>participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan->>participant_createCustomTabsPlan: createCustomTabsPlan()
+  participant_createCustomTabsPlan->>participant_resolveCustomTabsPresentation: resolveCustomTabsPresentation()
+  participant_resolveCustomTabsPresentation->>participant_resolveResponsivePresentation: resolveResponsivePresentation()
+  participant_resolveResponsivePresentation-->>participant_resolveCustomTabsPresentation: return
+  participant_resolveCustomTabsPresentation-->>participant_createCustomTabsPlan: return
+  participant_createCustomTabsPlan-->>participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan->>participant_resolveAdaptiveConfig: resolveAdaptiveConfig()
+  participant_resolveAdaptiveConfig-->>participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan-->>participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan->>participant_createNativeTabsPlan: createNativeTabsPlan()
+  participant_createNativeTabsPlan-->>participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan->>participant_createJavaScriptTabsPlan: createJavaScriptTabsPlan()
+  participant_createJavaScriptTabsPlan-->>participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan->>participant_createCustomTabsPlan: createCustomTabsPlan()
+  participant_createCustomTabsPlan-->>participant_resolveTabsNavigatorPlan: return

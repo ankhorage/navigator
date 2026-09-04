@@ -1,8 +1,28 @@
 graph TD
-  package__ankhorage_zora_navigation["ZORA Navigation"]
+  package__ankhorage_navigator["NAVIGATOR"]
   entrypoint_src_index_ts["src/index.ts"]
-  package__ankhorage_zora_navigation --> entrypoint_src_index_ts
+  package__ankhorage_navigator --> entrypoint_src_index_ts
+  entrypoint_src_metadata_index_ts["src/metadata/index.ts"]
+  package__ankhorage_navigator --> entrypoint_src_metadata_index_ts
+  module_src_definitions_NavigatorPlan_ts["src/definitions/NavigatorPlan.ts"]
+  package__ankhorage_navigator -.-> module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts["src/expo-router/createNavigatorPlan.ts"]
+  package__ankhorage_navigator -.-> module_src_expo_router_createNavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --> module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --> module_src_expo_router_resolveTabsNavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --> module_src_topology_resolveNavigatorPreset_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts["src/expo-router/resolveTabsNavigatorPlan.ts"]
+  package__ankhorage_navigator -.-> module_src_expo_router_resolveTabsNavigatorPlan_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --> module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --> module_src_presentation_resolveCustomTabsPresentation_ts
   module_src_index_test_ts["src/index.test.ts"]
-  package__ankhorage_zora_navigation -.-> module_src_index_test_ts
+  package__ankhorage_navigator -.-> module_src_index_test_ts
   module_src_index_test_ts --> module_src_index_ts
+  module_src_index_test_ts --> module_src_metadata_index_ts
   module_src_index_ts["src/index.ts"]
+  module_src_metadata_index_ts["src/metadata/index.ts"]
+  module_src_presentation_resolveCustomTabsPresentation_ts["src/presentation/resolveCustomTabsPresentation.ts"]
+  package__ankhorage_navigator -.-> module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_presentation_resolveCustomTabsPresentation_ts --> module_src_definitions_NavigatorPlan_ts
+  module_src_topology_resolveNavigatorPreset_ts["src/topology/resolveNavigatorPreset.ts"]
+  package__ankhorage_navigator -.-> module_src_topology_resolveNavigatorPreset_ts
