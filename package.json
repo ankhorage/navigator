@@ -1,25 +1,25 @@
 {
-  "name": "@ankhorage/zora-navigation",
+  "name": "@ankhorage/navigator",
   "version": "0.0.0",
-  "description": "Responsive, theme-aware navigation components for ZORA on React Native and React Native Web.",
+  "description": "Standalone manifest-driven navigator capability for Expo Router across React Native and React Native Web.",
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
-  "homepage": "https://github.com/ankhorage/zora-navigation#readme",
+  "homepage": "https://github.com/ankhorage/navigator#readme",
   "bugs": {
-    "url": "https://github.com/ankhorage/zora-navigation/issues"
+    "url": "https://github.com/ankhorage/navigator/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ankhorage/zora-navigation.git"
+    "url": "git+https://github.com/ankhorage/navigator.git"
   },
   "keywords": [
     "ankhorage",
-    "zora",
     "react-native",
     "react-native-web",
     "expo",
     "expo-router",
+    "navigator",
     "navigation",
     "tabs",
     "drawer",
@@ -39,6 +39,10 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./metadata": {
+      "types": "./dist/metadata/index.d.ts",
+      "default": "./dist/metadata/index.js"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -57,6 +61,9 @@
     "format": "ankhorage-prettier --write .",
     "format:check": "ankhorage-prettier --check .",
     "knip:check": "ankhorage-knip"
+  },
+  "dependencies": {
+    "@ankhorage/contracts": "^10.0.0"
   },
   "devDependencies": {
     "@ankhorage/devtools": "^1.10.16",

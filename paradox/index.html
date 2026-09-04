@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ZORA Navigation • Paradox</title>
+    <title>NAVIGATOR • Paradox</title>
     <style>
       :root {
         color-scheme: light;
@@ -184,10 +184,10 @@
     <div class="layout">
       <aside class="sidebar">
         <p class="muted">Generated with Paradox</p>
-        <h1>ZORA Navigation</h1>
+        <h1>NAVIGATOR</h1>
         <p>
-          Responsive, theme-aware navigation components for ZORA on React Native and React Native
-          Web.
+          Standalone manifest-driven navigator capability for Expo Router across React Native and
+          React Native Web.
         </p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
@@ -198,6 +198,52 @@
                 <small>Overview, CLI, public API, diagrams</small>
               </button>
             </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/expo-router/createNavigatorPlan.ts"
+              >
+                src/expo-router/createNavigatorPlan.ts
+                <small>5 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/expo-router/resolveTabsNavigatorPlan.ts"
+              >
+                src/expo-router/resolveTabsNavigatorPlan.ts
+                <small>6 functions</small>
+              </button>
+            </li>
+            <li>
+              <button class="nav-button" type="button" data-target="src/index.test.ts">
+                src/index.test.ts
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/presentation/resolveCustomTabsPresentation.ts"
+              >
+                src/presentation/resolveCustomTabsPresentation.ts
+                <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/topology/resolveNavigatorPreset.ts"
+              >
+                src/topology/resolveNavigatorPreset.ts
+                <small>1 function</small>
+              </button>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -206,34 +252,795 @@
           <section class="panel">
             <h2>Package overview</h2>
             <div class="summary">
-              <div><strong>0</strong><span class="muted">public exports</span></div>
+              <div><strong>17</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>2</strong><span class="muted">modules</span></div>
-              <div><strong>1</strong><span class="muted">entrypoints</span></div>
+              <div><strong>8</strong><span class="muted">modules</span></div>
+              <div><strong>2</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
             <ul class="meta-list">
               <li><code>src/index.ts</code></li>
+              <li><code>src/metadata/index.ts</code></li>
             </ul>
           </section>
 
           <section class="panel">
             <h2>Modules</h2>
-            <article class="item" data-search="src/index.test.ts src/index.ts">
+            <article
+              class="item"
+              data-search="src/definitions/NavigatorPlan.ts ExpoRouterNavigatorModule NavigatorApiStability NavigatorNodePlan NavigatorPlan NavigatorResponsiveSize NavigatorRoutePlan NavigatorRuntimePlatform ResolvedTabsImplementation ResolvedTabsPresentation TabsNavigatorPlan"
+            >
+              <h3>src/definitions/NavigatorPlan.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>ExpoRouterNavigatorModule</code>,
+                <code>NavigatorApiStability</code>, <code>NavigatorNodePlan</code>,
+                <code>NavigatorPlan</code>, <code>NavigatorResponsiveSize</code>,
+                <code>NavigatorRoutePlan</code>, <code>NavigatorRuntimePlatform</code>,
+                <code>ResolvedTabsImplementation</code>, <code>ResolvedTabsPresentation</code>,
+                <code>TabsNavigatorPlan</code>
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/expo-router/createNavigatorPlan.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveTabsNavigatorPlan.ts src/topology/resolveNavigatorPreset.ts createNavigatorPlan CreateNavigatorPlanOptions"
+            >
+              <h3>src/expo-router/createNavigatorPlan.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/expo-router/resolveTabsNavigatorPlan.ts</code>,
+                <code>src/topology/resolveNavigatorPreset.ts</code>
+              </p>
+              <p>
+                <strong>Exports:</strong> <code>createNavigatorPlan</code>,
+                <code>CreateNavigatorPlanOptions</code>
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/expo-router/resolveTabsNavigatorPlan.ts src/definitions/NavigatorPlan.ts src/presentation/resolveCustomTabsPresentation.ts resolveTabsNavigatorPlan"
+            >
+              <h3>src/expo-router/resolveTabsNavigatorPlan.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/presentation/resolveCustomTabsPresentation.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>resolveTabsNavigatorPlan</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/index.test.ts src/index.ts src/metadata/index.ts"
+            >
               <h3>src/index.test.ts</h3>
               <p class="muted">Referenced module</p>
-              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/index.ts</code>,
+                <code>src/metadata/index.ts</code>
+              </p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
-            <article class="item" data-search="src/index.ts">
+            <article
+              class="item"
+              data-search="src/index.ts createNavigatorPlan CreateNavigatorPlanOptions ExpoRouterNavigatorModule NavigatorApiStability NavigatorNodePlan NavigatorPlan NavigatorResponsiveSize NavigatorRoutePlan NavigatorRuntimePlatform resolveCustomTabsPresentation ResolvedCustomTabsPresentation ResolvedTabsImplementation ResolvedTabsPresentation resolveNavigatorPreset resolveTabsNavigatorPlan TabsNavigatorPlan"
+            >
               <h3>src/index.ts</h3>
               <p class="muted">Configured entrypoint</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>createNavigatorPlan</code>,
+                <code>CreateNavigatorPlanOptions</code>, <code>ExpoRouterNavigatorModule</code>,
+                <code>NavigatorApiStability</code>, <code>NavigatorNodePlan</code>,
+                <code>NavigatorPlan</code>, <code>NavigatorResponsiveSize</code>,
+                <code>NavigatorRoutePlan</code>, <code>NavigatorRuntimePlatform</code>,
+                <code>resolveCustomTabsPresentation</code>,
+                <code>ResolvedCustomTabsPresentation</code>,
+                <code>ResolvedTabsImplementation</code>, <code>ResolvedTabsPresentation</code>,
+                <code>resolveNavigatorPreset</code>, <code>resolveTabsNavigatorPlan</code>,
+                <code>TabsNavigatorPlan</code>
+              </p>
+            </article>
+            <article class="item" data-search="src/metadata/index.ts NAVIGATOR_PACKAGE_METADATA">
+              <h3>src/metadata/index.ts</h3>
+              <p class="muted">Configured entrypoint</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>NAVIGATOR_PACKAGE_METADATA</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/presentation/resolveCustomTabsPresentation.ts src/definitions/NavigatorPlan.ts resolveCustomTabsPresentation ResolvedCustomTabsPresentation"
+            >
+              <h3>src/presentation/resolveCustomTabsPresentation.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
+              <p>
+                <strong>Exports:</strong> <code>resolveCustomTabsPresentation</code>,
+                <code>ResolvedCustomTabsPresentation</code>
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/topology/resolveNavigatorPreset.ts resolveNavigatorPreset"
+            >
+              <h3>src/topology/resolveNavigatorPreset.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>resolveNavigatorPreset</code></p>
             </article>
           </section>
           <section class="panel">
             <h2>Public API</h2>
+
+            <section>
+              <h3>src/definitions/NavigatorPlan.ts</h3>
+              <article
+                class="item"
+                id="symbol-exporouternavigatormodule"
+                data-search="ExpoRouterNavigatorModule unknown src/definitions/NavigatorPlan.ts "
+              >
+                <h4>ExpoRouterNavigatorModule</h4>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:7:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-navigatorapistability"
+                data-search="NavigatorApiStability unknown src/definitions/NavigatorPlan.ts "
+              >
+                <h4>NavigatorApiStability</h4>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:5:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-navigatornodeplan"
+                data-search="NavigatorNodePlan type src/definitions/NavigatorPlan.ts  ExpoRouterNavigatorModule NavigatorRoutePlan TabsNavigatorPlan"
+              >
+                <h4>NavigatorNodePlan</h4>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:34:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">ExpoRouterNavigatorModule</li>
+                    <li class="chip">NavigatorRoutePlan</li>
+                    <li class="chip">TabsNavigatorPlan</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>exportName</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>module</code></td>
+                      <td>property</td>
+                      <td><code>ExpoRouterNavigatorModule</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>routes</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorRoutePlan[]</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>tabs</code></td>
+                      <td>property</td>
+                      <td><code>TabsNavigatorPlan | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>type</code></td>
+                      <td>property</td>
+                      <td>
+                        <code>&quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot;</code>
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-navigatorplan"
+                data-search="NavigatorPlan type src/definitions/NavigatorPlan.ts  NavigatorNodePlan"
+              >
+                <h4>NavigatorPlan</h4>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:42:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">NavigatorNodePlan</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>flows</code></td>
+                      <td>property</td>
+                      <td><code>{ onboarding: boolean; authentication: boolean; }</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>presetLayers</code></td>
+                      <td>property</td>
+                      <td>
+                        <code
+                          >readonly (&quot;stack&quot; | &quot;tabs&quot; |
+                          &quot;drawer&quot;)[]</code
+                        >
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>root</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorNodePlan</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-navigatorresponsivesize"
+                data-search="NavigatorResponsiveSize unknown src/definitions/NavigatorPlan.ts "
+              >
+                <h4>NavigatorResponsiveSize</h4>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:4:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-navigatorrouteplan"
+                data-search="NavigatorRoutePlan type src/definitions/NavigatorPlan.ts  NavigatorNodePlan"
+              >
+                <h4>NavigatorRoutePlan</h4>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:27:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">NavigatorNodePlan</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>name</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>navigator</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorNodePlan | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>path</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>screenId</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-navigatorruntimeplatform"
+                data-search="NavigatorRuntimePlatform unknown src/definitions/NavigatorPlan.ts "
+              >
+                <h4>NavigatorRuntimePlatform</h4>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:3:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-resolvedtabsimplementation"
+                data-search="ResolvedTabsImplementation unknown src/definitions/NavigatorPlan.ts "
+              >
+                <h4>ResolvedTabsImplementation</h4>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:15:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-resolvedtabspresentation"
+                data-search="ResolvedTabsPresentation unknown src/definitions/NavigatorPlan.ts "
+              >
+                <h4>ResolvedTabsPresentation</h4>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:16:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-tabsnavigatorplan"
+                data-search="TabsNavigatorPlan type src/definitions/NavigatorPlan.ts  ExpoRouterNavigatorModule NavigatorApiStability ResolvedTabsImplementation ResolvedTabsPresentation"
+              >
+                <h4>TabsNavigatorPlan</h4>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:18:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">ExpoRouterNavigatorModule</li>
+                    <li class="chip">NavigatorApiStability</li>
+                    <li class="chip">ResolvedTabsImplementation</li>
+                    <li class="chip">ResolvedTabsPresentation</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>customPresentationId</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>exportName</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>implementation</code></td>
+                      <td>property</td>
+                      <td><code>ResolvedTabsImplementation</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>module</code></td>
+                      <td>property</td>
+                      <td><code>ExpoRouterNavigatorModule</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>presentation</code></td>
+                      <td>property</td>
+                      <td><code>ResolvedTabsPresentation | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>stability</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorApiStability</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+            </section>
+            <section>
+              <h3>src/expo-router/createNavigatorPlan.ts</h3>
+              <article
+                class="item"
+                id="symbol-createnavigatorplan"
+                data-search="createNavigatorPlan function src/expo-router/createNavigatorPlan.ts Create the complete standalone Navigator plan from only the navigator desired-state slice. CreateNavigatorPlanOptions NavigatorPlan (manifest: AppNavigatorManifest, options: CreateNavigatorPlanOptions) =&gt; NavigatorPlan"
+              >
+                <h4>createNavigatorPlan</h4>
+                <p class="muted">
+                  function • <code>src/expo-router/createNavigatorPlan.ts:96:1</code>
+                </p>
+                <p>
+                  Create the complete standalone Navigator plan from only the navigator
+                  desired-state slice.
+                </p>
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">CreateNavigatorPlanOptions</li>
+                    <li class="chip">NavigatorPlan</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(manifest: AppNavigatorManifest, options: CreateNavigatorPlanOptions) =&gt; NavigatorPlan</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>manifest</code></td>
+                        <td><code>AppNavigatorManifest</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>options</code></td>
+                        <td><code>CreateNavigatorPlanOptions</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>NavigatorPlan</code></p>
+                </div>
+              </article>
+              <article
+                class="item"
+                id="symbol-createnavigatorplanoptions"
+                data-search="CreateNavigatorPlanOptions type src/expo-router/createNavigatorPlan.ts  NavigatorResponsiveSize NavigatorRuntimePlatform"
+              >
+                <h4>CreateNavigatorPlanOptions</h4>
+                <p class="muted">type • <code>src/expo-router/createNavigatorPlan.ts:18:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">NavigatorResponsiveSize</li>
+                    <li class="chip">NavigatorRuntimePlatform</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>platform</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorRuntimePlatform</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>responsiveSize</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorResponsiveSize | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+            </section>
+            <section>
+              <h3>src/expo-router/resolveTabsNavigatorPlan.ts</h3>
+              <article
+                class="item"
+                id="symbol-resolvetabsnavigatorplan"
+                data-search="resolveTabsNavigatorPlan function src/expo-router/resolveTabsNavigatorPlan.ts Resolve the Expo Router module/export and presentation for one tabs implementation. NavigatorResponsiveSize NavigatorRuntimePlatform TabsNavigatorPlan (config: TabsImplementationConfig | undefined, platform: NavigatorRuntimePlatform, size: NavigatorResponsiveSize) =&gt; TabsNavigatorPlan"
+              >
+                <h4>resolveTabsNavigatorPlan</h4>
+                <p class="muted">
+                  function • <code>src/expo-router/resolveTabsNavigatorPlan.ts:79:1</code>
+                </p>
+                <p>
+                  Resolve the Expo Router module/export and presentation for one tabs
+                  implementation.
+                </p>
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">NavigatorResponsiveSize</li>
+                    <li class="chip">NavigatorRuntimePlatform</li>
+                    <li class="chip">TabsNavigatorPlan</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(config: TabsImplementationConfig | undefined, platform: NavigatorRuntimePlatform, size: NavigatorResponsiveSize) =&gt; TabsNavigatorPlan</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>config</code></td>
+                        <td><code>TabsImplementationConfig | undefined</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>platform</code></td>
+                        <td><code>NavigatorRuntimePlatform</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>size</code></td>
+                        <td><code>NavigatorResponsiveSize</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>TabsNavigatorPlan</code></p>
+                </div>
+              </article>
+            </section>
+            <section>
+              <h3>src/metadata/index.ts</h3>
+              <article
+                class="item"
+                id="symbol-navigator-package-metadata"
+                data-search="NAVIGATOR_PACKAGE_METADATA value src/metadata/index.ts "
+              >
+                <h4>NAVIGATOR_PACKAGE_METADATA</h4>
+                <p class="muted">value • <code>src/metadata/index.ts:8:14</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/metadata/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+            </section>
+            <section>
+              <h3>src/presentation/resolveCustomTabsPresentation.ts</h3>
+              <article
+                class="item"
+                id="symbol-resolvecustomtabspresentation"
+                data-search='resolveCustomTabsPresentation function src/presentation/resolveCustomTabsPresentation.ts Resolve one custom-tabs presentation for the current semantic responsive size. NavigatorResponsiveSize ResolvedCustomTabsPresentation (config: Omit&lt;CustomTabsConfig, "implementation"&gt;, size: NavigatorResponsiveSize) =&gt; ResolvedCustomTabsPresentation'
+              >
+                <h4>resolveCustomTabsPresentation</h4>
+                <p class="muted">
+                  function • <code>src/presentation/resolveCustomTabsPresentation.ts:39:1</code>
+                </p>
+                <p>
+                  Resolve one custom-tabs presentation for the current semantic responsive size.
+                </p>
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">NavigatorResponsiveSize</li>
+                    <li class="chip">ResolvedCustomTabsPresentation</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(config: Omit&lt;CustomTabsConfig, &quot;implementation&quot;&gt;, size: NavigatorResponsiveSize) =&gt; ResolvedCustomTabsPresentation</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>config</code></td>
+                        <td>
+                          <code>Omit&lt;CustomTabsConfig, &quot;implementation&quot;&gt;</code>
+                        </td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>size</code></td>
+                        <td><code>NavigatorResponsiveSize</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>ResolvedCustomTabsPresentation</code></p>
+                </div>
+              </article>
+              <article
+                class="item"
+                id="symbol-resolvedcustomtabspresentation"
+                data-search="ResolvedCustomTabsPresentation type src/presentation/resolveCustomTabsPresentation.ts  ResolvedTabsPresentation"
+              >
+                <h4>ResolvedCustomTabsPresentation</h4>
+                <p class="muted">
+                  type • <code>src/presentation/resolveCustomTabsPresentation.ts:18:1</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">ResolvedTabsPresentation</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>customPresentationId</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>presentation</code></td>
+                      <td>property</td>
+                      <td><code>ResolvedTabsPresentation</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+            </section>
+            <section>
+              <h3>src/topology/resolveNavigatorPreset.ts</h3>
+              <article
+                class="item"
+                id="symbol-resolvenavigatorpreset"
+                data-search='resolveNavigatorPreset function src/topology/resolveNavigatorPreset.ts Resolve a canonical navigator preset into its ordered topology layers. (preset: "stack" | "tabs" | "drawer" | "tabs-stack" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | undefined, fallbackType: "stack" | "tabs" | "drawer") =&gt; readonly ("stack" | "tabs" | "drawer")[]'
+              >
+                <h4>resolveNavigatorPreset</h4>
+                <p class="muted">
+                  function • <code>src/topology/resolveNavigatorPreset.ts:4:1</code>
+                </p>
+                <p>Resolve a canonical navigator preset into its ordered topology layers.</p>
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(preset: &quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot; | &quot;tabs-stack&quot; | &quot;drawer-stack&quot; | &quot;drawer-tabs&quot; | &quot;drawer-tabs-stack&quot; | &quot;root-stack-tabs&quot; | &quot;root-stack-tabs-stack&quot; | &quot;root-stack-drawer&quot; | &quot;root-stack-drawer-stack&quot; | &quot;root-stack-drawer-tabs&quot; | &quot;root-stack-drawer-tabs-stack&quot; | undefined, fallbackType: &quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot;) =&gt; readonly (&quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot;)[]</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>fallbackType</code></td>
+                        <td>
+                          <code>&quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot;</code>
+                        </td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>preset</code></td>
+                        <td>
+                          <code
+                            >&quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot; |
+                            &quot;tabs-stack&quot; | &quot;drawer-stack&quot; |
+                            &quot;drawer-tabs&quot; | &quot;drawer-tabs-stack&quot; |
+                            &quot;root-stack-tabs&quot; | &quot;root-stack-tabs-stack&quot; |
+                            &quot;root-stack-drawer&quot; | &quot;root-stack-drawer-stack&quot; |
+                            &quot;root-stack-drawer-tabs&quot; |
+                            &quot;root-stack-drawer-tabs-stack&quot; | undefined</code
+                          >
+                        </td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>
+                    <strong>Returns:</strong>
+                    <code
+                      >readonly (&quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot;)[]</code
+                    >
+                  </p>
+                </div>
+              </article>
+            </section>
           </section>
           <section class="panel">
             <h2>Component registry</h2>
@@ -248,25 +1055,72 @@
               <h3>Architecture overview</h3>
               <p class="muted"><code>diagrams/architecture-overview.mmd</code></p>
               <div class="mermaid">
-                graph TD package__ankhorage_zora_navigation[&quot;ZORA Navigation&quot;]
-                entrypoint_src_index_ts[&quot;src/index.ts&quot;] package__ankhorage_zora_navigation
+                graph TD package__ankhorage_navigator[&quot;NAVIGATOR&quot;]
+                entrypoint_src_index_ts[&quot;src/index.ts&quot;] package__ankhorage_navigator
                 --&gt; entrypoint_src_index_ts
-                module_src_index_test_ts[&quot;src/index.test.ts&quot;]
-                package__ankhorage_zora_navigation -.-&gt; module_src_index_test_ts
-                module_src_index_test_ts --&gt; module_src_index_ts
+                entrypoint_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+                package__ankhorage_navigator --&gt; entrypoint_src_metadata_index_ts
+                module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_expo_router_createNavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_expo_router_resolveTabsNavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_topology_resolveNavigatorPreset_ts
+                module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_expo_router_resolveTabsNavigatorPlan_ts
+                module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
+                module_src_presentation_resolveCustomTabsPresentation_ts
+                module_src_index_test_ts[&quot;src/index.test.ts&quot;] package__ankhorage_navigator
+                -.-&gt; module_src_index_test_ts module_src_index_test_ts --&gt; module_src_index_ts
+                module_src_index_test_ts --&gt; module_src_metadata_index_ts
                 module_src_index_ts[&quot;src/index.ts&quot;]
+                module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+                module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_presentation_resolveCustomTabsPresentation_ts
+                module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_topology_resolveNavigatorPreset_ts
               </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 graph TD
-  package__ankhorage_zora_navigation[&quot;ZORA Navigation&quot;]
+  package__ankhorage_navigator[&quot;NAVIGATOR&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
-  package__ankhorage_zora_navigation --&gt; entrypoint_src_index_ts
+  package__ankhorage_navigator --&gt; entrypoint_src_index_ts
+  entrypoint_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+  package__ankhorage_navigator --&gt; entrypoint_src_metadata_index_ts
+  module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_expo_router_createNavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
-  package__ankhorage_zora_navigation -.-&gt; module_src_index_test_ts
+  package__ankhorage_navigator -.-&gt; module_src_index_test_ts
   module_src_index_test_ts --&gt; module_src_index_ts
+  module_src_index_test_ts --&gt; module_src_metadata_index_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+  module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_topology_resolveNavigatorPreset_ts
 </pre>
               </details>
             </article>
@@ -277,17 +1131,50 @@ graph TD
               <h3>Module relationships</h3>
               <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
               <div class="mermaid">
-                graph LR module_src_index_test_ts[&quot;src/index.test.ts&quot;]
-                module_src_index_ts[&quot;src/index.ts&quot;] module_src_index_test_ts --&gt;
-                module_src_index_ts
+                graph LR
+                module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+                module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
+                module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+                module_src_index_ts[&quot;src/index.ts&quot;]
+                module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+                module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_expo_router_resolveTabsNavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_topology_resolveNavigatorPreset_ts
+                module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
+                module_src_presentation_resolveCustomTabsPresentation_ts module_src_index_test_ts
+                --&gt; module_src_index_ts module_src_index_test_ts --&gt;
+                module_src_metadata_index_ts
+                module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
               </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 graph LR
+  module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+  module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
+  module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+  module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
   module_src_index_test_ts --&gt; module_src_index_ts
+  module_src_index_test_ts --&gt; module_src_metadata_index_ts
+  module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
 </pre>
               </details>
             </article>
@@ -295,17 +1182,423 @@ graph LR
               <h3>Export graph</h3>
               <p class="muted"><code>diagrams/export-graph.mmd</code></p>
               <div class="mermaid">
-                graph LR module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+                graph LR
+                module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+                module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
+                module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                module_src_index_test_ts[&quot;src/index.test.ts&quot;]
                 module_src_index_ts[&quot;src/index.ts&quot;]
+                module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+                module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+                export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
+                module_src_expo_router_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
+                export_createNavigatorPlan -.-&gt; export_CreateNavigatorPlanOptions
+                export_createNavigatorPlan -.-&gt; export_NavigatorPlan
+                export_CreateNavigatorPlanOptions[&quot;CreateNavigatorPlanOptions&quot;]
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
+                export_CreateNavigatorPlanOptions export_CreateNavigatorPlanOptions -.-&gt;
+                export_NavigatorResponsiveSize export_CreateNavigatorPlanOptions -.-&gt;
+                export_NavigatorRuntimePlatform
+                export_ExpoRouterNavigatorModule[&quot;ExpoRouterNavigatorModule&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_ExpoRouterNavigatorModule
+                export_NAVIGATOR_PACKAGE_METADATA[&quot;NAVIGATOR_PACKAGE_METADATA&quot;]
+                module_src_metadata_index_ts --&gt; export_NAVIGATOR_PACKAGE_METADATA
+                export_NavigatorApiStability[&quot;NavigatorApiStability&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorApiStability
+                export_NavigatorNodePlan[&quot;NavigatorNodePlan&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorNodePlan
+                export_NavigatorNodePlan -.-&gt; export_ExpoRouterNavigatorModule
+                export_NavigatorNodePlan -.-&gt; export_NavigatorRoutePlan export_NavigatorNodePlan
+                -.-&gt; export_TabsNavigatorPlan export_NavigatorPlan[&quot;NavigatorPlan&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorPlan
+                export_NavigatorPlan -.-&gt; export_NavigatorNodePlan
+                export_NavigatorResponsiveSize[&quot;NavigatorResponsiveSize&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorResponsiveSize
+                export_NavigatorRoutePlan[&quot;NavigatorRoutePlan&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorRoutePlan
+                export_NavigatorRoutePlan -.-&gt; export_NavigatorNodePlan
+                export_NavigatorRuntimePlatform[&quot;NavigatorRuntimePlatform&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorRuntimePlatform
+                export_resolveCustomTabsPresentation[&quot;resolveCustomTabsPresentation&quot;]
+                module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
+                export_resolveCustomTabsPresentation export_resolveCustomTabsPresentation -.-&gt;
+                export_NavigatorResponsiveSize export_resolveCustomTabsPresentation -.-&gt;
+                export_ResolvedCustomTabsPresentation
+                export_ResolvedCustomTabsPresentation[&quot;ResolvedCustomTabsPresentation&quot;]
+                module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
+                export_ResolvedCustomTabsPresentation export_ResolvedCustomTabsPresentation -.-&gt;
+                export_ResolvedTabsPresentation
+                export_ResolvedTabsImplementation[&quot;ResolvedTabsImplementation&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_ResolvedTabsImplementation
+                export_ResolvedTabsPresentation[&quot;ResolvedTabsPresentation&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_ResolvedTabsPresentation
+                export_resolveNavigatorPreset[&quot;resolveNavigatorPreset&quot;]
+                module_src_topology_resolveNavigatorPreset_ts --&gt; export_resolveNavigatorPreset
+                export_resolveTabsNavigatorPlan[&quot;resolveTabsNavigatorPlan&quot;]
+                module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
+                export_resolveTabsNavigatorPlan export_resolveTabsNavigatorPlan -.-&gt;
+                export_NavigatorResponsiveSize export_resolveTabsNavigatorPlan -.-&gt;
+                export_NavigatorRuntimePlatform export_resolveTabsNavigatorPlan -.-&gt;
+                export_TabsNavigatorPlan export_TabsNavigatorPlan[&quot;TabsNavigatorPlan&quot;]
+                module_src_definitions_NavigatorPlan_ts --&gt; export_TabsNavigatorPlan
+                export_TabsNavigatorPlan -.-&gt; export_ExpoRouterNavigatorModule
+                export_TabsNavigatorPlan -.-&gt; export_NavigatorApiStability
+                export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsImplementation
+                export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsPresentation
               </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 graph LR
+  module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+  module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
+  module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
+  module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+  export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
+  module_src_expo_router_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
+  export_createNavigatorPlan -.-&gt; export_CreateNavigatorPlanOptions
+  export_createNavigatorPlan -.-&gt; export_NavigatorPlan
+  export_CreateNavigatorPlanOptions[&quot;CreateNavigatorPlanOptions&quot;]
+  module_src_expo_router_createNavigatorPlan_ts --&gt; export_CreateNavigatorPlanOptions
+  export_CreateNavigatorPlanOptions -.-&gt; export_NavigatorResponsiveSize
+  export_CreateNavigatorPlanOptions -.-&gt; export_NavigatorRuntimePlatform
+  export_ExpoRouterNavigatorModule[&quot;ExpoRouterNavigatorModule&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_ExpoRouterNavigatorModule
+  export_NAVIGATOR_PACKAGE_METADATA[&quot;NAVIGATOR_PACKAGE_METADATA&quot;]
+  module_src_metadata_index_ts --&gt; export_NAVIGATOR_PACKAGE_METADATA
+  export_NavigatorApiStability[&quot;NavigatorApiStability&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorApiStability
+  export_NavigatorNodePlan[&quot;NavigatorNodePlan&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorNodePlan
+  export_NavigatorNodePlan -.-&gt; export_ExpoRouterNavigatorModule
+  export_NavigatorNodePlan -.-&gt; export_NavigatorRoutePlan
+  export_NavigatorNodePlan -.-&gt; export_TabsNavigatorPlan
+  export_NavigatorPlan[&quot;NavigatorPlan&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorPlan
+  export_NavigatorPlan -.-&gt; export_NavigatorNodePlan
+  export_NavigatorResponsiveSize[&quot;NavigatorResponsiveSize&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorResponsiveSize
+  export_NavigatorRoutePlan[&quot;NavigatorRoutePlan&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorRoutePlan
+  export_NavigatorRoutePlan -.-&gt; export_NavigatorNodePlan
+  export_NavigatorRuntimePlatform[&quot;NavigatorRuntimePlatform&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_NavigatorRuntimePlatform
+  export_resolveCustomTabsPresentation[&quot;resolveCustomTabsPresentation&quot;]
+  module_src_presentation_resolveCustomTabsPresentation_ts --&gt; export_resolveCustomTabsPresentation
+  export_resolveCustomTabsPresentation -.-&gt; export_NavigatorResponsiveSize
+  export_resolveCustomTabsPresentation -.-&gt; export_ResolvedCustomTabsPresentation
+  export_ResolvedCustomTabsPresentation[&quot;ResolvedCustomTabsPresentation&quot;]
+  module_src_presentation_resolveCustomTabsPresentation_ts --&gt; export_ResolvedCustomTabsPresentation
+  export_ResolvedCustomTabsPresentation -.-&gt; export_ResolvedTabsPresentation
+  export_ResolvedTabsImplementation[&quot;ResolvedTabsImplementation&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_ResolvedTabsImplementation
+  export_ResolvedTabsPresentation[&quot;ResolvedTabsPresentation&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_ResolvedTabsPresentation
+  export_resolveNavigatorPreset[&quot;resolveNavigatorPreset&quot;]
+  module_src_topology_resolveNavigatorPreset_ts --&gt; export_resolveNavigatorPreset
+  export_resolveTabsNavigatorPlan[&quot;resolveTabsNavigatorPlan&quot;]
+  module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; export_resolveTabsNavigatorPlan
+  export_resolveTabsNavigatorPlan -.-&gt; export_NavigatorResponsiveSize
+  export_resolveTabsNavigatorPlan -.-&gt; export_NavigatorRuntimePlatform
+  export_resolveTabsNavigatorPlan -.-&gt; export_TabsNavigatorPlan
+  export_TabsNavigatorPlan[&quot;TabsNavigatorPlan&quot;]
+  module_src_definitions_NavigatorPlan_ts --&gt; export_TabsNavigatorPlan
+  export_TabsNavigatorPlan -.-&gt; export_ExpoRouterNavigatorModule
+  export_TabsNavigatorPlan -.-&gt; export_NavigatorApiStability
+  export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsImplementation
+  export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsPresentation
 </pre>
               </details>
+            </article>
+            <article
+              class="item"
+              data-search="resolveCustomTabsPresentation sequence diagrams/sequences/resolve-custom-tabs-presentation.mmd"
+            >
+              <h3>resolveCustomTabsPresentation sequence</h3>
+              <p class="muted">
+                <code>diagrams/sequences/resolve-custom-tabs-presentation.mmd</code>
+              </p>
+              <div class="mermaid">
+                sequenceDiagram participant participant_resolveCustomTabsPresentation as
+                resolveCustomTabsPresentation participant participant_resolveResponsivePresentation
+                as resolveResponsivePresentation
+                participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation:
+                resolveResponsivePresentation()
+                participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation:
+                return
+              </div>
+              <details>
+                <summary>View Mermaid source</summary>
+                <pre>
+sequenceDiagram
+  participant participant_resolveCustomTabsPresentation as resolveCustomTabsPresentation
+  participant participant_resolveResponsivePresentation as resolveResponsivePresentation
+  participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
+  participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation: return
+</pre>
+              </details>
+            </article>
+            <article
+              class="item"
+              data-search="resolveTabsNavigatorPlan sequence diagrams/sequences/resolve-tabs-navigator-plan.mmd"
+            >
+              <h3>resolveTabsNavigatorPlan sequence</h3>
+              <p class="muted"><code>diagrams/sequences/resolve-tabs-navigator-plan.mmd</code></p>
+              <div class="mermaid">
+                sequenceDiagram participant participant_createAdaptiveTabsPlan as
+                createAdaptiveTabsPlan participant participant_createCustomTabsPlan as
+                createCustomTabsPlan participant participant_createJavaScriptTabsPlan as
+                createJavaScriptTabsPlan participant participant_createNativeTabsPlan as
+                createNativeTabsPlan participant participant_resolveAdaptiveConfig as
+                resolveAdaptiveConfig participant participant_resolveCustomTabsPresentation as
+                resolveCustomTabsPresentation participant participant_resolveResponsivePresentation
+                as resolveResponsivePresentation participant participant_resolveTabsNavigatorPlan as
+                resolveTabsNavigatorPlan
+                participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createAdaptiveTabsPlan:
+                createAdaptiveTabsPlan()
+                participant_createAdaptiveTabsPlan-&gt;&gt;participant_createNativeTabsPlan:
+                createNativeTabsPlan()
+                participant_createNativeTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
+                participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan:
+                createCustomTabsPlan()
+                participant_createCustomTabsPlan-&gt;&gt;participant_resolveCustomTabsPresentation:
+                resolveCustomTabsPresentation()
+                participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation:
+                resolveResponsivePresentation()
+                participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation:
+                return
+                participant_resolveCustomTabsPresentation--&gt;&gt;participant_createCustomTabsPlan:
+                return participant_createCustomTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan:
+                return participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig:
+                resolveAdaptiveConfig()
+                participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan:
+                return
+                participant_createAdaptiveTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
+                return
+                participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createNativeTabsPlan:
+                createNativeTabsPlan()
+                participant_createNativeTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
+                return
+                participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createJavaScriptTabsPlan:
+                createJavaScriptTabsPlan()
+                participant_createJavaScriptTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
+                return
+                participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createCustomTabsPlan:
+                createCustomTabsPlan()
+                participant_createCustomTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
+                return
+              </div>
+              <details>
+                <summary>View Mermaid source</summary>
+                <pre>
+sequenceDiagram
+  participant participant_createAdaptiveTabsPlan as createAdaptiveTabsPlan
+  participant participant_createCustomTabsPlan as createCustomTabsPlan
+  participant participant_createJavaScriptTabsPlan as createJavaScriptTabsPlan
+  participant participant_createNativeTabsPlan as createNativeTabsPlan
+  participant participant_resolveAdaptiveConfig as resolveAdaptiveConfig
+  participant participant_resolveCustomTabsPresentation as resolveCustomTabsPresentation
+  participant participant_resolveResponsivePresentation as resolveResponsivePresentation
+  participant participant_resolveTabsNavigatorPlan as resolveTabsNavigatorPlan
+  participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createAdaptiveTabsPlan: createAdaptiveTabsPlan()
+  participant_createAdaptiveTabsPlan-&gt;&gt;participant_createNativeTabsPlan: createNativeTabsPlan()
+  participant_createNativeTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan: createCustomTabsPlan()
+  participant_createCustomTabsPlan-&gt;&gt;participant_resolveCustomTabsPresentation: resolveCustomTabsPresentation()
+  participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
+  participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation: return
+  participant_resolveCustomTabsPresentation--&gt;&gt;participant_createCustomTabsPlan: return
+  participant_createCustomTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig: resolveAdaptiveConfig()
+  participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createNativeTabsPlan: createNativeTabsPlan()
+  participant_createNativeTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createJavaScriptTabsPlan: createJavaScriptTabsPlan()
+  participant_createJavaScriptTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createCustomTabsPlan: createCustomTabsPlan()
+  participant_createCustomTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
+</pre>
+              </details>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-expo-router-createnavigatorplan-ts"
+          class="view"
+          data-view="src/expo-router/createNavigatorPlan.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/expo-router/createNavigatorPlan.ts</h2>
+            <article
+              class="item"
+              data-search="resolveNodeTabsConfig src/expo-router/createNavigatorPlan.ts Return node-local tabs configuration only when the node explicitly authors one."
+            >
+              <h3>resolveNodeTabsConfig</h3>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:24:1</code></p>
+              <p>Return node-local tabs configuration only when the node explicitly authors one.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolvePlatformTabsConfig src/expo-router/createNavigatorPlan.ts Resolve a platform-specific tabs override without dynamic object access."
+            >
+              <h3>resolvePlatformTabsConfig</h3>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:30:1</code></p>
+              <p>Resolve a platform-specific tabs override without dynamic object access.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveEffectiveTabsConfig src/expo-router/createNavigatorPlan.ts Resolve effective tabs configuration using platform, node, default, then adaptive fallback."
+            >
+              <h3>resolveEffectiveTabsConfig</h3>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:45:1</code></p>
+              <p>
+                Resolve effective tabs configuration using platform, node, default, then adaptive
+                fallback.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="createNodePlan src/expo-router/createNavigatorPlan.ts Convert one navigator node into a provider-aware Expo Router generation plan."
+            >
+              <h3>createNodePlan</h3>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:58:1</code></p>
+              <p>Convert one navigator node into a provider-aware Expo Router generation plan.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createNavigatorPlan src/expo-router/createNavigatorPlan.ts Create the complete standalone Navigator plan from only the navigator desired-state slice."
+            >
+              <h3>createNavigatorPlan</h3>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:96:1</code></p>
+              <p>
+                Create the complete standalone Navigator plan from only the navigator desired-state
+                slice.
+              </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-expo-router-resolvetabsnavigatorplan-ts"
+          class="view"
+          data-view="src/expo-router/resolveTabsNavigatorPlan.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/expo-router/resolveTabsNavigatorPlan.ts</h2>
+            <article
+              class="item"
+              data-search="resolveAdaptiveConfig src/expo-router/resolveTabsNavigatorPlan.ts Return the adaptive config when omission or `adaptive` selects that branch."
+            >
+              <h3>resolveAdaptiveConfig</h3>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:20:1</code></p>
+              <p>Return the adaptive config when omission or `adaptive` selects that branch.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createNativeTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Create the SDK 57 native-tabs plan and reject unsupported Web usage."
+            >
+              <h3>createNativeTabsPlan</h3>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:30:1</code></p>
+              <p>Create the SDK 57 native-tabs plan and reject unsupported Web usage.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createJavaScriptTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Create the stable JavaScript tabs plan for bottom or top presentation."
+            >
+              <h3>createJavaScriptTabsPlan</h3>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:43:1</code></p>
+              <p>Create the stable JavaScript tabs plan for bottom or top presentation.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createCustomTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Create the stable headless custom-tabs plan for Web or explicit custom use."
+            >
+              <h3>createCustomTabsPlan</h3>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:55:1</code></p>
+              <p>Create the stable headless custom-tabs plan for Web or explicit custom use.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createAdaptiveTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Resolve the adaptive tabs plan for the selected runtime platform."
+            >
+              <h3>createAdaptiveTabsPlan</h3>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:69:1</code></p>
+              <p>Resolve the adaptive tabs plan for the selected runtime platform.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveTabsNavigatorPlan src/expo-router/resolveTabsNavigatorPlan.ts Resolve the Expo Router module/export and presentation for one tabs implementation."
+            >
+              <h3>resolveTabsNavigatorPlan</h3>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:79:1</code></p>
+              <p>
+                Resolve the Expo Router module/export and presentation for one tabs implementation.
+              </p>
+            </article>
+          </section>
+        </section>
+        <section id="view-src-index-test-ts" class="view" data-view="src/index.test.ts" hidden>
+          <section class="panel">
+            <h2>src/index.test.ts</h2>
+            <article class="item" data-search="collectProductionTypeScriptFiles src/index.test.ts ">
+              <h3>collectProductionTypeScriptFiles</h3>
+              <p class="muted"><code>src/index.test.ts:21:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-presentation-resolvecustomtabspresentation-ts"
+          class="view"
+          data-view="src/presentation/resolveCustomTabsPresentation.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/presentation/resolveCustomTabsPresentation.ts</h2>
+            <article
+              class="item"
+              data-search="resolveResponsivePresentation src/presentation/resolveCustomTabsPresentation.ts Resolve the fixed presentation for one semantic responsive size."
+            >
+              <h3>resolveResponsivePresentation</h3>
+              <p class="muted">
+                <code>src/presentation/resolveCustomTabsPresentation.ts:24:1</code>
+              </p>
+              <p>Resolve the fixed presentation for one semantic responsive size.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveCustomTabsPresentation src/presentation/resolveCustomTabsPresentation.ts Resolve one custom-tabs presentation for the current semantic responsive size."
+            >
+              <h3>resolveCustomTabsPresentation</h3>
+              <p class="muted">
+                <code>src/presentation/resolveCustomTabsPresentation.ts:39:1</code>
+              </p>
+              <p>Resolve one custom-tabs presentation for the current semantic responsive size.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-topology-resolvenavigatorpreset-ts"
+          class="view"
+          data-view="src/topology/resolveNavigatorPreset.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/topology/resolveNavigatorPreset.ts</h2>
+            <article
+              class="item"
+              data-search="resolveNavigatorPreset src/topology/resolveNavigatorPreset.ts Resolve a canonical navigator preset into its ordered topology layers."
+            >
+              <h3>resolveNavigatorPreset</h3>
+              <p class="muted"><code>src/topology/resolveNavigatorPreset.ts:4:1</code></p>
+              <p>Resolve a canonical navigator preset into its ordered topology layers.</p>
             </article>
           </section>
         </section>

@@ -4,9 +4,9 @@
 
 ## Repository
 
-Package: `@ankhorage/zora-navigation`
+Package: `@ankhorage/navigator`
 
-Responsive, theme-aware navigation components for ZORA on React Native and React Native Web.
+Standalone manifest-driven navigator capability for Expo Router across React Native and React Native Web.
 
 ## Current architecture only
 

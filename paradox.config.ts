@@ -4,12 +4,12 @@ export default defineParadoxConfig({
   mode: 'write',
 
   docs: {
-    title: 'ZORA Navigation',
+    title: 'NAVIGATOR',
   },
 
   package: {
     root: '.',
-    entrypoints: ['src/index.ts'],
+    entrypoints: ['src/index.ts', 'src/metadata/index.ts'],
   },
 
   output: {

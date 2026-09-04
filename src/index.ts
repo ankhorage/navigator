@@ -1,6 +1,18 @@
-/**
- * Responsive, theme-aware navigation for ZORA.
- *
- * The public API is intentionally introduced by the package implementation issue.
- */
-export {};
+export type {
+  ExpoRouterNavigatorModule,
+  NavigatorApiStability,
+  NavigatorNodePlan,
+  NavigatorPlan,
+  NavigatorResponsiveSize,
+  NavigatorRoutePlan,
+  NavigatorRuntimePlatform,
+  ResolvedTabsImplementation,
+  ResolvedTabsPresentation,
+  TabsNavigatorPlan,
+} from './definitions/NavigatorPlan';
+export type { CreateNavigatorPlanOptions } from './expo-router/createNavigatorPlan';
+export { createNavigatorPlan } from './expo-router/createNavigatorPlan';
+export { resolveTabsNavigatorPlan } from './expo-router/resolveTabsNavigatorPlan';
+export type { ResolvedCustomTabsPresentation } from './presentation/resolveCustomTabsPresentation';
+export { resolveCustomTabsPresentation } from './presentation/resolveCustomTabsPresentation';
+export { resolveNavigatorPreset } from './topology/resolveNavigatorPreset';
