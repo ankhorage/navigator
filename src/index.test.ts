@@ -96,6 +96,24 @@ describe('@ankhorage/navigator tabs planning', () => {
       ).module,
     ).toBe('expo-router/js-top-tabs');
   });
+});
+
+describe('@ankhorage/navigator explicit tabs planning', () => {
+  test('maps custom tabs to the stable headless Router entry point', () => {
+    expect(
+      resolveTabsNavigatorPlan(
+        { implementation: 'custom', presentation: 'sidebar' },
+        'web',
+        'expanded',
+      ),
+    ).toEqual({
+      implementation: 'custom',
+      module: 'expo-router/ui',
+      exportName: 'Tabs',
+      stability: 'stable',
+      presentation: 'sidebar',
+    });
+  });
 
   test('rejects explicit native tabs for Web', () => {
     expect(() => resolveTabsNavigatorPlan({ implementation: 'native' }, 'web', 'compact')).toThrow(

@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@ankhorage/zora-navigation",
+      "name": "@ankhorage/navigator",
       "dependencies": {
         "@ankhorage/contracts": "^10.0.0",
       },

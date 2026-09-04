@@ -81,10 +81,17 @@ export function resolveTabsNavigatorPlan(
   platform: NavigatorRuntimePlatform,
   size: NavigatorResponsiveSize,
 ): TabsNavigatorPlan {
-  if (config?.implementation === undefined || config.implementation === 'adaptive') {
-    return createAdaptiveTabsPlan(config, platform, size);
+  if (config === undefined) return createAdaptiveTabsPlan(config, platform, size);
+
+  switch (config.implementation) {
+    case undefined:
+    case 'adaptive':
+      return createAdaptiveTabsPlan(config, platform, size);
+    case 'native':
+      return createNativeTabsPlan(platform);
+    case 'javascript':
+      return createJavaScriptTabsPlan(config);
+    case 'custom':
+      return createCustomTabsPlan(config, size);
   }
-  if (config.implementation === 'native') return createNativeTabsPlan(platform);
-  if (config.implementation === 'javascript') return createJavaScriptTabsPlan(config);
-  return createCustomTabsPlan(config, size);
 }
