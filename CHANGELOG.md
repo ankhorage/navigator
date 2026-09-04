@@ -1,4 +1,4 @@
-# @ankhorage/zora-navigation
+# @ankhorage/navigator
 
 ## 0.1.0
 
