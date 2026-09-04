@@ -1,4 +1,4 @@
-import type { TabsImplementationConfig } from '@ankhorage/contracts/navigator';
+import type { AdaptiveTabsConfig, TabsImplementationConfig } from '@ankhorage/contracts/navigator';
 
 import type {
   NavigatorResponsiveSize,
@@ -11,6 +11,16 @@ const DEFAULT_WEB_CUSTOM_TABS = {
   presentation: 'responsive',
 } as const;
 
+/*** Return the adaptive config when omission or `adaptive` selects that branch. */
+function resolveAdaptiveConfig(
+  config: TabsImplementationConfig | undefined,
+): AdaptiveTabsConfig | undefined {
+  if (config === undefined) return undefined;
+  return config.implementation === undefined || config.implementation === 'adaptive'
+    ? config
+    : undefined;
+}
+
 /*** Resolve the Expo Router module/export and presentation for one tabs implementation. */
 export function resolveTabsNavigatorPlan(
   config: TabsImplementationConfig | undefined,
@@ -21,8 +31,10 @@ export function resolveTabsNavigatorPlan(
 
   if (implementation === 'adaptive') {
     if (platform === 'web') {
-      const web = config?.implementation === 'adaptive' ? config.web : undefined;
-      const resolved = resolveCustomTabsPresentation(web ?? DEFAULT_WEB_CUSTOM_TABS, size);
+      const resolved = resolveCustomTabsPresentation(
+        resolveAdaptiveConfig(config)?.web ?? DEFAULT_WEB_CUSTOM_TABS,
+        size,
+      );
       return {
         implementation: 'custom',
         module: 'expo-router/ui',
