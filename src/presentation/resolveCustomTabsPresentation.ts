@@ -1,6 +1,7 @@
 import type {
   CustomTabsConfig,
   FixedCustomTabsPresentation,
+  ResponsiveTabsPresentation,
 } from '@ankhorage/contracts/navigator';
 
 import type {
@@ -19,6 +20,21 @@ export interface ResolvedCustomTabsPresentation {
   customPresentationId?: string;
 }
 
+/*** Resolve the fixed presentation for one semantic responsive size. */
+function resolveResponsivePresentation(
+  mapping: ResponsiveTabsPresentation,
+  size: NavigatorResponsiveSize,
+): FixedCustomTabsPresentation {
+  switch (size) {
+    case 'compact':
+      return mapping.compact;
+    case 'medium':
+      return mapping.medium ?? mapping.expanded;
+    case 'expanded':
+      return mapping.expanded;
+  }
+}
+
 /*** Resolve one custom-tabs presentation for the current semantic responsive size. */
 export function resolveCustomTabsPresentation(
   config: Omit<CustomTabsConfig, 'implementation'>,
@@ -32,10 +48,11 @@ export function resolveCustomTabsPresentation(
   }
 
   if (config.presentation === 'responsive') {
-    const mapping = config.responsive ?? DEFAULT_RESPONSIVE_PRESENTATION;
     return {
-      presentation:
-        size === 'medium' ? (mapping.medium ?? mapping.expanded) : mapping[size],
+      presentation: resolveResponsivePresentation(
+        config.responsive ?? DEFAULT_RESPONSIVE_PRESENTATION,
+        size,
+      ),
     };
   }
 
