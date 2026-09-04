@@ -23,10 +23,10 @@ Source: `src/expo-router/createNavigatorPlan.ts:18:1`
 
 ### Members
 
-| Name | Kind | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| platform | property | `NavigatorRuntimePlatform` | yes |  |
-| responsiveSize | property | `NavigatorResponsiveSize \| undefined` | no |  |
+| Name           | Kind     | Type                                   | Required | Description |
+| -------------- | -------- | -------------------------------------- | -------- | ----------- |
+| platform       | property | `NavigatorRuntimePlatform`             | yes      |             |
+| responsiveSize | property | `NavigatorResponsiveSize \| undefined` | no       |             |
 
 ## ExpoRouterNavigatorModule
 
@@ -54,13 +54,13 @@ Source: `src/definitions/NavigatorPlan.ts:34:1`
 
 ### Members
 
-| Name | Kind | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| exportName | property | `string` | yes |  |
-| module | property | `ExpoRouterNavigatorModule` | yes |  |
-| routes | property | `NavigatorRoutePlan[]` | yes |  |
-| tabs | property | `TabsNavigatorPlan \| undefined` | no |  |
-| type | property | `"stack" \| "tabs" \| "drawer"` | yes |  |
+| Name       | Kind     | Type                             | Required | Description |
+| ---------- | -------- | -------------------------------- | -------- | ----------- |
+| exportName | property | `string`                         | yes      |             |
+| module     | property | `ExpoRouterNavigatorModule`      | yes      |             |
+| routes     | property | `NavigatorRoutePlan[]`           | yes      |             |
+| tabs       | property | `TabsNavigatorPlan \| undefined` | no       |             |
+| type       | property | `"stack" \| "tabs" \| "drawer"`  | yes      |             |
 
 ## NavigatorPlan
 
@@ -70,11 +70,11 @@ Source: `src/definitions/NavigatorPlan.ts:42:1`
 
 ### Members
 
-| Name | Kind | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| flows | property | `{ onboarding: boolean; authentication: boolean; }` | yes |  |
-| presetLayers | property | `readonly ("stack" \| "tabs" \| "drawer")[]` | yes |  |
-| root | property | `NavigatorNodePlan` | yes |  |
+| Name         | Kind     | Type                                                | Required | Description |
+| ------------ | -------- | --------------------------------------------------- | -------- | ----------- |
+| flows        | property | `{ onboarding: boolean; authentication: boolean; }` | yes      |             |
+| presetLayers | property | `readonly ("stack" \| "tabs" \| "drawer")[]`        | yes      |             |
+| root         | property | `NavigatorNodePlan`                                 | yes      |             |
 
 ## NavigatorResponsiveSize
 
@@ -90,12 +90,12 @@ Source: `src/definitions/NavigatorPlan.ts:27:1`
 
 ### Members
 
-| Name | Kind | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| name | property | `string` | yes |  |
-| navigator | property | `NavigatorNodePlan \| undefined` | no |  |
-| path | property | `string \| undefined` | no |  |
-| screenId | property | `string \| undefined` | no |  |
+| Name      | Kind     | Type                             | Required | Description |
+| --------- | -------- | -------------------------------- | -------- | ----------- |
+| name      | property | `string`                         | yes      |             |
+| navigator | property | `NavigatorNodePlan \| undefined` | no       |             |
+| path      | property | `string \| undefined`            | no       |             |
+| screenId  | property | `string \| undefined`            | no       |             |
 
 ## NavigatorRuntimePlatform
 
@@ -126,10 +126,10 @@ Source: `src/presentation/resolveCustomTabsPresentation.ts:18:1`
 
 ### Members
 
-| Name | Kind | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| customPresentationId | property | `string \| undefined` | no |  |
-| presentation | property | `ResolvedTabsPresentation` | yes |  |
+| Name                 | Kind     | Type                       | Required | Description |
+| -------------------- | -------- | -------------------------- | -------- | ----------- |
+| customPresentationId | property | `string \| undefined`      | no       |             |
+| presentation         | property | `ResolvedTabsPresentation` | yes      |             |
 
 ## ResolvedTabsImplementation
 
@@ -182,11 +182,11 @@ Source: `src/definitions/NavigatorPlan.ts:18:1`
 
 ### Members
 
-| Name | Kind | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| customPresentationId | property | `string \| undefined` | no |  |
-| exportName | property | `string` | yes |  |
-| implementation | property | `ResolvedTabsImplementation` | yes |  |
-| module | property | `ExpoRouterNavigatorModule` | yes |  |
-| presentation | property | `ResolvedTabsPresentation \| undefined` | no |  |
-| stability | property | `NavigatorApiStability` | yes |  |
+| Name                 | Kind     | Type                                    | Required | Description |
+| -------------------- | -------- | --------------------------------------- | -------- | ----------- |
+| customPresentationId | property | `string \| undefined`                   | no       |             |
+| exportName           | property | `string`                                | yes      |             |
+| implementation       | property | `ResolvedTabsImplementation`            | yes      |             |
+| module               | property | `ExpoRouterNavigatorModule`             | yes      |             |
+| presentation         | property | `ResolvedTabsPresentation \| undefined` | no       |             |
+| stability            | property | `NavigatorApiStability`                 | yes      |             |

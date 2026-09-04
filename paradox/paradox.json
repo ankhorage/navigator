@@ -66,10 +66,7 @@
   "readmeCli": null,
   "readmeConfig": null,
   "config": null,
-  "entrypoints": [
-    "src/index.ts",
-    "src/metadata/index.ts"
-  ],
+  "entrypoints": ["src/index.ts", "src/metadata/index.ts"],
   "modules": [
     {
       "path": "src/definitions/NavigatorPlan.ts",
@@ -96,10 +93,7 @@
         "src/expo-router/resolveTabsNavigatorPlan.ts",
         "src/topology/resolveNavigatorPreset.ts"
       ],
-      "exports": [
-        "createNavigatorPlan",
-        "CreateNavigatorPlanOptions"
-      ]
+      "exports": ["createNavigatorPlan", "CreateNavigatorPlanOptions"]
     },
     {
       "path": "src/expo-router/resolveTabsNavigatorPlan.ts",
@@ -108,17 +102,12 @@
         "src/definitions/NavigatorPlan.ts",
         "src/presentation/resolveCustomTabsPresentation.ts"
       ],
-      "exports": [
-        "resolveTabsNavigatorPlan"
-      ]
+      "exports": ["resolveTabsNavigatorPlan"]
     },
     {
       "path": "src/index.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts",
-        "src/metadata/index.ts"
-      ],
+      "dependencies": ["src/index.ts", "src/metadata/index.ts"],
       "exports": []
     },
     {
@@ -148,28 +137,19 @@
       "path": "src/metadata/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
-      "exports": [
-        "NAVIGATOR_PACKAGE_METADATA"
-      ]
+      "exports": ["NAVIGATOR_PACKAGE_METADATA"]
     },
     {
       "path": "src/presentation/resolveCustomTabsPresentation.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "resolveCustomTabsPresentation",
-        "ResolvedCustomTabsPresentation"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["resolveCustomTabsPresentation", "ResolvedCustomTabsPresentation"]
     },
     {
       "path": "src/topology/resolveNavigatorPreset.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": [
-        "resolveNavigatorPreset"
-      ]
+      "exports": ["resolveNavigatorPreset"]
     }
   ],
   "exports": [
@@ -185,13 +165,8 @@
         "line": 96,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "CreateNavigatorPlanOptions",
-        "NavigatorPlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["CreateNavigatorPlanOptions", "NavigatorPlan"],
       "signatures": [
         {
           "label": "(manifest: AppNavigatorManifest, options: CreateNavigatorPlanOptions) => NavigatorPlan",
@@ -228,13 +203,8 @@
         "line": 18,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorResponsiveSize",
-        "NavigatorRuntimePlatform"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorResponsiveSize", "NavigatorRuntimePlatform"],
       "signatures": [],
       "members": [
         {
@@ -266,9 +236,7 @@
         "line": 7,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -286,9 +254,7 @@
         "line": 8,
         "column": 14
       },
-      "exportPaths": [
-        "src/metadata/index.ts"
-      ],
+      "exportPaths": ["src/metadata/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -306,9 +272,7 @@
         "line": 5,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -326,14 +290,8 @@
         "line": 34,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "ExpoRouterNavigatorModule",
-        "NavigatorRoutePlan",
-        "TabsNavigatorPlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["ExpoRouterNavigatorModule", "NavigatorRoutePlan", "TabsNavigatorPlan"],
       "signatures": [],
       "members": [
         {
@@ -386,12 +344,8 @@
         "line": 42,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorNodePlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorNodePlan"],
       "signatures": [],
       "members": [
         {
@@ -430,9 +384,7 @@
         "line": 4,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -450,12 +402,8 @@
         "line": 27,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorNodePlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorNodePlan"],
       "signatures": [],
       "members": [
         {
@@ -501,9 +449,7 @@
         "line": 3,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -521,13 +467,8 @@
         "line": 39,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorResponsiveSize",
-        "ResolvedCustomTabsPresentation"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorResponsiveSize", "ResolvedCustomTabsPresentation"],
       "signatures": [
         {
           "label": "(config: Omit<CustomTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation",
@@ -564,12 +505,8 @@
         "line": 18,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "ResolvedTabsPresentation"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["ResolvedTabsPresentation"],
       "signatures": [],
       "members": [
         {
@@ -601,9 +538,7 @@
         "line": 15,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -621,9 +556,7 @@
         "line": 16,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -641,9 +574,7 @@
         "line": 4,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [
         {
@@ -681,9 +612,7 @@
         "line": 79,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "NavigatorResponsiveSize",
         "NavigatorRuntimePlatform",
@@ -731,9 +660,7 @@
         "line": 18,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "ExpoRouterNavigatorModule",
         "NavigatorApiStability",

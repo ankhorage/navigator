@@ -81,7 +81,7 @@ export function resolveTabsNavigatorPlan(
   platform: NavigatorRuntimePlatform,
   size: NavigatorResponsiveSize,
 ): TabsNavigatorPlan {
-  if (config === undefined || config.implementation === undefined || config.implementation === 'adaptive') {
+  if (config?.implementation === undefined || config.implementation === 'adaptive') {
     return createAdaptiveTabsPlan(config, platform, size);
   }
   if (config.implementation === 'native') return createNativeTabsPlan(platform);
