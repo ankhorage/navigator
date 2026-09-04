@@ -1,6 +1,7 @@
 import type {
   AppNavigatorManifest,
   NavigatorNode,
+  NavigatorPlatforms,
   TabsImplementationConfig,
   TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
@@ -25,6 +26,21 @@ function resolveNodeTabsConfig(node: TabsNavigatorNode): TabsImplementationConfi
   return node.native !== undefined || node.web !== undefined ? node : undefined;
 }
 
+/*** Resolve a platform-specific tabs override without dynamic object access. */
+function resolvePlatformTabsConfig(
+  platforms: NavigatorPlatforms | undefined,
+  platform: NavigatorRuntimePlatform,
+): TabsImplementationConfig | undefined {
+  switch (platform) {
+    case 'android':
+      return platforms?.android?.tabs;
+    case 'ios':
+      return platforms?.ios?.tabs;
+    case 'web':
+      return platforms?.web?.tabs;
+  }
+}
+
 /*** Resolve effective tabs configuration using platform, node, default, then adaptive fallback. */
 function resolveEffectiveTabsConfig(
   manifest: AppNavigatorManifest,
@@ -32,7 +48,7 @@ function resolveEffectiveTabsConfig(
   platform: NavigatorRuntimePlatform,
 ): TabsImplementationConfig | undefined {
   return (
-    manifest.platforms?.[platform]?.tabs ??
+    resolvePlatformTabsConfig(manifest.platforms, platform) ??
     resolveNodeTabsConfig(node) ??
     manifest.defaults?.tabs
   );
@@ -76,7 +92,7 @@ function createNodePlan(
   };
 }
 
-/*** Create the complete standalone Navigator plan from only `AppManifest.navigator` desired state. */
+/*** Create the complete standalone Navigator plan from only the navigator desired-state slice. */
 export function createNavigatorPlan(
   manifest: AppNavigatorManifest,
   options: CreateNavigatorPlanOptions,
