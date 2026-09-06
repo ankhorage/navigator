@@ -12,6 +12,7 @@ import {
 } from '../expo-router/resolveNavigatorConfig';
 import { addExperimentalStackDiagnostics } from './validateExperimentalStack';
 import { validatePresetTopology } from './validatePresetTopology';
+import { addSplitViewDiagnostics } from './validateSplitView';
 import { addTabsAdapterDiagnostics } from './validateTabsNavigator';
 
 function addStackAdapterDiagnostics(
@@ -49,12 +50,12 @@ function addUnsupportedAdapterDiagnostics(
   if (node.type === 'tabs') {
     addTabsAdapterDiagnostics(diagnostics, manifest, node, pointer, context, routerMajor);
   }
-  if (node.type === 'split-view' || node.type === 'custom') {
+  if (node.type === 'custom') {
     diagnostics.push({
       code: 'adapter-unavailable',
       severity: 'error',
       path: pointer,
-      message: `${node.type === 'split-view' ? 'Split View' : 'Custom navigator'} is not available in the core Navigator release.`,
+      message: 'Custom navigator is not available in the core Navigator release.',
     });
   }
 }
@@ -246,6 +247,7 @@ export function validateNavigatorManifest(
   validatePresetTopology(diagnostics, manifest);
   validateNode(diagnostics, manifest, manifest, '', context, routerMajor);
   addExperimentalStackDiagnostics(diagnostics, manifest, context, routerMajor);
+  addSplitViewDiagnostics(diagnostics, manifest, context, routerMajor);
   return diagnostics.sort((left, right) =>
     `${left.path}\0${left.code}\0${left.message}`.localeCompare(
       `${right.path}\0${right.code}\0${right.message}`,

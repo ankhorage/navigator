@@ -148,7 +148,6 @@ describe('@ankhorage/navigator adapter diagnostics', () => {
     );
 
     for (const manifest of [
-      { type: 'split-view', columns: { primary: { screenId: 'home' } }, routes: [] },
       { type: 'custom', navigatorId: 'workspace', routes: [] },
     ] as const satisfies readonly AppNavigatorManifest[]) {
       expect(

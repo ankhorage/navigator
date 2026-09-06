@@ -9,6 +9,7 @@ import type {
 
 const APP_DIRECTORY = 'src/app';
 const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
+import { generateSplitViewLayoutFile } from './generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from './generateTabsLayoutFile';
 import { assertModuleBinding, quote } from './generationSafety';
 
@@ -118,6 +119,8 @@ function createLayoutFile(
 
   const tabsLayout = generateTabsLayoutFile(node, directory, bindings);
   if (tabsLayout !== undefined) return tabsLayout;
+  const splitViewLayout = generateSplitViewLayoutFile(node, directory, bindings);
+  if (splitViewLayout !== undefined) return splitViewLayout;
 
   const componentName = node.adapter.exportName;
   assertModuleBinding(

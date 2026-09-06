@@ -8,7 +8,7 @@
     "modulePath": "src/expo-router/createNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/expo-router/createNavigatorPlan.ts",
-      "line": 287,
+      "line": 283,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -46,7 +46,7 @@
     "modulePath": "src/expo-router/createNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/expo-router/createNavigatorPlan.ts",
-      "line": 25,
+      "line": 26,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -308,7 +308,7 @@
     "modulePath": "src/generation/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/generation/generateNavigatorFiles.ts",
-      "line": 209,
+      "line": 212,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -364,7 +364,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 24,
+      "line": 25,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -382,7 +382,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 48,
+      "line": 49,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -466,7 +466,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 36,
+      "line": 37,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -513,7 +513,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 145,
+      "line": 146,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -546,7 +546,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 134,
+      "line": 135,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -600,7 +600,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 90,
+      "line": 91,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -689,7 +689,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 118,
+      "line": 119,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -761,7 +761,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 78,
+      "line": 79,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -861,7 +861,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 129,
+      "line": 130,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -912,7 +912,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 43,
+      "line": 44,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1016,7 +1016,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 57,
+      "line": 58,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1034,7 +1034,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 58,
+      "line": 59,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1134,7 +1134,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 66,
+      "line": 67,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1222,7 +1222,7 @@
     "modulePath": "src/validation/validateNavigatorManifest.ts",
     "sourceLocation": {
       "filePath": "src/validation/validateNavigatorManifest.ts",
-      "line": 231,
+      "line": 232,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],

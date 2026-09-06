@@ -1,7 +1,7 @@
 {
   "packageName": "NAVIGATOR",
   "packageId": "@ankhorage/navigator",
-  "description": "Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; Experimental Stack stays testing-only, validates its narrow option surface, and uses the upstream web fallback.",
+  "description": "Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; experimental Stack and Split View stay testing-only with validated upstream fallbacks.",
   "collaborators": null,
   "donation": null,
   "badges": [
@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.1.0",
+      "value": "v1.2.0",
       "color": "cb3837"
     },
     {
@@ -105,6 +105,7 @@
       "dependencies": [
         "src/definitions/NavigatorPlan.ts",
         "src/expo-router/resolveNavigatorConfig.ts",
+        "src/expo-router/resolveSplitViewNavigatorPlan.ts",
         "src/expo-router/resolveTabsNavigatorPlan.ts",
         "src/validation/validateNavigatorManifest.ts"
       ],
@@ -123,6 +124,12 @@
       ]
     },
     {
+      "path": "src/expo-router/resolveSplitViewNavigatorPlan.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["resolveSplitViewAdapterPlan"]
+    },
+    {
       "path": "src/expo-router/resolveTabsNavigatorPlan.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -138,6 +145,12 @@
       "exports": []
     },
     {
+      "path": "src/generatedSplitViewTypecheck.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/generatedTabsTypecheck.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/index.ts"],
@@ -148,10 +161,17 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/definitions/NavigatorPlan.ts",
+        "src/generation/generateSplitViewLayoutFile.ts",
         "src/generation/generateTabsLayoutFile.ts",
         "src/generation/generationSafety.ts"
       ],
       "exports": ["generateNavigatorFiles"]
+    },
+    {
+      "path": "src/generation/generateSplitViewLayoutFile.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/definitions/NavigatorPlan.ts", "src/generation/generationSafety.ts"],
+      "exports": ["generateSplitViewLayoutFile"]
     },
     {
       "path": "src/generation/generateTabsLayoutFile.ts",
@@ -223,6 +243,12 @@
       "exports": ["resolveCustomTabsPresentation", "ResolvedCustomTabsPresentation"]
     },
     {
+      "path": "src/splitView.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts", "src/metadata/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/tabs.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/index.ts"],
@@ -287,6 +313,7 @@
         "src/expo-router/resolveNavigatorConfig.ts",
         "src/validation/validateExperimentalStack.ts",
         "src/validation/validatePresetTopology.ts",
+        "src/validation/validateSplitView.ts",
         "src/validation/validateTabsNavigator.ts"
       ],
       "exports": ["validateNavigatorManifest"]
@@ -299,6 +326,12 @@
         "src/topology/resolveNavigatorPreset.ts"
       ],
       "exports": ["validatePresetTopology"]
+    },
+    {
+      "path": "src/validation/validateSplitView.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["addSplitViewDiagnostics"]
     },
     {
       "path": "src/validation/validateTabsNavigator.ts",
@@ -320,7 +353,7 @@
       "modulePath": "src/expo-router/createNavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 287,
+        "line": 283,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -358,7 +391,7 @@
       "modulePath": "src/expo-router/createNavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 25,
+        "line": 26,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -620,7 +653,7 @@
       "modulePath": "src/generation/generateNavigatorFiles.ts",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 209,
+        "line": 212,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -676,7 +709,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 24,
+        "line": 25,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -694,7 +727,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 48,
+        "line": 49,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -778,7 +811,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 36,
+        "line": 37,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -825,7 +858,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 145,
+        "line": 146,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -858,7 +891,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 134,
+        "line": 135,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -912,7 +945,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 90,
+        "line": 91,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1001,7 +1034,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 118,
+        "line": 119,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1073,7 +1106,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 78,
+        "line": 79,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1173,7 +1206,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 129,
+        "line": 130,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1224,7 +1257,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 43,
+        "line": 44,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1328,7 +1361,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 57,
+        "line": 58,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1346,7 +1379,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 58,
+        "line": 59,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1450,7 +1483,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 66,
+        "line": 67,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1538,7 +1571,7 @@
       "modulePath": "src/validation/validateNavigatorManifest.ts",
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 231,
+        "line": 232,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1630,7 +1663,7 @@
       "description": "Resolve a Stack implementation to its version- and platform-aware Expo Router adapter.",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 32,
+        "line": 33,
         "column": 1
       }
     },
@@ -1639,7 +1672,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 79,
+        "line": 80,
         "column": 1
       }
     },
@@ -1648,7 +1681,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 103,
+        "line": 104,
         "column": 1
       }
     },
@@ -1657,7 +1690,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 151,
+        "line": 147,
         "column": 1
       }
     },
@@ -1666,7 +1699,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 171,
+        "line": 167,
         "column": 1
       }
     },
@@ -1675,7 +1708,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 215,
+        "line": 211,
         "column": 1
       }
     },
@@ -1684,7 +1717,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 247,
+        "line": 243,
         "column": 1
       }
     },
@@ -1693,7 +1726,7 @@
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 287,
+        "line": 283,
         "column": 1
       }
     },
@@ -1770,6 +1803,15 @@
       }
     },
     {
+      "name": "resolveSplitViewAdapterPlan",
+      "description": "Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback.",
+      "sourceLocation": {
+        "filePath": "src/expo-router/resolveSplitViewNavigatorPlan.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveAdaptiveConfig",
       "description": "Return the adaptive config when omission or `adaptive` selects that branch.",
       "sourceLocation": {
@@ -1833,6 +1875,15 @@
       }
     },
     {
+      "name": "typeErrors",
+      "description": "Compile a generated layout and virtual registered screens against Expo Router public types.",
+      "sourceLocation": {
+        "filePath": "src/generatedSplitViewTypecheck.test.ts",
+        "line": 16,
+        "column": 1
+      }
+    },
+    {
       "name": "createLayout",
       "description": null,
       "sourceLocation": {
@@ -1855,7 +1906,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 15,
+        "line": 16,
         "column": 1
       }
     },
@@ -1864,7 +1915,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 21,
+        "line": 22,
         "column": 1
       }
     },
@@ -1873,7 +1924,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 37,
+        "line": 38,
         "column": 1
       }
     },
@@ -1882,7 +1933,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 60,
+        "line": 61,
         "column": 1
       }
     },
@@ -1891,7 +1942,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 77,
+        "line": 78,
         "column": 1
       }
     },
@@ -1900,7 +1951,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 104,
+        "line": 105,
         "column": 1
       }
     },
@@ -1909,7 +1960,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 147,
+        "line": 150,
         "column": 1
       }
     },
@@ -1918,7 +1969,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 165,
+        "line": 168,
         "column": 1
       }
     },
@@ -1927,7 +1978,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 182,
+        "line": 185,
         "column": 1
       }
     },
@@ -1936,7 +1987,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 192,
+        "line": 195,
         "column": 1
       }
     },
@@ -1945,7 +1996,52 @@
       "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 209,
+        "line": 212,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveSplitViewBinding",
+      "description": "Resolve one Split View screen reference through the narrow generated-screen binding port.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateSplitViewLayoutFile.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderSplitViewImports",
+      "description": "Render deterministic imports for referenced Split View column and inspector screens.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateSplitViewLayoutFile.ts",
+        "line": 34,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderSplitViewChild",
+      "description": "Render one referenced screen as an upstream Split View child.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateSplitViewLayoutFile.ts",
+        "line": 44,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectSplitViewBindings",
+      "description": "Resolve the ordered primary, supplementary, and inspector bindings for one Split View.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateSplitViewLayoutFile.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "generateSplitViewLayoutFile",
+      "description": "Generate a Split View layout while leaving the routed main column to Expo Router's Slot.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateSplitViewLayoutFile.ts",
+        "line": 72,
         "column": 1
       }
     },
@@ -2215,7 +2311,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 17,
+        "line": 18,
         "column": 1
       }
     },
@@ -2224,7 +2320,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 38,
+        "line": 39,
         "column": 1
       }
     },
@@ -2233,7 +2329,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 62,
+        "line": 63,
         "column": 1
       }
     },
@@ -2242,7 +2338,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 89,
+        "line": 90,
         "column": 1
       }
     },
@@ -2251,7 +2347,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 114,
+        "line": 115,
         "column": 1
       }
     },
@@ -2260,7 +2356,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 129,
+        "line": 130,
         "column": 1
       }
     },
@@ -2269,7 +2365,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 153,
+        "line": 154,
         "column": 1
       }
     },
@@ -2278,7 +2374,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 184,
+        "line": 185,
         "column": 1
       }
     },
@@ -2287,7 +2383,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 198,
+        "line": 199,
         "column": 1
       }
     },
@@ -2296,7 +2392,7 @@
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 231,
+        "line": 232,
         "column": 1
       }
     },
@@ -2316,6 +2412,51 @@
         "filePath": "src/validation/validatePresetTopology.ts",
         "line": 15,
         "column": 3
+      }
+    },
+    {
+      "name": "collectSplitViews",
+      "description": "Collect every Split View together with its parent topology and manifest pointer.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateSplitView.ts",
+        "line": 19,
+        "column": 1
+      }
+    },
+    {
+      "name": "addCollapseColumnDiagnostics",
+      "description": "Reject invalid or unavailable iPhone collapse-column selections.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateSplitView.ts",
+        "line": 40,
+        "column": 1
+      }
+    },
+    {
+      "name": "addColumnDiagnostics",
+      "description": "Reject unresolved, duplicated, or incompatible Split View column references.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateSplitView.ts",
+        "line": 64,
+        "column": 1
+      }
+    },
+    {
+      "name": "addTopologyDiagnostics",
+      "description": "Reject Split View placement and route declarations unsupported by its Slot-based topology.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateSplitView.ts",
+        "line": 100,
+        "column": 1
+      }
+    },
+    {
+      "name": "addSplitViewDiagnostics",
+      "description": "Add constrained placement, binding, flow, version, and fallback diagnostics for Split View.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateSplitView.ts",
+        "line": 134,
+        "column": 1
       }
     },
     {
@@ -2440,6 +2581,11 @@
         "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
       },
       {
+        "fromPath": "src/generatedSplitViewTypecheck.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
         "fromPath": "src/generatedTabsTypecheck.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/generatedTabsTypecheck.test.ts"
@@ -2490,6 +2636,16 @@
         "sourcePath": "src/packageBoundary.test.ts"
       },
       {
+        "fromPath": "src/splitView.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
+        "fromPath": "src/splitView.test.ts",
+        "toPath": "src/metadata/index.ts",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
         "fromPath": "src/tabs.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/tabs.test.ts"
@@ -2511,6 +2667,11 @@
       },
       {
         "fromPath": "src/expo-router/createNavigatorPlan.ts",
+        "toPath": "src/expo-router/resolveSplitViewNavigatorPlan.ts",
+        "sourcePath": "src/expo-router/createNavigatorPlan.ts"
+      },
+      {
+        "fromPath": "src/expo-router/createNavigatorPlan.ts",
         "toPath": "src/expo-router/resolveTabsNavigatorPlan.ts",
         "sourcePath": "src/expo-router/createNavigatorPlan.ts"
       },
@@ -2518,6 +2679,11 @@
         "fromPath": "src/expo-router/resolveNavigatorConfig.ts",
         "toPath": "src/definitions/NavigatorPlan.ts",
         "sourcePath": "src/expo-router/resolveNavigatorConfig.ts"
+      },
+      {
+        "fromPath": "src/expo-router/resolveSplitViewNavigatorPlan.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/expo-router/resolveSplitViewNavigatorPlan.ts"
       },
       {
         "fromPath": "src/expo-router/resolveTabsNavigatorPlan.ts",
@@ -2536,6 +2702,11 @@
       },
       {
         "fromPath": "src/generation/generateNavigatorFiles.ts",
+        "toPath": "src/generation/generateSplitViewLayoutFile.ts",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromPath": "src/generation/generateNavigatorFiles.ts",
         "toPath": "src/generation/generateTabsLayoutFile.ts",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
@@ -2543,6 +2714,16 @@
         "fromPath": "src/generation/generateNavigatorFiles.ts",
         "toPath": "src/generation/generationSafety.ts",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromPath": "src/generation/generateSplitViewLayoutFile.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromPath": "src/generation/generateSplitViewLayoutFile.ts",
+        "toPath": "src/generation/generationSafety.ts",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
       },
       {
         "fromPath": "src/generation/generateTabsLayoutFile.ts",
@@ -2606,6 +2787,11 @@
       },
       {
         "fromPath": "src/validation/validateNavigatorManifest.ts",
+        "toPath": "src/validation/validateSplitView.ts",
+        "sourcePath": "src/validation/validateNavigatorManifest.ts"
+      },
+      {
+        "fromPath": "src/validation/validateNavigatorManifest.ts",
         "toPath": "src/validation/validateTabsNavigator.ts",
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
       },
@@ -2618,6 +2804,11 @@
         "fromPath": "src/validation/validatePresetTopology.ts",
         "toPath": "src/topology/resolveNavigatorPreset.ts",
         "sourcePath": "src/validation/validatePresetTopology.ts"
+      },
+      {
+        "fromPath": "src/validation/validateSplitView.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/validation/validateSplitView.ts"
       },
       {
         "fromPath": "src/validation/validateTabsNavigator.ts",
@@ -2714,6 +2905,48 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "typeErrors",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedSplitViewTypecheck.test.ts",
+        "toSymbol": "getSourceFile",
+        "callExpression": "getSourceFile",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedSplitViewTypecheck.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedSplitViewTypecheck.test.ts",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedSplitViewTypecheck.test.ts",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedSplitViewTypecheck.test.ts",
+        "toSymbol": "typeErrors",
+        "callExpression": "typeErrors",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedSplitViewTypecheck.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/generatedSplitViewTypecheck.test.ts"
       },
       {
         "fromSymbol": "createLayout",
@@ -2866,6 +3099,42 @@
         "sourcePath": "src/packageBoundary.test.ts"
       },
       {
+        "fromSymbol": "src/splitView.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "src/splitView.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "src/splitView.test.ts",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "src/splitView.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "src/splitView.test.ts",
+        "toSymbol": "validateNavigatorManifest",
+        "callExpression": "validateNavigatorManifest",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "src/splitView.test.ts",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/splitView.test.ts"
+      },
+      {
         "fromSymbol": "generatedLayout",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
@@ -2935,6 +3204,12 @@
         "fromSymbol": "createAdapter",
         "toSymbol": "createTabsAdapter",
         "callExpression": "createTabsAdapter",
+        "sourcePath": "src/expo-router/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "createAdapter",
+        "toSymbol": "resolveSplitViewAdapterPlan",
+        "callExpression": "resolveSplitViewAdapterPlan",
         "sourcePath": "src/expo-router/createNavigatorPlan.ts"
       },
       {
@@ -3125,6 +3400,12 @@
       },
       {
         "fromSymbol": "createLayoutFile",
+        "toSymbol": "generateSplitViewLayoutFile",
+        "callExpression": "generateSplitViewLayoutFile",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "createLayoutFile",
         "toSymbol": "assertModuleBinding",
         "callExpression": "assertModuleBinding",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
@@ -3212,6 +3493,42 @@
         "toSymbol": "collectFiles",
         "callExpression": "collectFiles",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "resolveSplitViewBinding",
+        "toSymbol": "assertModuleBinding",
+        "callExpression": "assertModuleBinding",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateSplitViewLayoutFile.ts",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "collectSplitViewBindings",
+        "toSymbol": "resolveSplitViewBinding",
+        "callExpression": "resolveSplitViewBinding",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generateSplitViewLayoutFile",
+        "toSymbol": "collectSplitViewBindings",
+        "callExpression": "collectSplitViewBindings",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generateSplitViewLayoutFile",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generateSplitViewLayoutFile",
+        "toSymbol": "renderSplitViewImports",
+        "callExpression": "renderSplitViewImports",
+        "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
       },
       {
         "fromSymbol": "createNativeTabsContents",
@@ -3472,6 +3789,12 @@
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
       },
       {
+        "fromSymbol": "validateNavigatorManifest",
+        "toSymbol": "addSplitViewDiagnostics",
+        "callExpression": "addSplitViewDiagnostics",
+        "sourcePath": "src/validation/validateNavigatorManifest.ts"
+      },
+      {
         "fromSymbol": "validatePresetTopology",
         "toSymbol": "resolveNavigatorPreset",
         "callExpression": "resolveNavigatorPreset",
@@ -3488,6 +3811,36 @@
         "toSymbol": "visit",
         "callExpression": "visit",
         "sourcePath": "src/validation/validatePresetTopology.ts"
+      },
+      {
+        "fromSymbol": "src/validation/validateSplitView.ts",
+        "toSymbol": "collectSplitViews",
+        "callExpression": "collectSplitViews",
+        "sourcePath": "src/validation/validateSplitView.ts"
+      },
+      {
+        "fromSymbol": "addColumnDiagnostics",
+        "toSymbol": "addCollapseColumnDiagnostics",
+        "callExpression": "addCollapseColumnDiagnostics",
+        "sourcePath": "src/validation/validateSplitView.ts"
+      },
+      {
+        "fromSymbol": "addSplitViewDiagnostics",
+        "toSymbol": "collectSplitViews",
+        "callExpression": "collectSplitViews",
+        "sourcePath": "src/validation/validateSplitView.ts"
+      },
+      {
+        "fromSymbol": "addSplitViewDiagnostics",
+        "toSymbol": "addTopologyDiagnostics",
+        "callExpression": "addTopologyDiagnostics",
+        "sourcePath": "src/validation/validateSplitView.ts"
+      },
+      {
+        "fromSymbol": "addSplitViewDiagnostics",
+        "toSymbol": "addColumnDiagnostics",
+        "callExpression": "addColumnDiagnostics",
+        "sourcePath": "src/validation/validateSplitView.ts"
       },
       {
         "fromSymbol": "addTabsRouteDiagnostics",

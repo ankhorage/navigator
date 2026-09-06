@@ -188,8 +188,8 @@
         <p>
           Standalone Navigator capability with topology configured independently from platform
           implementation and visual presentation. Adaptive tabs provide native and responsive web
-          adapters; Experimental Stack stays testing-only, validates its narrow option surface, and
-          uses the upstream web fallback.
+          adapters; experimental Stack and Split View stay testing-only with validated upstream
+          fallbacks.
         </p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
@@ -230,6 +230,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/expo-router/resolveSplitViewNavigatorPlan.ts"
+              >
+                src/expo-router/resolveSplitViewNavigatorPlan.ts
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/expo-router/resolveTabsNavigatorPlan.ts"
               >
                 src/expo-router/resolveTabsNavigatorPlan.ts
@@ -243,6 +253,16 @@
                 data-target="src/generatedExperimentalStackTypecheck.test.ts"
               >
                 src/generatedExperimentalStackTypecheck.test.ts
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/generatedSplitViewTypecheck.test.ts"
+              >
+                src/generatedSplitViewTypecheck.test.ts
                 <small>1 function</small>
               </button>
             </li>
@@ -264,6 +284,16 @@
               >
                 src/generation/generateNavigatorFiles.ts
                 <small>11 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/generation/generateSplitViewLayoutFile.ts"
+              >
+                src/generation/generateSplitViewLayoutFile.ts
+                <small>5 functions</small>
               </button>
             </li>
             <li>
@@ -358,6 +388,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/validation/validateSplitView.ts"
+              >
+                src/validation/validateSplitView.ts
+                <small>5 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/validation/validateTabsNavigator.ts"
               >
                 src/validation/validateTabsNavigator.ts
@@ -374,7 +414,7 @@
             <div class="summary">
               <div><strong>32</strong><span class="muted">public exports</span></div>
               <div><strong>1</strong><span class="muted">components</span></div>
-              <div><strong>24</strong><span class="muted">modules</span></div>
+              <div><strong>29</strong><span class="muted">modules</span></div>
               <div><strong>3</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -421,13 +461,14 @@
             </article>
             <article
               class="item"
-              data-search="src/expo-router/createNavigatorPlan.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/expo-router/resolveTabsNavigatorPlan.ts src/validation/validateNavigatorManifest.ts createNavigatorPlan CreateNavigatorPlanOptions"
+              data-search="src/expo-router/createNavigatorPlan.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/expo-router/resolveSplitViewNavigatorPlan.ts src/expo-router/resolveTabsNavigatorPlan.ts src/validation/validateNavigatorManifest.ts createNavigatorPlan CreateNavigatorPlanOptions"
             >
               <h3>src/expo-router/createNavigatorPlan.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
                 <code>src/expo-router/resolveNavigatorConfig.ts</code>,
+                <code>src/expo-router/resolveSplitViewNavigatorPlan.ts</code>,
                 <code>src/expo-router/resolveTabsNavigatorPlan.ts</code>,
                 <code>src/validation/validateNavigatorManifest.ts</code>
               </p>
@@ -452,6 +493,15 @@
             </article>
             <article
               class="item"
+              data-search="src/expo-router/resolveSplitViewNavigatorPlan.ts src/definitions/NavigatorPlan.ts resolveSplitViewAdapterPlan"
+            >
+              <h3>src/expo-router/resolveSplitViewNavigatorPlan.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
+              <p><strong>Exports:</strong> <code>resolveSplitViewAdapterPlan</code></p>
+            </article>
+            <article
+              class="item"
               data-search="src/expo-router/resolveTabsNavigatorPlan.ts src/definitions/NavigatorPlan.ts src/presentation/resolveCustomTabsPresentation.ts resolveTabsNavigatorPlan"
             >
               <h3>src/expo-router/resolveTabsNavigatorPlan.ts</h3>
@@ -471,6 +521,15 @@
               <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
+            <article
+              class="item"
+              data-search="src/generatedSplitViewTypecheck.test.ts src/index.ts"
+            >
+              <h3>src/generatedSplitViewTypecheck.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
             <article class="item" data-search="src/generatedTabsTypecheck.test.ts src/index.ts">
               <h3>src/generatedTabsTypecheck.test.ts</h3>
               <p class="muted">Referenced module</p>
@@ -479,16 +538,29 @@
             </article>
             <article
               class="item"
-              data-search="src/generation/generateNavigatorFiles.ts src/definitions/NavigatorPlan.ts src/generation/generateTabsLayoutFile.ts src/generation/generationSafety.ts generateNavigatorFiles"
+              data-search="src/generation/generateNavigatorFiles.ts src/definitions/NavigatorPlan.ts src/generation/generateSplitViewLayoutFile.ts src/generation/generateTabsLayoutFile.ts src/generation/generationSafety.ts generateNavigatorFiles"
             >
               <h3>src/generation/generateNavigatorFiles.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/generation/generateSplitViewLayoutFile.ts</code>,
                 <code>src/generation/generateTabsLayoutFile.ts</code>,
                 <code>src/generation/generationSafety.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>generateNavigatorFiles</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/generation/generateSplitViewLayoutFile.ts src/definitions/NavigatorPlan.ts src/generation/generationSafety.ts generateSplitViewLayoutFile"
+            >
+              <h3>src/generation/generateSplitViewLayoutFile.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/generation/generationSafety.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>generateSplitViewLayoutFile</code></p>
             </article>
             <article
               class="item"
@@ -565,6 +637,18 @@
                 <code>ResolvedCustomTabsPresentation</code>
               </p>
             </article>
+            <article
+              class="item"
+              data-search="src/splitView.test.ts src/index.ts src/metadata/index.ts"
+            >
+              <h3>src/splitView.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/index.ts</code>,
+                <code>src/metadata/index.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
             <article class="item" data-search="src/tabs.test.ts src/index.ts">
               <h3>src/tabs.test.ts</h3>
               <p class="muted">Referenced module</p>
@@ -633,7 +717,7 @@
             </article>
             <article
               class="item"
-              data-search="src/validation/validateNavigatorManifest.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/validation/validateExperimentalStack.ts src/validation/validatePresetTopology.ts src/validation/validateTabsNavigator.ts validateNavigatorManifest"
+              data-search="src/validation/validateNavigatorManifest.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/validation/validateExperimentalStack.ts src/validation/validatePresetTopology.ts src/validation/validateSplitView.ts src/validation/validateTabsNavigator.ts validateNavigatorManifest"
             >
               <h3>src/validation/validateNavigatorManifest.ts</h3>
               <p class="muted">Referenced module</p>
@@ -642,6 +726,7 @@
                 <code>src/expo-router/resolveNavigatorConfig.ts</code>,
                 <code>src/validation/validateExperimentalStack.ts</code>,
                 <code>src/validation/validatePresetTopology.ts</code>,
+                <code>src/validation/validateSplitView.ts</code>,
                 <code>src/validation/validateTabsNavigator.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>validateNavigatorManifest</code></p>
@@ -657,6 +742,15 @@
                 <code>src/topology/resolveNavigatorPreset.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>validatePresetTopology</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/validation/validateSplitView.ts src/definitions/NavigatorPlan.ts addSplitViewDiagnostics"
+            >
+              <h3>src/validation/validateSplitView.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
+              <p><strong>Exports:</strong> <code>addSplitViewDiagnostics</code></p>
             </article>
             <article
               class="item"
@@ -693,7 +787,7 @@
                 data-search="NavigatorAdapterId unknown src/definitions/NavigatorPlan.ts "
               >
                 <h4>NavigatorAdapterId</h4>
-                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:24:1</code></p>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:25:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -704,7 +798,7 @@
                 data-search="NavigatorAdapterPlan type src/definitions/NavigatorPlan.ts  ExpoRouterNavigatorModule NavigatorAdapterId NavigatorApiStability NavigatorSupportStatus"
               >
                 <h4>NavigatorAdapterPlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:48:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:49:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -790,7 +884,7 @@
                 data-search="NavigatorDiagnostic type src/definitions/NavigatorPlan.ts "
               >
                 <h4>NavigatorDiagnostic</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:36:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:37:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -843,7 +937,7 @@
                 data-search="NavigatorGeneratedFile type src/definitions/NavigatorPlan.ts "
               >
                 <h4>NavigatorGeneratedFile</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:145:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:146:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -882,7 +976,7 @@
                 data-search="NavigatorGenerationBindings type src/definitions/NavigatorPlan.ts  NavigatorScreenModule"
               >
                 <h4>NavigatorGenerationBindings</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:134:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:135:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -961,7 +1055,7 @@
                 data-search="NavigatorNodePlan type src/definitions/NavigatorPlan.ts  NavigatorAdapterPlan NavigatorRoutePlan TabsNavigatorPlan"
               >
                 <h4>NavigatorNodePlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:90:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:91:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1084,7 +1178,7 @@
                 data-search="NavigatorPlan type src/definitions/NavigatorPlan.ts  NavigatorDiagnostic NavigatorNodePlan NavigatorValidationContext"
               >
                 <h4>NavigatorPlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:118:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:119:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1162,7 +1256,7 @@
                 data-search="NavigatorRoutePlan type src/definitions/NavigatorPlan.ts  NavigatorNodePlan"
               >
                 <h4>NavigatorRoutePlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:78:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:79:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1271,7 +1365,7 @@
                 data-search="NavigatorScreenModule type src/definitions/NavigatorPlan.ts "
               >
                 <h4>NavigatorScreenModule</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:129:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:130:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1321,7 +1415,7 @@
                 data-search="NavigatorValidationContext type src/definitions/NavigatorPlan.ts  NavigatorRuntimePlatform"
               >
                 <h4>NavigatorValidationContext</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:43:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:44:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1365,7 +1459,7 @@
                 data-search="ResolvedTabsImplementation unknown src/definitions/NavigatorPlan.ts "
               >
                 <h4>ResolvedTabsImplementation</h4>
-                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:57:1</code></p>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:58:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1376,7 +1470,7 @@
                 data-search="ResolvedTabsPresentation unknown src/definitions/NavigatorPlan.ts "
               >
                 <h4>ResolvedTabsPresentation</h4>
-                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:58:1</code></p>
+                <p class="muted">unknown • <code>src/definitions/NavigatorPlan.ts:59:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1387,7 +1481,7 @@
                 data-search="TabsNavigatorPlan type src/definitions/NavigatorPlan.ts  ExpoRouterNavigatorModule NavigatorApiStability NavigatorResponsiveSize ResolvedTabsImplementation ResolvedTabsPresentation"
               >
                 <h4>TabsNavigatorPlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:66:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:67:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1498,7 +1592,7 @@
               >
                 <h4>createNavigatorPlan</h4>
                 <p class="muted">
-                  function • <code>src/expo-router/createNavigatorPlan.ts:287:1</code>
+                  function • <code>src/expo-router/createNavigatorPlan.ts:283:1</code>
                 </p>
                 <p>
                   Create a disposable, provider-aware plan from only the navigator desired-state
@@ -1549,7 +1643,7 @@
                 data-search="CreateNavigatorPlanOptions type src/expo-router/createNavigatorPlan.ts  NavigatorResponsiveSize NavigatorRuntimePlatform"
               >
                 <h4>CreateNavigatorPlanOptions</h4>
-                <p class="muted">type • <code>src/expo-router/createNavigatorPlan.ts:25:1</code></p>
+                <p class="muted">type • <code>src/expo-router/createNavigatorPlan.ts:26:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1667,7 +1761,7 @@
               >
                 <h4>generateNavigatorFiles</h4>
                 <p class="muted">
-                  function • <code>src/generation/generateNavigatorFiles.ts:209:1</code>
+                  function • <code>src/generation/generateNavigatorFiles.ts:212:1</code>
                 </p>
                 <p>
                   Generate deterministic Expo Router files from a validated disposable plan and
@@ -2171,7 +2265,7 @@
               >
                 <h4>validateNavigatorManifest</h4>
                 <p class="muted">
-                  function • <code>src/validation/validateNavigatorManifest.ts:231:1</code>
+                  function • <code>src/validation/validateNavigatorManifest.ts:232:1</code>
                 </p>
                 <p>Validate one navigator desired-state slice for a concrete Expo Router target.</p>
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -2309,6 +2403,8 @@
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_expo_router_resolveTabsNavigatorPlan_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_validation_validateNavigatorManifest_ts
@@ -2316,6 +2412,11 @@
                 package__ankhorage_navigator -.-&gt;
                 module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_expo_router_resolveNavigatorConfig_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts[&quot;src/expo-router/resolveSplitViewNavigatorPlan.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
@@ -2328,6 +2429,9 @@
                 package__ankhorage_navigator -.-&gt;
                 module_src_generatedExperimentalStackTypecheck_test_ts
                 module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
+                module_src_generatedSplitViewTypecheck_test_ts[&quot;src/generatedSplitViewTypecheck.test.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_generatedSplitViewTypecheck_test_ts
+                module_src_generatedSplitViewTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_generatedTabsTypecheck_test_ts
                 module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
@@ -2336,8 +2440,17 @@
                 module_src_generation_generateNavigatorFiles_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generateSplitViewLayoutFile_ts
+                module_src_generation_generateNavigatorFiles_ts --&gt;
                 module_src_generation_generateTabsLayoutFile_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generationSafety_ts
+                module_src_generation_generateSplitViewLayoutFile_ts[&quot;src/generation/generateSplitViewLayoutFile.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_generation_generateSplitViewLayoutFile_ts
+                module_src_generation_generateSplitViewLayoutFile_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_generation_generateSplitViewLayoutFile_ts --&gt;
                 module_src_generation_generationSafety_ts
                 module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_generation_generateTabsLayoutFile_ts
@@ -2361,6 +2474,10 @@
                 module_src_presentation_resolveCustomTabsPresentation_ts
                 module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
+                module_src_splitView_test_ts[&quot;src/splitView.test.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_splitView_test_ts
+                module_src_splitView_test_ts --&gt; module_src_index_ts module_src_splitView_test_ts
+                --&gt; module_src_metadata_index_ts
                 module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;] package__ankhorage_navigator
                 -.-&gt; module_src_tabs_test_ts module_src_tabs_test_ts --&gt; module_src_index_ts
                 module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
@@ -2390,6 +2507,8 @@
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validatePresetTopology_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
+                module_src_validation_validateSplitView_ts
+                module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validateTabsNavigator_ts
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_validation_validatePresetTopology_ts
@@ -2397,6 +2516,10 @@
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_topology_resolveNavigatorPreset_ts
+                module_src_validation_validateSplitView_ts[&quot;src/validation/validateSplitView.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_validation_validateSplitView_ts
+                module_src_validation_validateSplitView_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_validation_validateTabsNavigator_ts
                 module_src_validation_validateTabsNavigator_ts --&gt;
@@ -2425,11 +2548,15 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_expo_router_createNavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveSplitViewNavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_validation_validateNavigatorManifest_ts
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_expo_router_resolveNavigatorConfig_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_resolveSplitViewNavigatorPlan_ts[&quot;src/expo-router/resolveSplitViewNavigatorPlan.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_expo_router_resolveSplitViewNavigatorPlan_ts
+  module_src_expo_router_resolveSplitViewNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
@@ -2437,14 +2564,22 @@ graph TD
   module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_generatedExperimentalStackTypecheck_test_ts
   module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
+  module_src_generatedSplitViewTypecheck_test_ts[&quot;src/generatedSplitViewTypecheck.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_generatedSplitViewTypecheck_test_ts
+  module_src_generatedSplitViewTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_generatedTabsTypecheck_test_ts
   module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_generation_generateNavigatorFiles_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateSplitViewLayoutFile_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateTabsLayoutFile_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generateSplitViewLayoutFile_ts[&quot;src/generation/generateSplitViewLayoutFile.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_generation_generateSplitViewLayoutFile_ts
+  module_src_generation_generateSplitViewLayoutFile_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateSplitViewLayoutFile_ts --&gt; module_src_generation_generationSafety_ts
   module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_generation_generateTabsLayoutFile_ts
   module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_definitions_NavigatorPlan_ts
@@ -2463,6 +2598,10 @@ graph TD
   module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_presentation_resolveCustomTabsPresentation_ts
   module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_splitView_test_ts[&quot;src/splitView.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_splitView_test_ts
+  module_src_splitView_test_ts --&gt; module_src_index_ts
+  module_src_splitView_test_ts --&gt; module_src_metadata_index_ts
   module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_tabs_test_ts
   module_src_tabs_test_ts --&gt; module_src_index_ts
@@ -2484,11 +2623,15 @@ graph TD
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateExperimentalStack_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validatePresetTopology_ts
+  module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateSplitView_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_validation_validatePresetTopology_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_validation_validateSplitView_ts[&quot;src/validation/validateSplitView.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_validation_validateSplitView_ts
+  module_src_validation_validateSplitView_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validateTabsNavigator_ts --&gt; module_src_definitions_NavigatorPlan_ts
@@ -2508,10 +2651,13 @@ graph TD
                 module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts[&quot;src/expo-router/resolveSplitViewNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
                 module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
+                module_src_generatedSplitViewTypecheck_test_ts[&quot;src/generatedSplitViewTypecheck.test.ts&quot;]
                 module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+                module_src_generation_generateSplitViewLayoutFile_ts[&quot;src/generation/generateSplitViewLayoutFile.ts&quot;]
                 module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
                 module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
                 module_src_index_test_ts[&quot;src/index.test.ts&quot;]
@@ -2519,6 +2665,7 @@ graph TD
                 module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
                 module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
                 module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                module_src_splitView_test_ts[&quot;src/splitView.test.ts&quot;]
                 module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
                 module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
                 module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
@@ -2527,6 +2674,7 @@ graph TD
                 module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+                module_src_validation_validateSplitView_ts[&quot;src/validation/validateSplitView.ts&quot;]
                 module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
                 module_src_experimentalStack_test_ts --&gt; module_src_index_ts
                 module_src_experimentalStack_test_ts --&gt; module_src_metadata_index_ts
@@ -2535,22 +2683,33 @@ graph TD
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts
+                module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_expo_router_resolveTabsNavigatorPlan_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_validation_validateNavigatorManifest_ts
                 module_src_expo_router_resolveNavigatorConfig_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
                 module_src_presentation_resolveCustomTabsPresentation_ts
                 module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
+                module_src_generatedSplitViewTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generateSplitViewLayoutFile_ts
+                module_src_generation_generateNavigatorFiles_ts --&gt;
                 module_src_generation_generateTabsLayoutFile_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generationSafety_ts
+                module_src_generation_generateSplitViewLayoutFile_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_generation_generateSplitViewLayoutFile_ts --&gt;
                 module_src_generation_generationSafety_ts
                 module_src_generation_generateTabsLayoutFile_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
@@ -2560,9 +2719,10 @@ graph TD
                 module_src_index_ts module_src_packageBoundary_test_ts --&gt;
                 module_src_metadata_index_ts
                 module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
-                module_src_definitions_NavigatorPlan_ts module_src_tabs_test_ts --&gt;
-                module_src_index_ts module_src_tabs_CustomTabsLayout_tsx --&gt;
-                module_src_definitions_NavigatorPlan_ts
+                module_src_definitions_NavigatorPlan_ts module_src_splitView_test_ts --&gt;
+                module_src_index_ts module_src_splitView_test_ts --&gt; module_src_metadata_index_ts
+                module_src_tabs_test_ts --&gt; module_src_index_ts
+                module_src_tabs_CustomTabsLayout_tsx --&gt; module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateExperimentalStack_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateExperimentalStack_ts --&gt;
@@ -2576,11 +2736,15 @@ graph TD
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validatePresetTopology_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
+                module_src_validation_validateSplitView_ts
+                module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validateTabsNavigator_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_topology_resolveNavigatorPreset_ts
+                module_src_validation_validateSplitView_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateTabsNavigator_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateTabsNavigator_ts --&gt;
@@ -2594,10 +2758,13 @@ graph LR
   module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
+  module_src_expo_router_resolveSplitViewNavigatorPlan_ts[&quot;src/expo-router/resolveSplitViewNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
   module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
+  module_src_generatedSplitViewTypecheck_test_ts[&quot;src/generatedSplitViewTypecheck.test.ts&quot;]
   module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+  module_src_generation_generateSplitViewLayoutFile_ts[&quot;src/generation/generateSplitViewLayoutFile.ts&quot;]
   module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
   module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
@@ -2605,6 +2772,7 @@ graph LR
   module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
   module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
   module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  module_src_splitView_test_ts[&quot;src/splitView.test.ts&quot;]
   module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
   module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
   module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
@@ -2613,27 +2781,36 @@ graph LR
   module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+  module_src_validation_validateSplitView_ts[&quot;src/validation/validateSplitView.ts&quot;]
   module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
   module_src_experimentalStack_test_ts --&gt; module_src_index_ts
   module_src_experimentalStack_test_ts --&gt; module_src_metadata_index_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
+  module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveSplitViewNavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_validation_validateNavigatorManifest_ts
   module_src_expo_router_resolveNavigatorConfig_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_expo_router_resolveSplitViewNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
   module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
+  module_src_generatedSplitViewTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateSplitViewLayoutFile_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateTabsLayoutFile_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generateSplitViewLayoutFile_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateSplitViewLayoutFile_ts --&gt; module_src_generation_generationSafety_ts
   module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_generation_generationSafety_ts
   module_src_generation_generationSafety_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_index_test_ts --&gt; module_src_index_ts
   module_src_packageBoundary_test_ts --&gt; module_src_metadata_index_ts
   module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_splitView_test_ts --&gt; module_src_index_ts
+  module_src_splitView_test_ts --&gt; module_src_metadata_index_ts
   module_src_tabs_test_ts --&gt; module_src_index_ts
   module_src_tabs_CustomTabsLayout_tsx --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateExperimentalStack_ts --&gt; module_src_definitions_NavigatorPlan_ts
@@ -2642,9 +2819,11 @@ graph LR
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateExperimentalStack_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validatePresetTopology_ts
+  module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateSplitView_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_validation_validateSplitView_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateTabsNavigator_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateTabsNavigator_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
 </pre>
@@ -2659,10 +2838,13 @@ graph LR
                 module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
+                module_src_expo_router_resolveSplitViewNavigatorPlan_ts[&quot;src/expo-router/resolveSplitViewNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
                 module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
+                module_src_generatedSplitViewTypecheck_test_ts[&quot;src/generatedSplitViewTypecheck.test.ts&quot;]
                 module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+                module_src_generation_generateSplitViewLayoutFile_ts[&quot;src/generation/generateSplitViewLayoutFile.ts&quot;]
                 module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
                 module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
                 module_src_index_test_ts[&quot;src/index.test.ts&quot;]
@@ -2670,6 +2852,7 @@ graph LR
                 module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
                 module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
                 module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                module_src_splitView_test_ts[&quot;src/splitView.test.ts&quot;]
                 module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
                 module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
                 module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
@@ -2678,6 +2861,7 @@ graph LR
                 module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+                module_src_validation_validateSplitView_ts[&quot;src/validation/validateSplitView.ts&quot;]
                 module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
                 export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
                 module_src_expo_router_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
@@ -2795,10 +2979,13 @@ graph LR
   module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
+  module_src_expo_router_resolveSplitViewNavigatorPlan_ts[&quot;src/expo-router/resolveSplitViewNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
   module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
+  module_src_generatedSplitViewTypecheck_test_ts[&quot;src/generatedSplitViewTypecheck.test.ts&quot;]
   module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+  module_src_generation_generateSplitViewLayoutFile_ts[&quot;src/generation/generateSplitViewLayoutFile.ts&quot;]
   module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
   module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
@@ -2806,6 +2993,7 @@ graph LR
   module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
   module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
   module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  module_src_splitView_test_ts[&quot;src/splitView.test.ts&quot;]
   module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
   module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
   module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
@@ -2814,6 +3002,7 @@ graph LR
   module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+  module_src_validation_validateSplitView_ts[&quot;src/validation/validateSplitView.ts&quot;]
   module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
   export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
   module_src_expo_router_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
@@ -3114,7 +3303,7 @@ sequenceDiagram
               data-search="createStackAdapter src/expo-router/createNavigatorPlan.ts Resolve a Stack implementation to its version- and platform-aware Expo Router adapter."
             >
               <h3>createStackAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:32:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:33:1</code></p>
               <p>
                 Resolve a Stack implementation to its version- and platform-aware Expo Router
                 adapter.
@@ -3125,7 +3314,7 @@ sequenceDiagram
               data-search="createTabsAdapter src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createTabsAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:79:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:80:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3133,7 +3322,7 @@ sequenceDiagram
               data-search="createAdapter src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:103:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:104:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3141,7 +3330,7 @@ sequenceDiagram
               data-search="resolveTabsPlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>resolveTabsPlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:151:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:147:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3149,7 +3338,7 @@ sequenceDiagram
               data-search="createNodeDetails src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createNodeDetails</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:171:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:167:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3157,7 +3346,7 @@ sequenceDiagram
               data-search="createRoutePlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createRoutePlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:215:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:211:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3165,7 +3354,7 @@ sequenceDiagram
               data-search="createNodePlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createNodePlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:247:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:243:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3173,7 +3362,7 @@ sequenceDiagram
               data-search="createNavigatorPlan src/expo-router/createNavigatorPlan.ts Create a disposable, provider-aware plan from only the navigator desired-state slice."
             >
               <h3>createNavigatorPlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:287:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:283:1</code></p>
               <p>
                 Create a disposable, provider-aware plan from only the navigator desired-state
                 slice.
@@ -3262,6 +3451,27 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-expo-router-resolvesplitviewnavigatorplan-ts"
+          class="view"
+          data-view="src/expo-router/resolveSplitViewNavigatorPlan.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/expo-router/resolveSplitViewNavigatorPlan.ts</h2>
+            <article
+              class="item"
+              data-search="resolveSplitViewAdapterPlan src/expo-router/resolveSplitViewNavigatorPlan.ts Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback."
+            >
+              <h3>resolveSplitViewAdapterPlan</h3>
+              <p class="muted"><code>src/expo-router/resolveSplitViewNavigatorPlan.ts:4:1</code></p>
+              <p>
+                Resolve the upstream iOS Split View adapter and its honest cross-platform Slot
+                fallback.
+              </p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-expo-router-resolvetabsnavigatorplan-ts"
           class="view"
           data-view="src/expo-router/resolveTabsNavigatorPlan.ts"
@@ -3340,6 +3550,27 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-generatedsplitviewtypecheck-test-ts"
+          class="view"
+          data-view="src/generatedSplitViewTypecheck.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/generatedSplitViewTypecheck.test.ts</h2>
+            <article
+              class="item"
+              data-search="typeErrors src/generatedSplitViewTypecheck.test.ts Compile a generated layout and virtual registered screens against Expo Router public types."
+            >
+              <h3>typeErrors</h3>
+              <p class="muted"><code>src/generatedSplitViewTypecheck.test.ts:16:1</code></p>
+              <p>
+                Compile a generated layout and virtual registered screens against Expo Router public
+                types.
+              </p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-generatedtabstypecheck-test-ts"
           class="view"
           data-view="src/generatedTabsTypecheck.test.ts"
@@ -3372,7 +3603,7 @@ sequenceDiagram
               data-search="assertRouteName src/generation/generateNavigatorFiles.ts "
             >
               <h3>assertRouteName</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:15:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:16:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3380,7 +3611,7 @@ sequenceDiagram
               data-search="routeOptions src/generation/generateNavigatorFiles.ts "
             >
               <h3>routeOptions</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:21:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:22:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3388,7 +3619,7 @@ sequenceDiagram
               data-search="renderScreen src/generation/generateNavigatorFiles.ts "
             >
               <h3>renderScreen</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:37:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:38:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3396,7 +3627,7 @@ sequenceDiagram
               data-search="createGuardImports src/generation/generateNavigatorFiles.ts "
             >
               <h3>createGuardImports</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:60:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:61:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3404,7 +3635,7 @@ sequenceDiagram
               data-search="createNavigatorContents src/generation/generateNavigatorFiles.ts "
             >
               <h3>createNavigatorContents</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:77:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:78:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3412,7 +3643,7 @@ sequenceDiagram
               data-search="createLayoutFile src/generation/generateNavigatorFiles.ts "
             >
               <h3>createLayoutFile</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:104:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:105:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3420,7 +3651,7 @@ sequenceDiagram
               data-search="createScreenFile src/generation/generateNavigatorFiles.ts "
             >
               <h3>createScreenFile</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:147:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:150:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3428,7 +3659,7 @@ sequenceDiagram
               data-search="collectFiles src/generation/generateNavigatorFiles.ts "
             >
               <h3>collectFiles</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:165:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:168:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3436,7 +3667,7 @@ sequenceDiagram
               data-search="collectRouteIds src/generation/generateNavigatorFiles.ts "
             >
               <h3>collectRouteIds</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:182:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:185:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3444,7 +3675,7 @@ sequenceDiagram
               data-search="validateFlowBindings src/generation/generateNavigatorFiles.ts "
             >
               <h3>validateFlowBindings</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:192:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:195:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3452,10 +3683,71 @@ sequenceDiagram
               data-search="generateNavigatorFiles src/generation/generateNavigatorFiles.ts Generate deterministic Expo Router files from a validated disposable plan and narrow bindings."
             >
               <h3>generateNavigatorFiles</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:209:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:212:1</code></p>
               <p>
                 Generate deterministic Expo Router files from a validated disposable plan and narrow
                 bindings.
+              </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-generation-generatesplitviewlayoutfile-ts"
+          class="view"
+          data-view="src/generation/generateSplitViewLayoutFile.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/generation/generateSplitViewLayoutFile.ts</h2>
+            <article
+              class="item"
+              data-search="resolveSplitViewBinding src/generation/generateSplitViewLayoutFile.ts Resolve one Split View screen reference through the narrow generated-screen binding port."
+            >
+              <h3>resolveSplitViewBinding</h3>
+              <p class="muted"><code>src/generation/generateSplitViewLayoutFile.ts:18:1</code></p>
+              <p>
+                Resolve one Split View screen reference through the narrow generated-screen binding
+                port.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="renderSplitViewImports src/generation/generateSplitViewLayoutFile.ts Render deterministic imports for referenced Split View column and inspector screens."
+            >
+              <h3>renderSplitViewImports</h3>
+              <p class="muted"><code>src/generation/generateSplitViewLayoutFile.ts:34:1</code></p>
+              <p>
+                Render deterministic imports for referenced Split View column and inspector screens.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="renderSplitViewChild src/generation/generateSplitViewLayoutFile.ts Render one referenced screen as an upstream Split View child."
+            >
+              <h3>renderSplitViewChild</h3>
+              <p class="muted"><code>src/generation/generateSplitViewLayoutFile.ts:44:1</code></p>
+              <p>Render one referenced screen as an upstream Split View child.</p>
+            </article>
+            <article
+              class="item"
+              data-search="collectSplitViewBindings src/generation/generateSplitViewLayoutFile.ts Resolve the ordered primary, supplementary, and inspector bindings for one Split View."
+            >
+              <h3>collectSplitViewBindings</h3>
+              <p class="muted"><code>src/generation/generateSplitViewLayoutFile.ts:49:1</code></p>
+              <p>
+                Resolve the ordered primary, supplementary, and inspector bindings for one Split
+                View.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="generateSplitViewLayoutFile src/generation/generateSplitViewLayoutFile.ts Generate a Split View layout while leaving the routed main column to Expo Router&#39;s Slot."
+            >
+              <h3>generateSplitViewLayoutFile</h3>
+              <p class="muted"><code>src/generation/generateSplitViewLayoutFile.ts:72:1</code></p>
+              <p>
+                Generate a Split View layout while leaving the routed main column to Expo
+                Router&#39;s Slot.
               </p>
             </article>
           </section>
@@ -3799,7 +4091,7 @@ sequenceDiagram
               data-search="addStackAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
             >
               <h3>addStackAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:17:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:18:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3807,7 +4099,7 @@ sequenceDiagram
               data-search="addUnsupportedAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
             >
               <h3>addUnsupportedAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:38:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:39:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3815,7 +4107,7 @@ sequenceDiagram
               data-search="validateInitialRoute src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateInitialRoute</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:62:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:63:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3823,7 +4115,7 @@ sequenceDiagram
               data-search="validateRouteName src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteName</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:89:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:90:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3831,7 +4123,7 @@ sequenceDiagram
               data-search="validateRouteTarget src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteTarget</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:114:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:115:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3839,7 +4131,7 @@ sequenceDiagram
               data-search="validateRouteGuards src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteGuards</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:129:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:130:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3847,7 +4139,7 @@ sequenceDiagram
               data-search="validateStackRouteOptions src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateStackRouteOptions</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:153:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:154:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3855,7 +4147,7 @@ sequenceDiagram
               data-search="validateLocalRoute src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateLocalRoute</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:184:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:185:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3863,7 +4155,7 @@ sequenceDiagram
               data-search="validateNode src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateNode</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:198:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:199:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3871,7 +4163,7 @@ sequenceDiagram
               data-search="validateNavigatorManifest src/validation/validateNavigatorManifest.ts Validate one navigator desired-state slice for a concrete Expo Router target."
             >
               <h3>validateNavigatorManifest</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:231:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:232:1</code></p>
               <p>Validate one navigator desired-state slice for a concrete Expo Router target.</p>
             </article>
           </section>
@@ -3898,6 +4190,64 @@ sequenceDiagram
               <h3>visit</h3>
               <p class="muted"><code>src/validation/validatePresetTopology.ts:15:3</code></p>
               <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-validation-validatesplitview-ts"
+          class="view"
+          data-view="src/validation/validateSplitView.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/validation/validateSplitView.ts</h2>
+            <article
+              class="item"
+              data-search="collectSplitViews src/validation/validateSplitView.ts Collect every Split View together with its parent topology and manifest pointer."
+            >
+              <h3>collectSplitViews</h3>
+              <p class="muted"><code>src/validation/validateSplitView.ts:19:1</code></p>
+              <p>
+                Collect every Split View together with its parent topology and manifest pointer.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="addCollapseColumnDiagnostics src/validation/validateSplitView.ts Reject invalid or unavailable iPhone collapse-column selections."
+            >
+              <h3>addCollapseColumnDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateSplitView.ts:40:1</code></p>
+              <p>Reject invalid or unavailable iPhone collapse-column selections.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addColumnDiagnostics src/validation/validateSplitView.ts Reject unresolved, duplicated, or incompatible Split View column references."
+            >
+              <h3>addColumnDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateSplitView.ts:64:1</code></p>
+              <p>Reject unresolved, duplicated, or incompatible Split View column references.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addTopologyDiagnostics src/validation/validateSplitView.ts Reject Split View placement and route declarations unsupported by its Slot-based topology."
+            >
+              <h3>addTopologyDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateSplitView.ts:100:1</code></p>
+              <p>
+                Reject Split View placement and route declarations unsupported by its Slot-based
+                topology.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="addSplitViewDiagnostics src/validation/validateSplitView.ts Add constrained placement, binding, flow, version, and fallback diagnostics for Split View."
+            >
+              <h3>addSplitViewDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateSplitView.ts:134:1</code></p>
+              <p>
+                Add constrained placement, binding, flow, version, and fallback diagnostics for
+                Split View.
+              </p>
             </article>
           </section>
         </section>

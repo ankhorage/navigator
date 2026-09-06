@@ -6,7 +6,7 @@ export default defineParadoxConfig({
   docs: {
     title: 'NAVIGATOR',
     description:
-      'Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; Experimental Stack stays testing-only, validates its narrow option surface, and uses the upstream web fallback.',
+      'Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; experimental Stack and Split View stay testing-only with validated upstream fallbacks.',
   },
 
   package: {

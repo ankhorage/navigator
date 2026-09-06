@@ -43,7 +43,17 @@ export const NAVIGATOR_PACKAGE_METADATA = {
         appConfigRequirement: 'android.predictiveBackGestureEnabled',
       },
     },
-    splitView: { support: 'unavailable', stability: 'alpha' },
+    splitView: {
+      support: 'supported',
+      stability: 'alpha',
+      status: 'testing-only',
+      minimumExpoRouterVersion: '55.0.0',
+      module: 'expo-router/unstable-split-view',
+      platforms: ['ios'],
+      fallback: { android: 'slot', web: 'slot' },
+      maximumAdditionalColumns: 2,
+      inspectorMinimumIosVersion: 26,
+    },
     custom: { support: 'unavailable' },
   },
   tabs: {

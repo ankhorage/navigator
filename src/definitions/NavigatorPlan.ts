@@ -19,6 +19,7 @@ export type ExpoRouterNavigatorModule =
   | 'expo-router/js-tabs'
   | 'expo-router/js-top-tabs'
   | 'expo-router/ui'
+  | 'expo-router/unstable-split-view'
   | 'expo-router/unstable-native-tabs';
 
 export type NavigatorAdapterId =
