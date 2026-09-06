@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.0.0
+
+### Major Changes
+
+- d4026a0: Add validated, deterministic Expo Router planning and file generation for Slot, native and JavaScript Stack, and Drawer navigators.
+
 ## 0.1.1
 
 ### Patch Changes
