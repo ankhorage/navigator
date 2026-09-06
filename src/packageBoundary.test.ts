@@ -39,6 +39,12 @@ describe('@ankhorage/navigator package boundary', () => {
       status: 'testing-only',
       webFallback: 'stack.native',
     });
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.splitView).toMatchObject({
+      support: 'supported',
+      stability: 'alpha',
+      status: 'testing-only',
+      fallback: { android: 'slot', web: 'slot' },
+    });
   });
 
   test('requires the Surface release that supports portable SVG icon sources', async () => {

@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/expo-router/createNavigatorPlan.ts`
-Source: `src/expo-router/createNavigatorPlan.ts:287:1`
+Source: `src/expo-router/createNavigatorPlan.ts:283:1`
 
 Create a disposable, provider-aware plan from only the navigator desired-state slice.
 
@@ -19,7 +19,7 @@ Create a disposable, provider-aware plan from only the navigator desired-state s
 
 Kind: `type`
 Module: `src/expo-router/createNavigatorPlan.ts`
-Source: `src/expo-router/createNavigatorPlan.ts:25:1`
+Source: `src/expo-router/createNavigatorPlan.ts:26:1`
 
 ### Members
 
@@ -117,7 +117,7 @@ Source: `src/definitions/NavigatorPlan.ts:15:1`
 
 Kind: `function`
 Module: `src/generation/generateNavigatorFiles.ts`
-Source: `src/generation/generateNavigatorFiles.ts:209:1`
+Source: `src/generation/generateNavigatorFiles.ts:212:1`
 
 Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.
 
@@ -138,13 +138,13 @@ Source: `src/metadata/index.ts:8:14`
 
 Kind: `unknown`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:24:1`
+Source: `src/definitions/NavigatorPlan.ts:25:1`
 
 ## NavigatorAdapterPlan
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:48:1`
+Source: `src/definitions/NavigatorPlan.ts:49:1`
 
 ### Members
 
@@ -167,7 +167,7 @@ Source: `src/definitions/NavigatorPlan.ts:12:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:36:1`
+Source: `src/definitions/NavigatorPlan.ts:37:1`
 
 ### Members
 
@@ -182,7 +182,7 @@ Source: `src/definitions/NavigatorPlan.ts:36:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:145:1`
+Source: `src/definitions/NavigatorPlan.ts:146:1`
 
 ### Members
 
@@ -195,7 +195,7 @@ Source: `src/definitions/NavigatorPlan.ts:145:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:134:1`
+Source: `src/definitions/NavigatorPlan.ts:135:1`
 
 ### Members
 
@@ -211,7 +211,7 @@ Source: `src/definitions/NavigatorPlan.ts:134:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:90:1`
+Source: `src/definitions/NavigatorPlan.ts:91:1`
 
 ### Members
 
@@ -232,7 +232,7 @@ Source: `src/definitions/NavigatorPlan.ts:90:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:118:1`
+Source: `src/definitions/NavigatorPlan.ts:119:1`
 
 ### Members
 
@@ -254,7 +254,7 @@ Source: `src/definitions/NavigatorPlan.ts:11:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:78:1`
+Source: `src/definitions/NavigatorPlan.ts:79:1`
 
 ### Members
 
@@ -280,7 +280,7 @@ Source: `src/definitions/NavigatorPlan.ts:10:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:129:1`
+Source: `src/definitions/NavigatorPlan.ts:130:1`
 
 ### Members
 
@@ -299,7 +299,7 @@ Source: `src/definitions/NavigatorPlan.ts:13:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:43:1`
+Source: `src/definitions/NavigatorPlan.ts:44:1`
 
 ### Members
 
@@ -340,13 +340,13 @@ Source: `src/presentation/resolveCustomTabsPresentation.ts:18:1`
 
 Kind: `unknown`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:57:1`
+Source: `src/definitions/NavigatorPlan.ts:58:1`
 
 ## ResolvedTabsPresentation
 
 Kind: `unknown`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:58:1`
+Source: `src/definitions/NavigatorPlan.ts:59:1`
 
 ## resolveNavigatorPreset
 
@@ -383,7 +383,7 @@ Resolve the Expo Router module/export and presentation for one tabs implementati
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:66:1`
+Source: `src/definitions/NavigatorPlan.ts:67:1`
 
 ### Members
 
@@ -403,7 +403,7 @@ Source: `src/definitions/NavigatorPlan.ts:66:1`
 
 Kind: `function`
 Module: `src/validation/validateNavigatorManifest.ts`
-Source: `src/validation/validateNavigatorManifest.ts:231:1`
+Source: `src/validation/validateNavigatorManifest.ts:232:1`
 
 Validate one navigator desired-state slice for a concrete Expo Router target.
 

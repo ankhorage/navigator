@@ -20,6 +20,7 @@ import {
   resolveEffectiveStackConfig,
   resolveEffectiveTabsConfig,
 } from './resolveNavigatorConfig';
+import { resolveSplitViewAdapterPlan } from './resolveSplitViewNavigatorPlan';
 import { resolveTabsNavigatorPlan } from './resolveTabsNavigatorPlan';
 
 export interface CreateNavigatorPlanOptions {
@@ -132,12 +133,7 @@ function createAdapter(
       if (tabs === undefined) throw new Error('Tabs planning did not resolve an adapter.');
       return createTabsAdapter(tabs, platform, routerMajor);
     case 'split-view':
-      return {
-        id: 'split-view',
-        support: 'unavailable',
-        stability: 'alpha',
-        limitations: ['Owned by the optional Split View adapter.'],
-      };
+      return resolveSplitViewAdapterPlan(platform, routerMajor);
     case 'custom':
       return {
         id: 'custom',
