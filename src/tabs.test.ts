@@ -43,11 +43,11 @@ describe('@ankhorage/navigator platform tabs generation', () => {
 
     expect(plan.supported).toBe(true);
     expect(plan.diagnostics.map((item) => item.code)).toEqual(['alpha-adapter']);
-    expect(layout).toContain('from "expo-router/unstable-native-tabs"');
-    expect(layout).toContain('unstable_settings = { initialRouteName: "settings" }');
+    expect(layout).toContain("from 'expo-router/unstable-native-tabs'");
+    expect(layout).toContain("unstable_settings = { initialRouteName: 'settings' }");
     expect(layout).toContain('minimizeBehavior="onScrollDown"');
     expect(layout).toContain('<NativeTabs.Trigger name="home">');
-    expect(layout).toContain('from "@ankhorage/navigator/tabs/native-icons"');
+    expect(layout).toContain("from '@ankhorage/navigator/tabs/native-icons'");
     expect(layout).toContain(
       '<NativeTabs.Trigger.Icon src={<NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily}',
     );
@@ -78,12 +78,10 @@ describe('@ankhorage/navigator JavaScript tabs generation', () => {
         'web',
       );
       expect(plan.supported).toBe(true);
-      expect(layout).toContain(`from "${expected}"`);
+      expect(layout).toContain(`from '${expected}'`);
       expect(layout).toContain('.Screen name="home"');
       expect(layout).toContain(
-        presentation === 'top'
-          ? 'name="settings" options={{"tabBarItemStyle":{"display":"none"}}}'
-          : 'name="settings" options={{"href":null}}',
+        presentation === 'top' ? "tabBarItemStyle: { display: 'none' }" : 'href: null',
       );
     }
   });
@@ -116,10 +114,10 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
       expanded: 'sidebar',
       medium: 'rail',
     });
-    expect(layout).toContain('from "@ankhorage/navigator/tabs"');
+    expect(layout).toContain("from '@ankhorage/navigator/tabs'");
     expect(layout).toContain('initialRouteName="home"');
-    expect(layout).toContain('"href":"/settings"');
-    expect(layout).toContain('"visible":false');
+    expect(layout).toContain("href: '/settings'");
+    expect(layout).toContain('visible: false');
   });
 });
 
@@ -210,7 +208,7 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
     })[0]?.contents;
     expect(layout).toContain('resolveIconSource as NavigatorResolveTabsIconSource');
     expect(layout).toContain('resolveIconSource={NavigatorResolveTabsIconSource}');
-    expect(layout).toContain('"source":{"mediaId":"home"}');
+    expect(layout).toContain("source: { mediaId: 'home' }");
   });
 });
 

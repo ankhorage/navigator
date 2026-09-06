@@ -155,9 +155,9 @@ describe('@ankhorage/navigator Experimental Stack generation', () => {
         },
       }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
-    expect(layout).toContain('import { ExperimentalStack } from "expo-router";');
-    expect(layout).toContain('<ExperimentalStack screenOptions={{"headerShown":true}}>');
+    expect(layout).toContain("import { ExperimentalStack } from 'expo-router';");
+    expect(layout).toContain('<ExperimentalStack screenOptions={{ headerShown: true }}>');
     expect(layout).toContain('<ExperimentalStack.Protected guard={navigatorGuard0()}>');
-    expect(layout).toContain('options={{"title":"Home"}}');
+    expect(layout).toContain("title: 'Home'");
   });
 });

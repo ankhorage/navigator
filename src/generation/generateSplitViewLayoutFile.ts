@@ -4,7 +4,7 @@ import type {
   NavigatorNodePlan,
   NavigatorScreenModule,
 } from '../definitions/NavigatorPlan';
-import { assertModuleBinding, quote } from './generationSafety';
+import { assertModuleBinding, quote, quoteJsxAttribute } from './generationSafety';
 
 interface SplitViewBinding {
   alias: string;
@@ -79,12 +79,12 @@ export function generateSplitViewLayoutFile(
   const props = [
     node.splitView.topColumnForCollapsing === undefined
       ? undefined
-      : `topColumnForCollapsing=${quote(node.splitView.topColumnForCollapsing)}`,
+      : `topColumnForCollapsing=${quoteJsxAttribute(node.splitView.topColumnForCollapsing)}`,
     node.splitView.inspector === undefined ? undefined : 'showInspector',
   ].filter((value): value is string => value !== undefined);
   const openingTag = `<SplitView${props.length === 0 ? '' : ` ${props.join(' ')}`}>`;
   const imports = [
-    'import { SplitView } from "expo-router/unstable-split-view";',
+    "import { SplitView } from 'expo-router/unstable-split-view';",
     renderSplitViewImports(referencedScreens),
   ].join('\n');
   const children = referencedScreens.map(renderSplitViewChild).join('\n');

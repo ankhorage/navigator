@@ -5,7 +5,7 @@ import type {
   NavigatorRoutePlan,
   NavigatorScreenModule,
 } from '../definitions/NavigatorPlan';
-import { assertModuleBinding, quote } from './generationSafety';
+import { assertModuleBinding, quote, quoteJsxAttribute, sourceLiteral } from './generationSafety';
 
 type NativeIconProvider =
   'FontAwesome' | 'FontAwesome5' | 'FontAwesome6' | 'Ionicons' | 'MaterialDesignIcons';
@@ -66,15 +66,15 @@ function createNativeTabsContents(
   const minimize =
     node.tabs?.minimizeBehavior === undefined
       ? ''
-      : ` minimizeBehavior=${quote(node.tabs.minimizeBehavior)}`;
+      : ` minimizeBehavior=${quoteJsxAttribute(node.tabs.minimizeBehavior)}`;
   const triggers = node.routes
     .map((route) => {
       const label = route.label ?? route.name;
       const icon =
         route.icon === undefined
           ? ''
-          : `\n        <${componentName}.Trigger.Icon src={<${componentName}.Trigger.VectorIcon family={${nativeIconFamily(nativeIconProvider(route.icon))}} name=${quote(nativeIconName(route.icon))} />} />`;
-      return `      <${componentName}.Trigger name=${quote(route.name)}>\n        <${componentName}.Trigger.Label>{${quote(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
+          : `\n        <${componentName}.Trigger.Icon src={<${componentName}.Trigger.VectorIcon family={${nativeIconFamily(nativeIconProvider(route.icon))}} name=${quoteJsxAttribute(nativeIconName(route.icon))} />} />`;
+      return `      <${componentName}.Trigger name=${quoteJsxAttribute(route.name)}>\n        <${componentName}.Trigger.Label>{${quote(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
     })
     .join('\n');
   const accessory =
@@ -101,7 +101,7 @@ function createNativeTabsFile(
   ].sort();
   if (iconFamilies.length > 0) {
     imports.push(
-      `import { ${iconFamilies.join(', ')} } from "@ankhorage/navigator/tabs/native-icons";`,
+      `import { ${iconFamilies.join(', ')} } from '@ankhorage/navigator/tabs/native-icons';`,
     );
   }
   let accessoryName: string | undefined;
@@ -121,6 +121,22 @@ function createNativeTabsFile(
   };
 }
 
+/*** Render custom-tab route records as stable multiline source objects. */
+function renderCustomTabRoutes(routes: readonly Readonly<Record<string, unknown>>[]): string {
+  return `[
+${routes
+  .map(
+    (route) => `  {
+${Object.entries(route)
+  .filter(([, value]) => value !== undefined)
+  .map(([key, value]) => `    ${key}: ${sourceLiteral(value)},`)
+  .join('\n')}
+  },`,
+  )
+  .join('\n')}
+]`;
+}
+
 /*** Create the generated Web custom-tabs layout file and registered integration imports. */
 function createCustomTabsFile(
   node: NavigatorNodePlan,
@@ -131,7 +147,7 @@ function createCustomTabsFile(
   if (tabs?.presentations === undefined) {
     throw new Error('Custom Tabs planning did not preserve responsive presentations.');
   }
-  const imports = ['import { CustomTabsLayout } from "@ankhorage/navigator/tabs";'];
+  const imports = ["import { CustomTabsLayout } from '@ankhorage/navigator/tabs';"];
   let customPresentation = '';
   let iconSourceResolver = '';
   if (tabs.customPresentationId !== undefined) {
@@ -161,10 +177,13 @@ function createCustomTabsFile(
     visible: route.showInPrimaryNavigation !== false,
   }));
   const initialRoute =
-    node.initialRouteName === undefined ? '' : ` initialRouteName=${quote(node.initialRouteName)}`;
+    node.initialRouteName === undefined
+      ? ''
+      : ` initialRouteName=${quoteJsxAttribute(node.initialRouteName)}`;
+  const routeSource = renderCustomTabRoutes(routes);
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${imports.join('\n')}\n\nconst routes = ${JSON.stringify(routes)} as const;\nconst presentations = ${JSON.stringify(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n  return <CustomTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />;\n}\n`,
+    contents: `${imports.join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${sourceLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n  return <CustomTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />;\n}\n`,
   };
 }
 

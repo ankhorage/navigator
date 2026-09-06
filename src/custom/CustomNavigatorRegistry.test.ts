@@ -134,11 +134,10 @@ test('generates only the registered static import and portable configuration', (
     exportName: 'WorkspaceRail',
     support: 'supported',
   });
-  expect(layout).toContain('import { WorkspaceRail } from "@example/workspace-rail";');
-  expect(layout).toContain('<WorkspaceRail {...{"backBehavior":"history","railWidth":88}}>');
-  expect(layout).toContain(
-    '<WorkspaceRail.Screen name="projects" options={{"title":"Projects"}} />',
-  );
+  expect(layout).toContain("import { WorkspaceRail } from '@example/workspace-rail';");
+  expect(layout).toContain("<WorkspaceRail {...{ backBehavior: 'history', railWidth: 88 }}>");
+  expect(layout).toContain('name="projects"');
+  expect(layout).toContain("title: 'Projects'");
   expect(files.map(({ path }) => path)).toContain('src/app/projects/[id].tsx');
   expect(layout).not.toContain('navigatorId');
 });
