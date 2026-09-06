@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.4.0
+
+### Minor Changes
+
+- 146ffe1: Add immutable custom navigator registration with JSON schema validation, platform gates, and safe standard-router generation bindings.
+
 ## 1.3.0
 
 ### Minor Changes
