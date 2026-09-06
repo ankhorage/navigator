@@ -5,6 +5,7 @@ import type {
   TabsImplementationConfig,
 } from '@ankhorage/contracts/navigator';
 
+import type { CustomNavigatorRegistry } from '../custom/CustomNavigatorRegistry';
 import type {
   NavigatorAdapterPlan,
   NavigatorNodePlan,
@@ -15,6 +16,7 @@ import type {
   TabsNavigatorPlan,
 } from '../definitions/NavigatorPlan';
 import { validateNavigatorManifest } from '../validation/validateNavigatorManifest';
+import { resolveCustomNavigatorAdapterPlan } from './resolveCustomNavigatorPlan';
 import {
   parseExpoRouterMajor,
   resolveEffectiveStackConfig,
@@ -27,6 +29,7 @@ export interface CreateNavigatorPlanOptions {
   platform: NavigatorRuntimePlatform;
   expoRouterVersion: string;
   responsiveSize?: NavigatorResponsiveSize;
+  customNavigators?: CustomNavigatorRegistry;
 }
 
 /*** Resolve a Stack implementation to its version- and platform-aware Expo Router adapter. */
@@ -107,6 +110,7 @@ function createAdapter(
   tabs: TabsNavigatorPlan | undefined,
   platform: NavigatorRuntimePlatform,
   routerMajor: number | undefined,
+  customNavigators: CustomNavigatorRegistry | undefined,
 ): NavigatorAdapterPlan {
   switch (node.type) {
     case 'slot':
@@ -135,12 +139,7 @@ function createAdapter(
     case 'split-view':
       return resolveSplitViewAdapterPlan(platform, routerMajor);
     case 'custom':
-      return {
-        id: 'custom',
-        support: 'unavailable',
-        stability: 'stable',
-        limitations: ['Requires an explicitly composed custom adapter.'],
-      };
+      return resolveCustomNavigatorAdapterPlan(node, platform, routerMajor, customNavigators);
   }
 }
 
@@ -272,6 +271,7 @@ function createNodePlan(
       tabs,
       options.platform,
       parseExpoRouterMajor(options.expoRouterVersion),
+      options.customNavigators,
     ),
     ...(node.initialRouteName === undefined ? {} : { initialRouteName: node.initialRouteName }),
     routes,
@@ -288,7 +288,7 @@ export function createNavigatorPlan(
     platform: options.platform,
     expoRouterVersion: options.expoRouterVersion,
   } as const;
-  const diagnostics = validateNavigatorManifest(manifest, context);
+  const diagnostics = validateNavigatorManifest(manifest, context, options.customNavigators);
   const root = createNodePlan(manifest, manifest, '', options, options.responsiveSize ?? 'compact');
   return {
     context,

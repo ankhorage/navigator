@@ -48,7 +48,8 @@ export interface NavigatorValidationContext {
 
 export interface NavigatorAdapterPlan {
   id: NavigatorAdapterId;
-  module?: ExpoRouterNavigatorModule;
+  /** Built-in Expo Router entry point or an explicitly registered custom module. */
+  module?: string;
   exportName?: string;
   support: NavigatorSupportStatus;
   stability: NavigatorApiStability;

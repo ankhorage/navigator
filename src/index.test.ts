@@ -147,16 +147,12 @@ describe('@ankhorage/navigator adapter diagnostics', () => {
       true,
     );
 
-    for (const manifest of [
-      { type: 'custom', navigatorId: 'workspace', routes: [] },
-    ] as const satisfies readonly AppNavigatorManifest[]) {
-      expect(
-        validateNavigatorManifest(manifest, {
-          platform: 'ios',
-          expoRouterVersion: '56.0.0',
-        }).some((item) => item.code === 'adapter-unavailable'),
-      ).toBe(true);
-    }
+    expect(
+      validateNavigatorManifest(
+        { type: 'custom', navigatorId: 'workspace', routes: [] },
+        { platform: 'ios', expoRouterVersion: '56.0.0' },
+      ).some((item) => item.code === 'unregistered-custom-navigator'),
+    ).toBe(true);
   });
 });
 

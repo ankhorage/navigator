@@ -6,12 +6,12 @@ import type {
   NavigatorRoutePlan,
   NavigatorScreenModule,
 } from '../definitions/NavigatorPlan';
-
-const APP_DIRECTORY = 'src/app';
-const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
 import { generateSplitViewLayoutFile } from './generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from './generateTabsLayoutFile';
 import { assertModuleBinding, quote } from './generationSafety';
+
+const APP_DIRECTORY = 'src/app';
+const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
 
 function assertRouteName(name: string): void {
   if (!SAFE_ROUTE_NAME.test(name) || name === '.' || name === '..') {
@@ -94,6 +94,9 @@ function createNavigatorContents(
     navigatorOptions === undefined
       ? undefined
       : `screenOptions={${JSON.stringify(navigatorOptions)}}`,
+    node.type === 'custom' && node.custom?.config !== undefined
+      ? `{...${JSON.stringify(node.custom.config)}}`
+      : undefined,
   ].filter((value): value is string => value !== undefined);
   const openingTag = `<${componentName}${props.length === 0 ? '' : ` ${props.join(' ')}`}>`;
   const screens = node.routes

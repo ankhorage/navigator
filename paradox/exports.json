@@ -46,13 +46,24 @@
     "modulePath": "src/expo-router/createNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/expo-router/createNavigatorPlan.ts",
-      "line": 26,
+      "line": 28,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["NavigatorResponsiveSize", "NavigatorRuntimePlatform"],
+    "relatedSymbols": [
+      "CustomNavigatorRegistry",
+      "NavigatorResponsiveSize",
+      "NavigatorRuntimePlatform"
+    ],
     "signatures": [],
     "members": [
+      {
+        "name": "customNavigators",
+        "kind": "property",
+        "type": "CustomNavigatorRegistry | undefined",
+        "required": false,
+        "description": null
+      },
       {
         "name": "expoRouterVersion",
         "kind": "property",
@@ -75,6 +86,143 @@
         "description": null
       }
     ],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomNavigatorConfigIssue",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "sourceLocation": {
+      "filePath": "src/custom/CustomNavigatorRegistry.ts",
+      "line": 6,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "code",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "message",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "path",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomNavigatorRegistration",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "sourceLocation": {
+      "filePath": "src/custom/CustomNavigatorRegistry.ts",
+      "line": 12,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [
+      "CustomNavigatorConfigIssue",
+      "NavigatorApiStability",
+      "NavigatorRuntimePlatform"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "exportName",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "integration",
+        "kind": "property",
+        "type": "\"expo-router-standard\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "module",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "platforms",
+        "kind": "property",
+        "type": "readonly NavigatorRuntimePlatform[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "router",
+        "kind": "property",
+        "type": "\"stack\" | \"tab\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "stability",
+        "kind": "property",
+        "type": "NavigatorApiStability",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "validateConfig",
+        "kind": "property",
+        "type": "(config: CustomNavigatorNode[\"config\"]) => readonly CustomNavigatorConfigIssue[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomNavigatorRegistry",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "sourceLocation": {
+      "filePath": "src/custom/CustomNavigatorRegistry.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
     "structuredRows": []
   },
   {
@@ -282,6 +430,38 @@
     "structuredRows": []
   },
   {
+    "name": "defineCustomNavigatorRegistry",
+    "description": "Define an immutable, duplicate-free custom navigator registry for one composition boundary.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "sourceLocation": {
+      "filePath": "src/custom/CustomNavigatorRegistry.ts",
+      "line": 35,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["CustomNavigatorRegistration", "CustomNavigatorRegistry"],
+    "signatures": [
+      {
+        "label": "(registrations: readonly CustomNavigatorRegistration[]) => CustomNavigatorRegistry",
+        "parameters": [
+          {
+            "name": "registrations",
+            "type": "readonly CustomNavigatorRegistration[]",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "CustomNavigatorRegistry",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "ExpoRouterNavigatorModule",
     "description": null,
     "isReadme": false,
@@ -308,7 +488,7 @@
     "modulePath": "src/generation/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/generation/generateNavigatorFiles.ts",
-      "line": 212,
+      "line": 215,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -386,12 +566,7 @@
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [
-      "ExpoRouterNavigatorModule",
-      "NavigatorAdapterId",
-      "NavigatorApiStability",
-      "NavigatorSupportStatus"
-    ],
+    "relatedSymbols": ["NavigatorAdapterId", "NavigatorApiStability", "NavigatorSupportStatus"],
     "signatures": [],
     "members": [
       {
@@ -418,7 +593,7 @@
       {
         "name": "module",
         "kind": "property",
-        "type": "ExpoRouterNavigatorModule | undefined",
+        "type": "string | undefined",
         "required": false,
         "description": null
       },
@@ -513,7 +688,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 146,
+      "line": 147,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -546,7 +721,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 135,
+      "line": 136,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -600,7 +775,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 91,
+      "line": 92,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -673,7 +848,7 @@
       {
         "name": "type",
         "kind": "property",
-        "type": "\"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\"",
+        "type": "\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\"",
         "required": true,
         "description": null
       }
@@ -689,7 +864,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 119,
+      "line": 120,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -761,7 +936,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 79,
+      "line": 80,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -861,7 +1036,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 130,
+      "line": 131,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1016,7 +1191,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 58,
+      "line": 59,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1034,7 +1209,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 59,
+      "line": 60,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1059,22 +1234,22 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(preset: \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined, fallbackType: \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\") => readonly (\"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\")[]",
+        "label": "(preset: \"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined, fallbackType: \"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\") => readonly (\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\")[]",
         "parameters": [
           {
             "name": "fallbackType",
-            "type": "\"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\"",
+            "type": "\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\"",
             "required": true,
             "description": null
           },
           {
             "name": "preset",
-            "type": "\"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined",
+            "type": "\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "readonly (\"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"stack\" | \"tabs\")[]",
+        "returnType": "readonly (\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\")[]",
         "returnDescription": null
       }
     ],
@@ -1134,7 +1309,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 67,
+      "line": 68,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1222,19 +1397,29 @@
     "modulePath": "src/validation/validateNavigatorManifest.ts",
     "sourceLocation": {
       "filePath": "src/validation/validateNavigatorManifest.ts",
-      "line": 232,
+      "line": 226,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["NavigatorDiagnostic", "NavigatorValidationContext"],
+    "relatedSymbols": [
+      "CustomNavigatorRegistry",
+      "NavigatorDiagnostic",
+      "NavigatorValidationContext"
+    ],
     "signatures": [
       {
-        "label": "(manifest: AppNavigatorManifest, context: NavigatorValidationContext) => readonly NavigatorDiagnostic[]",
+        "label": "(manifest: AppNavigatorManifest, context: NavigatorValidationContext, customNavigators?: CustomNavigatorRegistry | undefined) => readonly NavigatorDiagnostic[]",
         "parameters": [
           {
             "name": "context",
             "type": "NavigatorValidationContext",
             "required": true,
+            "description": null
+          },
+          {
+            "name": "customNavigators",
+            "type": "CustomNavigatorRegistry | undefined",
+            "required": false,
             "description": null
           },
           {

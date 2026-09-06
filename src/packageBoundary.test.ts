@@ -45,6 +45,13 @@ describe('@ankhorage/navigator package boundary', () => {
       status: 'testing-only',
       fallback: { android: 'slot', web: 'slot' },
     });
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.custom).toEqual({
+      support: 'registered',
+      minimumExpoRouterVersion: '56.0.0',
+      integration: 'expo-router-standard',
+      routerOwner: 'expo-router',
+      config: 'schema-validated-json',
+    });
   });
 
   test('requires the Surface release that supports portable SVG icon sources', async () => {
