@@ -8,6 +8,8 @@ export function resolveNavigatorPreset(
   switch (preset) {
     case undefined:
       return [fallbackType];
+    case 'slot':
+      return ['slot'];
     case 'stack':
       return ['stack'];
     case 'tabs':
@@ -34,5 +36,9 @@ export function resolveNavigatorPreset(
       return ['stack', 'drawer', 'tabs'];
     case 'root-stack-drawer-tabs-stack':
       return ['stack', 'drawer', 'tabs', 'stack'];
+    case 'split-view':
+      return ['split-view'];
+    case 'custom':
+      return ['custom'];
   }
 }

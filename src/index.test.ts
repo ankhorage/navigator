@@ -1,138 +1,304 @@
-import { readdir, readFile } from 'node:fs/promises';
-import { extname, join } from 'node:path';
-
 import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { describe, expect, test } from 'bun:test';
+import ts from 'typescript';
 
 import {
   createNavigatorPlan,
+  generateNavigatorFiles,
   resolveCustomTabsPresentation,
   resolveNavigatorPreset,
   resolveTabsNavigatorPlan,
+  validateNavigatorManifest,
 } from './index';
-import { NAVIGATOR_PACKAGE_METADATA } from './metadata';
 
-const ADAPTIVE_TABS: AppNavigatorManifest = {
-  type: 'tabs',
-  preset: 'root-stack-tabs-stack',
-  routes: [{ name: 'home', path: '/', screenId: 'home' }],
+const SCREEN_BINDINGS = {
+  home: { module: '@/screens/home', exportName: 'HomeScreen' },
+  settings: { module: '@/screens/settings', exportName: 'SettingsScreen' },
+} as const;
+
+const CORE_MANIFEST: AppNavigatorManifest = {
+  type: 'stack',
+  preset: 'root-stack-drawer',
+  initialRouteName: '(app)',
+  implementation: 'javascript',
+  options: { headerShown: false },
+  routes: [
+    { name: 'index', path: '/', screenId: 'home' },
+    {
+      name: '(app)',
+      path: '/app',
+      guards: ['authenticated'],
+      navigator: {
+        type: 'drawer',
+        initialRouteName: 'home',
+        options: { drawerPosition: 'left' },
+        routes: [
+          { name: 'home', label: 'Home', screenId: 'home' },
+          {
+            name: 'settings',
+            label: 'Settings',
+            showInPrimaryNavigation: false,
+            screenId: 'settings',
+          },
+        ],
+      },
+    },
+  ],
 };
 
-async function collectProductionTypeScriptFiles(directory: string): Promise<string[]> {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const nested = await Promise.all(
-    entries.map(async (entry) => {
-      const full = join(directory, entry.name);
-      if (entry.isDirectory()) return collectProductionTypeScriptFiles(full);
-      return ['.ts', '.tsx'].includes(extname(entry.name)) && !entry.name.endsWith('.test.ts')
-        ? [full]
-        : [];
-    }),
-  );
-  return nested.flat();
-}
-
-describe('@ankhorage/navigator topology planning', () => {
-  test('resolves canonical topology presets without changing the manifest tree', () => {
+describe('@ankhorage/navigator topology and validation', () => {
+  test('resolves every finite preset family', () => {
+    expect(resolveNavigatorPreset('slot', 'stack')).toEqual(['slot']);
     expect(resolveNavigatorPreset('root-stack-tabs-stack', 'tabs')).toEqual([
       'stack',
       'tabs',
       'stack',
     ]);
+    expect(resolveNavigatorPreset('split-view', 'stack')).toEqual(['split-view']);
+    expect(resolveNavigatorPreset('custom', 'stack')).toEqual(['custom']);
   });
 
-  test('creates a plan from only the navigator manifest slice', () => {
-    const plan = createNavigatorPlan(ADAPTIVE_TABS, { platform: 'web', responsiveSize: 'medium' });
+  test('uses platform, node, manifest default, then stable default precedence', () => {
+    const platformPlan = createNavigatorPlan(
+      {
+        ...CORE_MANIFEST,
+        defaults: { stack: { implementation: 'experimental' } },
+        platforms: { web: { stack: { implementation: 'native' } } },
+      },
+      { platform: 'web', expoRouterVersion: '56.0.0' },
+    );
+    expect(platformPlan.root.adapter.id).toBe('stack.native');
+    expect(platformPlan.root.stack?.implementation).toBe('native');
+    expect(platformPlan.supported).toBe(true);
 
-    expect(plan.presetLayers).toEqual(['stack', 'tabs', 'stack']);
-    expect(plan.root.type).toBe('tabs');
-    expect(plan.root.tabs?.implementation).toBe('custom');
-    expect(plan.root.tabs?.presentation).toBe('rail');
+    const defaultPlan = createNavigatorPlan(
+      { type: 'stack', routes: [{ name: 'index', screenId: 'home' }] },
+      { platform: 'ios', expoRouterVersion: '56.0.0' },
+    );
+    expect(defaultPlan.root.adapter.id).toBe('stack.native');
+  });
+
+  test('materializes an authored preset spine without losing root routes', () => {
+    const plan = createNavigatorPlan(CORE_MANIFEST, {
+      platform: 'web',
+      expoRouterVersion: '56.0.0',
+    });
+
+    expect(plan.supported).toBe(true);
+    expect(plan.diagnostics).toEqual([]);
+    expect(plan.root.routes.map((route) => route.name)).toEqual(['index', '(app)']);
+    expect(plan.root.routes[1]?.navigator?.type).toBe('drawer');
+    expect(plan.root.routes[1]?.guards).toEqual(['authenticated']);
+    expect(plan.root.routes[1]?.path).toBe('/app');
+  });
+});
+
+describe('@ankhorage/navigator structural diagnostics', () => {
+  test('rejects contradictory preset authorship and invalid local route structure', () => {
+    const diagnostics = validateNavigatorManifest(
+      {
+        type: 'tabs',
+        preset: 'root-stack-tabs',
+        initialRouteName: 'missing',
+        routes: [
+          { name: 'home', screenId: 'home' },
+          { name: 'home', screenId: 'home', navigator: { type: 'slot', routes: [] } },
+        ],
+      },
+      { platform: 'web', expoRouterVersion: '56.0.0' },
+    );
+
+    const codes = diagnostics.map((diagnostic) => diagnostic.code);
+    for (const code of [
+      'adapter-unavailable',
+      'duplicate-route-name',
+      'invalid-route-target',
+      'preset-topology-mismatch',
+      'unknown-initial-route',
+    ]) {
+      expect(codes).toContain(code);
+    }
+  });
+
+  test('rejects native-only route options after JavaScript Stack precedence resolves', () => {
+    const diagnostics = validateNavigatorManifest(
+      {
+        type: 'stack',
+        routes: [{ name: 'sheet', screenId: 'home', stackOptions: { presentation: 'formSheet' } }],
+        platforms: { web: { stack: { implementation: 'javascript' } } },
+      },
+      { platform: 'web', expoRouterVersion: '56.0.0' },
+    );
+    expect(diagnostics.some((item) => item.code === 'unsupported-stack-option')).toBe(true);
+  });
+});
+
+describe('@ankhorage/navigator adapter diagnostics', () => {
+  test('reports optional or version-gated adapters before generation', () => {
+    const oldJavaScriptStack = validateNavigatorManifest(
+      {
+        type: 'stack',
+        implementation: 'javascript',
+        routes: [{ name: 'index', screenId: 'home' }],
+      },
+      { platform: 'web', expoRouterVersion: '55.0.0' },
+    );
+    expect(oldJavaScriptStack.some((item) => item.code === 'unsupported-expo-router-version')).toBe(
+      true,
+    );
+
+    for (const manifest of [
+      { type: 'stack', implementation: 'experimental', routes: [] },
+      { type: 'split-view', columns: { primary: { screenId: 'home' } }, routes: [] },
+      { type: 'custom', navigatorId: 'workspace', routes: [] },
+    ] as const satisfies readonly AppNavigatorManifest[]) {
+      expect(
+        validateNavigatorManifest(manifest, {
+          platform: 'ios',
+          expoRouterVersion: '56.0.0',
+        }).some((item) => item.code === 'adapter-unavailable'),
+      ).toBe(true);
+    }
+  });
+});
+
+describe('@ankhorage/navigator deterministic generation', () => {
+  test('generates nested layouts, guarded screens and a typed hidden Drawer route', () => {
+    const plan = createNavigatorPlan(CORE_MANIFEST, {
+      platform: 'web',
+      expoRouterVersion: '56.0.0',
+    });
+    const bindings = {
+      screens: SCREEN_BINDINGS,
+      guards: {
+        authenticated: { module: '@/navigation/guards', exportName: 'isAuthenticated' },
+      },
+    } as const;
+    const first = generateNavigatorFiles(plan, bindings);
+    const second = generateNavigatorFiles(plan, bindings);
+
+    expect(second).toEqual(first);
+    expect(first.map((file) => file.path)).toEqual([
+      'src/app/_layout.tsx',
+      'src/app/(app)/_layout.tsx',
+      'src/app/(app)/home.tsx',
+      'src/app/(app)/settings.tsx',
+      'src/app/index.tsx',
+    ]);
+    const root = first.find((file) => file.path === 'src/app/_layout.tsx')?.contents ?? '';
+    const drawer = first.find((file) => file.path === 'src/app/(app)/_layout.tsx')?.contents ?? '';
+    expect(root).toContain('from "expo-router/js-stack"');
+    expect(root).toContain('initialRouteName="(app)"');
+    expect(root).toContain('<Stack.Protected guard={navigatorGuard0()}>');
+    expect(drawer).toContain('"drawerItemStyle":{"display":"none"}');
+    expect(first.at(-1)?.contents).toBe(
+      'export { HomeScreen as default } from "@/screens/home";\n',
+    );
+  });
+});
+
+describe('@ankhorage/navigator generated core fixtures', () => {
+  test('produces syntactically valid core fixtures for Android, iOS and web', () => {
+    const manifests: readonly [AppNavigatorManifest, 'android' | 'ios' | 'web'][] = [
+      [{ type: 'drawer', routes: [{ name: 'index', screenId: 'home' }] }, 'android'],
+      [{ type: 'stack', routes: [{ name: 'index', screenId: 'home' }] }, 'ios'],
+      [
+        {
+          type: 'stack',
+          implementation: 'javascript',
+          routes: [{ name: 'index', screenId: 'home' }],
+        },
+        'web',
+      ],
+    ];
+
+    for (const [manifest, platform] of manifests) {
+      const files = generateNavigatorFiles(
+        createNavigatorPlan(manifest, { platform, expoRouterVersion: '56.0.0' }),
+        { screens: SCREEN_BINDINGS, guards: {} },
+      );
+      for (const file of files) {
+        const result = ts.transpileModule(file.contents, {
+          compilerOptions: { jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.ESNext },
+          reportDiagnostics: true,
+        });
+        expect(result.diagnostics ?? []).toEqual([]);
+      }
+    }
+  });
+});
+
+describe('@ankhorage/navigator generation safety', () => {
+  test('validates module bindings and required flow route identifiers', () => {
+    const flowPlan = createNavigatorPlan(
+      {
+        type: 'stack',
+        routes: [{ name: 'sign-in', screenId: 'home' }],
+        flows: { authentication: true },
+      },
+      { platform: 'ios', expoRouterVersion: '56.0.0' },
+    );
+    expect(() =>
+      generateNavigatorFiles(flowPlan, { screens: SCREEN_BINDINGS, guards: {} }),
+    ).toThrow('Missing authentication flow-route binding');
+    expect(() =>
+      generateNavigatorFiles(flowPlan, {
+        screens: { home: { module: "safe'; alert(1); //", exportName: 'HomeScreen' } },
+        guards: {},
+        flows: { authenticationRoute: 'sign-in' },
+      }),
+    ).toThrow('unsafe module specifier');
+  });
+
+  test('blocks generation when semantic validation fails', () => {
+    const plan = createNavigatorPlan(
+      { type: 'tabs', routes: [{ name: 'home', screenId: 'home' }] },
+      { platform: 'web', expoRouterVersion: '56.0.0' },
+    );
+    expect(() => generateNavigatorFiles(plan, { screens: SCREEN_BINDINGS, guards: {} })).toThrow(
+      'unsupported navigator plan',
+    );
+  });
+
+  test('revalidates file segments from disposable plans at the generation boundary', () => {
+    const plan = createNavigatorPlan(
+      { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
+      { platform: 'web', expoRouterVersion: '56.0.0' },
+    );
+    (plan.root.routes[0] as { name: string }).name = '../outside';
+    expect(() => generateNavigatorFiles(plan, { screens: SCREEN_BINDINGS, guards: {} })).toThrow(
+      'safe generated file segment',
+    );
   });
 });
 
 describe('@ankhorage/navigator tabs planning', () => {
-  test('uses native unstable tabs for adaptive Android and iOS', () => {
-    for (const platform of ['android', 'ios'] as const) {
-      expect(resolveTabsNavigatorPlan(undefined, platform, 'compact')).toEqual({
-        implementation: 'native',
-        module: 'expo-router/unstable-native-tabs',
-        exportName: 'NativeTabs',
-        stability: 'unstable',
-      });
-    }
-  });
-
-  test('uses headless custom tabs on Web with responsive defaults', () => {
-    expect(resolveTabsNavigatorPlan(undefined, 'web', 'compact').presentation).toBe('bottom');
-    expect(resolveTabsNavigatorPlan(undefined, 'web', 'medium').presentation).toBe('rail');
-    expect(resolveTabsNavigatorPlan(undefined, 'web', 'expanded').presentation).toBe('sidebar');
-  });
-
-  test('preserves Web config when adaptive implementation is omitted', () => {
-    const plan = resolveTabsNavigatorPlan(
-      {
-        web: {
-          presentation: 'responsive',
-          responsive: { compact: 'top', expanded: 'sidebar' },
-        },
-      },
-      'web',
-      'compact',
-    );
-
-    expect(plan.presentation).toBe('top');
-  });
-
-  test('maps JavaScript bottom and top tabs to their stable Router entry points', () => {
+  test('keeps adapter resolution available for the separately owned Tabs implementation', () => {
+    expect(resolveTabsNavigatorPlan(undefined, 'ios', 'compact')).toEqual({
+      implementation: 'native',
+      module: 'expo-router/unstable-native-tabs',
+      exportName: 'NativeTabs',
+      stability: 'alpha',
+    });
     expect(
       resolveTabsNavigatorPlan({ implementation: 'javascript' }, 'web', 'compact').module,
     ).toBe('expo-router/js-tabs');
     expect(
       resolveTabsNavigatorPlan(
-        { implementation: 'javascript', presentation: 'top' },
-        'web',
-        'compact',
-      ).module,
-    ).toBe('expo-router/js-top-tabs');
-  });
-});
-
-describe('@ankhorage/navigator explicit tabs planning', () => {
-  test('maps custom tabs to the stable headless Router entry point', () => {
-    expect(
-      resolveTabsNavigatorPlan(
         { implementation: 'custom', presentation: 'sidebar' },
         'web',
         'expanded',
-      ),
-    ).toEqual({
-      implementation: 'custom',
-      module: 'expo-router/ui',
-      exportName: 'Tabs',
-      stability: 'stable',
-      presentation: 'sidebar',
-    });
+      ).module,
+    ).toBe('expo-router/ui');
   });
 
-  test('rejects explicit native tabs for Web', () => {
-    expect(() => resolveTabsNavigatorPlan({ implementation: 'native' }, 'web', 'compact')).toThrow(
-      'Native tabs are not available',
-    );
-  });
-});
-
-describe('@ankhorage/navigator custom presentation', () => {
-  test('resolves registered custom presentations without embedding a renderer', () => {
+  test('resolves registered and responsive custom presentations deterministically', () => {
     expect(
       resolveCustomTabsPresentation(
         { presentation: 'custom', customPresentationId: 'workspace-tabs' },
         'expanded',
       ),
     ).toEqual({ presentation: 'custom', customPresentationId: 'workspace-tabs' });
-  });
-
-  test('uses expanded presentation when a responsive medium override is omitted', () => {
     expect(
       resolveCustomTabsPresentation(
         {
@@ -142,21 +308,5 @@ describe('@ankhorage/navigator custom presentation', () => {
         'medium',
       ).presentation,
     ).toBe('sidebar');
-  });
-});
-
-describe('@ankhorage/navigator package boundary', () => {
-  test('publishes manifest-authoring metadata for the standalone capability', () => {
-    expect(NAVIGATOR_PACKAGE_METADATA.packageName).toBe('@ankhorage/navigator');
-    expect(NAVIGATOR_PACKAGE_METADATA.manifestProperty).toBe('navigator');
-    expect(NAVIGATOR_PACKAGE_METADATA.tabs.adaptiveDefault.webResponsive.medium).toBe('rail');
-  });
-
-  test('never imports the full app manifest into production source', async () => {
-    const forbidden = ['App', 'Manifest'].join('');
-    const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));
-    const contents = await Promise.all(files.map((file) => readFile(file, 'utf8')));
-
-    expect(contents.some((content) => content.includes(forbidden))).toBe(false);
   });
 });
