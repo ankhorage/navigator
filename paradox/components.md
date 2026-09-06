@@ -8,10 +8,10 @@ Render one stable headless Expo Router tab topology with Surface-owned presentat
 
 Export paths: `src/tabs/index.ts`
 
-| Prop | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| customPresentation | `ComponentType<CustomTabsPresentationProps> \| undefined` | no | — |  |
-| initialRouteName | `string \| undefined` | no | — |  |
-| presentations | `Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>` | yes | — |  |
-| resolveIconSource | `CustomTabsIconSourceResolver \| undefined` | no | — |  |
-| routes | `readonly CustomTabsRoute[]` | yes | — |  |
+| Prop               | Type                                                                  | Required | Default | Description |
+| ------------------ | --------------------------------------------------------------------- | -------- | ------- | ----------- |
+| customPresentation | `ComponentType<CustomTabsPresentationProps> \| undefined`             | no       | —       |             |
+| initialRouteName   | `string \| undefined`                                                 | no       | —       |             |
+| presentations      | `Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>` | yes      | —       |             |
+| resolveIconSource  | `CustomTabsIconSourceResolver \| undefined`                           | no       | —       |             |
+| routes             | `readonly CustomTabsRoute[]`                                          | yes      | —       |             |

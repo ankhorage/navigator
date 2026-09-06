@@ -66,18 +66,12 @@
   "readmeCli": null,
   "readmeConfig": null,
   "config": null,
-  "entrypoints": [
-    "src/index.ts",
-    "src/metadata/index.ts",
-    "src/tabs/index.ts"
-  ],
+  "entrypoints": ["src/index.ts", "src/metadata/index.ts", "src/tabs/index.ts"],
   "modules": [
     {
       "path": "src/composableGeneration.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
@@ -93,10 +87,7 @@
     {
       "path": "src/custom/CustomNavigatorRegistry.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts",
-        "src/generation/generationSafety.ts"
-      ],
+      "dependencies": ["src/definitions/NavigatorPlan.ts", "src/generation/generationSafety.ts"],
       "exports": [
         "CustomNavigatorConfigIssue",
         "CustomNavigatorRegistration",
@@ -133,10 +124,7 @@
     {
       "path": "src/experimentalStack.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts",
-        "src/metadata/index.ts"
-      ],
+      "dependencies": ["src/index.ts", "src/metadata/index.ts"],
       "exports": []
     },
     {
@@ -151,28 +139,18 @@
         "src/expo-router/resolveTabsNavigatorPlan.ts",
         "src/validation/validateNavigatorManifest.ts"
       ],
-      "exports": [
-        "createNavigatorPlan",
-        "CreateNavigatorPlanOptions"
-      ]
+      "exports": ["createNavigatorPlan", "CreateNavigatorPlanOptions"]
     },
     {
       "path": "src/expo-router/resolveCustomNavigatorPlan.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/custom/CustomNavigatorRegistry.ts",
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "resolveCustomNavigatorAdapterPlan"
-      ]
+      "dependencies": ["src/custom/CustomNavigatorRegistry.ts", "src/definitions/NavigatorPlan.ts"],
+      "exports": ["resolveCustomNavigatorAdapterPlan"]
     },
     {
       "path": "src/expo-router/resolveNavigatorConfig.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
       "exports": [
         "parseExpoRouterMajor",
         "ResolvedStackConfigSource",
@@ -184,12 +162,8 @@
     {
       "path": "src/expo-router/resolveSplitViewNavigatorPlan.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "resolveSplitViewAdapterPlan"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["resolveSplitViewAdapterPlan"]
     },
     {
       "path": "src/expo-router/resolveTabsNavigatorPlan.ts",
@@ -198,40 +172,30 @@
         "src/definitions/NavigatorPlan.ts",
         "src/presentation/resolveCustomTabsPresentation.ts"
       ],
-      "exports": [
-        "resolveTabsNavigatorPlan"
-      ]
+      "exports": ["resolveTabsNavigatorPlan"]
     },
     {
       "path": "src/generatedCustomNavigatorTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
       "path": "src/generatedExperimentalStackTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
       "path": "src/generatedSplitViewTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
       "path": "src/generatedTabsTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
@@ -243,49 +207,30 @@
         "src/generation/generateTabsLayoutFile.ts",
         "src/generation/generationSafety.ts"
       ],
-      "exports": [
-        "generateNavigatorFiles"
-      ]
+      "exports": ["generateNavigatorFiles"]
     },
     {
       "path": "src/generation/generateSplitViewLayoutFile.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts",
-        "src/generation/generationSafety.ts"
-      ],
-      "exports": [
-        "generateSplitViewLayoutFile"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts", "src/generation/generationSafety.ts"],
+      "exports": ["generateSplitViewLayoutFile"]
     },
     {
       "path": "src/generation/generateTabsLayoutFile.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts",
-        "src/generation/generationSafety.ts"
-      ],
-      "exports": [
-        "generateTabsLayoutFile"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts", "src/generation/generationSafety.ts"],
+      "exports": ["generateTabsLayoutFile"]
     },
     {
       "path": "src/generation/generationSafety.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "assertModuleBinding",
-        "quote"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["assertModuleBinding", "quote"]
     },
     {
       "path": "src/index.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
@@ -330,52 +275,36 @@
       "path": "src/metadata/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
-      "exports": [
-        "NAVIGATOR_PACKAGE_METADATA"
-      ]
+      "exports": ["NAVIGATOR_PACKAGE_METADATA"]
     },
     {
       "path": "src/packageBoundary.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/metadata/index.ts"
-      ],
+      "dependencies": ["src/metadata/index.ts"],
       "exports": []
     },
     {
       "path": "src/presentation/resolveCustomTabsPresentation.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "resolveCustomTabsPresentation",
-        "ResolvedCustomTabsPresentation"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["resolveCustomTabsPresentation", "ResolvedCustomTabsPresentation"]
     },
     {
       "path": "src/splitView.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts",
-        "src/metadata/index.ts"
-      ],
+      "dependencies": ["src/index.ts", "src/metadata/index.ts"],
       "exports": []
     },
     {
       "path": "src/tabs.test.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/index.ts"
-      ],
+      "dependencies": ["src/index.ts"],
       "exports": []
     },
     {
       "path": "src/tabs/CustomTabsLayout.tsx",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
       "exports": [
         "CustomTabsIconSourceResolver",
         "CustomTabsLayout",
@@ -412,20 +341,13 @@
       "path": "src/topology/resolveNavigatorPreset.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": [
-        "resolveNavigatorPreset"
-      ]
+      "exports": ["resolveNavigatorPreset"]
     },
     {
       "path": "src/validation/validateCustomNavigator.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/custom/CustomNavigatorRegistry.ts",
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "addCustomNavigatorDiagnostics"
-      ]
+      "dependencies": ["src/custom/CustomNavigatorRegistry.ts", "src/definitions/NavigatorPlan.ts"],
+      "exports": ["addCustomNavigatorDiagnostics"]
     },
     {
       "path": "src/validation/validateExperimentalStack.ts",
@@ -434,9 +356,7 @@
         "src/definitions/NavigatorPlan.ts",
         "src/expo-router/resolveNavigatorConfig.ts"
       ],
-      "exports": [
-        "addExperimentalStackDiagnostics"
-      ]
+      "exports": ["addExperimentalStackDiagnostics"]
     },
     {
       "path": "src/validation/validateNavigatorManifest.ts",
@@ -451,9 +371,7 @@
         "src/validation/validateSplitView.ts",
         "src/validation/validateTabsNavigator.ts"
       ],
-      "exports": [
-        "validateNavigatorManifest"
-      ]
+      "exports": ["validateNavigatorManifest"]
     },
     {
       "path": "src/validation/validatePresetTopology.ts",
@@ -462,19 +380,13 @@
         "src/definitions/NavigatorPlan.ts",
         "src/topology/resolveNavigatorPreset.ts"
       ],
-      "exports": [
-        "validatePresetTopology"
-      ]
+      "exports": ["validatePresetTopology"]
     },
     {
       "path": "src/validation/validateSplitView.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/definitions/NavigatorPlan.ts"
-      ],
-      "exports": [
-        "addSplitViewDiagnostics"
-      ]
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["addSplitViewDiagnostics"]
     },
     {
       "path": "src/validation/validateTabsNavigator.ts",
@@ -483,9 +395,7 @@
         "src/definitions/NavigatorPlan.ts",
         "src/expo-router/resolveNavigatorConfig.ts"
       ],
-      "exports": [
-        "addTabsAdapterDiagnostics"
-      ]
+      "exports": ["addTabsAdapterDiagnostics"]
     }
   ],
   "exports": [
@@ -501,13 +411,8 @@
         "line": 283,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "CreateNavigatorPlanOptions",
-        "NavigatorPlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["CreateNavigatorPlanOptions", "NavigatorPlan"],
       "signatures": [
         {
           "label": "(manifest: AppNavigatorManifest, options: CreateNavigatorPlanOptions) => NavigatorPlan",
@@ -544,9 +449,7 @@
         "line": 28,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "CustomNavigatorRegistry",
         "NavigatorResponsiveSize",
@@ -597,9 +500,7 @@
         "line": 6,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
@@ -639,9 +540,7 @@
         "line": 12,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "CustomNavigatorConfigIssue",
         "NavigatorApiStability",
@@ -720,9 +619,7 @@
         "line": 27,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -740,9 +637,7 @@
         "line": 40,
         "column": 1
       },
-      "exportPaths": [
-        "src/tabs/index.ts"
-      ],
+      "exportPaths": ["src/tabs/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -760,12 +655,8 @@
         "line": 218,
         "column": 1
       },
-      "exportPaths": [
-        "src/tabs/index.ts"
-      ],
-      "relatedSymbols": [
-        "CustomTabsLayoutProps"
-      ],
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": ["CustomTabsLayoutProps"],
       "signatures": [
         {
           "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
@@ -796,9 +687,7 @@
         "line": 46,
         "column": 1
       },
-      "exportPaths": [
-        "src/tabs/index.ts"
-      ],
+      "exportPaths": ["src/tabs/index.ts"],
       "relatedSymbols": [
         "CustomTabsIconSourceResolver",
         "CustomTabsPresentationProps",
@@ -858,12 +747,8 @@
         "line": 30,
         "column": 1
       },
-      "exportPaths": [
-        "src/tabs/index.ts"
-      ],
-      "relatedSymbols": [
-        "CustomTabsRoute"
-      ],
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": ["CustomTabsRoute"],
       "signatures": [],
       "members": [
         {
@@ -895,9 +780,7 @@
         "line": 21,
         "column": 1
       },
-      "exportPaths": [
-        "src/tabs/index.ts"
-      ],
+      "exportPaths": ["src/tabs/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
@@ -958,13 +841,8 @@
         "line": 35,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "CustomNavigatorRegistration",
-        "CustomNavigatorRegistry"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["CustomNavigatorRegistration", "CustomNavigatorRegistry"],
       "signatures": [
         {
           "label": "(registrations: readonly CustomNavigatorRegistration[]) => CustomNavigatorRegistry",
@@ -995,9 +873,7 @@
         "line": 15,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1015,9 +891,7 @@
         "line": 244,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "NavigatorGeneratedFile",
         "NavigatorGenerationBindings",
@@ -1066,9 +940,7 @@
         "line": 8,
         "column": 14
       },
-      "exportPaths": [
-        "src/metadata/index.ts"
-      ],
+      "exportPaths": ["src/metadata/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1086,9 +958,7 @@
         "line": 25,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1106,14 +976,8 @@
         "line": 49,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorAdapterId",
-        "NavigatorApiStability",
-        "NavigatorSupportStatus"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorAdapterId", "NavigatorApiStability", "NavigatorSupportStatus"],
       "signatures": [],
       "members": [
         {
@@ -1173,9 +1037,7 @@
         "line": 12,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1193,9 +1055,7 @@
         "line": 37,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
@@ -1242,9 +1102,7 @@
         "line": 155,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
@@ -1277,12 +1135,8 @@
         "line": 136,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorScreenModule"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorScreenModule"],
       "signatures": [],
       "members": [
         {
@@ -1335,9 +1189,7 @@
         "line": 148,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
@@ -1370,14 +1222,8 @@
         "line": 92,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorAdapterPlan",
-        "NavigatorRoutePlan",
-        "TabsNavigatorPlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorAdapterPlan", "NavigatorRoutePlan", "TabsNavigatorPlan"],
       "signatures": [],
       "members": [
         {
@@ -1465,14 +1311,8 @@
         "line": 120,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorDiagnostic",
-        "NavigatorNodePlan",
-        "NavigatorValidationContext"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorDiagnostic", "NavigatorNodePlan", "NavigatorValidationContext"],
       "signatures": [],
       "members": [
         {
@@ -1525,9 +1365,7 @@
         "line": 11,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1545,12 +1383,8 @@
         "line": 80,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorNodePlan"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorNodePlan"],
       "signatures": [],
       "members": [
         {
@@ -1631,9 +1465,7 @@
         "line": 10,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1651,9 +1483,7 @@
         "line": 131,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
@@ -1686,9 +1516,7 @@
         "line": 13,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1706,12 +1534,8 @@
         "line": 44,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorRuntimePlatform"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorRuntimePlatform"],
       "signatures": [],
       "members": [
         {
@@ -1743,13 +1567,8 @@
         "line": 39,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "NavigatorResponsiveSize",
-        "ResolvedCustomTabsPresentation"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["NavigatorResponsiveSize", "ResolvedCustomTabsPresentation"],
       "signatures": [
         {
           "label": "(config: Omit<CustomTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation",
@@ -1786,12 +1605,8 @@
         "line": 18,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
-      "relatedSymbols": [
-        "ResolvedTabsPresentation"
-      ],
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["ResolvedTabsPresentation"],
       "signatures": [],
       "members": [
         {
@@ -1823,9 +1638,7 @@
         "line": 59,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1843,9 +1656,7 @@
         "line": 60,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
@@ -1863,9 +1674,7 @@
         "line": 4,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [
         {
@@ -1903,9 +1712,7 @@
         "line": 99,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "NavigatorResponsiveSize",
         "NavigatorRuntimePlatform",
@@ -1953,9 +1760,7 @@
         "line": 68,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "ExpoRouterNavigatorModule",
         "NavigatorApiStability",
@@ -2043,9 +1848,7 @@
         "line": 226,
         "column": 1
       },
-      "exportPaths": [
-        "src/index.ts"
-      ],
+      "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "CustomNavigatorRegistry",
         "NavigatorDiagnostic",
@@ -2094,9 +1897,7 @@
         "line": 218,
         "column": 1
       },
-      "exportPaths": [
-        "src/tabs/index.ts"
-      ],
+      "exportPaths": ["src/tabs/index.ts"],
       "props": [
         {
           "name": "customPresentation",
