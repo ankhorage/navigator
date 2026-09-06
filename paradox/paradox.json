@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.3.0",
+      "value": "v1.4.0",
       "color": "cb3837"
     },
     {
@@ -69,6 +69,12 @@
   "entrypoints": ["src/index.ts", "src/metadata/index.ts", "src/tabs/index.ts"],
   "modules": [
     {
+      "path": "src/composableGeneration.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/custom/CustomNavigatorRegistry.test.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -101,6 +107,7 @@
         "NavigatorDiagnostic",
         "NavigatorGeneratedFile",
         "NavigatorGenerationBindings",
+        "NavigatorGenerationOptions",
         "NavigatorNodePlan",
         "NavigatorPlan",
         "NavigatorResponsiveSize",
@@ -245,6 +252,7 @@
         "NavigatorDiagnostic",
         "NavigatorGeneratedFile",
         "NavigatorGenerationBindings",
+        "NavigatorGenerationOptions",
         "NavigatorNodePlan",
         "NavigatorPlan",
         "NavigatorResponsiveSize",
@@ -880,19 +888,30 @@
       "modulePath": "src/generation/generateNavigatorFiles.ts",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 215,
+        "line": 244,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
-      "relatedSymbols": ["NavigatorGeneratedFile", "NavigatorGenerationBindings", "NavigatorPlan"],
+      "relatedSymbols": [
+        "NavigatorGeneratedFile",
+        "NavigatorGenerationBindings",
+        "NavigatorGenerationOptions",
+        "NavigatorPlan"
+      ],
       "signatures": [
         {
-          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings) => readonly NavigatorGeneratedFile[]",
+          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]",
           "parameters": [
             {
               "name": "bindings",
               "type": "NavigatorGenerationBindings",
               "required": true,
+              "description": null
+            },
+            {
+              "name": "options",
+              "type": "NavigatorGenerationOptions",
+              "required": false,
               "description": null
             },
             {
@@ -1080,7 +1099,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 147,
+        "line": 155,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1152,6 +1171,39 @@
           "name": "tabPresentations",
           "kind": "property",
           "type": "Readonly<Record<string, NavigatorScreenModule>> | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "NavigatorGenerationOptions",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/definitions/NavigatorPlan.ts",
+      "sourceLocation": {
+        "filePath": "src/definitions/NavigatorPlan.ts",
+        "line": 148,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "includeScreenFiles",
+          "kind": "property",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "rootDirectory",
+          "kind": "property",
+          "type": "string | undefined",
           "required": false,
           "description": null
         }
@@ -2161,11 +2213,20 @@
       }
     },
     {
+      "name": "resolveRootDirectory",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/generation/generateNavigatorFiles.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
       "name": "assertRouteName",
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 16,
+        "line": 35,
         "column": 1
       }
     },
@@ -2174,7 +2235,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 22,
+        "line": 41,
         "column": 1
       }
     },
@@ -2183,7 +2244,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 38,
+        "line": 57,
         "column": 1
       }
     },
@@ -2192,7 +2253,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 61,
+        "line": 80,
         "column": 1
       }
     },
@@ -2201,7 +2262,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 78,
+        "line": 97,
         "column": 1
       }
     },
@@ -2210,7 +2271,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 108,
+        "line": 127,
         "column": 1
       }
     },
@@ -2219,7 +2280,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 153,
+        "line": 172,
         "column": 1
       }
     },
@@ -2228,7 +2289,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 171,
+        "line": 190,
         "column": 1
       }
     },
@@ -2237,7 +2298,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 188,
+        "line": 217,
         "column": 1
       }
     },
@@ -2246,7 +2307,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 198,
+        "line": 227,
         "column": 1
       }
     },
@@ -2255,7 +2316,7 @@
       "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 215,
+        "line": 244,
         "column": 1
       }
     },
@@ -2887,6 +2948,11 @@
   "graphs": {
     "imports": [
       {
+        "fromPath": "src/composableGeneration.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/composableGeneration.test.ts"
+      },
+      {
         "fromPath": "src/experimentalStack.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/experimentalStack.test.ts"
@@ -3218,6 +3284,36 @@
       }
     ],
     "calls": [
+      {
+        "fromSymbol": "src/composableGeneration.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/composableGeneration.test.ts"
+      },
+      {
+        "fromSymbol": "src/composableGeneration.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/composableGeneration.test.ts"
+      },
+      {
+        "fromSymbol": "src/composableGeneration.test.ts",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/composableGeneration.test.ts"
+      },
+      {
+        "fromSymbol": "src/composableGeneration.test.ts",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/composableGeneration.test.ts"
+      },
+      {
+        "fromSymbol": "src/composableGeneration.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/composableGeneration.test.ts"
+      },
       {
         "fromSymbol": "src/experimentalStack.test.ts",
         "toSymbol": "describe",
@@ -3976,6 +4072,12 @@
       },
       {
         "fromSymbol": "generateNavigatorFiles",
+        "toSymbol": "resolveRootDirectory",
+        "callExpression": "resolveRootDirectory",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "generateNavigatorFiles",
         "toSymbol": "collectFiles",
         "callExpression": "collectFiles",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
@@ -4627,6 +4729,11 @@
       {
         "fromSymbol": "generateNavigatorFiles",
         "toType": "NavigatorGenerationBindings",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "generateNavigatorFiles",
+        "toType": "NavigatorGenerationOptions",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
       {

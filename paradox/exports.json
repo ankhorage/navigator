@@ -488,19 +488,30 @@
     "modulePath": "src/generation/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/generation/generateNavigatorFiles.ts",
-      "line": 215,
+      "line": 244,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["NavigatorGeneratedFile", "NavigatorGenerationBindings", "NavigatorPlan"],
+    "relatedSymbols": [
+      "NavigatorGeneratedFile",
+      "NavigatorGenerationBindings",
+      "NavigatorGenerationOptions",
+      "NavigatorPlan"
+    ],
     "signatures": [
       {
-        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings) => readonly NavigatorGeneratedFile[]",
+        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]",
         "parameters": [
           {
             "name": "bindings",
             "type": "NavigatorGenerationBindings",
             "required": true,
+            "description": null
+          },
+          {
+            "name": "options",
+            "type": "NavigatorGenerationOptions",
+            "required": false,
             "description": null
           },
           {
@@ -688,7 +699,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 147,
+      "line": 155,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -760,6 +771,39 @@
         "name": "tabPresentations",
         "kind": "property",
         "type": "Readonly<Record<string, NavigatorScreenModule>> | undefined",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "NavigatorGenerationOptions",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "sourceLocation": {
+      "filePath": "src/definitions/NavigatorPlan.ts",
+      "line": 148,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "includeScreenFiles",
+        "kind": "property",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "rootDirectory",
+        "kind": "property",
+        "type": "string | undefined",
         "required": false,
         "description": null
       }

@@ -12,6 +12,7 @@ export type {
   NavigatorDiagnostic,
   NavigatorGeneratedFile,
   NavigatorGenerationBindings,
+  NavigatorGenerationOptions,
   NavigatorNodePlan,
   NavigatorPlan,
   NavigatorResponsiveSize,

@@ -1,4 +1,5 @@
 graph LR
+  module_src_composableGeneration_test_ts["src/composableGeneration.test.ts"]
   module_src_custom_CustomNavigatorRegistry_test_ts["src/custom/CustomNavigatorRegistry.test.ts"]
   module_src_custom_CustomNavigatorRegistry_ts["src/custom/CustomNavigatorRegistry.ts"]
   module_src_definitions_NavigatorPlan_ts["src/definitions/NavigatorPlan.ts"]
@@ -78,6 +79,7 @@ graph LR
   module_src_generation_generateNavigatorFiles_ts --> export_generateNavigatorFiles
   export_generateNavigatorFiles -.-> export_NavigatorGeneratedFile
   export_generateNavigatorFiles -.-> export_NavigatorGenerationBindings
+  export_generateNavigatorFiles -.-> export_NavigatorGenerationOptions
   export_generateNavigatorFiles -.-> export_NavigatorPlan
   export_NAVIGATOR_PACKAGE_METADATA["NAVIGATOR_PACKAGE_METADATA"]
   module_src_metadata_index_ts --> export_NAVIGATOR_PACKAGE_METADATA
@@ -97,6 +99,8 @@ graph LR
   export_NavigatorGenerationBindings["NavigatorGenerationBindings"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorGenerationBindings
   export_NavigatorGenerationBindings -.-> export_NavigatorScreenModule
+  export_NavigatorGenerationOptions["NavigatorGenerationOptions"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorGenerationOptions
   export_NavigatorNodePlan["NavigatorNodePlan"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorNodePlan
   export_NavigatorNodePlan -.-> export_NavigatorAdapterPlan

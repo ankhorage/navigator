@@ -1,4 +1,5 @@
 graph LR
+  module_src_composableGeneration_test_ts["src/composableGeneration.test.ts"]
   module_src_custom_CustomNavigatorRegistry_test_ts["src/custom/CustomNavigatorRegistry.test.ts"]
   module_src_custom_CustomNavigatorRegistry_ts["src/custom/CustomNavigatorRegistry.ts"]
   module_src_definitions_NavigatorPlan_ts["src/definitions/NavigatorPlan.ts"]
@@ -33,6 +34,7 @@ graph LR
   module_src_validation_validatePresetTopology_ts["src/validation/validatePresetTopology.ts"]
   module_src_validation_validateSplitView_ts["src/validation/validateSplitView.ts"]
   module_src_validation_validateTabsNavigator_ts["src/validation/validateTabsNavigator.ts"]
+  module_src_composableGeneration_test_ts --> module_src_index_ts
   module_src_custom_CustomNavigatorRegistry_test_ts --> module_src_custom_CustomNavigatorRegistry_ts
   module_src_custom_CustomNavigatorRegistry_test_ts --> module_src_expo_router_createNavigatorPlan_ts
   module_src_custom_CustomNavigatorRegistry_test_ts --> module_src_generation_generateNavigatorFiles_ts

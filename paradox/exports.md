@@ -171,14 +171,15 @@ Source: `src/definitions/NavigatorPlan.ts:15:1`
 
 Kind: `function`
 Module: `src/generation/generateNavigatorFiles.ts`
-Source: `src/generation/generateNavigatorFiles.ts:215:1`
+Source: `src/generation/generateNavigatorFiles.ts:244:1`
 
 Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.
 
 ### Signatures
 
-- `(plan: NavigatorPlan, bindings: NavigatorGenerationBindings) => readonly NavigatorGeneratedFile[]`
+- `(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]`
   - bindings: `NavigatorGenerationBindings`
+  - options: `NavigatorGenerationOptions` (optional)
   - plan: `NavigatorPlan`
   - returns: `readonly NavigatorGeneratedFile[]`
 
@@ -236,7 +237,7 @@ Source: `src/definitions/NavigatorPlan.ts:37:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:147:1`
+Source: `src/definitions/NavigatorPlan.ts:155:1`
 
 ### Members
 
@@ -260,6 +261,19 @@ Source: `src/definitions/NavigatorPlan.ts:136:1`
 | iconSourceResolver | property | `NavigatorScreenModule \| undefined`                                       | no       |             |
 | screens            | property | `Readonly<Record<string, NavigatorScreenModule>>`                          | yes      |             |
 | tabPresentations   | property | `Readonly<Record<string, NavigatorScreenModule>> \| undefined`             | no       |             |
+
+## NavigatorGenerationOptions
+
+Kind: `type`
+Module: `src/definitions/NavigatorPlan.ts`
+Source: `src/definitions/NavigatorPlan.ts:148:1`
+
+### Members
+
+| Name               | Kind     | Type                   | Required | Description |
+| ------------------ | -------- | ---------------------- | -------- | ----------- |
+| includeScreenFiles | property | `boolean \| undefined` | no       |             |
+| rootDirectory      | property | `string \| undefined`  | no       |             |
 
 ## NavigatorNodePlan
 
