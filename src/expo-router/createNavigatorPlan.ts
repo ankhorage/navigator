@@ -1,106 +1,277 @@
 import type {
   AppNavigatorManifest,
   NavigatorNode,
-  NavigatorPlatforms,
+  StackImplementationConfig,
   TabsImplementationConfig,
-  TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
 import type {
+  NavigatorAdapterPlan,
   NavigatorNodePlan,
   NavigatorPlan,
   NavigatorResponsiveSize,
+  NavigatorRoutePlan,
   NavigatorRuntimePlatform,
+  TabsNavigatorPlan,
 } from '../definitions/NavigatorPlan';
-import { resolveNavigatorPreset } from '../topology/resolveNavigatorPreset';
+import { validateNavigatorManifest } from '../validation/validateNavigatorManifest';
+import {
+  parseExpoRouterMajor,
+  resolveEffectiveStackConfig,
+  resolveEffectiveTabsConfig,
+} from './resolveNavigatorConfig';
 import { resolveTabsNavigatorPlan } from './resolveTabsNavigatorPlan';
 
 export interface CreateNavigatorPlanOptions {
   platform: NavigatorRuntimePlatform;
+  expoRouterVersion: string;
   responsiveSize?: NavigatorResponsiveSize;
 }
 
-/*** Return node-local tabs configuration only when the node explicitly authors one. */
-function resolveNodeTabsConfig(node: TabsNavigatorNode): TabsImplementationConfig | undefined {
-  if (node.implementation !== undefined) return node;
-  return node.native !== undefined || node.web !== undefined ? node : undefined;
-}
-
-/*** Resolve a platform-specific tabs override without dynamic object access. */
-function resolvePlatformTabsConfig(
-  platforms: NavigatorPlatforms | undefined,
-  platform: NavigatorRuntimePlatform,
-): TabsImplementationConfig | undefined {
-  switch (platform) {
-    case 'android':
-      return platforms?.android?.tabs;
-    case 'ios':
-      return platforms?.ios?.tabs;
-    case 'web':
-      return platforms?.web?.tabs;
+function createStackAdapter(
+  stack: StackImplementationConfig | undefined,
+  routerMajor: number | undefined,
+): NavigatorAdapterPlan {
+  const implementation = stack?.implementation ?? 'native';
+  if (implementation === 'javascript') {
+    return {
+      id: 'stack.javascript',
+      module: 'expo-router/js-stack',
+      exportName: 'Stack',
+      support: routerMajor !== undefined && routerMajor >= 56 ? 'supported' : 'unavailable',
+      stability: 'stable',
+      limitations: ['Requires Expo Router 56.0.0 or newer.'],
+    };
   }
-}
-
-/*** Resolve effective tabs configuration using platform, node, default, then adaptive fallback. */
-function resolveEffectiveTabsConfig(
-  manifest: AppNavigatorManifest,
-  node: TabsNavigatorNode,
-  platform: NavigatorRuntimePlatform,
-): TabsImplementationConfig | undefined {
-  return (
-    resolvePlatformTabsConfig(manifest.platforms, platform) ??
-    resolveNodeTabsConfig(node) ??
-    manifest.defaults?.tabs
-  );
-}
-
-/*** Convert one navigator node into a provider-aware Expo Router generation plan. */
-function createNodePlan(
-  manifest: AppNavigatorManifest,
-  node: NavigatorNode,
-  platform: NavigatorRuntimePlatform,
-  responsiveSize: NavigatorResponsiveSize,
-): NavigatorNodePlan {
-  const routes = node.routes.map((route) => ({
-    name: route.name,
-    ...(route.path === undefined ? {} : { path: route.path }),
-    ...(route.screenId === undefined ? {} : { screenId: route.screenId }),
-    ...(route.navigator === undefined
-      ? {}
-      : { navigator: createNodePlan(manifest, route.navigator, platform, responsiveSize) }),
-  }));
-
-  if (node.type === 'stack') {
-    return { type: 'stack', module: 'expo-router', exportName: 'Stack', routes };
+  if (implementation === 'experimental') {
+    return {
+      id: 'stack.experimental',
+      support: 'unavailable',
+      stability: 'alpha',
+      limitations: ['Owned by the optional Experimental Stack adapter.'],
+    };
   }
-
-  if (node.type === 'drawer') {
-    return { type: 'drawer', module: 'expo-router/drawer', exportName: 'Drawer', routes };
-  }
-
-  const tabs = resolveTabsNavigatorPlan(
-    resolveEffectiveTabsConfig(manifest, node, platform),
-    platform,
-    responsiveSize,
-  );
   return {
-    type: 'tabs',
-    module: tabs.module,
-    exportName: tabs.exportName,
-    routes,
-    tabs,
+    id: 'stack.native',
+    module: 'expo-router',
+    exportName: 'Stack',
+    support: 'supported',
+    stability: 'stable',
+    limitations: [],
   };
 }
 
-/*** Create the complete standalone Navigator plan from only the navigator desired-state slice. */
+function createTabsAdapter(tabs: TabsNavigatorPlan): NavigatorAdapterPlan {
+  return {
+    id: `tabs.${tabs.implementation}`,
+    module: tabs.module,
+    exportName: tabs.exportName,
+    support: 'unavailable',
+    stability: tabs.stability,
+    limitations:
+      tabs.implementation === 'native'
+        ? [
+            'Owned by the optional Tabs adapter.',
+            'Alpha API; unavailable on web and requires Expo Router 54.0.0 or newer.',
+          ]
+        : ['Owned by the optional Tabs adapter.'],
+  };
+}
+
+function createAdapter(
+  node: NavigatorNode,
+  stack: StackImplementationConfig | undefined,
+  tabs: TabsNavigatorPlan | undefined,
+  routerMajor: number | undefined,
+): NavigatorAdapterPlan {
+  switch (node.type) {
+    case 'slot':
+      return {
+        id: 'slot',
+        module: 'expo-router',
+        exportName: 'Slot',
+        support: 'supported',
+        stability: 'stable',
+        limitations: [],
+      };
+    case 'stack':
+      return createStackAdapter(stack, routerMajor);
+    case 'drawer':
+      return {
+        id: 'drawer',
+        module: 'expo-router/drawer',
+        exportName: 'Drawer',
+        support: 'supported',
+        stability: 'stable',
+        limitations: [],
+      };
+    case 'tabs':
+      if (tabs === undefined) throw new Error('Tabs planning did not resolve an adapter.');
+      return createTabsAdapter(tabs);
+    case 'split-view':
+      return {
+        id: 'split-view',
+        support: 'unavailable',
+        stability: 'alpha',
+        limitations: ['Owned by the optional Split View adapter.'],
+      };
+    case 'custom':
+      return {
+        id: 'custom',
+        support: 'unavailable',
+        stability: 'stable',
+        limitations: ['Requires an explicitly composed custom adapter.'],
+      };
+  }
+}
+
+function resolveTabsPlan(
+  config: TabsImplementationConfig | undefined,
+  platform: NavigatorRuntimePlatform,
+  responsiveSize: NavigatorResponsiveSize,
+): TabsNavigatorPlan {
+  if (config?.implementation === 'native' && platform === 'web') {
+    return {
+      implementation: 'native',
+      module: 'expo-router/unstable-native-tabs',
+      exportName: 'NativeTabs',
+      stability: 'alpha',
+    };
+  }
+  return resolveTabsNavigatorPlan(config, platform, responsiveSize);
+}
+
+type NodeDetails = Partial<
+  Pick<NavigatorNodePlan, 'custom' | 'drawer' | 'splitView' | 'stack' | 'tabs'>
+>;
+
+function createNodeDetails(
+  node: NavigatorNode,
+  stack: StackImplementationConfig | undefined,
+  tabs: TabsNavigatorPlan | undefined,
+): NodeDetails {
+  switch (node.type) {
+    case 'stack':
+      return {
+        stack: {
+          implementation: stack?.implementation ?? 'native',
+          ...(stack?.options === undefined ? {} : { options: stack.options }),
+        },
+      };
+    case 'drawer':
+      return { drawer: { ...(node.options === undefined ? {} : { options: node.options }) } };
+    case 'tabs':
+      return tabs === undefined ? {} : { tabs };
+    case 'split-view':
+      return {
+        splitView: {
+          columns: {
+            primary: node.columns.primary.screenId,
+            ...(node.columns.supplementary === undefined
+              ? {}
+              : { supplementary: node.columns.supplementary.screenId }),
+          },
+          ...(node.inspector === undefined ? {} : { inspector: node.inspector.screenId }),
+          ...(node.topColumnForCollapsing === undefined
+            ? {}
+            : { topColumnForCollapsing: node.topColumnForCollapsing }),
+        },
+      };
+    case 'custom':
+      return {
+        custom: {
+          navigatorId: node.navigatorId,
+          ...(node.config === undefined ? {} : { config: node.config }),
+        },
+      };
+    case 'slot':
+      return {};
+  }
+}
+
+function createRoutePlan(
+  manifest: AppNavigatorManifest,
+  route: NavigatorNode['routes'][number],
+  pointer: string,
+  options: CreateNavigatorPlanOptions,
+  responsiveSize: NavigatorResponsiveSize,
+): NavigatorRoutePlan {
+  return {
+    name: route.name,
+    ...(route.path === undefined ? {} : { path: route.path }),
+    ...(route.label === undefined ? {} : { label: route.label }),
+    ...(route.icon === undefined ? {} : { icon: route.icon }),
+    ...(route.showInPrimaryNavigation === undefined
+      ? {}
+      : { showInPrimaryNavigation: route.showInPrimaryNavigation }),
+    guards: route.guards ?? [],
+    ...(route.screenId === undefined ? {} : { screenId: route.screenId }),
+    ...(route.stackOptions === undefined ? {} : { stackOptions: route.stackOptions }),
+    ...(route.navigator === undefined
+      ? {}
+      : {
+          navigator: createNodePlan(
+            manifest,
+            route.navigator,
+            `${pointer}/navigator`,
+            options,
+            responsiveSize,
+          ),
+        }),
+  };
+}
+
+function createNodePlan(
+  manifest: AppNavigatorManifest,
+  node: NavigatorNode,
+  pointer: string,
+  options: CreateNavigatorPlanOptions,
+  responsiveSize: NavigatorResponsiveSize,
+): NavigatorNodePlan {
+  const stack =
+    node.type === 'stack'
+      ? resolveEffectiveStackConfig(manifest, node, options.platform)
+      : undefined;
+  const tabs =
+    node.type === 'tabs'
+      ? resolveTabsPlan(
+          resolveEffectiveTabsConfig(manifest, node, options.platform),
+          options.platform,
+          responsiveSize,
+        )
+      : undefined;
+  const routes = node.routes.map((route, index) =>
+    createRoutePlan(manifest, route, `${pointer}/routes/${index}`, options, responsiveSize),
+  );
+
+  return {
+    type: node.type,
+    pointer,
+    adapter: createAdapter(node, stack, tabs, parseExpoRouterMajor(options.expoRouterVersion)),
+    ...(node.initialRouteName === undefined ? {} : { initialRouteName: node.initialRouteName }),
+    routes,
+    ...createNodeDetails(node, stack, tabs),
+  };
+}
+
+/*** Create a disposable, provider-aware plan from only the navigator desired-state slice. */
 export function createNavigatorPlan(
   manifest: AppNavigatorManifest,
   options: CreateNavigatorPlanOptions,
 ): NavigatorPlan {
-  const responsiveSize = options.responsiveSize ?? 'compact';
+  const context = {
+    platform: options.platform,
+    expoRouterVersion: options.expoRouterVersion,
+  } as const;
+  const diagnostics = validateNavigatorManifest(manifest, context);
+  const root = createNodePlan(manifest, manifest, '', options, options.responsiveSize ?? 'compact');
   return {
-    presetLayers: resolveNavigatorPreset(manifest.preset, manifest.type),
-    root: createNodePlan(manifest, manifest, options.platform, responsiveSize),
+    context,
+    root,
+    diagnostics,
+    supported:
+      diagnostics.every((diagnostic) => diagnostic.severity !== 'error') &&
+      root.adapter.support === 'supported',
     flows: {
       onboarding: manifest.flows?.onboarding ?? false,
       authentication: manifest.flows?.authentication ?? false,

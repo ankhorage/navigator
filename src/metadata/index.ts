@@ -11,6 +11,24 @@ export const NAVIGATOR_PACKAGE_METADATA = {
   contractSubpath: '@ankhorage/contracts/navigator',
   navigatorTypes: NAVIGATOR_TYPES,
   presets: NAVIGATOR_PRESETS,
+  precedence: ['platform override', 'node configuration', 'manifest default', 'stable default'],
+  coreAdapters: {
+    slot: { support: 'supported', stability: 'stable', module: 'expo-router' },
+    nativeStack: { support: 'supported', stability: 'stable', module: 'expo-router' },
+    javascriptStack: {
+      support: 'supported',
+      stability: 'stable',
+      module: 'expo-router/js-stack',
+      minimumExpoRouterVersion: '56.0.0',
+    },
+    drawer: { support: 'supported', stability: 'stable', module: 'expo-router/drawer' },
+  },
+  optionalAdapters: {
+    tabs: { support: 'unavailable' },
+    experimentalStack: { support: 'unavailable', stability: 'alpha' },
+    splitView: { support: 'unavailable', stability: 'alpha' },
+    custom: { support: 'unavailable' },
+  },
   tabs: {
     implementations: ['adaptive', 'javascript', 'native', 'custom'],
     customPresentations: CUSTOM_TABS_PRESENTATIONS,
@@ -30,7 +48,7 @@ export const NAVIGATOR_PACKAGE_METADATA = {
       javascriptTop: 'expo-router/js-top-tabs',
       custom: 'expo-router/ui',
       native: 'expo-router/unstable-native-tabs',
-      nativeStability: 'unstable',
+      nativeStability: 'alpha',
     },
   },
 } as const;

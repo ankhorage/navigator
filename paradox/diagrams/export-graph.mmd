@@ -1,12 +1,17 @@
 graph LR
   module_src_definitions_NavigatorPlan_ts["src/definitions/NavigatorPlan.ts"]
   module_src_expo_router_createNavigatorPlan_ts["src/expo-router/createNavigatorPlan.ts"]
+  module_src_expo_router_resolveNavigatorConfig_ts["src/expo-router/resolveNavigatorConfig.ts"]
   module_src_expo_router_resolveTabsNavigatorPlan_ts["src/expo-router/resolveTabsNavigatorPlan.ts"]
+  module_src_generation_generateNavigatorFiles_ts["src/generation/generateNavigatorFiles.ts"]
   module_src_index_test_ts["src/index.test.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_metadata_index_ts["src/metadata/index.ts"]
+  module_src_packageBoundary_test_ts["src/packageBoundary.test.ts"]
   module_src_presentation_resolveCustomTabsPresentation_ts["src/presentation/resolveCustomTabsPresentation.ts"]
   module_src_topology_resolveNavigatorPreset_ts["src/topology/resolveNavigatorPreset.ts"]
+  module_src_validation_validateNavigatorManifest_ts["src/validation/validateNavigatorManifest.ts"]
+  module_src_validation_validatePresetTopology_ts["src/validation/validatePresetTopology.ts"]
   export_createNavigatorPlan["createNavigatorPlan"]
   module_src_expo_router_createNavigatorPlan_ts --> export_createNavigatorPlan
   export_createNavigatorPlan -.-> export_CreateNavigatorPlanOptions
@@ -17,18 +22,40 @@ graph LR
   export_CreateNavigatorPlanOptions -.-> export_NavigatorRuntimePlatform
   export_ExpoRouterNavigatorModule["ExpoRouterNavigatorModule"]
   module_src_definitions_NavigatorPlan_ts --> export_ExpoRouterNavigatorModule
+  export_generateNavigatorFiles["generateNavigatorFiles"]
+  module_src_generation_generateNavigatorFiles_ts --> export_generateNavigatorFiles
+  export_generateNavigatorFiles -.-> export_NavigatorGeneratedFile
+  export_generateNavigatorFiles -.-> export_NavigatorGenerationBindings
+  export_generateNavigatorFiles -.-> export_NavigatorPlan
   export_NAVIGATOR_PACKAGE_METADATA["NAVIGATOR_PACKAGE_METADATA"]
   module_src_metadata_index_ts --> export_NAVIGATOR_PACKAGE_METADATA
+  export_NavigatorAdapterId["NavigatorAdapterId"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorAdapterId
+  export_NavigatorAdapterPlan["NavigatorAdapterPlan"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorAdapterPlan
+  export_NavigatorAdapterPlan -.-> export_ExpoRouterNavigatorModule
+  export_NavigatorAdapterPlan -.-> export_NavigatorAdapterId
+  export_NavigatorAdapterPlan -.-> export_NavigatorApiStability
+  export_NavigatorAdapterPlan -.-> export_NavigatorSupportStatus
   export_NavigatorApiStability["NavigatorApiStability"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorApiStability
+  export_NavigatorDiagnostic["NavigatorDiagnostic"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorDiagnostic
+  export_NavigatorGeneratedFile["NavigatorGeneratedFile"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorGeneratedFile
+  export_NavigatorGenerationBindings["NavigatorGenerationBindings"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorGenerationBindings
+  export_NavigatorGenerationBindings -.-> export_NavigatorScreenModule
   export_NavigatorNodePlan["NavigatorNodePlan"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorNodePlan
-  export_NavigatorNodePlan -.-> export_ExpoRouterNavigatorModule
+  export_NavigatorNodePlan -.-> export_NavigatorAdapterPlan
   export_NavigatorNodePlan -.-> export_NavigatorRoutePlan
   export_NavigatorNodePlan -.-> export_TabsNavigatorPlan
   export_NavigatorPlan["NavigatorPlan"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorPlan
+  export_NavigatorPlan -.-> export_NavigatorDiagnostic
   export_NavigatorPlan -.-> export_NavigatorNodePlan
+  export_NavigatorPlan -.-> export_NavigatorValidationContext
   export_NavigatorResponsiveSize["NavigatorResponsiveSize"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorResponsiveSize
   export_NavigatorRoutePlan["NavigatorRoutePlan"]
@@ -36,6 +63,13 @@ graph LR
   export_NavigatorRoutePlan -.-> export_NavigatorNodePlan
   export_NavigatorRuntimePlatform["NavigatorRuntimePlatform"]
   module_src_definitions_NavigatorPlan_ts --> export_NavigatorRuntimePlatform
+  export_NavigatorScreenModule["NavigatorScreenModule"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorScreenModule
+  export_NavigatorSupportStatus["NavigatorSupportStatus"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorSupportStatus
+  export_NavigatorValidationContext["NavigatorValidationContext"]
+  module_src_definitions_NavigatorPlan_ts --> export_NavigatorValidationContext
+  export_NavigatorValidationContext -.-> export_NavigatorRuntimePlatform
   export_resolveCustomTabsPresentation["resolveCustomTabsPresentation"]
   module_src_presentation_resolveCustomTabsPresentation_ts --> export_resolveCustomTabsPresentation
   export_resolveCustomTabsPresentation -.-> export_NavigatorResponsiveSize
@@ -60,3 +94,7 @@ graph LR
   export_TabsNavigatorPlan -.-> export_NavigatorApiStability
   export_TabsNavigatorPlan -.-> export_ResolvedTabsImplementation
   export_TabsNavigatorPlan -.-> export_ResolvedTabsPresentation
+  export_validateNavigatorManifest["validateNavigatorManifest"]
+  module_src_validation_validateNavigatorManifest_ts --> export_validateNavigatorManifest
+  export_validateNavigatorManifest -.-> export_NavigatorDiagnostic
+  export_validateNavigatorManifest -.-> export_NavigatorValidationContext

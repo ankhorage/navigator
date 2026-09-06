@@ -26,7 +26,7 @@ function resolveAdaptiveConfig(
     : undefined;
 }
 
-/*** Create the SDK 57 native-tabs plan and reject unsupported Web usage. */
+/*** Create the alpha native-tabs plan and reject unsupported Web usage. */
 function createNativeTabsPlan(platform: NavigatorRuntimePlatform): TabsNavigatorPlan {
   if (platform === 'web') {
     throw new Error('Native tabs are not available for the Web navigator plan.');
@@ -35,7 +35,7 @@ function createNativeTabsPlan(platform: NavigatorRuntimePlatform): TabsNavigator
     implementation: 'native',
     module: 'expo-router/unstable-native-tabs',
     exportName: 'NativeTabs',
-    stability: 'unstable',
+    stability: 'alpha',
   };
 }
 
