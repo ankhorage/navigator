@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/navigator",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Standalone manifest-driven navigator capability for Expo Router across React Native and React Native Web.",
   "type": "module",
   "license": "MIT",

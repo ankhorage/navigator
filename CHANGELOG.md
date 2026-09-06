@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.5.1
+
+### Patch Changes
+
+- 8fe4bf0: Hide JavaScript tab routes from primary navigation while preserving direct route access.
+
 ## 1.5.0
 
 ### Minor Changes
