@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.5.0",
+      "value": "v1.5.1",
       "color": "cb3837"
     },
     {
@@ -225,7 +225,7 @@
       "path": "src/generation/generationSafety.ts",
       "isEntrypoint": false,
       "dependencies": ["src/definitions/NavigatorPlan.ts"],
-      "exports": ["assertModuleBinding", "quote"]
+      "exports": ["assertModuleBinding", "quote", "quoteJsxAttribute", "sourceLiteral"]
     },
     {
       "path": "src/index.test.ts",
@@ -888,7 +888,7 @@
       "modulePath": "src/generation/generateNavigatorFiles.ts",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 252,
+        "line": 282,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2249,11 +2249,20 @@
       }
     },
     {
+      "name": "renderScreenElement",
+      "description": "Render one generated Screen with a stable multiline options object when route options exist.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateNavigatorFiles.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
       "name": "renderScreen",
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 65,
+        "line": 90,
         "column": 1
       }
     },
@@ -2262,7 +2271,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 88,
+        "line": 118,
         "column": 1
       }
     },
@@ -2271,7 +2280,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 105,
+        "line": 135,
         "column": 1
       }
     },
@@ -2280,7 +2289,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 135,
+        "line": 165,
         "column": 1
       }
     },
@@ -2289,7 +2298,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 180,
+        "line": 210,
         "column": 1
       }
     },
@@ -2298,7 +2307,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 198,
+        "line": 228,
         "column": 1
       }
     },
@@ -2307,7 +2316,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 225,
+        "line": 255,
         "column": 1
       }
     },
@@ -2316,7 +2325,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 235,
+        "line": 265,
         "column": 1
       }
     },
@@ -2325,7 +2334,7 @@
       "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 252,
+        "line": 282,
         "column": 1
       }
     },
@@ -2420,11 +2429,20 @@
       }
     },
     {
+      "name": "renderCustomTabRoutes",
+      "description": "Render custom-tab route records as stable multiline source objects.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 125,
+        "column": 1
+      }
+    },
+    {
       "name": "createCustomTabsFile",
       "description": "Create the generated Web custom-tabs layout file and registered integration imports.",
       "sourceLocation": {
         "filePath": "src/generation/generateTabsLayoutFile.ts",
-        "line": 125,
+        "line": 141,
         "column": 1
       }
     },
@@ -2433,7 +2451,7 @@
       "description": "Generate the specialized layout file for a supported tabs implementation.",
       "sourceLocation": {
         "filePath": "src/generation/generateTabsLayoutFile.ts",
-        "line": 172,
+        "line": 191,
         "column": 1
       }
     },
@@ -2448,10 +2466,28 @@
     },
     {
       "name": "quote",
-      "description": "Serialize a generated string literal with JSON escaping.",
+      "description": "Serialize a generated JavaScript string literal with safe single-quote escaping.",
       "sourceLocation": {
         "filePath": "src/generation/generationSafety.ts",
         "line": 22,
+        "column": 1
+      }
+    },
+    {
+      "name": "quoteJsxAttribute",
+      "description": "Serialize a generated JSX string attribute with JSON-compatible double-quote escaping.",
+      "sourceLocation": {
+        "filePath": "src/generation/generationSafety.ts",
+        "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "sourceLiteral",
+      "description": "Serialize JSON-compatible data as a deterministic JavaScript source literal.",
+      "sourceLocation": {
+        "filePath": "src/generation/generationSafety.ts",
+        "line": 41,
         "column": 1
       }
     },
@@ -3954,6 +3990,18 @@
         "sourcePath": "src/expo-router/resolveTabsNavigatorPlan.ts"
       },
       {
+        "fromSymbol": "renderScreenElement",
+        "toSymbol": "quoteJsxAttribute",
+        "callExpression": "quoteJsxAttribute",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateNavigatorFiles.ts",
+        "toSymbol": "sourceLiteral",
+        "callExpression": "sourceLiteral",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
         "fromSymbol": "renderScreen",
         "toSymbol": "routeOptions",
         "callExpression": "routeOptions",
@@ -3961,8 +4009,8 @@
       },
       {
         "fromSymbol": "renderScreen",
-        "toSymbol": "quote",
-        "callExpression": "quote",
+        "toSymbol": "renderScreenElement",
+        "callExpression": "renderScreenElement",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
       {
@@ -3979,8 +4027,14 @@
       },
       {
         "fromSymbol": "createNavigatorContents",
-        "toSymbol": "quote",
-        "callExpression": "quote",
+        "toSymbol": "quoteJsxAttribute",
+        "callExpression": "quoteJsxAttribute",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorContents",
+        "toSymbol": "sourceLiteral",
+        "callExpression": "sourceLiteral",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
       {
@@ -4123,8 +4177,8 @@
       },
       {
         "fromSymbol": "generateSplitViewLayoutFile",
-        "toSymbol": "quote",
-        "callExpression": "quote",
+        "toSymbol": "quoteJsxAttribute",
+        "callExpression": "quoteJsxAttribute",
         "sourcePath": "src/generation/generateSplitViewLayoutFile.ts"
       },
       {
@@ -4137,6 +4191,12 @@
         "fromSymbol": "createNativeTabsContents",
         "toSymbol": "quote",
         "callExpression": "quote",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createNativeTabsContents",
+        "toSymbol": "quoteJsxAttribute",
+        "callExpression": "quoteJsxAttribute",
         "sourcePath": "src/generation/generateTabsLayoutFile.ts"
       },
       {
@@ -4153,14 +4213,20 @@
       },
       {
         "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
-        "toSymbol": "quote",
-        "callExpression": "quote",
+        "toSymbol": "quoteJsxAttribute",
+        "callExpression": "quoteJsxAttribute",
         "sourcePath": "src/generation/generateTabsLayoutFile.ts"
       },
       {
         "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
         "toSymbol": "nativeIconName",
         "callExpression": "nativeIconName",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
+        "toSymbol": "quote",
+        "callExpression": "quote",
         "sourcePath": "src/generation/generateTabsLayoutFile.ts"
       },
       {
@@ -4182,6 +4248,12 @@
         "sourcePath": "src/generation/generateTabsLayoutFile.ts"
       },
       {
+        "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
+        "toSymbol": "sourceLiteral",
+        "callExpression": "sourceLiteral",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
         "fromSymbol": "createCustomTabsFile",
         "toSymbol": "assertModuleBinding",
         "callExpression": "assertModuleBinding",
@@ -4191,6 +4263,24 @@
         "fromSymbol": "createCustomTabsFile",
         "toSymbol": "quote",
         "callExpression": "quote",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createCustomTabsFile",
+        "toSymbol": "quoteJsxAttribute",
+        "callExpression": "quoteJsxAttribute",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createCustomTabsFile",
+        "toSymbol": "renderCustomTabRoutes",
+        "callExpression": "renderCustomTabRoutes",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createCustomTabsFile",
+        "toSymbol": "sourceLiteral",
+        "callExpression": "sourceLiteral",
         "sourcePath": "src/generation/generateTabsLayoutFile.ts"
       },
       {
@@ -4204,6 +4294,24 @@
         "toSymbol": "createCustomTabsFile",
         "callExpression": "createCustomTabsFile",
         "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "sourceLiteral",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generationSafety.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generationSafety.ts",
+        "toSymbol": "sourceLiteral",
+        "callExpression": "sourceLiteral",
+        "sourcePath": "src/generation/generationSafety.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generationSafety.ts",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generationSafety.ts"
       },
       {
         "fromSymbol": "resolveCustomTabsPresentation",

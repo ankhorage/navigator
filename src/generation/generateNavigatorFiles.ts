@@ -9,7 +9,7 @@ import type {
 } from '../definitions/NavigatorPlan';
 import { generateSplitViewLayoutFile } from './generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from './generateTabsLayoutFile';
-import { assertModuleBinding, quote } from './generationSafety';
+import { assertModuleBinding, quote, quoteJsxAttribute, sourceLiteral } from './generationSafety';
 
 const APP_DIRECTORY = 'src/app';
 const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
@@ -38,7 +38,10 @@ function assertRouteName(name: string): void {
   }
 }
 
-function routeOptions(node: NavigatorNodePlan, route: NavigatorRoutePlan): string | undefined {
+function routeOptions(
+  node: NavigatorNodePlan,
+  route: NavigatorRoutePlan,
+): Readonly<Record<string, unknown>> | undefined {
   const options: Record<string, unknown> = {};
   if (route.label !== undefined) options.title = route.label;
 
@@ -59,7 +62,29 @@ function routeOptions(node: NavigatorNodePlan, route: NavigatorRoutePlan): strin
     if (node.tabs.presentation === 'top') options.tabBarItemStyle = { display: 'none' };
     else options.href = null;
   }
-  return Object.keys(options).length === 0 ? undefined : JSON.stringify(options);
+  return Object.keys(options).length === 0 ? undefined : options;
+}
+
+/*** Render one generated Screen with a stable multiline options object when route options exist. */
+function renderScreenElement(
+  componentName: string,
+  routeName: string,
+  options: Readonly<Record<string, unknown>> | undefined,
+  indentation: string,
+): string {
+  if (options === undefined) {
+    return `${indentation}<${componentName}.Screen name=${quoteJsxAttribute(routeName)} />`;
+  }
+  const optionLines = Object.entries(options)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => `${indentation}    ${key}: ${sourceLiteral(value)},`)
+    .join('\n');
+  return `${indentation}<${componentName}.Screen
+${indentation}  name=${quoteJsxAttribute(routeName)}
+${indentation}  options={{
+${optionLines}
+${indentation}  }}
+${indentation}/>`;
 }
 
 function renderScreen(
@@ -69,8 +94,13 @@ function renderScreen(
   guardAliases: ReadonlyMap<string, string>,
 ): string {
   const options = routeOptions(node, route);
-  const screen = `<${componentName}.Screen name=${quote(route.name)}${options === undefined ? '' : ` options={${options}}`} />`;
-  if (route.guards.length === 0) return `      ${screen}`;
+  const screen = renderScreenElement(
+    componentName,
+    route.name,
+    options,
+    route.guards.length === 0 ? '      ' : '        ',
+  );
+  if (route.guards.length === 0) return screen;
 
   const guardExpression = route.guards
     .map((guard) => {
@@ -81,7 +111,7 @@ function renderScreen(
     })
     .join(' && ');
   return `      <${componentName}.Protected guard={${guardExpression}}>
-        ${screen}
+${screen}
       </${componentName}.Protected>`;
 }
 
@@ -117,12 +147,12 @@ function createNavigatorContents(
   const props = [
     node.initialRouteName === undefined
       ? undefined
-      : `initialRouteName=${quote(node.initialRouteName)}`,
+      : `initialRouteName=${quoteJsxAttribute(node.initialRouteName)}`,
     navigatorOptions === undefined
       ? undefined
-      : `screenOptions={${JSON.stringify(navigatorOptions)}}`,
+      : `screenOptions={${sourceLiteral(navigatorOptions)}}`,
     node.type === 'custom' && node.custom?.config !== undefined
-      ? `{...${JSON.stringify(node.custom.config)}}`
+      ? `{...${sourceLiteral(node.custom.config)}}`
       : undefined,
   ].filter((value): value is string => value !== undefined);
   const openingTag = `<${componentName}${props.length === 0 ? '' : ` ${props.join(' ')}`}>`;

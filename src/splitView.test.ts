@@ -179,7 +179,7 @@ describe('@ankhorage/navigator Split View generation', () => {
     const files = generateNavigatorFiles(plan, BINDINGS);
     const layout = files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
-    expect(layout).toContain('from "expo-router/unstable-split-view"');
+    expect(layout).toContain("from 'expo-router/unstable-split-view'");
     expect(layout).toContain('<SplitView topColumnForCollapsing="secondary" showInspector>');
     expect(layout.match(/<SplitView\.Column>/gu)).toHaveLength(2);
     expect(layout).toContain('<SplitView.Inspector>');

@@ -181,12 +181,12 @@ describe('@ankhorage/navigator deterministic generation', () => {
     ]);
     const root = first.find((file) => file.path === 'src/app/_layout.tsx')?.contents ?? '';
     const drawer = first.find((file) => file.path === 'src/app/(app)/_layout.tsx')?.contents ?? '';
-    expect(root).toContain('from "expo-router/js-stack"');
+    expect(root).toContain("from 'expo-router/js-stack'");
     expect(root).toContain('initialRouteName="(app)"');
     expect(root).toContain('<Stack.Protected guard={navigatorGuard0()}>');
-    expect(drawer).toContain('"drawerItemStyle":{"display":"none"}');
+    expect(drawer).toContain("drawerItemStyle: { display: 'none' }");
     expect(first.at(-1)?.contents).toBe(
-      'export { HomeScreen as default } from "@/screens/home";\n',
+      "export { HomeScreen as default } from '@/screens/home';\n",
     );
   });
 });
