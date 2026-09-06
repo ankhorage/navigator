@@ -53,7 +53,9 @@ describe('@ankhorage/navigator platform tabs generation', () => {
     );
     expect(layout).toContain('<NativeTabs.BottomAccessory>');
   });
+});
 
+describe('@ankhorage/navigator JavaScript tabs generation', () => {
   test('generates the real JavaScript bottom and top tab navigators', () => {
     for (const [presentation, expected] of [
       ['bottom', 'expo-router/js-tabs'],
@@ -64,13 +66,25 @@ describe('@ankhorage/navigator platform tabs generation', () => {
           type: 'tabs',
           implementation: 'javascript',
           presentation,
-          routes: [{ name: 'home', screenId: 'home' }],
+          routes: [
+            { name: 'home', screenId: 'home' },
+            {
+              name: 'settings',
+              screenId: 'settings',
+              showInPrimaryNavigation: false,
+            },
+          ],
         },
         'web',
       );
       expect(plan.supported).toBe(true);
       expect(layout).toContain(`from "${expected}"`);
       expect(layout).toContain('.Screen name="home"');
+      expect(layout).toContain(
+        presentation === 'top'
+          ? 'name="settings" options={{"tabBarItemStyle":{"display":"none"}}}'
+          : 'name="settings" options={{"href":null}}',
+      );
     }
   });
 });

@@ -488,7 +488,7 @@
     "modulePath": "src/generation/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/generation/generateNavigatorFiles.ts",
-      "line": 244,
+      "line": 252,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
