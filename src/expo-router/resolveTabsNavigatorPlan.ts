@@ -27,7 +27,13 @@ function resolveAdaptiveConfig(
 }
 
 /*** Create the alpha native-tabs plan and reject unsupported Web usage. */
-function createNativeTabsPlan(platform: NavigatorRuntimePlatform): TabsNavigatorPlan {
+function createNativeTabsPlan(
+  platform: NavigatorRuntimePlatform,
+  config?: {
+    minimizeBehavior?: TabsNavigatorPlan['minimizeBehavior'];
+    bottomAccessory?: { screenId: string };
+  },
+): TabsNavigatorPlan {
   if (platform === 'web') {
     throw new Error('Native tabs are not available for the Web navigator plan.');
   }
@@ -36,6 +42,12 @@ function createNativeTabsPlan(platform: NavigatorRuntimePlatform): TabsNavigator
     module: 'expo-router/unstable-native-tabs',
     exportName: 'NativeTabs',
     stability: 'alpha',
+    ...(config?.minimizeBehavior === undefined
+      ? {}
+      : { minimizeBehavior: config.minimizeBehavior }),
+    ...(config?.bottomAccessory === undefined
+      ? {}
+      : { bottomAccessoryScreenId: config.bottomAccessory.screenId }),
   };
 }
 
@@ -56,12 +68,19 @@ function createCustomTabsPlan(
   config: Omit<CustomTabsConfig, 'implementation'>,
   size: NavigatorResponsiveSize,
 ): TabsNavigatorPlan {
+  const resolved = resolveCustomTabsPresentation(config, size);
+  const presentations = {
+    compact: resolveCustomTabsPresentation(config, 'compact').presentation,
+    medium: resolveCustomTabsPresentation(config, 'medium').presentation,
+    expanded: resolveCustomTabsPresentation(config, 'expanded').presentation,
+  };
   return {
     implementation: 'custom',
     module: 'expo-router/ui',
     exportName: 'Tabs',
     stability: 'stable',
-    ...resolveCustomTabsPresentation(config, size),
+    ...resolved,
+    presentations,
   };
 }
 
@@ -71,7 +90,8 @@ function createAdaptiveTabsPlan(
   platform: NavigatorRuntimePlatform,
   size: NavigatorResponsiveSize,
 ): TabsNavigatorPlan {
-  if (platform !== 'web') return createNativeTabsPlan(platform);
+  if (platform !== 'web')
+    return createNativeTabsPlan(platform, resolveAdaptiveConfig(config)?.native);
   return createCustomTabsPlan(resolveAdaptiveConfig(config)?.web ?? DEFAULT_WEB_CUSTOM_TABS, size);
 }
 
@@ -88,7 +108,7 @@ export function resolveTabsNavigatorPlan(
     case 'adaptive':
       return createAdaptiveTabsPlan(config, platform, size);
     case 'native':
-      return createNativeTabsPlan(platform);
+      return createNativeTabsPlan(platform, config);
     case 'javascript':
       return createJavaScriptTabsPlan(config);
     case 'custom':

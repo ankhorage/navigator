@@ -32,7 +32,17 @@ describe('@ankhorage/navigator package boundary', () => {
     expect(NAVIGATOR_PACKAGE_METADATA.coreAdapters.javascriptStack.module).toBe(
       'expo-router/js-stack',
     );
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.tabs.support).toBe('unavailable');
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.tabs.support).toBe('supported');
+  });
+
+  test('requires the Surface release that supports portable SVG icon sources', async () => {
+    const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
+      readonly devDependencies?: Readonly<Record<string, string>>;
+      readonly peerDependencies?: Readonly<Record<string, string>>;
+    };
+
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toBe('^3.4.1');
+    expect(packageJson.devDependencies?.['@ankhorage/surface']).toBe('^3.4.1');
   });
 
   test('never imports the full app manifest into production source', async () => {

@@ -8,27 +8,9 @@ import type {
 } from '../definitions/NavigatorPlan';
 
 const APP_DIRECTORY = 'src/app';
-const SAFE_EXPORT_NAME = /^[A-Za-z_$][A-Za-z0-9_$]*$/u;
 const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
-const SAFE_MODULE =
-  /^(?:@\/[A-Za-z0-9_./-]+|\.{1,2}\/[A-Za-z0-9_./-]+|@?[A-Za-z0-9][A-Za-z0-9._-]*(?:\/[A-Za-z0-9._-]+)*)$/u;
-
-function assertModuleBinding(binding: NavigatorScreenModule, description: string): void {
-  if (
-    !SAFE_MODULE.test(binding.module) ||
-    binding.module.includes('\\') ||
-    binding.module.split('/').slice(1).includes('..')
-  ) {
-    throw new Error(`${description} has an unsafe module specifier.`);
-  }
-  if (!SAFE_EXPORT_NAME.test(binding.exportName)) {
-    throw new Error(`${description} has an invalid exported symbol.`);
-  }
-}
-
-function quote(value: string): string {
-  return JSON.stringify(value);
-}
+import { generateTabsLayoutFile } from './generateTabsLayoutFile';
+import { assertModuleBinding, quote } from './generationSafety';
 
 function assertRouteName(name: string): void {
   if (!SAFE_ROUTE_NAME.test(name) || name === '.' || name === '..') {
@@ -133,6 +115,9 @@ function createLayoutFile(
       `Cannot generate unavailable navigator adapter ${JSON.stringify(node.adapter.id)} at ${node.pointer || '/'}.`,
     );
   }
+
+  const tabsLayout = generateTabsLayoutFile(node, directory, bindings);
+  if (tabsLayout !== undefined) return tabsLayout;
 
   const componentName = node.adapter.exportName;
   assertModuleBinding(

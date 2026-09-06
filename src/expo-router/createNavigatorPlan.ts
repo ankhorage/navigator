@@ -61,20 +61,27 @@ function createStackAdapter(
   };
 }
 
-function createTabsAdapter(tabs: TabsNavigatorPlan): NavigatorAdapterPlan {
+function createTabsAdapter(
+  tabs: TabsNavigatorPlan,
+  platform: NavigatorRuntimePlatform,
+  routerMajor: number | undefined,
+): NavigatorAdapterPlan {
+  const nativeUnavailable =
+    tabs.implementation === 'native' &&
+    (platform === 'web' || routerMajor === undefined || routerMajor < 54);
+  const customUnavailable = tabs.implementation === 'custom' && platform !== 'web';
   return {
     id: `tabs.${tabs.implementation}`,
     module: tabs.module,
     exportName: tabs.exportName,
-    support: 'unavailable',
+    support: nativeUnavailable || customUnavailable ? 'unavailable' : 'supported',
     stability: tabs.stability,
     limitations:
       tabs.implementation === 'native'
-        ? [
-            'Owned by the optional Tabs adapter.',
-            'Alpha API; unavailable on web and requires Expo Router 54.0.0 or newer.',
-          ]
-        : ['Owned by the optional Tabs adapter.'],
+        ? ['Alpha API; unavailable on web and requires Expo Router 54.0.0 or newer.']
+        : tabs.implementation === 'custom'
+          ? ['Web-only Surface presentation over Expo Router headless tabs.']
+          : [],
   };
 }
 
@@ -82,6 +89,7 @@ function createAdapter(
   node: NavigatorNode,
   stack: StackImplementationConfig | undefined,
   tabs: TabsNavigatorPlan | undefined,
+  platform: NavigatorRuntimePlatform,
   routerMajor: number | undefined,
 ): NavigatorAdapterPlan {
   switch (node.type) {
@@ -107,7 +115,7 @@ function createAdapter(
       };
     case 'tabs':
       if (tabs === undefined) throw new Error('Tabs planning did not resolve an adapter.');
-      return createTabsAdapter(tabs);
+      return createTabsAdapter(tabs, platform, routerMajor);
     case 'split-view':
       return {
         id: 'split-view',
@@ -247,7 +255,13 @@ function createNodePlan(
   return {
     type: node.type,
     pointer,
-    adapter: createAdapter(node, stack, tabs, parseExpoRouterMajor(options.expoRouterVersion)),
+    adapter: createAdapter(
+      node,
+      stack,
+      tabs,
+      options.platform,
+      parseExpoRouterMajor(options.expoRouterVersion),
+    ),
     ...(node.initialRouteName === undefined ? {} : { initialRouteName: node.initialRouteName }),
     routes,
     ...createNodeDetails(node, stack, tabs),

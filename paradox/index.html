@@ -186,8 +186,10 @@
         <p class="muted">Generated with Paradox</p>
         <h1>NAVIGATOR</h1>
         <p>
-          Standalone manifest-driven navigator capability for Expo Router across React Native and
-          React Native Web.
+          Standalone Navigator capability with topology configured independently from platform
+          implementation and visual presentation. Adaptive tabs use Native Tabs on Android/iOS and
+          one stable Expo Router headless topology with Surface-owned responsive presentation on
+          Web.
         </p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
@@ -232,10 +234,40 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/generatedTabsTypecheck.test.ts"
+              >
+                src/generatedTabsTypecheck.test.ts
+                <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/generation/generateNavigatorFiles.ts"
               >
                 src/generation/generateNavigatorFiles.ts
-                <small>13 functions</small>
+                <small>11 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/generation/generateTabsLayoutFile.ts"
+              >
+                src/generation/generateTabsLayoutFile.ts
+                <small>7 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/generation/generationSafety.ts"
+              >
+                src/generation/generationSafety.ts
+                <small>2 functions</small>
               </button>
             </li>
             <li>
@@ -255,6 +287,18 @@
               </button>
             </li>
             <li>
+              <button class="nav-button" type="button" data-target="src/tabs.test.ts">
+                src/tabs.test.ts
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button class="nav-button" type="button" data-target="src/tabs/CustomTabsLayout.tsx">
+                src/tabs/CustomTabsLayout.tsx
+                <small>11 functions</small>
+              </button>
+            </li>
+            <li>
               <button
                 class="nav-button"
                 type="button"
@@ -271,7 +315,7 @@
                 data-target="src/validation/validateNavigatorManifest.ts"
               >
                 src/validation/validateNavigatorManifest.ts
-                <small>11 functions</small>
+                <small>10 functions</small>
               </button>
             </li>
             <li>
@@ -284,6 +328,16 @@
                 <small>2 functions</small>
               </button>
             </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/validation/validateTabsNavigator.ts"
+              >
+                src/validation/validateTabsNavigator.ts
+                <small>5 functions</small>
+              </button>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -292,15 +346,16 @@
           <section class="panel">
             <h2>Package overview</h2>
             <div class="summary">
-              <div><strong>27</strong><span class="muted">public exports</span></div>
-              <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>13</strong><span class="muted">modules</span></div>
-              <div><strong>2</strong><span class="muted">entrypoints</span></div>
+              <div><strong>32</strong><span class="muted">public exports</span></div>
+              <div><strong>1</strong><span class="muted">components</span></div>
+              <div><strong>21</strong><span class="muted">modules</span></div>
+              <div><strong>3</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
             <ul class="meta-list">
               <li><code>src/index.ts</code></li>
               <li><code>src/metadata/index.ts</code></li>
+              <li><code>src/tabs/index.ts</code></li>
             </ul>
           </section>
 
@@ -367,14 +422,45 @@
               </p>
               <p><strong>Exports:</strong> <code>resolveTabsNavigatorPlan</code></p>
             </article>
+            <article class="item" data-search="src/generatedTabsTypecheck.test.ts src/index.ts">
+              <h3>src/generatedTabsTypecheck.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
             <article
               class="item"
-              data-search="src/generation/generateNavigatorFiles.ts src/definitions/NavigatorPlan.ts generateNavigatorFiles"
+              data-search="src/generation/generateNavigatorFiles.ts src/definitions/NavigatorPlan.ts src/generation/generateTabsLayoutFile.ts src/generation/generationSafety.ts generateNavigatorFiles"
             >
               <h3>src/generation/generateNavigatorFiles.ts</h3>
               <p class="muted">Referenced module</p>
-              <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/generation/generateTabsLayoutFile.ts</code>,
+                <code>src/generation/generationSafety.ts</code>
+              </p>
               <p><strong>Exports:</strong> <code>generateNavigatorFiles</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/generation/generateTabsLayoutFile.ts src/definitions/NavigatorPlan.ts src/generation/generationSafety.ts generateTabsLayoutFile"
+            >
+              <h3>src/generation/generateTabsLayoutFile.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/generation/generationSafety.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>generateTabsLayoutFile</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/generation/generationSafety.ts src/definitions/NavigatorPlan.ts assertModuleBinding quote"
+            >
+              <h3>src/generation/generationSafety.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
+              <p><strong>Exports:</strong> <code>assertModuleBinding</code>, <code>quote</code></p>
             </article>
             <article class="item" data-search="src/index.test.ts src/index.ts">
               <h3>src/index.test.ts</h3>
@@ -430,6 +516,51 @@
                 <code>ResolvedCustomTabsPresentation</code>
               </p>
             </article>
+            <article class="item" data-search="src/tabs.test.ts src/index.ts">
+              <h3>src/tabs.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/tabs/CustomTabsLayout.tsx src/definitions/NavigatorPlan.ts CustomTabsIconSourceResolver CustomTabsLayout CustomTabsLayoutProps CustomTabsPresentationProps CustomTabsRoute"
+            >
+              <h3>src/tabs/CustomTabsLayout.tsx</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
+              <p>
+                <strong>Exports:</strong> <code>CustomTabsIconSourceResolver</code>,
+                <code>CustomTabsLayout</code>, <code>CustomTabsLayoutProps</code>,
+                <code>CustomTabsPresentationProps</code>, <code>CustomTabsRoute</code>
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/tabs/index.ts CustomTabsIconSourceResolver CustomTabsLayout CustomTabsLayoutProps CustomTabsPresentationProps CustomTabsRoute"
+            >
+              <h3>src/tabs/index.ts</h3>
+              <p class="muted">Configured entrypoint</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>CustomTabsIconSourceResolver</code>,
+                <code>CustomTabsLayout</code>, <code>CustomTabsLayoutProps</code>,
+                <code>CustomTabsPresentationProps</code>, <code>CustomTabsRoute</code>
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/tabs/nativeIconFamilies.ts NativeFontAwesome5Family NativeFontAwesome6Family NativeFontAwesomeFamily NativeIoniconsFamily NativeMaterialDesignIconsFamily"
+            >
+              <h3>src/tabs/nativeIconFamilies.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>NativeFontAwesome5Family</code>,
+                <code>NativeFontAwesome6Family</code>, <code>NativeFontAwesomeFamily</code>,
+                <code>NativeIoniconsFamily</code>, <code>NativeMaterialDesignIconsFamily</code>
+              </p>
+            </article>
             <article
               class="item"
               data-search="src/topology/resolveNavigatorPreset.ts resolveNavigatorPreset"
@@ -441,14 +572,15 @@
             </article>
             <article
               class="item"
-              data-search="src/validation/validateNavigatorManifest.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/validation/validatePresetTopology.ts validateNavigatorManifest"
+              data-search="src/validation/validateNavigatorManifest.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/validation/validatePresetTopology.ts src/validation/validateTabsNavigator.ts validateNavigatorManifest"
             >
               <h3>src/validation/validateNavigatorManifest.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
                 <code>src/expo-router/resolveNavigatorConfig.ts</code>,
-                <code>src/validation/validatePresetTopology.ts</code>
+                <code>src/validation/validatePresetTopology.ts</code>,
+                <code>src/validation/validateTabsNavigator.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>validateNavigatorManifest</code></p>
             </article>
@@ -463,6 +595,18 @@
                 <code>src/topology/resolveNavigatorPreset.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>validatePresetTopology</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/validation/validateTabsNavigator.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts addTabsAdapterDiagnostics"
+            >
+              <h3>src/validation/validateTabsNavigator.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/expo-router/resolveNavigatorConfig.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>addTabsAdapterDiagnostics</code></p>
             </article>
           </section>
           <section class="panel">
@@ -637,7 +781,7 @@
                 data-search="NavigatorGeneratedFile type src/definitions/NavigatorPlan.ts "
               >
                 <h4>NavigatorGeneratedFile</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:134:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:145:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -676,7 +820,7 @@
                 data-search="NavigatorGenerationBindings type src/definitions/NavigatorPlan.ts  NavigatorScreenModule"
               >
                 <h4>NavigatorGenerationBindings</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:125:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:134:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -719,12 +863,31 @@
                       <td></td>
                     </tr>
                     <tr>
+                      <td><code>iconSourceResolver</code></td>
+                      <td>property</td>
+                      <td><code>NavigatorScreenModule | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
                       <td><code>screens</code></td>
                       <td>property</td>
                       <td>
                         <code>Readonly&lt;Record&lt;string, NavigatorScreenModule&gt;&gt;</code>
                       </td>
                       <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>tabPresentations</code></td>
+                      <td>property</td>
+                      <td>
+                        <code
+                          >Readonly&lt;Record&lt;string, NavigatorScreenModule&gt;&gt; |
+                          undefined</code
+                        >
+                      </td>
+                      <td>no</td>
                       <td></td>
                     </tr>
                   </tbody>
@@ -736,7 +899,7 @@
                 data-search="NavigatorNodePlan type src/definitions/NavigatorPlan.ts  NavigatorAdapterPlan NavigatorRoutePlan TabsNavigatorPlan"
               >
                 <h4>NavigatorNodePlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:81:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:90:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -859,7 +1022,7 @@
                 data-search="NavigatorPlan type src/definitions/NavigatorPlan.ts  NavigatorDiagnostic NavigatorNodePlan NavigatorValidationContext"
               >
                 <h4>NavigatorPlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:109:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:118:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -937,7 +1100,7 @@
                 data-search="NavigatorRoutePlan type src/definitions/NavigatorPlan.ts  NavigatorNodePlan"
               >
                 <h4>NavigatorRoutePlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:69:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:78:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1046,7 +1209,7 @@
                 data-search="NavigatorScreenModule type src/definitions/NavigatorPlan.ts "
               >
                 <h4>NavigatorScreenModule</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:120:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:129:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1159,10 +1322,10 @@
               <article
                 class="item"
                 id="symbol-tabsnavigatorplan"
-                data-search="TabsNavigatorPlan type src/definitions/NavigatorPlan.ts  ExpoRouterNavigatorModule NavigatorApiStability ResolvedTabsImplementation ResolvedTabsPresentation"
+                data-search="TabsNavigatorPlan type src/definitions/NavigatorPlan.ts  ExpoRouterNavigatorModule NavigatorApiStability NavigatorResponsiveSize ResolvedTabsImplementation ResolvedTabsPresentation"
               >
                 <h4>TabsNavigatorPlan</h4>
-                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:60:1</code></p>
+                <p class="muted">type • <code>src/definitions/NavigatorPlan.ts:66:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1170,6 +1333,7 @@
                   <ul class="chips">
                     <li class="chip">ExpoRouterNavigatorModule</li>
                     <li class="chip">NavigatorApiStability</li>
+                    <li class="chip">NavigatorResponsiveSize</li>
                     <li class="chip">ResolvedTabsImplementation</li>
                     <li class="chip">ResolvedTabsPresentation</li>
                   </ul>
@@ -1186,6 +1350,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <tr>
+                      <td><code>bottomAccessoryScreenId</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
                     <tr>
                       <td><code>customPresentationId</code></td>
                       <td>property</td>
@@ -1208,6 +1379,18 @@
                       <td></td>
                     </tr>
                     <tr>
+                      <td><code>minimizeBehavior</code></td>
+                      <td>property</td>
+                      <td>
+                        <code
+                          >&quot;automatic&quot; | &quot;never&quot; | &quot;onScrollDown&quot; |
+                          &quot;onScrollUp&quot; | undefined</code
+                        >
+                      </td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
                       <td><code>module</code></td>
                       <td>property</td>
                       <td><code>ExpoRouterNavigatorModule</code></td>
@@ -1218,6 +1401,18 @@
                       <td><code>presentation</code></td>
                       <td>property</td>
                       <td><code>ResolvedTabsPresentation | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>presentations</code></td>
+                      <td>property</td>
+                      <td>
+                        <code
+                          >Readonly&lt;Record&lt;NavigatorResponsiveSize,
+                          ResolvedTabsPresentation&gt;&gt; | undefined</code
+                        >
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -1241,7 +1436,7 @@
               >
                 <h4>createNavigatorPlan</h4>
                 <p class="muted">
-                  function • <code>src/expo-router/createNavigatorPlan.ts:258:1</code>
+                  function • <code>src/expo-router/createNavigatorPlan.ts:272:1</code>
                 </p>
                 <p>
                   Create a disposable, provider-aware plan from only the navigator desired-state
@@ -1348,7 +1543,7 @@
               >
                 <h4>resolveTabsNavigatorPlan</h4>
                 <p class="muted">
-                  function • <code>src/expo-router/resolveTabsNavigatorPlan.ts:79:1</code>
+                  function • <code>src/expo-router/resolveTabsNavigatorPlan.ts:99:1</code>
                 </p>
                 <p>
                   Resolve the Expo Router module/export and presentation for one tabs
@@ -1410,7 +1605,7 @@
               >
                 <h4>generateNavigatorFiles</h4>
                 <p class="muted">
-                  function • <code>src/generation/generateNavigatorFiles.ts:224:1</code>
+                  function • <code>src/generation/generateNavigatorFiles.ts:209:1</code>
                 </p>
                 <p>
                   Generate deterministic Expo Router files from a validated disposable plan and
@@ -1574,6 +1769,270 @@
               </article>
             </section>
             <section>
+              <h3>src/tabs/CustomTabsLayout.tsx</h3>
+              <article
+                class="item"
+                id="symbol-customtabsiconsourceresolver"
+                data-search="CustomTabsIconSourceResolver unknown src/tabs/CustomTabsLayout.tsx "
+              >
+                <h4>CustomTabsIconSourceResolver</h4>
+                <p class="muted">unknown • <code>src/tabs/CustomTabsLayout.tsx:40:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/tabs/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-customtabslayout"
+                data-search='CustomTabsLayout function src/tabs/CustomTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. CustomTabsLayoutProps ({&#10;  routes,&#10;  presentations,&#10;  initialRouteName,&#10;  resolveIconSource,&#10;  customPresentation: CustomPresentation,&#10;}: CustomTabsLayoutProps) =&gt; import("react").JSX.Element'
+              >
+                <h4>CustomTabsLayout</h4>
+                <p class="muted">function • <code>src/tabs/CustomTabsLayout.tsx:218:1</code></p>
+                <p>
+                  Render one stable headless Expo Router tab topology with Surface-owned
+                  presentations.
+                </p>
+                <p><strong>Export paths:</strong> <code>src/tabs/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">CustomTabsLayoutProps</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+({
+  routes,
+  presentations,
+  initialRouteName,
+  resolveIconSource,
+  customPresentation: CustomPresentation,
+}: CustomTabsLayoutProps) =&gt; import(&quot;react&quot;).JSX.Element</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <code
+                            >{ routes, presentations, initialRouteName, resolveIconSource,
+                            customPresentation: CustomPresentation, }</code
+                          >
+                        </td>
+                        <td><code>CustomTabsLayoutProps</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>
+                    <strong>Returns:</strong> <code>import(&quot;react&quot;).JSX.Element</code>
+                  </p>
+                </div>
+              </article>
+              <article
+                class="item"
+                id="symbol-customtabslayoutprops"
+                data-search="CustomTabsLayoutProps type src/tabs/CustomTabsLayout.tsx  CustomTabsIconSourceResolver CustomTabsPresentationProps CustomTabsRoute NavigatorResponsiveSize ResolvedTabsPresentation"
+              >
+                <h4>CustomTabsLayoutProps</h4>
+                <p class="muted">type • <code>src/tabs/CustomTabsLayout.tsx:46:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/tabs/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">CustomTabsIconSourceResolver</li>
+                    <li class="chip">CustomTabsPresentationProps</li>
+                    <li class="chip">CustomTabsRoute</li>
+                    <li class="chip">NavigatorResponsiveSize</li>
+                    <li class="chip">ResolvedTabsPresentation</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>customPresentation</code></td>
+                      <td>property</td>
+                      <td>
+                        <code>ComponentType&lt;CustomTabsPresentationProps&gt; | undefined</code>
+                      </td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>initialRouteName</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>presentations</code></td>
+                      <td>property</td>
+                      <td>
+                        <code
+                          >Readonly&lt;Record&lt;NavigatorResponsiveSize,
+                          ResolvedTabsPresentation&gt;&gt;</code
+                        >
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>resolveIconSource</code></td>
+                      <td>property</td>
+                      <td><code>CustomTabsIconSourceResolver | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>routes</code></td>
+                      <td>property</td>
+                      <td><code>readonly CustomTabsRoute[]</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-customtabspresentationprops"
+                data-search="CustomTabsPresentationProps type src/tabs/CustomTabsLayout.tsx  CustomTabsRoute"
+              >
+                <h4>CustomTabsPresentationProps</h4>
+                <p class="muted">type • <code>src/tabs/CustomTabsLayout.tsx:30:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/tabs/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">CustomTabsRoute</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>renderItem</code></td>
+                      <td>property</td>
+                      <td>
+                        <code>(route: CustomTabsRoute, compact?: boolean) =&gt; ReactNode</code>
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>routes</code></td>
+                      <td>property</td>
+                      <td><code>readonly CustomTabsRoute[]</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-customtabsroute"
+                data-search="CustomTabsRoute type src/tabs/CustomTabsLayout.tsx "
+              >
+                <h4>CustomTabsRoute</h4>
+                <p class="muted">type • <code>src/tabs/CustomTabsLayout.tsx:21:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/tabs/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>badge</code></td>
+                      <td>property</td>
+                      <td><code>ReactNode</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>href</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>icon</code></td>
+                      <td>property</td>
+                      <td>
+                        <code
+                          >import(&quot;@ankhorage/contracts/dist/types&quot;).IconSpec |
+                          undefined</code
+                        >
+                      </td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>label</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>name</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>visible</code></td>
+                      <td>property</td>
+                      <td><code>boolean</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+            </section>
+            <section>
               <h3>src/topology/resolveNavigatorPreset.ts</h3>
               <article
                 class="item"
@@ -1650,7 +2109,7 @@
               >
                 <h4>validateNavigatorManifest</h4>
                 <p class="muted">
-                  function • <code>src/validation/validateNavigatorManifest.ts:268:1</code>
+                  function • <code>src/validation/validateNavigatorManifest.ts:238:1</code>
                 </p>
                 <p>Validate one navigator desired-state slice for a concrete Expo Router target.</p>
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -1696,7 +2155,68 @@
           </section>
           <section class="panel">
             <h2>Component registry</h2>
-            <p class="empty">No components were detected.</p>
+            <article
+              class="item"
+              id="component-customtabslayout"
+              data-search="CustomTabsLayout src/tabs/CustomTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. customPresentation ComponentType&lt;CustomTabsPresentationProps&gt; | undefined initialRouteName string | undefined presentations Readonly&lt;Record&lt;NavigatorResponsiveSize, ResolvedTabsPresentation&gt;&gt; resolveIconSource CustomTabsIconSourceResolver | undefined routes readonly CustomTabsRoute[]"
+            >
+              <h3>CustomTabsLayout</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:218:1</code></p>
+              <p>
+                Render one stable headless Expo Router tab topology with Surface-owned
+                presentations.
+              </p>
+              <p><strong>Export paths:</strong> <code>src/tabs/index.ts</code></p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Prop</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>customPresentation</code></td>
+                    <td>
+                      <code>ComponentType&lt;CustomTabsPresentationProps&gt; | undefined</code>
+                    </td>
+                    <td>no</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><code>initialRouteName</code></td>
+                    <td><code>string | undefined</code></td>
+                    <td>no</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><code>presentations</code></td>
+                    <td>
+                      <code
+                        >Readonly&lt;Record&lt;NavigatorResponsiveSize,
+                        ResolvedTabsPresentation&gt;&gt;</code
+                      >
+                    </td>
+                    <td>yes</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><code>resolveIconSource</code></td>
+                    <td><code>CustomTabsIconSourceResolver | undefined</code></td>
+                    <td>no</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><code>routes</code></td>
+                    <td><code>readonly CustomTabsRoute[]</code></td>
+                    <td>yes</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
           </section>
           <section class="panel">
             <h2>Diagrams</h2>
@@ -1712,6 +2232,8 @@
                 --&gt; entrypoint_src_index_ts
                 entrypoint_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
                 package__ankhorage_navigator --&gt; entrypoint_src_metadata_index_ts
+                entrypoint_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+                package__ankhorage_navigator --&gt; entrypoint_src_tabs_index_ts
                 module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
@@ -1736,9 +2258,26 @@
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
                 module_src_presentation_resolveCustomTabsPresentation_ts
+                module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_generatedTabsTypecheck_test_ts
+                module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_generation_generateNavigatorFiles_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generateTabsLayoutFile_ts
+                module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generationSafety_ts
+                module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_generation_generateTabsLayoutFile_ts
+                module_src_generation_generateTabsLayoutFile_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_generation_generateTabsLayoutFile_ts --&gt;
+                module_src_generation_generationSafety_ts
+                module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_generation_generationSafety_ts
+                module_src_generation_generationSafety_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_index_test_ts[&quot;src/index.test.ts&quot;] package__ankhorage_navigator
                 -.-&gt; module_src_index_test_ts module_src_index_test_ts --&gt; module_src_index_ts
@@ -1752,6 +2291,14 @@
                 module_src_presentation_resolveCustomTabsPresentation_ts
                 module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
+                module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;] package__ankhorage_navigator
+                -.-&gt; module_src_tabs_test_ts module_src_tabs_test_ts --&gt; module_src_index_ts
+                module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_tabs_CustomTabsLayout_tsx
+                module_src_tabs_CustomTabsLayout_tsx --&gt; module_src_definitions_NavigatorPlan_ts
+                module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+                module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_tabs_nativeIconFamilies_ts
                 module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_topology_resolveNavigatorPreset_ts
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
@@ -1763,12 +2310,20 @@
                 module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validatePresetTopology_ts
+                module_src_validation_validateNavigatorManifest_ts --&gt;
+                module_src_validation_validateTabsNavigator_ts
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_validation_validatePresetTopology_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_topology_resolveNavigatorPreset_ts
+                module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_validation_validateTabsNavigator_ts
+                module_src_validation_validateTabsNavigator_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_validation_validateTabsNavigator_ts --&gt;
+                module_src_expo_router_resolveNavigatorConfig_ts
               </div>
               <details>
                 <summary>View Mermaid source</summary>
@@ -1779,6 +2334,8 @@ graph TD
   package__ankhorage_navigator --&gt; entrypoint_src_index_ts
   entrypoint_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
   package__ankhorage_navigator --&gt; entrypoint_src_metadata_index_ts
+  entrypoint_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+  package__ankhorage_navigator --&gt; entrypoint_src_tabs_index_ts
   module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
@@ -1794,9 +2351,21 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_generatedTabsTypecheck_test_ts
+  module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_generation_generateNavigatorFiles_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateTabsLayoutFile_ts
+  module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_generation_generateTabsLayoutFile_ts
+  module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generationSafety_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_index_test_ts
   module_src_index_test_ts --&gt; module_src_index_ts
@@ -1808,6 +2377,15 @@ graph TD
   module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_presentation_resolveCustomTabsPresentation_ts
   module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_tabs_test_ts
+  module_src_tabs_test_ts --&gt; module_src_index_ts
+  module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_tabs_CustomTabsLayout_tsx
+  module_src_tabs_CustomTabsLayout_tsx --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+  module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_tabs_nativeIconFamilies_ts
   module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_topology_resolveNavigatorPreset_ts
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
@@ -1815,10 +2393,15 @@ graph TD
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validatePresetTopology_ts
+  module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_validation_validatePresetTopology_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_validation_validateTabsNavigator_ts
+  module_src_validation_validateTabsNavigator_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateTabsNavigator_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
 </pre>
               </details>
             </article>
@@ -1834,15 +2417,23 @@ graph TD
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+                module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
+                module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
                 module_src_index_test_ts[&quot;src/index.test.ts&quot;]
                 module_src_index_ts[&quot;src/index.ts&quot;]
                 module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
                 module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
                 module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
+                module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
+                module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+                module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
                 module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+                module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
@@ -1857,11 +2448,23 @@ graph TD
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
                 module_src_presentation_resolveCustomTabsPresentation_ts
+                module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
-                module_src_definitions_NavigatorPlan_ts module_src_index_test_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generateTabsLayoutFile_ts
+                module_src_generation_generateNavigatorFiles_ts --&gt;
+                module_src_generation_generationSafety_ts
+                module_src_generation_generateTabsLayoutFile_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_generation_generateTabsLayoutFile_ts --&gt;
+                module_src_generation_generationSafety_ts module_src_generation_generationSafety_ts
+                --&gt; module_src_definitions_NavigatorPlan_ts module_src_index_test_ts --&gt;
                 module_src_index_ts module_src_packageBoundary_test_ts --&gt;
                 module_src_metadata_index_ts
                 module_src_presentation_resolveCustomTabsPresentation_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts module_src_tabs_test_ts --&gt;
+                module_src_index_ts module_src_tabs_CustomTabsLayout_tsx --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
@@ -1869,10 +2472,16 @@ graph TD
                 module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validatePresetTopology_ts
+                module_src_validation_validateNavigatorManifest_ts --&gt;
+                module_src_validation_validateTabsNavigator_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validatePresetTopology_ts --&gt;
                 module_src_topology_resolveNavigatorPreset_ts
+                module_src_validation_validateTabsNavigator_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_validation_validateTabsNavigator_ts --&gt;
+                module_src_expo_router_resolveNavigatorConfig_ts
               </div>
               <details>
                 <summary>View Mermaid source</summary>
@@ -1882,15 +2491,23 @@ graph LR
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+  module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+  module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
+  module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
   module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
   module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
+  module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
+  module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+  module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
   module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+  module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
@@ -1898,15 +2515,26 @@ graph LR
   module_src_expo_router_resolveNavigatorConfig_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateTabsLayoutFile_ts
+  module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_generation_generateTabsLayoutFile_ts --&gt; module_src_generation_generationSafety_ts
+  module_src_generation_generationSafety_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_index_test_ts --&gt; module_src_index_ts
   module_src_packageBoundary_test_ts --&gt; module_src_metadata_index_ts
   module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_tabs_test_ts --&gt; module_src_index_ts
+  module_src_tabs_CustomTabsLayout_tsx --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validatePresetTopology_ts
+  module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_validation_validateTabsNavigator_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateTabsNavigator_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
 </pre>
               </details>
             </article>
@@ -1919,15 +2547,23 @@ graph LR
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+                module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
+                module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
                 module_src_index_test_ts[&quot;src/index.test.ts&quot;]
                 module_src_index_ts[&quot;src/index.ts&quot;]
                 module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
                 module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
                 module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+                module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
+                module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
+                module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+                module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
                 module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+                module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
                 export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
                 module_src_expo_router_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
                 export_createNavigatorPlan -.-&gt; export_CreateNavigatorPlanOptions
@@ -1937,6 +2573,23 @@ graph LR
                 export_CreateNavigatorPlanOptions export_CreateNavigatorPlanOptions -.-&gt;
                 export_NavigatorResponsiveSize export_CreateNavigatorPlanOptions -.-&gt;
                 export_NavigatorRuntimePlatform
+                export_CustomTabsIconSourceResolver[&quot;CustomTabsIconSourceResolver&quot;]
+                module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsIconSourceResolver
+                export_CustomTabsLayout[&quot;CustomTabsLayout&quot;]
+                module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsLayout
+                export_CustomTabsLayout -.-&gt; export_CustomTabsLayoutProps
+                export_CustomTabsLayoutProps[&quot;CustomTabsLayoutProps&quot;]
+                module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsLayoutProps
+                export_CustomTabsLayoutProps -.-&gt; export_CustomTabsIconSourceResolver
+                export_CustomTabsLayoutProps -.-&gt; export_CustomTabsPresentationProps
+                export_CustomTabsLayoutProps -.-&gt; export_CustomTabsRoute
+                export_CustomTabsLayoutProps -.-&gt; export_NavigatorResponsiveSize
+                export_CustomTabsLayoutProps -.-&gt; export_ResolvedTabsPresentation
+                export_CustomTabsPresentationProps[&quot;CustomTabsPresentationProps&quot;]
+                module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsPresentationProps
+                export_CustomTabsPresentationProps -.-&gt; export_CustomTabsRoute
+                export_CustomTabsRoute[&quot;CustomTabsRoute&quot;]
+                module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsRoute
                 export_ExpoRouterNavigatorModule[&quot;ExpoRouterNavigatorModule&quot;]
                 module_src_definitions_NavigatorPlan_ts --&gt; export_ExpoRouterNavigatorModule
                 export_generateNavigatorFiles[&quot;generateNavigatorFiles&quot;]
@@ -2010,6 +2663,7 @@ graph LR
                 module_src_definitions_NavigatorPlan_ts --&gt; export_TabsNavigatorPlan
                 export_TabsNavigatorPlan -.-&gt; export_ExpoRouterNavigatorModule
                 export_TabsNavigatorPlan -.-&gt; export_NavigatorApiStability
+                export_TabsNavigatorPlan -.-&gt; export_NavigatorResponsiveSize
                 export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsImplementation
                 export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsPresentation
                 export_validateNavigatorManifest[&quot;validateNavigatorManifest&quot;]
@@ -2026,15 +2680,23 @@ graph LR
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+  module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
+  module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
+  module_src_generation_generationSafety_ts[&quot;src/generation/generationSafety.ts&quot;]
   module_src_index_test_ts[&quot;src/index.test.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_metadata_index_ts[&quot;src/metadata/index.ts&quot;]
   module_src_packageBoundary_test_ts[&quot;src/packageBoundary.test.ts&quot;]
   module_src_presentation_resolveCustomTabsPresentation_ts[&quot;src/presentation/resolveCustomTabsPresentation.ts&quot;]
+  module_src_tabs_test_ts[&quot;src/tabs.test.ts&quot;]
+  module_src_tabs_CustomTabsLayout_tsx[&quot;src/tabs/CustomTabsLayout.tsx&quot;]
+  module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
+  module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
   module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
+  module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
   export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
   module_src_expo_router_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
   export_createNavigatorPlan -.-&gt; export_CreateNavigatorPlanOptions
@@ -2043,6 +2705,23 @@ graph LR
   module_src_expo_router_createNavigatorPlan_ts --&gt; export_CreateNavigatorPlanOptions
   export_CreateNavigatorPlanOptions -.-&gt; export_NavigatorResponsiveSize
   export_CreateNavigatorPlanOptions -.-&gt; export_NavigatorRuntimePlatform
+  export_CustomTabsIconSourceResolver[&quot;CustomTabsIconSourceResolver&quot;]
+  module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsIconSourceResolver
+  export_CustomTabsLayout[&quot;CustomTabsLayout&quot;]
+  module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsLayout
+  export_CustomTabsLayout -.-&gt; export_CustomTabsLayoutProps
+  export_CustomTabsLayoutProps[&quot;CustomTabsLayoutProps&quot;]
+  module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsLayoutProps
+  export_CustomTabsLayoutProps -.-&gt; export_CustomTabsIconSourceResolver
+  export_CustomTabsLayoutProps -.-&gt; export_CustomTabsPresentationProps
+  export_CustomTabsLayoutProps -.-&gt; export_CustomTabsRoute
+  export_CustomTabsLayoutProps -.-&gt; export_NavigatorResponsiveSize
+  export_CustomTabsLayoutProps -.-&gt; export_ResolvedTabsPresentation
+  export_CustomTabsPresentationProps[&quot;CustomTabsPresentationProps&quot;]
+  module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsPresentationProps
+  export_CustomTabsPresentationProps -.-&gt; export_CustomTabsRoute
+  export_CustomTabsRoute[&quot;CustomTabsRoute&quot;]
+  module_src_tabs_CustomTabsLayout_tsx --&gt; export_CustomTabsRoute
   export_ExpoRouterNavigatorModule[&quot;ExpoRouterNavigatorModule&quot;]
   module_src_definitions_NavigatorPlan_ts --&gt; export_ExpoRouterNavigatorModule
   export_generateNavigatorFiles[&quot;generateNavigatorFiles&quot;]
@@ -2115,12 +2794,64 @@ graph LR
   module_src_definitions_NavigatorPlan_ts --&gt; export_TabsNavigatorPlan
   export_TabsNavigatorPlan -.-&gt; export_ExpoRouterNavigatorModule
   export_TabsNavigatorPlan -.-&gt; export_NavigatorApiStability
+  export_TabsNavigatorPlan -.-&gt; export_NavigatorResponsiveSize
   export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsImplementation
   export_TabsNavigatorPlan -.-&gt; export_ResolvedTabsPresentation
   export_validateNavigatorManifest[&quot;validateNavigatorManifest&quot;]
   module_src_validation_validateNavigatorManifest_ts --&gt; export_validateNavigatorManifest
   export_validateNavigatorManifest -.-&gt; export_NavigatorDiagnostic
   export_validateNavigatorManifest -.-&gt; export_NavigatorValidationContext
+</pre>
+              </details>
+            </article>
+            <article
+              class="item"
+              data-search="CustomTabsLayout sequence diagrams/sequences/custom-tabs-layout.mmd"
+            >
+              <h3>CustomTabsLayout sequence</h3>
+              <p class="muted"><code>diagrams/sequences/custom-tabs-layout.mmd</code></p>
+              <div class="mermaid">
+                sequenceDiagram participant participant_CustomTabsLayout as CustomTabsLayout
+                participant participant_selectPresentation as selectPresentation participant
+                participant_useBreakpoint as useBreakpoint participant
+                participant_useHydrationSafeSize as useHydrationSafeSize participant
+                participant_useSafeAreaInsets as useSafeAreaInsets participant
+                participant_useSyncExternalStore as useSyncExternalStore
+                participant_CustomTabsLayout-&gt;&gt;participant_useHydrationSafeSize:
+                useHydrationSafeSize()
+                participant_useHydrationSafeSize-&gt;&gt;participant_useBreakpoint: useBreakpoint()
+                participant_useBreakpoint--&gt;&gt;participant_useHydrationSafeSize: return
+                participant_useHydrationSafeSize-&gt;&gt;participant_useSyncExternalStore:
+                useSyncExternalStore()
+                participant_useSyncExternalStore--&gt;&gt;participant_useHydrationSafeSize: return
+                participant_useHydrationSafeSize--&gt;&gt;participant_CustomTabsLayout: return
+                participant_CustomTabsLayout-&gt;&gt;participant_selectPresentation:
+                selectPresentation()
+                participant_selectPresentation--&gt;&gt;participant_CustomTabsLayout: return
+                participant_CustomTabsLayout-&gt;&gt;participant_useSafeAreaInsets:
+                useSafeAreaInsets()
+                participant_useSafeAreaInsets--&gt;&gt;participant_CustomTabsLayout: return
+              </div>
+              <details>
+                <summary>View Mermaid source</summary>
+                <pre>
+sequenceDiagram
+  participant participant_CustomTabsLayout as CustomTabsLayout
+  participant participant_selectPresentation as selectPresentation
+  participant participant_useBreakpoint as useBreakpoint
+  participant participant_useHydrationSafeSize as useHydrationSafeSize
+  participant participant_useSafeAreaInsets as useSafeAreaInsets
+  participant participant_useSyncExternalStore as useSyncExternalStore
+  participant_CustomTabsLayout-&gt;&gt;participant_useHydrationSafeSize: useHydrationSafeSize()
+  participant_useHydrationSafeSize-&gt;&gt;participant_useBreakpoint: useBreakpoint()
+  participant_useBreakpoint--&gt;&gt;participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize-&gt;&gt;participant_useSyncExternalStore: useSyncExternalStore()
+  participant_useSyncExternalStore--&gt;&gt;participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize--&gt;&gt;participant_CustomTabsLayout: return
+  participant_CustomTabsLayout-&gt;&gt;participant_selectPresentation: selectPresentation()
+  participant_selectPresentation--&gt;&gt;participant_CustomTabsLayout: return
+  participant_CustomTabsLayout-&gt;&gt;participant_useSafeAreaInsets: useSafeAreaInsets()
+  participant_useSafeAreaInsets--&gt;&gt;participant_CustomTabsLayout: return
 </pre>
               </details>
             </article>
@@ -2173,7 +2904,10 @@ sequenceDiagram
                 participant_createAdaptiveTabsPlan-&gt;&gt;participant_createNativeTabsPlan:
                 createNativeTabsPlan()
                 participant_createNativeTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
-                participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan:
+                participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig:
+                resolveAdaptiveConfig()
+                participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan:
+                return participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan:
                 createCustomTabsPlan()
                 participant_createCustomTabsPlan-&gt;&gt;participant_resolveCustomTabsPresentation:
                 resolveCustomTabsPresentation()
@@ -2183,9 +2917,6 @@ sequenceDiagram
                 return
                 participant_resolveCustomTabsPresentation--&gt;&gt;participant_createCustomTabsPlan:
                 return participant_createCustomTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan:
-                return participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig:
-                resolveAdaptiveConfig()
-                participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan:
                 return
                 participant_createAdaptiveTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
                 return
@@ -2217,14 +2948,14 @@ sequenceDiagram
   participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createAdaptiveTabsPlan: createAdaptiveTabsPlan()
   participant_createAdaptiveTabsPlan-&gt;&gt;participant_createNativeTabsPlan: createNativeTabsPlan()
   participant_createNativeTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig: resolveAdaptiveConfig()
+  participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan: return
   participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan: createCustomTabsPlan()
   participant_createCustomTabsPlan-&gt;&gt;participant_resolveCustomTabsPresentation: resolveCustomTabsPresentation()
   participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
   participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation: return
   participant_resolveCustomTabsPresentation--&gt;&gt;participant_createCustomTabsPlan: return
   participant_createCustomTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
-  participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig: resolveAdaptiveConfig()
-  participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan: return
   participant_createAdaptiveTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
   participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createNativeTabsPlan: createNativeTabsPlan()
   participant_createNativeTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
@@ -2266,7 +2997,7 @@ sequenceDiagram
               data-search="createAdapter src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:81:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:88:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2274,7 +3005,7 @@ sequenceDiagram
               data-search="resolveTabsPlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>resolveTabsPlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:128:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:136:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2282,7 +3013,7 @@ sequenceDiagram
               data-search="createNodeDetails src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createNodeDetails</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:148:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:156:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2290,7 +3021,7 @@ sequenceDiagram
               data-search="createRoutePlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createRoutePlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:192:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:200:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2298,7 +3029,7 @@ sequenceDiagram
               data-search="createNodePlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createNodePlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:224:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:232:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2306,7 +3037,7 @@ sequenceDiagram
               data-search="createNavigatorPlan src/expo-router/createNavigatorPlan.ts Create a disposable, provider-aware plan from only the navigator desired-state slice."
             >
               <h3>createNavigatorPlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:258:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:272:1</code></p>
               <p>
                 Create a disposable, provider-aware plan from only the navigator desired-state
                 slice.
@@ -2409,7 +3140,7 @@ sequenceDiagram
               data-search="createJavaScriptTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Create the stable JavaScript tabs plan for bottom or top presentation."
             >
               <h3>createJavaScriptTabsPlan</h3>
-              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:43:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:55:1</code></p>
               <p>Create the stable JavaScript tabs plan for bottom or top presentation.</p>
             </article>
             <article
@@ -2417,7 +3148,7 @@ sequenceDiagram
               data-search="createCustomTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Create the stable headless custom-tabs plan for Web or explicit custom use."
             >
               <h3>createCustomTabsPlan</h3>
-              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:55:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:67:1</code></p>
               <p>Create the stable headless custom-tabs plan for Web or explicit custom use.</p>
             </article>
             <article
@@ -2425,7 +3156,7 @@ sequenceDiagram
               data-search="createAdaptiveTabsPlan src/expo-router/resolveTabsNavigatorPlan.ts Resolve the adaptive tabs plan for the selected runtime platform."
             >
               <h3>createAdaptiveTabsPlan</h3>
-              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:69:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:88:1</code></p>
               <p>Resolve the adaptive tabs plan for the selected runtime platform.</p>
             </article>
             <article
@@ -2433,10 +3164,30 @@ sequenceDiagram
               data-search="resolveTabsNavigatorPlan src/expo-router/resolveTabsNavigatorPlan.ts Resolve the Expo Router module/export and presentation for one tabs implementation."
             >
               <h3>resolveTabsNavigatorPlan</h3>
-              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:79:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveTabsNavigatorPlan.ts:99:1</code></p>
               <p>
                 Resolve the Expo Router module/export and presentation for one tabs implementation.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-generatedtabstypecheck-test-ts"
+          class="view"
+          data-view="src/generatedTabsTypecheck.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/generatedTabsTypecheck.test.ts</h2>
+            <article class="item" data-search="createLayout src/generatedTabsTypecheck.test.ts ">
+              <h3>createLayout</h3>
+              <p class="muted"><code>src/generatedTabsTypecheck.test.ts:11:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="typeErrors src/generatedTabsTypecheck.test.ts ">
+              <h3>typeErrors</h3>
+              <p class="muted"><code>src/generatedTabsTypecheck.test.ts:20:1</code></p>
+              <p class="empty">No description available.</p>
             </article>
           </section>
         </section>
@@ -2450,23 +3201,10 @@ sequenceDiagram
             <h2>src/generation/generateNavigatorFiles.ts</h2>
             <article
               class="item"
-              data-search="assertModuleBinding src/generation/generateNavigatorFiles.ts "
-            >
-              <h3>assertModuleBinding</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:16:1</code></p>
-              <p class="empty">No description available.</p>
-            </article>
-            <article class="item" data-search="quote src/generation/generateNavigatorFiles.ts ">
-              <h3>quote</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:29:1</code></p>
-              <p class="empty">No description available.</p>
-            </article>
-            <article
-              class="item"
               data-search="assertRouteName src/generation/generateNavigatorFiles.ts "
             >
               <h3>assertRouteName</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:33:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:15:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2474,7 +3212,7 @@ sequenceDiagram
               data-search="routeOptions src/generation/generateNavigatorFiles.ts "
             >
               <h3>routeOptions</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:39:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:21:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2482,7 +3220,7 @@ sequenceDiagram
               data-search="renderScreen src/generation/generateNavigatorFiles.ts "
             >
               <h3>renderScreen</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:55:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:37:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2490,7 +3228,7 @@ sequenceDiagram
               data-search="createGuardImports src/generation/generateNavigatorFiles.ts "
             >
               <h3>createGuardImports</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:78:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:60:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2498,7 +3236,7 @@ sequenceDiagram
               data-search="createNavigatorContents src/generation/generateNavigatorFiles.ts "
             >
               <h3>createNavigatorContents</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:95:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:77:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2506,7 +3244,7 @@ sequenceDiagram
               data-search="createLayoutFile src/generation/generateNavigatorFiles.ts "
             >
               <h3>createLayoutFile</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:122:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:104:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2514,7 +3252,7 @@ sequenceDiagram
               data-search="createScreenFile src/generation/generateNavigatorFiles.ts "
             >
               <h3>createScreenFile</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:162:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:147:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2522,7 +3260,7 @@ sequenceDiagram
               data-search="collectFiles src/generation/generateNavigatorFiles.ts "
             >
               <h3>collectFiles</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:180:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:165:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2530,7 +3268,7 @@ sequenceDiagram
               data-search="collectRouteIds src/generation/generateNavigatorFiles.ts "
             >
               <h3>collectRouteIds</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:197:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:182:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2538,7 +3276,7 @@ sequenceDiagram
               data-search="validateFlowBindings src/generation/generateNavigatorFiles.ts "
             >
               <h3>validateFlowBindings</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:207:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:192:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2546,11 +3284,109 @@ sequenceDiagram
               data-search="generateNavigatorFiles src/generation/generateNavigatorFiles.ts Generate deterministic Expo Router files from a validated disposable plan and narrow bindings."
             >
               <h3>generateNavigatorFiles</h3>
-              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:224:1</code></p>
+              <p class="muted"><code>src/generation/generateNavigatorFiles.ts:209:1</code></p>
               <p>
                 Generate deterministic Expo Router files from a validated disposable plan and narrow
                 bindings.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-generation-generatetabslayoutfile-ts"
+          class="view"
+          data-view="src/generation/generateTabsLayoutFile.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/generation/generateTabsLayoutFile.ts</h2>
+            <article
+              class="item"
+              data-search="nativeIconProvider src/generation/generateTabsLayoutFile.ts Resolve and validate the native vector-icon provider for one planned route icon."
+            >
+              <h3>nativeIconProvider</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:14:1</code></p>
+              <p>
+                Resolve and validate the native vector-icon provider for one planned route icon.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="nativeIconName src/generation/generateTabsLayoutFile.ts Read the required native vector-icon name from one planned route icon."
+            >
+              <h3>nativeIconName</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:32:1</code></p>
+              <p>Read the required native vector-icon name from one planned route icon.</p>
+            </article>
+            <article
+              class="item"
+              data-search="nativeIconFamily src/generation/generateTabsLayoutFile.ts Map a supported provider to the Navigator-owned Native Tabs family export."
+            >
+              <h3>nativeIconFamily</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:40:1</code></p>
+              <p>Map a supported provider to the Navigator-owned Native Tabs family export.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createNativeTabsContents src/generation/generateTabsLayoutFile.ts Render a complete Native Tabs layout module from one validated node plan."
+            >
+              <h3>createNativeTabsContents</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:56:1</code></p>
+              <p>Render a complete Native Tabs layout module from one validated node plan.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createNativeTabsFile src/generation/generateTabsLayoutFile.ts Create the generated Native Tabs layout file and its narrow runtime imports."
+            >
+              <h3>createNativeTabsFile</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:88:1</code></p>
+              <p>Create the generated Native Tabs layout file and its narrow runtime imports.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createCustomTabsFile src/generation/generateTabsLayoutFile.ts Create the generated Web custom-tabs layout file and registered integration imports."
+            >
+              <h3>createCustomTabsFile</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:125:1</code></p>
+              <p>
+                Create the generated Web custom-tabs layout file and registered integration imports.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="generateTabsLayoutFile src/generation/generateTabsLayoutFile.ts Generate the specialized layout file for a supported tabs implementation."
+            >
+              <h3>generateTabsLayoutFile</h3>
+              <p class="muted"><code>src/generation/generateTabsLayoutFile.ts:172:1</code></p>
+              <p>Generate the specialized layout file for a supported tabs implementation.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-generation-generationsafety-ts"
+          class="view"
+          data-view="src/generation/generationSafety.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/generation/generationSafety.ts</h2>
+            <article
+              class="item"
+              data-search="assertModuleBinding src/generation/generationSafety.ts Reject module and export bindings that cannot be emitted as safe static imports."
+            >
+              <h3>assertModuleBinding</h3>
+              <p class="muted"><code>src/generation/generationSafety.ts:8:1</code></p>
+              <p>
+                Reject module and export bindings that cannot be emitted as safe static imports.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="quote src/generation/generationSafety.ts Serialize a generated string literal with JSON escaping."
+            >
+              <h3>quote</h3>
+              <p class="muted"><code>src/generation/generationSafety.ts:22:1</code></p>
+              <p>Serialize a generated string literal with JSON escaping.</p>
             </article>
           </section>
         </section>
@@ -2602,6 +3438,119 @@ sequenceDiagram
             </article>
           </section>
         </section>
+        <section id="view-src-tabs-test-ts" class="view" data-view="src/tabs.test.ts" hidden>
+          <section class="panel">
+            <h2>src/tabs.test.ts</h2>
+            <article class="item" data-search="generatedLayout src/tabs.test.ts ">
+              <h3>generatedLayout</h3>
+              <p class="muted"><code>src/tabs.test.ts:13:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-tabs-customtabslayout-tsx"
+          class="view"
+          data-view="src/tabs/CustomTabsLayout.tsx"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/tabs/CustomTabsLayout.tsx</h2>
+            <article
+              class="item"
+              data-search="resolveIcon src/tabs/CustomTabsLayout.tsx Convert portable route icon metadata to the Surface navigation icon contract."
+            >
+              <h3>resolveIcon</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:63:1</code></p>
+              <p>Convert portable route icon metadata to the Surface navigation icon contract.</p>
+            </article>
+            <article
+              class="item"
+              data-search="SurfaceTabTrigger src/tabs/CustomTabsLayout.tsx Render one Surface navigation control bound to Expo Router&#39;s headless tab trigger."
+            >
+              <h3>SurfaceTabTrigger</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:81:1</code></p>
+              <p>
+                Render one Surface navigation control bound to Expo Router&#39;s headless tab
+                trigger.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="useHydrationSafeSize src/tabs/CustomTabsLayout.tsx Resolve a hydration-safe semantic size from the Surface breakpoint owner."
+            >
+              <h3>useHydrationSafeSize</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:111:1</code></p>
+              <p>Resolve a hydration-safe semantic size from the Surface breakpoint owner.</p>
+            </article>
+            <article
+              class="item"
+              data-search="subscribeToHydration src/tabs/CustomTabsLayout.tsx Provide the stable no-op subscription required for the hydration snapshot boundary."
+            >
+              <h3>subscribeToHydration</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:124:1</code></p>
+              <p>
+                Provide the stable no-op subscription required for the hydration snapshot boundary.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="getClientHydration src/tabs/CustomTabsLayout.tsx Report that client rendering can consume the live responsive breakpoint."
+            >
+              <h3>getClientHydration</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:129:1</code></p>
+              <p>Report that client rendering can consume the live responsive breakpoint.</p>
+            </article>
+            <article
+              class="item"
+              data-search="getServerHydration src/tabs/CustomTabsLayout.tsx Keep server output deterministic at the compact presentation."
+            >
+              <h3>getServerHydration</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:134:1</code></p>
+              <p>Keep server output deterministic at the compact presentation.</p>
+            </article>
+            <article
+              class="item"
+              data-search="selectPresentation src/tabs/CustomTabsLayout.tsx Select one fixed presentation without altering the Router-owned topology."
+            >
+              <h3>selectPresentation</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:139:1</code></p>
+              <p>Select one fixed presentation without altering the Router-owned topology.</p>
+            </article>
+            <article
+              class="item"
+              data-search="BuiltInPresentation src/tabs/CustomTabsLayout.tsx Render Surface-owned bottom, top, rail, or sidebar tab chrome."
+            >
+              <h3>BuiltInPresentation</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:154:1</code></p>
+              <p>Render Surface-owned bottom, top, rail, or sidebar tab chrome.</p>
+            </article>
+            <article
+              class="item"
+              data-search="TabsNavigation src/tabs/CustomTabsLayout.tsx Select built-in or registered custom chrome for the currently visible routes."
+            >
+              <h3>TabsNavigation</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:182:1</code></p>
+              <p>Select built-in or registered custom chrome for the currently visible routes.</p>
+            </article>
+            <article class="item" data-search="renderItem src/tabs/CustomTabsLayout.tsx ">
+              <h3>renderItem</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:194:9</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="CustomTabsLayout src/tabs/CustomTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations."
+            >
+              <h3>CustomTabsLayout</h3>
+              <p class="muted"><code>src/tabs/CustomTabsLayout.tsx:218:1</code></p>
+              <p>
+                Render one stable headless Expo Router tab topology with Surface-owned
+                presentations.
+              </p>
+            </article>
+          </section>
+        </section>
         <section
           id="view-src-topology-resolvenavigatorpreset-ts"
           class="view"
@@ -2633,15 +3582,7 @@ sequenceDiagram
               data-search="addStackAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
             >
               <h3>addStackAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:17:1</code></p>
-              <p class="empty">No description available.</p>
-            </article>
-            <article
-              class="item"
-              data-search="addTabsAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
-            >
-              <h3>addTabsAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:46:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:16:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2649,7 +3590,7 @@ sequenceDiagram
               data-search="addUnsupportedAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
             >
               <h3>addUnsupportedAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:92:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:45:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2657,7 +3598,7 @@ sequenceDiagram
               data-search="validateInitialRoute src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateInitialRoute</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:116:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:69:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2665,7 +3606,7 @@ sequenceDiagram
               data-search="validateRouteName src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteName</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:135:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:96:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2673,7 +3614,7 @@ sequenceDiagram
               data-search="validateRouteTarget src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteTarget</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:160:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:121:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2681,7 +3622,7 @@ sequenceDiagram
               data-search="validateRouteGuards src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteGuards</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:175:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:136:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2689,7 +3630,7 @@ sequenceDiagram
               data-search="validateStackRouteOptions src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateStackRouteOptions</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:199:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:160:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2697,7 +3638,7 @@ sequenceDiagram
               data-search="validateLocalRoute src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateLocalRoute</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:221:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:191:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2705,7 +3646,7 @@ sequenceDiagram
               data-search="validateNode src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateNode</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:235:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:205:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2713,7 +3654,7 @@ sequenceDiagram
               data-search="validateNavigatorManifest src/validation/validateNavigatorManifest.ts Validate one navigator desired-state slice for a concrete Expo Router target."
             >
               <h3>validateNavigatorManifest</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:268:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:238:1</code></p>
               <p>Validate one navigator desired-state slice for a concrete Expo Router target.</p>
             </article>
           </section>
@@ -2740,6 +3681,56 @@ sequenceDiagram
               <h3>visit</h3>
               <p class="muted"><code>src/validation/validatePresetTopology.ts:15:3</code></p>
               <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-validation-validatetabsnavigator-ts"
+          class="view"
+          data-view="src/validation/validateTabsNavigator.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/validation/validateTabsNavigator.ts</h2>
+            <article
+              class="item"
+              data-search="addTabsPlatformDiagnostics src/validation/validateTabsNavigator.ts Add platform and stability diagnostics for the resolved tabs implementation."
+            >
+              <h3>addTabsPlatformDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateTabsNavigator.ts:21:1</code></p>
+              <p>Add platform and stability diagnostics for the resolved tabs implementation.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addTabsIconDiagnostics src/validation/validateTabsNavigator.ts Validate route icon compatibility for native and Surface-backed tabs."
+            >
+              <h3>addTabsIconDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateTabsNavigator.ts:62:1</code></p>
+              <p>Validate route icon compatibility for native and Surface-backed tabs.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addTabsRouteDiagnostics src/validation/validateTabsNavigator.ts Validate route reachability, guards, paths, counts, and icons for tabs."
+            >
+              <h3>addTabsRouteDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateTabsNavigator.ts:94:1</code></p>
+              <p>Validate route reachability, guards, paths, counts, and icons for tabs.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addNativeVersionDiagnostics src/validation/validateTabsNavigator.ts Gate newer Native Tabs options on the Expo Router version that supports them."
+            >
+              <h3>addNativeVersionDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateTabsNavigator.ts:140:1</code></p>
+              <p>Gate newer Native Tabs options on the Expo Router version that supports them.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addTabsAdapterDiagnostics src/validation/validateTabsNavigator.ts Add tabs-specific semantic diagnostics for one manifest navigator node."
+            >
+              <h3>addTabsAdapterDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateTabsNavigator.ts:170:1</code></p>
+              <p>Add tabs-specific semantic diagnostics for one manifest navigator node.</p>
             </article>
           </section>
         </section>

@@ -110,9 +110,9 @@ describe('@ankhorage/navigator structural diagnostics', () => {
 
     const codes = diagnostics.map((diagnostic) => diagnostic.code);
     for (const code of [
-      'adapter-unavailable',
       'duplicate-route-name',
       'invalid-route-target',
+      'missing-tabs-path',
       'preset-topology-mismatch',
       'unknown-initial-route',
     ]) {

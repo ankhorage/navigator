@@ -8,7 +8,7 @@
     "modulePath": "src/expo-router/createNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/expo-router/createNavigatorPlan.ts",
-      "line": 258,
+      "line": 272,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -78,6 +78,210 @@
     "structuredRows": []
   },
   {
+    "name": "CustomTabsIconSourceResolver",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/tabs/CustomTabsLayout.tsx",
+      "line": 40,
+      "column": 1
+    },
+    "exportPaths": ["src/tabs/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomTabsLayout",
+    "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/tabs/CustomTabsLayout.tsx",
+      "line": 218,
+      "column": 1
+    },
+    "exportPaths": ["src/tabs/index.ts"],
+    "relatedSymbols": ["CustomTabsLayoutProps"],
+    "signatures": [
+      {
+        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
+        "parameters": [
+          {
+            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+            "type": "CustomTabsLayoutProps",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"react\").JSX.Element",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomTabsLayoutProps",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/tabs/CustomTabsLayout.tsx",
+      "line": 46,
+      "column": 1
+    },
+    "exportPaths": ["src/tabs/index.ts"],
+    "relatedSymbols": [
+      "CustomTabsIconSourceResolver",
+      "CustomTabsPresentationProps",
+      "CustomTabsRoute",
+      "NavigatorResponsiveSize",
+      "ResolvedTabsPresentation"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "customPresentation",
+        "kind": "property",
+        "type": "ComponentType<CustomTabsPresentationProps> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "initialRouteName",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "presentations",
+        "kind": "property",
+        "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "resolveIconSource",
+        "kind": "property",
+        "type": "CustomTabsIconSourceResolver | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "routes",
+        "kind": "property",
+        "type": "readonly CustomTabsRoute[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomTabsPresentationProps",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/tabs/CustomTabsLayout.tsx",
+      "line": 30,
+      "column": 1
+    },
+    "exportPaths": ["src/tabs/index.ts"],
+    "relatedSymbols": ["CustomTabsRoute"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "renderItem",
+        "kind": "property",
+        "type": "(route: CustomTabsRoute, compact?: boolean) => ReactNode",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "routes",
+        "kind": "property",
+        "type": "readonly CustomTabsRoute[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "CustomTabsRoute",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/tabs/CustomTabsLayout.tsx",
+      "line": 21,
+      "column": 1
+    },
+    "exportPaths": ["src/tabs/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "badge",
+        "kind": "property",
+        "type": "ReactNode",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "href",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "icon",
+        "kind": "property",
+        "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "label",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "visible",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "ExpoRouterNavigatorModule",
     "description": null,
     "isReadme": false,
@@ -104,7 +308,7 @@
     "modulePath": "src/generation/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/generation/generateNavigatorFiles.ts",
-      "line": 224,
+      "line": 209,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -309,7 +513,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 134,
+      "line": 145,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -342,7 +546,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 125,
+      "line": 134,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -364,10 +568,24 @@
         "description": null
       },
       {
+        "name": "iconSourceResolver",
+        "kind": "property",
+        "type": "NavigatorScreenModule | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "screens",
         "kind": "property",
         "type": "Readonly<Record<string, NavigatorScreenModule>>",
         "required": true,
+        "description": null
+      },
+      {
+        "name": "tabPresentations",
+        "kind": "property",
+        "type": "Readonly<Record<string, NavigatorScreenModule>> | undefined",
+        "required": false,
         "description": null
       }
     ],
@@ -382,7 +600,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 81,
+      "line": 90,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -471,7 +689,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 109,
+      "line": 118,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -543,7 +761,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 69,
+      "line": 78,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -643,7 +861,7 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 120,
+      "line": 129,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -872,7 +1090,7 @@
     "modulePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-      "line": 79,
+      "line": 99,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -916,18 +1134,26 @@
     "modulePath": "src/definitions/NavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 60,
+      "line": 66,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
     "relatedSymbols": [
       "ExpoRouterNavigatorModule",
       "NavigatorApiStability",
+      "NavigatorResponsiveSize",
       "ResolvedTabsImplementation",
       "ResolvedTabsPresentation"
     ],
     "signatures": [],
     "members": [
+      {
+        "name": "bottomAccessoryScreenId",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
       {
         "name": "customPresentationId",
         "kind": "property",
@@ -950,6 +1176,13 @@
         "description": null
       },
       {
+        "name": "minimizeBehavior",
+        "kind": "property",
+        "type": "\"automatic\" | \"never\" | \"onScrollDown\" | \"onScrollUp\" | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "module",
         "kind": "property",
         "type": "ExpoRouterNavigatorModule",
@@ -960,6 +1193,13 @@
         "name": "presentation",
         "kind": "property",
         "type": "ResolvedTabsPresentation | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "presentations",
+        "kind": "property",
+        "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>> | undefined",
         "required": false,
         "description": null
       },
@@ -982,7 +1222,7 @@
     "modulePath": "src/validation/validateNavigatorManifest.ts",
     "sourceLocation": {
       "filePath": "src/validation/validateNavigatorManifest.ts",
-      "line": 268,
+      "line": 238,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],

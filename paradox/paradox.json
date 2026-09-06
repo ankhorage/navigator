@@ -1,7 +1,7 @@
 {
   "packageName": "NAVIGATOR",
   "packageId": "@ankhorage/navigator",
-  "description": "Standalone manifest-driven navigator capability for Expo Router across React Native and React Native Web.",
+  "description": "Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs use Native Tabs on Android/iOS and one stable Expo Router headless topology with Surface-owned responsive presentation on Web.",
   "collaborators": null,
   "donation": null,
   "badges": [
@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.1.1",
+      "value": "v1.0.0",
       "color": "cb3837"
     },
     {
@@ -66,7 +66,7 @@
   "readmeCli": null,
   "readmeConfig": null,
   "config": null,
-  "entrypoints": ["src/index.ts", "src/metadata/index.ts"],
+  "entrypoints": ["src/index.ts", "src/metadata/index.ts", "src/tabs/index.ts"],
   "modules": [
     {
       "path": "src/definitions/NavigatorPlan.ts",
@@ -124,10 +124,32 @@
       "exports": ["resolveTabsNavigatorPlan"]
     },
     {
+      "path": "src/generatedTabsTypecheck.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/generation/generateNavigatorFiles.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "dependencies": [
+        "src/definitions/NavigatorPlan.ts",
+        "src/generation/generateTabsLayoutFile.ts",
+        "src/generation/generationSafety.ts"
+      ],
       "exports": ["generateNavigatorFiles"]
+    },
+    {
+      "path": "src/generation/generateTabsLayoutFile.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/definitions/NavigatorPlan.ts", "src/generation/generationSafety.ts"],
+      "exports": ["generateTabsLayoutFile"]
+    },
+    {
+      "path": "src/generation/generationSafety.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": ["assertModuleBinding", "quote"]
     },
     {
       "path": "src/index.test.ts",
@@ -187,6 +209,48 @@
       "exports": ["resolveCustomTabsPresentation", "ResolvedCustomTabsPresentation"]
     },
     {
+      "path": "src/tabs.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/tabs/CustomTabsLayout.tsx",
+      "isEntrypoint": false,
+      "dependencies": ["src/definitions/NavigatorPlan.ts"],
+      "exports": [
+        "CustomTabsIconSourceResolver",
+        "CustomTabsLayout",
+        "CustomTabsLayoutProps",
+        "CustomTabsPresentationProps",
+        "CustomTabsRoute"
+      ]
+    },
+    {
+      "path": "src/tabs/index.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "CustomTabsIconSourceResolver",
+        "CustomTabsLayout",
+        "CustomTabsLayoutProps",
+        "CustomTabsPresentationProps",
+        "CustomTabsRoute"
+      ]
+    },
+    {
+      "path": "src/tabs/nativeIconFamilies.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "NativeFontAwesome5Family",
+        "NativeFontAwesome6Family",
+        "NativeFontAwesomeFamily",
+        "NativeIoniconsFamily",
+        "NativeMaterialDesignIconsFamily"
+      ]
+    },
+    {
       "path": "src/topology/resolveNavigatorPreset.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -198,7 +262,8 @@
       "dependencies": [
         "src/definitions/NavigatorPlan.ts",
         "src/expo-router/resolveNavigatorConfig.ts",
-        "src/validation/validatePresetTopology.ts"
+        "src/validation/validatePresetTopology.ts",
+        "src/validation/validateTabsNavigator.ts"
       ],
       "exports": ["validateNavigatorManifest"]
     },
@@ -210,6 +275,15 @@
         "src/topology/resolveNavigatorPreset.ts"
       ],
       "exports": ["validatePresetTopology"]
+    },
+    {
+      "path": "src/validation/validateTabsNavigator.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/definitions/NavigatorPlan.ts",
+        "src/expo-router/resolveNavigatorConfig.ts"
+      ],
+      "exports": ["addTabsAdapterDiagnostics"]
     }
   ],
   "exports": [
@@ -222,7 +296,7 @@
       "modulePath": "src/expo-router/createNavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 258,
+        "line": 272,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -292,6 +366,210 @@
       "structuredRows": []
     },
     {
+      "name": "CustomTabsIconSourceResolver",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/tabs/CustomTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 40,
+        "column": 1
+      },
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "CustomTabsLayout",
+      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/tabs/CustomTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 218,
+        "column": 1
+      },
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": ["CustomTabsLayoutProps"],
+      "signatures": [
+        {
+          "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
+          "parameters": [
+            {
+              "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+              "type": "CustomTabsLayoutProps",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "import(\"react\").JSX.Element",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "CustomTabsLayoutProps",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/tabs/CustomTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 46,
+        "column": 1
+      },
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": [
+        "CustomTabsIconSourceResolver",
+        "CustomTabsPresentationProps",
+        "CustomTabsRoute",
+        "NavigatorResponsiveSize",
+        "ResolvedTabsPresentation"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "customPresentation",
+          "kind": "property",
+          "type": "ComponentType<CustomTabsPresentationProps> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "initialRouteName",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "presentations",
+          "kind": "property",
+          "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "resolveIconSource",
+          "kind": "property",
+          "type": "CustomTabsIconSourceResolver | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "routes",
+          "kind": "property",
+          "type": "readonly CustomTabsRoute[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "CustomTabsPresentationProps",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/tabs/CustomTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 30,
+        "column": 1
+      },
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": ["CustomTabsRoute"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "renderItem",
+          "kind": "property",
+          "type": "(route: CustomTabsRoute, compact?: boolean) => ReactNode",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "routes",
+          "kind": "property",
+          "type": "readonly CustomTabsRoute[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "CustomTabsRoute",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/tabs/CustomTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 21,
+        "column": 1
+      },
+      "exportPaths": ["src/tabs/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "badge",
+          "kind": "property",
+          "type": "ReactNode",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "href",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "icon",
+          "kind": "property",
+          "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "label",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "visible",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
       "name": "ExpoRouterNavigatorModule",
       "description": null,
       "isReadme": false,
@@ -318,7 +596,7 @@
       "modulePath": "src/generation/generateNavigatorFiles.ts",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 224,
+        "line": 209,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -523,7 +801,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 134,
+        "line": 145,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -556,7 +834,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 125,
+        "line": 134,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -578,10 +856,24 @@
           "description": null
         },
         {
+          "name": "iconSourceResolver",
+          "kind": "property",
+          "type": "NavigatorScreenModule | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "screens",
           "kind": "property",
           "type": "Readonly<Record<string, NavigatorScreenModule>>",
           "required": true,
+          "description": null
+        },
+        {
+          "name": "tabPresentations",
+          "kind": "property",
+          "type": "Readonly<Record<string, NavigatorScreenModule>> | undefined",
+          "required": false,
           "description": null
         }
       ],
@@ -596,7 +888,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 81,
+        "line": 90,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -685,7 +977,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 109,
+        "line": 118,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -757,7 +1049,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 69,
+        "line": 78,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -857,7 +1149,7 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 120,
+        "line": 129,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1086,7 +1378,7 @@
       "modulePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-        "line": 79,
+        "line": 99,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1134,18 +1426,26 @@
       "modulePath": "src/definitions/NavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/definitions/NavigatorPlan.ts",
-        "line": 60,
+        "line": 66,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "ExpoRouterNavigatorModule",
         "NavigatorApiStability",
+        "NavigatorResponsiveSize",
         "ResolvedTabsImplementation",
         "ResolvedTabsPresentation"
       ],
       "signatures": [],
       "members": [
+        {
+          "name": "bottomAccessoryScreenId",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
         {
           "name": "customPresentationId",
           "kind": "property",
@@ -1168,6 +1468,13 @@
           "description": null
         },
         {
+          "name": "minimizeBehavior",
+          "kind": "property",
+          "type": "\"automatic\" | \"never\" | \"onScrollDown\" | \"onScrollUp\" | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "module",
           "kind": "property",
           "type": "ExpoRouterNavigatorModule",
@@ -1178,6 +1485,13 @@
           "name": "presentation",
           "kind": "property",
           "type": "ResolvedTabsPresentation | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "presentations",
+          "kind": "property",
+          "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>> | undefined",
           "required": false,
           "description": null
         },
@@ -1200,7 +1514,7 @@
       "modulePath": "src/validation/validateNavigatorManifest.ts",
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 268,
+        "line": 238,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1230,7 +1544,53 @@
       "structuredRows": []
     }
   ],
-  "components": [],
+  "components": [
+    {
+      "name": "CustomTabsLayout",
+      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "isReadme": false,
+      "examples": [],
+      "modulePath": "src/tabs/CustomTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 218,
+        "column": 1
+      },
+      "exportPaths": ["src/tabs/index.ts"],
+      "props": [
+        {
+          "name": "customPresentation",
+          "type": "ComponentType<CustomTabsPresentationProps> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "initialRouteName",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "presentations",
+          "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "resolveIconSource",
+          "type": "CustomTabsIconSourceResolver | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "routes",
+          "type": "readonly CustomTabsRoute[]",
+          "required": true,
+          "description": null
+        }
+      ]
+    }
+  ],
   "sourceFunctions": [
     {
       "name": "createStackAdapter",
@@ -1255,7 +1615,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 81,
+        "line": 88,
         "column": 1
       }
     },
@@ -1264,7 +1624,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 128,
+        "line": 136,
         "column": 1
       }
     },
@@ -1273,7 +1633,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 148,
+        "line": 156,
         "column": 1
       }
     },
@@ -1282,7 +1642,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 192,
+        "line": 200,
         "column": 1
       }
     },
@@ -1291,7 +1651,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 224,
+        "line": 232,
         "column": 1
       }
     },
@@ -1300,7 +1660,7 @@
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 258,
+        "line": 272,
         "column": 1
       }
     },
@@ -1390,7 +1750,7 @@
       "description": "Create the stable JavaScript tabs plan for bottom or top presentation.",
       "sourceLocation": {
         "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-        "line": 43,
+        "line": 55,
         "column": 1
       }
     },
@@ -1399,7 +1759,7 @@
       "description": "Create the stable headless custom-tabs plan for Web or explicit custom use.",
       "sourceLocation": {
         "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-        "line": 55,
+        "line": 67,
         "column": 1
       }
     },
@@ -1408,7 +1768,7 @@
       "description": "Resolve the adaptive tabs plan for the selected runtime platform.",
       "sourceLocation": {
         "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-        "line": 69,
+        "line": 88,
         "column": 1
       }
     },
@@ -1417,25 +1777,25 @@
       "description": "Resolve the Expo Router module/export and presentation for one tabs implementation.",
       "sourceLocation": {
         "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-        "line": 79,
+        "line": 99,
         "column": 1
       }
     },
     {
-      "name": "assertModuleBinding",
+      "name": "createLayout",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 16,
+        "filePath": "src/generatedTabsTypecheck.test.ts",
+        "line": 11,
         "column": 1
       }
     },
     {
-      "name": "quote",
+      "name": "typeErrors",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 29,
+        "filePath": "src/generatedTabsTypecheck.test.ts",
+        "line": 20,
         "column": 1
       }
     },
@@ -1444,7 +1804,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 33,
+        "line": 15,
         "column": 1
       }
     },
@@ -1453,7 +1813,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 39,
+        "line": 21,
         "column": 1
       }
     },
@@ -1462,7 +1822,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 55,
+        "line": 37,
         "column": 1
       }
     },
@@ -1471,7 +1831,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 78,
+        "line": 60,
         "column": 1
       }
     },
@@ -1480,7 +1840,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 95,
+        "line": 77,
         "column": 1
       }
     },
@@ -1489,7 +1849,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 122,
+        "line": 104,
         "column": 1
       }
     },
@@ -1498,7 +1858,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 162,
+        "line": 147,
         "column": 1
       }
     },
@@ -1507,7 +1867,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 180,
+        "line": 165,
         "column": 1
       }
     },
@@ -1516,7 +1876,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 197,
+        "line": 182,
         "column": 1
       }
     },
@@ -1525,7 +1885,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 207,
+        "line": 192,
         "column": 1
       }
     },
@@ -1534,7 +1894,88 @@
       "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 224,
+        "line": 209,
+        "column": 1
+      }
+    },
+    {
+      "name": "nativeIconProvider",
+      "description": "Resolve and validate the native vector-icon provider for one planned route icon.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "nativeIconName",
+      "description": "Read the required native vector-icon name from one planned route icon.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 32,
+        "column": 1
+      }
+    },
+    {
+      "name": "nativeIconFamily",
+      "description": "Map a supported provider to the Navigator-owned Native Tabs family export.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 40,
+        "column": 1
+      }
+    },
+    {
+      "name": "createNativeTabsContents",
+      "description": "Render a complete Native Tabs layout module from one validated node plan.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 56,
+        "column": 1
+      }
+    },
+    {
+      "name": "createNativeTabsFile",
+      "description": "Create the generated Native Tabs layout file and its narrow runtime imports.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 88,
+        "column": 1
+      }
+    },
+    {
+      "name": "createCustomTabsFile",
+      "description": "Create the generated Web custom-tabs layout file and registered integration imports.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 125,
+        "column": 1
+      }
+    },
+    {
+      "name": "generateTabsLayoutFile",
+      "description": "Generate the specialized layout file for a supported tabs implementation.",
+      "sourceLocation": {
+        "filePath": "src/generation/generateTabsLayoutFile.ts",
+        "line": 172,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertModuleBinding",
+      "description": "Reject module and export bindings that cannot be emitted as safe static imports.",
+      "sourceLocation": {
+        "filePath": "src/generation/generationSafety.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "quote",
+      "description": "Serialize a generated string literal with JSON escaping.",
+      "sourceLocation": {
+        "filePath": "src/generation/generationSafety.ts",
+        "line": 22,
         "column": 1
       }
     },
@@ -1566,6 +2007,114 @@
       }
     },
     {
+      "name": "generatedLayout",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/tabs.test.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveIcon",
+      "description": "Convert portable route icon metadata to the Surface navigation icon contract.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 63,
+        "column": 1
+      }
+    },
+    {
+      "name": "SurfaceTabTrigger",
+      "description": "Render one Surface navigation control bound to Expo Router's headless tab trigger.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 81,
+        "column": 1
+      }
+    },
+    {
+      "name": "useHydrationSafeSize",
+      "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 111,
+        "column": 1
+      }
+    },
+    {
+      "name": "subscribeToHydration",
+      "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 124,
+        "column": 1
+      }
+    },
+    {
+      "name": "getClientHydration",
+      "description": "Report that client rendering can consume the live responsive breakpoint.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 129,
+        "column": 1
+      }
+    },
+    {
+      "name": "getServerHydration",
+      "description": "Keep server output deterministic at the compact presentation.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 134,
+        "column": 1
+      }
+    },
+    {
+      "name": "selectPresentation",
+      "description": "Select one fixed presentation without altering the Router-owned topology.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 139,
+        "column": 1
+      }
+    },
+    {
+      "name": "BuiltInPresentation",
+      "description": "Render Surface-owned bottom, top, rail, or sidebar tab chrome.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 154,
+        "column": 1
+      }
+    },
+    {
+      "name": "TabsNavigation",
+      "description": "Select built-in or registered custom chrome for the currently visible routes.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 182,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderItem",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 194,
+        "column": 9
+      }
+    },
+    {
+      "name": "CustomTabsLayout",
+      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "sourceLocation": {
+        "filePath": "src/tabs/CustomTabsLayout.tsx",
+        "line": 218,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveNavigatorPreset",
       "description": "Resolve a canonical navigator preset into its ordered topology layers.",
       "sourceLocation": {
@@ -1579,16 +2128,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 17,
-        "column": 1
-      }
-    },
-    {
-      "name": "addTabsAdapterDiagnostics",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 46,
+        "line": 16,
         "column": 1
       }
     },
@@ -1597,7 +2137,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 92,
+        "line": 45,
         "column": 1
       }
     },
@@ -1606,7 +2146,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 116,
+        "line": 69,
         "column": 1
       }
     },
@@ -1615,7 +2155,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 135,
+        "line": 96,
         "column": 1
       }
     },
@@ -1624,7 +2164,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 160,
+        "line": 121,
         "column": 1
       }
     },
@@ -1633,7 +2173,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 175,
+        "line": 136,
         "column": 1
       }
     },
@@ -1642,7 +2182,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 199,
+        "line": 160,
         "column": 1
       }
     },
@@ -1651,7 +2191,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 221,
+        "line": 191,
         "column": 1
       }
     },
@@ -1660,7 +2200,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 235,
+        "line": 205,
         "column": 1
       }
     },
@@ -1669,7 +2209,7 @@
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 268,
+        "line": 238,
         "column": 1
       }
     },
@@ -1690,6 +2230,51 @@
         "line": 15,
         "column": 3
       }
+    },
+    {
+      "name": "addTabsPlatformDiagnostics",
+      "description": "Add platform and stability diagnostics for the resolved tabs implementation.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateTabsNavigator.ts",
+        "line": 21,
+        "column": 1
+      }
+    },
+    {
+      "name": "addTabsIconDiagnostics",
+      "description": "Validate route icon compatibility for native and Surface-backed tabs.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateTabsNavigator.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "addTabsRouteDiagnostics",
+      "description": "Validate route reachability, guards, paths, counts, and icons for tabs.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateTabsNavigator.ts",
+        "line": 94,
+        "column": 1
+      }
+    },
+    {
+      "name": "addNativeVersionDiagnostics",
+      "description": "Gate newer Native Tabs options on the Expo Router version that supports them.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateTabsNavigator.ts",
+        "line": 140,
+        "column": 1
+      }
+    },
+    {
+      "name": "addTabsAdapterDiagnostics",
+      "description": "Add tabs-specific semantic diagnostics for one manifest navigator node.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateTabsNavigator.ts",
+        "line": 170,
+        "column": 1
+      }
     }
   ],
   "sequenceScenarios": [
@@ -1699,6 +2284,14 @@
       "sourcePath": "src/expo-router/createNavigatorPlan.ts",
       "symbolName": "createNavigatorPlan",
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "CustomTabsLayout",
+      "sourcePath": "src/tabs/CustomTabsLayout.tsx",
+      "symbolName": "CustomTabsLayout",
+      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
       "isReadme": false
     },
     {
@@ -1745,6 +2338,11 @@
   "graphs": {
     "imports": [
       {
+        "fromPath": "src/generatedTabsTypecheck.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
         "fromPath": "src/index.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/index.test.ts"
@@ -1790,6 +2388,11 @@
         "sourcePath": "src/packageBoundary.test.ts"
       },
       {
+        "fromPath": "src/tabs.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
         "fromPath": "src/expo-router/createNavigatorPlan.ts",
         "toPath": "src/definitions/NavigatorPlan.ts",
         "sourcePath": "src/expo-router/createNavigatorPlan.ts"
@@ -1830,9 +2433,44 @@
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
       {
+        "fromPath": "src/generation/generateNavigatorFiles.ts",
+        "toPath": "src/generation/generateTabsLayoutFile.ts",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromPath": "src/generation/generateNavigatorFiles.ts",
+        "toPath": "src/generation/generationSafety.ts",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromPath": "src/generation/generateTabsLayoutFile.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromPath": "src/generation/generateTabsLayoutFile.ts",
+        "toPath": "src/generation/generationSafety.ts",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromPath": "src/generation/generationSafety.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/generation/generationSafety.ts"
+      },
+      {
         "fromPath": "src/presentation/resolveCustomTabsPresentation.ts",
         "toPath": "src/definitions/NavigatorPlan.ts",
         "sourcePath": "src/presentation/resolveCustomTabsPresentation.ts"
+      },
+      {
+        "fromPath": "src/tabs/CustomTabsLayout.tsx",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromPath": "src/tabs/index.ts",
+        "toPath": "src/tabs/CustomTabsLayout.tsx",
+        "sourcePath": "src/tabs/index.ts"
       },
       {
         "fromPath": "src/validation/validateNavigatorManifest.ts",
@@ -1850,6 +2488,11 @@
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
       },
       {
+        "fromPath": "src/validation/validateNavigatorManifest.ts",
+        "toPath": "src/validation/validateTabsNavigator.ts",
+        "sourcePath": "src/validation/validateNavigatorManifest.ts"
+      },
+      {
         "fromPath": "src/validation/validatePresetTopology.ts",
         "toPath": "src/definitions/NavigatorPlan.ts",
         "sourcePath": "src/validation/validatePresetTopology.ts"
@@ -1858,9 +2501,67 @@
         "fromPath": "src/validation/validatePresetTopology.ts",
         "toPath": "src/topology/resolveNavigatorPreset.ts",
         "sourcePath": "src/validation/validatePresetTopology.ts"
+      },
+      {
+        "fromPath": "src/validation/validateTabsNavigator.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
+      },
+      {
+        "fromPath": "src/validation/validateTabsNavigator.ts",
+        "toPath": "src/expo-router/resolveNavigatorConfig.ts",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
       }
     ],
     "calls": [
+      {
+        "fromSymbol": "createLayout",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "createLayout",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "typeErrors",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedTabsTypecheck.test.ts",
+        "toSymbol": "getSourceFile",
+        "callExpression": "getSourceFile",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedTabsTypecheck.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedTabsTypecheck.test.ts",
+        "toSymbol": "createLayout",
+        "callExpression": "createLayout",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedTabsTypecheck.test.ts",
+        "toSymbol": "typeErrors",
+        "callExpression": "typeErrors",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedTabsTypecheck.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
       {
         "fromSymbol": "src/index.test.ts",
         "toSymbol": "describe",
@@ -1962,6 +2663,66 @@
         "toSymbol": "readFile",
         "callExpression": "readFile",
         "sourcePath": "src/packageBoundary.test.ts"
+      },
+      {
+        "fromSymbol": "generatedLayout",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "generatedLayout",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "generatedLayout",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "generatedLayout",
+        "callExpression": "generatedLayout",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/tabs.test.ts",
+        "toSymbol": "validateNavigatorManifest",
+        "callExpression": "validateNavigatorManifest",
+        "sourcePath": "src/tabs.test.ts"
       },
       {
         "fromSymbol": "createAdapter",
@@ -2079,14 +2840,14 @@
       },
       {
         "fromSymbol": "createAdaptiveTabsPlan",
-        "toSymbol": "createCustomTabsPlan",
-        "callExpression": "createCustomTabsPlan",
+        "toSymbol": "resolveAdaptiveConfig",
+        "callExpression": "resolveAdaptiveConfig",
         "sourcePath": "src/expo-router/resolveTabsNavigatorPlan.ts"
       },
       {
         "fromSymbol": "createAdaptiveTabsPlan",
-        "toSymbol": "resolveAdaptiveConfig",
-        "callExpression": "resolveAdaptiveConfig",
+        "toSymbol": "createCustomTabsPlan",
+        "callExpression": "createCustomTabsPlan",
         "sourcePath": "src/expo-router/resolveTabsNavigatorPlan.ts"
       },
       {
@@ -2147,6 +2908,12 @@
         "fromSymbol": "src/generation/generateNavigatorFiles.ts",
         "toSymbol": "renderScreen",
         "callExpression": "renderScreen",
+        "sourcePath": "src/generation/generateNavigatorFiles.ts"
+      },
+      {
+        "fromSymbol": "createLayoutFile",
+        "toSymbol": "generateTabsLayoutFile",
+        "callExpression": "generateTabsLayoutFile",
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
       {
@@ -2240,21 +3007,141 @@
         "sourcePath": "src/generation/generateNavigatorFiles.ts"
       },
       {
+        "fromSymbol": "createNativeTabsContents",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
+        "toSymbol": "nativeIconFamily",
+        "callExpression": "nativeIconFamily",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
+        "toSymbol": "nativeIconProvider",
+        "callExpression": "nativeIconProvider",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/generation/generateTabsLayoutFile.ts",
+        "toSymbol": "nativeIconName",
+        "callExpression": "nativeIconName",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createNativeTabsFile",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createNativeTabsFile",
+        "toSymbol": "assertModuleBinding",
+        "callExpression": "assertModuleBinding",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createNativeTabsFile",
+        "toSymbol": "createNativeTabsContents",
+        "callExpression": "createNativeTabsContents",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createCustomTabsFile",
+        "toSymbol": "assertModuleBinding",
+        "callExpression": "assertModuleBinding",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createCustomTabsFile",
+        "toSymbol": "quote",
+        "callExpression": "quote",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generateTabsLayoutFile",
+        "toSymbol": "createNativeTabsFile",
+        "callExpression": "createNativeTabsFile",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generateTabsLayoutFile",
+        "toSymbol": "createCustomTabsFile",
+        "callExpression": "createCustomTabsFile",
+        "sourcePath": "src/generation/generateTabsLayoutFile.ts"
+      },
+      {
         "fromSymbol": "resolveCustomTabsPresentation",
         "toSymbol": "resolveResponsivePresentation",
         "callExpression": "resolveResponsivePresentation",
         "sourcePath": "src/presentation/resolveCustomTabsPresentation.ts"
       },
       {
+        "fromSymbol": "resolveIcon",
+        "toSymbol": "resolveIconSource",
+        "callExpression": "resolveIconSource",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "SurfaceTabTrigger",
+        "toSymbol": "useTabTrigger",
+        "callExpression": "useTabTrigger",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "onPress",
+        "toSymbol": "switchTab",
+        "callExpression": "switchTab",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "SurfaceTabTrigger",
+        "toSymbol": "resolveIcon",
+        "callExpression": "resolveIcon",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "useHydrationSafeSize",
+        "toSymbol": "useBreakpoint",
+        "callExpression": "useBreakpoint",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "useHydrationSafeSize",
+        "toSymbol": "useSyncExternalStore",
+        "callExpression": "useSyncExternalStore",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayout",
+        "toSymbol": "useHydrationSafeSize",
+        "callExpression": "useHydrationSafeSize",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayout",
+        "toSymbol": "selectPresentation",
+        "callExpression": "selectPresentation",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayout",
+        "toSymbol": "useSafeAreaInsets",
+        "callExpression": "useSafeAreaInsets",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
         "fromSymbol": "addStackAdapterDiagnostics",
         "toSymbol": "resolveEffectiveStackConfig",
         "callExpression": "resolveEffectiveStackConfig",
-        "sourcePath": "src/validation/validateNavigatorManifest.ts"
-      },
-      {
-        "fromSymbol": "addTabsAdapterDiagnostics",
-        "toSymbol": "resolveEffectiveTabsConfig",
-        "callExpression": "resolveEffectiveTabsConfig",
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
       },
       {
@@ -2358,6 +3245,36 @@
         "toSymbol": "visit",
         "callExpression": "visit",
         "sourcePath": "src/validation/validatePresetTopology.ts"
+      },
+      {
+        "fromSymbol": "addTabsRouteDiagnostics",
+        "toSymbol": "addTabsIconDiagnostics",
+        "callExpression": "addTabsIconDiagnostics",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
+      },
+      {
+        "fromSymbol": "addTabsAdapterDiagnostics",
+        "toSymbol": "resolveEffectiveTabsConfig",
+        "callExpression": "resolveEffectiveTabsConfig",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
+      },
+      {
+        "fromSymbol": "addTabsAdapterDiagnostics",
+        "toSymbol": "addTabsPlatformDiagnostics",
+        "callExpression": "addTabsPlatformDiagnostics",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
+      },
+      {
+        "fromSymbol": "addTabsAdapterDiagnostics",
+        "toSymbol": "addTabsRouteDiagnostics",
+        "callExpression": "addTabsRouteDiagnostics",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
+      },
+      {
+        "fromSymbol": "addTabsAdapterDiagnostics",
+        "toSymbol": "addNativeVersionDiagnostics",
+        "callExpression": "addNativeVersionDiagnostics",
+        "sourcePath": "src/validation/validateTabsNavigator.ts"
       }
     ],
     "typeReferences": [
@@ -2473,6 +3390,16 @@
       },
       {
         "fromSymbol": "TabsNavigatorPlan",
+        "toType": "NavigatorResponsiveSize",
+        "sourcePath": "src/definitions/NavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "TabsNavigatorPlan",
+        "toType": "Readonly",
+        "sourcePath": "src/definitions/NavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "TabsNavigatorPlan",
         "toType": "ResolvedTabsImplementation",
         "sourcePath": "src/definitions/NavigatorPlan.ts"
       },
@@ -2580,8 +3507,123 @@
         "fromSymbol": "validateNavigatorManifest",
         "toType": "NavigatorValidationContext",
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "ComponentType",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "CustomTabsIconSourceResolver",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "CustomTabsPresentationProps",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "CustomTabsRoute",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "NavigatorResponsiveSize",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "Readonly",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayoutProps",
+        "toType": "ResolvedTabsPresentation",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsPresentationProps",
+        "toType": "CustomTabsRoute",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsPresentationProps",
+        "toType": "ReactNode",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsRoute",
+        "toType": "IconSpec",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsRoute",
+        "toType": "ReactNode",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "CustomTabsLayout",
+        "toType": "CustomTabsLayoutProps",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
       }
     ],
-    "componentComposition": []
+    "componentComposition": [
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "TabsNavigation",
+        "jsxElement": "<TabsNavigation\n      CustomPresentation={CustomPresentation}\n      presentation={presentation}\n      resolveIconSource={resolveIconSource}\n      routes={routes}\n    />",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "Tabs",
+        "jsxElement": "<Tabs options={{ initialRouteName }} style={styles.root}>",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "View",
+        "jsxElement": "<View style={layoutStyle}>",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "View",
+        "jsxElement": "<View style={navigationInsets}>",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "View",
+        "jsxElement": "<View style={styles.screen}>",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "TabSlot",
+        "jsxElement": "<TabSlot />",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "View",
+        "jsxElement": "<View style={bottomNavigationStyle}>",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "TabList",
+        "jsxElement": "<TabList style={styles.hidden}>",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "CustomTabsLayout",
+        "toComponent": "TabTrigger",
+        "jsxElement": "<TabTrigger href={route.href as Href} key={route.name} name={route.name} />",
+        "sourcePath": "src/tabs/CustomTabsLayout.tsx"
+      }
+    ]
   }
 }
