@@ -28,8 +28,10 @@ export interface CreateNavigatorPlanOptions {
   responsiveSize?: NavigatorResponsiveSize;
 }
 
+/*** Resolve a Stack implementation to its version- and platform-aware Expo Router adapter. */
 function createStackAdapter(
   stack: StackImplementationConfig | undefined,
+  platform: NavigatorRuntimePlatform,
   routerMajor: number | undefined,
 ): NavigatorAdapterPlan {
   const implementation = stack?.implementation ?? 'native';
@@ -46,9 +48,22 @@ function createStackAdapter(
   if (implementation === 'experimental') {
     return {
       id: 'stack.experimental',
-      support: 'unavailable',
+      module: 'expo-router',
+      exportName: 'ExperimentalStack',
+      support: routerMajor !== undefined && routerMajor >= 56 ? 'supported' : 'unavailable',
       stability: 'alpha',
-      limitations: ['Owned by the optional Experimental Stack adapter.'],
+      limitations:
+        platform === 'web'
+          ? ['Testing-only API; Expo Router falls back to the standard Stack on web.']
+          : [
+              'Testing-only API; supports only title and header visibility options.',
+              ...(platform === 'android'
+                ? [
+                    'Cannot coexist with the standard native Stack on Android.',
+                    'Requires android.predictiveBackGestureEnabled in app config.',
+                  ]
+                : []),
+            ],
     };
   }
   return {
@@ -103,7 +118,7 @@ function createAdapter(
         limitations: [],
       };
     case 'stack':
-      return createStackAdapter(stack, routerMajor);
+      return createStackAdapter(stack, platform, routerMajor);
     case 'drawer':
       return {
         id: 'drawer',

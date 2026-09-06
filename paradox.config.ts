@@ -6,7 +6,7 @@ export default defineParadoxConfig({
   docs: {
     title: 'NAVIGATOR',
     description:
-      'Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs use Native Tabs on Android/iOS and one stable Expo Router headless topology with Surface-owned responsive presentation on Web.',
+      'Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; Experimental Stack stays testing-only, validates its narrow option surface, and uses the upstream web fallback.',
   },
 
   package: {

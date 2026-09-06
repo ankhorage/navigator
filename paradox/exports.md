@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/expo-router/createNavigatorPlan.ts`
-Source: `src/expo-router/createNavigatorPlan.ts:272:1`
+Source: `src/expo-router/createNavigatorPlan.ts:287:1`
 
 Create a disposable, provider-aware plan from only the navigator desired-state slice.
 
@@ -403,7 +403,7 @@ Source: `src/definitions/NavigatorPlan.ts:66:1`
 
 Kind: `function`
 Module: `src/validation/validateNavigatorManifest.ts`
-Source: `src/validation/validateNavigatorManifest.ts:238:1`
+Source: `src/validation/validateNavigatorManifest.ts:231:1`
 
 Validate one navigator desired-state slice for a concrete Expo Router target.
 

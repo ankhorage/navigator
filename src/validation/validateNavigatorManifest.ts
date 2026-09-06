@@ -10,6 +10,7 @@ import {
   parseExpoRouterMajor,
   resolveEffectiveStackConfig,
 } from '../expo-router/resolveNavigatorConfig';
+import { addExperimentalStackDiagnostics } from './validateExperimentalStack';
 import { validatePresetTopology } from './validatePresetTopology';
 import { addTabsAdapterDiagnostics } from './validateTabsNavigator';
 
@@ -30,14 +31,6 @@ function addStackAdapterDiagnostics(
       severity: 'error',
       path: `${pointer}/implementation`,
       message: 'The JavaScript Stack entry point requires Expo Router 56.0.0 or newer.',
-    });
-  }
-  if (implementation === 'experimental') {
-    diagnostics.push({
-      code: 'adapter-unavailable',
-      severity: 'error',
-      path: `${pointer}/implementation`,
-      message: 'Experimental Stack is not available in the core Navigator release.',
     });
   }
 }
@@ -252,6 +245,7 @@ export function validateNavigatorManifest(
 
   validatePresetTopology(diagnostics, manifest);
   validateNode(diagnostics, manifest, manifest, '', context, routerMajor);
+  addExperimentalStackDiagnostics(diagnostics, manifest, context, routerMajor);
   return diagnostics.sort((left, right) =>
     `${left.path}\0${left.code}\0${left.message}`.localeCompare(
       `${right.path}\0${right.code}\0${right.message}`,
