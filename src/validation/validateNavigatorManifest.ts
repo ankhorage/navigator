@@ -5,11 +5,13 @@ import type {
   StackNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
+import type { CustomNavigatorRegistry } from '../custom/CustomNavigatorRegistry';
 import type { NavigatorDiagnostic, NavigatorValidationContext } from '../definitions/NavigatorPlan';
 import {
   parseExpoRouterMajor,
   resolveEffectiveStackConfig,
 } from '../expo-router/resolveNavigatorConfig';
+import { addCustomNavigatorDiagnostics } from './validateCustomNavigator';
 import { addExperimentalStackDiagnostics } from './validateExperimentalStack';
 import { validatePresetTopology } from './validatePresetTopology';
 import { addSplitViewDiagnostics } from './validateSplitView';
@@ -49,14 +51,6 @@ function addUnsupportedAdapterDiagnostics(
   }
   if (node.type === 'tabs') {
     addTabsAdapterDiagnostics(diagnostics, manifest, node, pointer, context, routerMajor);
-  }
-  if (node.type === 'custom') {
-    diagnostics.push({
-      code: 'adapter-unavailable',
-      severity: 'error',
-      path: pointer,
-      message: 'Custom navigator is not available in the core Navigator release.',
-    });
   }
 }
 
@@ -232,6 +226,7 @@ function validateNode(
 export function validateNavigatorManifest(
   manifest: AppNavigatorManifest,
   context: NavigatorValidationContext,
+  customNavigators?: CustomNavigatorRegistry,
 ): readonly NavigatorDiagnostic[] {
   const diagnostics: NavigatorDiagnostic[] = [];
   const routerMajor = parseExpoRouterMajor(context.expoRouterVersion);
@@ -248,6 +243,7 @@ export function validateNavigatorManifest(
   validateNode(diagnostics, manifest, manifest, '', context, routerMajor);
   addExperimentalStackDiagnostics(diagnostics, manifest, context, routerMajor);
   addSplitViewDiagnostics(diagnostics, manifest, context, routerMajor);
+  addCustomNavigatorDiagnostics(diagnostics, manifest, context, routerMajor, customNavigators);
   return diagnostics.sort((left, right) =>
     `${left.path}\0${left.code}\0${left.message}`.localeCompare(
       `${right.path}\0${right.code}\0${right.message}`,

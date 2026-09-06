@@ -1,4 +1,10 @@
 export type {
+  CustomNavigatorConfigIssue,
+  CustomNavigatorRegistration,
+  CustomNavigatorRegistry,
+} from './custom/CustomNavigatorRegistry';
+export { defineCustomNavigatorRegistry } from './custom/CustomNavigatorRegistry';
+export type {
   ExpoRouterNavigatorModule,
   NavigatorAdapterId,
   NavigatorAdapterPlan,

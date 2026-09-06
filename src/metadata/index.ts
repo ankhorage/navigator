@@ -54,7 +54,13 @@ export const NAVIGATOR_PACKAGE_METADATA = {
       maximumAdditionalColumns: 2,
       inspectorMinimumIosVersion: 26,
     },
-    custom: { support: 'unavailable' },
+    custom: {
+      support: 'registered',
+      minimumExpoRouterVersion: '56.0.0',
+      integration: 'expo-router-standard',
+      routerOwner: 'expo-router',
+      config: 'schema-validated-json',
+    },
   },
   tabs: {
     implementations: ['adaptive', 'javascript', 'native', 'custom'],

@@ -3,7 +3,7 @@
 
 # NAVIGATOR
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v1.2.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v1.3.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
 Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; experimental Stack and Split View stay testing-only with validated upstream fallbacks.
 
@@ -16,5 +16,6 @@ Standalone Navigator capability with topology configured independently from plat
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
 - [CustomTabsLayout sequence](././paradox/diagrams/sequences/custom-tabs-layout.mmd)
+- [defineCustomNavigatorRegistry sequence](././paradox/diagrams/sequences/define-custom-navigator-registry.mmd)
 - [resolveCustomTabsPresentation sequence](././paradox/diagrams/sequences/resolve-custom-tabs-presentation.mmd)
 - [resolveTabsNavigatorPlan sequence](././paradox/diagrams/sequences/resolve-tabs-navigator-plan.mmd)
