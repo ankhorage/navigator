@@ -1,6 +1,7 @@
 import type {
   NavigatorGeneratedFile,
   NavigatorGenerationBindings,
+  NavigatorGenerationOptions,
   NavigatorNodePlan,
   NavigatorPlan,
   NavigatorRoutePlan,
@@ -12,6 +13,24 @@ import { assertModuleBinding, quote } from './generationSafety';
 
 const APP_DIRECTORY = 'src/app';
 const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
+
+/** Resolve a safe directory below the Expo Router app root without filesystem normalization. */
+function resolveRootDirectory(rootDirectory: string | undefined): string {
+  const directory = rootDirectory ?? APP_DIRECTORY;
+  const segments = directory.split('/');
+  if (
+    segments[0] !== 'src' ||
+    segments[1] !== 'app' ||
+    segments.length < 2 ||
+    segments.some((segment) => segment.length === 0 || segment === '.' || segment === '..') ||
+    segments.slice(2).some((segment) => !SAFE_ROUTE_NAME.test(segment))
+  ) {
+    throw new Error(
+      `Navigator root directory ${JSON.stringify(directory)} must be src/app or a safe descendant.`,
+    );
+  }
+  return directory;
+}
 
 function assertRouteName(name: string): void {
   if (!SAFE_ROUTE_NAME.test(name) || name === '.' || name === '..') {
@@ -172,14 +191,24 @@ function collectFiles(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
+  includeScreenFiles: boolean,
 ): NavigatorGeneratedFile[] {
   const files = [createLayoutFile(node, directory, bindings)];
   for (const route of node.routes) {
     assertRouteName(route.name);
-    const screen = createScreenFile(route, directory, bindings);
-    if (screen !== undefined) files.push(screen);
+    if (includeScreenFiles) {
+      const screen = createScreenFile(route, directory, bindings);
+      if (screen !== undefined) files.push(screen);
+    }
     if (route.navigator !== undefined) {
-      files.push(...collectFiles(route.navigator, `${directory}/${route.name}`, bindings));
+      files.push(
+        ...collectFiles(
+          route.navigator,
+          `${directory}/${route.name}`,
+          bindings,
+          includeScreenFiles,
+        ),
+      );
     }
   }
   return files;
@@ -215,6 +244,7 @@ function validateFlowBindings(plan: NavigatorPlan, bindings: NavigatorGeneration
 export function generateNavigatorFiles(
   plan: NavigatorPlan,
   bindings: NavigatorGenerationBindings,
+  options: NavigatorGenerationOptions = {},
 ): readonly NavigatorGeneratedFile[] {
   const errors = plan.diagnostics.filter((diagnostic) => diagnostic.severity === 'error');
   if (!plan.supported || errors.length > 0) {
@@ -223,9 +253,13 @@ export function generateNavigatorFiles(
     );
   }
   validateFlowBindings(plan, bindings);
-  const files = collectFiles(plan.root, APP_DIRECTORY, bindings).sort((left, right) =>
-    left.path.localeCompare(right.path),
-  );
+  const rootDirectory = resolveRootDirectory(options.rootDirectory);
+  const files = collectFiles(
+    plan.root,
+    rootDirectory,
+    bindings,
+    options.includeScreenFiles ?? true,
+  ).sort((left, right) => left.path.localeCompare(right.path));
   const paths = new Set<string>();
   for (const file of files) {
     if (paths.has(file.path))

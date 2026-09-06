@@ -197,10 +197,14 @@ describe('@ankhorage/navigator Split View generation', () => {
       expoRouterVersion: '57.0.18',
     });
     expect(() =>
-      generateNavigatorFiles(plan, {
-        screens: { home: BINDINGS.screens.home, detail: BINDINGS.screens.detail },
-        guards: {},
-      }),
+      generateNavigatorFiles(
+        plan,
+        {
+          screens: { home: BINDINGS.screens.home, detail: BINDINGS.screens.detail },
+          guards: {},
+        },
+        { includeScreenFiles: false },
+      ),
     ).toThrow('Missing Split View primary screen binding for "sidebar"');
   });
 });

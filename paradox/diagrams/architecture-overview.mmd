@@ -6,6 +6,9 @@ graph TD
   package__ankhorage_navigator --> entrypoint_src_metadata_index_ts
   entrypoint_src_tabs_index_ts["src/tabs/index.ts"]
   package__ankhorage_navigator --> entrypoint_src_tabs_index_ts
+  module_src_composableGeneration_test_ts["src/composableGeneration.test.ts"]
+  package__ankhorage_navigator -.-> module_src_composableGeneration_test_ts
+  module_src_composableGeneration_test_ts --> module_src_index_ts
   module_src_custom_CustomNavigatorRegistry_test_ts["src/custom/CustomNavigatorRegistry.test.ts"]
   package__ankhorage_navigator -.-> module_src_custom_CustomNavigatorRegistry_test_ts
   module_src_custom_CustomNavigatorRegistry_test_ts --> module_src_custom_CustomNavigatorRegistry_ts
