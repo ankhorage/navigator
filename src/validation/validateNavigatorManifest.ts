@@ -3,16 +3,15 @@ import type {
   NavigatorNode,
   StackImplementation,
   StackNavigatorNode,
-  TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
 import type { NavigatorDiagnostic, NavigatorValidationContext } from '../definitions/NavigatorPlan';
 import {
   parseExpoRouterMajor,
   resolveEffectiveStackConfig,
-  resolveEffectiveTabsConfig,
 } from '../expo-router/resolveNavigatorConfig';
 import { validatePresetTopology } from './validatePresetTopology';
+import { addTabsAdapterDiagnostics } from './validateTabsNavigator';
 
 function addStackAdapterDiagnostics(
   diagnostics: NavigatorDiagnostic[],
@@ -41,52 +40,6 @@ function addStackAdapterDiagnostics(
       message: 'Experimental Stack is not available in the core Navigator release.',
     });
   }
-}
-
-function addTabsAdapterDiagnostics(
-  diagnostics: NavigatorDiagnostic[],
-  manifest: AppNavigatorManifest,
-  node: TabsNavigatorNode,
-  pointer: string,
-  context: NavigatorValidationContext,
-  routerMajor: number | undefined,
-): void {
-  const config = resolveEffectiveTabsConfig(manifest, node, context.platform);
-  const implementation = config?.implementation ?? 'adaptive';
-  const native =
-    implementation === 'native' || (implementation === 'adaptive' && context.platform !== 'web');
-
-  if (native && context.platform === 'web') {
-    diagnostics.push({
-      code: 'unsupported-platform',
-      severity: 'error',
-      path: pointer,
-      message: 'Native Tabs are not available on web.',
-    });
-  }
-  if (native && routerMajor !== undefined && routerMajor < 54) {
-    diagnostics.push({
-      code: 'unsupported-expo-router-version',
-      severity: 'error',
-      path: pointer,
-      message: 'Native Tabs require Expo Router 54.0.0 or newer.',
-    });
-  }
-  if (native) {
-    diagnostics.push({
-      code: 'alpha-adapter',
-      severity: 'warning',
-      path: pointer,
-      message: 'Native Tabs are an alpha Expo Router API.',
-    });
-  }
-  diagnostics.push({
-    code: 'adapter-unavailable',
-    severity: 'error',
-    path: pointer,
-    message:
-      'Tabs generation is owned by the optional Tabs adapter and is not available in the core release.',
-  });
 }
 
 function addUnsupportedAdapterDiagnostics(

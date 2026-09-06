@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/expo-router/createNavigatorPlan.ts`
-Source: `src/expo-router/createNavigatorPlan.ts:258:1`
+Source: `src/expo-router/createNavigatorPlan.ts:272:1`
 
 Create a disposable, provider-aware plan from only the navigator desired-state slice.
 
@@ -29,6 +29,84 @@ Source: `src/expo-router/createNavigatorPlan.ts:25:1`
 | platform          | property | `NavigatorRuntimePlatform`             | yes      |             |
 | responsiveSize    | property | `NavigatorResponsiveSize \| undefined` | no       |             |
 
+## CustomTabsIconSourceResolver
+
+Kind: `unknown`
+Module: `src/tabs/CustomTabsLayout.tsx`
+Source: `src/tabs/CustomTabsLayout.tsx:40:1`
+
+## CustomTabsLayout
+
+Kind: `function`
+Module: `src/tabs/CustomTabsLayout.tsx`
+Source: `src/tabs/CustomTabsLayout.tsx:218:1`
+
+Render one stable headless Expo Router tab topology with Surface-owned presentations.
+
+### Signatures
+
+- `({
+routes,
+presentations,
+initialRouteName,
+resolveIconSource,
+customPresentation: CustomPresentation,
+}: CustomTabsLayoutProps) => import("react").JSX.Element`
+  - {
+    routes,
+    presentations,
+    initialRouteName,
+    resolveIconSource,
+    customPresentation: CustomPresentation,
+    }: `CustomTabsLayoutProps`
+  - returns: `import("react").JSX.Element`
+
+## CustomTabsLayoutProps
+
+Kind: `type`
+Module: `src/tabs/CustomTabsLayout.tsx`
+Source: `src/tabs/CustomTabsLayout.tsx:46:1`
+
+### Members
+
+| Name               | Kind     | Type                                                                  | Required | Description |
+| ------------------ | -------- | --------------------------------------------------------------------- | -------- | ----------- |
+| customPresentation | property | `ComponentType<CustomTabsPresentationProps> \| undefined`             | no       |             |
+| initialRouteName   | property | `string \| undefined`                                                 | no       |             |
+| presentations      | property | `Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>` | yes      |             |
+| resolveIconSource  | property | `CustomTabsIconSourceResolver \| undefined`                           | no       |             |
+| routes             | property | `readonly CustomTabsRoute[]`                                          | yes      |             |
+
+## CustomTabsPresentationProps
+
+Kind: `type`
+Module: `src/tabs/CustomTabsLayout.tsx`
+Source: `src/tabs/CustomTabsLayout.tsx:30:1`
+
+### Members
+
+| Name       | Kind     | Type                                                       | Required | Description |
+| ---------- | -------- | ---------------------------------------------------------- | -------- | ----------- |
+| renderItem | property | `(route: CustomTabsRoute, compact?: boolean) => ReactNode` | yes      |             |
+| routes     | property | `readonly CustomTabsRoute[]`                               | yes      |             |
+
+## CustomTabsRoute
+
+Kind: `type`
+Module: `src/tabs/CustomTabsLayout.tsx`
+Source: `src/tabs/CustomTabsLayout.tsx:21:1`
+
+### Members
+
+| Name    | Kind     | Type                                                              | Required | Description |
+| ------- | -------- | ----------------------------------------------------------------- | -------- | ----------- |
+| badge   | property | `ReactNode`                                                       | no       |             |
+| href    | property | `string`                                                          | yes      |             |
+| icon    | property | `import("@ankhorage/contracts/dist/types").IconSpec \| undefined` | no       |             |
+| label   | property | `string`                                                          | yes      |             |
+| name    | property | `string`                                                          | yes      |             |
+| visible | property | `boolean`                                                         | yes      |             |
+
 ## ExpoRouterNavigatorModule
 
 Kind: `unknown`
@@ -39,7 +117,7 @@ Source: `src/definitions/NavigatorPlan.ts:15:1`
 
 Kind: `function`
 Module: `src/generation/generateNavigatorFiles.ts`
-Source: `src/generation/generateNavigatorFiles.ts:224:1`
+Source: `src/generation/generateNavigatorFiles.ts:209:1`
 
 Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.
 
@@ -104,7 +182,7 @@ Source: `src/definitions/NavigatorPlan.ts:36:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:134:1`
+Source: `src/definitions/NavigatorPlan.ts:145:1`
 
 ### Members
 
@@ -117,21 +195,23 @@ Source: `src/definitions/NavigatorPlan.ts:134:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:125:1`
+Source: `src/definitions/NavigatorPlan.ts:134:1`
 
 ### Members
 
-| Name    | Kind     | Type                                                                       | Required | Description |
-| ------- | -------- | -------------------------------------------------------------------------- | -------- | ----------- |
-| flows   | property | `{ onboardingRoute?: string; authenticationRoute?: string; } \| undefined` | no       |             |
-| guards  | property | `Readonly<Record<string, NavigatorScreenModule>>`                          | yes      |             |
-| screens | property | `Readonly<Record<string, NavigatorScreenModule>>`                          | yes      |             |
+| Name               | Kind     | Type                                                                       | Required | Description |
+| ------------------ | -------- | -------------------------------------------------------------------------- | -------- | ----------- |
+| flows              | property | `{ onboardingRoute?: string; authenticationRoute?: string; } \| undefined` | no       |             |
+| guards             | property | `Readonly<Record<string, NavigatorScreenModule>>`                          | yes      |             |
+| iconSourceResolver | property | `NavigatorScreenModule \| undefined`                                       | no       |             |
+| screens            | property | `Readonly<Record<string, NavigatorScreenModule>>`                          | yes      |             |
+| tabPresentations   | property | `Readonly<Record<string, NavigatorScreenModule>> \| undefined`             | no       |             |
 
 ## NavigatorNodePlan
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:81:1`
+Source: `src/definitions/NavigatorPlan.ts:90:1`
 
 ### Members
 
@@ -152,7 +232,7 @@ Source: `src/definitions/NavigatorPlan.ts:81:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:109:1`
+Source: `src/definitions/NavigatorPlan.ts:118:1`
 
 ### Members
 
@@ -174,7 +254,7 @@ Source: `src/definitions/NavigatorPlan.ts:11:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:69:1`
+Source: `src/definitions/NavigatorPlan.ts:78:1`
 
 ### Members
 
@@ -200,7 +280,7 @@ Source: `src/definitions/NavigatorPlan.ts:10:1`
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:120:1`
+Source: `src/definitions/NavigatorPlan.ts:129:1`
 
 ### Members
 
@@ -287,7 +367,7 @@ Resolve a canonical navigator preset into its ordered topology layers.
 
 Kind: `function`
 Module: `src/expo-router/resolveTabsNavigatorPlan.ts`
-Source: `src/expo-router/resolveTabsNavigatorPlan.ts:79:1`
+Source: `src/expo-router/resolveTabsNavigatorPlan.ts:99:1`
 
 Resolve the Expo Router module/export and presentation for one tabs implementation.
 
@@ -303,24 +383,27 @@ Resolve the Expo Router module/export and presentation for one tabs implementati
 
 Kind: `type`
 Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:60:1`
+Source: `src/definitions/NavigatorPlan.ts:66:1`
 
 ### Members
 
-| Name                 | Kind     | Type                                    | Required | Description |
-| -------------------- | -------- | --------------------------------------- | -------- | ----------- |
-| customPresentationId | property | `string \| undefined`                   | no       |             |
-| exportName           | property | `string`                                | yes      |             |
-| implementation       | property | `ResolvedTabsImplementation`            | yes      |             |
-| module               | property | `ExpoRouterNavigatorModule`             | yes      |             |
-| presentation         | property | `ResolvedTabsPresentation \| undefined` | no       |             |
-| stability            | property | `NavigatorApiStability`                 | yes      |             |
+| Name                    | Kind     | Type                                                                               | Required | Description |
+| ----------------------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------- |
+| bottomAccessoryScreenId | property | `string \| undefined`                                                              | no       |             |
+| customPresentationId    | property | `string \| undefined`                                                              | no       |             |
+| exportName              | property | `string`                                                                           | yes      |             |
+| implementation          | property | `ResolvedTabsImplementation`                                                       | yes      |             |
+| minimizeBehavior        | property | `"automatic" \| "never" \| "onScrollDown" \| "onScrollUp" \| undefined`            | no       |             |
+| module                  | property | `ExpoRouterNavigatorModule`                                                        | yes      |             |
+| presentation            | property | `ResolvedTabsPresentation \| undefined`                                            | no       |             |
+| presentations           | property | `Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>> \| undefined` | no       |             |
+| stability               | property | `NavigatorApiStability`                                                            | yes      |             |
 
 ## validateNavigatorManifest
 
 Kind: `function`
 Module: `src/validation/validateNavigatorManifest.ts`
-Source: `src/validation/validateNavigatorManifest.ts:268:1`
+Source: `src/validation/validateNavigatorManifest.ts:238:1`
 
 Validate one navigator desired-state slice for a concrete Expo Router target.
 

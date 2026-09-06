@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant participant_CustomTabsLayout as CustomTabsLayout
+  participant participant_selectPresentation as selectPresentation
+  participant participant_useBreakpoint as useBreakpoint
+  participant participant_useHydrationSafeSize as useHydrationSafeSize
+  participant participant_useSafeAreaInsets as useSafeAreaInsets
+  participant participant_useSyncExternalStore as useSyncExternalStore
+  participant_CustomTabsLayout->>participant_useHydrationSafeSize: useHydrationSafeSize()
+  participant_useHydrationSafeSize->>participant_useBreakpoint: useBreakpoint()
+  participant_useBreakpoint-->>participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize->>participant_useSyncExternalStore: useSyncExternalStore()
+  participant_useSyncExternalStore-->>participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize-->>participant_CustomTabsLayout: return
+  participant_CustomTabsLayout->>participant_selectPresentation: selectPresentation()
+  participant_selectPresentation-->>participant_CustomTabsLayout: return
+  participant_CustomTabsLayout->>participant_useSafeAreaInsets: useSafeAreaInsets()
+  participant_useSafeAreaInsets-->>participant_CustomTabsLayout: return

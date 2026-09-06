@@ -24,7 +24,12 @@ export const NAVIGATOR_PACKAGE_METADATA = {
     drawer: { support: 'supported', stability: 'stable', module: 'expo-router/drawer' },
   },
   optionalAdapters: {
-    tabs: { support: 'unavailable' },
+    tabs: {
+      support: 'supported',
+      native: { platforms: ['android', 'ios'], stability: 'alpha' },
+      javascript: { platforms: ['android', 'ios', 'web'], stability: 'stable' },
+      custom: { platforms: ['web'], stability: 'stable', presentationOwner: '@ankhorage/surface' },
+    },
     experimentalStack: { support: 'unavailable', stability: 'alpha' },
     splitView: { support: 'unavailable', stability: 'alpha' },
     custom: { support: 'unavailable' },

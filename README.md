@@ -3,9 +3,9 @@
 
 # NAVIGATOR
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.1.1](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v1.0.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
-Standalone manifest-driven navigator capability for Expo Router across React Native and React Native Web.
+Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs use Native Tabs on Android/iOS and one stable Expo Router headless topology with Surface-owned responsive presentation on Web.
 
 ## Generated documentation
 
@@ -15,5 +15,6 @@ Standalone manifest-driven navigator capability for Expo Router across React Nat
 - [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
+- [CustomTabsLayout sequence](././paradox/diagrams/sequences/custom-tabs-layout.mmd)
 - [resolveCustomTabsPresentation sequence](././paradox/diagrams/sequences/resolve-custom-tabs-presentation.mmd)
 - [resolveTabsNavigatorPlan sequence](././paradox/diagrams/sequences/resolve-tabs-navigator-plan.mmd)

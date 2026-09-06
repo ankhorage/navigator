@@ -57,13 +57,22 @@ export interface NavigatorAdapterPlan {
 export type ResolvedTabsImplementation = 'custom' | 'javascript' | 'native';
 export type ResolvedTabsPresentation = 'bottom' | 'top' | 'rail' | 'sidebar' | 'custom';
 
+/**
+ * Disposable adapter plan for a `tabs` topology.
+ *
+ * The implementation selects the Router runtime. Presentation only selects its visual chrome and
+ * never creates another route topology.
+ */
 export interface TabsNavigatorPlan {
   implementation: ResolvedTabsImplementation;
   module: ExpoRouterNavigatorModule;
   exportName: string;
   stability: NavigatorApiStability;
   presentation?: ResolvedTabsPresentation;
+  presentations?: Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>;
   customPresentationId?: string;
+  minimizeBehavior?: 'automatic' | 'never' | 'onScrollDown' | 'onScrollUp';
+  bottomAccessoryScreenId?: string;
 }
 
 export interface NavigatorRoutePlan {
@@ -125,10 +134,12 @@ export interface NavigatorScreenModule {
 export interface NavigatorGenerationBindings {
   screens: Readonly<Record<string, NavigatorScreenModule>>;
   guards: Readonly<Record<string, NavigatorScreenModule>>;
+  iconSourceResolver?: NavigatorScreenModule;
   flows?: {
     onboardingRoute?: string;
     authenticationRoute?: string;
   };
+  tabPresentations?: Readonly<Record<string, NavigatorScreenModule>>;
 }
 
 export interface NavigatorGeneratedFile {
