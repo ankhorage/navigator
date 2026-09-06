@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.2.0
+
+### Minor Changes
+
+- 8d4edc5: Add the gated Expo Router Experimental Stack adapter with strict option, version, Android mixing, predictive-back, and web-fallback diagnostics.
+
 ## 1.1.0
 
 ### Minor Changes
