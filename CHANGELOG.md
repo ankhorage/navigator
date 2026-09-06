@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.3.0
+
+### Minor Changes
+
+- 567c719: Add constrained Expo Router Split View planning and generation with registered column screens, iPhone collapse metadata, and explicit Slot fallbacks.
+
 ## 1.2.0
 
 ### Minor Changes
