@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.4.0",
+      "value": "v1.5.0",
       "color": "cb3837"
     },
     {
@@ -888,7 +888,7 @@
       "modulePath": "src/generation/generateNavigatorFiles.ts",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 244,
+        "line": 252,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2213,6 +2213,15 @@
       }
     },
     {
+      "name": "createJavaScriptLayouts",
+      "description": "Generate bottom and top JavaScript Tabs layouts with directly addressable hidden routes.",
+      "sourceLocation": {
+        "filePath": "src/generatedTabsTypecheck.test.ts",
+        "line": 50,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveRootDirectory",
       "description": null,
       "sourceLocation": {
@@ -2244,7 +2253,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 57,
+        "line": 65,
         "column": 1
       }
     },
@@ -2253,7 +2262,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 80,
+        "line": 88,
         "column": 1
       }
     },
@@ -2262,7 +2271,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 97,
+        "line": 105,
         "column": 1
       }
     },
@@ -2271,7 +2280,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 127,
+        "line": 135,
         "column": 1
       }
     },
@@ -2280,7 +2289,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 172,
+        "line": 180,
         "column": 1
       }
     },
@@ -2289,7 +2298,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 190,
+        "line": 198,
         "column": 1
       }
     },
@@ -2298,7 +2307,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 217,
+        "line": 225,
         "column": 1
       }
     },
@@ -2307,7 +2316,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 227,
+        "line": 235,
         "column": 1
       }
     },
@@ -2316,7 +2325,7 @@
       "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
       "sourceLocation": {
         "filePath": "src/generation/generateNavigatorFiles.ts",
-        "line": 244,
+        "line": 252,
         "column": 1
       }
     },
@@ -3514,14 +3523,20 @@
       },
       {
         "fromSymbol": "src/generatedTabsTypecheck.test.ts",
+        "toSymbol": "createLayout",
+        "callExpression": "createLayout",
+        "sourcePath": "src/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedTabsTypecheck.test.ts",
         "toSymbol": "test",
         "callExpression": "test",
         "sourcePath": "src/generatedTabsTypecheck.test.ts"
       },
       {
         "fromSymbol": "src/generatedTabsTypecheck.test.ts",
-        "toSymbol": "createLayout",
-        "callExpression": "createLayout",
+        "toSymbol": "createJavaScriptLayouts",
+        "callExpression": "createJavaScriptLayouts",
         "sourcePath": "src/generatedTabsTypecheck.test.ts"
       },
       {

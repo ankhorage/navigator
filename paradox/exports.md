@@ -171,7 +171,7 @@ Source: `src/definitions/NavigatorPlan.ts:15:1`
 
 Kind: `function`
 Module: `src/generation/generateNavigatorFiles.ts`
-Source: `src/generation/generateNavigatorFiles.ts:244:1`
+Source: `src/generation/generateNavigatorFiles.ts:252:1`
 
 Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.
 

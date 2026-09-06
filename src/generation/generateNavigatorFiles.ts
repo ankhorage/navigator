@@ -51,6 +51,14 @@ function routeOptions(node: NavigatorNodePlan, route: NavigatorRoutePlan): strin
       options.drawerItemStyle = { display: 'none' };
     }
   }
+  if (
+    node.type === 'tabs' &&
+    node.tabs?.implementation === 'javascript' &&
+    route.showInPrimaryNavigation === false
+  ) {
+    if (node.tabs.presentation === 'top') options.tabBarItemStyle = { display: 'none' };
+    else options.href = null;
+  }
   return Object.keys(options).length === 0 ? undefined : JSON.stringify(options);
 }
 

@@ -46,6 +46,24 @@ function typeErrors(source: string): readonly ts.Diagnostic[] {
     .filter((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error);
 }
 
+/*** Generate bottom and top JavaScript Tabs layouts with directly addressable hidden routes. */
+function createJavaScriptLayouts(): readonly string[] {
+  return (['bottom', 'top'] as const).map((presentation) =>
+    createLayout(
+      {
+        type: 'tabs',
+        implementation: 'javascript',
+        presentation,
+        routes: [
+          { name: 'home', screenId: 'home' },
+          { name: 'hidden', screenId: 'home', showInPrimaryNavigation: false },
+        ],
+      },
+      'web',
+    ),
+  );
+}
+
 test('generated Tabs layouts typecheck against the supported Expo and Surface runtime', () => {
   const native = createLayout(
     {
@@ -66,7 +84,7 @@ test('generated Tabs layouts typecheck against the supported Expo and Surface ru
     'web',
   );
 
-  for (const source of [native, custom]) {
+  for (const source of [native, custom, ...createJavaScriptLayouts()]) {
     const diagnostics = typeErrors(source);
     expect(
       diagnostics.map((diagnostic) =>
