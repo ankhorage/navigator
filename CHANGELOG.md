@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.5.0
+
+### Minor Changes
+
+- fc5f4c3: Expose safe root-directory and layout-only generation options for consumers that own the Expo Router app shell.
+
 ## 1.4.0
 
 ### Minor Changes
