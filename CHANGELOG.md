@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 0.1.1
+
+### Patch Changes
+
+- 7f21197: Update Ankhorage dependencies: `@ankhorage/contracts`.
+
 ## 0.1.0
 
 ### Minor Changes
