@@ -33,6 +33,12 @@ describe('@ankhorage/navigator package boundary', () => {
       'expo-router/js-stack',
     );
     expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.tabs.support).toBe('supported');
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.experimentalStack).toMatchObject({
+      support: 'supported',
+      stability: 'alpha',
+      status: 'testing-only',
+      webFallback: 'stack.native',
+    });
   });
 
   test('requires the Surface release that supports portable SVG icon sources', async () => {

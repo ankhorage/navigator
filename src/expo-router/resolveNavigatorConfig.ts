@@ -9,6 +9,11 @@ import type {
 
 import type { NavigatorRuntimePlatform } from '../definitions/NavigatorPlan';
 
+export interface ResolvedStackConfigSource {
+  config: StackImplementationConfig;
+  pointer: string;
+}
+
 export function parseExpoRouterMajor(version: string): number | undefined {
   const match = /^(\d+)\.\d+\.\d+(?:[-+].*)?$/u.exec(version);
   return match?.[1] === undefined ? undefined : Number(match[1]);
@@ -55,16 +60,33 @@ function resolvePlatformTabsConfig(
   }
 }
 
+/*** Resolve effective Stack configuration using platform, node, default, and stable precedence. */
 export function resolveEffectiveStackConfig(
   manifest: AppNavigatorManifest,
   node: StackNavigatorNode,
   platform: NavigatorRuntimePlatform,
 ): StackImplementationConfig {
-  return (
-    resolvePlatformStackConfig(manifest.platforms, platform) ??
-    resolveNodeStackConfig(node) ??
-    manifest.defaults?.stack ?? { implementation: 'native' }
-  );
+  return resolveEffectiveStackConfigSource(manifest, node, platform, '').config;
+}
+
+/*** Resolve effective Stack configuration together with its authored diagnostic location. */
+export function resolveEffectiveStackConfigSource(
+  manifest: AppNavigatorManifest,
+  node: StackNavigatorNode,
+  platform: NavigatorRuntimePlatform,
+  nodePointer: string,
+): ResolvedStackConfigSource {
+  const platformConfig = resolvePlatformStackConfig(manifest.platforms, platform);
+  if (platformConfig !== undefined) {
+    return { config: platformConfig, pointer: `/platforms/${platform}/stack` };
+  }
+
+  const nodeConfig = resolveNodeStackConfig(node);
+  if (nodeConfig !== undefined) return { config: nodeConfig, pointer: nodePointer };
+  if (manifest.defaults?.stack !== undefined) {
+    return { config: manifest.defaults.stack, pointer: '/defaults/stack' };
+  }
+  return { config: { implementation: 'native' }, pointer: nodePointer };
 }
 
 export function resolveEffectiveTabsConfig(

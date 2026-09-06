@@ -1,7 +1,7 @@
 {
   "packageName": "NAVIGATOR",
   "packageId": "@ankhorage/navigator",
-  "description": "Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs use Native Tabs on Android/iOS and one stable Expo Router headless topology with Surface-owned responsive presentation on Web.",
+  "description": "Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; Experimental Stack stays testing-only, validates its narrow option surface, and uses the upstream web fallback.",
   "collaborators": null,
   "donation": null,
   "badges": [
@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.0.0",
+      "value": "v1.1.0",
       "color": "cb3837"
     },
     {
@@ -94,6 +94,12 @@
       ]
     },
     {
+      "path": "src/experimentalStack.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts", "src/metadata/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/expo-router/createNavigatorPlan.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -110,7 +116,9 @@
       "dependencies": ["src/definitions/NavigatorPlan.ts"],
       "exports": [
         "parseExpoRouterMajor",
+        "ResolvedStackConfigSource",
         "resolveEffectiveStackConfig",
+        "resolveEffectiveStackConfigSource",
         "resolveEffectiveTabsConfig"
       ]
     },
@@ -122,6 +130,12 @@
         "src/presentation/resolveCustomTabsPresentation.ts"
       ],
       "exports": ["resolveTabsNavigatorPlan"]
+    },
+    {
+      "path": "src/generatedExperimentalStackTypecheck.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
     },
     {
       "path": "src/generatedTabsTypecheck.test.ts",
@@ -257,11 +271,21 @@
       "exports": ["resolveNavigatorPreset"]
     },
     {
+      "path": "src/validation/validateExperimentalStack.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/definitions/NavigatorPlan.ts",
+        "src/expo-router/resolveNavigatorConfig.ts"
+      ],
+      "exports": ["addExperimentalStackDiagnostics"]
+    },
+    {
       "path": "src/validation/validateNavigatorManifest.ts",
       "isEntrypoint": false,
       "dependencies": [
         "src/definitions/NavigatorPlan.ts",
         "src/expo-router/resolveNavigatorConfig.ts",
+        "src/validation/validateExperimentalStack.ts",
         "src/validation/validatePresetTopology.ts",
         "src/validation/validateTabsNavigator.ts"
       ],
@@ -296,7 +320,7 @@
       "modulePath": "src/expo-router/createNavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 272,
+        "line": 287,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1514,7 +1538,7 @@
       "modulePath": "src/validation/validateNavigatorManifest.ts",
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 238,
+        "line": 231,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1593,11 +1617,20 @@
   ],
   "sourceFunctions": [
     {
-      "name": "createStackAdapter",
+      "name": "diagnosticKeys",
       "description": null,
       "sourceLocation": {
+        "filePath": "src/experimentalStack.test.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
+      "name": "createStackAdapter",
+      "description": "Resolve a Stack implementation to its version- and platform-aware Expo Router adapter.",
+      "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 31,
+        "line": 32,
         "column": 1
       }
     },
@@ -1606,7 +1639,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 64,
+        "line": 79,
         "column": 1
       }
     },
@@ -1615,7 +1648,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 88,
+        "line": 103,
         "column": 1
       }
     },
@@ -1624,7 +1657,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 136,
+        "line": 151,
         "column": 1
       }
     },
@@ -1633,7 +1666,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 156,
+        "line": 171,
         "column": 1
       }
     },
@@ -1642,7 +1675,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 200,
+        "line": 215,
         "column": 1
       }
     },
@@ -1651,7 +1684,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 232,
+        "line": 247,
         "column": 1
       }
     },
@@ -1660,7 +1693,7 @@
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
       "sourceLocation": {
         "filePath": "src/expo-router/createNavigatorPlan.ts",
-        "line": 272,
+        "line": 287,
         "column": 1
       }
     },
@@ -1669,7 +1702,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 12,
+        "line": 17,
         "column": 1
       }
     },
@@ -1678,7 +1711,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 17,
+        "line": 22,
         "column": 1
       }
     },
@@ -1687,7 +1720,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 25,
+        "line": 30,
         "column": 1
       }
     },
@@ -1696,7 +1729,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 30,
+        "line": 35,
         "column": 1
       }
     },
@@ -1705,16 +1738,25 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 44,
+        "line": 49,
         "column": 1
       }
     },
     {
       "name": "resolveEffectiveStackConfig",
-      "description": null,
+      "description": "Resolve effective Stack configuration using platform, node, default, and stable precedence.",
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 58,
+        "line": 64,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveEffectiveStackConfigSource",
+      "description": "Resolve effective Stack configuration together with its authored diagnostic location.",
+      "sourceLocation": {
+        "filePath": "src/expo-router/resolveNavigatorConfig.ts",
+        "line": 73,
         "column": 1
       }
     },
@@ -1723,7 +1765,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/expo-router/resolveNavigatorConfig.ts",
-        "line": 70,
+        "line": 92,
         "column": 1
       }
     },
@@ -1778,6 +1820,15 @@
       "sourceLocation": {
         "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
         "line": 99,
+        "column": 1
+      }
+    },
+    {
+      "name": "typeErrors",
+      "description": "Compile a generated layout against the installed Expo Router public types.",
+      "sourceLocation": {
+        "filePath": "src/generatedExperimentalStackTypecheck.test.ts",
+        "line": 23,
         "column": 1
       }
     },
@@ -2124,11 +2175,47 @@
       }
     },
     {
+      "name": "addUnsupportedOptionDiagnostics",
+      "description": "Add actionable diagnostics for options ignored by Expo Router Experimental Stack.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateExperimentalStack.ts",
+        "line": 29,
+        "column": 1
+      }
+    },
+    {
+      "name": "auditExperimentalStackNode",
+      "description": "Audit one resolved experimental Stack node and its route-level option surface.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateExperimentalStack.ts",
+        "line": 47,
+        "column": 1
+      }
+    },
+    {
+      "name": "auditStackTree",
+      "description": "Traverse the authored topology using the resolved platform and default precedence.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateExperimentalStack.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "addExperimentalStackDiagnostics",
+      "description": "Add app-wide platform, version, option, and runtime requirements for Experimental Stack.",
+      "sourceLocation": {
+        "filePath": "src/validation/validateExperimentalStack.ts",
+        "line": 107,
+        "column": 1
+      }
+    },
+    {
       "name": "addStackAdapterDiagnostics",
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 16,
+        "line": 17,
         "column": 1
       }
     },
@@ -2137,7 +2224,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 45,
+        "line": 38,
         "column": 1
       }
     },
@@ -2146,7 +2233,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 69,
+        "line": 62,
         "column": 1
       }
     },
@@ -2155,7 +2242,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 96,
+        "line": 89,
         "column": 1
       }
     },
@@ -2164,7 +2251,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 121,
+        "line": 114,
         "column": 1
       }
     },
@@ -2173,7 +2260,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 136,
+        "line": 129,
         "column": 1
       }
     },
@@ -2182,7 +2269,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 160,
+        "line": 153,
         "column": 1
       }
     },
@@ -2191,7 +2278,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 191,
+        "line": 184,
         "column": 1
       }
     },
@@ -2200,7 +2287,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 205,
+        "line": 198,
         "column": 1
       }
     },
@@ -2209,7 +2296,7 @@
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
       "sourceLocation": {
         "filePath": "src/validation/validateNavigatorManifest.ts",
-        "line": 238,
+        "line": 231,
         "column": 1
       }
     },
@@ -2337,6 +2424,21 @@
   ],
   "graphs": {
     "imports": [
+      {
+        "fromPath": "src/experimentalStack.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromPath": "src/experimentalStack.test.ts",
+        "toPath": "src/metadata/index.ts",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromPath": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
       {
         "fromPath": "src/generatedTabsTypecheck.test.ts",
         "toPath": "src/index.ts",
@@ -2473,6 +2575,16 @@
         "sourcePath": "src/tabs/index.ts"
       },
       {
+        "fromPath": "src/validation/validateExperimentalStack.ts",
+        "toPath": "src/definitions/NavigatorPlan.ts",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
+        "fromPath": "src/validation/validateExperimentalStack.ts",
+        "toPath": "src/expo-router/resolveNavigatorConfig.ts",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
         "fromPath": "src/validation/validateNavigatorManifest.ts",
         "toPath": "src/definitions/NavigatorPlan.ts",
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
@@ -2480,6 +2592,11 @@
       {
         "fromPath": "src/validation/validateNavigatorManifest.ts",
         "toPath": "src/expo-router/resolveNavigatorConfig.ts",
+        "sourcePath": "src/validation/validateNavigatorManifest.ts"
+      },
+      {
+        "fromPath": "src/validation/validateNavigatorManifest.ts",
+        "toPath": "src/validation/validateExperimentalStack.ts",
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
       },
       {
@@ -2514,6 +2631,90 @@
       }
     ],
     "calls": [
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "diagnosticKeys",
+        "callExpression": "diagnosticKeys",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "validateNavigatorManifest",
+        "callExpression": "validateNavigatorManifest",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "src/experimentalStack.test.ts",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "typeErrors",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toSymbol": "getSourceFile",
+        "callExpression": "getSourceFile",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toSymbol": "generateNavigatorFiles",
+        "callExpression": "generateNavigatorFiles",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toSymbol": "typeErrors",
+        "callExpression": "typeErrors",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "src/generatedExperimentalStackTypecheck.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/generatedExperimentalStackTypecheck.test.ts"
+      },
       {
         "fromSymbol": "createLayout",
         "toSymbol": "createNavigatorPlan",
@@ -2804,12 +3005,18 @@
       },
       {
         "fromSymbol": "resolveEffectiveStackConfig",
+        "toSymbol": "resolveEffectiveStackConfigSource",
+        "callExpression": "resolveEffectiveStackConfigSource",
+        "sourcePath": "src/expo-router/resolveNavigatorConfig.ts"
+      },
+      {
+        "fromSymbol": "resolveEffectiveStackConfigSource",
         "toSymbol": "resolvePlatformStackConfig",
         "callExpression": "resolvePlatformStackConfig",
         "sourcePath": "src/expo-router/resolveNavigatorConfig.ts"
       },
       {
-        "fromSymbol": "resolveEffectiveStackConfig",
+        "fromSymbol": "resolveEffectiveStackConfigSource",
         "toSymbol": "resolveNodeStackConfig",
         "callExpression": "resolveNodeStackConfig",
         "sourcePath": "src/expo-router/resolveNavigatorConfig.ts"
@@ -3139,6 +3346,36 @@
         "sourcePath": "src/tabs/CustomTabsLayout.tsx"
       },
       {
+        "fromSymbol": "auditExperimentalStackNode",
+        "toSymbol": "addUnsupportedOptionDiagnostics",
+        "callExpression": "addUnsupportedOptionDiagnostics",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
+        "fromSymbol": "auditStackTree",
+        "toSymbol": "resolveEffectiveStackConfigSource",
+        "callExpression": "resolveEffectiveStackConfigSource",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
+        "fromSymbol": "auditStackTree",
+        "toSymbol": "auditExperimentalStackNode",
+        "callExpression": "auditExperimentalStackNode",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
+        "fromSymbol": "auditStackTree",
+        "toSymbol": "auditStackTree",
+        "callExpression": "auditStackTree",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
+        "fromSymbol": "addExperimentalStackDiagnostics",
+        "toSymbol": "auditStackTree",
+        "callExpression": "auditStackTree",
+        "sourcePath": "src/validation/validateExperimentalStack.ts"
+      },
+      {
         "fromSymbol": "addStackAdapterDiagnostics",
         "toSymbol": "resolveEffectiveStackConfig",
         "callExpression": "resolveEffectiveStackConfig",
@@ -3226,6 +3463,12 @@
         "fromSymbol": "validateNavigatorManifest",
         "toSymbol": "validateNode",
         "callExpression": "validateNode",
+        "sourcePath": "src/validation/validateNavigatorManifest.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorManifest",
+        "toSymbol": "addExperimentalStackDiagnostics",
+        "callExpression": "addExperimentalStackDiagnostics",
         "sourcePath": "src/validation/validateNavigatorManifest.ts"
       },
       {

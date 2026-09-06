@@ -187,9 +187,9 @@
         <h1>NAVIGATOR</h1>
         <p>
           Standalone Navigator capability with topology configured independently from platform
-          implementation and visual presentation. Adaptive tabs use Native Tabs on Android/iOS and
-          one stable Expo Router headless topology with Surface-owned responsive presentation on
-          Web.
+          implementation and visual presentation. Adaptive tabs provide native and responsive web
+          adapters; Experimental Stack stays testing-only, validates its narrow option surface, and
+          uses the upstream web fallback.
         </p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
@@ -198,6 +198,12 @@
               <button class="nav-button" type="button" data-target="home" aria-current="page">
                 Home
                 <small>Overview, CLI, public API, diagrams</small>
+              </button>
+            </li>
+            <li>
+              <button class="nav-button" type="button" data-target="src/experimentalStack.test.ts">
+                src/experimentalStack.test.ts
+                <small>1 function</small>
               </button>
             </li>
             <li>
@@ -217,7 +223,7 @@
                 data-target="src/expo-router/resolveNavigatorConfig.ts"
               >
                 src/expo-router/resolveNavigatorConfig.ts
-                <small>7 functions</small>
+                <small>8 functions</small>
               </button>
             </li>
             <li>
@@ -228,6 +234,16 @@
               >
                 src/expo-router/resolveTabsNavigatorPlan.ts
                 <small>6 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/generatedExperimentalStackTypecheck.test.ts"
+              >
+                src/generatedExperimentalStackTypecheck.test.ts
+                <small>1 function</small>
               </button>
             </li>
             <li>
@@ -312,6 +328,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/validation/validateExperimentalStack.ts"
+              >
+                src/validation/validateExperimentalStack.ts
+                <small>4 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/validation/validateNavigatorManifest.ts"
               >
                 src/validation/validateNavigatorManifest.ts
@@ -348,7 +374,7 @@
             <div class="summary">
               <div><strong>32</strong><span class="muted">public exports</span></div>
               <div><strong>1</strong><span class="muted">components</span></div>
-              <div><strong>21</strong><span class="muted">modules</span></div>
+              <div><strong>24</strong><span class="muted">modules</span></div>
               <div><strong>3</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -383,6 +409,18 @@
             </article>
             <article
               class="item"
+              data-search="src/experimentalStack.test.ts src/index.ts src/metadata/index.ts"
+            >
+              <h3>src/experimentalStack.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/index.ts</code>,
+                <code>src/metadata/index.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
               data-search="src/expo-router/createNavigatorPlan.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/expo-router/resolveTabsNavigatorPlan.ts src/validation/validateNavigatorManifest.ts createNavigatorPlan CreateNavigatorPlanOptions"
             >
               <h3>src/expo-router/createNavigatorPlan.ts</h3>
@@ -400,14 +438,16 @@
             </article>
             <article
               class="item"
-              data-search="src/expo-router/resolveNavigatorConfig.ts src/definitions/NavigatorPlan.ts parseExpoRouterMajor resolveEffectiveStackConfig resolveEffectiveTabsConfig"
+              data-search="src/expo-router/resolveNavigatorConfig.ts src/definitions/NavigatorPlan.ts parseExpoRouterMajor ResolvedStackConfigSource resolveEffectiveStackConfig resolveEffectiveStackConfigSource resolveEffectiveTabsConfig"
             >
               <h3>src/expo-router/resolveNavigatorConfig.ts</h3>
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code></p>
               <p>
                 <strong>Exports:</strong> <code>parseExpoRouterMajor</code>,
-                <code>resolveEffectiveStackConfig</code>, <code>resolveEffectiveTabsConfig</code>
+                <code>ResolvedStackConfigSource</code>, <code>resolveEffectiveStackConfig</code>,
+                <code>resolveEffectiveStackConfigSource</code>,
+                <code>resolveEffectiveTabsConfig</code>
               </p>
             </article>
             <article
@@ -421,6 +461,15 @@
                 <code>src/presentation/resolveCustomTabsPresentation.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>resolveTabsNavigatorPlan</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/generatedExperimentalStackTypecheck.test.ts src/index.ts"
+            >
+              <h3>src/generatedExperimentalStackTypecheck.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
             <article class="item" data-search="src/generatedTabsTypecheck.test.ts src/index.ts">
               <h3>src/generatedTabsTypecheck.test.ts</h3>
@@ -572,13 +621,26 @@
             </article>
             <article
               class="item"
-              data-search="src/validation/validateNavigatorManifest.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/validation/validatePresetTopology.ts src/validation/validateTabsNavigator.ts validateNavigatorManifest"
+              data-search="src/validation/validateExperimentalStack.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts addExperimentalStackDiagnostics"
+            >
+              <h3>src/validation/validateExperimentalStack.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
+                <code>src/expo-router/resolveNavigatorConfig.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>addExperimentalStackDiagnostics</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/validation/validateNavigatorManifest.ts src/definitions/NavigatorPlan.ts src/expo-router/resolveNavigatorConfig.ts src/validation/validateExperimentalStack.ts src/validation/validatePresetTopology.ts src/validation/validateTabsNavigator.ts validateNavigatorManifest"
             >
               <h3>src/validation/validateNavigatorManifest.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/definitions/NavigatorPlan.ts</code>,
                 <code>src/expo-router/resolveNavigatorConfig.ts</code>,
+                <code>src/validation/validateExperimentalStack.ts</code>,
                 <code>src/validation/validatePresetTopology.ts</code>,
                 <code>src/validation/validateTabsNavigator.ts</code>
               </p>
@@ -1436,7 +1498,7 @@
               >
                 <h4>createNavigatorPlan</h4>
                 <p class="muted">
-                  function • <code>src/expo-router/createNavigatorPlan.ts:272:1</code>
+                  function • <code>src/expo-router/createNavigatorPlan.ts:287:1</code>
                 </p>
                 <p>
                   Create a disposable, provider-aware plan from only the navigator desired-state
@@ -2109,7 +2171,7 @@
               >
                 <h4>validateNavigatorManifest</h4>
                 <p class="muted">
-                  function • <code>src/validation/validateNavigatorManifest.ts:238:1</code>
+                  function • <code>src/validation/validateNavigatorManifest.ts:231:1</code>
                 </p>
                 <p>Validate one navigator desired-state slice for a concrete Expo Router target.</p>
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -2236,6 +2298,10 @@
                 package__ankhorage_navigator --&gt; entrypoint_src_tabs_index_ts
                 module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_definitions_NavigatorPlan_ts
+                module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_experimentalStack_test_ts
+                module_src_experimentalStack_test_ts --&gt; module_src_index_ts
+                module_src_experimentalStack_test_ts --&gt; module_src_metadata_index_ts
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_expo_router_createNavigatorPlan_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
@@ -2258,6 +2324,10 @@
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
                 module_src_presentation_resolveCustomTabsPresentation_ts
+                module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_generatedExperimentalStackTypecheck_test_ts
+                module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_generatedTabsTypecheck_test_ts
                 module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
@@ -2301,6 +2371,13 @@
                 package__ankhorage_navigator -.-&gt; module_src_tabs_nativeIconFamilies_ts
                 module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_topology_resolveNavigatorPreset_ts
+                module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_validation_validateExperimentalStack_ts
+                module_src_validation_validateExperimentalStack_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_validation_validateExperimentalStack_ts --&gt;
+                module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_validation_validateNavigatorManifest_ts
@@ -2308,6 +2385,8 @@
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_expo_router_resolveNavigatorConfig_ts
+                module_src_validation_validateNavigatorManifest_ts --&gt;
+                module_src_validation_validateExperimentalStack_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validatePresetTopology_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
@@ -2338,6 +2417,10 @@ graph TD
   package__ankhorage_navigator --&gt; entrypoint_src_tabs_index_ts
   module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_experimentalStack_test_ts
+  module_src_experimentalStack_test_ts --&gt; module_src_index_ts
+  module_src_experimentalStack_test_ts --&gt; module_src_metadata_index_ts
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_expo_router_createNavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
@@ -2351,6 +2434,9 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_generatedExperimentalStackTypecheck_test_ts
+  module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_generatedTabsTypecheck_test_ts
   module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
@@ -2388,10 +2474,15 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_tabs_nativeIconFamilies_ts
   module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_topology_resolveNavigatorPreset_ts
+  module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_validation_validateExperimentalStack_ts
+  module_src_validation_validateExperimentalStack_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateExperimentalStack_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_validation_validateNavigatorManifest_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
+  module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateExperimentalStack_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validatePresetTopology_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
@@ -2414,9 +2505,11 @@ graph TD
               <div class="mermaid">
                 graph LR
                 module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+                module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
                 module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
                 module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
@@ -2431,9 +2524,12 @@ graph TD
                 module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
                 module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
                 module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+                module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
                 module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
+                module_src_experimentalStack_test_ts --&gt; module_src_index_ts
+                module_src_experimentalStack_test_ts --&gt; module_src_metadata_index_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_createNavigatorPlan_ts --&gt;
@@ -2448,6 +2544,7 @@ graph TD
                 module_src_definitions_NavigatorPlan_ts
                 module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt;
                 module_src_presentation_resolveCustomTabsPresentation_ts
+                module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
                 module_src_generation_generateNavigatorFiles_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
@@ -2466,10 +2563,16 @@ graph TD
                 module_src_definitions_NavigatorPlan_ts module_src_tabs_test_ts --&gt;
                 module_src_index_ts module_src_tabs_CustomTabsLayout_tsx --&gt;
                 module_src_definitions_NavigatorPlan_ts
+                module_src_validation_validateExperimentalStack_ts --&gt;
+                module_src_definitions_NavigatorPlan_ts
+                module_src_validation_validateExperimentalStack_ts --&gt;
+                module_src_expo_router_resolveNavigatorConfig_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_definitions_NavigatorPlan_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_expo_router_resolveNavigatorConfig_ts
+                module_src_validation_validateNavigatorManifest_ts --&gt;
+                module_src_validation_validateExperimentalStack_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
                 module_src_validation_validatePresetTopology_ts
                 module_src_validation_validateNavigatorManifest_ts --&gt;
@@ -2488,9 +2591,11 @@ graph TD
                 <pre>
 graph LR
   module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+  module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+  module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
   module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
   module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
@@ -2505,9 +2610,12 @@ graph LR
   module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
   module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
   module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+  module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
   module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
+  module_src_experimentalStack_test_ts --&gt; module_src_index_ts
+  module_src_experimentalStack_test_ts --&gt; module_src_metadata_index_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_expo_router_createNavigatorPlan_ts --&gt; module_src_expo_router_resolveTabsNavigatorPlan_ts
@@ -2515,6 +2623,7 @@ graph LR
   module_src_expo_router_resolveNavigatorConfig_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --&gt; module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_generatedExperimentalStackTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generatedTabsTypecheck_test_ts --&gt; module_src_index_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_generation_generateNavigatorFiles_ts --&gt; module_src_generation_generateTabsLayoutFile_ts
@@ -2527,8 +2636,11 @@ graph LR
   module_src_presentation_resolveCustomTabsPresentation_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_tabs_test_ts --&gt; module_src_index_ts
   module_src_tabs_CustomTabsLayout_tsx --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateExperimentalStack_ts --&gt; module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateExperimentalStack_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_expo_router_resolveNavigatorConfig_ts
+  module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateExperimentalStack_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validatePresetTopology_ts
   module_src_validation_validateNavigatorManifest_ts --&gt; module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts --&gt; module_src_definitions_NavigatorPlan_ts
@@ -2544,9 +2656,11 @@ graph LR
               <div class="mermaid">
                 graph LR
                 module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+                module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
                 module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
                 module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
                 module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+                module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
                 module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
                 module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
                 module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
@@ -2561,6 +2675,7 @@ graph LR
                 module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
                 module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
                 module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+                module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
                 module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
                 module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
                 module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
@@ -2677,9 +2792,11 @@ graph LR
                 <pre>
 graph LR
   module_src_definitions_NavigatorPlan_ts[&quot;src/definitions/NavigatorPlan.ts&quot;]
+  module_src_experimentalStack_test_ts[&quot;src/experimentalStack.test.ts&quot;]
   module_src_expo_router_createNavigatorPlan_ts[&quot;src/expo-router/createNavigatorPlan.ts&quot;]
   module_src_expo_router_resolveNavigatorConfig_ts[&quot;src/expo-router/resolveNavigatorConfig.ts&quot;]
   module_src_expo_router_resolveTabsNavigatorPlan_ts[&quot;src/expo-router/resolveTabsNavigatorPlan.ts&quot;]
+  module_src_generatedExperimentalStackTypecheck_test_ts[&quot;src/generatedExperimentalStackTypecheck.test.ts&quot;]
   module_src_generatedTabsTypecheck_test_ts[&quot;src/generatedTabsTypecheck.test.ts&quot;]
   module_src_generation_generateNavigatorFiles_ts[&quot;src/generation/generateNavigatorFiles.ts&quot;]
   module_src_generation_generateTabsLayoutFile_ts[&quot;src/generation/generateTabsLayoutFile.ts&quot;]
@@ -2694,6 +2811,7 @@ graph LR
   module_src_tabs_index_ts[&quot;src/tabs/index.ts&quot;]
   module_src_tabs_nativeIconFamilies_ts[&quot;src/tabs/nativeIconFamilies.ts&quot;]
   module_src_topology_resolveNavigatorPreset_ts[&quot;src/topology/resolveNavigatorPreset.ts&quot;]
+  module_src_validation_validateExperimentalStack_ts[&quot;src/validation/validateExperimentalStack.ts&quot;]
   module_src_validation_validateNavigatorManifest_ts[&quot;src/validation/validateNavigatorManifest.ts&quot;]
   module_src_validation_validatePresetTopology_ts[&quot;src/validation/validatePresetTopology.ts&quot;]
   module_src_validation_validateTabsNavigator_ts[&quot;src/validation/validateTabsNavigator.ts&quot;]
@@ -2969,6 +3087,21 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-experimentalstack-test-ts"
+          class="view"
+          data-view="src/experimentalStack.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/experimentalStack.test.ts</h2>
+            <article class="item" data-search="diagnosticKeys src/experimentalStack.test.ts ">
+              <h3>diagnosticKeys</h3>
+              <p class="muted"><code>src/experimentalStack.test.ts:12:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-expo-router-createnavigatorplan-ts"
           class="view"
           data-view="src/expo-router/createNavigatorPlan.ts"
@@ -2978,18 +3111,21 @@ sequenceDiagram
             <h2>src/expo-router/createNavigatorPlan.ts</h2>
             <article
               class="item"
-              data-search="createStackAdapter src/expo-router/createNavigatorPlan.ts "
+              data-search="createStackAdapter src/expo-router/createNavigatorPlan.ts Resolve a Stack implementation to its version- and platform-aware Expo Router adapter."
             >
               <h3>createStackAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:31:1</code></p>
-              <p class="empty">No description available.</p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:32:1</code></p>
+              <p>
+                Resolve a Stack implementation to its version- and platform-aware Expo Router
+                adapter.
+              </p>
             </article>
             <article
               class="item"
               data-search="createTabsAdapter src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createTabsAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:64:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:79:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -2997,7 +3133,7 @@ sequenceDiagram
               data-search="createAdapter src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createAdapter</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:88:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:103:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3005,7 +3141,7 @@ sequenceDiagram
               data-search="resolveTabsPlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>resolveTabsPlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:136:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:151:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3013,7 +3149,7 @@ sequenceDiagram
               data-search="createNodeDetails src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createNodeDetails</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:156:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:171:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3021,7 +3157,7 @@ sequenceDiagram
               data-search="createRoutePlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createRoutePlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:200:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:215:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3029,7 +3165,7 @@ sequenceDiagram
               data-search="createNodePlan src/expo-router/createNavigatorPlan.ts "
             >
               <h3>createNodePlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:232:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:247:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3037,7 +3173,7 @@ sequenceDiagram
               data-search="createNavigatorPlan src/expo-router/createNavigatorPlan.ts Create a disposable, provider-aware plan from only the navigator desired-state slice."
             >
               <h3>createNavigatorPlan</h3>
-              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:272:1</code></p>
+              <p class="muted"><code>src/expo-router/createNavigatorPlan.ts:287:1</code></p>
               <p>
                 Create a disposable, provider-aware plan from only the navigator desired-state
                 slice.
@@ -3058,7 +3194,7 @@ sequenceDiagram
               data-search="parseExpoRouterMajor src/expo-router/resolveNavigatorConfig.ts "
             >
               <h3>parseExpoRouterMajor</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:12:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:17:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3066,7 +3202,7 @@ sequenceDiagram
               data-search="resolveNodeStackConfig src/expo-router/resolveNavigatorConfig.ts "
             >
               <h3>resolveNodeStackConfig</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:17:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:22:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3074,7 +3210,7 @@ sequenceDiagram
               data-search="resolveNodeTabsConfig src/expo-router/resolveNavigatorConfig.ts "
             >
               <h3>resolveNodeTabsConfig</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:25:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:30:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3082,7 +3218,7 @@ sequenceDiagram
               data-search="resolvePlatformStackConfig src/expo-router/resolveNavigatorConfig.ts "
             >
               <h3>resolvePlatformStackConfig</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:30:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:35:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3090,23 +3226,37 @@ sequenceDiagram
               data-search="resolvePlatformTabsConfig src/expo-router/resolveNavigatorConfig.ts "
             >
               <h3>resolvePlatformTabsConfig</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:44:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:49:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
               class="item"
-              data-search="resolveEffectiveStackConfig src/expo-router/resolveNavigatorConfig.ts "
+              data-search="resolveEffectiveStackConfig src/expo-router/resolveNavigatorConfig.ts Resolve effective Stack configuration using platform, node, default, and stable precedence."
             >
               <h3>resolveEffectiveStackConfig</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:58:1</code></p>
-              <p class="empty">No description available.</p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:64:1</code></p>
+              <p>
+                Resolve effective Stack configuration using platform, node, default, and stable
+                precedence.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveEffectiveStackConfigSource src/expo-router/resolveNavigatorConfig.ts Resolve effective Stack configuration together with its authored diagnostic location."
+            >
+              <h3>resolveEffectiveStackConfigSource</h3>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:73:1</code></p>
+              <p>
+                Resolve effective Stack configuration together with its authored diagnostic
+                location.
+              </p>
             </article>
             <article
               class="item"
               data-search="resolveEffectiveTabsConfig src/expo-router/resolveNavigatorConfig.ts "
             >
               <h3>resolveEffectiveTabsConfig</h3>
-              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:70:1</code></p>
+              <p class="muted"><code>src/expo-router/resolveNavigatorConfig.ts:92:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>
@@ -3168,6 +3318,24 @@ sequenceDiagram
               <p>
                 Resolve the Expo Router module/export and presentation for one tabs implementation.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-generatedexperimentalstacktypecheck-test-ts"
+          class="view"
+          data-view="src/generatedExperimentalStackTypecheck.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/generatedExperimentalStackTypecheck.test.ts</h2>
+            <article
+              class="item"
+              data-search="typeErrors src/generatedExperimentalStackTypecheck.test.ts Compile a generated layout against the installed Expo Router public types."
+            >
+              <h3>typeErrors</h3>
+              <p class="muted"><code>src/generatedExperimentalStackTypecheck.test.ts:23:1</code></p>
+              <p>Compile a generated layout against the installed Expo Router public types.</p>
             </article>
           </section>
         </section>
@@ -3570,6 +3738,55 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-validation-validateexperimentalstack-ts"
+          class="view"
+          data-view="src/validation/validateExperimentalStack.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/validation/validateExperimentalStack.ts</h2>
+            <article
+              class="item"
+              data-search="addUnsupportedOptionDiagnostics src/validation/validateExperimentalStack.ts Add actionable diagnostics for options ignored by Expo Router Experimental Stack."
+            >
+              <h3>addUnsupportedOptionDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateExperimentalStack.ts:29:1</code></p>
+              <p>
+                Add actionable diagnostics for options ignored by Expo Router Experimental Stack.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="auditExperimentalStackNode src/validation/validateExperimentalStack.ts Audit one resolved experimental Stack node and its route-level option surface."
+            >
+              <h3>auditExperimentalStackNode</h3>
+              <p class="muted"><code>src/validation/validateExperimentalStack.ts:47:1</code></p>
+              <p>Audit one resolved experimental Stack node and its route-level option surface.</p>
+            </article>
+            <article
+              class="item"
+              data-search="auditStackTree src/validation/validateExperimentalStack.ts Traverse the authored topology using the resolved platform and default precedence."
+            >
+              <h3>auditStackTree</h3>
+              <p class="muted"><code>src/validation/validateExperimentalStack.ts:69:1</code></p>
+              <p>
+                Traverse the authored topology using the resolved platform and default precedence.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="addExperimentalStackDiagnostics src/validation/validateExperimentalStack.ts Add app-wide platform, version, option, and runtime requirements for Experimental Stack."
+            >
+              <h3>addExperimentalStackDiagnostics</h3>
+              <p class="muted"><code>src/validation/validateExperimentalStack.ts:107:1</code></p>
+              <p>
+                Add app-wide platform, version, option, and runtime requirements for Experimental
+                Stack.
+              </p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-validation-validatenavigatormanifest-ts"
           class="view"
           data-view="src/validation/validateNavigatorManifest.ts"
@@ -3582,7 +3799,7 @@ sequenceDiagram
               data-search="addStackAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
             >
               <h3>addStackAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:16:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:17:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3590,7 +3807,7 @@ sequenceDiagram
               data-search="addUnsupportedAdapterDiagnostics src/validation/validateNavigatorManifest.ts "
             >
               <h3>addUnsupportedAdapterDiagnostics</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:45:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:38:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3598,7 +3815,7 @@ sequenceDiagram
               data-search="validateInitialRoute src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateInitialRoute</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:69:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:62:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3606,7 +3823,7 @@ sequenceDiagram
               data-search="validateRouteName src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteName</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:96:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:89:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3614,7 +3831,7 @@ sequenceDiagram
               data-search="validateRouteTarget src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteTarget</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:121:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:114:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3622,7 +3839,7 @@ sequenceDiagram
               data-search="validateRouteGuards src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateRouteGuards</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:136:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:129:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3630,7 +3847,7 @@ sequenceDiagram
               data-search="validateStackRouteOptions src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateStackRouteOptions</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:160:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:153:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3638,7 +3855,7 @@ sequenceDiagram
               data-search="validateLocalRoute src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateLocalRoute</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:191:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:184:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3646,7 +3863,7 @@ sequenceDiagram
               data-search="validateNode src/validation/validateNavigatorManifest.ts "
             >
               <h3>validateNode</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:205:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:198:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -3654,7 +3871,7 @@ sequenceDiagram
               data-search="validateNavigatorManifest src/validation/validateNavigatorManifest.ts Validate one navigator desired-state slice for a concrete Expo Router target."
             >
               <h3>validateNavigatorManifest</h3>
-              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:238:1</code></p>
+              <p class="muted"><code>src/validation/validateNavigatorManifest.ts:231:1</code></p>
               <p>Validate one navigator desired-state slice for a concrete Expo Router target.</p>
             </article>
           </section>

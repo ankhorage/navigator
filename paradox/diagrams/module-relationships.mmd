@@ -1,8 +1,10 @@
 graph LR
   module_src_definitions_NavigatorPlan_ts["src/definitions/NavigatorPlan.ts"]
+  module_src_experimentalStack_test_ts["src/experimentalStack.test.ts"]
   module_src_expo_router_createNavigatorPlan_ts["src/expo-router/createNavigatorPlan.ts"]
   module_src_expo_router_resolveNavigatorConfig_ts["src/expo-router/resolveNavigatorConfig.ts"]
   module_src_expo_router_resolveTabsNavigatorPlan_ts["src/expo-router/resolveTabsNavigatorPlan.ts"]
+  module_src_generatedExperimentalStackTypecheck_test_ts["src/generatedExperimentalStackTypecheck.test.ts"]
   module_src_generatedTabsTypecheck_test_ts["src/generatedTabsTypecheck.test.ts"]
   module_src_generation_generateNavigatorFiles_ts["src/generation/generateNavigatorFiles.ts"]
   module_src_generation_generateTabsLayoutFile_ts["src/generation/generateTabsLayoutFile.ts"]
@@ -17,9 +19,12 @@ graph LR
   module_src_tabs_index_ts["src/tabs/index.ts"]
   module_src_tabs_nativeIconFamilies_ts["src/tabs/nativeIconFamilies.ts"]
   module_src_topology_resolveNavigatorPreset_ts["src/topology/resolveNavigatorPreset.ts"]
+  module_src_validation_validateExperimentalStack_ts["src/validation/validateExperimentalStack.ts"]
   module_src_validation_validateNavigatorManifest_ts["src/validation/validateNavigatorManifest.ts"]
   module_src_validation_validatePresetTopology_ts["src/validation/validatePresetTopology.ts"]
   module_src_validation_validateTabsNavigator_ts["src/validation/validateTabsNavigator.ts"]
+  module_src_experimentalStack_test_ts --> module_src_index_ts
+  module_src_experimentalStack_test_ts --> module_src_metadata_index_ts
   module_src_expo_router_createNavigatorPlan_ts --> module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_createNavigatorPlan_ts --> module_src_expo_router_resolveNavigatorConfig_ts
   module_src_expo_router_createNavigatorPlan_ts --> module_src_expo_router_resolveTabsNavigatorPlan_ts
@@ -27,6 +32,7 @@ graph LR
   module_src_expo_router_resolveNavigatorConfig_ts --> module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --> module_src_definitions_NavigatorPlan_ts
   module_src_expo_router_resolveTabsNavigatorPlan_ts --> module_src_presentation_resolveCustomTabsPresentation_ts
+  module_src_generatedExperimentalStackTypecheck_test_ts --> module_src_index_ts
   module_src_generatedTabsTypecheck_test_ts --> module_src_index_ts
   module_src_generation_generateNavigatorFiles_ts --> module_src_definitions_NavigatorPlan_ts
   module_src_generation_generateNavigatorFiles_ts --> module_src_generation_generateTabsLayoutFile_ts
@@ -39,8 +45,11 @@ graph LR
   module_src_presentation_resolveCustomTabsPresentation_ts --> module_src_definitions_NavigatorPlan_ts
   module_src_tabs_test_ts --> module_src_index_ts
   module_src_tabs_CustomTabsLayout_tsx --> module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateExperimentalStack_ts --> module_src_definitions_NavigatorPlan_ts
+  module_src_validation_validateExperimentalStack_ts --> module_src_expo_router_resolveNavigatorConfig_ts
   module_src_validation_validateNavigatorManifest_ts --> module_src_definitions_NavigatorPlan_ts
   module_src_validation_validateNavigatorManifest_ts --> module_src_expo_router_resolveNavigatorConfig_ts
+  module_src_validation_validateNavigatorManifest_ts --> module_src_validation_validateExperimentalStack_ts
   module_src_validation_validateNavigatorManifest_ts --> module_src_validation_validatePresetTopology_ts
   module_src_validation_validateNavigatorManifest_ts --> module_src_validation_validateTabsNavigator_ts
   module_src_validation_validatePresetTopology_ts --> module_src_definitions_NavigatorPlan_ts
