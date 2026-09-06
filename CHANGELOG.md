@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.1.0
+
+### Minor Changes
+
+- 11f9f2e: Add native, JavaScript, and responsive Surface-owned headless Tabs generation.
+
 ## 1.0.0
 
 ### Major Changes
