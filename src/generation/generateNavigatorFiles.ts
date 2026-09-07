@@ -191,7 +191,7 @@ function createLayoutFile(
   const guardImports = createGuardImports(node, bindings, guardAliases);
   const imports = [
     `import { ${componentName} } from ${quote(node.adapter.module)};`,
-    ...guardImports,
+    ...(guardImports.length > 0 ? ['', ...guardImports] : []),
   ].join('\n');
 
   if (node.type === 'slot') {
