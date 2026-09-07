@@ -35,7 +35,12 @@ describe('@ankhorage/navigator platform tabs generation', () => {
         bottomAccessory: { screenId: 'accessory' },
         routes: [
           { name: 'home', label: 'Home', icon: { name: 'home' }, screenId: 'home' },
-          { name: 'settings', label: 'Settings', screenId: 'settings' },
+          {
+            name: 'settings',
+            label: 'Settings',
+            icon: { name: 'information-circle-outline' },
+            screenId: 'settings',
+          },
         ],
       },
       'ios',
@@ -49,7 +54,13 @@ describe('@ankhorage/navigator platform tabs generation', () => {
     expect(layout).toContain('<NativeTabs.Trigger name="home">');
     expect(layout).toContain("from '@ankhorage/navigator/tabs/native-icons'");
     expect(layout).toContain(
-      '<NativeTabs.Trigger.Icon src={<NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily}',
+      'src={<NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily} name="home" />}',
+    );
+    expect(layout).toContain(
+      '<NativeTabs.Trigger.VectorIcon\n              family={NativeIoniconsFamily}',
+    );
+    expect(layout.indexOf("from '@ankhorage/navigator/tabs/native-icons'")).toBeLessThan(
+      layout.indexOf("from 'expo-router/unstable-native-tabs'"),
     );
     expect(layout).toContain('<NativeTabs.BottomAccessory>');
   });
@@ -95,7 +106,7 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
         implementation: 'custom',
         presentation: 'responsive',
         responsive: { compact: 'bottom', medium: 'rail', expanded: 'sidebar' },
-        initialRouteName: 'home',
+        initialRouteName: 'settings',
         routes: [
           { name: 'home', path: '/', label: 'Home', screenId: 'home' },
           {
@@ -115,7 +126,8 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
       medium: 'rail',
     });
     expect(layout).toContain("from '@ankhorage/navigator/tabs'");
-    expect(layout).toContain('initialRouteName="home"');
+    expect(layout).toContain('initialRouteName="settings"');
+    expect(layout).toContain('return (\n    <CustomTabsLayout');
     expect(layout).toContain("href: '/settings'");
     expect(layout).toContain('visible: false');
   });
