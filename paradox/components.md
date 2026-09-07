@@ -2,11 +2,11 @@
 
 ## CustomTabsLayout
 
-Source: `src/tabs/CustomTabsLayout.tsx:218:1`
+Source: `src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:23:1`
 
 Render one stable headless Expo Router tab topology with Surface-owned presentations.
 
-Export paths: `src/tabs/index.ts`
+Export paths: `src/features/tabs/tabs.ts`
 
 | Prop               | Type                                                                  | Required | Default | Description |
 | ------------------ | --------------------------------------------------------------------- | -------- | ------- | ----------- |

@@ -26,8 +26,8 @@
     "responsive",
     "typescript"
   ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/navigator.js",
+  "types": "./dist/navigator.d.ts",
   "files": [
     "dist",
     "README.md",
@@ -36,20 +36,20 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/navigator.d.ts",
+      "default": "./dist/navigator.js"
     },
     "./metadata": {
-      "types": "./dist/metadata/index.d.ts",
-      "default": "./dist/metadata/index.js"
+      "types": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.d.ts",
+      "default": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.js"
     },
     "./tabs": {
-      "types": "./dist/tabs/index.d.ts",
-      "default": "./dist/tabs/index.js"
+      "types": "./dist/features/tabs/tabs.d.ts",
+      "default": "./dist/features/tabs/tabs.js"
     },
     "./tabs/native-icons": {
-      "types": "./dist/tabs/nativeIconFamilies.d.ts",
-      "default": "./dist/tabs/nativeIconFamilies.js"
+      "types": "./dist/features/tabs/nativeIcons.d.ts",
+      "default": "./dist/features/tabs/nativeIcons.js"
     },
     "./package.json": "./package.json"
   },
@@ -61,7 +61,7 @@
     "changeset": "ankhorage-changeset",
     "changeset:status": "ankhorage-changeset status --since=origin/main",
     "docs": "paradox",
-    "test": "bun test src",
+    "test": "bun test src tests",
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
     "version-packages": "ankhorage-changeset version",
     "lint": "ankhorage-eslint . --max-warnings=0",
