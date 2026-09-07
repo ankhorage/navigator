@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.1.0
+
+### Minor Changes
+
+- 04eaaa6: Add a public standalone example catalog, CLI generation and verification commands, 22 isolated root Expo apps, and catalog-derived cross-platform acceptance.
+
 ## 3.0.0
 
 ### Major Changes
