@@ -5,7 +5,8 @@
     "": {
       "name": "@ankhorage/navigator",
       "dependencies": {
-        "@ankhorage/contracts": "^11.0.0",
+        "@ankhorage/contracts": "^11.1.0",
+        "@ankhorage/utility": "^0.4.0",
       },
       "devDependencies": {
         "@ankhorage/devtools": "^1.11.11",
@@ -44,7 +45,7 @@
   "packages": {
     "@ankhorage/color-theory": ["@ankhorage/color-theory@0.3.0", "", { "dependencies": { "culori": "^4.0.2" } }, "sha512-M6McHR2obnslpPESe84xr1E/1PuGKlb1S6ypDzNhkVdwJXS9gL53GDALfqszi5QyQNxQHFNyCOVnnzaQlGn52g=="],
 
-    "@ankhorage/contracts": ["@ankhorage/contracts@11.0.0", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.0" } }, "sha512-i1I/lIerB9fX47P0HV6n9q3k8IMdivpYe3YV8TUcSM2+G6CJwragoM4c5eMzG55350GuOBBjt/59v0c/NX+ylQ=="],
+    "@ankhorage/contracts": ["@ankhorage/contracts@11.1.0", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.0" } }, "sha512-D153qsnT2niOUCg9KnFLd+WgpRADLsgo57+b0cAqHBWuStVD2QEvtDNmOkaw/i/YeTnMmucViL3ykX6J9Vattw=="],
 
     "@ankhorage/devtools": ["@ankhorage/devtools@1.11.11", "", { "dependencies": { "@ankhorage/utility": "^0.3.0", "@changesets/cli": "^3.0.2", "@eslint/compat": "^2.1.1", "@eslint/js": "^10.0.1", "eslint": "^10.10.0", "eslint-config-prettier": "^10.1.8", "eslint-plugin-import": "^2.32.0", "eslint-plugin-prettier": "^5.5.6", "eslint-plugin-react": "^7.37.5", "eslint-plugin-react-hooks": "^7.1.1", "eslint-plugin-react-native": "^5.0.0", "eslint-plugin-security": "^4.0.1", "eslint-plugin-simple-import-sort": "^14.0.0", "eslint-plugin-unused-imports": "^4.4.1", "knip": "^6.34.0", "prettier": "^3.9.6", "typescript-eslint": "^8.69.0" }, "bin": { "ankhorage-changeset": "dist/cli/bin/changeset.js", "ankhorage-eslint": "dist/cli/bin/eslint.js", "ankhorage-knip": "dist/cli/bin/knip.js", "ankhorage-prettier": "dist/cli/bin/prettier.js" } }, "sha512-Ls0c6dCvdQmTDhqs2jTUg6xV3HTU0brede8DtnMcSf3B7gNvZL5FfapludgC4p+wLh/CHE5LozED7ZhWszVCYw=="],
 
@@ -52,7 +53,7 @@
 
     "@ankhorage/surface": ["@ankhorage/surface@3.4.4", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.0", "@ankhorage/contracts": "^11.0.0" }, "peerDependencies": { "@react-native-vector-icons/fontawesome": "^13.1.3", "@react-native-vector-icons/fontawesome5": "^13.1.3", "@react-native-vector-icons/fontawesome6": "^13.1.3", "@react-native-vector-icons/ionicons": "^13.1.3", "@react-native-vector-icons/material-design-icons": "^13.1.3", "react": "19.2.3", "react-native": "0.86.x", "react-native-safe-area-context": "~5.7.0", "react-native-svg": "15.15.4", "react-native-web": "~0.21.0" } }, "sha512-V0manKccbgbacAR50Cy73unBYhgd9TzXze5LCXQ+QGFV4WuVcvJDq8jUvtViP5Gw7eutU510palXUQfp7oF5vw=="],
 
-    "@ankhorage/utility": ["@ankhorage/utility@0.3.0", "", {}, "sha512-cqmfcgXmA7NgM5FYxfVKeA3XpN4YskqGtNU45AT7G2Yr5MeN09r4a0GS8i0hthLCLMis65/tBXd7OjdfoYv7/w=="],
+    "@ankhorage/utility": ["@ankhorage/utility@0.4.0", "", {}, "sha512-PmjmaBdBxcIyat04lf0+KEaKiNdpQir3CnGXnE1cKuNg/3fJKPw/h/NX6SMaN6i3Ck7tnND7l1HVr/QWMpXkoQ=="],
 
     "@babel/code-frame": ["@babel/code-frame@7.29.7", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.29.7", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw=="],
 
@@ -1707,6 +1708,10 @@
     "zod": ["zod@4.4.3", "", {}, "sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ=="],
 
     "zod-validation-error": ["zod-validation-error@4.0.2", "", { "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ=="],
+
+    "@ankhorage/devtools/@ankhorage/utility": ["@ankhorage/utility@0.3.0", "", {}, "sha512-cqmfcgXmA7NgM5FYxfVKeA3XpN4YskqGtNU45AT7G2Yr5MeN09r4a0GS8i0hthLCLMis65/tBXd7OjdfoYv7/w=="],
+
+    "@ankhorage/surface/@ankhorage/contracts": ["@ankhorage/contracts@11.0.0", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.0" } }, "sha512-i1I/lIerB9fX47P0HV6n9q3k8IMdivpYe3YV8TUcSM2+G6CJwragoM4c5eMzG55350GuOBBjt/59v0c/NX+ylQ=="],
 
     "@babel/core/json5": ["json5@2.2.3", "", { "bin": { "json5": "lib/cli.js" } }, "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg=="],
 

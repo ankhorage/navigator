@@ -1,4 +1,4 @@
-import type { NavigatorAdapterPlan } from '../../../utils/NavigatorAdapterPlan';
+import type { NavigatorAdapterPlan } from '@ankhorage/contracts/navigator';
 
 /*** Describe the stateless Expo Router Slot adapter. */
 export function createSlotAdapter(): NavigatorAdapterPlan {

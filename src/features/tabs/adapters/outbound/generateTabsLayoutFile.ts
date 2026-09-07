@@ -1,12 +1,12 @@
-import { assertModuleBinding } from '../../../../utils/assertModuleBinding';
-import type { NavigatorGeneratedFile } from '../../../../utils/NavigatorGeneratedFile';
-import type { NavigatorGenerationBindings } from '../../../../utils/NavigatorGenerationBindings';
-import type { NavigatorNodePlan } from '../../../../utils/NavigatorNodePlan';
-import type { NavigatorRoutePlan } from '../../../../utils/NavigatorRoutePlan';
-import type { NavigatorScreenModule } from '../../../../utils/NavigatorScreenModule';
-import { quote } from '../../../../utils/quote';
-import { quoteJsxAttribute } from '../../../../utils/quoteJsxAttribute';
-import { sourceLiteral } from '../../../../utils/sourceLiteral';
+import type {
+  NavigatorGeneratedFile,
+  NavigatorGenerationBindings,
+  NavigatorNodePlan,
+  NavigatorRoutePlan,
+  NavigatorScreenModule,
+} from '@ankhorage/contracts/navigator';
+import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/utility/string';
+import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
 /*** Generate the specialized layout file for a supported tabs implementation. */
 export function generateTabsLayoutFile(
@@ -31,7 +31,9 @@ function createNativeTabsFile(
   bindings: NavigatorGenerationBindings,
 ): NavigatorGeneratedFile {
   const componentName = node.adapter.exportName ?? 'NativeTabs';
-  const imports = [`import { ${componentName} } from ${quote(node.adapter.module ?? '')};`];
+  const imports = [
+    `import { ${componentName} } from ${quoteJavaScriptString(node.adapter.module ?? '')};`,
+  ];
   const iconFamilies = [
     ...new Set(
       node.routes.flatMap((route) =>
@@ -49,10 +51,10 @@ function createNativeTabsFile(
     const binding = Reflect.get(bindings.screens, node.tabs.bottomAccessoryScreenId) as
       NavigatorScreenModule | undefined;
     if (binding === undefined) throw new Error('Missing Native Tabs bottom-accessory binding.');
-    assertModuleBinding(binding, 'Native Tabs bottom accessory');
+    assertStaticImportBinding(binding.module, binding.exportName, 'Native Tabs bottom accessory');
     accessoryName = 'NavigatorBottomAccessory';
     imports.push(
-      `import { ${binding.exportName} as ${accessoryName} } from ${quote(binding.module)};`,
+      `import { ${binding.exportName} as ${accessoryName} } from ${quoteJavaScriptString(binding.module)};`,
     );
   }
   return {
@@ -113,11 +115,11 @@ function createNativeTabsContents(
   const initialRoute =
     node.initialRouteName === undefined
       ? ''
-      : `\n\nexport const unstable_settings = { initialRouteName: ${quote(node.initialRouteName)} };`;
+      : `\n\nexport const unstable_settings = { initialRouteName: ${quoteJavaScriptString(node.initialRouteName)} };`;
   const minimize =
     node.tabs?.minimizeBehavior === undefined
       ? ''
-      : ` minimizeBehavior=${quoteJsxAttribute(node.tabs.minimizeBehavior)}`;
+      : ` minimizeBehavior=${JSON.stringify(node.tabs.minimizeBehavior)}`;
   const triggers = node.routes
     .map((route) => {
       const label = route.label ?? route.name;
@@ -131,7 +133,7 @@ ${nativeIconSource(
   nativeIconName(route.icon),
 )}
         />`;
-      return `      <${componentName}.Trigger name=${quoteJsxAttribute(route.name)}>\n        <${componentName}.Trigger.Label>{${quote(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
+      return `      <${componentName}.Trigger name=${JSON.stringify(route.name)}>\n        <${componentName}.Trigger.Label>{${quoteJavaScriptString(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
     })
     .join('\n');
   const accessory =
@@ -143,13 +145,13 @@ ${nativeIconSource(
 
 /*** Render a Native Tabs vector icon source within the canonical generated-code print width. */
 function nativeIconSource(componentName: string, family: string, name: string): string {
-  const vectorIcon = `<${componentName}.Trigger.VectorIcon family={${family}} name=${quoteJsxAttribute(name)} />`;
+  const vectorIcon = `<${componentName}.Trigger.VectorIcon family={${family}} name=${JSON.stringify(name)} />`;
   const inlineSource = `          src={${vectorIcon}}`;
   if (inlineSource.length <= 100) return inlineSource;
   return `          src={
             <${componentName}.Trigger.VectorIcon
               family={${family}}
-              name=${quoteJsxAttribute(name)}
+              name=${JSON.stringify(name)}
             />
           }`;
 }
@@ -179,19 +181,19 @@ function createCustomTabsFile(
     const binding = Reflect.get(bindings.tabPresentations ?? {}, tabs.customPresentationId) as
       NavigatorScreenModule | undefined;
     if (binding === undefined) throw new Error('Missing registered custom Tabs presentation.');
-    assertModuleBinding(binding, 'Custom Tabs presentation');
+    assertStaticImportBinding(binding.module, binding.exportName, 'Custom Tabs presentation');
     customPresentation = ' customPresentation={NavigatorCustomTabsPresentation}';
     imports.push(
-      `import { ${binding.exportName} as NavigatorCustomTabsPresentation } from ${quote(binding.module)};`,
+      `import { ${binding.exportName} as NavigatorCustomTabsPresentation } from ${quoteJavaScriptString(binding.module)};`,
     );
   }
   if (node.routes.some((route) => route.icon !== undefined && 'source' in route.icon)) {
     const binding = bindings.iconSourceResolver;
     if (binding === undefined) throw new Error('Missing registered Tabs icon-source resolver.');
-    assertModuleBinding(binding, 'Tabs icon-source resolver');
+    assertStaticImportBinding(binding.module, binding.exportName, 'Tabs icon-source resolver');
     iconSourceResolver = ' resolveIconSource={NavigatorResolveTabsIconSource}';
     imports.push(
-      `import { ${binding.exportName} as NavigatorResolveTabsIconSource } from ${quote(binding.module)};`,
+      `import { ${binding.exportName} as NavigatorResolveTabsIconSource } from ${quoteJavaScriptString(binding.module)};`,
     );
   }
   const routes = node.routes.map((route) => ({
@@ -204,12 +206,12 @@ function createCustomTabsFile(
   const initialRoute =
     node.initialRouteName === undefined
       ? ''
-      : ` initialRouteName=${quoteJsxAttribute(node.initialRouteName)}`;
+      : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
   const routeSource = renderCustomTabRoutes(routes);
   const component = `<CustomTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />`;
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${sourceLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderCustomTabsReturn(component)}\n}\n`,
+    contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderCustomTabsReturn(component)}\n}\n`,
   };
 }
 
@@ -221,7 +223,7 @@ ${routes
     (route) => `  {
 ${Object.entries(route)
   .filter(([, value]) => value !== undefined)
-  .map(([key, value]) => `    ${key}: ${sourceLiteral(value)},`)
+  .map(([key, value]) => `    ${key}: ${serializeJavaScriptLiteral(value)},`)
   .join('\n')}
   },`,
   )

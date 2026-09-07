@@ -1,11 +1,19 @@
 import type {
   AppNavigatorManifest,
+  CreateNavigatorPlanOptions,
+  CustomNavigatorRegistry,
+  NavigatorAdapterPlan,
   NavigatorNode,
+  NavigatorNodePlan,
+  NavigatorPlan,
+  NavigatorResponsiveSize,
+  NavigatorRoutePlan,
+  NavigatorRuntimePlatform,
   StackImplementationConfig,
+  TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
 import { resolveCustomNavigatorAdapterPlan } from '../features/custom/application/resolveCustomNavigatorAdapterPlan';
-import type { CustomNavigatorRegistry } from '../features/custom/domain/CustomNavigatorRegistry';
 import { createDrawerAdapter } from '../features/drawer/application/createDrawerAdapter';
 import { createSlotAdapter } from '../features/slot/application/createSlotAdapter';
 import { resolveSplitViewAdapterPlan } from '../features/split-view/application/resolveSplitViewAdapterPlan';
@@ -14,14 +22,6 @@ import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEff
 import { createTabsAdapter } from '../features/tabs/application/createTabsAdapter';
 import { resolveTabsPlan } from '../features/tabs/application/resolveTabsPlan';
 import { resolveEffectiveTabsConfig } from '../features/tabs/domain/resolveEffectiveTabsConfig';
-import type { TabsNavigatorPlan } from '../features/tabs/domain/TabsNavigatorPlan';
-import type { CreateNavigatorPlanOptions } from './CreateNavigatorPlanOptions';
-import type { NavigatorAdapterPlan } from './NavigatorAdapterPlan';
-import type { NavigatorNodePlan } from './NavigatorNodePlan';
-import type { NavigatorPlan } from './NavigatorPlan';
-import type { NavigatorResponsiveSize } from './NavigatorResponsiveSize';
-import type { NavigatorRoutePlan } from './NavigatorRoutePlan';
-import type { NavigatorRuntimePlatform } from './NavigatorRuntimePlatform';
 import { parseExpoRouterMajor } from './parseExpoRouterMajor';
 import { validateNavigatorManifest } from './validateNavigatorManifest';
 

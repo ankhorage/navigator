@@ -1,4 +1,4 @@
-import type { NavigatorAdapterPlan } from '../../../utils/NavigatorAdapterPlan';
+import type { NavigatorAdapterPlan } from '@ankhorage/contracts/navigator';
 
 /*** Describe the standard Expo Router Drawer adapter. */
 export function createDrawerAdapter(): NavigatorAdapterPlan {

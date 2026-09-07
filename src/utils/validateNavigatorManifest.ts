@@ -1,11 +1,13 @@
 import type {
   AppNavigatorManifest,
+  CustomNavigatorRegistry,
+  NavigatorDiagnostic,
   NavigatorNode,
+  NavigatorValidationContext,
   StackImplementation,
 } from '@ankhorage/contracts/navigator';
 
 import { addCustomNavigatorDiagnostics } from '../features/custom/domain/addCustomNavigatorDiagnostics';
-import type { CustomNavigatorRegistry } from '../features/custom/domain/CustomNavigatorRegistry';
 import { addSlotDiagnostics } from '../features/slot/domain/addSlotDiagnostics';
 import { addSplitViewDiagnostics } from '../features/split-view/domain/addSplitViewDiagnostics';
 import { addExperimentalStackDiagnostics } from '../features/stack/domain/addExperimentalStackDiagnostics';
@@ -13,8 +15,6 @@ import { addStackAdapterDiagnostics } from '../features/stack/domain/addStackAda
 import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEffectiveStackConfig';
 import { validateStackRouteOptions } from '../features/stack/domain/validateStackRouteOptions';
 import { addTabsAdapterDiagnostics } from '../features/tabs/domain/addTabsAdapterDiagnostics';
-import type { NavigatorDiagnostic } from './NavigatorDiagnostic';
-import type { NavigatorValidationContext } from './NavigatorValidationContext';
 import { parseExpoRouterMajor } from './parseExpoRouterMajor';
 import { validatePresetTopology } from './validatePresetTopology';
 

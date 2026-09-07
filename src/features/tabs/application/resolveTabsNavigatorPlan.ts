@@ -2,13 +2,13 @@ import type {
   AdaptiveTabsConfig,
   CustomTabsConfig,
   JavaScriptTabsConfig,
+  NavigatorResponsiveSize,
+  NavigatorRuntimePlatform,
   TabsImplementationConfig,
+  TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorResponsiveSize } from '../../../utils/NavigatorResponsiveSize';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
 import { resolveCustomTabsPresentation } from '../domain/resolveCustomTabsPresentation';
-import type { TabsNavigatorPlan } from '../domain/TabsNavigatorPlan';
 
 /*** Resolve the Expo Router module/export and presentation for one tabs implementation. */
 export function resolveTabsNavigatorPlan(

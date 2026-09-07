@@ -1,11 +1,10 @@
 import type {
   CustomTabsConfig,
   FixedCustomTabsPresentation,
+  NavigatorResponsiveSize,
+  ResolvedCustomTabsPresentation,
   ResponsiveTabsPresentation,
 } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorResponsiveSize } from '../../../utils/NavigatorResponsiveSize';
-import type { ResolvedCustomTabsPresentation } from './ResolvedCustomTabsPresentation';
 
 /*** Resolve one custom-tabs presentation for the current semantic responsive size. */
 export function resolveCustomTabsPresentation(

@@ -1,10 +1,10 @@
 import type {
   AppNavigatorManifest,
+  NavigatorRuntimePlatform,
   StackImplementationConfig,
   StackNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
 import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource';
 
 /*** Resolve effective Stack configuration using platform, node, default, and stable precedence. */

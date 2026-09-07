@@ -1,6 +1,8 @@
-import type { NavigatorAdapterPlan } from '../../../utils/NavigatorAdapterPlan';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
-import type { TabsNavigatorPlan } from '../domain/TabsNavigatorPlan';
+import type {
+  NavigatorAdapterPlan,
+  NavigatorRuntimePlatform,
+  TabsNavigatorPlan,
+} from '@ankhorage/contracts/navigator';
 
 /*** Describe Tabs adapter support, stability, and limitations for the target platform and version. */
 export function createTabsAdapter(

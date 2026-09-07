@@ -1,18 +1,19 @@
+import type {
+  NavigatorGeneratedFile,
+  NavigatorGenerationBindings,
+  NavigatorGenerationOptions,
+  NavigatorNodePlan,
+  NavigatorPlan,
+  NavigatorRoutePlan,
+  NavigatorScreenModule,
+} from '@ankhorage/contracts/navigator';
+import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/utility/string';
+import { assertStaticImportBinding } from '@ankhorage/utility/validation';
+
 import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/resolveDrawerRouteOptions';
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
-import { assertModuleBinding } from './assertModuleBinding';
-import type { NavigatorGeneratedFile } from './NavigatorGeneratedFile';
-import type { NavigatorGenerationBindings } from './NavigatorGenerationBindings';
-import type { NavigatorGenerationOptions } from './NavigatorGenerationOptions';
-import type { NavigatorNodePlan } from './NavigatorNodePlan';
-import type { NavigatorPlan } from './NavigatorPlan';
-import type { NavigatorRoutePlan } from './NavigatorRoutePlan';
-import type { NavigatorScreenModule } from './NavigatorScreenModule';
-import { quote } from './quote';
-import { quoteJsxAttribute } from './quoteJsxAttribute';
-import { sourceLiteral } from './sourceLiteral';
 
 /*** Generate deterministic Expo Router files from a validated disposable plan and narrow bindings. */
 export function generateNavigatorFiles(
@@ -143,14 +144,15 @@ function createLayoutFile(
   if (splitViewLayout !== undefined) return splitViewLayout;
 
   const componentName = node.adapter.exportName;
-  assertModuleBinding(
-    { module: node.adapter.module, exportName: componentName },
+  assertStaticImportBinding(
+    node.adapter.module,
+    componentName,
     `Adapter ${JSON.stringify(node.adapter.id)}`,
   );
   const guardAliases = new Map<string, string>();
   const guardImports = createGuardImports(node, bindings, guardAliases);
   const imports = [
-    `import { ${componentName} } from ${quote(node.adapter.module)};`,
+    `import { ${componentName} } from ${quoteJavaScriptString(node.adapter.module)};`,
     ...(guardImports.length > 0 ? ['', ...guardImports] : []),
   ].join('\n');
 
@@ -175,10 +177,10 @@ function createGuardImports(
     const binding = Reflect.get(bindings.guards, guard) as NavigatorScreenModule | undefined;
     if (binding === undefined)
       throw new Error(`Missing guard binding for ${JSON.stringify(guard)}.`);
-    assertModuleBinding(binding, `Guard ${JSON.stringify(guard)}`);
+    assertStaticImportBinding(binding.module, binding.exportName, `Guard ${JSON.stringify(guard)}`);
     const alias = `navigatorGuard${index}`;
     guardAliases.set(guard, alias);
-    return `import { ${binding.exportName} as ${alias} } from ${quote(binding.module)};`;
+    return `import { ${binding.exportName} as ${alias} } from ${quoteJavaScriptString(binding.module)};`;
   });
 }
 
@@ -198,12 +200,12 @@ function createNavigatorContents(
   const props = [
     node.initialRouteName === undefined
       ? undefined
-      : `initialRouteName=${quoteJsxAttribute(node.initialRouteName)}`,
+      : `initialRouteName=${JSON.stringify(node.initialRouteName)}`,
     navigatorOptions === undefined
       ? undefined
-      : `screenOptions={${sourceLiteral(navigatorOptions)}}`,
+      : `screenOptions={${serializeJavaScriptLiteral(navigatorOptions)}}`,
     node.type === 'custom' && node.custom?.config !== undefined
-      ? `{...${sourceLiteral(node.custom.config)}}`
+      ? `{...${serializeJavaScriptLiteral(node.custom.config)}}`
       : undefined,
   ].filter((value): value is string => value !== undefined);
   const openingTag = `<${componentName}${props.length === 0 ? '' : ` ${props.join(' ')}`}>`;
@@ -275,14 +277,14 @@ function renderScreenElement(
   indentation: string,
 ): string {
   if (options === undefined) {
-    return `${indentation}<${componentName}.Screen name=${quoteJsxAttribute(routeName)} />`;
+    return `${indentation}<${componentName}.Screen name=${JSON.stringify(routeName)} />`;
   }
   const optionLines = Object.entries(options)
     .filter(([, value]) => value !== undefined)
-    .map(([key, value]) => `${indentation}    ${key}: ${sourceLiteral(value)},`)
+    .map(([key, value]) => `${indentation}    ${key}: ${serializeJavaScriptLiteral(value)},`)
     .join('\n');
   return `${indentation}<${componentName}.Screen
-${indentation}  name=${quoteJsxAttribute(routeName)}
+${indentation}  name=${JSON.stringify(routeName)}
 ${indentation}  options={{
 ${optionLines}
 ${indentation}  }}
@@ -308,9 +310,13 @@ function createScreenFile(
     NavigatorScreenModule | undefined;
   if (binding === undefined)
     throw new Error(`Missing screen binding for ${JSON.stringify(route.screenId)}.`);
-  assertModuleBinding(binding, `Screen ${JSON.stringify(route.screenId)}`);
+  assertStaticImportBinding(
+    binding.module,
+    binding.exportName,
+    `Screen ${JSON.stringify(route.screenId)}`,
+  );
   return {
     path: `${directory}/${route.name}.tsx`,
-    contents: `export { ${binding.exportName} as default } from ${quote(binding.module)};\n`,
+    contents: `export { ${binding.exportName} as default } from ${quoteJavaScriptString(binding.module)};\n`,
   };
 }

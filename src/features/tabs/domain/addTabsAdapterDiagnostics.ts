@@ -1,7 +1,10 @@
-import type { AppNavigatorManifest, TabsNavigatorNode } from '@ankhorage/contracts/navigator';
+import type {
+  AppNavigatorManifest,
+  NavigatorDiagnostic,
+  NavigatorValidationContext,
+  TabsNavigatorNode,
+} from '@ankhorage/contracts/navigator';
 
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
-import type { NavigatorValidationContext } from '../../../utils/NavigatorValidationContext';
 import { resolveEffectiveTabsConfig } from './resolveEffectiveTabsConfig';
 
 /*** Add tabs-specific semantic diagnostics for one manifest navigator node. */

@@ -1,12 +1,10 @@
 import type {
   AppNavigatorManifest,
   NavigatorPlatforms,
+  NavigatorRuntimePlatform,
   StackImplementationConfig,
   StackNavigatorNode,
 } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
-import type { ResolvedStackConfigSource } from './ResolvedStackConfigSource';
 
 /*** Resolve effective Stack configuration together with its authored diagnostic location. */
 export function resolveEffectiveStackConfigSource(
@@ -26,6 +24,11 @@ export function resolveEffectiveStackConfigSource(
     return { config: manifest.defaults.stack, pointer: '/defaults/stack' };
   }
   return { config: { implementation: 'native' }, pointer: nodePointer };
+}
+
+interface ResolvedStackConfigSource {
+  config: StackImplementationConfig;
+  pointer: string;
 }
 
 /*** Read a platform override only when it selects a Stack implementation. */

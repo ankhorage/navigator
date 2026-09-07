@@ -12,7 +12,7 @@
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["CreateNavigatorPlanOptions", "NavigatorPlan"],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "(manifest: AppNavigatorManifest, options: CreateNavigatorPlanOptions) => NavigatorPlan",
@@ -38,212 +38,6 @@
     "structuredRows": []
   },
   {
-    "name": "CreateNavigatorPlanOptions",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/CreateNavigatorPlanOptions.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/CreateNavigatorPlanOptions.ts",
-      "line": 5,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [
-      "CustomNavigatorRegistry",
-      "NavigatorResponsiveSize",
-      "NavigatorRuntimePlatform"
-    ],
-    "signatures": [],
-    "members": [
-      {
-        "name": "customNavigators",
-        "kind": "property",
-        "type": "CustomNavigatorRegistry | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "expoRouterVersion",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "platform",
-        "kind": "property",
-        "type": "NavigatorRuntimePlatform",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "responsiveSize",
-        "kind": "property",
-        "type": "NavigatorResponsiveSize | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomNavigatorConfigIssue",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/custom/domain/CustomNavigatorConfigIssue.ts",
-    "sourceLocation": {
-      "filePath": "src/features/custom/domain/CustomNavigatorConfigIssue.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "code",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "message",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "path",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomNavigatorRegistration",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/custom/domain/CustomNavigatorRegistration.ts",
-    "sourceLocation": {
-      "filePath": "src/features/custom/domain/CustomNavigatorRegistration.ts",
-      "line": 7,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [
-      "CustomNavigatorConfigIssue",
-      "NavigatorApiStability",
-      "NavigatorRuntimePlatform"
-    ],
-    "signatures": [],
-    "members": [
-      {
-        "name": "exportName",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "id",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "integration",
-        "kind": "property",
-        "type": "\"expo-router-standard\"",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "module",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "platforms",
-        "kind": "property",
-        "type": "readonly NavigatorRuntimePlatform[]",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "router",
-        "kind": "property",
-        "type": "\"stack\" | \"tab\"",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "stability",
-        "kind": "property",
-        "type": "NavigatorApiStability",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "validateConfig",
-        "kind": "property",
-        "type": "(config: CustomNavigatorNode[\"config\"]) => readonly CustomNavigatorConfigIssue[]",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomNavigatorRegistry",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/features/custom/domain/CustomNavigatorRegistry.ts",
-    "sourceLocation": {
-      "filePath": "src/features/custom/domain/CustomNavigatorRegistry.ts",
-      "line": 3,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomTabsIconSourceResolver",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsIconSourceResolver.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/adapters/inbound/CustomTabsIconSourceResolver.ts",
-      "line": 4,
-      "column": 1
-    },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "CustomTabsLayout",
     "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
     "isReadme": false,
@@ -252,11 +46,11 @@
     "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
     "sourceLocation": {
       "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
-      "line": 23,
+      "line": 20,
       "column": 1
     },
     "exportPaths": ["src/features/tabs/tabs.ts"],
-    "relatedSymbols": ["CustomTabsLayoutProps"],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
@@ -276,160 +70,6 @@
     "structuredRows": []
   },
   {
-    "name": "CustomTabsLayoutProps",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayoutProps.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayoutProps.ts",
-      "line": 13,
-      "column": 1
-    },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
-    "relatedSymbols": [
-      "CustomTabsIconSourceResolver",
-      "CustomTabsPresentationProps",
-      "CustomTabsRoute",
-      "NavigatorResponsiveSize",
-      "ResolvedTabsPresentation"
-    ],
-    "signatures": [],
-    "members": [
-      {
-        "name": "customPresentation",
-        "kind": "property",
-        "type": "ComponentType<CustomTabsPresentationProps> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "initialRouteName",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "presentations",
-        "kind": "property",
-        "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "resolveIconSource",
-        "kind": "property",
-        "type": "CustomTabsIconSourceResolver | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "routes",
-        "kind": "property",
-        "type": "readonly CustomTabsRoute[]",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomTabsPresentationProps",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsPresentationProps.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/adapters/inbound/CustomTabsPresentationProps.ts",
-      "line": 5,
-      "column": 1
-    },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
-    "relatedSymbols": ["CustomTabsRoute"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "renderItem",
-        "kind": "property",
-        "type": "(route: CustomTabsRoute, compact?: boolean) => ReactNode",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "routes",
-        "kind": "property",
-        "type": "readonly CustomTabsRoute[]",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomTabsRoute",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsRoute.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/adapters/inbound/CustomTabsRoute.ts",
-      "line": 5,
-      "column": 1
-    },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "badge",
-        "kind": "property",
-        "type": "ReactNode",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "href",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "icon",
-        "kind": "property",
-        "type": "import(\"@ankhorage/contracts\").IconSpec | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "label",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "name",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "visible",
-        "kind": "property",
-        "type": "boolean",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
     "name": "defineCustomNavigatorRegistry",
     "description": "Define an immutable, duplicate-free custom navigator registry for one composition boundary.",
     "isReadme": false,
@@ -438,11 +78,11 @@
     "modulePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
     "sourceLocation": {
       "filePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
-      "line": 7,
+      "line": 9,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["CustomNavigatorRegistration", "CustomNavigatorRegistry"],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "(registrations: readonly CustomNavigatorRegistration[]) => CustomNavigatorRegistry",
@@ -462,24 +102,6 @@
     "structuredRows": []
   },
   {
-    "name": "ExpoRouterNavigatorModule",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/utils/ExpoRouterNavigatorModule.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/ExpoRouterNavigatorModule.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "generateNavigatorFiles",
     "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
     "isReadme": false,
@@ -488,16 +110,11 @@
     "modulePath": "src/utils/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/utils/generateNavigatorFiles.ts",
-      "line": 18,
+      "line": 19,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [
-      "NavigatorGeneratedFile",
-      "NavigatorGenerationBindings",
-      "NavigatorGenerationOptions",
-      "NavigatorPlan"
-    ],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]",
@@ -637,615 +254,6 @@
     "structuredRows": []
   },
   {
-    "name": "NavigatorAdapterId",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/utils/NavigatorAdapterId.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorAdapterId.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorAdapterPlan",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorAdapterPlan.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorAdapterPlan.ts",
-      "line": 5,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorAdapterId", "NavigatorApiStability", "NavigatorSupportStatus"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "exportName",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "id",
-        "kind": "property",
-        "type": "NavigatorAdapterId",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "limitations",
-        "kind": "property",
-        "type": "readonly string[]",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "module",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "stability",
-        "kind": "property",
-        "type": "NavigatorApiStability",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "support",
-        "kind": "property",
-        "type": "NavigatorSupportStatus",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorApiStability",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/utils/NavigatorApiStability.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorApiStability.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorDiagnostic",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorDiagnostic.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorDiagnostic.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "code",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "message",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "path",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "severity",
-        "kind": "property",
-        "type": "\"error\" | \"warning\"",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorGeneratedFile",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorGeneratedFile.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorGeneratedFile.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "contents",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "path",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorGenerationBindings",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorGenerationBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorGenerationBindings.ts",
-      "line": 3,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorScreenModule"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "flows",
-        "kind": "property",
-        "type": "{ onboardingRoute?: string; authenticationRoute?: string; } | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "guards",
-        "kind": "property",
-        "type": "Readonly<Record<string, NavigatorScreenModule>>",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "iconSourceResolver",
-        "kind": "property",
-        "type": "NavigatorScreenModule | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "screens",
-        "kind": "property",
-        "type": "Readonly<Record<string, NavigatorScreenModule>>",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "tabPresentations",
-        "kind": "property",
-        "type": "Readonly<Record<string, NavigatorScreenModule>> | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorGenerationOptions",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorGenerationOptions.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorGenerationOptions.ts",
-      "line": 2,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "includeScreenFiles",
-        "kind": "property",
-        "type": "boolean | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "rootDirectory",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorNodePlan",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorNodePlan.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorNodePlan.ts",
-      "line": 13,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorAdapterPlan", "NavigatorRoutePlan", "TabsNavigatorPlan"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "adapter",
-        "kind": "property",
-        "type": "NavigatorAdapterPlan",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "custom",
-        "kind": "property",
-        "type": "{ navigatorId: string; config?: CustomNavigatorNode[\"config\"]; } | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "drawer",
-        "kind": "property",
-        "type": "{ options?: DrawerNavigatorOptions; } | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "initialRouteName",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "pointer",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "routes",
-        "kind": "property",
-        "type": "readonly NavigatorRoutePlan[]",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "splitView",
-        "kind": "property",
-        "type": "{ columns: { primary: string; supplementary?: string; }; inspector?: string; topColumnForCollapsing?: \"primary\" | \"secondary\" | \"supplementary\"; } | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "stack",
-        "kind": "property",
-        "type": "{ implementation: StackImplementation; options?: StackScreenOptions; } | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "tabs",
-        "kind": "property",
-        "type": "TabsNavigatorPlan | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "type",
-        "kind": "property",
-        "type": "\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\"",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorPlan",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorPlan.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorPlan.ts",
-      "line": 5,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorDiagnostic", "NavigatorNodePlan", "NavigatorValidationContext"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "context",
-        "kind": "property",
-        "type": "NavigatorValidationContext",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "diagnostics",
-        "kind": "property",
-        "type": "readonly NavigatorDiagnostic[]",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "flows",
-        "kind": "property",
-        "type": "{ onboarding: boolean; authentication: boolean; }",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "root",
-        "kind": "property",
-        "type": "NavigatorNodePlan",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "supported",
-        "kind": "property",
-        "type": "boolean",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorResponsiveSize",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/utils/NavigatorResponsiveSize.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorResponsiveSize.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorRoutePlan",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorRoutePlan.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorRoutePlan.ts",
-      "line": 5,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorNodePlan"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "guards",
-        "kind": "property",
-        "type": "readonly string[]",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "icon",
-        "kind": "property",
-        "type": "import(\"@ankhorage/contracts\").IconSpec | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "label",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "name",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "navigator",
-        "kind": "property",
-        "type": "NavigatorNodePlan | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "path",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "screenId",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "showInPrimaryNavigation",
-        "kind": "property",
-        "type": "boolean | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "stackOptions",
-        "kind": "property",
-        "type": "StackScreenOptions | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorRuntimePlatform",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/utils/NavigatorRuntimePlatform.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorRuntimePlatform.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorScreenModule",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorScreenModule.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorScreenModule.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "exportName",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "module",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorSupportStatus",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/utils/NavigatorSupportStatus.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorSupportStatus.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "NavigatorValidationContext",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/utils/NavigatorValidationContext.ts",
-    "sourceLocation": {
-      "filePath": "src/utils/NavigatorValidationContext.ts",
-      "line": 3,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorRuntimePlatform"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "expoRouterVersion",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "platform",
-        "kind": "property",
-        "type": "NavigatorRuntimePlatform",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
     "name": "resolveCustomTabsPresentation",
     "description": "Resolve one custom-tabs presentation for the current semantic responsive size.",
     "isReadme": false,
@@ -1254,11 +262,11 @@
     "modulePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
     "sourceLocation": {
       "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
-      "line": 11,
+      "line": 10,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorResponsiveSize", "ResolvedCustomTabsPresentation"],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "(config: Omit<CustomTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation",
@@ -1284,75 +292,6 @@
     "structuredRows": []
   },
   {
-    "name": "ResolvedCustomTabsPresentation",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/tabs/domain/ResolvedCustomTabsPresentation.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/domain/ResolvedCustomTabsPresentation.ts",
-      "line": 3,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["ResolvedTabsPresentation"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "customPresentationId",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "presentation",
-        "kind": "property",
-        "type": "ResolvedTabsPresentation",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "ResolvedTabsImplementation",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/features/tabs/domain/ResolvedTabsImplementation.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/domain/ResolvedTabsImplementation.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "ResolvedTabsPresentation",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/features/tabs/domain/ResolvedTabsPresentation.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/domain/ResolvedTabsPresentation.ts",
-      "line": 1,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "resolveNavigatorPreset",
     "description": "Resolve a canonical navigator preset into its ordered topology layers.",
     "isReadme": false,
@@ -1368,22 +307,22 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(preset: \"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined, fallbackType: \"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\") => readonly (\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\")[]",
+        "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
         "parameters": [
           {
             "name": "fallbackType",
-            "type": "\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\"",
+            "type": "\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\"",
             "required": true,
             "description": null
           },
           {
             "name": "preset",
-            "type": "\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined",
+            "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "readonly (\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\")[]",
+        "returnType": "readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
         "returnDescription": null
       }
     ],
@@ -1403,7 +342,7 @@
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorResponsiveSize", "NavigatorRuntimePlatform", "TabsNavigatorPlan"],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "(config: TabsImplementationConfig | undefined, platform: NavigatorRuntimePlatform, size: NavigatorResponsiveSize) => TabsNavigatorPlan",
@@ -1435,94 +374,6 @@
     "structuredRows": []
   },
   {
-    "name": "TabsNavigatorPlan",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/features/tabs/domain/TabsNavigatorPlan.ts",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/domain/TabsNavigatorPlan.ts",
-      "line": 13,
-      "column": 1
-    },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [
-      "ExpoRouterNavigatorModule",
-      "NavigatorApiStability",
-      "NavigatorResponsiveSize",
-      "ResolvedTabsImplementation",
-      "ResolvedTabsPresentation"
-    ],
-    "signatures": [],
-    "members": [
-      {
-        "name": "bottomAccessoryScreenId",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "customPresentationId",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "exportName",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "implementation",
-        "kind": "property",
-        "type": "ResolvedTabsImplementation",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "minimizeBehavior",
-        "kind": "property",
-        "type": "\"automatic\" | \"never\" | \"onScrollDown\" | \"onScrollUp\" | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "module",
-        "kind": "property",
-        "type": "ExpoRouterNavigatorModule",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "presentation",
-        "kind": "property",
-        "type": "ResolvedTabsPresentation | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "presentations",
-        "kind": "property",
-        "type": "Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "stability",
-        "kind": "property",
-        "type": "NavigatorApiStability",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
     "name": "validateNavigatorManifest",
     "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
     "isReadme": false,
@@ -1535,11 +386,7 @@
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": [
-      "CustomNavigatorRegistry",
-      "NavigatorDiagnostic",
-      "NavigatorValidationContext"
-    ],
+    "relatedSymbols": [],
     "signatures": [
       {
         "label": "(manifest: AppNavigatorManifest, context: NavigatorValidationContext, customNavigators?: CustomNavigatorRegistry | undefined) => readonly NavigatorDiagnostic[]",

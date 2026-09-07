@@ -1,6 +1,9 @@
-import type { AppNavigatorManifest, NavigatorNode } from '@ankhorage/contracts/navigator';
+import type {
+  AppNavigatorManifest,
+  NavigatorDiagnostic,
+  NavigatorNode,
+} from '@ankhorage/contracts/navigator';
 
-import type { NavigatorDiagnostic } from './NavigatorDiagnostic';
 import { resolveNavigatorPreset } from './resolveNavigatorPreset';
 
 /*** Reject preset metadata that contradicts the explicitly authored navigator spine. */

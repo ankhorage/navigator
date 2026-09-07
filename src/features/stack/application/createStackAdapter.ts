@@ -1,7 +1,8 @@
-import type { StackImplementationConfig } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorAdapterPlan } from '../../../utils/NavigatorAdapterPlan';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
+import type {
+  NavigatorAdapterPlan,
+  NavigatorRuntimePlatform,
+  StackImplementationConfig,
+} from '@ankhorage/contracts/navigator';
 
 /*** Resolve a Stack implementation to its version- and platform-aware Expo Router adapter. */
 export function createStackAdapter(

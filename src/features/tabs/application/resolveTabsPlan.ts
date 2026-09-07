@@ -1,8 +1,10 @@
-import type { TabsImplementationConfig } from '@ankhorage/contracts/navigator';
+import type {
+  NavigatorResponsiveSize,
+  NavigatorRuntimePlatform,
+  TabsImplementationConfig,
+  TabsNavigatorPlan,
+} from '@ankhorage/contracts/navigator';
 
-import type { NavigatorResponsiveSize } from '../../../utils/NavigatorResponsiveSize';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
-import type { TabsNavigatorPlan } from '../domain/TabsNavigatorPlan';
 import { resolveTabsNavigatorPlan } from './resolveTabsNavigatorPlan';
 
 /*** Retain an unavailable native-web plan for diagnostics or resolve the supported Tabs adapter. */
