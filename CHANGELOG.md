@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 2.0.2
+
+### Patch Changes
+
+- a1a3549: Generate Prettier-stable multiline Native Tabs vector icons for long icon names.
+
 ## 2.0.1
 
 ### Patch Changes
