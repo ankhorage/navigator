@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.6.0
+
+### Minor Changes
+
+- 6f89769: Enable the Surface custom Tabs adapter on iOS and Android, including media-backed SVG route icons.
+
 ## 1.5.5
 
 ### Patch Changes
