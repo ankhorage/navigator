@@ -376,7 +376,7 @@
     {
       "path": "tests/contractsBoundary.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": ["src/features/tabs/tabs.ts", "src/navigator.ts"],
       "exports": []
     },
     {
@@ -1968,6 +1968,11 @@
         "fromPath": "tests/composableGeneration.test.ts",
         "toPath": "src/navigator.ts",
         "sourcePath": "tests/composableGeneration.test.ts"
+      },
+      {
+        "fromPath": "tests/contractsBoundary.test.ts",
+        "toPath": "src/features/tabs/tabs.ts",
+        "sourcePath": "tests/contractsBoundary.test.ts"
       },
       {
         "fromPath": "tests/contractsBoundary.test.ts",

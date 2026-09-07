@@ -967,10 +967,16 @@
               <p><strong>Dependencies:</strong> <code>src/navigator.ts</code></p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
-            <article class="item" data-search="tests/contractsBoundary.test.ts src/navigator.ts">
+            <article
+              class="item"
+              data-search="tests/contractsBoundary.test.ts src/features/tabs/tabs.ts src/navigator.ts"
+            >
               <h3>tests/contractsBoundary.test.ts</h3>
               <p class="muted">Referenced module</p>
-              <p><strong>Dependencies:</strong> <code>src/navigator.ts</code></p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/features/tabs/tabs.ts</code>,
+                <code>src/navigator.ts</code>
+              </p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
             <article
@@ -1895,6 +1901,7 @@
                 module_tests_composableGeneration_test_ts --&gt; module_src_navigator_ts
                 module_tests_contractsBoundary_test_ts[&quot;tests/contractsBoundary.test.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_tests_contractsBoundary_test_ts
+                module_tests_contractsBoundary_test_ts --&gt; module_src_features_tabs_tabs_ts
                 module_tests_contractsBoundary_test_ts --&gt; module_src_navigator_ts
                 module_tests_CustomNavigatorRegistry_test_ts[&quot;tests/CustomNavigatorRegistry.test.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_tests_CustomNavigatorRegistry_test_ts
@@ -2081,6 +2088,7 @@ graph TD
   module_tests_composableGeneration_test_ts --&gt; module_src_navigator_ts
   module_tests_contractsBoundary_test_ts[&quot;tests/contractsBoundary.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_tests_contractsBoundary_test_ts
+  module_tests_contractsBoundary_test_ts --&gt; module_src_features_tabs_tabs_ts
   module_tests_contractsBoundary_test_ts --&gt; module_src_navigator_ts
   module_tests_CustomNavigatorRegistry_test_ts[&quot;tests/CustomNavigatorRegistry.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_tests_CustomNavigatorRegistry_test_ts
@@ -2262,6 +2270,7 @@ graph TD
                 module_src_utils_validatePresetTopology_ts --&gt;
                 module_src_utils_resolveNavigatorPreset_ts module_tests_composableGeneration_test_ts
                 --&gt; module_src_navigator_ts module_tests_contractsBoundary_test_ts --&gt;
+                module_src_features_tabs_tabs_ts module_tests_contractsBoundary_test_ts --&gt;
                 module_src_navigator_ts module_tests_CustomNavigatorRegistry_test_ts --&gt;
                 module_src_features_custom_domain_defineCustomNavigatorRegistry_ts
                 module_tests_CustomNavigatorRegistry_test_ts --&gt;
@@ -2381,6 +2390,7 @@ graph LR
   module_src_utils_validateNavigatorManifest_ts --&gt; module_src_utils_validatePresetTopology_ts
   module_src_utils_validatePresetTopology_ts --&gt; module_src_utils_resolveNavigatorPreset_ts
   module_tests_composableGeneration_test_ts --&gt; module_src_navigator_ts
+  module_tests_contractsBoundary_test_ts --&gt; module_src_features_tabs_tabs_ts
   module_tests_contractsBoundary_test_ts --&gt; module_src_navigator_ts
   module_tests_CustomNavigatorRegistry_test_ts --&gt; module_src_features_custom_domain_defineCustomNavigatorRegistry_ts
   module_tests_CustomNavigatorRegistry_test_ts --&gt; module_src_utils_createNavigatorPlan_ts
