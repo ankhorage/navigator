@@ -5,6 +5,7 @@ import type {
   TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
 import { resolveEffectiveTabsConfig } from './resolveEffectiveTabsConfig';
 
 /*** Add tabs-specific semantic diagnostics for one manifest navigator node. */
@@ -22,8 +23,8 @@ export function addTabsAdapterDiagnostics(
     native:
       implementation === 'native' ||
       (implementation === 'adaptive' && validationContext.platform !== 'web'),
-    custom:
-      implementation === 'custom' ||
+    headless:
+      implementation === 'headless' ||
       (implementation === 'adaptive' && validationContext.platform === 'web'),
     platform: validationContext.platform,
   };
@@ -34,7 +35,7 @@ export function addTabsAdapterDiagnostics(
 
 interface TabsDiagnosticContext {
   native: boolean;
-  custom: boolean;
+  headless: boolean;
   platform: NavigatorValidationContext['platform'];
 }
 
@@ -53,12 +54,16 @@ function addTabsPlatformDiagnostics(
       message: 'Native Tabs are not available on web.',
     });
   }
-  if (context.native && routerMajor !== undefined && routerMajor < 54) {
+  if (
+    context.native &&
+    routerMajor !== undefined &&
+    routerMajor < NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor
+  ) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: pointer,
-      message: 'Native Tabs require Expo Router 54.0.0 or newer.',
+      message: `Native Tabs require Expo Router ${NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor}.0.0 or newer.`,
     });
   }
   if (context.native) {
@@ -96,7 +101,7 @@ function addTabsRouteDiagnostics(
         message: 'Hiding a Native Tabs trigger makes the route unreachable; use an owning stack.',
       });
     }
-    if ((context.native || context.custom) && (route.guards ?? []).length > 0) {
+    if ((context.native || context.headless) && (route.guards ?? []).length > 0) {
       diagnostics.push({
         code: 'unsupported-tabs-guard',
         severity: 'error',
@@ -104,13 +109,12 @@ function addTabsRouteDiagnostics(
         message: 'This Tabs implementation cannot register protected Screen entries.',
       });
     }
-    if (context.custom && route.path === undefined) {
+    if (context.headless && route.path === undefined) {
       diagnostics.push({
         code: 'missing-tabs-path',
         severity: 'error',
         path: `${routePointer}/path`,
-        message:
-          'Headless custom Tabs require an explicit route path; Navigator never infers URLs.',
+        message: 'Headless Tabs require an explicit route path; Navigator never infers URLs.',
       });
     }
     addTabsIconDiagnostics(diagnostics, route, routePointer, context);
@@ -137,7 +141,7 @@ function addTabsIconDiagnostics(
     route.icon !== undefined &&
     'name' in route.icon &&
     route.icon.provider !== undefined &&
-    (context.native || context.custom) &&
+    (context.native || context.headless) &&
     !SURFACE_ICON_PROVIDERS.has(route.icon.provider)
   ) {
     diagnostics.push({
@@ -174,15 +178,14 @@ function addNativeVersionDiagnostics(
   if (
     native &&
     routerMajor !== undefined &&
-    routerMajor < 55 &&
+    routerMajor < NAVIGATOR_ROUTER_POLICY.nativeTabsAccessoryMinimumMajor &&
     (nativeConfig?.minimizeBehavior !== undefined || nativeConfig?.bottomAccessory !== undefined)
   ) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: pointer,
-      message:
-        'Native Tabs minimize behavior and bottom accessory require Expo Router 55 or newer.',
+      message: `Native Tabs minimize behavior and bottom accessory require Expo Router ${NAVIGATOR_ROUTER_POLICY.nativeTabsAccessoryMinimumMajor} or newer.`,
     });
   }
 }

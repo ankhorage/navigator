@@ -43,6 +43,10 @@
       "types": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.d.ts",
       "default": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.js"
     },
+    "./cli": {
+      "types": "./dist/cli/createCliProvider.d.ts",
+      "default": "./dist/cli/createCliProvider.js"
+    },
     "./tabs": {
       "types": "./dist/features/tabs/tabs.d.ts",
       "default": "./dist/features/tabs/tabs.js"
@@ -52,6 +56,17 @@
       "default": "./dist/features/tabs/nativeIcons.js"
     },
     "./package.json": "./package.json"
+  },
+  "ankh": {
+    "category": "navigator",
+    "provider": "./dist/cli/createCliProvider.js",
+    "capabilities": [
+      "navigator.catalog",
+      "navigator.validate",
+      "navigator.plan",
+      "navigator.generate",
+      "navigator.verify"
+    ]
   },
   "publishConfig": {
     "access": "public"
@@ -71,7 +86,7 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^11.1.0",
+    "@ankhorage/contracts": "^12.0.1",
     "@ankhorage/utility": "^0.4.0"
   },
   "peerDependencies": {
@@ -83,9 +98,24 @@
     "@react-native-vector-icons/material-design-icons": "^13.1.3",
     "expo-router": ">=57.0.0 <58.0.0",
     "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native": "0.86.x",
-    "react-native-safe-area-context": ">=5.6.0 <6.0.0",
-    "react-native-web": "~0.21.0"
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-web": "~0.21.0",
+    "react-native-worklets": "*"
+  },
+  "peerDependenciesMeta": {
+    "react-native-gesture-handler": {
+      "optional": true
+    },
+    "react-native-reanimated": {
+      "optional": true
+    },
+    "react-native-worklets": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@ankhorage/devtools": "^1.12.0",
@@ -101,6 +131,7 @@
     "@types/react": "^19.2.18",
     "expo-router": "57.0.18",
     "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-web": "~0.21.0",

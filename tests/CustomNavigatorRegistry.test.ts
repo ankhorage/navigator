@@ -6,8 +6,11 @@ import type {
 import { expect, test } from 'bun:test';
 
 import { defineCustomNavigatorRegistry } from '../src/features/custom/domain/defineCustomNavigatorRegistry';
+import { generateNavigator } from '../src/navigator';
 import { createNavigatorPlan } from '../src/utils/createNavigatorPlan';
-import { generateNavigatorFiles } from '../src/utils/generateNavigatorFiles';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 
 const WORKSPACE_RAIL: CustomNavigatorRegistration = {
   id: 'workspace-rail',
@@ -78,20 +81,30 @@ test('creates a deterministic immutable registry and rejects unsafe registration
 test('diagnoses registration, version, platform, schema, and malformed JSON before generation', () => {
   const registry = defineCustomNavigatorRegistry([WORKSPACE_RAIL]);
   const cases: readonly [AppNavigatorManifest, 'android' | 'ios' | 'web', string, string][] = [
-    [{ ...MANIFEST, navigatorId: 'missing' }, 'web', '57.0.18', 'unregistered-custom-navigator'],
-    [MANIFEST, 'android', '57.0.18', 'unsupported-custom-navigator-platform'],
-    [MANIFEST, 'web', '55.0.0', 'unsupported-expo-router-version'],
-    [{ ...MANIFEST, config: { railWidth: 12 } }, 'web', '57.0.18', 'invalid-rail-width'],
+    [
+      { ...MANIFEST, navigatorId: 'missing' },
+      'web',
+      EXPO_ROUTER_VERSION,
+      'unregistered-custom-navigator',
+    ],
+    [MANIFEST, 'android', EXPO_ROUTER_VERSION, 'unsupported-custom-navigator-platform'],
+    [
+      MANIFEST,
+      'web',
+      expoRouterVersionBefore(NAVIGATOR_ROUTER_POLICY.customNavigatorMinimumMajor),
+      'unsupported-expo-router-version',
+    ],
+    [{ ...MANIFEST, config: { railWidth: 12 } }, 'web', EXPO_ROUTER_VERSION, 'invalid-rail-width'],
     [
       { ...MANIFEST, config: { railWidth: Number.NaN } },
       'web',
-      '57.0.18',
+      EXPO_ROUTER_VERSION,
       'invalid-custom-navigator-config',
     ],
     [
       { ...MANIFEST, config: { callback: (() => undefined) as never } },
       'web',
-      '57.0.18',
+      EXPO_ROUTER_VERSION,
       'invalid-custom-navigator-config',
     ],
   ];
@@ -103,23 +116,23 @@ test('diagnoses registration, version, platform, schema, and malformed JSON befo
       platform,
     });
     expect(plan.diagnostics.map(({ code }) => code)).toContain(expectedCode);
-    expect(plan.supported).toBe(false);
-    expect(() =>
-      generateNavigatorFiles(plan, {
-        guards: {},
-        screens: { home: { module: './home', exportName: 'Home' } },
-      }),
-    ).toThrow('unsupported navigator plan');
+    expect(plan.support).toBe('unsupported');
+    const result = generateNavigator(plan, {
+      guards: {},
+      screens: { home: { module: './home', exportName: 'Home' } },
+    });
+    expect(result.files).toEqual([]);
+    expect(result.diagnostics.map(({ code }) => code)).toContain(expectedCode);
   }
 });
 
 test('generates only the registered static import and portable configuration', () => {
   const plan = createNavigatorPlan(MANIFEST, {
     customNavigators: defineCustomNavigatorRegistry([WORKSPACE_RAIL]),
-    expoRouterVersion: '57.0.18',
+    expoRouterVersion: EXPO_ROUTER_VERSION,
     platform: 'web',
   });
-  const files = generateNavigatorFiles(plan, {
+  const files = generateFiles(plan, {
     guards: {},
     screens: {
       home: { module: '@/screens/home', exportName: 'Home' },

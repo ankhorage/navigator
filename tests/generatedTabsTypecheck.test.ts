@@ -4,16 +4,17 @@ import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
 import ts from 'typescript';
 
-import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
+import { createNavigatorPlan } from '../src/navigator';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION } from './routerPolicy';
 
 const screens = { home: { module: '@/screens/home', exportName: 'Home' } } as const;
 
 function createLayout(manifest: AppNavigatorManifest, platform: 'ios' | 'web'): string {
-  const plan = createNavigatorPlan(manifest, { expoRouterVersion: '57.0.18', platform });
+  const plan = createNavigatorPlan(manifest, { expoRouterVersion: EXPO_ROUTER_VERSION, platform });
   return (
-    generateNavigatorFiles(plan, { guards: {}, screens }).find(
-      (file) => file.path === 'src/app/_layout.tsx',
-    )?.contents ?? ''
+    generateFiles(plan, { guards: {}, screens }).find((file) => file.path === 'src/app/_layout.tsx')
+      ?.contents ?? ''
   );
 }
 
@@ -76,7 +77,7 @@ test('generated Tabs layouts typecheck against the supported Expo and Surface ru
   const custom = createLayout(
     {
       type: 'tabs',
-      implementation: 'custom',
+      implementation: 'headless',
       presentation: 'responsive',
       responsive: { compact: 'bottom', expanded: 'sidebar' },
       routes: [{ name: 'home', path: '/', screenId: 'home' }],

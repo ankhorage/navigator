@@ -1,16 +1,16 @@
 import type {
-  CustomTabsConfig,
-  FixedCustomTabsPresentation,
+  FixedHeadlessTabsPresentation,
+  HeadlessTabsConfig,
   NavigatorResponsiveSize,
-  ResolvedCustomTabsPresentation,
+  ResolvedHeadlessTabsPresentation,
   ResponsiveTabsPresentation,
 } from '@ankhorage/contracts/navigator';
 
-/*** Resolve one custom-tabs presentation for the current semantic responsive size. */
-export function resolveCustomTabsPresentation(
-  config: Omit<CustomTabsConfig, 'implementation'>,
+/*** Resolve one headless-tabs presentation for the current semantic responsive size. */
+export function resolveHeadlessTabsPresentation(
+  config: Omit<HeadlessTabsConfig, 'implementation'>,
   size: NavigatorResponsiveSize,
-): ResolvedCustomTabsPresentation {
+): ResolvedHeadlessTabsPresentation {
   if (config.presentation === 'custom') {
     if (!config.customPresentationId) {
       throw new Error('Custom tabs presentation requires customPresentationId.');
@@ -34,7 +34,7 @@ export function resolveCustomTabsPresentation(
 function resolveResponsivePresentation(
   mapping: ResponsiveTabsPresentation,
   size: NavigatorResponsiveSize,
-): FixedCustomTabsPresentation {
+): FixedHeadlessTabsPresentation {
   switch (size) {
     case 'compact':
       return mapping.compact;
@@ -49,4 +49,4 @@ const DEFAULT_RESPONSIVE_PRESENTATION = {
   compact: 'bottom',
   medium: 'rail',
   expanded: 'sidebar',
-} as const satisfies Record<NavigatorResponsiveSize, FixedCustomTabsPresentation>;
+} as const satisfies Record<NavigatorResponsiveSize, FixedHeadlessTabsPresentation>;

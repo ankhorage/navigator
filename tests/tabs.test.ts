@@ -5,9 +5,11 @@ import ts from 'typescript';
 
 import {
   createNavigatorPlan,
-  generateNavigatorFiles,
+  generateNavigator,
   validateNavigatorManifest,
 } from '../src/navigator';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { expoRouterVersionBefore } from './routerPolicy';
 
 const screens = {
   accessory: { module: '@/screens/accessory', exportName: 'Accessory' },
@@ -34,7 +36,7 @@ async function formatGeneratedLayout(layout: string) {
 
 function generatedLayout(manifest: AppNavigatorManifest, platform: 'android' | 'ios' | 'web') {
   const plan = createNavigatorPlan(manifest, { expoRouterVersion: EXPO_ROUTER_VERSION, platform });
-  const files = generateNavigatorFiles(plan, { guards: {}, screens });
+  const files = generateNavigator(plan, { guards: {}, screens }).files;
   const layout = files.find((file) => file.path === 'src/app/_layout.tsx')?.contents;
   if (layout === undefined) throw new Error('Expected generated root layout.');
   expect(
@@ -68,7 +70,7 @@ describe('@ankhorage/navigator platform tabs generation', () => {
       'ios',
     );
 
-    expect(plan.supported).toBe(true);
+    expect(plan.support).toBe('supported');
     expect(plan.diagnostics.map((item) => item.code)).toEqual(['alpha-adapter']);
     expect(layout).toContain("from 'expo-router/unstable-native-tabs'");
     expect(layout).toContain("unstable_settings = { initialRouteName: 'settings' }");
@@ -111,7 +113,7 @@ describe('@ankhorage/navigator JavaScript tabs generation', () => {
         },
         'web',
       );
-      expect(plan.supported).toBe(true);
+      expect(plan.support).toBe('supported');
       expect(layout).toContain(`from '${expected}'`);
       expect(layout).toContain('.Screen name="home"');
       expect(layout).toContain(
@@ -126,7 +128,7 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
     const { layout, plan } = generatedLayout(
       {
         type: 'tabs',
-        implementation: 'custom',
+        implementation: 'headless',
         presentation: 'responsive',
         responsive: { compact: 'bottom', medium: 'rail', expanded: 'sidebar' },
         initialRouteName: 'settings',
@@ -150,7 +152,7 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
     });
     expect(layout).toContain("from '@ankhorage/navigator/tabs'");
     expect(layout).toContain('initialRouteName="settings"');
-    expect(layout).toContain('return (\n    <CustomTabsLayout');
+    expect(layout).toContain('return (\n    <HeadlessTabsLayout');
     expect(layout).toContain("href: '/settings'");
     expect(layout).toContain('visible: false');
   });
@@ -161,23 +163,25 @@ describe('@ankhorage/navigator custom tabs registration', () => {
     const plan = createNavigatorPlan(
       {
         type: 'tabs',
-        implementation: 'custom',
+        implementation: 'headless',
         presentation: 'custom',
         customPresentationId: 'workspace-tabs',
         routes: [{ name: 'home', path: '/', screenId: 'home' }],
       },
       { expoRouterVersion: EXPO_ROUTER_VERSION, platform: 'web' },
     );
-    expect(() => generateNavigatorFiles(plan, { guards: {}, screens })).toThrow(
-      'Missing registered custom Tabs presentation',
+    const missing = generateNavigator(plan, { guards: {}, screens });
+    expect(missing.files).toEqual([]);
+    expect(missing.diagnostics.map(({ code }) => code)).toContain(
+      'missing-tab-presentation-binding',
     );
-    const layout = generateNavigatorFiles(plan, {
+    const layout = generateNavigator(plan, {
       guards: {},
       screens,
       tabPresentations: {
         'workspace-tabs': { module: '@/navigation/workspace-tabs', exportName: 'WorkspaceTabs' },
       },
-    })[0]?.contents;
+    }).files[0]?.contents;
     expect(layout).toContain('WorkspaceTabs as NavigatorCustomTabsPresentation');
   });
 });
@@ -224,7 +228,7 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
     const plan = createNavigatorPlan(
       {
         type: 'tabs',
-        implementation: 'custom',
+        implementation: 'headless',
         presentation: 'bottom',
         routes: [
           { name: 'home', path: '/', screenId: 'home', icon: { source: { mediaId: 'home' } } },
@@ -233,14 +237,16 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
       { expoRouterVersion: EXPO_ROUTER_VERSION, platform: 'ios' },
     );
     expect(plan.diagnostics).toEqual([]);
-    expect(() => generateNavigatorFiles(plan, { guards: {}, screens })).toThrow(
-      'Missing registered Tabs icon-source resolver',
+    const missing = generateNavigator(plan, { guards: {}, screens });
+    expect(missing.files).toEqual([]);
+    expect(missing.diagnostics.map(({ code }) => code)).toContain(
+      'missing-icon-source-resolver-binding',
     );
-    const layout = generateNavigatorFiles(plan, {
+    const layout = generateNavigator(plan, {
       guards: {},
       screens,
       iconSourceResolver: { module: '@/media/icons', exportName: 'resolveIconSource' },
-    })[0]?.contents;
+    }).files[0]?.contents;
     expect(layout).toContain('resolveIconSource as NavigatorResolveTabsIconSource');
     expect(layout).toContain('resolveIconSource={NavigatorResolveTabsIconSource}');
     expect(layout).toContain("source: { mediaId: 'home' }");
@@ -248,7 +254,7 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
 });
 
 describe('@ankhorage/navigator tabs adapter diagnostics', () => {
-  test('version-gates native features while custom tabs work on every supported platform', () => {
+  test('version-gates native features while Headless Tabs work on every supported platform', () => {
     const native = validateNavigatorManifest(
       {
         type: 'tabs',
@@ -256,21 +262,26 @@ describe('@ankhorage/navigator tabs adapter diagnostics', () => {
         minimizeBehavior: 'never',
         routes: [{ name: 'home', screenId: 'home' }],
       },
-      { expoRouterVersion: '54.0.0', platform: 'ios' },
+      {
+        expoRouterVersion: expoRouterVersionBefore(
+          NAVIGATOR_ROUTER_POLICY.nativeTabsAccessoryMinimumMajor,
+        ),
+        platform: 'ios',
+      },
     );
     expect(native.map((item) => item.code)).toContain('unsupported-expo-router-version');
 
     for (const platform of ['android', 'ios', 'web'] as const) {
-      const custom = validateNavigatorManifest(
+      const headless = validateNavigatorManifest(
         {
           type: 'tabs',
-          implementation: 'custom',
+          implementation: 'headless',
           presentation: 'bottom',
           routes: [{ name: 'home', path: '/', screenId: 'home' }],
         },
         { expoRouterVersion: EXPO_ROUTER_VERSION, platform },
       );
-      expect(custom).toEqual([]);
+      expect(headless).toEqual([]);
     }
   });
 });

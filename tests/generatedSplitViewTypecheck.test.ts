@@ -4,7 +4,9 @@ import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
 import ts from 'typescript';
 
-import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
+import { createNavigatorPlan } from '../src/navigator';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION } from './routerPolicy';
 
 const VIRTUAL_COLUMNS = `
 export function Primary() { return null; }
@@ -45,7 +47,7 @@ function typeErrors(source: string): readonly ts.Diagnostic[] {
     .filter((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error);
 }
 
-test('generated Split View layout typechecks against Expo Router 57', () => {
+test('generated Split View layout typechecks against installed Expo Router', () => {
   const manifest: AppNavigatorManifest = {
     type: 'split-view',
     columns: {
@@ -58,10 +60,10 @@ test('generated Split View layout typechecks against Expo Router 57', () => {
   };
   const plan = createNavigatorPlan(manifest, {
     platform: 'ios',
-    expoRouterVersion: '57.0.18',
+    expoRouterVersion: EXPO_ROUTER_VERSION,
   });
   const source =
-    generateNavigatorFiles(plan, {
+    generateFiles(plan, {
       guards: {},
       screens: {
         primary: { module: './splitViewColumns', exportName: 'Primary' },

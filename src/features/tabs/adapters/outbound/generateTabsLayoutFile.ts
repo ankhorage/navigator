@@ -18,8 +18,8 @@ export function generateTabsLayoutFile(
   if (node.tabs?.implementation === 'native') {
     return createNativeTabsFile(node, directory, bindings);
   }
-  if (node.tabs?.implementation === 'custom') {
-    return createCustomTabsFile(node, directory, bindings);
+  if (node.tabs?.implementation === 'headless') {
+    return createHeadlessTabsFile(node, directory, bindings);
   }
   return undefined;
 }
@@ -164,17 +164,17 @@ function nativeIconName(icon: NavigatorRoutePlan['icon']): string {
   return icon.name;
 }
 
-/*** Create the generated cross-platform custom-tabs layout and registered integration imports. */
-function createCustomTabsFile(
+/*** Create the generated cross-platform headless-tabs layout and registered integration imports. */
+function createHeadlessTabsFile(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
 ): NavigatorGeneratedFile {
   const { tabs } = node;
   if (tabs?.presentations === undefined) {
-    throw new Error('Custom Tabs planning did not preserve responsive presentations.');
+    throw new Error('Headless Tabs planning did not preserve responsive presentations.');
   }
-  const imports = ["import { CustomTabsLayout } from '@ankhorage/navigator/tabs';"];
+  const imports = ["import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';"];
   let customPresentation = '';
   let iconSourceResolver = '';
   if (tabs.customPresentationId !== undefined) {
@@ -207,16 +207,16 @@ function createCustomTabsFile(
     node.initialRouteName === undefined
       ? ''
       : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
-  const routeSource = renderCustomTabRoutes(routes);
-  const component = `<CustomTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />`;
+  const routeSource = renderHeadlessTabRoutes(routes);
+  const component = `<HeadlessTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />`;
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderCustomTabsReturn(component)}\n}\n`,
+    contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component)}\n}\n`,
   };
 }
 
-/*** Render custom-tab route records as stable multiline source objects. */
-function renderCustomTabRoutes(routes: readonly Readonly<Record<string, unknown>>[]): string {
+/*** Render Headless Tabs route records as stable multiline source objects. */
+function renderHeadlessTabRoutes(routes: readonly Readonly<Record<string, unknown>>[]): string {
   return `[
 ${routes
   .map(
@@ -231,8 +231,8 @@ ${Object.entries(route)
 ]`;
 }
 
-/*** Render the custom Tabs return statement without exceeding the canonical print width. */
-function renderCustomTabsReturn(component: string): string {
+/*** Render the Headless Tabs return statement without exceeding the canonical print width. */
+function renderHeadlessTabsReturn(component: string): string {
   const directReturn = `  return ${component};`;
   return directReturn.length <= 100 ? directReturn : `  return (\n    ${component}\n  );`;
 }

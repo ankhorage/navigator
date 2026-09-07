@@ -7,7 +7,9 @@ import type {
   SplitViewNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-/*** Add constrained placement, binding, flow, version, and fallback diagnostics for Split View. */
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+
+/*** Add constrained placement, binding, version, and fallback diagnostics for Split View. */
 export function addSplitViewDiagnostics(
   diagnostics: NavigatorDiagnostic[],
   manifest: AppNavigatorManifest,
@@ -28,29 +30,20 @@ export function addSplitViewDiagnostics(
       message: 'Only one Split View may exist in the app navigator hierarchy.',
     });
   }
-  if (manifest.flows?.authentication === true || manifest.flows?.onboarding === true) {
-    diagnostics.push({
-      code: 'unsupported-split-view-flow-wrapper',
-      severity: 'error',
-      path: '/flows',
-      message:
-        'Split View cannot synthesize a root Stack wrapper for onboarding or authentication.',
-    });
-  }
-  if (routerMajor !== undefined && routerMajor < 55) {
+  if (routerMajor !== undefined && routerMajor < NAVIGATOR_ROUTER_POLICY.splitViewMinimumMajor) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: locations[0]?.pointer ?? '',
-      message: 'Split View requires Expo Router 55.0.0 or newer.',
+      message: `Split View requires Expo Router ${NAVIGATOR_ROUTER_POLICY.splitViewMinimumMajor}.0.0 or newer.`,
     });
   }
   if (context.platform !== 'ios') {
     diagnostics.push({
-      code: 'split-view-slot-fallback',
-      severity: 'warning',
+      code: 'unsupported-platform',
+      severity: 'error',
       path: locations[0]?.pointer ?? '',
-      message: `Split View renders Expo Router Slot on ${context.platform}; URLs and history remain routed without split-pane presentation.`,
+      message: `Split View is unavailable on ${context.platform}; Expo Router's Slot fallback is not a split-pane capability.`,
     });
   }
 }

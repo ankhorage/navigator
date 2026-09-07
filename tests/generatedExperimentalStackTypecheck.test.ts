@@ -4,7 +4,9 @@ import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
 import ts from 'typescript';
 
-import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
+import { createNavigatorPlan } from '../src/navigator';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION } from './routerPolicy';
 
 const MANIFEST = {
   type: 'stack',
@@ -45,11 +47,14 @@ function typeErrors(source: string): readonly ts.Diagnostic[] {
     .filter((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error);
 }
 
-test('generated Experimental Stack layouts typecheck against Expo Router 57', () => {
+test('generated Experimental Stack layouts typecheck against installed Expo Router', () => {
   for (const platform of ['ios', 'web'] as const) {
-    const plan = createNavigatorPlan(MANIFEST, { expoRouterVersion: '57.0.18', platform });
+    const plan = createNavigatorPlan(MANIFEST, {
+      expoRouterVersion: EXPO_ROUTER_VERSION,
+      platform,
+    });
     const source =
-      generateNavigatorFiles(plan, {
+      generateFiles(plan, {
         guards: {},
         screens: { home: { module: '@/screens/home', exportName: 'Home' } },
       }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';

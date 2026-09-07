@@ -1,7 +1,7 @@
 {
   "packageName": "NAVIGATOR",
   "packageId": "@ankhorage/navigator",
-  "description": "Standalone Navigator capability with topology configured independently from platform implementation and visual presentation. Adaptive tabs provide native and responsive web adapters; experimental Stack and Split View stay testing-only with validated upstream fallbacks.",
+  "description": "Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.",
   "collaborators": null,
   "donation": null,
   "badges": [
@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v2.0.0",
+      "value": "v2.0.2",
       "color": "cb3837"
     },
     {
@@ -62,11 +62,20 @@
   ],
   "usage": null,
   "readmeUsageDescription": null,
-  "readmeUsage": [],
+  "readmeUsage": [
+    {
+      "title": "Catalog → Validate → Plan → Generate → Verify",
+      "description": "Catalog → Validate → Plan → Generate → Verify\n\nNavigator consumes only an `AppNavigatorManifest`, narrow module bindings, and target context.\nIt never needs the complete `AppManifest`, themes, secrets, infrastructure, deployment data, or\nStudio state. `@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic\ntarget validation, capability metadata, planning, generation, and Navigator-specific evidence.\n\nThe taxonomy stays orthogonal:\n\n| Dimension | Examples |\n| --- | --- |\n| Topology | Slot, Stack, Tabs, Drawer, Split View, registered Custom |\n| Implementation | native, JavaScript, headless, experimental |\n| Presentation | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |\n| Preset | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack` |\n\nTabs are always Tabs; top and bottom are presentations. `drawer` is a complete root preset with\ndirect routes. Presets resolve to ordinary recursive manifest input. Navigator has no flow field:\nonboarding, survey, setup, checkout, and authentication are app-owned routes, nested navigators,\nguards, and state. For example, `stack-tabs-stack` can represent a neutral pre-main sequence\nfollowed by Tabs whose branches own Stacks without encoding application semantics.\n\nThe programmatic example below returns stable relative files and contents, dependency\nrequirements, diagnostics, support, the resolved plan, and capability IDs. It performs no writes.\nTo materialize the same contract into an Expo app, save the manifest and bindings as JSON and run:\n\n```sh\nankh navigator catalog\nankh navigator validate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nankh navigator plan --manifest navigator.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --json\nankh navigator generate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --target ./my-app\nankh navigator verify --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nbun --cwd ./my-app expo start\n```\n\nHuman-readable output is the default; `--json` emits the stable versioned envelope. Generation\nrequires an explicit target. Custom navigator registries are executable consumer modules passed\nwith `--custom-navigators`; screen, guard, icon-resolver, and custom Tabs-presentation bindings\nremain narrow JSON module/symbol records.\n\nCapability metadata separates `support`, `stability`, and each verification layer. Experimental\nStack and iOS Split View are testing-only. A non-iOS Slot fallback is explicitly not Split View.\nInstall, export, browser, simulator, and device evidence remains unverified until the standalone\nexample acceptance layer records it; planning or compilation never promotes those claims.\n\nStudio and future composers read `getNavigatorCatalog()`, author `manifest.navigator`, and invoke\nthis same lifecycle. They do not own a second capability table.",
+      "language": "ts",
+      "code": "import type {\n  AppNavigatorManifest,\n  NavigatorGenerationBindings,\n} from '@ankhorage/contracts/navigator';\nimport expoRouterPackage from 'expo-router/package.json';\n\nimport {\n  createNavigatorPlan,\n  generateNavigator,\n  getNavigatorCatalog,\n  validateNavigator,\n  verifyNavigator,\n} from '@ankhorage/navigator';\n\nconst manifest = {\n  type: 'drawer',\n  initialRouteName: 'index',\n  routes: [\n    { name: 'index', label: 'Home', screenId: 'home' },\n    { name: 'settings', label: 'Settings', screenId: 'settings' },\n  ],\n} as const satisfies AppNavigatorManifest;\n\nconst bindings = {\n  screens: {\n    home: { module: '@/screens/HomeScreen', exportName: 'HomeScreen' },\n    settings: { module: '@/screens/SettingsScreen', exportName: 'SettingsScreen' },\n  },\n  guards: {},\n} as const satisfies NavigatorGenerationBindings;\n\nconst target = {\n  platform: 'web',\n  expoRouterVersion: expoRouterPackage.version,\n} as const;\n\nconst diagnostics = validateNavigator(manifest, bindings, target);\nconst plan = createNavigatorPlan(manifest, target);\nconst generation = generateNavigator(plan, bindings);\nconst verification = verifyNavigator(plan, bindings);\n\nconsole.log({\n  catalog: getNavigatorCatalog(),\n  diagnostics,\n  plan,\n  generation,\n  verification,\n});",
+      "sourcePath": "docs/readme-usage.ts"
+    }
+  ],
   "readmeCli": null,
   "readmeConfig": null,
   "config": null,
   "entrypoints": [
+    "src/cli/createCliProvider.ts",
     "src/features/tabs/nativeIcons.ts",
     "src/features/tabs/tabs.ts",
     "src/navigator.ts",
@@ -80,15 +89,113 @@
       "exports": []
     },
     {
+      "path": "src/cli/commands/catalog.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts"
+      ],
+      "exports": ["catalog"]
+    },
+    {
+      "path": "src/cli/commands/generate.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/createNavigatorPlan.ts",
+        "src/utils/generateNavigator.ts",
+        "src/utils/loadNavigatorCliInputAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts",
+        "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      ],
+      "exports": ["generate"]
+    },
+    {
+      "path": "src/cli/commands/plan.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/createNavigatorPlan.ts",
+        "src/utils/loadNavigatorCliInputAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts"
+      ],
+      "exports": ["plan"]
+    },
+    {
+      "path": "src/cli/commands/validate.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/readNavigatorCliJsonAsync.ts",
+        "src/utils/reportNavigatorCliResult.ts",
+        "src/utils/validateNavigator.ts"
+      ],
+      "exports": ["validate"]
+    },
+    {
+      "path": "src/cli/commands/verify.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/navigatorCli.ts",
+        "src/types/navigatorVerification.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/createNavigatorPlan.ts",
+        "src/utils/loadNavigatorCliInputAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts",
+        "src/utils/verifyNavigator.ts"
+      ],
+      "exports": ["verify"]
+    },
+    {
+      "path": "src/cli/createCliProvider.ts",
+      "isEntrypoint": true,
+      "dependencies": [
+        "package.json",
+        "src/cli/commands/catalog.ts",
+        "src/cli/commands/generate.ts",
+        "src/cli/commands/plan.ts",
+        "src/cli/commands/validate.ts",
+        "src/cli/commands/verify.ts",
+        "src/types/navigatorCli.ts"
+      ],
+      "exports": ["default"]
+    },
+    {
+      "path": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "isEntrypoint": false,
+      "dependencies": ["package.json", "src/features/catalog/domain/createNavigatorCatalog.ts"],
+      "exports": ["getNavigatorCatalog"]
+    },
+    {
+      "path": "src/features/catalog/domain/createNavigatorCatalog.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "src/utils/resolveNavigatorPreset.ts"
+      ],
+      "exports": ["createNavigatorCatalog"]
+    },
+    {
       "path": "src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/utils/NAVIGATOR_ROUTER_POLICY.ts"],
       "exports": ["resolveCustomNavigatorAdapterPlan"]
     },
     {
       "path": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/utils/NAVIGATOR_ROUTER_POLICY.ts"],
       "exports": ["addCustomNavigatorDiagnostics"]
     },
     {
@@ -136,31 +243,37 @@
     {
       "path": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/utils/NAVIGATOR_ROUTER_POLICY.ts"],
       "exports": ["resolveSplitViewAdapterPlan"]
     },
     {
       "path": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/utils/NAVIGATOR_ROUTER_POLICY.ts"],
       "exports": ["addSplitViewDiagnostics"]
     },
     {
       "path": "src/features/stack/application/createStackAdapter.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/utils/NAVIGATOR_ROUTER_POLICY.ts"],
       "exports": ["createStackAdapter"]
     },
     {
       "path": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/features/stack/domain/resolveEffectiveStackConfigSource.ts"],
+      "dependencies": [
+        "src/features/stack/domain/resolveEffectiveStackConfigSource.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts"
+      ],
       "exports": ["addExperimentalStackDiagnostics"]
     },
     {
       "path": "src/features/stack/domain/addStackAdapterDiagnostics.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/features/stack/domain/resolveEffectiveStackConfig.ts"],
+      "dependencies": [
+        "src/features/stack/domain/resolveEffectiveStackConfig.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts"
+      ],
       "exports": ["addStackAdapterDiagnostics"]
     },
     {
@@ -182,10 +295,10 @@
       "exports": ["validateStackRouteOptions"]
     },
     {
-      "path": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+      "path": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["CustomTabsLayout"]
+      "exports": ["HeadlessTabsLayout"]
     },
     {
       "path": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
@@ -226,13 +339,13 @@
     {
       "path": "src/features/tabs/application/createTabsAdapter.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/utils/NAVIGATOR_ROUTER_POLICY.ts"],
       "exports": ["createTabsAdapter"]
     },
     {
       "path": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/features/tabs/domain/resolveCustomTabsPresentation.ts"],
+      "dependencies": ["src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"],
       "exports": ["resolveTabsNavigatorPlan"]
     },
     {
@@ -244,20 +357,23 @@
     {
       "path": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/features/tabs/domain/resolveEffectiveTabsConfig.ts"],
+      "dependencies": [
+        "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts"
+      ],
       "exports": ["addTabsAdapterDiagnostics"]
-    },
-    {
-      "path": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": ["resolveCustomTabsPresentation"]
     },
     {
       "path": "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["resolveEffectiveTabsConfig"]
+    },
+    {
+      "path": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["resolveHeadlessTabsPresentation"]
     },
     {
       "path": "src/features/tabs/nativeIcons.ts",
@@ -275,7 +391,7 @@
       "path": "src/features/tabs/tabs.ts",
       "isEntrypoint": true,
       "dependencies": [],
-      "exports": ["CustomTabsLayout"]
+      "exports": ["HeadlessTabsLayout"]
     },
     {
       "path": "src/navigator.ts",
@@ -284,11 +400,17 @@
       "exports": [
         "createNavigatorPlan",
         "defineCustomNavigatorRegistry",
-        "generateNavigatorFiles",
-        "resolveCustomTabsPresentation",
+        "generateNavigator",
+        "getNavigatorCatalog",
+        "isNavigatorGenerationBindings",
+        "NavigatorVerificationResult",
+        "resolveHeadlessTabsPresentation",
         "resolveNavigatorPreset",
         "resolveTabsNavigatorPlan",
-        "validateNavigatorManifest"
+        "validateNavigator",
+        "validateNavigatorBindings",
+        "validateNavigatorManifest",
+        "verifyNavigator"
       ]
     },
     {
@@ -296,6 +418,24 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["NativeVectorIconFamily"]
+    },
+    {
+      "path": "src/types/navigatorCli.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["NavigatorCliExecution", "NavigatorCliOptions", "NavigatorCliRunResult"]
+    },
+    {
+      "path": "src/types/navigatorVerification.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["NavigatorVerificationResult"]
+    },
+    {
+      "path": "src/utils/assertNavigatorCliOptions.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/navigatorCli.ts"],
+      "exports": ["assertNavigatorCliOptions"]
     },
     {
       "path": "src/utils/createNavigatorPlan.ts",
@@ -311,26 +451,60 @@
         "src/features/tabs/application/resolveTabsPlan.ts",
         "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
         "src/utils/parseExpoRouterMajor.ts",
+        "src/utils/resolveNavigatorDependencies.ts",
         "src/utils/validateNavigatorManifest.ts"
       ],
       "exports": ["createNavigatorPlan"]
     },
     {
-      "path": "src/utils/generateNavigatorFiles.ts",
+      "path": "src/utils/generateNavigator.ts",
       "isEntrypoint": false,
       "dependencies": [
         "src/features/drawer/adapters/outbound/resolveDrawerRouteOptions.ts",
         "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
         "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
-        "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+        "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "src/utils/validateNavigatorBindings.ts"
       ],
-      "exports": ["generateNavigatorFiles"]
+      "exports": ["generateNavigator"]
+    },
+    {
+      "path": "src/utils/isNavigatorGenerationBindings.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["isNavigatorGenerationBindings"]
+    },
+    {
+      "path": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["loadCustomNavigatorRegistryAsync"]
+    },
+    {
+      "path": "src/utils/loadNavigatorCliInputAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/navigatorCli.ts",
+        "src/utils/isNavigatorGenerationBindings.ts",
+        "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "src/utils/readNavigatorCliJsonAsync.ts"
+      ],
+      "exports": ["loadNavigatorCliInputAsync"]
     },
     {
       "path": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
       "isEntrypoint": true,
-      "dependencies": [],
+      "dependencies": [
+        "package.json",
+        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
+      ],
       "exports": ["NAVIGATOR_PACKAGE_METADATA"]
+    },
+    {
+      "path": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["NAVIGATOR_ROUTER_POLICY"]
     },
     {
       "path": "src/utils/parseExpoRouterMajor.ts",
@@ -339,10 +513,49 @@
       "exports": ["parseExpoRouterMajor"]
     },
     {
+      "path": "src/utils/parseNavigatorCliOptions.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/navigatorCli.ts"],
+      "exports": ["parseNavigatorCliOptions"]
+    },
+    {
+      "path": "src/utils/readNavigatorCliJsonAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["readNavigatorCliJsonAsync"]
+    },
+    {
+      "path": "src/utils/reportNavigatorCliResult.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/navigatorCli.ts"],
+      "exports": ["reportNavigatorCliResult"]
+    },
+    {
+      "path": "src/utils/resolveNavigatorDependencies.ts",
+      "isEntrypoint": false,
+      "dependencies": ["package.json"],
+      "exports": ["resolveNavigatorDependencies"]
+    },
+    {
       "path": "src/utils/resolveNavigatorPreset.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["resolveNavigatorPreset"]
+    },
+    {
+      "path": "src/utils/validateNavigator.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/utils/createNavigatorPlan.ts",
+        "src/utils/validateNavigatorBindings.ts"
+      ],
+      "exports": ["validateNavigator"]
+    },
+    {
+      "path": "src/utils/validateNavigatorBindings.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/utils/isNavigatorGenerationBindings.ts"],
+      "exports": ["validateNavigatorBindings"]
     },
     {
       "path": "src/utils/validateNavigatorManifest.ts",
@@ -368,9 +581,31 @@
       "exports": ["validatePresetTopology"]
     },
     {
+      "path": "src/utils/verifyNavigator.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "src/types/navigatorVerification.ts",
+        "src/utils/generateNavigator.ts"
+      ],
+      "exports": ["verifyNavigator"]
+    },
+    {
+      "path": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["writeNavigatorGeneratedFilesAsync"]
+    },
+    {
+      "path": "tests/cli.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["package.json", "src/cli/createCliProvider.ts"],
+      "exports": []
+    },
+    {
       "path": "tests/composableGeneration.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": ["src/navigator.ts", "tests/generateFiles.ts", "tests/routerPolicy.ts"],
       "exports": []
     },
     {
@@ -384,45 +619,64 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
+        "src/navigator.ts",
         "src/utils/createNavigatorPlan.ts",
-        "src/utils/generateNavigatorFiles.ts"
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "tests/generateFiles.ts",
+        "tests/routerPolicy.ts"
       ],
       "exports": []
     },
     {
       "path": "tests/experimentalStack.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts", "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"],
+      "dependencies": [
+        "src/navigator.ts",
+        "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "tests/generateFiles.ts",
+        "tests/routerPolicy.ts"
+      ],
       "exports": []
     },
     {
       "path": "tests/generatedCustomNavigatorTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": ["src/navigator.ts", "tests/generateFiles.ts", "tests/routerPolicy.ts"],
       "exports": []
     },
     {
       "path": "tests/generatedExperimentalStackTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": ["src/navigator.ts", "tests/generateFiles.ts", "tests/routerPolicy.ts"],
       "exports": []
     },
     {
       "path": "tests/generatedSplitViewTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": ["src/navigator.ts", "tests/generateFiles.ts", "tests/routerPolicy.ts"],
       "exports": []
     },
     {
       "path": "tests/generatedTabsTypecheck.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": ["src/navigator.ts", "tests/generateFiles.ts", "tests/routerPolicy.ts"],
       "exports": []
+    },
+    {
+      "path": "tests/generateFiles.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/navigator.ts"],
+      "exports": ["generateFiles"]
     },
     {
       "path": "tests/index.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": [
+        "src/navigator.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "tests/routerPolicy.ts"
+      ],
       "exports": []
     },
     {
@@ -438,6 +692,12 @@
       "exports": []
     },
     {
+      "path": "tests/routerPolicy.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["EXPO_ROUTER_VERSION", "expoRouterVersionBefore"]
+    },
+    {
       "path": "tests/sourceStructure.test.ts",
       "isEntrypoint": false,
       "dependencies": ["package.json"],
@@ -446,13 +706,23 @@
     {
       "path": "tests/splitView.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts", "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"],
+      "dependencies": [
+        "src/navigator.ts",
+        "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "tests/generateFiles.ts",
+        "tests/routerPolicy.ts"
+      ],
       "exports": []
     },
     {
       "path": "tests/tabs.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/navigator.ts"],
+      "dependencies": [
+        "src/navigator.ts",
+        "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "tests/routerPolicy.ts"
+      ],
       "exports": []
     }
   ],
@@ -466,7 +736,7 @@
       "modulePath": "src/utils/createNavigatorPlan.ts",
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 29,
+        "line": 31,
         "column": 1
       },
       "exportPaths": ["src/navigator.ts"],
@@ -496,34 +766,20 @@
       "structuredRows": []
     },
     {
-      "name": "CustomTabsLayout",
-      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "name": "default",
+      "description": null,
       "isReadme": false,
       "examples": [],
-      "kind": "function",
-      "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+      "kind": "unknown",
+      "modulePath": "src/cli/createCliProvider.ts",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
-        "line": 20,
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 11,
         "column": 1
       },
-      "exportPaths": ["src/features/tabs/tabs.ts"],
+      "exportPaths": ["src/cli/createCliProvider.ts"],
       "relatedSymbols": [],
-      "signatures": [
-        {
-          "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
-          "parameters": [
-            {
-              "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
-              "type": "CustomTabsLayoutProps",
-              "required": true,
-              "description": null
-            }
-          ],
-          "returnType": "import(\"react\").JSX.Element",
-          "returnDescription": null
-        }
-      ],
+      "signatures": [],
       "members": [],
       "structuredRows": []
     },
@@ -560,22 +816,22 @@
       "structuredRows": []
     },
     {
-      "name": "generateNavigatorFiles",
-      "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
+      "name": "generateNavigator",
+      "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
       "isReadme": false,
       "examples": [],
       "kind": "function",
-      "modulePath": "src/utils/generateNavigatorFiles.ts",
+      "modulePath": "src/utils/generateNavigator.ts",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 19,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 21,
         "column": 1
       },
       "exportPaths": ["src/navigator.ts"],
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]",
+          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult",
           "parameters": [
             {
               "name": "bindings",
@@ -596,7 +852,96 @@
               "description": null
             }
           ],
-          "returnType": "readonly NavigatorGeneratedFile[]",
+          "returnType": "NavigatorGenerationResult",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "getNavigatorCatalog",
+      "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "() => NavigatorCatalog",
+          "parameters": [],
+          "returnType": "NavigatorCatalog",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "HeadlessTabsLayout",
+      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+        "line": 20,
+        "column": 1
+      },
+      "exportPaths": ["src/features/tabs/tabs.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
+          "parameters": [
+            {
+              "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+              "type": "HeadlessTabsLayoutProps",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "import(\"react\").JSX.Element",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "isNavigatorGenerationBindings",
+      "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/utils/isNavigatorGenerationBindings.ts",
+      "sourceLocation": {
+        "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(value: unknown) => boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "boolean",
           "returnDescription": null
         }
       ],
@@ -695,14 +1040,14 @@
     },
     {
       "name": "NAVIGATOR_PACKAGE_METADATA",
-      "description": null,
+      "description": "Publish package identity and the single Navigator-owned capability catalog.",
       "isReadme": false,
       "examples": [],
       "kind": "value",
       "modulePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
       "sourceLocation": {
         "filePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
-        "line": 8,
+        "line": 5,
         "column": 14
       },
       "exportPaths": ["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"],
@@ -712,14 +1057,68 @@
       "structuredRows": []
     },
     {
-      "name": "resolveCustomTabsPresentation",
-      "description": "Resolve one custom-tabs presentation for the current semantic responsive size.",
+      "name": "NavigatorVerificationResult",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/navigatorVerification.ts",
+      "sourceLocation": {
+        "filePath": "src/types/navigatorVerification.ts",
+        "line": 9,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "capabilityIds",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "checks",
+          "kind": "property",
+          "type": "readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; readonly message: string; }[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "deterministic",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "diagnostics",
+          "kind": "property",
+          "type": "readonly NavigatorDiagnostic[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "support",
+          "kind": "property",
+          "type": "NavigatorSupportStatus",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "resolveHeadlessTabsPresentation",
+      "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
       "isReadme": false,
       "examples": [],
       "kind": "function",
-      "modulePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+      "modulePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
       "sourceLocation": {
-        "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+        "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
         "line": 10,
         "column": 1
       },
@@ -727,11 +1126,11 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(config: Omit<CustomTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation",
+          "label": "(config: Omit<HeadlessTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedHeadlessTabsPresentation",
           "parameters": [
             {
               "name": "config",
-              "type": "Omit<CustomTabsConfig, \"implementation\">",
+              "type": "Omit<HeadlessTabsConfig, \"implementation\">",
               "required": true,
               "description": null
             },
@@ -742,7 +1141,7 @@
               "description": null
             }
           ],
-          "returnType": "ResolvedCustomTabsPresentation",
+          "returnType": "ResolvedHeadlessTabsPresentation",
           "returnDescription": null
         }
       ],
@@ -765,7 +1164,7 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
+          "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"stack-tabs\" | \"stack-tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"stack-drawer\" | \"stack-drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"stack-drawer-tabs\" | \"stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
           "parameters": [
             {
               "name": "fallbackType",
@@ -775,7 +1174,7 @@
             },
             {
               "name": "preset",
-              "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
+              "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"stack-tabs\" | \"stack-tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"stack-drawer\" | \"stack-drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"stack-drawer-tabs\" | \"stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
               "required": true,
               "description": null
             }
@@ -832,6 +1231,100 @@
       "structuredRows": []
     },
     {
+      "name": "validateNavigator",
+      "description": "Structurally and semantically validate standalone navigator input without writing files.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/utils/validateNavigator.ts",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigator.ts",
+        "line": 12,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(manifest: unknown, bindings: unknown, options: CreateNavigatorPlanOptions, generationOptions?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]",
+          "parameters": [
+            {
+              "name": "bindings",
+              "type": "unknown",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "generationOptions",
+              "type": "NavigatorGenerationOptions",
+              "required": false,
+              "description": null
+            },
+            {
+              "name": "manifest",
+              "type": "unknown",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "options",
+              "type": "CreateNavigatorPlanOptions",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "readonly NavigatorDiagnostic[]",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "validateNavigatorBindings",
+      "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/utils/validateNavigatorBindings.ts",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 14,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]",
+          "parameters": [
+            {
+              "name": "bindings",
+              "type": "unknown",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "options",
+              "type": "NavigatorGenerationOptions",
+              "required": false,
+              "description": null
+            },
+            {
+              "name": "plan",
+              "type": "NavigatorPlan",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "readonly NavigatorDiagnostic[]",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "validateNavigatorManifest",
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
       "isReadme": false,
@@ -874,17 +1367,61 @@
       ],
       "members": [],
       "structuredRows": []
+    },
+    {
+      "name": "verifyNavigator",
+      "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/utils/verifyNavigator.ts",
+      "sourceLocation": {
+        "filePath": "src/utils/verifyNavigator.ts",
+        "line": 13,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": ["NavigatorVerificationResult"],
+      "signatures": [
+        {
+          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorVerificationResult",
+          "parameters": [
+            {
+              "name": "bindings",
+              "type": "NavigatorGenerationBindings",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "options",
+              "type": "NavigatorGenerationOptions",
+              "required": false,
+              "description": null
+            },
+            {
+              "name": "plan",
+              "type": "NavigatorPlan",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "NavigatorVerificationResult",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
     }
   ],
   "components": [
     {
-      "name": "CustomTabsLayout",
+      "name": "HeadlessTabsLayout",
       "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
       "isReadme": false,
       "examples": [],
-      "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+      "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 20,
         "column": 1
       },
@@ -892,7 +1429,7 @@
       "props": [
         {
           "name": "customPresentation",
-          "type": "ComponentType<CustomTabsPresentationProps> | undefined",
+          "type": "ComponentType<HeadlessTabsPresentationProps> | undefined",
           "required": false,
           "description": null
         },
@@ -910,13 +1447,13 @@
         },
         {
           "name": "resolveIconSource",
-          "type": "CustomTabsIconSourceResolver | undefined",
+          "type": "HeadlessTabsIconSourceResolver | undefined",
           "required": false,
           "description": null
         },
         {
           "name": "routes",
-          "type": "readonly CustomTabsRoute[]",
+          "type": "readonly HeadlessTabsRoute[]",
           "required": true,
           "description": null
         }
@@ -925,11 +1462,299 @@
   ],
   "sourceFunctions": [
     {
+      "name": "catalog",
+      "description": "List or inspect the package-owned capability and preset catalog.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "selectCatalog",
+      "description": "Select an unambiguous catalog entry or a filtered listing.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderCatalog",
+      "description": "Render compact human catalog output without creating a second metadata table.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 64,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportInputFailure",
+      "description": "Report deterministic option and input failures.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 83,
+        "column": 1
+      }
+    },
+    {
+      "name": "generate",
+      "description": "Generate one structured Navigator file set and write it below an explicit target.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/generate.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportInputFailure",
+      "description": "Report deterministic Generate-stage input or write failures.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/generate.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "plan",
+      "description": "Resolve and print one deterministic Navigator plan and its dependency requirements.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/plan.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportInputFailure",
+      "description": "Report deterministic Plan-stage input failures.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/plan.ts",
+        "line": 40,
+        "column": 1
+      }
+    },
+    {
+      "name": "validate",
+      "description": "Structurally and semantically validate a manifest and narrow bindings without writes.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
+      "name": "createPlanOptions",
+      "description": "Resolve target context and an optional executable custom-navigator registry.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportInputFailure",
+      "description": "Report file, JSON, registry, and option failures separately from navigator diagnostics.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 75,
+        "column": 1
+      }
+    },
+    {
+      "name": "verify",
+      "description": "Verify Navigator-owned structural and deterministic generation evidence without writes.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/verify.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderVerification",
+      "description": "Render each verification layer without promoting unverified runtime claims.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/verify.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportInputFailure",
+      "description": "Report deterministic Verify-stage input failures.",
+      "sourceLocation": {
+        "filePath": "src/cli/commands/verify.ts",
+        "line": 59,
+        "column": 1
+      }
+    },
+    {
+      "name": "createCliProvider",
+      "description": "Create the package-owned provider for the standalone Navigator lifecycle.",
+      "sourceLocation": {
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "descriptor",
+      "description": "Define one public command descriptor from its package-owned capability.",
+      "sourceLocation": {
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 82,
+        "column": 1
+      }
+    },
+    {
+      "name": "binding",
+      "description": "Adapt the Ankh execution request to Navigator's narrow command input.",
+      "sourceLocation": {
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 92,
+        "column": 1
+      }
+    },
+    {
+      "name": "getNavigatorCatalog",
+      "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "createNavigatorCatalog",
+      "description": "Create the package-owned navigation catalog from explicit owner dependency policy.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 16,
+        "column": 1
+      }
+    },
+    {
+      "name": "createCoreCapabilities",
+      "description": "Describe Slot, Stack, and root Drawer capabilities.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 28,
+        "column": 1
+      }
+    },
+    {
+      "name": "createTabsCapabilities",
+      "description": "Describe native, JavaScript, and Headless Tabs variants.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "createExtensionCapabilities",
+      "description": "Describe testing-only Split View and registered extension capability metadata.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 108,
+        "column": 1
+      }
+    },
+    {
+      "name": "createPresets",
+      "description": "Enumerate the finite transparent preset catalog in contract order.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 139,
+        "column": 1
+      }
+    },
+    {
+      "name": "capability",
+      "description": "Build one capability descriptor with deterministic targets and owner-derived dependencies.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 169,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveTargetSupport",
+      "description": "Resolve platform status without indexing consumer-provided object keys.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 201,
+        "column": 1
+      }
+    },
+    {
+      "name": "requires",
+      "description": "Create one capability requirement record.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 228,
+        "column": 1
+      }
+    },
+    {
+      "name": "requiresRouter",
+      "description": "Describe one Expo Router major-version requirement from owner policy.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 233,
+        "column": 1
+      }
+    },
+    {
+      "name": "dependency",
+      "description": "Resolve a consumer dependency from package-owned peer or package-version metadata.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 238,
+        "column": 1
+      }
+    },
+    {
+      "name": "headlessTabsDependencies",
+      "description": "Report the runtime requirements of Navigator-owned Headless Tabs.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 253,
+        "column": 1
+      }
+    },
+    {
+      "name": "nativeTabsDependencies",
+      "description": "Report the conservative runtime requirements of Native Tabs icon generation.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 269,
+        "column": 1
+      }
+    },
+    {
+      "name": "createPreset",
+      "description": "Build one transparent structural preset descriptor in contract order.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 286,
+        "column": 1
+      }
+    },
+    {
+      "name": "describePreset",
+      "description": "Describe one structural preset without adding application-flow semantics.",
+      "sourceLocation": {
+        "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "line": 295,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveCustomNavigatorAdapterPlan",
       "description": "Resolve a registered standard-router integration without materializing executable manifest data.",
       "sourceLocation": {
         "filePath": "src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts",
-        "line": 9,
+        "line": 11,
         "column": 1
       }
     },
@@ -938,7 +1763,7 @@
       "description": "Validate all deliberately registered custom navigator extension nodes.",
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
-        "line": 10,
+        "line": 12,
         "column": 1
       }
     },
@@ -947,7 +1772,7 @@
       "description": "Traverse custom navigator extensions independently from built-in navigator option policy.",
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
-        "line": 21,
+        "line": 23,
         "column": 1
       }
     },
@@ -956,7 +1781,7 @@
       "description": "Add registry, platform, version, and schema diagnostics for one custom navigator node.",
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
-        "line": 47,
+        "line": 49,
         "column": 1
       }
     },
@@ -965,7 +1790,7 @@
       "description": "Add platform and Expo Router compatibility diagnostics for one registered extension.",
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
-        "line": 70,
+        "line": 72,
         "column": 1
       }
     },
@@ -974,7 +1799,7 @@
       "description": "Run one registration's schema-specific validator after the portable JSON boundary.",
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
-        "line": 97,
+        "line": 102,
         "column": 1
       }
     },
@@ -983,7 +1808,7 @@
       "description": "Validate finite JSON manifest data without accepting functions, symbols, cycles, or prototypes.",
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
-        "line": 132,
+        "line": 137,
         "column": 1
       }
     },
@@ -1091,16 +1916,16 @@
       "description": "Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback.",
       "sourceLocation": {
         "filePath": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts",
-        "line": 7,
+        "line": 9,
         "column": 1
       }
     },
     {
       "name": "addSplitViewDiagnostics",
-      "description": "Add constrained placement, binding, flow, version, and fallback diagnostics for Split View.",
+      "description": "Add constrained placement, binding, version, and fallback diagnostics for Split View.",
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
-        "line": 11,
+        "line": 13,
         "column": 1
       }
     },
@@ -1109,7 +1934,7 @@
       "description": "Collect every Split View together with its parent topology and manifest pointer.",
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
-        "line": 59,
+        "line": 52,
         "column": 1
       }
     },
@@ -1118,7 +1943,7 @@
       "description": "Reject Split View placement and route declarations unsupported by its Slot-based topology.",
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
-        "line": 86,
+        "line": 79,
         "column": 1
       }
     },
@@ -1127,7 +1952,7 @@
       "description": "Reject unresolved, duplicated, or incompatible Split View column references.",
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
-        "line": 121,
+        "line": 114,
         "column": 1
       }
     },
@@ -1136,7 +1961,7 @@
       "description": "Reject invalid or unavailable iPhone collapse-column selections.",
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
-        "line": 157,
+        "line": 150,
         "column": 1
       }
     },
@@ -1145,7 +1970,25 @@
       "description": "Resolve a Stack implementation to its version- and platform-aware Expo Router adapter.",
       "sourceLocation": {
         "filePath": "src/features/stack/application/createStackAdapter.ts",
-        "line": 8,
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "createJavaScriptStackAdapter",
+      "description": "Resolve the version-gated JavaScript Stack adapter.",
+      "sourceLocation": {
+        "filePath": "src/features/stack/application/createStackAdapter.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "createExperimentalStackAdapter",
+      "description": "Resolve the platform- and version-gated Experimental Stack adapter.",
+      "sourceLocation": {
+        "filePath": "src/features/stack/application/createStackAdapter.ts",
+        "line": 48,
         "column": 1
       }
     },
@@ -1154,7 +1997,7 @@
       "description": "Add app-wide platform, version, option, and runtime requirements for Experimental Stack.",
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
-        "line": 13,
+        "line": 14,
         "column": 1
       }
     },
@@ -1163,7 +2006,7 @@
       "description": "Traverse the authored topology using the resolved platform and default precedence.",
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
-        "line": 65,
+        "line": 77,
         "column": 1
       }
     },
@@ -1172,7 +2015,7 @@
       "description": "Audit one resolved experimental Stack node and its route-level option surface.",
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
-        "line": 103,
+        "line": 115,
         "column": 1
       }
     },
@@ -1181,7 +2024,7 @@
       "description": "Add actionable diagnostics for options ignored by Expo Router Experimental Stack.",
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
-        "line": 125,
+        "line": 137,
         "column": 1
       }
     },
@@ -1190,7 +2033,7 @@
       "description": "Diagnose a JavaScript Stack selection that requires a newer Expo Router version.",
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addStackAdapterDiagnostics.ts",
-        "line": 11,
+        "line": 12,
         "column": 1
       }
     },
@@ -1240,10 +2083,10 @@
       }
     },
     {
-      "name": "CustomTabsLayout",
+      "name": "HeadlessTabsLayout",
       "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 20,
         "column": 1
       }
@@ -1252,7 +2095,7 @@
       "name": "useHydrationSafeSize",
       "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 106,
         "column": 1
       }
@@ -1261,7 +2104,7 @@
       "name": "subscribeToHydration",
       "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 119,
         "column": 1
       }
@@ -1270,7 +2113,7 @@
       "name": "getClientHydration",
       "description": "Report that client rendering can consume the live responsive breakpoint.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 124,
         "column": 1
       }
@@ -1279,7 +2122,7 @@
       "name": "getServerHydration",
       "description": "Keep server output deterministic at the compact presentation.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 129,
         "column": 1
       }
@@ -1288,7 +2131,7 @@
       "name": "selectPresentation",
       "description": "Select one fixed presentation without altering the Router-owned topology.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 134,
         "column": 1
       }
@@ -1297,7 +2140,7 @@
       "name": "TabsNavigation",
       "description": "Select built-in or registered custom chrome for the currently visible routes.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 149,
         "column": 1
       }
@@ -1306,7 +2149,7 @@
       "name": "renderItem",
       "description": "Bind one visible route to the shared Surface trigger for registered custom chrome.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 162,
         "column": 9
       }
@@ -1315,7 +2158,7 @@
       "name": "SurfaceTabTrigger",
       "description": "Render one Surface navigation control bound to Expo Router's headless tab trigger.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 186,
         "column": 1
       }
@@ -1324,7 +2167,7 @@
       "name": "resolveIcon",
       "description": "Convert portable route icon metadata to the Surface navigation icon contract.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 216,
         "column": 1
       }
@@ -1333,7 +2176,7 @@
       "name": "BuiltInPresentation",
       "description": "Render Surface-owned bottom, top, rail, or sidebar tab chrome.",
       "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 242,
         "column": 1
       }
@@ -1397,34 +2240,34 @@
       "description": "Read the required native vector-icon name from one planned route icon.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 157,
+        "line": 160,
         "column": 1
       }
     },
     {
-      "name": "createCustomTabsFile",
-      "description": "Create the generated cross-platform custom-tabs layout and registered integration imports.",
+      "name": "createHeadlessTabsFile",
+      "description": "Create the generated cross-platform headless-tabs layout and registered integration imports.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 165,
+        "line": 168,
         "column": 1
       }
     },
     {
-      "name": "renderCustomTabRoutes",
-      "description": "Render custom-tab route records as stable multiline source objects.",
+      "name": "renderHeadlessTabRoutes",
+      "description": "Render Headless Tabs route records as stable multiline source objects.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 216,
+        "line": 219,
         "column": 1
       }
     },
     {
-      "name": "renderCustomTabsReturn",
-      "description": "Render the custom Tabs return statement without exceeding the canonical print width.",
+      "name": "renderHeadlessTabsReturn",
+      "description": "Render the Headless Tabs return statement without exceeding the canonical print width.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 232,
+        "line": 235,
         "column": 1
       }
     },
@@ -1433,7 +2276,7 @@
       "description": "Describe Tabs adapter support, stability, and limitations for the target platform and version.",
       "sourceLocation": {
         "filePath": "src/features/tabs/application/createTabsAdapter.ts",
-        "line": 8,
+        "line": 10,
         "column": 1
       }
     },
@@ -1460,7 +2303,7 @@
       "description": "Create the alpha native-tabs plan and reject unsupported Web usage.",
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
-        "line": 46,
+        "line": 49,
         "column": 1
       }
     },
@@ -1469,16 +2312,16 @@
       "description": "Return the adaptive config when omission or `adaptive` selects that branch.",
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
-        "line": 71,
+        "line": 74,
         "column": 1
       }
     },
     {
-      "name": "createCustomTabsPlan",
-      "description": "Create the stable cross-platform headless custom-tabs plan for explicit custom use.",
+      "name": "createHeadlessTabsPlan",
+      "description": "Create the stable cross-platform Headless Tabs plan and resolve its presentation.",
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
-        "line": 81,
+        "line": 84,
         "column": 1
       }
     },
@@ -1487,7 +2330,7 @@
       "description": "Create the stable JavaScript tabs plan for bottom or top presentation.",
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
-        "line": 106,
+        "line": 109,
         "column": 1
       }
     },
@@ -1505,7 +2348,7 @@
       "description": "Add tabs-specific semantic diagnostics for one manifest navigator node.",
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
-        "line": 11,
+        "line": 12,
         "column": 1
       }
     },
@@ -1514,7 +2357,7 @@
       "description": "Add platform and stability diagnostics for the resolved tabs implementation.",
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
-        "line": 42,
+        "line": 43,
         "column": 1
       }
     },
@@ -1523,7 +2366,7 @@
       "description": "Validate route reachability, guards, paths, counts, and icons for tabs.",
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
-        "line": 75,
+        "line": 80,
         "column": 1
       }
     },
@@ -1532,7 +2375,7 @@
       "description": "Validate route icon compatibility for native and Surface-backed tabs.",
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
-        "line": 121,
+        "line": 125,
         "column": 1
       }
     },
@@ -1541,25 +2384,7 @@
       "description": "Gate newer Native Tabs options on the Expo Router version that supports them.",
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
-        "line": 161,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveCustomTabsPresentation",
-      "description": "Resolve one custom-tabs presentation for the current semantic responsive size.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
-        "line": 10,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveResponsivePresentation",
-      "description": "Resolve the fixed presentation for one semantic responsive size.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
-        "line": 34,
+        "line": 165,
         "column": 1
       }
     },
@@ -1591,11 +2416,83 @@
       }
     },
     {
+      "name": "resolveHeadlessTabsPresentation",
+      "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveResponsivePresentation",
+      "description": "Resolve the fixed presentation for one semantic responsive size.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
+        "line": 34,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertNavigatorCliOptions",
+      "description": "Enforce each public command's required and accepted option surface.",
+      "sourceLocation": {
+        "filePath": "src/utils/assertNavigatorCliOptions.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionName",
+      "description": "Map parsed option properties back to stable public flag names.",
+      "sourceLocation": {
+        "filePath": "src/utils/assertNavigatorCliOptions.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
       "name": "createNavigatorPlan",
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 29,
+        "line": 31,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolvePlanSupport",
+      "description": "Reduce every nested adapter status to the plan's least-supported classification.",
+      "sourceLocation": {
+        "filePath": "src/utils/createNavigatorPlan.ts",
+        "line": 55,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectCapabilityIds",
+      "description": "Report stable capability IDs for every distinct resolved node variant.",
+      "sourceLocation": {
+        "filePath": "src/utils/createNavigatorPlan.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectNodes",
+      "description": "Flatten one recursive plan in deterministic route order.",
+      "sourceLocation": {
+        "filePath": "src/utils/createNavigatorPlan.ts",
+        "line": 67,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveCapabilityId",
+      "description": "Map one resolved node to its public catalog capability identifier.",
+      "sourceLocation": {
+        "filePath": "src/utils/createNavigatorPlan.ts",
+        "line": 77,
         "column": 1
       }
     },
@@ -1604,7 +2501,7 @@
       "description": "Resolve a node and its descendants using one platform and responsive-size context.",
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 54,
+        "line": 97,
         "column": 1
       }
     },
@@ -1613,7 +2510,7 @@
       "description": "Preserve portable route metadata and recursively plan a nested navigator when present.",
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 95,
+        "line": 138,
         "column": 1
       }
     },
@@ -1622,7 +2519,7 @@
       "description": "Dispatch adapter planning to the feature that owns the authored navigator type.",
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 128,
+        "line": 171,
         "column": 1
       }
     },
@@ -1631,34 +2528,25 @@
       "description": "Project each navigator's resolved configuration onto the shared recursive plan.",
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 154,
+        "line": 197,
         "column": 1
       }
     },
     {
-      "name": "generateNavigatorFiles",
-      "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
+      "name": "generateNavigator",
+      "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 19,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 21,
         "column": 1
       }
     },
     {
-      "name": "validateFlowBindings",
-      "description": "Require enabled onboarding and authentication flows to reference an existing route.",
+      "name": "createGenerationResult",
+      "description": "Assemble the portable generation result without adding filesystem side effects.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 48,
-        "column": 1
-      }
-    },
-    {
-      "name": "collectRouteIds",
-      "description": "Collect nested route identifiers without changing their authored segment names.",
-      "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 65,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 61,
         "column": 1
       }
     },
@@ -1666,8 +2554,8 @@
       "name": "resolveRootDirectory",
       "description": "Resolve a safe directory below the Expo Router app root without filesystem normalization.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 76,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 77,
         "column": 1
       }
     },
@@ -1675,8 +2563,8 @@
       "name": "collectFiles",
       "description": "Traverse the plan to emit layouts and optional screen bindings in their route directories.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 98,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 99,
         "column": 1
       }
     },
@@ -1684,8 +2572,8 @@
       "name": "createLayoutFile",
       "description": "Dispatch specialized layout generation or render the shared Screen-registration contract.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 126,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 127,
         "column": 1
       }
     },
@@ -1693,8 +2581,8 @@
       "name": "createGuardImports",
       "description": "Validate and alias every distinct guard binding used by a navigator's routes.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 170,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 171,
         "column": 1
       }
     },
@@ -1702,8 +2590,8 @@
       "name": "createNavigatorContents",
       "description": "Render navigator options and registered screens using the resolved adapter component.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 188,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 189,
         "column": 1
       }
     },
@@ -1711,8 +2599,8 @@
       "name": "renderScreen",
       "description": "Wrap a generated screen in the conjunction of its registered route guards.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 219,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 220,
         "column": 1
       }
     },
@@ -1720,8 +2608,8 @@
       "name": "routeOptions",
       "description": "Merge route labels with the owning adapter's screen-option mapping.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 248,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 249,
         "column": 1
       }
     },
@@ -1729,8 +2617,8 @@
       "name": "renderScreenElement",
       "description": "Render one generated Screen with a stable multiline options object when route options exist.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 273,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 274,
         "column": 1
       }
     },
@@ -1738,8 +2626,8 @@
       "name": "assertRouteName",
       "description": "Reject route segments that could escape or invalidate the generated directory.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 295,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 296,
         "column": 1
       }
     },
@@ -1747,8 +2635,89 @@
       "name": "createScreenFile",
       "description": "Emit a route module that re-exports its registered screen as the default component.",
       "sourceLocation": {
-        "filePath": "src/utils/generateNavigatorFiles.ts",
-        "line": 302,
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 303,
+        "column": 1
+      }
+    },
+    {
+      "name": "isNavigatorGenerationBindings",
+      "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
+      "sourceLocation": {
+        "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "isModuleRecord",
+      "description": "Validate a record of static module/symbol pairs.",
+      "sourceLocation": {
+        "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "isModule",
+      "description": "Validate one static module/symbol pair before semantic binding checks.",
+      "sourceLocation": {
+        "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+        "line": 22,
+        "column": 1
+      }
+    },
+    {
+      "name": "isRecord",
+      "description": "Check an object-like JSON value without accepting arrays.",
+      "sourceLocation": {
+        "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+        "line": 32,
+        "column": 1
+      }
+    },
+    {
+      "name": "hasOnlyKeys",
+      "description": "Reject accidental Studio or application context at the narrow binding boundary.",
+      "sourceLocation": {
+        "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+        "line": 37,
+        "column": 1
+      }
+    },
+    {
+      "name": "loadCustomNavigatorRegistryAsync",
+      "description": "Load an explicit consumer-owned custom navigator registry module.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "loadNavigatorCliInputAsync",
+      "description": "Load and narrow standalone manifest, binding, registry, and target-context CLI input.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "loadBindings",
+      "description": "Load required or optional generated-module bindings from JSON.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "line": 60,
+        "column": 1
+      }
+    },
+    {
+      "name": "optional",
+      "description": "Include one optional typed value without materializing undefined.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "line": 77,
         "column": 1
       }
     },
@@ -1762,11 +2731,155 @@
       }
     },
     {
+      "name": "parseNavigatorCliOptions",
+      "description": "Parse deterministic Navigator command flags without reading files or process globals.",
+      "sourceLocation": {
+        "filePath": "src/utils/parseNavigatorCliOptions.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "finiteValue",
+      "description": "Read one finite flag value and reject values outside its public vocabulary.",
+      "sourceLocation": {
+        "filePath": "src/utils/parseNavigatorCliOptions.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "optional",
+      "description": "Include optional parsed values without materializing undefined fields.",
+      "sourceLocation": {
+        "filePath": "src/utils/parseNavigatorCliOptions.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "readNavigatorCliJsonAsync",
+      "description": "Read one explicit CLI input as unknown JSON for owner-boundary parsing.",
+      "sourceLocation": {
+        "filePath": "src/utils/readNavigatorCliJsonAsync.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportNavigatorCliResult",
+      "description": "Render one stable human or JSON Navigator command result with deterministic exit semantics.",
+      "sourceLocation": {
+        "filePath": "src/utils/reportNavigatorCliResult.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveNavigatorDependencies",
+      "description": "Derive generated-app dependency requirements from the resolved navigator plan.",
+      "sourceLocation": {
+        "filePath": "src/utils/resolveNavigatorDependencies.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "visitNode",
+      "description": "Collect runtime packages imported by Navigator-owned generated files or runtime adapters.",
+      "sourceLocation": {
+        "filePath": "src/utils/resolveNavigatorDependencies.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveVersionRange",
+      "description": "Resolve one dependency range from package-owned peer policy or the current package version.",
+      "sourceLocation": {
+        "filePath": "src/utils/resolveNavigatorDependencies.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveNavigatorPreset",
       "description": "Resolve a canonical navigator preset into its ordered topology layers.",
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorPreset.ts",
         "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateNavigator",
+      "description": "Structurally and semantically validate standalone navigator input without writing files.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigator.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateNavigatorBindings",
+      "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateSuppliedBindings",
+      "description": "Validate every supplied module record, including currently unreferenced bindings.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 41,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateNodeBindings",
+      "description": "Traverse one node and validate every screen, guard, and presentation module it references.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateTabsBindings",
+      "description": "Validate optional Headless and Native Tabs runtime bindings.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 105,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateSplitViewBindings",
+      "description": "Validate Split View column and inspector screen bindings.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 141,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateModuleBinding",
+      "description": "Validate one required module/symbol pair and emit a portable diagnostic on failure.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 164,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateStaticImport",
+      "description": "Emit a portable diagnostic for an unsafe supplied module or export name.",
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 182,
         "column": 1
       }
     },
@@ -1859,6 +2972,33 @@
         "line": 18,
         "column": 3
       }
+    },
+    {
+      "name": "verifyNavigator",
+      "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
+      "sourceLocation": {
+        "filePath": "src/utils/verifyNavigator.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectDeclaredChecks",
+      "description": "Collect the verification layers declared by every resolved capability for one target.",
+      "sourceLocation": {
+        "filePath": "src/utils/verifyNavigator.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "writeNavigatorGeneratedFilesAsync",
+      "description": "Materialize a prevalidated generated file set below one explicit target directory.",
+      "sourceLocation": {
+        "filePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+        "line": 7,
+        "column": 1
+      }
     }
   ],
   "sequenceScenarios": [
@@ -1872,14 +3012,6 @@
     },
     {
       "kind": "export",
-      "name": "CustomTabsLayout",
-      "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
-      "symbolName": "CustomTabsLayout",
-      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
-      "isReadme": false
-    },
-    {
-      "kind": "export",
       "name": "defineCustomNavigatorRegistry",
       "sourcePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
       "symbolName": "defineCustomNavigatorRegistry",
@@ -1888,18 +3020,42 @@
     },
     {
       "kind": "export",
-      "name": "generateNavigatorFiles",
-      "sourcePath": "src/utils/generateNavigatorFiles.ts",
-      "symbolName": "generateNavigatorFiles",
-      "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
+      "name": "generateNavigator",
+      "sourcePath": "src/utils/generateNavigator.ts",
+      "symbolName": "generateNavigator",
+      "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
       "isReadme": false
     },
     {
       "kind": "export",
-      "name": "resolveCustomTabsPresentation",
-      "sourcePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
-      "symbolName": "resolveCustomTabsPresentation",
-      "description": "Resolve one custom-tabs presentation for the current semantic responsive size.",
+      "name": "getNavigatorCatalog",
+      "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "symbolName": "getNavigatorCatalog",
+      "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "HeadlessTabsLayout",
+      "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+      "symbolName": "HeadlessTabsLayout",
+      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "isNavigatorGenerationBindings",
+      "sourcePath": "src/utils/isNavigatorGenerationBindings.ts",
+      "symbolName": "isNavigatorGenerationBindings",
+      "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "resolveHeadlessTabsPresentation",
+      "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
+      "symbolName": "resolveHeadlessTabsPresentation",
+      "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
       "isReadme": false
     },
     {
@@ -1920,15 +3076,44 @@
     },
     {
       "kind": "export",
+      "name": "validateNavigator",
+      "sourcePath": "src/utils/validateNavigator.ts",
+      "symbolName": "validateNavigator",
+      "description": "Structurally and semantically validate standalone navigator input without writing files.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "validateNavigatorBindings",
+      "sourcePath": "src/utils/validateNavigatorBindings.ts",
+      "symbolName": "validateNavigatorBindings",
+      "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "validateNavigatorManifest",
       "sourcePath": "src/utils/validateNavigatorManifest.ts",
       "symbolName": "validateNavigatorManifest",
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
       "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "verifyNavigator",
+      "sourcePath": "src/utils/verifyNavigator.ts",
+      "symbolName": "verifyNavigator",
+      "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
+      "isReadme": false
     }
   ],
   "graphs": {
     "imports": [
+      {
+        "fromPath": "src/navigator.ts",
+        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "sourcePath": "src/navigator.ts"
+      },
       {
         "fromPath": "src/navigator.ts",
         "toPath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
@@ -1941,7 +3126,12 @@
       },
       {
         "fromPath": "src/navigator.ts",
-        "toPath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+        "toPath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
+        "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "src/navigator.ts",
+        "toPath": "src/types/navigatorVerification.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
@@ -1951,7 +3141,12 @@
       },
       {
         "fromPath": "src/navigator.ts",
-        "toPath": "src/utils/generateNavigatorFiles.ts",
+        "toPath": "src/utils/generateNavigator.ts",
+        "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "src/navigator.ts",
+        "toPath": "src/utils/isNavigatorGenerationBindings.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
@@ -1961,12 +3156,47 @@
       },
       {
         "fromPath": "src/navigator.ts",
+        "toPath": "src/utils/validateNavigator.ts",
+        "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "src/navigator.ts",
+        "toPath": "src/utils/validateNavigatorBindings.ts",
+        "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "src/navigator.ts",
         "toPath": "src/utils/validateNavigatorManifest.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
+        "fromPath": "src/navigator.ts",
+        "toPath": "src/utils/verifyNavigator.ts",
+        "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "tests/cli.test.ts",
+        "toPath": "package.json",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromPath": "tests/cli.test.ts",
+        "toPath": "src/cli/createCliProvider.ts",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
         "fromPath": "tests/composableGeneration.test.ts",
         "toPath": "src/navigator.ts",
+        "sourcePath": "tests/composableGeneration.test.ts"
+      },
+      {
+        "fromPath": "tests/composableGeneration.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/composableGeneration.test.ts"
+      },
+      {
+        "fromPath": "tests/composableGeneration.test.ts",
+        "toPath": "tests/routerPolicy.ts",
         "sourcePath": "tests/composableGeneration.test.ts"
       },
       {
@@ -1986,12 +3216,27 @@
       },
       {
         "fromPath": "tests/CustomNavigatorRegistry.test.ts",
+        "toPath": "src/navigator.ts",
+        "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
+      },
+      {
+        "fromPath": "tests/CustomNavigatorRegistry.test.ts",
         "toPath": "src/utils/createNavigatorPlan.ts",
         "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
       },
       {
         "fromPath": "tests/CustomNavigatorRegistry.test.ts",
-        "toPath": "src/utils/generateNavigatorFiles.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
+      },
+      {
+        "fromPath": "tests/CustomNavigatorRegistry.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
+      },
+      {
+        "fromPath": "tests/CustomNavigatorRegistry.test.ts",
+        "toPath": "tests/routerPolicy.ts",
         "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
       },
       {
@@ -2005,8 +3250,33 @@
         "sourcePath": "tests/experimentalStack.test.ts"
       },
       {
+        "fromPath": "tests/experimentalStack.test.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "tests/experimentalStack.test.ts"
+      },
+      {
+        "fromPath": "tests/experimentalStack.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/experimentalStack.test.ts"
+      },
+      {
+        "fromPath": "tests/experimentalStack.test.ts",
+        "toPath": "tests/routerPolicy.ts",
+        "sourcePath": "tests/experimentalStack.test.ts"
+      },
+      {
         "fromPath": "tests/generatedCustomNavigatorTypecheck.test.ts",
         "toPath": "src/navigator.ts",
+        "sourcePath": "tests/generatedCustomNavigatorTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedCustomNavigatorTypecheck.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/generatedCustomNavigatorTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedCustomNavigatorTypecheck.test.ts",
+        "toPath": "tests/routerPolicy.ts",
         "sourcePath": "tests/generatedCustomNavigatorTypecheck.test.ts"
       },
       {
@@ -2015,8 +3285,28 @@
         "sourcePath": "tests/generatedExperimentalStackTypecheck.test.ts"
       },
       {
+        "fromPath": "tests/generatedExperimentalStackTypecheck.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedExperimentalStackTypecheck.test.ts",
+        "toPath": "tests/routerPolicy.ts",
+        "sourcePath": "tests/generatedExperimentalStackTypecheck.test.ts"
+      },
+      {
         "fromPath": "tests/generatedSplitViewTypecheck.test.ts",
         "toPath": "src/navigator.ts",
+        "sourcePath": "tests/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedSplitViewTypecheck.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/generatedSplitViewTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedSplitViewTypecheck.test.ts",
+        "toPath": "tests/routerPolicy.ts",
         "sourcePath": "tests/generatedSplitViewTypecheck.test.ts"
       },
       {
@@ -2025,8 +3315,33 @@
         "sourcePath": "tests/generatedTabsTypecheck.test.ts"
       },
       {
+        "fromPath": "tests/generatedTabsTypecheck.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedTabsTypecheck.test.ts",
+        "toPath": "tests/routerPolicy.ts",
+        "sourcePath": "tests/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generateFiles.ts",
+        "toPath": "src/navigator.ts",
+        "sourcePath": "tests/generateFiles.ts"
+      },
+      {
         "fromPath": "tests/index.test.ts",
         "toPath": "src/navigator.ts",
+        "sourcePath": "tests/index.test.ts"
+      },
+      {
+        "fromPath": "tests/index.test.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "tests/index.test.ts"
+      },
+      {
+        "fromPath": "tests/index.test.ts",
+        "toPath": "tests/routerPolicy.ts",
         "sourcePath": "tests/index.test.ts"
       },
       {
@@ -2055,9 +3370,74 @@
         "sourcePath": "tests/splitView.test.ts"
       },
       {
+        "fromPath": "tests/splitView.test.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "tests/splitView.test.ts"
+      },
+      {
+        "fromPath": "tests/splitView.test.ts",
+        "toPath": "tests/generateFiles.ts",
+        "sourcePath": "tests/splitView.test.ts"
+      },
+      {
+        "fromPath": "tests/splitView.test.ts",
+        "toPath": "tests/routerPolicy.ts",
+        "sourcePath": "tests/splitView.test.ts"
+      },
+      {
         "fromPath": "tests/tabs.test.ts",
         "toPath": "src/navigator.ts",
         "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromPath": "tests/tabs.test.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromPath": "tests/tabs.test.ts",
+        "toPath": "tests/routerPolicy.ts",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/catalog.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/generate.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/plan.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/validate.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/verify.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/utils/assertNavigatorCliOptions.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/assertNavigatorCliOptions.ts"
       },
       {
         "fromPath": "src/utils/createNavigatorPlan.ts",
@@ -2111,28 +3491,98 @@
       },
       {
         "fromPath": "src/utils/createNavigatorPlan.ts",
+        "toPath": "src/utils/resolveNavigatorDependencies.ts",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromPath": "src/utils/createNavigatorPlan.ts",
         "toPath": "src/utils/validateNavigatorManifest.ts",
         "sourcePath": "src/utils/createNavigatorPlan.ts"
       },
       {
-        "fromPath": "src/utils/generateNavigatorFiles.ts",
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/drawer/adapters/outbound/resolveDrawerRouteOptions.ts",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromPath": "src/utils/generateNavigatorFiles.ts",
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromPath": "src/utils/generateNavigatorFiles.ts",
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromPath": "src/utils/generateNavigatorFiles.ts",
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/utils/validateNavigatorBindings.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/utils/isNavigatorGenerationBindings.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/utils/readNavigatorCliJsonAsync.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+      },
+      {
+        "fromPath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+      },
+      {
+        "fromPath": "src/utils/parseNavigatorCliOptions.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/parseNavigatorCliOptions.ts"
+      },
+      {
+        "fromPath": "src/utils/reportNavigatorCliResult.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/reportNavigatorCliResult.ts"
+      },
+      {
+        "fromPath": "src/utils/resolveNavigatorDependencies.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/utils/resolveNavigatorDependencies.ts"
+      },
+      {
+        "fromPath": "src/utils/validateNavigator.ts",
+        "toPath": "src/utils/createNavigatorPlan.ts",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/validateNavigator.ts",
+        "toPath": "src/utils/validateNavigatorBindings.ts",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/validateNavigatorBindings.ts",
+        "toPath": "src/utils/isNavigatorGenerationBindings.ts",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
       },
       {
         "fromPath": "src/utils/validateNavigatorManifest.ts",
@@ -2190,6 +3640,191 @@
         "sourcePath": "src/utils/validatePresetTopology.ts"
       },
       {
+        "fromPath": "src/utils/verifyNavigator.ts",
+        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/verifyNavigator.ts",
+        "toPath": "src/types/navigatorVerification.ts",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/verifyNavigator.ts",
+        "toPath": "src/utils/generateNavigator.ts",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/createNavigatorPlan.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/generateNavigator.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/createNavigatorPlan.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/readNavigatorCliJsonAsync.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/validateNavigator.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/types/navigatorVerification.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/createNavigatorPlan.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/verifyNavigator.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
         "fromPath": "src/features/tabs/nativeIcons.ts",
         "toPath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
         "sourcePath": "src/features/tabs/nativeIcons.ts"
@@ -2216,13 +3851,58 @@
       },
       {
         "fromPath": "src/features/tabs/tabs.ts",
-        "toPath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+        "toPath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "sourcePath": "src/features/tabs/tabs.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toPath": "src/utils/resolveNavigatorPreset.ts",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts"
+      },
+      {
+        "fromPath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts"
+      },
+      {
+        "fromPath": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts"
+      },
+      {
+        "fromPath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts"
+      },
+      {
+        "fromPath": "src/features/stack/application/createStackAdapter.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/stack/application/createStackAdapter.ts"
+      },
+      {
+        "fromPath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts"
       },
       {
         "fromPath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
         "toPath": "src/features/stack/domain/resolveEffectiveStackConfigSource.ts",
         "sourcePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts"
+      },
+      {
+        "fromPath": "src/features/stack/domain/addStackAdapterDiagnostics.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/stack/domain/addStackAdapterDiagnostics.ts"
       },
       {
         "fromPath": "src/features/stack/domain/addStackAdapterDiagnostics.ts",
@@ -2235,8 +3915,13 @@
         "sourcePath": "src/features/stack/domain/resolveEffectiveStackConfig.ts"
       },
       {
+        "fromPath": "src/features/tabs/application/createTabsAdapter.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/tabs/application/createTabsAdapter.ts"
+      },
+      {
         "fromPath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
-        "toPath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+        "toPath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
         "sourcePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts"
       },
       {
@@ -2246,8 +3931,23 @@
       },
       {
         "fromPath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
+        "toPath": "src/utils/NAVIGATOR_ROUTER_POLICY.ts",
+        "sourcePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts"
+      },
+      {
+        "fromPath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
         "toPath": "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
         "sourcePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "toPath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
@@ -2277,6 +3977,90 @@
     ],
     "calls": [
       {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "afterEach",
+        "callExpression": "afterEach",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "run",
+        "callExpression": "run",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "createFixture",
+        "callExpression": "createFixture",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "tests/cli.test.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "createFixture",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "createFixture",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "createFixture",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "run",
+        "toSymbol": "handler",
+        "callExpression": "handler.handler",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
+        "fromSymbol": "run",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/cli.test.ts"
+      },
+      {
         "fromSymbol": "tests/composableGeneration.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -2296,14 +4080,20 @@
       },
       {
         "fromSymbol": "tests/composableGeneration.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/composableGeneration.test.ts"
       },
       {
         "fromSymbol": "tests/composableGeneration.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
+        "sourcePath": "tests/composableGeneration.test.ts"
+      },
+      {
+        "fromSymbol": "tests/composableGeneration.test.ts",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
         "sourcePath": "tests/composableGeneration.test.ts"
       },
       {
@@ -2320,8 +4110,8 @@
       },
       {
         "fromSymbol": "tests/contractsBoundary.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
         "sourcePath": "tests/contractsBoundary.test.ts"
       },
       {
@@ -2350,14 +4140,26 @@
       },
       {
         "fromSymbol": "tests/CustomNavigatorRegistry.test.ts",
+        "toSymbol": "expoRouterVersionBefore",
+        "callExpression": "expoRouterVersionBefore",
+        "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
+      },
+      {
+        "fromSymbol": "tests/CustomNavigatorRegistry.test.ts",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
         "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
       },
       {
         "fromSymbol": "tests/CustomNavigatorRegistry.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
+        "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
+      },
+      {
+        "fromSymbol": "tests/CustomNavigatorRegistry.test.ts",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/CustomNavigatorRegistry.test.ts"
       },
       {
@@ -2382,6 +4184,12 @@
         "fromSymbol": "tests/experimentalStack.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
+        "sourcePath": "tests/experimentalStack.test.ts"
+      },
+      {
+        "fromSymbol": "tests/experimentalStack.test.ts",
+        "toSymbol": "expoRouterVersionBefore",
+        "callExpression": "expoRouterVersionBefore",
         "sourcePath": "tests/experimentalStack.test.ts"
       },
       {
@@ -2398,8 +4206,8 @@
       },
       {
         "fromSymbol": "tests/experimentalStack.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/experimentalStack.test.ts"
       },
       {
@@ -2434,8 +4242,8 @@
       },
       {
         "fromSymbol": "tests/generatedCustomNavigatorTypecheck.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/generatedCustomNavigatorTypecheck.test.ts"
       },
       {
@@ -2476,8 +4284,8 @@
       },
       {
         "fromSymbol": "tests/generatedExperimentalStackTypecheck.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/generatedExperimentalStackTypecheck.test.ts"
       },
       {
@@ -2518,8 +4326,8 @@
       },
       {
         "fromSymbol": "tests/generatedSplitViewTypecheck.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/generatedSplitViewTypecheck.test.ts"
       },
       {
@@ -2542,8 +4350,8 @@
       },
       {
         "fromSymbol": "createLayout",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
         "sourcePath": "tests/generatedTabsTypecheck.test.ts"
       },
       {
@@ -2589,6 +4397,12 @@
         "sourcePath": "tests/generatedTabsTypecheck.test.ts"
       },
       {
+        "fromSymbol": "generateFiles",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
+        "sourcePath": "tests/generateFiles.ts"
+      },
+      {
         "fromSymbol": "tests/index.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -2626,8 +4440,14 @@
       },
       {
         "fromSymbol": "tests/index.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "expoRouterVersionBefore",
+        "callExpression": "expoRouterVersionBefore",
+        "sourcePath": "tests/index.test.ts"
+      },
+      {
+        "fromSymbol": "tests/index.test.ts",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
         "sourcePath": "tests/index.test.ts"
       },
       {
@@ -2638,8 +4458,8 @@
       },
       {
         "fromSymbol": "tests/index.test.ts",
-        "toSymbol": "resolveCustomTabsPresentation",
-        "callExpression": "resolveCustomTabsPresentation",
+        "toSymbol": "resolveHeadlessTabsPresentation",
+        "callExpression": "resolveHeadlessTabsPresentation",
         "sourcePath": "tests/index.test.ts"
       },
       {
@@ -2866,14 +4686,26 @@
       },
       {
         "fromSymbol": "tests/splitView.test.ts",
+        "toSymbol": "expoRouterVersionBefore",
+        "callExpression": "expoRouterVersionBefore",
+        "sourcePath": "tests/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "tests/splitView.test.ts",
         "toSymbol": "validateNavigatorManifest",
         "callExpression": "validateNavigatorManifest",
         "sourcePath": "tests/splitView.test.ts"
       },
       {
         "fromSymbol": "tests/splitView.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateFiles",
+        "callExpression": "generateFiles",
+        "sourcePath": "tests/splitView.test.ts"
+      },
+      {
+        "fromSymbol": "tests/splitView.test.ts",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
         "sourcePath": "tests/splitView.test.ts"
       },
       {
@@ -2884,8 +4716,8 @@
       },
       {
         "fromSymbol": "generatedLayout",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
         "sourcePath": "tests/tabs.test.ts"
       },
       {
@@ -2920,14 +4752,20 @@
       },
       {
         "fromSymbol": "tests/tabs.test.ts",
+        "toSymbol": "formatGeneratedLayout",
+        "callExpression": "formatGeneratedLayout",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "tests/tabs.test.ts",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
         "sourcePath": "tests/tabs.test.ts"
       },
       {
         "fromSymbol": "tests/tabs.test.ts",
-        "toSymbol": "generateNavigatorFiles",
-        "callExpression": "generateNavigatorFiles",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
         "sourcePath": "tests/tabs.test.ts"
       },
       {
@@ -2935,6 +4773,54 @@
         "toSymbol": "validateNavigatorManifest",
         "callExpression": "validateNavigatorManifest",
         "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "tests/tabs.test.ts",
+        "toSymbol": "expoRouterVersionBefore",
+        "callExpression": "expoRouterVersionBefore",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/createCliProvider.ts",
+        "toSymbol": "createCliProvider",
+        "callExpression": "createCliProvider",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "createCliProvider",
+        "toSymbol": "descriptor",
+        "callExpression": "descriptor",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "createCliProvider",
+        "toSymbol": "binding",
+        "callExpression": "binding",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "handler",
+        "callExpression": "handler",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "writeStdout",
+        "toSymbol": "writeStdout",
+        "callExpression": "request.context.writeStdout",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "writeStderr",
+        "toSymbol": "writeStderr",
+        "callExpression": "request.context.writeStderr",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "assertNavigatorCliOptions",
+        "toSymbol": "optionName",
+        "callExpression": "optionName",
+        "sourcePath": "src/utils/assertNavigatorCliOptions.ts"
       },
       {
         "fromSymbol": "createNavigatorPlan",
@@ -2946,6 +4832,42 @@
         "fromSymbol": "createNavigatorPlan",
         "toSymbol": "createNodePlan",
         "callExpression": "createNodePlan",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorPlan",
+        "toSymbol": "resolvePlanSupport",
+        "callExpression": "resolvePlanSupport",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorPlan",
+        "toSymbol": "collectCapabilityIds",
+        "callExpression": "collectCapabilityIds",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorPlan",
+        "toSymbol": "resolveNavigatorDependencies",
+        "callExpression": "resolveNavigatorDependencies",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "resolvePlanSupport",
+        "toSymbol": "collectNodes",
+        "callExpression": "collectNodes",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "collectCapabilityIds",
+        "toSymbol": "collectNodes",
+        "callExpression": "collectNodes",
+        "sourcePath": "src/utils/createNavigatorPlan.ts"
+      },
+      {
+        "fromSymbol": "src/utils/createNavigatorPlan.ts",
+        "toSymbol": "collectNodes",
+        "callExpression": "collectNodes",
         "sourcePath": "src/utils/createNavigatorPlan.ts"
       },
       {
@@ -3033,166 +4955,400 @@
         "sourcePath": "src/utils/createNavigatorPlan.ts"
       },
       {
-        "fromSymbol": "generateNavigatorFiles",
-        "toSymbol": "validateFlowBindings",
-        "callExpression": "validateFlowBindings",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "fromSymbol": "generateNavigator",
+        "toSymbol": "validateNavigatorBindings",
+        "callExpression": "validateNavigatorBindings",
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "generateNavigatorFiles",
+        "fromSymbol": "generateNavigator",
         "toSymbol": "resolveRootDirectory",
         "callExpression": "resolveRootDirectory",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "generateNavigatorFiles",
+        "fromSymbol": "generateNavigator",
+        "toSymbol": "createGenerationResult",
+        "callExpression": "createGenerationResult",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "generateNavigator",
         "toSymbol": "collectFiles",
         "callExpression": "collectFiles",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
-      },
-      {
-        "fromSymbol": "validateFlowBindings",
-        "toSymbol": "collectRouteIds",
-        "callExpression": "collectRouteIds",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
-      },
-      {
-        "fromSymbol": "src/utils/generateNavigatorFiles.ts",
-        "toSymbol": "collectRouteIds",
-        "callExpression": "collectRouteIds",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "collectFiles",
         "toSymbol": "createLayoutFile",
         "callExpression": "createLayoutFile",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "collectFiles",
         "toSymbol": "assertRouteName",
         "callExpression": "assertRouteName",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "collectFiles",
         "toSymbol": "createScreenFile",
         "callExpression": "createScreenFile",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "collectFiles",
         "toSymbol": "collectFiles",
         "callExpression": "collectFiles",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "generateTabsLayoutFile",
         "callExpression": "generateTabsLayoutFile",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "generateSplitViewLayoutFile",
         "callExpression": "generateSplitViewLayoutFile",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "assertStaticImportBinding",
         "callExpression": "assertStaticImportBinding",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "createGuardImports",
         "callExpression": "createGuardImports",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "quoteJavaScriptString",
         "callExpression": "quoteJavaScriptString",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "generateSlotLayoutFile",
         "callExpression": "generateSlotLayoutFile",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createLayoutFile",
         "toSymbol": "createNavigatorContents",
         "callExpression": "createNavigatorContents",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "src/utils/generateNavigatorFiles.ts",
+        "fromSymbol": "src/utils/generateNavigator.ts",
         "toSymbol": "assertStaticImportBinding",
         "callExpression": "assertStaticImportBinding",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "src/utils/generateNavigatorFiles.ts",
+        "fromSymbol": "src/utils/generateNavigator.ts",
         "toSymbol": "quoteJavaScriptString",
         "callExpression": "quoteJavaScriptString",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createNavigatorContents",
         "toSymbol": "serializeJavaScriptLiteral",
         "callExpression": "serializeJavaScriptLiteral",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "src/utils/generateNavigatorFiles.ts",
+        "fromSymbol": "src/utils/generateNavigator.ts",
         "toSymbol": "renderScreen",
         "callExpression": "renderScreen",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "renderScreen",
         "toSymbol": "routeOptions",
         "callExpression": "routeOptions",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "renderScreen",
         "toSymbol": "renderScreenElement",
         "callExpression": "renderScreenElement",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "routeOptions",
         "toSymbol": "resolveDrawerRouteOptions",
         "callExpression": "resolveDrawerRouteOptions",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "src/utils/generateNavigatorFiles.ts",
+        "fromSymbol": "src/utils/generateNavigator.ts",
         "toSymbol": "serializeJavaScriptLiteral",
         "callExpression": "serializeJavaScriptLiteral",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createScreenFile",
         "toSymbol": "assertRouteName",
         "callExpression": "assertRouteName",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createScreenFile",
         "toSymbol": "assertStaticImportBinding",
         "callExpression": "assertStaticImportBinding",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
         "fromSymbol": "createScreenFile",
         "toSymbol": "quoteJavaScriptString",
         "callExpression": "quoteJavaScriptString",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "isNavigatorGenerationBindings",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "isNavigatorGenerationBindings",
+        "toSymbol": "hasOnlyKeys",
+        "callExpression": "hasOnlyKeys",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "isNavigatorGenerationBindings",
+        "toSymbol": "isModuleRecord",
+        "callExpression": "isModuleRecord",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "isNavigatorGenerationBindings",
+        "toSymbol": "isModule",
+        "callExpression": "isModule",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "isModuleRecord",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "isModule",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "isModule",
+        "toSymbol": "hasOnlyKeys",
+        "callExpression": "hasOnlyKeys",
+        "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
+      },
+      {
+        "fromSymbol": "loadCustomNavigatorRegistryAsync",
+        "toSymbol": "pathToFileURL",
+        "callExpression": "pathToFileURL",
+        "sourcePath": "src/utils/loadCustomNavigatorRegistryAsync.ts"
+      },
+      {
+        "fromSymbol": "loadCustomNavigatorRegistryAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/utils/loadCustomNavigatorRegistryAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "readNavigatorCliJsonAsync",
+        "callExpression": "readNavigatorCliJsonAsync",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "isAppNavigatorManifest",
+        "callExpression": "isAppNavigatorManifest",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "loadBindings",
+        "callExpression": "loadBindings",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "loadCustomNavigatorRegistryAsync",
+        "callExpression": "loadCustomNavigatorRegistryAsync",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "optional",
+        "callExpression": "optional",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadBindings",
+        "toSymbol": "readNavigatorCliJsonAsync",
+        "callExpression": "readNavigatorCliJsonAsync",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadBindings",
+        "toSymbol": "isNavigatorGenerationBindings",
+        "callExpression": "isNavigatorGenerationBindings",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+        "toSymbol": "getNavigatorCatalog",
+        "callExpression": "getNavigatorCatalog",
+        "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+      },
+      {
+        "fromSymbol": "parseNavigatorCliOptions",
+        "toSymbol": "finiteValue",
+        "callExpression": "finiteValue",
+        "sourcePath": "src/utils/parseNavigatorCliOptions.ts"
+      },
+      {
+        "fromSymbol": "parseNavigatorCliOptions",
+        "toSymbol": "optional",
+        "callExpression": "optional",
+        "sourcePath": "src/utils/parseNavigatorCliOptions.ts"
+      },
+      {
+        "fromSymbol": "readNavigatorCliJsonAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/utils/readNavigatorCliJsonAsync.ts"
+      },
+      {
+        "fromSymbol": "readNavigatorCliJsonAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/utils/readNavigatorCliJsonAsync.ts"
+      },
+      {
+        "fromSymbol": "reportNavigatorCliResult",
+        "toSymbol": "writeStdout",
+        "callExpression": "input.writeStdout",
+        "sourcePath": "src/utils/reportNavigatorCliResult.ts"
+      },
+      {
+        "fromSymbol": "reportNavigatorCliResult",
+        "toSymbol": "writeStderr",
+        "callExpression": "input.writeStderr",
+        "sourcePath": "src/utils/reportNavigatorCliResult.ts"
+      },
+      {
+        "fromSymbol": "resolveNavigatorDependencies",
+        "toSymbol": "visitNode",
+        "callExpression": "visitNode",
+        "sourcePath": "src/utils/resolveNavigatorDependencies.ts"
+      },
+      {
+        "fromSymbol": "src/utils/resolveNavigatorDependencies.ts",
+        "toSymbol": "resolveVersionRange",
+        "callExpression": "resolveVersionRange",
+        "sourcePath": "src/utils/resolveNavigatorDependencies.ts"
+      },
+      {
+        "fromSymbol": "visitNode",
+        "toSymbol": "visitNode",
+        "callExpression": "visitNode",
+        "sourcePath": "src/utils/resolveNavigatorDependencies.ts"
+      },
+      {
+        "fromSymbol": "validateNavigator",
+        "toSymbol": "isAppNavigatorManifest",
+        "callExpression": "isAppNavigatorManifest",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigator",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigator",
+        "toSymbol": "validateNavigatorBindings",
+        "callExpression": "validateNavigatorBindings",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
+        "toSymbol": "isNavigatorGenerationBindings",
+        "callExpression": "isNavigatorGenerationBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
+        "toSymbol": "validateSuppliedBindings",
+        "callExpression": "validateSuppliedBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
+        "toSymbol": "validateNodeBindings",
+        "callExpression": "validateNodeBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateSuppliedBindings",
+        "toSymbol": "validateStaticImport",
+        "callExpression": "validateStaticImport",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNodeBindings",
+        "toSymbol": "validateModuleBinding",
+        "callExpression": "validateModuleBinding",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNodeBindings",
+        "toSymbol": "validateNodeBindings",
+        "callExpression": "validateNodeBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNodeBindings",
+        "toSymbol": "validateTabsBindings",
+        "callExpression": "validateTabsBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNodeBindings",
+        "toSymbol": "validateSplitViewBindings",
+        "callExpression": "validateSplitViewBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateTabsBindings",
+        "toSymbol": "validateModuleBinding",
+        "callExpression": "validateModuleBinding",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateSplitViewBindings",
+        "toSymbol": "validateModuleBinding",
+        "callExpression": "validateModuleBinding",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateStaticImport",
+        "toSymbol": "assertStaticImportBinding",
+        "callExpression": "assertStaticImportBinding",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
       },
       {
         "fromSymbol": "validateNavigatorManifest",
@@ -3321,6 +5477,456 @@
         "sourcePath": "src/utils/validatePresetTopology.ts"
       },
       {
+        "fromSymbol": "verifyNavigator",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "verifyNavigator",
+        "toSymbol": "collectDeclaredChecks",
+        "callExpression": "collectDeclaredChecks",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "collectDeclaredChecks",
+        "toSymbol": "getNavigatorCatalog",
+        "callExpression": "getNavigatorCatalog",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
+        "toSymbol": "parse",
+        "callExpression": "parse",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "parseNavigatorCliOptions",
+        "callExpression": "parseNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "assertNavigatorCliOptions",
+        "callExpression": "assertNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "getNavigatorCatalog",
+        "callExpression": "getNavigatorCatalog",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "selectCatalog",
+        "callExpression": "selectCatalog",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "renderCatalog",
+        "callExpression": "renderCatalog",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "catalog",
+        "toSymbol": "reportInputFailure",
+        "callExpression": "reportInputFailure",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "renderCatalog",
+        "toSymbol": "getNavigatorCatalog",
+        "callExpression": "getNavigatorCatalog",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "reportInputFailure",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/catalog.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "parseNavigatorCliOptions",
+        "callExpression": "parseNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "assertNavigatorCliOptions",
+        "callExpression": "assertNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "loadNavigatorCliInputAsync",
+        "callExpression": "loadNavigatorCliInputAsync",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "writeNavigatorGeneratedFilesAsync",
+        "callExpression": "writeNavigatorGeneratedFilesAsync",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "generate",
+        "toSymbol": "reportInputFailure",
+        "callExpression": "reportInputFailure",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "reportInputFailure",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromSymbol": "plan",
+        "toSymbol": "parseNavigatorCliOptions",
+        "callExpression": "parseNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "plan",
+        "toSymbol": "assertNavigatorCliOptions",
+        "callExpression": "assertNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "plan",
+        "toSymbol": "loadNavigatorCliInputAsync",
+        "callExpression": "loadNavigatorCliInputAsync",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "plan",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "plan",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "plan",
+        "toSymbol": "reportInputFailure",
+        "callExpression": "reportInputFailure",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "reportInputFailure",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/plan.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "parseNavigatorCliOptions",
+        "callExpression": "parseNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "assertNavigatorCliOptions",
+        "callExpression": "assertNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "readNavigatorCliJsonAsync",
+        "callExpression": "readNavigatorCliJsonAsync",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "createPlanOptions",
+        "callExpression": "createPlanOptions",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "validateNavigator",
+        "callExpression": "validateNavigator",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "validate",
+        "toSymbol": "reportInputFailure",
+        "callExpression": "reportInputFailure",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "createPlanOptions",
+        "toSymbol": "loadCustomNavigatorRegistryAsync",
+        "callExpression": "loadCustomNavigatorRegistryAsync",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "reportInputFailure",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "parseNavigatorCliOptions",
+        "callExpression": "parseNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "assertNavigatorCliOptions",
+        "callExpression": "assertNavigatorCliOptions",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "loadNavigatorCliInputAsync",
+        "callExpression": "loadNavigatorCliInputAsync",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "verifyNavigator",
+        "callExpression": "verifyNavigator",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "renderVerification",
+        "callExpression": "renderVerification",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "verify",
+        "toSymbol": "reportInputFailure",
+        "callExpression": "reportInputFailure",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "reportInputFailure",
+        "toSymbol": "reportNavigatorCliResult",
+        "callExpression": "reportNavigatorCliResult",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorCatalog",
+        "toSymbol": "createCoreCapabilities",
+        "callExpression": "createCoreCapabilities",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorCatalog",
+        "toSymbol": "createTabsCapabilities",
+        "callExpression": "createTabsCapabilities",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorCatalog",
+        "toSymbol": "createExtensionCapabilities",
+        "callExpression": "createExtensionCapabilities",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorCatalog",
+        "toSymbol": "createPresets",
+        "callExpression": "createPresets",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createCoreCapabilities",
+        "toSymbol": "capability",
+        "callExpression": "capability",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createCoreCapabilities",
+        "toSymbol": "requiresRouter",
+        "callExpression": "requiresRouter",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createCoreCapabilities",
+        "toSymbol": "requires",
+        "callExpression": "requires",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toSymbol": "dependency",
+        "callExpression": "dependency",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toSymbol": "capability",
+        "callExpression": "capability",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toSymbol": "headlessTabsDependencies",
+        "callExpression": "headlessTabsDependencies",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toSymbol": "requires",
+        "callExpression": "requires",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createTabsCapabilities",
+        "toSymbol": "capability",
+        "callExpression": "capability",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createTabsCapabilities",
+        "toSymbol": "nativeTabsDependencies",
+        "callExpression": "nativeTabsDependencies",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createTabsCapabilities",
+        "toSymbol": "requiresRouter",
+        "callExpression": "requiresRouter",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createExtensionCapabilities",
+        "toSymbol": "requiresRouter",
+        "callExpression": "requiresRouter",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createExtensionCapabilities",
+        "toSymbol": "capability",
+        "callExpression": "capability",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createExtensionCapabilities",
+        "toSymbol": "requires",
+        "callExpression": "requires",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "toSymbol": "resolveTargetSupport",
+        "callExpression": "resolveTargetSupport",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "capability",
+        "toSymbol": "dependency",
+        "callExpression": "dependency",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "requiresRouter",
+        "toSymbol": "requires",
+        "callExpression": "requires",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createPreset",
+        "toSymbol": "describePreset",
+        "callExpression": "describePreset",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "createPreset",
+        "toSymbol": "resolveNavigatorPreset",
+        "callExpression": "resolveNavigatorPreset",
+        "sourcePath": "src/features/catalog/domain/createNavigatorCatalog.ts"
+      },
+      {
         "fromSymbol": "addCustomNavigatorDiagnostics",
         "toSymbol": "validateCustomTree",
         "callExpression": "validateCustomTree",
@@ -3399,6 +6005,18 @@
         "sourcePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts"
       },
       {
+        "fromSymbol": "createStackAdapter",
+        "toSymbol": "createJavaScriptStackAdapter",
+        "callExpression": "createJavaScriptStackAdapter",
+        "sourcePath": "src/features/stack/application/createStackAdapter.ts"
+      },
+      {
+        "fromSymbol": "createStackAdapter",
+        "toSymbol": "createExperimentalStackAdapter",
+        "callExpression": "createExperimentalStackAdapter",
+        "sourcePath": "src/features/stack/application/createStackAdapter.ts"
+      },
+      {
         "fromSymbol": "addExperimentalStackDiagnostics",
         "toSymbol": "auditStackTree",
         "callExpression": "auditStackTree",
@@ -3472,8 +6090,8 @@
       },
       {
         "fromSymbol": "resolveTabsNavigatorPlan",
-        "toSymbol": "createCustomTabsPlan",
-        "callExpression": "createCustomTabsPlan",
+        "toSymbol": "createHeadlessTabsPlan",
+        "callExpression": "createHeadlessTabsPlan",
         "sourcePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts"
       },
       {
@@ -3490,14 +6108,14 @@
       },
       {
         "fromSymbol": "createAdaptiveTabsPlan",
-        "toSymbol": "createCustomTabsPlan",
-        "callExpression": "createCustomTabsPlan",
+        "toSymbol": "createHeadlessTabsPlan",
+        "callExpression": "createHeadlessTabsPlan",
         "sourcePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts"
       },
       {
-        "fromSymbol": "createCustomTabsPlan",
-        "toSymbol": "resolveCustomTabsPresentation",
-        "callExpression": "resolveCustomTabsPresentation",
+        "fromSymbol": "createHeadlessTabsPlan",
+        "toSymbol": "resolveHeadlessTabsPresentation",
+        "callExpression": "resolveHeadlessTabsPresentation",
         "sourcePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts"
       },
       {
@@ -3537,12 +6155,6 @@
         "sourcePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts"
       },
       {
-        "fromSymbol": "resolveCustomTabsPresentation",
-        "toSymbol": "resolveResponsivePresentation",
-        "callExpression": "resolveResponsivePresentation",
-        "sourcePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts"
-      },
-      {
         "fromSymbol": "resolveEffectiveTabsConfig",
         "toSymbol": "resolvePlatformTabsConfig",
         "callExpression": "resolvePlatformTabsConfig",
@@ -3553,6 +6165,18 @@
         "toSymbol": "resolveNodeTabsConfig",
         "callExpression": "resolveNodeTabsConfig",
         "sourcePath": "src/features/tabs/domain/resolveEffectiveTabsConfig.ts"
+      },
+      {
+        "fromSymbol": "resolveHeadlessTabsPresentation",
+        "toSymbol": "resolveResponsivePresentation",
+        "callExpression": "resolveResponsivePresentation",
+        "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
+      },
+      {
+        "fromSymbol": "getNavigatorCatalog",
+        "toSymbol": "createNavigatorCatalog",
+        "callExpression": "createNavigatorCatalog",
+        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
       },
       {
         "fromSymbol": "generateSplitViewLayoutFile",
@@ -3585,58 +6209,58 @@
         "sourcePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts"
       },
       {
-        "fromSymbol": "CustomTabsLayout",
+        "fromSymbol": "HeadlessTabsLayout",
         "toSymbol": "useHydrationSafeSize",
         "callExpression": "useHydrationSafeSize",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromSymbol": "CustomTabsLayout",
+        "fromSymbol": "HeadlessTabsLayout",
         "toSymbol": "selectPresentation",
         "callExpression": "selectPresentation",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromSymbol": "CustomTabsLayout",
+        "fromSymbol": "HeadlessTabsLayout",
         "toSymbol": "useSafeAreaInsets",
         "callExpression": "useSafeAreaInsets",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "useHydrationSafeSize",
         "toSymbol": "useBreakpoint",
         "callExpression": "useBreakpoint",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "useHydrationSafeSize",
         "toSymbol": "useSyncExternalStore",
         "callExpression": "useSyncExternalStore",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "SurfaceTabTrigger",
         "toSymbol": "useTabTrigger",
         "callExpression": "useTabTrigger",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "onPress",
         "toSymbol": "switchTab",
         "callExpression": "switchTab",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "SurfaceTabTrigger",
         "toSymbol": "resolveIcon",
         "callExpression": "resolveIcon",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "resolveIcon",
         "toSymbol": "resolveIconSource",
         "callExpression": "resolveIconSource",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromSymbol": "generateTabsLayoutFile",
@@ -3646,8 +6270,8 @@
       },
       {
         "fromSymbol": "generateTabsLayoutFile",
-        "toSymbol": "createCustomTabsFile",
-        "callExpression": "createCustomTabsFile",
+        "toSymbol": "createHeadlessTabsFile",
+        "callExpression": "createHeadlessTabsFile",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -3705,33 +6329,33 @@
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
-        "fromSymbol": "createCustomTabsFile",
+        "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "assertStaticImportBinding",
         "callExpression": "assertStaticImportBinding",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
-        "fromSymbol": "createCustomTabsFile",
+        "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "quoteJavaScriptString",
         "callExpression": "quoteJavaScriptString",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
-        "fromSymbol": "createCustomTabsFile",
-        "toSymbol": "renderCustomTabRoutes",
-        "callExpression": "renderCustomTabRoutes",
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "renderHeadlessTabRoutes",
+        "callExpression": "renderHeadlessTabRoutes",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
-        "fromSymbol": "createCustomTabsFile",
+        "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "serializeJavaScriptLiteral",
         "callExpression": "serializeJavaScriptLiteral",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
-        "fromSymbol": "createCustomTabsFile",
-        "toSymbol": "renderCustomTabsReturn",
-        "callExpression": "renderCustomTabsReturn",
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "renderHeadlessTabsReturn",
+        "callExpression": "renderHeadlessTabsReturn",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -3742,6 +6366,11 @@
       }
     ],
     "typeReferences": [
+      {
+        "fromSymbol": "getNavigatorCatalog",
+        "toType": "NavigatorCatalog",
+        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
+      },
       {
         "fromSymbol": "defineCustomNavigatorRegistry",
         "toType": "CustomNavigatorRegistration",
@@ -3773,24 +6402,44 @@
         "sourcePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts"
       },
       {
-        "fromSymbol": "resolveCustomTabsPresentation",
-        "toType": "CustomTabsConfig",
-        "sourcePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts"
+        "fromSymbol": "resolveHeadlessTabsPresentation",
+        "toType": "HeadlessTabsConfig",
+        "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
       },
       {
-        "fromSymbol": "resolveCustomTabsPresentation",
+        "fromSymbol": "resolveHeadlessTabsPresentation",
         "toType": "NavigatorResponsiveSize",
-        "sourcePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts"
+        "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
       },
       {
-        "fromSymbol": "resolveCustomTabsPresentation",
+        "fromSymbol": "resolveHeadlessTabsPresentation",
         "toType": "Omit",
-        "sourcePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts"
+        "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
       },
       {
-        "fromSymbol": "resolveCustomTabsPresentation",
-        "toType": "ResolvedCustomTabsPresentation",
-        "sourcePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts"
+        "fromSymbol": "resolveHeadlessTabsPresentation",
+        "toType": "ResolvedHeadlessTabsPresentation",
+        "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
+      },
+      {
+        "fromSymbol": "NavigatorVerificationResult",
+        "toType": "NavigatorDiagnostic",
+        "sourcePath": "src/types/navigatorVerification.ts"
+      },
+      {
+        "fromSymbol": "NavigatorVerificationResult",
+        "toType": "NavigatorSupportStatus",
+        "sourcePath": "src/types/navigatorVerification.ts"
+      },
+      {
+        "fromSymbol": "NavigatorVerificationResult",
+        "toType": "NavigatorVerificationKind",
+        "sourcePath": "src/types/navigatorVerification.ts"
+      },
+      {
+        "fromSymbol": "NavigatorVerificationResult",
+        "toType": "NavigatorVerificationStatus",
+        "sourcePath": "src/types/navigatorVerification.ts"
       },
       {
         "fromSymbol": "createNavigatorPlan",
@@ -3808,24 +6457,54 @@
         "sourcePath": "src/utils/createNavigatorPlan.ts"
       },
       {
-        "fromSymbol": "generateNavigatorFiles",
-        "toType": "NavigatorGeneratedFile",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
-      },
-      {
-        "fromSymbol": "generateNavigatorFiles",
+        "fromSymbol": "generateNavigator",
         "toType": "NavigatorGenerationBindings",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "generateNavigatorFiles",
+        "fromSymbol": "generateNavigator",
         "toType": "NavigatorGenerationOptions",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
-        "fromSymbol": "generateNavigatorFiles",
+        "fromSymbol": "generateNavigator",
+        "toType": "NavigatorGenerationResult",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "generateNavigator",
         "toType": "NavigatorPlan",
-        "sourcePath": "src/utils/generateNavigatorFiles.ts"
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigator",
+        "toType": "CreateNavigatorPlanOptions",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigator",
+        "toType": "NavigatorDiagnostic",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigator",
+        "toType": "NavigatorGenerationOptions",
+        "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
+        "toType": "NavigatorDiagnostic",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
+        "toType": "NavigatorGenerationOptions",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
+        "toType": "NavigatorPlan",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
       },
       {
         "fromSymbol": "validateNavigatorManifest",
@@ -3848,65 +6527,85 @@
         "sourcePath": "src/utils/validateNavigatorManifest.ts"
       },
       {
-        "fromSymbol": "CustomTabsLayout",
-        "toType": "CustomTabsLayoutProps",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "fromSymbol": "verifyNavigator",
+        "toType": "NavigatorGenerationBindings",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "verifyNavigator",
+        "toType": "NavigatorGenerationOptions",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "verifyNavigator",
+        "toType": "NavigatorPlan",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "verifyNavigator",
+        "toType": "NavigatorVerificationResult",
+        "sourcePath": "src/utils/verifyNavigator.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsLayout",
+        "toType": "HeadlessTabsLayoutProps",
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       }
     ],
     "componentComposition": [
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "TabsNavigation",
         "jsxElement": "<TabsNavigation\n      CustomPresentation={CustomPresentation}\n      presentation={presentation}\n      resolveIconSource={resolveIconSource}\n      routes={routes}\n    />",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "Tabs",
         "jsxElement": "<Tabs options={{ initialRouteName }} style={styles.root}>",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "View",
         "jsxElement": "<View style={layoutStyle}>",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "View",
         "jsxElement": "<View style={navigationInsets}>",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "View",
         "jsxElement": "<View style={styles.screen}>",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "TabSlot",
         "jsxElement": "<TabSlot />",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "View",
         "jsxElement": "<View style={bottomNavigationStyle}>",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "TabList",
         "jsxElement": "<TabList style={styles.hidden}>",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromComponent": "CustomTabsLayout",
+        "fromComponent": "HeadlessTabsLayout",
         "toComponent": "TabTrigger",
         "jsxElement": "<TabTrigger href={route.href as Href} key={route.name} name={route.name} />",
-        "sourcePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       }
     ]
   }

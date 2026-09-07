@@ -6,6 +6,8 @@ import type {
   NavigatorValidationContext,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+
 /*** Validate all deliberately registered custom navigator extension nodes. */
 export function addCustomNavigatorDiagnostics(
   diagnostics: NavigatorDiagnostic[],
@@ -83,12 +85,15 @@ function addCompatibilityDiagnostics(
       message: `Custom navigator ${JSON.stringify(node.navigatorId)} does not support ${context.platform}.`,
     });
   }
-  if (routerMajor !== undefined && routerMajor < 56) {
+  if (
+    routerMajor !== undefined &&
+    routerMajor < NAVIGATOR_ROUTER_POLICY.customNavigatorMinimumMajor
+  ) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: `${pointer}/navigatorId`,
-      message: 'Registered custom navigators require Expo Router 56.0.0 or newer.',
+      message: `Registered custom navigators require Expo Router ${NAVIGATOR_ROUTER_POLICY.customNavigatorMinimumMajor}.0.0 or newer.`,
     });
   }
 }

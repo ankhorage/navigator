@@ -2,6 +2,7 @@ import type {
   NavigatorGeneratedFile,
   NavigatorGenerationBindings,
   NavigatorGenerationOptions,
+  NavigatorGenerationResult,
   NavigatorNodePlan,
   NavigatorPlan,
   NavigatorRoutePlan,
@@ -14,21 +15,33 @@ import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
+import { validateNavigatorBindings } from './validateNavigatorBindings';
 
-/*** Generate deterministic Expo Router files from a validated disposable plan and narrow bindings. */
-export function generateNavigatorFiles(
+/*** Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings. */
+export function generateNavigator(
   plan: NavigatorPlan,
   bindings: NavigatorGenerationBindings,
   options: NavigatorGenerationOptions = {},
-): readonly NavigatorGeneratedFile[] {
-  const errors = plan.diagnostics.filter((diagnostic) => diagnostic.severity === 'error');
-  if (!plan.supported || errors.length > 0) {
-    throw new Error(
-      `Cannot generate an unsupported navigator plan: ${errors.map((error) => error.code).join(', ') || 'adapter unavailable'}.`,
-    );
+): NavigatorGenerationResult {
+  const diagnostics = [...plan.diagnostics, ...validateNavigatorBindings(plan, bindings, options)];
+  let rootDirectory: string;
+  try {
+    rootDirectory = resolveRootDirectory(options.rootDirectory);
+  } catch (error) {
+    diagnostics.push({
+      code: 'invalid-output-directory',
+      severity: 'error',
+      path: '/rootDirectory',
+      message: error instanceof Error ? error.message : 'Invalid Navigator root directory.',
+    });
+    rootDirectory = APP_DIRECTORY;
   }
-  validateFlowBindings(plan, bindings);
-  const rootDirectory = resolveRootDirectory(options.rootDirectory);
+  if (
+    plan.support === 'unsupported' ||
+    diagnostics.some((diagnostic) => diagnostic.severity === 'error')
+  ) {
+    return createGenerationResult(plan, diagnostics, []);
+  }
   const files = collectFiles(
     plan.root,
     rootDirectory,
@@ -41,35 +54,23 @@ export function generateNavigatorFiles(
       throw new Error(`Generated file path ${JSON.stringify(file.path)} is duplicated.`);
     paths.add(file.path);
   }
-  return files;
+  return createGenerationResult(plan, diagnostics, files);
 }
 
-/*** Require enabled onboarding and authentication flows to reference an existing route. */
-function validateFlowBindings(plan: NavigatorPlan, bindings: NavigatorGenerationBindings): void {
-  const routeIds = new Set(collectRouteIds(plan.root));
-  for (const [enabled, routeId, name] of [
-    [plan.flows.onboarding, bindings.flows?.onboardingRoute, 'onboarding'],
-    [plan.flows.authentication, bindings.flows?.authenticationRoute, 'authentication'],
-  ] as const) {
-    if (!enabled) continue;
-    if (routeId === undefined) throw new Error(`Missing ${name} flow-route binding.`);
-    if (!routeIds.has(routeId)) {
-      throw new Error(
-        `${name[0]?.toUpperCase()}${name.slice(1)} flow route ${JSON.stringify(routeId)} does not exist.`,
-      );
-    }
-  }
-}
-
-/*** Collect nested route identifiers without changing their authored segment names. */
-function collectRouteIds(node: NavigatorNodePlan, parent: string[] = []): string[] {
-  return node.routes.flatMap((route) => {
-    const segments = [...parent, route.name];
-    const routeId = segments.join('/');
-    return route.navigator === undefined
-      ? [routeId]
-      : [routeId, ...collectRouteIds(route.navigator, segments)];
-  });
+/*** Assemble the portable generation result without adding filesystem side effects. */
+function createGenerationResult(
+  plan: NavigatorPlan,
+  diagnostics: NavigatorGenerationResult['diagnostics'],
+  files: NavigatorGenerationResult['files'],
+): NavigatorGenerationResult {
+  return {
+    support: plan.support,
+    capabilityIds: plan.capabilityIds,
+    dependencies: plan.dependencies,
+    diagnostics,
+    plan,
+    files,
+  };
 }
 
 /*** Resolve a safe directory below the Expo Router app root without filesystem normalization. */
@@ -129,7 +130,7 @@ function createLayoutFile(
   bindings: NavigatorGenerationBindings,
 ): NavigatorGeneratedFile {
   if (
-    node.adapter.support !== 'supported' ||
+    node.adapter.support === 'unsupported' ||
     node.adapter.module === undefined ||
     node.adapter.exportName === undefined
   ) {

@@ -9,6 +9,7 @@ import type {
   NavigatorResponsiveSize,
   NavigatorRoutePlan,
   NavigatorRuntimePlatform,
+  NavigatorSupportStatus,
   StackImplementationConfig,
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
@@ -23,6 +24,7 @@ import { createTabsAdapter } from '../features/tabs/application/createTabsAdapte
 import { resolveTabsPlan } from '../features/tabs/application/resolveTabsPlan';
 import { resolveEffectiveTabsConfig } from '../features/tabs/domain/resolveEffectiveTabsConfig';
 import { parseExpoRouterMajor } from './parseExpoRouterMajor';
+import { resolveNavigatorDependencies } from './resolveNavigatorDependencies';
 import { validateNavigatorManifest } from './validateNavigatorManifest';
 
 /*** Create a disposable, provider-aware plan from only the navigator desired-state slice. */
@@ -36,18 +38,59 @@ export function createNavigatorPlan(
   } as const;
   const diagnostics = validateNavigatorManifest(manifest, context, options.customNavigators);
   const root = createNodePlan(manifest, manifest, '', options, options.responsiveSize ?? 'compact');
+  const support = diagnostics.some((diagnostic) => diagnostic.severity === 'error')
+    ? 'unsupported'
+    : resolvePlanSupport(root);
   return {
     context,
     root,
     diagnostics,
-    supported:
-      diagnostics.every((diagnostic) => diagnostic.severity !== 'error') &&
-      root.adapter.support === 'supported',
-    flows: {
-      onboarding: manifest.flows?.onboarding ?? false,
-      authentication: manifest.flows?.authentication ?? false,
-    },
+    support,
+    capabilityIds: collectCapabilityIds(root),
+    dependencies: resolveNavigatorDependencies(root, options.platform),
   };
+}
+
+/*** Reduce every nested adapter status to the plan's least-supported classification. */
+function resolvePlanSupport(root: NavigatorNodePlan): NavigatorSupportStatus {
+  const statuses = collectNodes(root).map((node) => node.adapter.support);
+  if (statuses.includes('unsupported')) return 'unsupported';
+  return statuses.includes('testing-only') ? 'testing-only' : 'supported';
+}
+
+/*** Report stable capability IDs for every distinct resolved node variant. */
+function collectCapabilityIds(root: NavigatorNodePlan): readonly string[] {
+  return [...new Set(collectNodes(root).map(resolveCapabilityId))].sort();
+}
+
+/*** Flatten one recursive plan in deterministic route order. */
+function collectNodes(root: NavigatorNodePlan): readonly NavigatorNodePlan[] {
+  return [
+    root,
+    ...root.routes.flatMap((route) =>
+      route.navigator === undefined ? [] : collectNodes(route.navigator),
+    ),
+  ];
+}
+
+/*** Map one resolved node to its public catalog capability identifier. */
+function resolveCapabilityId(node: NavigatorNodePlan): string {
+  if (node.type === 'tabs' && node.tabs !== undefined) {
+    if (node.tabs.implementation === 'native') return 'tabs.native';
+    const presentation = node.tabs.presentation ?? 'bottom';
+    if (node.tabs.implementation === 'javascript') return `tabs.javascript.${presentation}`;
+    const responsive =
+      node.tabs.presentations !== undefined &&
+      new Set(Object.values(node.tabs.presentations)).size > 1;
+    return `tabs.headless.${responsive ? 'responsive' : presentation}`;
+  }
+  if (node.type === 'split-view') {
+    return node.splitView?.columns.supplementary === undefined
+      ? 'split-view.two-column'
+      : 'split-view.three-column';
+  }
+  if (node.type === 'custom') return 'custom.registered';
+  return node.adapter.id;
 }
 
 /*** Resolve a node and its descendants using one platform and responsive-size context. */

@@ -4,6 +4,8 @@ import type {
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+
 /*** Describe Tabs adapter support, stability, and limitations for the target platform and version. */
 export function createTabsAdapter(
   tabs: TabsNavigatorPlan,
@@ -12,17 +14,21 @@ export function createTabsAdapter(
 ): NavigatorAdapterPlan {
   const nativeUnavailable =
     tabs.implementation === 'native' &&
-    (platform === 'web' || routerMajor === undefined || routerMajor < 54);
+    (platform === 'web' ||
+      routerMajor === undefined ||
+      routerMajor < NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor);
   return {
     id: `tabs.${tabs.implementation}`,
     module: tabs.module,
     exportName: tabs.exportName,
-    support: nativeUnavailable ? 'unavailable' : 'supported',
+    support: nativeUnavailable ? 'unsupported' : 'supported',
     stability: tabs.stability,
     limitations:
       tabs.implementation === 'native'
-        ? ['Alpha API; unavailable on web and requires Expo Router 54.0.0 or newer.']
-        : tabs.implementation === 'custom'
+        ? [
+            `Alpha API; unavailable on web and requires Expo Router ${NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor}.0.0 or newer.`,
+          ]
+        : tabs.implementation === 'headless'
           ? ['Surface presentation over Expo Router headless tabs.']
           : [],
   };

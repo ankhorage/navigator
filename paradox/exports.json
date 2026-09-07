@@ -8,7 +8,7 @@
     "modulePath": "src/utils/createNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/utils/createNavigatorPlan.ts",
-      "line": 29,
+      "line": 31,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
@@ -38,34 +38,20 @@
     "structuredRows": []
   },
   {
-    "name": "CustomTabsLayout",
-    "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+    "name": "default",
+    "description": null,
     "isReadme": false,
     "examples": [],
-    "kind": "function",
-    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+    "kind": "unknown",
+    "modulePath": "src/cli/createCliProvider.ts",
     "sourceLocation": {
-      "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
-      "line": 20,
+      "filePath": "src/cli/createCliProvider.ts",
+      "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
+    "exportPaths": ["src/cli/createCliProvider.ts"],
     "relatedSymbols": [],
-    "signatures": [
-      {
-        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
-        "parameters": [
-          {
-            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
-            "type": "CustomTabsLayoutProps",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "import(\"react\").JSX.Element",
-        "returnDescription": null
-      }
-    ],
+    "signatures": [],
     "members": [],
     "structuredRows": []
   },
@@ -102,22 +88,22 @@
     "structuredRows": []
   },
   {
-    "name": "generateNavigatorFiles",
-    "description": "Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.",
+    "name": "generateNavigator",
+    "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/utils/generateNavigatorFiles.ts",
+    "modulePath": "src/utils/generateNavigator.ts",
     "sourceLocation": {
-      "filePath": "src/utils/generateNavigatorFiles.ts",
-      "line": 19,
+      "filePath": "src/utils/generateNavigator.ts",
+      "line": 21,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]",
+        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult",
         "parameters": [
           {
             "name": "bindings",
@@ -138,7 +124,96 @@
             "description": null
           }
         ],
-        "returnType": "readonly NavigatorGeneratedFile[]",
+        "returnType": "NavigatorGenerationResult",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "getNavigatorCatalog",
+    "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+    "sourceLocation": {
+      "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "() => NavigatorCatalog",
+        "parameters": [],
+        "returnType": "NavigatorCatalog",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "HeadlessTabsLayout",
+    "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+      "line": 20,
+      "column": 1
+    },
+    "exportPaths": ["src/features/tabs/tabs.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
+        "parameters": [
+          {
+            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+            "type": "HeadlessTabsLayoutProps",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"react\").JSX.Element",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "isNavigatorGenerationBindings",
+    "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/utils/isNavigatorGenerationBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/utils/isNavigatorGenerationBindings.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(value: unknown) => boolean",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "unknown",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "boolean",
         "returnDescription": null
       }
     ],
@@ -237,14 +312,14 @@
   },
   {
     "name": "NAVIGATOR_PACKAGE_METADATA",
-    "description": null,
+    "description": "Publish package identity and the single Navigator-owned capability catalog.",
     "isReadme": false,
     "examples": [],
     "kind": "value",
     "modulePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
     "sourceLocation": {
       "filePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
-      "line": 8,
+      "line": 5,
       "column": 14
     },
     "exportPaths": ["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"],
@@ -254,14 +329,68 @@
     "structuredRows": []
   },
   {
-    "name": "resolveCustomTabsPresentation",
-    "description": "Resolve one custom-tabs presentation for the current semantic responsive size.",
+    "name": "NavigatorVerificationResult",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/navigatorVerification.ts",
+    "sourceLocation": {
+      "filePath": "src/types/navigatorVerification.ts",
+      "line": 9,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "capabilityIds",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "checks",
+        "kind": "property",
+        "type": "readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; readonly message: string; }[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "deterministic",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "diagnostics",
+        "kind": "property",
+        "type": "readonly NavigatorDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "support",
+        "kind": "property",
+        "type": "NavigatorSupportStatus",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "resolveHeadlessTabsPresentation",
+    "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+    "modulePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
     "sourceLocation": {
-      "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+      "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
       "line": 10,
       "column": 1
     },
@@ -269,11 +398,11 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(config: Omit<CustomTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation",
+        "label": "(config: Omit<HeadlessTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedHeadlessTabsPresentation",
         "parameters": [
           {
             "name": "config",
-            "type": "Omit<CustomTabsConfig, \"implementation\">",
+            "type": "Omit<HeadlessTabsConfig, \"implementation\">",
             "required": true,
             "description": null
           },
@@ -284,7 +413,7 @@
             "description": null
           }
         ],
-        "returnType": "ResolvedCustomTabsPresentation",
+        "returnType": "ResolvedHeadlessTabsPresentation",
         "returnDescription": null
       }
     ],
@@ -307,7 +436,7 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
+        "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"stack-tabs\" | \"stack-tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"stack-drawer\" | \"stack-drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"stack-drawer-tabs\" | \"stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
         "parameters": [
           {
             "name": "fallbackType",
@@ -317,7 +446,7 @@
           },
           {
             "name": "preset",
-            "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
+            "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"stack-tabs\" | \"stack-tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"stack-drawer\" | \"stack-drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"stack-drawer-tabs\" | \"stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
             "required": true,
             "description": null
           }
@@ -374,6 +503,100 @@
     "structuredRows": []
   },
   {
+    "name": "validateNavigator",
+    "description": "Structurally and semantically validate standalone navigator input without writing files.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/utils/validateNavigator.ts",
+    "sourceLocation": {
+      "filePath": "src/utils/validateNavigator.ts",
+      "line": 12,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(manifest: unknown, bindings: unknown, options: CreateNavigatorPlanOptions, generationOptions?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]",
+        "parameters": [
+          {
+            "name": "bindings",
+            "type": "unknown",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "generationOptions",
+            "type": "NavigatorGenerationOptions",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "manifest",
+            "type": "unknown",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "options",
+            "type": "CreateNavigatorPlanOptions",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "readonly NavigatorDiagnostic[]",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "validateNavigatorBindings",
+    "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/utils/validateNavigatorBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/utils/validateNavigatorBindings.ts",
+      "line": 14,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]",
+        "parameters": [
+          {
+            "name": "bindings",
+            "type": "unknown",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "options",
+            "type": "NavigatorGenerationOptions",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "plan",
+            "type": "NavigatorPlan",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "readonly NavigatorDiagnostic[]",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "validateNavigatorManifest",
     "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
     "isReadme": false,
@@ -411,6 +634,50 @@
           }
         ],
         "returnType": "readonly NavigatorDiagnostic[]",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "verifyNavigator",
+    "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/utils/verifyNavigator.ts",
+    "sourceLocation": {
+      "filePath": "src/utils/verifyNavigator.ts",
+      "line": 13,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": ["NavigatorVerificationResult"],
+    "signatures": [
+      {
+        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorVerificationResult",
+        "parameters": [
+          {
+            "name": "bindings",
+            "type": "NavigatorGenerationBindings",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "options",
+            "type": "NavigatorGenerationOptions",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "plan",
+            "type": "NavigatorPlan",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "NavigatorVerificationResult",
         "returnDescription": null
       }
     ],

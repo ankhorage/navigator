@@ -29,32 +29,43 @@ describe('@ankhorage/navigator package boundary', () => {
       'manifest default',
       'stable default',
     ]);
-    expect(NAVIGATOR_PACKAGE_METADATA.coreAdapters.javascriptStack.module).toBe(
-      'expo-router/js-stack',
-    );
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.tabs.support).toBe('supported');
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.experimentalStack).toMatchObject({
-      support: 'supported',
+    const capabilities = NAVIGATOR_PACKAGE_METADATA.catalog.capabilities;
+    expect(capabilities.find(({ id }) => id === 'stack.javascript')).toMatchObject({
+      topology: 'stack',
+      implementation: 'javascript',
+    });
+    expect(capabilities.find(({ id }) => id === 'stack.experimental')).toMatchObject({
+      topology: 'stack',
+      implementation: 'experimental',
       stability: 'alpha',
-      status: 'testing-only',
-      webFallback: 'stack.native',
     });
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.splitView).toMatchObject({
-      support: 'supported',
+    expect(capabilities.find(({ id }) => id === 'split-view.three-column')).toMatchObject({
+      topology: 'split-view',
+      presentation: 'three-column',
       stability: 'alpha',
-      status: 'testing-only',
-      fallback: { android: 'slot', web: 'slot' },
     });
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.custom).toEqual({
-      support: 'registered',
-      minimumExpoRouterVersion: '56.0.0',
-      integration: 'expo-router-standard',
-      routerOwner: 'expo-router',
-      config: 'schema-validated-json',
+    expect(capabilities.find(({ id }) => id === 'custom.registered')).toMatchObject({
+      topology: 'custom',
+      stability: 'stable',
     });
+    expect(NAVIGATOR_PACKAGE_METADATA.catalog.presets.find(({ id }) => id === 'drawer')).toEqual({
+      id: 'drawer',
+      description: 'Drawer root with direct routes and no forced Stack.',
+      topology: ['drawer'],
+    });
+    expect(
+      capabilities
+        .find(({ id }) => id === 'drawer')
+        ?.dependencies.map(({ packageName }) => packageName),
+    ).toEqual([
+      'expo-router',
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+      'react-native-worklets',
+    ]);
   });
 
-  test('keeps the Surface peer and development ranges synchronized', async () => {
+  test('keeps capability-owned peer and development ranges synchronized', async () => {
     const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
       readonly devDependencies?: Readonly<Record<string, string>>;
       readonly peerDependencies?: Readonly<Record<string, string>>;
@@ -63,6 +74,11 @@ describe('@ankhorage/navigator package boundary', () => {
     const surfacePeerRange = packageJson.peerDependencies?.['@ankhorage/surface'];
     expect(surfacePeerRange).toMatch(/^\^\d+\.\d+\.\d+$/u);
     expect(packageJson.devDependencies?.['@ankhorage/surface']).toBe(surfacePeerRange);
+    for (const packageName of ['react-dom', 'react-native-safe-area-context']) {
+      expect(packageJson.devDependencies?.[packageName]).toBe(
+        packageJson.peerDependencies?.[packageName],
+      );
+    }
   });
 
   test('never imports the full app manifest into production source', async () => {

@@ -4,11 +4,9 @@ import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
 import ts from 'typescript';
 
-import {
-  createNavigatorPlan,
-  defineCustomNavigatorRegistry,
-  generateNavigatorFiles,
-} from '../src/navigator';
+import { createNavigatorPlan, defineCustomNavigatorRegistry } from '../src/navigator';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION } from './routerPolicy';
 
 const REGISTERED_RAIL = `
 import type { NavigatorContentProps, StandardNavigatorEventMapBase } from 'expo-router';
@@ -108,11 +106,11 @@ test('generated custom navigator layout typechecks for every claimed universal p
   for (const platform of ['ios', 'web'] as const) {
     const plan = createNavigatorPlan(MANIFEST, {
       customNavigators,
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
       platform,
     });
     const layout =
-      generateNavigatorFiles(plan, {
+      generateFiles(plan, {
         guards: {},
         screens: {
           home: { module: '@/screens/home', exportName: 'Home' },

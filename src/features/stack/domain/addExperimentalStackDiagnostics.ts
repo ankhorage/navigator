@@ -7,6 +7,7 @@ import type {
   StackScreenOptions,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
 import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource';
 
 /*** Add app-wide platform, version, option, and runtime requirements for Experimental Stack. */
@@ -23,12 +24,23 @@ export function addExperimentalStackDiagnostics(
   );
   if (experimental.length === 0) return;
 
-  if (routerMajor !== undefined && routerMajor < 56) {
+  if (
+    routerMajor !== undefined &&
+    routerMajor < NAVIGATOR_ROUTER_POLICY.experimentalStackMinimumMajor
+  ) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: experimental[0]?.pointer ?? '',
-      message: 'Experimental Stack requires Expo Router 56.0.0 or newer.',
+      message: `Experimental Stack requires Expo Router ${NAVIGATOR_ROUTER_POLICY.experimentalStackMinimumMajor}.0.0 or newer.`,
+    });
+  }
+  if (context.platform === 'web') {
+    diagnostics.push({
+      code: 'unsupported-platform',
+      severity: 'error',
+      path: experimental[0]?.pointer ?? '',
+      message: 'Experimental Stack is native-only; the Web fallback is not that capability.',
     });
   }
   if (context.platform === 'android') {

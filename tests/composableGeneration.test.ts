@@ -1,7 +1,9 @@
 import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { describe, expect, test } from 'bun:test';
 
-import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
+import { createNavigatorPlan, generateNavigator } from '../src/navigator';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION } from './routerPolicy';
 
 const MANIFEST: AppNavigatorManifest = {
   type: 'stack',
@@ -22,9 +24,9 @@ describe('@ankhorage/navigator composable generation', () => {
   test('places layout-only output below a consumer-owned app shell', () => {
     const plan = createNavigatorPlan(MANIFEST, {
       platform: 'web',
-      expoRouterVersion: '56.0.0',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
-    const layouts = generateNavigatorFiles(
+    const layouts = generateFiles(
       plan,
       {
         screens: {},
@@ -43,29 +45,29 @@ describe('@ankhorage/navigator composable generation', () => {
       "import { Stack } from 'expo-router';\n\nimport { isAuthenticated as navigatorGuard0 } from '@/navigation/guards';",
     );
     expect(layouts[0]?.contents).toContain('<Stack.Protected guard={navigatorGuard0()}>');
-    expect(() =>
-      generateNavigatorFiles(
-        plan,
-        { screens: {}, guards: {} },
-        { rootDirectory: 'src/app/(generated)', includeScreenFiles: false },
-      ),
-    ).toThrow('Missing guard binding for "authenticated"');
+    const missingGuard = generateNavigator(
+      plan,
+      { screens: {}, guards: {} },
+      { rootDirectory: 'src/app/(generated)', includeScreenFiles: false },
+    );
+    expect(missingGuard.files).toEqual([]);
+    expect(missingGuard.diagnostics.map(({ code }) => code)).toContain('missing-guard-binding');
   });
 
   test('rejects output outside safe Expo Router app descendants', () => {
     const plan = createNavigatorPlan(
       { type: 'slot', routes: [{ name: 'index', screenId: 'home' }] },
-      { platform: 'web', expoRouterVersion: '56.0.0' },
+      { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
     );
 
     for (const rootDirectory of ['app', 'src/app/../secrets', '/src/app', 'src/app//nested']) {
-      expect(() =>
-        generateNavigatorFiles(
-          plan,
-          { screens: {}, guards: {} },
-          { rootDirectory, includeScreenFiles: false },
-        ),
-      ).toThrow('must be src/app or a safe descendant');
+      const result = generateNavigator(
+        plan,
+        { screens: {}, guards: {} },
+        { rootDirectory, includeScreenFiles: false },
+      );
+      expect(result.files).toEqual([]);
+      expect(result.diagnostics.map(({ code }) => code)).toContain('invalid-output-directory');
     }
   });
 });

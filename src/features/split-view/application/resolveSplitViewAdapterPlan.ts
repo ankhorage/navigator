@@ -3,6 +3,8 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+
 /*** Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback. */
 export function resolveSplitViewAdapterPlan(
   platform: NavigatorRuntimePlatform,
@@ -12,7 +14,12 @@ export function resolveSplitViewAdapterPlan(
     id: 'split-view',
     module: 'expo-router/unstable-split-view',
     exportName: 'SplitView',
-    support: routerMajor !== undefined && routerMajor >= 55 ? 'supported' : 'unavailable',
+    support:
+      platform === 'ios' &&
+      routerMajor !== undefined &&
+      routerMajor >= NAVIGATOR_ROUTER_POLICY.splitViewMinimumMajor
+        ? 'testing-only'
+        : 'unsupported',
     stability: 'alpha',
     limitations:
       platform === 'ios'
