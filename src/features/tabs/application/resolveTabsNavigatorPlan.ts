@@ -80,7 +80,7 @@ function resolveAdaptiveConfig(
     : undefined;
 }
 
-/*** Create the stable cross-platform plan for Expo Router headless Tabs. */
+/*** Create the stable cross-platform Headless Tabs plan and resolve its presentation. */
 function createHeadlessTabsPlan(
   config: Omit<HeadlessTabsConfig, 'implementation'>,
   size: NavigatorResponsiveSize,

@@ -5,6 +5,7 @@ import type {
   TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
 import { resolveEffectiveTabsConfig } from './resolveEffectiveTabsConfig';
 
 /*** Add tabs-specific semantic diagnostics for one manifest navigator node. */
@@ -53,12 +54,16 @@ function addTabsPlatformDiagnostics(
       message: 'Native Tabs are not available on web.',
     });
   }
-  if (context.native && routerMajor !== undefined && routerMajor < 54) {
+  if (
+    context.native &&
+    routerMajor !== undefined &&
+    routerMajor < NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor
+  ) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: pointer,
-      message: 'Native Tabs require Expo Router 54.0.0 or newer.',
+      message: `Native Tabs require Expo Router ${NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor}.0.0 or newer.`,
     });
   }
   if (context.native) {
@@ -173,15 +178,14 @@ function addNativeVersionDiagnostics(
   if (
     native &&
     routerMajor !== undefined &&
-    routerMajor < 55 &&
+    routerMajor < NAVIGATOR_ROUTER_POLICY.nativeTabsAccessoryMinimumMajor &&
     (nativeConfig?.minimizeBehavior !== undefined || nativeConfig?.bottomAccessory !== undefined)
   ) {
     diagnostics.push({
       code: 'unsupported-expo-router-version',
       severity: 'error',
       path: pointer,
-      message:
-        'Native Tabs minimize behavior and bottom accessory require Expo Router 55 or newer.',
+      message: `Native Tabs minimize behavior and bottom accessory require Expo Router ${NAVIGATOR_ROUTER_POLICY.nativeTabsAccessoryMinimumMajor} or newer.`,
     });
   }
 }

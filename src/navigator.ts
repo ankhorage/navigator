@@ -1,7 +1,13 @@
+export { getNavigatorCatalog } from './features/catalog/adapters/inbound/getNavigatorCatalog';
 export { defineCustomNavigatorRegistry } from './features/custom/domain/defineCustomNavigatorRegistry';
 export { resolveTabsNavigatorPlan } from './features/tabs/application/resolveTabsNavigatorPlan';
 export { resolveHeadlessTabsPresentation } from './features/tabs/domain/resolveHeadlessTabsPresentation';
+export type { NavigatorVerificationResult } from './types/NavigatorVerificationResult';
 export { createNavigatorPlan } from './utils/createNavigatorPlan';
-export { generateNavigatorFiles } from './utils/generateNavigatorFiles';
+export { generateNavigator } from './utils/generateNavigator';
+export { isNavigatorGenerationBindings } from './utils/isNavigatorGenerationBindings';
 export { resolveNavigatorPreset } from './utils/resolveNavigatorPreset';
+export { validateNavigator } from './utils/validateNavigator';
+export { validateNavigatorBindings } from './utils/validateNavigatorBindings';
 export { validateNavigatorManifest } from './utils/validateNavigatorManifest';
+export { verifyNavigator } from './utils/verifyNavigator';

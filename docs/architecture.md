@@ -1,10 +1,11 @@
 # Navigator source ownership
 
-Navigator capabilities are equal siblings under `src/features/`: `slot`, `stack`, `tabs`,
-`drawer`, `split-view`, and `custom`. Only layers with an implementation are present.
+Navigator capabilities are equal siblings under `src/features/`: `catalog`, `slot`, `stack`,
+`tabs`, `drawer`, `split-view`, and `custom`. Only layers with an implementation are present.
 
 | Feature      | Owned responsibilities                                                                                                     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `catalog`    | Package-owned topology, implementation, presentation, preset, target support, stability, requirements, and evidence        |
 | `slot`       | Stateless adapter plan, Slot constraints, layout output                                                                    |
 | `stack`      | Configuration precedence, native/JavaScript/experimental adapter selection, Stack diagnostics                              |
 | `tabs`       | Configuration and presentation policy, adapter planning, generated Tabs layouts, headless runtime and native icon adapters |
@@ -18,17 +19,24 @@ the described runtime modules. Inbound adapters bind the runtime UI to Expo Rout
 Outbound adapters translate plans into generated Expo Router source.
 
 `src/utils/` owns genuinely cross-feature topology traversal, shared route validation, generation
-orchestration, Router-version policy, and package metadata. Portable public planning, generation,
-and extension contracts are owned by `@ankhorage/contracts/navigator`, not by `utils/`.
+orchestration, Router-version policy, verification, and package metadata. Portable public planning,
+generation, catalog, and extension contracts are owned by `@ankhorage/contracts/navigator`, not by
+`utils/`.
 Shared generation handles the common `Screen` / `Protected` registration contract; specialized
 layouts and feature-specific policy remain feature-owned. No feature imports the shared orchestration
 back into its domain or application layer.
+
+`src/cli/` is the package composition boundary for `ankh navigator`. Its adapters perform the
+explicit JSON reads, custom-registry module load, and generated-file writes. Command handlers call
+the same public Catalog → Validate → Plan → Generate → Verify functions used by library consumers;
+there is no second CLI policy table.
 
 ## Published entrypoints
 
 | Public import                            | Explicit source entrypoint                |
 | ---------------------------------------- | ----------------------------------------- |
 | `@ankhorage/navigator`                   | `src/navigator.ts`                        |
+| `@ankhorage/navigator/cli`               | `src/cli/index.ts`                        |
 | `@ankhorage/navigator/metadata`          | `src/utils/NAVIGATOR_PACKAGE_METADATA.ts` |
 | `@ankhorage/navigator/tabs`              | `src/features/tabs/tabs.ts`               |
 | `@ankhorage/navigator/tabs/native-icons` | `src/features/tabs/nativeIcons.ts`        |
@@ -43,7 +51,7 @@ implementations. `package.json` maps the unchanged public subpaths to the new bu
 
 - Single-module types, including Custom Tabs props and the resolved Stack configuration source,
   live below their owning function without exports. Component consumers can derive props using
-  `ComponentProps<typeof CustomTabsLayout>` instead of depending on private type names.
+  `ComponentProps<typeof HeadlessTabsLayout>` instead of depending on private type names.
 - Reused repository-local types are grouped by topic in `src/types/`. The native icon family adapter
   contract is reused by five adapters and belongs in `src/types/nativeIcons.ts`.
 - Portable public types are imported directly from `@ankhorage/contracts/navigator`. Their canonical
@@ -55,9 +63,10 @@ implementations. `package.json` maps the unchanged public subpaths to the new bu
 - `parseExpoRouterMajor` remains Navigator-owned: its accepted Router-version syntax differs from
   Utility's exact three-part `parseSemanticVersion` API. Substituting that API would change behavior.
 
-Moving public type imports and making adapter-only type names private is a breaking TypeScript API
-change and carries a major Navigator changeset. Runtime import names and generated layouts do not
-change. The Studio consumer must move its type imports to Contracts before adopting this release.
+Navigator imports the published Contracts 12 taxonomy and standalone `isAppNavigatorManifest`
+parser. `flows` has no Navigator replacement. Headless Tabs replaces the former custom
+implementation name without a compatibility alias; a custom presentation and the registered custom
+navigator topology remain separate public concepts.
 
 ## Verification and follow-up
 
@@ -67,19 +76,7 @@ topic type modules, facade isolation, and transitive inward dependencies.
 `tests/contractsBoundary.test.ts` exercises the shared public Contracts boundary. Cross-feature
 behavior and generated consumer-layout typechecks live in `tests/` and run with `bun run test`.
 
-CLI composition and thin `validate`, `plan`, and `generate` commands are tracked separately in
-[issue #80](https://github.com/ankhorage/navigator/issues/80); no placeholder CLI directories are
-created by this migration. The neutral cross-platform template catalog and visual acceptance matrix
-remain separate work in [issue #79](https://github.com/ankhorage/navigator/issues/79).
-
-This structural migration does not change rendering behavior or certify the visual appearance of
-generated apps. Runtime visual acceptance on native and web belongs to the catalog follow-up.
-
-## Release gate
-
-This correction is prepared against separately reviewed Contracts and Utility additions. Until those
-owner changes are merged and published, the consumer PR remains a draft: the currently recorded
-dependency ranges/lockfile do not yet provide the added APIs. Validate with their packed candidates,
-then update the declared minimum versions and lockfile to the actual releases before marking the
-consumer PR ready. Synchronize the corrected Devtools-managed skill after its release as well.
-Do not ship tarball paths, source aliases, fake release versions, or compatibility copies.
+The public verifier proves only Navigator-owned structural and deterministic generation behavior.
+Its remaining install, export, browser, simulator, and device checks are deliberately `unverified`
+until an independently installed example records that evidence. This prevents a successful typecheck
+or non-native Slot fallback from being presented as native runtime proof.

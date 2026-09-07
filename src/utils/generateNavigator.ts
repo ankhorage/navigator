@@ -15,18 +15,33 @@ import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
+import { validateNavigatorBindings } from './validateNavigatorBindings';
 
-/*** Generate deterministic Expo Router files from a validated disposable plan and narrow bindings. */
-export function generateNavigatorFiles(
+/*** Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings. */
+export function generateNavigator(
   plan: NavigatorPlan,
   bindings: NavigatorGenerationBindings,
   options: NavigatorGenerationOptions = {},
 ): NavigatorGenerationResult {
-  const errors = plan.diagnostics.filter((diagnostic) => diagnostic.severity === 'error');
-  if (plan.support === 'unsupported' || errors.length > 0) {
-    return createGenerationResult(plan, []);
+  const diagnostics = [...plan.diagnostics, ...validateNavigatorBindings(plan, bindings, options)];
+  let rootDirectory: string;
+  try {
+    rootDirectory = resolveRootDirectory(options.rootDirectory);
+  } catch (error) {
+    diagnostics.push({
+      code: 'invalid-output-directory',
+      severity: 'error',
+      path: '/rootDirectory',
+      message: error instanceof Error ? error.message : 'Invalid Navigator root directory.',
+    });
+    rootDirectory = APP_DIRECTORY;
   }
-  const rootDirectory = resolveRootDirectory(options.rootDirectory);
+  if (
+    plan.support === 'unsupported' ||
+    diagnostics.some((diagnostic) => diagnostic.severity === 'error')
+  ) {
+    return createGenerationResult(plan, diagnostics, []);
+  }
   const files = collectFiles(
     plan.root,
     rootDirectory,
@@ -39,19 +54,20 @@ export function generateNavigatorFiles(
       throw new Error(`Generated file path ${JSON.stringify(file.path)} is duplicated.`);
     paths.add(file.path);
   }
-  return createGenerationResult(plan, files);
+  return createGenerationResult(plan, diagnostics, files);
 }
 
-/*** Return structured generation evidence for both generated and unsupported plans. */
+/*** Assemble the portable generation result without adding filesystem side effects. */
 function createGenerationResult(
   plan: NavigatorPlan,
-  files: readonly NavigatorGeneratedFile[],
+  diagnostics: NavigatorGenerationResult['diagnostics'],
+  files: NavigatorGenerationResult['files'],
 ): NavigatorGenerationResult {
   return {
     support: plan.support,
     capabilityIds: plan.capabilityIds,
     dependencies: plan.dependencies,
-    diagnostics: plan.diagnostics,
+    diagnostics,
     plan,
     files,
   };

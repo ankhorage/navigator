@@ -77,7 +77,7 @@ interface HeadlessTabsRoute {
 }
 
 /**
- * Runtime inputs for the cross-platform custom-tabs adapter. Routes remain mounted in one headless Router
+ * Runtime inputs for the cross-platform headless-tabs adapter. Routes remain mounted in one headless Router
  * topology while Surface selects bottom, top, rail, sidebar, or registered custom chrome.
  */
 interface HeadlessTabsLayoutProps {

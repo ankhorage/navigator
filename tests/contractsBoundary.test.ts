@@ -1,7 +1,7 @@
 import type {
   CreateNavigatorPlanOptions,
-  NavigatorGenerationResult,
   NavigatorGenerationBindings,
+  NavigatorGenerationResult,
   NavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
@@ -9,7 +9,7 @@ import expoRouterPackage from 'expo-router/package.json';
 import type { ComponentProps } from 'react';
 
 import type { HeadlessTabsLayout } from '../src/features/tabs/tabs';
-import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
+import { createNavigatorPlan, generateNavigator } from '../src/navigator';
 
 test('exchanges plans and generated module bindings through the Contracts API', () => {
   const options: CreateNavigatorPlanOptions = {
@@ -24,7 +24,7 @@ test('exchanges plans and generated module bindings through the Contracts API', 
     { type: 'slot', routes: [{ name: 'index', screenId: 'home' }] },
     options,
   );
-  const result: NavigatorGenerationResult = generateNavigatorFiles(plan, bindings);
+  const result: NavigatorGenerationResult = generateNavigator(plan, bindings);
   expect(result.files.map((file) => file.path)).toEqual([
     'src/app/_layout.tsx',
     'src/app/index.tsx',

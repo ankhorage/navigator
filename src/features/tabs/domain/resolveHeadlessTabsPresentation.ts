@@ -6,7 +6,7 @@ import type {
   ResponsiveTabsPresentation,
 } from '@ankhorage/contracts/navigator';
 
-/*** Resolve one headless-Tabs presentation for the current semantic responsive size. */
+/*** Resolve one headless-tabs presentation for the current semantic responsive size. */
 export function resolveHeadlessTabsPresentation(
   config: Omit<HeadlessTabsConfig, 'implementation'>,
   size: NavigatorResponsiveSize,

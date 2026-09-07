@@ -9,6 +9,7 @@ export default createKnipConfig({
         ? []
         : [entry.default.replace('./dist/', 'src/').replace(/\.js$/u, '.ts')],
     ),
+    'docs/readme-usage.ts',
     'tests/**/*.test.ts',
   ],
   ignoreFiles: [

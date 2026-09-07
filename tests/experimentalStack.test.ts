@@ -4,12 +4,11 @@ import type {
 } from '@ankhorage/contracts/navigator';
 import { describe, expect, test } from 'bun:test';
 
-import {
-  createNavigatorPlan,
-  generateNavigatorFiles,
-  validateNavigatorManifest,
-} from '../src/navigator';
+import { createNavigatorPlan, validateNavigatorManifest } from '../src/navigator';
 import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 
 const SCREENS = { home: { module: '@/screens/home', exportName: 'HomeScreen' } } as const;
 
@@ -30,7 +29,7 @@ describe('@ankhorage/navigator Experimental Stack planning', () => {
   test('resolves the testing-only native adapter and explicit web fallback', () => {
     const ios = createNavigatorPlan(EXPERIMENTAL_MANIFEST, {
       platform: 'ios',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
     expect(ios.support).toBe('testing-only');
     expect(ios.root.adapter).toMatchObject({
@@ -43,21 +42,25 @@ describe('@ankhorage/navigator Experimental Stack planning', () => {
 
     const web = createNavigatorPlan(EXPERIMENTAL_MANIFEST, {
       platform: 'web',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
-    expect(web.support).toBe('testing-only');
+    expect(web.support).toBe('unsupported');
     expect(web.root.adapter.limitations).toContain(
       'Testing-only API; Expo Router falls back to the standard Stack on web.',
     );
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.experimentalStack.webFallback).toBe(
-      'stack.native',
-    );
+    expect(
+      NAVIGATOR_PACKAGE_METADATA.catalog.capabilities
+        .find(({ id }) => id === 'stack.experimental')
+        ?.targets.find(({ platform }) => platform === 'web')?.support,
+    ).toBe('unsupported');
   });
 
-  test('requires Expo Router 56 or newer', () => {
+  test('requires the owner-declared minimum Expo Router version', () => {
     const plan = createNavigatorPlan(EXPERIMENTAL_MANIFEST, {
       platform: 'ios',
-      expoRouterVersion: '55.0.0',
+      expoRouterVersion: expoRouterVersionBefore(
+        NAVIGATOR_ROUTER_POLICY.experimentalStackMinimumMajor,
+      ),
     });
     expect(plan.support).toBe('unsupported');
     expect(diagnosticKeys(plan.diagnostics)).toContain(
@@ -70,7 +73,7 @@ describe('@ankhorage/navigator Experimental Stack validation', () => {
   test('reports the Android predictive-back requirement without mutating app config', () => {
     const plan = createNavigatorPlan(EXPERIMENTAL_MANIFEST, {
       platform: 'android',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
     expect(plan.support).toBe('testing-only');
     expect(diagnosticKeys(plan.diagnostics)).toContain(
@@ -96,15 +99,16 @@ describe('@ankhorage/navigator Experimental Stack validation', () => {
 
     const androidDiagnostics = validateNavigatorManifest(mixed, {
       platform: 'android',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
     expect(
       androidDiagnostics.some(({ code }) => code === 'mixed-android-stack-implementations'),
     ).toBe(true);
     expect(
-      validateNavigatorManifest(mixed, { platform: 'ios', expoRouterVersion: '57.0.18' }).some(
-        ({ code }) => code === 'mixed-android-stack-implementations',
-      ),
+      validateNavigatorManifest(mixed, {
+        platform: 'ios',
+        expoRouterVersion: EXPO_ROUTER_VERSION,
+      }).some(({ code }) => code === 'mixed-android-stack-implementations'),
     ).toBe(false);
   });
 });
@@ -128,7 +132,7 @@ describe('@ankhorage/navigator Experimental Stack option validation', () => {
     };
     const diagnostics = validateNavigatorManifest(manifest, {
       platform: 'ios',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
 
     const keys = diagnosticKeys(diagnostics);
@@ -149,15 +153,15 @@ describe('@ankhorage/navigator Experimental Stack generation', () => {
         ...EXPERIMENTAL_MANIFEST,
         routes: [{ ...EXPERIMENTAL_MANIFEST.routes[0], guards: ['authenticated'] }],
       },
-      { platform: 'ios', expoRouterVersion: '57.0.18' },
+      { platform: 'ios', expoRouterVersion: EXPO_ROUTER_VERSION },
     );
     const layout =
-      generateNavigatorFiles(plan, {
+      generateFiles(plan, {
         screens: SCREENS,
         guards: {
           authenticated: { module: '@/navigation/guards', exportName: 'isAuthenticated' },
         },
-      }).files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+      }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
     expect(layout).toContain("import { ExperimentalStack } from 'expo-router';");
     expect(layout).toContain('<ExperimentalStack screenOptions={{ headerShown: true }}>');

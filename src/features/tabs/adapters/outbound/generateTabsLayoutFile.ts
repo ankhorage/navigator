@@ -164,7 +164,7 @@ function nativeIconName(icon: NavigatorRoutePlan['icon']): string {
   return icon.name;
 }
 
-/*** Create the generated cross-platform headless-Tabs layout and registered integration imports. */
+/*** Create the generated cross-platform headless-tabs layout and registered integration imports. */
 function createHeadlessTabsFile(
   node: NavigatorNodePlan,
   directory: string,
@@ -207,7 +207,7 @@ function createHeadlessTabsFile(
     node.initialRouteName === undefined
       ? ''
       : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
-  const routeSource = renderCustomTabRoutes(routes);
+  const routeSource = renderHeadlessTabRoutes(routes);
   const component = `<HeadlessTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />`;
   return {
     path: `${directory}/_layout.tsx`,
@@ -215,8 +215,8 @@ function createHeadlessTabsFile(
   };
 }
 
-/*** Render headless-Tabs route records as stable multiline source objects. */
-function renderCustomTabRoutes(routes: readonly Readonly<Record<string, unknown>>[]): string {
+/*** Render Headless Tabs route records as stable multiline source objects. */
+function renderHeadlessTabRoutes(routes: readonly Readonly<Record<string, unknown>>[]): string {
   return `[
 ${routes
   .map(
@@ -231,7 +231,7 @@ ${Object.entries(route)
 ]`;
 }
 
-/*** Render the headless Tabs return statement without exceeding the canonical print width. */
+/*** Render the Headless Tabs return statement without exceeding the canonical print width. */
 function renderHeadlessTabsReturn(component: string): string {
   const directReturn = `  return ${component};`;
   return directReturn.length <= 100 ? directReturn : `  return (\n    ${component}\n  );`;

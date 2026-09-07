@@ -1,5 +1,22 @@
 graph LR
   module_package_json["package.json"]
+  module_src_cli_adapters_loadCustomNavigatorRegistry_ts["src/cli/adapters/loadCustomNavigatorRegistry.ts"]
+  module_src_cli_adapters_readNavigatorCliJson_ts["src/cli/adapters/readNavigatorCliJson.ts"]
+  module_src_cli_adapters_writeNavigatorGeneratedFiles_ts["src/cli/adapters/writeNavigatorGeneratedFiles.ts"]
+  module_src_cli_commands_assertNavigatorCliOptions_ts["src/cli/commands/assertNavigatorCliOptions.ts"]
+  module_src_cli_commands_loadNavigatorCliInput_ts["src/cli/commands/loadNavigatorCliInput.ts"]
+  module_src_cli_commands_parseNavigatorCliOptions_ts["src/cli/commands/parseNavigatorCliOptions.ts"]
+  module_src_cli_commands_reportNavigatorCliResult_ts["src/cli/commands/reportNavigatorCliResult.ts"]
+  module_src_cli_commands_runNavigatorCatalogCommand_ts["src/cli/commands/runNavigatorCatalogCommand.ts"]
+  module_src_cli_commands_runNavigatorGenerateCommand_ts["src/cli/commands/runNavigatorGenerateCommand.ts"]
+  module_src_cli_commands_runNavigatorPlanCommand_ts["src/cli/commands/runNavigatorPlanCommand.ts"]
+  module_src_cli_commands_runNavigatorValidateCommand_ts["src/cli/commands/runNavigatorValidateCommand.ts"]
+  module_src_cli_commands_runNavigatorVerifyCommand_ts["src/cli/commands/runNavigatorVerifyCommand.ts"]
+  module_src_cli_index_ts["src/cli/index.ts"]
+  module_src_cli_provider_createNavigatorRuntimeProvider_ts["src/cli/provider/createNavigatorRuntimeProvider.ts"]
+  module_src_cli_provider_navigatorRuntimeProvider_ts["src/cli/provider/navigatorRuntimeProvider.ts"]
+  module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts["src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"]
+  module_src_features_catalog_domain_createNavigatorCatalog_ts["src/features/catalog/domain/createNavigatorCatalog.ts"]
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts["src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts"]
   module_src_features_custom_domain_addCustomNavigatorDiagnostics_ts["src/features/custom/domain/addCustomNavigatorDiagnostics.ts"]
   module_src_features_custom_domain_defineCustomNavigatorRegistry_ts["src/features/custom/domain/defineCustomNavigatorRegistry.ts"]
@@ -34,13 +51,24 @@ graph LR
   module_src_features_tabs_tabs_ts["src/features/tabs/tabs.ts"]
   module_src_navigator_ts["src/navigator.ts"]
   module_src_types_nativeIcons_ts["src/types/nativeIcons.ts"]
+  module_src_types_NavigatorCliExecution_ts["src/types/NavigatorCliExecution.ts"]
+  module_src_types_NavigatorCliOptions_ts["src/types/NavigatorCliOptions.ts"]
+  module_src_types_NavigatorRuntimeProvider_ts["src/types/NavigatorRuntimeProvider.ts"]
+  module_src_types_NavigatorVerificationResult_ts["src/types/NavigatorVerificationResult.ts"]
   module_src_utils_createNavigatorPlan_ts["src/utils/createNavigatorPlan.ts"]
-  module_src_utils_generateNavigatorFiles_ts["src/utils/generateNavigatorFiles.ts"]
+  module_src_utils_generateNavigator_ts["src/utils/generateNavigator.ts"]
+  module_src_utils_isNavigatorGenerationBindings_ts["src/utils/isNavigatorGenerationBindings.ts"]
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"]
+  module_src_utils_NAVIGATOR_ROUTER_POLICY_ts["src/utils/NAVIGATOR_ROUTER_POLICY.ts"]
   module_src_utils_parseExpoRouterMajor_ts["src/utils/parseExpoRouterMajor.ts"]
+  module_src_utils_resolveNavigatorDependencies_ts["src/utils/resolveNavigatorDependencies.ts"]
   module_src_utils_resolveNavigatorPreset_ts["src/utils/resolveNavigatorPreset.ts"]
+  module_src_utils_validateNavigator_ts["src/utils/validateNavigator.ts"]
+  module_src_utils_validateNavigatorBindings_ts["src/utils/validateNavigatorBindings.ts"]
   module_src_utils_validateNavigatorManifest_ts["src/utils/validateNavigatorManifest.ts"]
   module_src_utils_validatePresetTopology_ts["src/utils/validatePresetTopology.ts"]
+  module_src_utils_verifyNavigator_ts["src/utils/verifyNavigator.ts"]
+  module_tests_cli_test_ts["tests/cli.test.ts"]
   module_tests_composableGeneration_test_ts["tests/composableGeneration.test.ts"]
   module_tests_contractsBoundary_test_ts["tests/contractsBoundary.test.ts"]
   module_tests_CustomNavigatorRegistry_test_ts["tests/CustomNavigatorRegistry.test.ts"]
@@ -49,9 +77,11 @@ graph LR
   module_tests_generatedExperimentalStackTypecheck_test_ts["tests/generatedExperimentalStackTypecheck.test.ts"]
   module_tests_generatedSplitViewTypecheck_test_ts["tests/generatedSplitViewTypecheck.test.ts"]
   module_tests_generatedTabsTypecheck_test_ts["tests/generatedTabsTypecheck.test.ts"]
+  module_tests_generateFiles_ts["tests/generateFiles.ts"]
   module_tests_index_test_ts["tests/index.test.ts"]
   module_tests_packageBoundary_test_ts["tests/packageBoundary.test.ts"]
   module_tests_publicEntrypoints_test_ts["tests/publicEntrypoints.test.ts"]
+  module_tests_routerPolicy_ts["tests/routerPolicy.ts"]
   module_tests_sourceStructure_test_ts["tests/sourceStructure.test.ts"]
   module_tests_splitView_test_ts["tests/splitView.test.ts"]
   module_tests_tabs_test_ts["tests/tabs.test.ts"]
@@ -59,10 +89,14 @@ graph LR
   module_src_utils_createNavigatorPlan_ts --> export_createNavigatorPlan
   export_defineCustomNavigatorRegistry["defineCustomNavigatorRegistry"]
   module_src_features_custom_domain_defineCustomNavigatorRegistry_ts --> export_defineCustomNavigatorRegistry
-  export_generateNavigatorFiles["generateNavigatorFiles"]
-  module_src_utils_generateNavigatorFiles_ts --> export_generateNavigatorFiles
+  export_generateNavigator["generateNavigator"]
+  module_src_utils_generateNavigator_ts --> export_generateNavigator
+  export_getNavigatorCatalog["getNavigatorCatalog"]
+  module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts --> export_getNavigatorCatalog
   export_HeadlessTabsLayout["HeadlessTabsLayout"]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> export_HeadlessTabsLayout
+  export_isNavigatorGenerationBindings["isNavigatorGenerationBindings"]
+  module_src_utils_isNavigatorGenerationBindings_ts --> export_isNavigatorGenerationBindings
   export_NativeFontAwesome5Family["NativeFontAwesome5Family"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --> export_NativeFontAwesome5Family
   export_NativeFontAwesome6Family["NativeFontAwesome6Family"]
@@ -75,11 +109,22 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --> export_NativeMaterialDesignIconsFamily
   export_NAVIGATOR_PACKAGE_METADATA["NAVIGATOR_PACKAGE_METADATA"]
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> export_NAVIGATOR_PACKAGE_METADATA
+  export_navigatorRuntimeProvider["navigatorRuntimeProvider"]
+  module_src_cli_provider_navigatorRuntimeProvider_ts --> export_navigatorRuntimeProvider
+  export_NavigatorVerificationResult["NavigatorVerificationResult"]
+  module_src_types_NavigatorVerificationResult_ts --> export_NavigatorVerificationResult
   export_resolveHeadlessTabsPresentation["resolveHeadlessTabsPresentation"]
   module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --> export_resolveHeadlessTabsPresentation
   export_resolveNavigatorPreset["resolveNavigatorPreset"]
   module_src_utils_resolveNavigatorPreset_ts --> export_resolveNavigatorPreset
   export_resolveTabsNavigatorPlan["resolveTabsNavigatorPlan"]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --> export_resolveTabsNavigatorPlan
+  export_validateNavigator["validateNavigator"]
+  module_src_utils_validateNavigator_ts --> export_validateNavigator
+  export_validateNavigatorBindings["validateNavigatorBindings"]
+  module_src_utils_validateNavigatorBindings_ts --> export_validateNavigatorBindings
   export_validateNavigatorManifest["validateNavigatorManifest"]
   module_src_utils_validateNavigatorManifest_ts --> export_validateNavigatorManifest
+  export_verifyNavigator["verifyNavigator"]
+  module_src_utils_verifyNavigator_ts --> export_verifyNavigator
+  export_verifyNavigator -.-> export_NavigatorVerificationResult

@@ -3,10 +3,13 @@ import { describe, expect, test } from 'bun:test';
 
 import {
   createNavigatorPlan,
-  generateNavigatorFiles,
+  generateNavigator,
   validateNavigatorManifest,
 } from '../src/navigator';
 import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { generateFiles } from './generateFiles';
+import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 
 const SPLIT_VIEW_MANIFEST = {
   type: 'split-view',
@@ -37,7 +40,7 @@ describe('@ankhorage/navigator Split View planning', () => {
   test('plans the iOS alpha adapter and serialized columns', () => {
     const plan = createNavigatorPlan(SPLIT_VIEW_MANIFEST, {
       platform: 'ios',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
     expect(plan.support).toBe('testing-only');
     expect(plan.diagnostics).toEqual([]);
@@ -55,19 +58,23 @@ describe('@ankhorage/navigator Split View planning', () => {
     });
   });
 
-  test('reports the honest Slot fallback and version gate', () => {
+  test('reports unsupported non-iOS presentation and the version gate', () => {
     const web = createNavigatorPlan(SPLIT_VIEW_MANIFEST, {
       platform: 'web',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
-    expect(web.support).toBe('testing-only');
-    expect(web.diagnostics.map(({ code }) => code)).toContain('split-view-slot-fallback');
-    expect(web.root.adapter.limitations[0]).toContain('Slot fallback');
-    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.splitView.fallback.web).toBe('slot');
+    expect(web.support).toBe('unsupported');
+    expect(web.diagnostics.map(({ code }) => code)).toContain('unsupported-platform');
+    expect(web.root.adapter.limitations[0]).toContain('split-pane presentation');
+    expect(
+      NAVIGATOR_PACKAGE_METADATA.catalog.capabilities
+        .find(({ id }) => id === 'split-view.two-column')
+        ?.targets.find(({ platform }) => platform === 'web')?.support,
+    ).toBe('unsupported');
 
     const old = createNavigatorPlan(SPLIT_VIEW_MANIFEST, {
       platform: 'ios',
-      expoRouterVersion: '54.0.0',
+      expoRouterVersion: expoRouterVersionBefore(NAVIGATOR_ROUTER_POLICY.splitViewMinimumMajor),
     });
     expect(old.support).toBe('unsupported');
     expect(old.diagnostics.map(({ code }) => code)).toContain('unsupported-expo-router-version');
@@ -83,7 +90,7 @@ describe('@ankhorage/navigator Split View placement', () => {
     expect(
       validateNavigatorManifest(beneathSlot, {
         platform: 'ios',
-        expoRouterVersion: '57.0.18',
+        expoRouterVersion: EXPO_ROUTER_VERSION,
       }).some(({ code }) => code === 'invalid-split-view-placement'),
     ).toBe(false);
   });
@@ -96,7 +103,7 @@ describe('@ankhorage/navigator Split View placement', () => {
     expect(
       validateNavigatorManifest(beneathStack, {
         platform: 'ios',
-        expoRouterVersion: '57.0.18',
+        expoRouterVersion: EXPO_ROUTER_VERSION,
       }).map(({ code }) => code),
     ).toContain('invalid-split-view-placement');
 
@@ -115,14 +122,14 @@ describe('@ankhorage/navigator Split View placement', () => {
     expect(
       validateNavigatorManifest(beneathStackAndSlot, {
         platform: 'ios',
-        expoRouterVersion: '57.0.18',
+        expoRouterVersion: EXPO_ROUTER_VERSION,
       }).map(({ code }) => code),
     ).toContain('invalid-split-view-placement');
   });
 });
 
 describe('@ankhorage/navigator Split View global constraints', () => {
-  test('rejects multiple Split Views without flow-specific navigator state', () => {
+  test('rejects multiple Split Views', () => {
     const multiple: AppNavigatorManifest = {
       type: 'slot',
       routes: [
@@ -133,7 +140,7 @@ describe('@ankhorage/navigator Split View global constraints', () => {
     expect(
       validateNavigatorManifest(multiple, {
         platform: 'ios',
-        expoRouterVersion: '57.0.18',
+        expoRouterVersion: EXPO_ROUTER_VERSION,
       }).map(({ code }) => code),
     ).toContain('multiple-split-views');
   });
@@ -156,7 +163,7 @@ describe('@ankhorage/navigator Split View references', () => {
           },
         ],
       },
-      { platform: 'ios', expoRouterVersion: '57.0.18' },
+      { platform: 'ios', expoRouterVersion: EXPO_ROUTER_VERSION },
     );
     const codes = diagnostics.map(({ code }) => code);
     expect(codes).toContain('duplicate-split-view-screen-reference');
@@ -170,9 +177,9 @@ describe('@ankhorage/navigator Split View generation', () => {
   test('generates three columns, inspector and upstream iPhone collapse state', () => {
     const plan = createNavigatorPlan(SPLIT_VIEW_MANIFEST, {
       platform: 'ios',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
-    const files = generateNavigatorFiles(plan, BINDINGS).files;
+    const files = generateFiles(plan, BINDINGS);
     const layout = files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
     expect(layout).toContain("from 'expo-router/unstable-split-view'");
@@ -190,45 +197,49 @@ describe('@ankhorage/navigator Split View generation', () => {
   test('fails explicitly when a referenced column screen is unregistered', () => {
     const plan = createNavigatorPlan(SPLIT_VIEW_MANIFEST, {
       platform: 'ios',
-      expoRouterVersion: '57.0.18',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
-    expect(() =>
-      generateNavigatorFiles(
-        plan,
-        {
-          screens: { home: BINDINGS.screens.home, detail: BINDINGS.screens.detail },
-          guards: {},
-        },
-        { includeScreenFiles: false },
-      ),
-    ).toThrow('Missing Split View primary screen binding for "sidebar"');
+    const result = generateNavigator(
+      plan,
+      {
+        screens: { home: BINDINGS.screens.home, detail: BINDINGS.screens.detail },
+        guards: {},
+      },
+      { includeScreenFiles: false },
+    );
+    expect(result.files).toEqual([]);
+    expect(result.diagnostics.map(({ code }) => code)).toContain('missing-split-view-binding');
   });
 });
 
-describe('@ankhorage/navigator Split View two-column fallback', () => {
-  test('keeps routed files reachable through the same upstream layout on iOS and web', () => {
+describe('@ankhorage/navigator Split View two-column support', () => {
+  test('generates on iOS and reports the non-iOS fallback as unsupported', () => {
     const manifest: AppNavigatorManifest = {
       type: 'split-view',
       columns: { primary: { screenId: 'sidebar' } },
       routes: SPLIT_VIEW_MANIFEST.routes,
     };
-    const layouts = (['ios', 'web'] as const).map((platform) => {
-      const plan = createNavigatorPlan(manifest, {
-        platform,
-        expoRouterVersion: '57.0.18',
-      });
-      const files = generateNavigatorFiles(plan, BINDINGS).files;
-      expect(files.map(({ path }) => path)).toEqual([
-        'src/app/_layout.tsx',
-        'src/app/[id].tsx',
-        'src/app/index.tsx',
-      ]);
-      return files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+    const iosPlan = createNavigatorPlan(manifest, {
+      platform: 'ios',
+      expoRouterVersion: EXPO_ROUTER_VERSION,
     });
+    const files = generateFiles(iosPlan, BINDINGS);
+    expect(files.map(({ path }) => path)).toEqual([
+      'src/app/_layout.tsx',
+      'src/app/[id].tsx',
+      'src/app/index.tsx',
+    ]);
+    const layout = files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
-    expect(layouts[0]).toBe(layouts[1]);
-    expect(layouts[0]?.match(/<SplitView\.Column>/gu)).toHaveLength(1);
-    expect(layouts[0]).not.toContain('SplitView.Inspector');
-    expect(layouts[0]).not.toContain('NavigationContainer');
+    expect(layout.match(/<SplitView\.Column>/gu)).toHaveLength(1);
+    expect(layout).not.toContain('SplitView.Inspector');
+    expect(layout).not.toContain('NavigationContainer');
+
+    const web = generateNavigator(
+      createNavigatorPlan(manifest, { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION }),
+      BINDINGS,
+    );
+    expect(web.support).toBe('unsupported');
+    expect(web.files).toEqual([]);
   });
 });

@@ -18,9 +18,16 @@ const entrypoints = new Set(
   ),
 );
 
-test('keeps exactly the six navigator capabilities as peers, without legacy directories', () => {
-  expect(readdirSync(sourceRoot).sort()).toEqual(['features', 'navigator.ts', 'types', 'utils']);
+test('keeps the catalog and six topology capabilities as peers, without legacy directories', () => {
+  expect(readdirSync(sourceRoot).sort()).toEqual([
+    'cli',
+    'features',
+    'navigator.ts',
+    'types',
+    'utils',
+  ]);
   expect(readdirSync(join(sourceRoot, 'features')).sort()).toEqual([
+    'catalog',
     'custom',
     'drawer',
     'slot',
@@ -29,7 +36,7 @@ test('keeps exactly the six navigator capabilities as peers, without legacy dire
     'tabs',
   ]);
   for (const file of sources.keys()) {
-    expect(basename(file)).not.toBe('index.ts');
+    if (basename(file) === 'index.ts') expect(relative(sourceRoot, file)).toBe('cli/index.ts');
     expect(relative(sourceRoot, file).split('/')).not.toContain('shared');
     expect(relative(sourceRoot, file).split('/')).not.toContain('common');
     expect(relative(sourceRoot, file).split('/')).not.toContain('helpers');

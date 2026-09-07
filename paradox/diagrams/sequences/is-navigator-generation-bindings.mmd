@@ -1,0 +1,20 @@
+sequenceDiagram
+  participant participant_hasOnlyKeys as hasOnlyKeys
+  participant participant_isModule as isModule
+  participant participant_isModuleRecord as isModuleRecord
+  participant participant_isNavigatorGenerationBindings as isNavigatorGenerationBindings
+  participant participant_isRecord as isRecord
+  participant_isNavigatorGenerationBindings->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isNavigatorGenerationBindings: return
+  participant_isNavigatorGenerationBindings->>participant_hasOnlyKeys: hasOnlyKeys()
+  participant_hasOnlyKeys-->>participant_isNavigatorGenerationBindings: return
+  participant_isNavigatorGenerationBindings->>participant_isModuleRecord: isModuleRecord()
+  participant_isModuleRecord->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isModuleRecord: return
+  participant_isModuleRecord-->>participant_isNavigatorGenerationBindings: return
+  participant_isNavigatorGenerationBindings->>participant_isModule: isModule()
+  participant_isModule->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isModule: return
+  participant_isModule->>participant_hasOnlyKeys: hasOnlyKeys()
+  participant_hasOnlyKeys-->>participant_isModule: return
+  participant_isModule-->>participant_isNavigatorGenerationBindings: return
