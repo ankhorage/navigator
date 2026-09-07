@@ -52,6 +52,19 @@ function nativeIconFamily(provider: NativeIconProvider): string {
   }
 }
 
+/*** Render a Native Tabs vector icon source within the canonical generated-code print width. */
+function nativeIconSource(componentName: string, family: string, name: string): string {
+  const vectorIcon = `<${componentName}.Trigger.VectorIcon family={${family}} name=${quoteJsxAttribute(name)} />`;
+  const inlineSource = `          src={${vectorIcon}}`;
+  if (inlineSource.length <= 100) return inlineSource;
+  return `          src={
+            <${componentName}.Trigger.VectorIcon
+              family={${family}}
+              name=${quoteJsxAttribute(name)}
+            />
+          }`;
+}
+
 /*** Render a complete Native Tabs layout module from one validated node plan. */
 function createNativeTabsContents(
   node: NavigatorNodePlan,
@@ -73,7 +86,13 @@ function createNativeTabsContents(
       const icon =
         route.icon === undefined
           ? ''
-          : `\n        <${componentName}.Trigger.Icon src={<${componentName}.Trigger.VectorIcon family={${nativeIconFamily(nativeIconProvider(route.icon))}} name=${quoteJsxAttribute(nativeIconName(route.icon))} />} />`;
+          : `\n        <${componentName}.Trigger.Icon
+${nativeIconSource(
+  componentName,
+  nativeIconFamily(nativeIconProvider(route.icon)),
+  nativeIconName(route.icon),
+)}
+        />`;
       return `      <${componentName}.Trigger name=${quoteJsxAttribute(route.name)}>\n        <${componentName}.Trigger.Label>{${quote(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
     })
     .join('\n');
@@ -117,7 +136,12 @@ function createNativeTabsFile(
   }
   return {
     path: `${directory}/_layout.tsx`,
-    contents: createNativeTabsContents(node, componentName, imports.join('\n'), accessoryName),
+    contents: createNativeTabsContents(
+      node,
+      componentName,
+      imports.sort().join('\n'),
+      accessoryName,
+    ),
   };
 }
 
@@ -135,6 +159,12 @@ ${Object.entries(route)
   )
   .join('\n')}
 ]`;
+}
+
+/*** Render the custom Tabs return statement without exceeding the canonical print width. */
+function renderCustomTabsReturn(component: string): string {
+  const directReturn = `  return ${component};`;
+  return directReturn.length <= 100 ? directReturn : `  return (\n    ${component}\n  );`;
 }
 
 /*** Create the generated Web custom-tabs layout file and registered integration imports. */
@@ -181,9 +211,10 @@ function createCustomTabsFile(
       ? ''
       : ` initialRouteName=${quoteJsxAttribute(node.initialRouteName)}`;
   const routeSource = renderCustomTabRoutes(routes);
+  const component = `<CustomTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />`;
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${imports.join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${sourceLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n  return <CustomTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />;\n}\n`,
+    contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${sourceLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderCustomTabsReturn(component)}\n}\n`,
   };
 }
 
