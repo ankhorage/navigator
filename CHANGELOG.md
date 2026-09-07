@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 2.0.1
+
+### Patch Changes
+
+- 2042acd: Emit formatter-stable Native Tabs vector icon source in generated Expo Router layouts.
+
 ## 2.0.0
 
 ### Major Changes
