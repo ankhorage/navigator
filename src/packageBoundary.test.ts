@@ -60,8 +60,8 @@ describe('@ankhorage/navigator package boundary', () => {
       readonly peerDependencies?: Readonly<Record<string, string>>;
     };
 
-    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toBe('^3.4.1');
-    expect(packageJson.devDependencies?.['@ankhorage/surface']).toBe('^3.4.1');
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toBe('^3.4.3');
+    expect(packageJson.devDependencies?.['@ankhorage/surface']).toBe('^3.4.3');
   });
 
   test('never imports the full app manifest into production source', async () => {
