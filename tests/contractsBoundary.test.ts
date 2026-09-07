@@ -5,13 +5,17 @@ import type {
   NavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
+import expoRouterPackage from 'expo-router/package.json';
 import type { ComponentProps } from 'react';
 
 import type { CustomTabsLayout } from '../src/features/tabs/tabs';
 import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
 
 test('exchanges plans and generated module bindings through the Contracts API', () => {
-  const options: CreateNavigatorPlanOptions = { platform: 'web', expoRouterVersion: '57.0.18' };
+  const options: CreateNavigatorPlanOptions = {
+    platform: 'web',
+    expoRouterVersion: expoRouterPackage.version,
+  };
   const bindings: NavigatorGenerationBindings = {
     screens: { home: { module: '@/Home', exportName: 'Home' } },
     guards: {},
