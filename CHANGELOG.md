@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.5.4
+
+### Patch Changes
+
+- 1d50715: Generate Native and custom Tabs layouts in canonical import and Prettier formatting.
+
 ## 1.5.3
 
 ### Patch Changes
