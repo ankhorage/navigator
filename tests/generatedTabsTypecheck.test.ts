@@ -11,7 +11,7 @@ const screens = { home: { module: '@/screens/home', exportName: 'Home' } } as co
 function createLayout(manifest: AppNavigatorManifest, platform: 'ios' | 'web'): string {
   const plan = createNavigatorPlan(manifest, { expoRouterVersion: '57.0.18', platform });
   return (
-    generateNavigatorFiles(plan, { guards: {}, screens }).find(
+    generateNavigatorFiles(plan, { guards: {}, screens }).files.find(
       (file) => file.path === 'src/app/_layout.tsx',
     )?.contents ?? ''
   );
@@ -76,7 +76,7 @@ test('generated Tabs layouts typecheck against the supported Expo and Surface ru
   const custom = createLayout(
     {
       type: 'tabs',
-      implementation: 'custom',
+      implementation: 'headless',
       presentation: 'responsive',
       responsive: { compact: 'bottom', expanded: 'sidebar' },
       routes: [{ name: 'home', path: '/', screenId: 'home' }],

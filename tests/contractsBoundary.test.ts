@@ -1,6 +1,6 @@
 import type {
   CreateNavigatorPlanOptions,
-  NavigatorGeneratedFile,
+  NavigatorGenerationResult,
   NavigatorGenerationBindings,
   NavigatorPlan,
 } from '@ankhorage/contracts/navigator';
@@ -8,7 +8,7 @@ import { expect, test } from 'bun:test';
 import expoRouterPackage from 'expo-router/package.json';
 import type { ComponentProps } from 'react';
 
-import type { CustomTabsLayout } from '../src/features/tabs/tabs';
+import type { HeadlessTabsLayout } from '../src/features/tabs/tabs';
 import { createNavigatorPlan, generateNavigatorFiles } from '../src/navigator';
 
 test('exchanges plans and generated module bindings through the Contracts API', () => {
@@ -24,12 +24,15 @@ test('exchanges plans and generated module bindings through the Contracts API', 
     { type: 'slot', routes: [{ name: 'index', screenId: 'home' }] },
     options,
   );
-  const files: readonly NavigatorGeneratedFile[] = generateNavigatorFiles(plan, bindings);
-  expect(files.map((file) => file.path)).toEqual(['src/app/_layout.tsx', 'src/app/index.tsx']);
+  const result: NavigatorGenerationResult = generateNavigatorFiles(plan, bindings);
+  expect(result.files.map((file) => file.path)).toEqual([
+    'src/app/_layout.tsx',
+    'src/app/index.tsx',
+  ]);
 });
 
 test('derives adapter props from its public component without exporting private type names', () => {
-  const props: ComponentProps<typeof CustomTabsLayout> = {
+  const props: ComponentProps<typeof HeadlessTabsLayout> = {
     routes: [{ name: 'home', href: '/', label: 'Home', visible: true }],
     presentations: { compact: 'bottom', medium: 'rail', expanded: 'sidebar' },
   };

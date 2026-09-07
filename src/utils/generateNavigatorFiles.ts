@@ -2,6 +2,7 @@ import type {
   NavigatorGeneratedFile,
   NavigatorGenerationBindings,
   NavigatorGenerationOptions,
+  NavigatorGenerationResult,
   NavigatorNodePlan,
   NavigatorPlan,
   NavigatorRoutePlan,
@@ -20,14 +21,11 @@ export function generateNavigatorFiles(
   plan: NavigatorPlan,
   bindings: NavigatorGenerationBindings,
   options: NavigatorGenerationOptions = {},
-): readonly NavigatorGeneratedFile[] {
+): NavigatorGenerationResult {
   const errors = plan.diagnostics.filter((diagnostic) => diagnostic.severity === 'error');
-  if (!plan.supported || errors.length > 0) {
-    throw new Error(
-      `Cannot generate an unsupported navigator plan: ${errors.map((error) => error.code).join(', ') || 'adapter unavailable'}.`,
-    );
+  if (plan.support === 'unsupported' || errors.length > 0) {
+    return createGenerationResult(plan, []);
   }
-  validateFlowBindings(plan, bindings);
   const rootDirectory = resolveRootDirectory(options.rootDirectory);
   const files = collectFiles(
     plan.root,
@@ -41,35 +39,22 @@ export function generateNavigatorFiles(
       throw new Error(`Generated file path ${JSON.stringify(file.path)} is duplicated.`);
     paths.add(file.path);
   }
-  return files;
+  return createGenerationResult(plan, files);
 }
 
-/*** Require enabled onboarding and authentication flows to reference an existing route. */
-function validateFlowBindings(plan: NavigatorPlan, bindings: NavigatorGenerationBindings): void {
-  const routeIds = new Set(collectRouteIds(plan.root));
-  for (const [enabled, routeId, name] of [
-    [plan.flows.onboarding, bindings.flows?.onboardingRoute, 'onboarding'],
-    [plan.flows.authentication, bindings.flows?.authenticationRoute, 'authentication'],
-  ] as const) {
-    if (!enabled) continue;
-    if (routeId === undefined) throw new Error(`Missing ${name} flow-route binding.`);
-    if (!routeIds.has(routeId)) {
-      throw new Error(
-        `${name[0]?.toUpperCase()}${name.slice(1)} flow route ${JSON.stringify(routeId)} does not exist.`,
-      );
-    }
-  }
-}
-
-/*** Collect nested route identifiers without changing their authored segment names. */
-function collectRouteIds(node: NavigatorNodePlan, parent: string[] = []): string[] {
-  return node.routes.flatMap((route) => {
-    const segments = [...parent, route.name];
-    const routeId = segments.join('/');
-    return route.navigator === undefined
-      ? [routeId]
-      : [routeId, ...collectRouteIds(route.navigator, segments)];
-  });
+/*** Return structured generation evidence for both generated and unsupported plans. */
+function createGenerationResult(
+  plan: NavigatorPlan,
+  files: readonly NavigatorGeneratedFile[],
+): NavigatorGenerationResult {
+  return {
+    support: plan.support,
+    capabilityIds: plan.capabilityIds,
+    dependencies: plan.dependencies,
+    diagnostics: plan.diagnostics,
+    plan,
+    files,
+  };
 }
 
 /*** Resolve a safe directory below the Expo Router app root without filesystem normalization. */
@@ -129,7 +114,7 @@ function createLayoutFile(
   bindings: NavigatorGenerationBindings,
 ): NavigatorGeneratedFile {
   if (
-    node.adapter.support !== 'supported' ||
+    node.adapter.support === 'unsupported' ||
     node.adapter.module === undefined ||
     node.adapter.exportName === undefined
   ) {

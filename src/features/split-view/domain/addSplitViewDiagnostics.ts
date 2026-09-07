@@ -7,7 +7,7 @@ import type {
   SplitViewNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-/*** Add constrained placement, binding, flow, version, and fallback diagnostics for Split View. */
+/*** Add constrained placement, binding, version, and fallback diagnostics for Split View. */
 export function addSplitViewDiagnostics(
   diagnostics: NavigatorDiagnostic[],
   manifest: AppNavigatorManifest,
@@ -26,15 +26,6 @@ export function addSplitViewDiagnostics(
       severity: 'error',
       path: location.pointer,
       message: 'Only one Split View may exist in the app navigator hierarchy.',
-    });
-  }
-  if (manifest.flows?.authentication === true || manifest.flows?.onboarding === true) {
-    diagnostics.push({
-      code: 'unsupported-split-view-flow-wrapper',
-      severity: 'error',
-      path: '/flows',
-      message:
-        'Split View cannot synthesize a root Stack wrapper for onboarding or authentication.',
     });
   }
   if (routerMajor !== undefined && routerMajor < 55) {

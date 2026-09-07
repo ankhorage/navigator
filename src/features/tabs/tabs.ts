@@ -1,1 +1,1 @@
-export { CustomTabsLayout } from './adapters/inbound/CustomTabsLayout';
+export { HeadlessTabsLayout } from './adapters/inbound/HeadlessTabsLayout';

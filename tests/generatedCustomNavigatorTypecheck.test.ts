@@ -118,7 +118,7 @@ test('generated custom navigator layout typechecks for every claimed universal p
           home: { module: '@/screens/home', exportName: 'Home' },
           project: { module: '@/screens/project', exportName: 'Project' },
         },
-      }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+      }).files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
     expect(
       typeErrors(layout).map((diagnostic) =>

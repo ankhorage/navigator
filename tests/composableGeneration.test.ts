@@ -24,7 +24,7 @@ describe('@ankhorage/navigator composable generation', () => {
       platform: 'web',
       expoRouterVersion: '56.0.0',
     });
-    const layouts = generateNavigatorFiles(
+    const result = generateNavigatorFiles(
       plan,
       {
         screens: {},
@@ -35,14 +35,14 @@ describe('@ankhorage/navigator composable generation', () => {
       { rootDirectory: 'src/app/(generated)', includeScreenFiles: false },
     );
 
-    expect(layouts.map(({ path }) => path)).toEqual([
+    expect(result.files.map(({ path }) => path)).toEqual([
       'src/app/(generated)/_layout.tsx',
       'src/app/(generated)/(app)/_layout.tsx',
     ]);
-    expect(layouts[0]?.contents).toContain(
+    expect(result.files[0]?.contents).toContain(
       "import { Stack } from 'expo-router';\n\nimport { isAuthenticated as navigatorGuard0 } from '@/navigation/guards';",
     );
-    expect(layouts[0]?.contents).toContain('<Stack.Protected guard={navigatorGuard0()}>');
+    expect(result.files[0]?.contents).toContain('<Stack.Protected guard={navigatorGuard0()}>');
     expect(() =>
       generateNavigatorFiles(
         plan,

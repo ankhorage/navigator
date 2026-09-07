@@ -24,17 +24,17 @@ export function resolveNavigatorPreset(
       return ['drawer', 'tabs'];
     case 'drawer-tabs-stack':
       return ['drawer', 'tabs', 'stack'];
-    case 'root-stack-tabs':
+    case 'stack-tabs':
       return ['stack', 'tabs'];
-    case 'root-stack-tabs-stack':
+    case 'stack-tabs-stack':
       return ['stack', 'tabs', 'stack'];
-    case 'root-stack-drawer':
+    case 'stack-drawer':
       return ['stack', 'drawer'];
-    case 'root-stack-drawer-stack':
+    case 'stack-drawer-stack':
       return ['stack', 'drawer', 'stack'];
-    case 'root-stack-drawer-tabs':
+    case 'stack-drawer-tabs':
       return ['stack', 'drawer', 'tabs'];
-    case 'root-stack-drawer-tabs-stack':
+    case 'stack-drawer-tabs-stack':
       return ['stack', 'drawer', 'tabs', 'stack'];
     case 'split-view':
       return ['split-view'];

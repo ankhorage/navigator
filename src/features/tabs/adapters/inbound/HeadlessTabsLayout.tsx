@@ -17,13 +17,13 @@ import { StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 /*** Render one stable headless Expo Router tab topology with Surface-owned presentations. */
-export function CustomTabsLayout({
+export function HeadlessTabsLayout({
   routes,
   presentations,
   initialRouteName,
   resolveIconSource,
   customPresentation: CustomPresentation,
-}: CustomTabsLayoutProps) {
+}: HeadlessTabsLayoutProps) {
   const size = useHydrationSafeSize();
   const presentation = selectPresentation(presentations, size);
   const insets = useSafeAreaInsets();
@@ -67,7 +67,7 @@ export function CustomTabsLayout({
 }
 
 /** One explicit Expo Router tab registration plus optional Surface-owned presentation metadata. */
-interface CustomTabsRoute {
+interface HeadlessTabsRoute {
   name: string;
   href: string;
   label: string;
@@ -80,20 +80,20 @@ interface CustomTabsRoute {
  * Runtime inputs for the cross-platform custom-tabs adapter. Routes remain mounted in one headless Router
  * topology while Surface selects bottom, top, rail, sidebar, or registered custom chrome.
  */
-interface CustomTabsLayoutProps {
-  routes: readonly CustomTabsRoute[];
+interface HeadlessTabsLayoutProps {
+  routes: readonly HeadlessTabsRoute[];
   presentations: Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>;
   initialRouteName?: string;
-  resolveIconSource?: CustomTabsIconSourceResolver;
-  customPresentation?: ComponentType<CustomTabsPresentationProps>;
+  resolveIconSource?: HeadlessTabsIconSourceResolver;
+  customPresentation?: ComponentType<HeadlessTabsPresentationProps>;
 }
 
-interface CustomTabsPresentationProps {
-  routes: readonly CustomTabsRoute[];
-  renderItem: (route: CustomTabsRoute, compact?: boolean) => ReactNode;
+interface HeadlessTabsPresentationProps {
+  routes: readonly HeadlessTabsRoute[];
+  renderItem: (route: HeadlessTabsRoute, compact?: boolean) => ReactNode;
 }
 
-type CustomTabsIconSourceResolver = (source: IconMediaReference) => ResolvedSvgSource;
+type HeadlessTabsIconSourceResolver = (source: IconMediaReference) => ResolvedSvgSource;
 
 type IconMediaReference = Extract<
   NonNullable<RouteDefinition['icon']>,
@@ -132,7 +132,7 @@ function getServerHydration(): boolean {
 
 /*** Select one fixed presentation without altering the Router-owned topology. */
 function selectPresentation(
-  presentations: CustomTabsLayoutProps['presentations'],
+  presentations: HeadlessTabsLayoutProps['presentations'],
   size: NavigatorResponsiveSize,
 ): ResolvedTabsPresentation {
   switch (size) {
@@ -152,14 +152,14 @@ function TabsNavigation({
   resolveIconSource,
   routes,
 }: {
-  CustomPresentation: ComponentType<CustomTabsPresentationProps> | undefined;
+  CustomPresentation: ComponentType<HeadlessTabsPresentationProps> | undefined;
   presentation: ResolvedTabsPresentation;
-  resolveIconSource: CustomTabsIconSourceResolver | undefined;
-  routes: readonly CustomTabsRoute[];
+  resolveIconSource: HeadlessTabsIconSourceResolver | undefined;
+  routes: readonly HeadlessTabsRoute[];
 }) {
   const visibleRoutes = routes.filter((route) => route.visible);
   /*** Bind one visible route to the shared Surface trigger for registered custom chrome. */
-  const renderItem = (route: CustomTabsRoute, compact = false) => (
+  const renderItem = (route: HeadlessTabsRoute, compact = false) => (
     <SurfaceTabTrigger
       compact={compact}
       key={route.name}
@@ -189,10 +189,10 @@ function SurfaceTabTrigger({
   compact,
   resolveIconSource,
 }: {
-  route: CustomTabsRoute;
+  route: HeadlessTabsRoute;
   presentation: 'horizontal' | 'vertical';
   compact: boolean;
-  resolveIconSource: CustomTabsIconSourceResolver | undefined;
+  resolveIconSource: HeadlessTabsIconSourceResolver | undefined;
 }) {
   const { switchTab, trigger } = useTabTrigger({ name: route.name });
   const item: NavigationItemSpec = {
@@ -215,7 +215,7 @@ function SurfaceTabTrigger({
 /*** Convert portable route icon metadata to the Surface navigation icon contract. */
 function resolveIcon(
   icon: RouteDefinition['icon'],
-  resolveIconSource: CustomTabsIconSourceResolver | undefined,
+  resolveIconSource: HeadlessTabsIconSourceResolver | undefined,
 ): NavigationItemIcon | undefined {
   if (icon === undefined) return undefined;
   if ('source' in icon) {
@@ -245,8 +245,8 @@ function BuiltInPresentation({
   resolveIconSource,
 }: {
   presentation: Exclude<ResolvedTabsPresentation, 'custom'>;
-  routes: readonly CustomTabsRoute[];
-  resolveIconSource: CustomTabsIconSourceResolver | undefined;
+  routes: readonly HeadlessTabsRoute[];
+  resolveIconSource: HeadlessTabsIconSourceResolver | undefined;
 }) {
   const horizontal = presentation === 'bottom' || presentation === 'top';
   const compact = presentation === 'rail';

@@ -103,13 +103,13 @@ test('diagnoses registration, version, platform, schema, and malformed JSON befo
       platform,
     });
     expect(plan.diagnostics.map(({ code }) => code)).toContain(expectedCode);
-    expect(plan.supported).toBe(false);
-    expect(() =>
+    expect(plan.support).toBe('unsupported');
+    expect(
       generateNavigatorFiles(plan, {
         guards: {},
         screens: { home: { module: './home', exportName: 'Home' } },
       }),
-    ).toThrow('unsupported navigator plan');
+    ).toMatchObject({ support: 'unsupported', files: [] });
   }
 });
 
@@ -126,7 +126,7 @@ test('generates only the registered static import and portable configuration', (
       project: { module: '@/screens/project', exportName: 'Project' },
     },
   });
-  const layout = files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+  const layout = files.files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
   expect(plan.diagnostics).toEqual([]);
   expect(plan.root.adapter).toMatchObject({
@@ -138,6 +138,6 @@ test('generates only the registered static import and portable configuration', (
   expect(layout).toContain("<WorkspaceRail {...{ backBehavior: 'history', railWidth: 88 }}>");
   expect(layout).toContain('name="projects"');
   expect(layout).toContain("title: 'Projects'");
-  expect(files.map(({ path }) => path)).toContain('src/app/projects/[id].tsx');
+  expect(files.files.map(({ path }) => path)).toContain('src/app/projects/[id].tsx');
   expect(layout).not.toContain('navigatorId');
 });

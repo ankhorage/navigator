@@ -8,7 +8,7 @@
     "modulePath": "src/utils/createNavigatorPlan.ts",
     "sourceLocation": {
       "filePath": "src/utils/createNavigatorPlan.ts",
-      "line": 29,
+      "line": 31,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
@@ -31,38 +31,6 @@
           }
         ],
         "returnType": "NavigatorPlan",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "CustomTabsLayout",
-    "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
-    "sourceLocation": {
-      "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
-      "line": 20,
-      "column": 1
-    },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
-    "relatedSymbols": [],
-    "signatures": [
-      {
-        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: CustomTabsLayoutProps) => import(\"react\").JSX.Element",
-        "parameters": [
-          {
-            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
-            "type": "CustomTabsLayoutProps",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "import(\"react\").JSX.Element",
         "returnDescription": null
       }
     ],
@@ -110,14 +78,14 @@
     "modulePath": "src/utils/generateNavigatorFiles.ts",
     "sourceLocation": {
       "filePath": "src/utils/generateNavigatorFiles.ts",
-      "line": 19,
+      "line": 20,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]",
+        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult",
         "parameters": [
           {
             "name": "bindings",
@@ -138,7 +106,39 @@
             "description": null
           }
         ],
-        "returnType": "readonly NavigatorGeneratedFile[]",
+        "returnType": "NavigatorGenerationResult",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "HeadlessTabsLayout",
+    "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+      "line": 20,
+      "column": 1
+    },
+    "exportPaths": ["src/features/tabs/tabs.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
+        "parameters": [
+          {
+            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+            "type": "HeadlessTabsLayoutProps",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"react\").JSX.Element",
         "returnDescription": null
       }
     ],
@@ -254,14 +254,14 @@
     "structuredRows": []
   },
   {
-    "name": "resolveCustomTabsPresentation",
-    "description": "Resolve one custom-tabs presentation for the current semantic responsive size.",
+    "name": "resolveHeadlessTabsPresentation",
+    "description": "Resolve one headless-Tabs presentation for the current semantic responsive size.",
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+    "modulePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
     "sourceLocation": {
-      "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+      "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
       "line": 10,
       "column": 1
     },
@@ -269,11 +269,11 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(config: Omit<CustomTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation",
+        "label": "(config: Omit<HeadlessTabsConfig, \"implementation\">, size: NavigatorResponsiveSize) => ResolvedHeadlessTabsPresentation",
         "parameters": [
           {
             "name": "config",
-            "type": "Omit<CustomTabsConfig, \"implementation\">",
+            "type": "Omit<HeadlessTabsConfig, \"implementation\">",
             "required": true,
             "description": null
           },
@@ -284,7 +284,7 @@
             "description": null
           }
         ],
-        "returnType": "ResolvedCustomTabsPresentation",
+        "returnType": "ResolvedHeadlessTabsPresentation",
         "returnDescription": null
       }
     ],
@@ -307,7 +307,7 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
+        "label": "(preset: \"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"stack-tabs\" | \"stack-tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"stack-drawer\" | \"stack-drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"stack-drawer-tabs\" | \"stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined, fallbackType: \"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\") => readonly (\"slot\" | \"stack\" | \"tabs\" | \"drawer\" | \"split-view\" | \"custom\")[]",
         "parameters": [
           {
             "name": "fallbackType",
@@ -317,7 +317,7 @@
           },
           {
             "name": "preset",
-            "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
+            "type": "\"slot\" | \"stack\" | \"tabs\" | \"tabs-stack\" | \"stack-tabs\" | \"stack-tabs-stack\" | \"drawer\" | \"drawer-stack\" | \"stack-drawer\" | \"stack-drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"stack-drawer-tabs\" | \"stack-drawer-tabs-stack\" | \"split-view\" | \"custom\" | undefined",
             "required": true,
             "description": null
           }

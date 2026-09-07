@@ -17,7 +17,7 @@ graph LR
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts["src/features/stack/domain/resolveEffectiveStackConfig.ts"]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts["src/features/stack/domain/resolveEffectiveStackConfigSource.ts"]
   module_src_features_stack_domain_validateStackRouteOptions_ts["src/features/stack/domain/validateStackRouteOptions.ts"]
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx["src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx["src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts["src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts["src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts["src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts"]
@@ -28,8 +28,8 @@ graph LR
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts["src/features/tabs/application/resolveTabsNavigatorPlan.ts"]
   module_src_features_tabs_application_resolveTabsPlan_ts["src/features/tabs/application/resolveTabsPlan.ts"]
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts["src/features/tabs/domain/addTabsAdapterDiagnostics.ts"]
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts["src/features/tabs/domain/resolveCustomTabsPresentation.ts"]
   module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts["src/features/tabs/domain/resolveEffectiveTabsConfig.ts"]
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts["src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"]
   module_src_features_tabs_nativeIcons_ts["src/features/tabs/nativeIcons.ts"]
   module_src_features_tabs_tabs_ts["src/features/tabs/tabs.ts"]
   module_src_navigator_ts["src/navigator.ts"]
@@ -63,7 +63,7 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts --> module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts --> module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --> module_src_types_nativeIcons_ts
-  module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --> module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
+  module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --> module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
   module_src_features_tabs_application_resolveTabsPlan_ts --> module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --> module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
   module_src_utils_createNavigatorPlan_ts --> module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts

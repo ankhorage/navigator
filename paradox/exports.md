@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/utils/createNavigatorPlan.ts`
-Source: `src/utils/createNavigatorPlan.ts:29:1`
+Source: `src/utils/createNavigatorPlan.ts:31:1`
 
 Create a disposable, provider-aware plan from only the navigator desired-state slice.
 
@@ -14,32 +14,6 @@ Create a disposable, provider-aware plan from only the navigator desired-state s
   - manifest: `AppNavigatorManifest`
   - options: `CreateNavigatorPlanOptions`
   - returns: `NavigatorPlan`
-
-## CustomTabsLayout
-
-Kind: `function`
-Module: `src/features/tabs/adapters/inbound/CustomTabsLayout.tsx`
-Source: `src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:20:1`
-
-Render one stable headless Expo Router tab topology with Surface-owned presentations.
-
-### Signatures
-
-- `({
-routes,
-presentations,
-initialRouteName,
-resolveIconSource,
-customPresentation: CustomPresentation,
-}: CustomTabsLayoutProps) => import("react").JSX.Element`
-  - {
-    routes,
-    presentations,
-    initialRouteName,
-    resolveIconSource,
-    customPresentation: CustomPresentation,
-    }: `CustomTabsLayoutProps`
-  - returns: `import("react").JSX.Element`
 
 ## defineCustomNavigatorRegistry
 
@@ -59,17 +33,43 @@ Define an immutable, duplicate-free custom navigator registry for one compositio
 
 Kind: `function`
 Module: `src/utils/generateNavigatorFiles.ts`
-Source: `src/utils/generateNavigatorFiles.ts:19:1`
+Source: `src/utils/generateNavigatorFiles.ts:20:1`
 
 Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.
 
 ### Signatures
 
-- `(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => readonly NavigatorGeneratedFile[]`
+- `(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult`
   - bindings: `NavigatorGenerationBindings`
   - options: `NavigatorGenerationOptions` (optional)
   - plan: `NavigatorPlan`
-  - returns: `readonly NavigatorGeneratedFile[]`
+  - returns: `NavigatorGenerationResult`
+
+## HeadlessTabsLayout
+
+Kind: `function`
+Module: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx`
+Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1`
+
+Render one stable headless Expo Router tab topology with Surface-owned presentations.
+
+### Signatures
+
+- `({
+routes,
+presentations,
+initialRouteName,
+resolveIconSource,
+customPresentation: CustomPresentation,
+}: HeadlessTabsLayoutProps) => import("react").JSX.Element`
+  - {
+    routes,
+    presentations,
+    initialRouteName,
+    resolveIconSource,
+    customPresentation: CustomPresentation,
+    }: `HeadlessTabsLayoutProps`
+  - returns: `import("react").JSX.Element`
 
 ## NativeFontAwesome5Family
 
@@ -117,20 +117,20 @@ Kind: `value`
 Module: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts`
 Source: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts:8:14`
 
-## resolveCustomTabsPresentation
+## resolveHeadlessTabsPresentation
 
 Kind: `function`
-Module: `src/features/tabs/domain/resolveCustomTabsPresentation.ts`
-Source: `src/features/tabs/domain/resolveCustomTabsPresentation.ts:10:1`
+Module: `src/features/tabs/domain/resolveHeadlessTabsPresentation.ts`
+Source: `src/features/tabs/domain/resolveHeadlessTabsPresentation.ts:10:1`
 
-Resolve one custom-tabs presentation for the current semantic responsive size.
+Resolve one headless-Tabs presentation for the current semantic responsive size.
 
 ### Signatures
 
-- `(config: Omit<CustomTabsConfig, "implementation">, size: NavigatorResponsiveSize) => ResolvedCustomTabsPresentation`
-  - config: `Omit<CustomTabsConfig, "implementation">`
+- `(config: Omit<HeadlessTabsConfig, "implementation">, size: NavigatorResponsiveSize) => ResolvedHeadlessTabsPresentation`
+  - config: `Omit<HeadlessTabsConfig, "implementation">`
   - size: `NavigatorResponsiveSize`
-  - returns: `ResolvedCustomTabsPresentation`
+  - returns: `ResolvedHeadlessTabsPresentation`
 
 ## resolveNavigatorPreset
 
@@ -142,9 +142,9 @@ Resolve a canonical navigator preset into its ordered topology layers.
 
 ### Signatures
 
-- `(preset: "slot" | "stack" | "tabs" | "tabs-stack" | "drawer" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | "split-view" | "custom" | undefined, fallbackType: "slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom") => readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]`
+- `(preset: "slot" | "stack" | "tabs" | "tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "drawer" | "drawer-stack" | "stack-drawer" | "stack-drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "split-view" | "custom" | undefined, fallbackType: "slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom") => readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]`
   - fallbackType: `"slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom"`
-  - preset: `"slot" | "stack" | "tabs" | "tabs-stack" | "drawer" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | "split-view" | "custom" | undefined`
+  - preset: `"slot" | "stack" | "tabs" | "tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "drawer" | "drawer-stack" | "stack-drawer" | "stack-drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "split-view" | "custom" | undefined`
   - returns: `readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]`
 
 ## resolveTabsNavigatorPlan

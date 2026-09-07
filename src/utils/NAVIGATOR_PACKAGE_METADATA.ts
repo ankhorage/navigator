@@ -1,6 +1,6 @@
 import {
-  CUSTOM_TABS_PRESENTATIONS,
-  FIXED_CUSTOM_TABS_PRESENTATIONS,
+  FIXED_HEADLESS_TABS_PRESENTATIONS,
+  HEADLESS_TABS_PRESENTATIONS,
   NAVIGATOR_PRESETS,
   NAVIGATOR_TYPES,
 } from '@ankhorage/contracts/navigator';
@@ -28,7 +28,7 @@ export const NAVIGATOR_PACKAGE_METADATA = {
       support: 'supported',
       native: { platforms: ['android', 'ios'], stability: 'alpha' },
       javascript: { platforms: ['android', 'ios', 'web'], stability: 'stable' },
-      custom: {
+      headless: {
         platforms: ['android', 'ios', 'web'],
         stability: 'stable',
         presentationOwner: '@ankhorage/surface',
@@ -67,13 +67,13 @@ export const NAVIGATOR_PACKAGE_METADATA = {
     },
   },
   tabs: {
-    implementations: ['adaptive', 'javascript', 'native', 'custom'],
-    customPresentations: CUSTOM_TABS_PRESENTATIONS,
-    fixedCustomPresentations: FIXED_CUSTOM_TABS_PRESENTATIONS,
+    implementations: ['adaptive', 'javascript', 'native', 'headless'],
+    headlessPresentations: HEADLESS_TABS_PRESENTATIONS,
+    fixedHeadlessPresentations: FIXED_HEADLESS_TABS_PRESENTATIONS,
     adaptiveDefault: {
       android: 'native',
       ios: 'native',
-      web: 'custom',
+      web: 'headless',
       webResponsive: {
         compact: 'bottom',
         medium: 'rail',
@@ -83,7 +83,7 @@ export const NAVIGATOR_PACKAGE_METADATA = {
     expoRouter: {
       javascriptBottom: 'expo-router/js-tabs',
       javascriptTop: 'expo-router/js-top-tabs',
-      custom: 'expo-router/ui',
+      headless: 'expo-router/ui',
       native: 'expo-router/unstable-native-tabs',
       nativeStability: 'alpha',
     },

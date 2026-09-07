@@ -12,7 +12,7 @@ export function resolveSplitViewAdapterPlan(
     id: 'split-view',
     module: 'expo-router/unstable-split-view',
     exportName: 'SplitView',
-    support: routerMajor !== undefined && routerMajor >= 55 ? 'supported' : 'unavailable',
+    support: routerMajor !== undefined && routerMajor >= 55 ? 'testing-only' : 'unsupported',
     stability: 'alpha',
     limitations:
       platform === 'ios'

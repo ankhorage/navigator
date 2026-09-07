@@ -7,7 +7,7 @@ import type {
 
 import { resolveTabsNavigatorPlan } from './resolveTabsNavigatorPlan';
 
-/*** Retain an unavailable native-web plan for diagnostics or resolve the supported Tabs adapter. */
+/*** Retain an unsupported native-web plan for diagnostics or resolve the selected Tabs adapter. */
 export function resolveTabsPlan(
   config: TabsImplementationConfig | undefined,
   platform: NavigatorRuntimePlatform,

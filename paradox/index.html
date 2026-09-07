@@ -374,9 +374,9 @@
               <button
                 class="nav-button"
                 type="button"
-                data-target="src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+                data-target="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
               >
-                src/features/tabs/adapters/inbound/CustomTabsLayout.tsx
+                src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx
                 <small>11 functions</small>
               </button>
             </li>
@@ -434,16 +434,6 @@
               <button
                 class="nav-button"
                 type="button"
-                data-target="src/features/tabs/domain/resolveCustomTabsPresentation.ts"
-              >
-                src/features/tabs/domain/resolveCustomTabsPresentation.ts
-                <small>2 functions</small>
-              </button>
-            </li>
-            <li>
-              <button
-                class="nav-button"
-                type="button"
                 data-target="src/features/tabs/domain/resolveEffectiveTabsConfig.ts"
               >
                 src/features/tabs/domain/resolveEffectiveTabsConfig.ts
@@ -454,10 +444,20 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
+              >
+                src/features/tabs/domain/resolveHeadlessTabsPresentation.ts
+                <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/utils/createNavigatorPlan.ts"
               >
                 src/utils/createNavigatorPlan.ts
-                <small>5 functions</small>
+                <small>10 functions</small>
               </button>
             </li>
             <li>
@@ -467,7 +467,7 @@
                 data-target="src/utils/generateNavigatorFiles.ts"
               >
                 src/utils/generateNavigatorFiles.ts
-                <small>13 functions</small>
+                <small>12 functions</small>
               </button>
             </li>
             <li>
@@ -704,12 +704,12 @@
             </article>
             <article
               class="item"
-              data-search="src/features/tabs/adapters/inbound/CustomTabsLayout.tsx CustomTabsLayout"
+              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx HeadlessTabsLayout"
             >
-              <h3>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx</h3>
+              <h3>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h3>
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-              <p><strong>Exports:</strong> <code>CustomTabsLayout</code></p>
+              <p><strong>Exports:</strong> <code>HeadlessTabsLayout</code></p>
             </article>
             <article
               class="item"
@@ -776,13 +776,13 @@
             </article>
             <article
               class="item"
-              data-search="src/features/tabs/application/resolveTabsNavigatorPlan.ts src/features/tabs/domain/resolveCustomTabsPresentation.ts resolveTabsNavigatorPlan"
+              data-search="src/features/tabs/application/resolveTabsNavigatorPlan.ts src/features/tabs/domain/resolveHeadlessTabsPresentation.ts resolveTabsNavigatorPlan"
             >
               <h3>src/features/tabs/application/resolveTabsNavigatorPlan.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong>
-                <code>src/features/tabs/domain/resolveCustomTabsPresentation.ts</code>
+                <code>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>resolveTabsNavigatorPlan</code></p>
             </article>
@@ -812,21 +812,21 @@
             </article>
             <article
               class="item"
-              data-search="src/features/tabs/domain/resolveCustomTabsPresentation.ts resolveCustomTabsPresentation"
-            >
-              <h3>src/features/tabs/domain/resolveCustomTabsPresentation.ts</h3>
-              <p class="muted">Referenced module</p>
-              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-              <p><strong>Exports:</strong> <code>resolveCustomTabsPresentation</code></p>
-            </article>
-            <article
-              class="item"
               data-search="src/features/tabs/domain/resolveEffectiveTabsConfig.ts resolveEffectiveTabsConfig"
             >
               <h3>src/features/tabs/domain/resolveEffectiveTabsConfig.ts</h3>
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p><strong>Exports:</strong> <code>resolveEffectiveTabsConfig</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/tabs/domain/resolveHeadlessTabsPresentation.ts resolveHeadlessTabsPresentation"
+            >
+              <h3>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>resolveHeadlessTabsPresentation</code></p>
             </article>
             <article
               class="item"
@@ -841,15 +841,15 @@
                 <code>NativeIoniconsFamily</code>, <code>NativeMaterialDesignIconsFamily</code>
               </p>
             </article>
-            <article class="item" data-search="src/features/tabs/tabs.ts CustomTabsLayout">
+            <article class="item" data-search="src/features/tabs/tabs.ts HeadlessTabsLayout">
               <h3>src/features/tabs/tabs.ts</h3>
               <p class="muted">Configured entrypoint</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-              <p><strong>Exports:</strong> <code>CustomTabsLayout</code></p>
+              <p><strong>Exports:</strong> <code>HeadlessTabsLayout</code></p>
             </article>
             <article
               class="item"
-              data-search="src/navigator.ts createNavigatorPlan defineCustomNavigatorRegistry generateNavigatorFiles resolveCustomTabsPresentation resolveNavigatorPreset resolveTabsNavigatorPlan validateNavigatorManifest"
+              data-search="src/navigator.ts createNavigatorPlan defineCustomNavigatorRegistry generateNavigatorFiles resolveHeadlessTabsPresentation resolveNavigatorPreset resolveTabsNavigatorPlan validateNavigatorManifest"
             >
               <h3>src/navigator.ts</h3>
               <p class="muted">Configured entrypoint</p>
@@ -857,7 +857,7 @@
               <p>
                 <strong>Exports:</strong> <code>createNavigatorPlan</code>,
                 <code>defineCustomNavigatorRegistry</code>, <code>generateNavigatorFiles</code>,
-                <code>resolveCustomTabsPresentation</code>, <code>resolveNavigatorPreset</code>,
+                <code>resolveHeadlessTabsPresentation</code>, <code>resolveNavigatorPreset</code>,
                 <code>resolveTabsNavigatorPlan</code>, <code>validateNavigatorManifest</code>
               </p>
             </article>
@@ -1137,16 +1137,16 @@
               </article>
             </section>
             <section>
-              <h3>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx</h3>
+              <h3>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h3>
               <article
                 class="item"
-                id="symbol-customtabslayout"
-                data-search='CustomTabsLayout function src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. ({&#10;  routes,&#10;  presentations,&#10;  initialRouteName,&#10;  resolveIconSource,&#10;  customPresentation: CustomPresentation,&#10;}: CustomTabsLayoutProps) =&gt; import("react").JSX.Element'
+                id="symbol-headlesstabslayout"
+                data-search='HeadlessTabsLayout function src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. ({&#10;  routes,&#10;  presentations,&#10;  initialRouteName,&#10;  resolveIconSource,&#10;  customPresentation: CustomPresentation,&#10;}: HeadlessTabsLayoutProps) =&gt; import("react").JSX.Element'
               >
-                <h4>CustomTabsLayout</h4>
+                <h4>HeadlessTabsLayout</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:20:1</code>
+                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1</code>
                 </p>
                 <p>
                   Render one stable headless Expo Router tab topology with Surface-owned
@@ -1163,7 +1163,7 @@
   initialRouteName,
   resolveIconSource,
   customPresentation: CustomPresentation,
-}: CustomTabsLayoutProps) =&gt; import(&quot;react&quot;).JSX.Element</pre>
+}: HeadlessTabsLayoutProps) =&gt; import(&quot;react&quot;).JSX.Element</pre>
                   <table>
                     <thead>
                       <tr>
@@ -1181,7 +1181,7 @@
                             customPresentation: CustomPresentation, }</code
                           >
                         </td>
-                        <td><code>CustomTabsLayoutProps</code></td>
+                        <td><code>HeadlessTabsLayoutProps</code></td>
                         <td>yes</td>
                         <td></td>
                       </tr>
@@ -1337,26 +1337,26 @@
               </article>
             </section>
             <section>
-              <h3>src/features/tabs/domain/resolveCustomTabsPresentation.ts</h3>
+              <h3>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts</h3>
               <article
                 class="item"
-                id="symbol-resolvecustomtabspresentation"
-                data-search='resolveCustomTabsPresentation function src/features/tabs/domain/resolveCustomTabsPresentation.ts Resolve one custom-tabs presentation for the current semantic responsive size. (config: Omit&lt;CustomTabsConfig, "implementation"&gt;, size: NavigatorResponsiveSize) =&gt; ResolvedCustomTabsPresentation'
+                id="symbol-resolveheadlesstabspresentation"
+                data-search='resolveHeadlessTabsPresentation function src/features/tabs/domain/resolveHeadlessTabsPresentation.ts Resolve one headless-Tabs presentation for the current semantic responsive size. (config: Omit&lt;HeadlessTabsConfig, "implementation"&gt;, size: NavigatorResponsiveSize) =&gt; ResolvedHeadlessTabsPresentation'
               >
-                <h4>resolveCustomTabsPresentation</h4>
+                <h4>resolveHeadlessTabsPresentation</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/tabs/domain/resolveCustomTabsPresentation.ts:10:1</code>
+                  <code>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts:10:1</code>
                 </p>
                 <p>
-                  Resolve one custom-tabs presentation for the current semantic responsive size.
+                  Resolve one headless-Tabs presentation for the current semantic responsive size.
                 </p>
                 <p><strong>Export paths:</strong> <code>src/navigator.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(config: Omit&lt;CustomTabsConfig, &quot;implementation&quot;&gt;, size: NavigatorResponsiveSize) =&gt; ResolvedCustomTabsPresentation</pre>
+(config: Omit&lt;HeadlessTabsConfig, &quot;implementation&quot;&gt;, size: NavigatorResponsiveSize) =&gt; ResolvedHeadlessTabsPresentation</pre>
                   <table>
                     <thead>
                       <tr>
@@ -1370,7 +1370,7 @@
                       <tr>
                         <td><code>config</code></td>
                         <td>
-                          <code>Omit&lt;CustomTabsConfig, &quot;implementation&quot;&gt;</code>
+                          <code>Omit&lt;HeadlessTabsConfig, &quot;implementation&quot;&gt;</code>
                         </td>
                         <td>yes</td>
                         <td></td>
@@ -1383,7 +1383,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p><strong>Returns:</strong> <code>ResolvedCustomTabsPresentation</code></p>
+                  <p><strong>Returns:</strong> <code>ResolvedHeadlessTabsPresentation</code></p>
                 </div>
               </article>
             </section>
@@ -1395,7 +1395,7 @@
                 data-search="createNavigatorPlan function src/utils/createNavigatorPlan.ts Create a disposable, provider-aware plan from only the navigator desired-state slice. (manifest: AppNavigatorManifest, options: CreateNavigatorPlanOptions) =&gt; NavigatorPlan"
               >
                 <h4>createNavigatorPlan</h4>
-                <p class="muted">function • <code>src/utils/createNavigatorPlan.ts:29:1</code></p>
+                <p class="muted">function • <code>src/utils/createNavigatorPlan.ts:31:1</code></p>
                 <p>
                   Create a disposable, provider-aware plan from only the navigator desired-state
                   slice.
@@ -1439,11 +1439,11 @@
               <article
                 class="item"
                 id="symbol-generatenavigatorfiles"
-                data-search="generateNavigatorFiles function src/utils/generateNavigatorFiles.ts Generate deterministic Expo Router files from a validated disposable plan and narrow bindings. (plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) =&gt; readonly NavigatorGeneratedFile[]"
+                data-search="generateNavigatorFiles function src/utils/generateNavigatorFiles.ts Generate deterministic Expo Router files from a validated disposable plan and narrow bindings. (plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) =&gt; NavigatorGenerationResult"
               >
                 <h4>generateNavigatorFiles</h4>
                 <p class="muted">
-                  function • <code>src/utils/generateNavigatorFiles.ts:19:1</code>
+                  function • <code>src/utils/generateNavigatorFiles.ts:20:1</code>
                 </p>
                 <p>
                   Generate deterministic Expo Router files from a validated disposable plan and
@@ -1454,7 +1454,7 @@
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) =&gt; readonly NavigatorGeneratedFile[]</pre>
+(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) =&gt; NavigatorGenerationResult</pre>
                   <table>
                     <thead>
                       <tr>
@@ -1485,7 +1485,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p><strong>Returns:</strong> <code>readonly NavigatorGeneratedFile[]</code></p>
+                  <p><strong>Returns:</strong> <code>NavigatorGenerationResult</code></p>
                 </div>
               </article>
             </section>
@@ -1513,7 +1513,7 @@
               <article
                 class="item"
                 id="symbol-resolvenavigatorpreset"
-                data-search='resolveNavigatorPreset function src/utils/resolveNavigatorPreset.ts Resolve a canonical navigator preset into its ordered topology layers. (preset: "slot" | "stack" | "tabs" | "tabs-stack" | "drawer" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | "split-view" | "custom" | undefined, fallbackType: "slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom") =&gt; readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]'
+                data-search='resolveNavigatorPreset function src/utils/resolveNavigatorPreset.ts Resolve a canonical navigator preset into its ordered topology layers. (preset: "slot" | "stack" | "tabs" | "tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "drawer" | "drawer-stack" | "stack-drawer" | "stack-drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "split-view" | "custom" | undefined, fallbackType: "slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom") =&gt; readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]'
               >
                 <h4>resolveNavigatorPreset</h4>
                 <p class="muted">function • <code>src/utils/resolveNavigatorPreset.ts:4:1</code></p>
@@ -1523,7 +1523,7 @@
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(preset: &quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; | &quot;tabs-stack&quot; | &quot;drawer&quot; | &quot;drawer-stack&quot; | &quot;drawer-tabs&quot; | &quot;drawer-tabs-stack&quot; | &quot;root-stack-tabs&quot; | &quot;root-stack-tabs-stack&quot; | &quot;root-stack-drawer&quot; | &quot;root-stack-drawer-stack&quot; | &quot;root-stack-drawer-tabs&quot; | &quot;root-stack-drawer-tabs-stack&quot; | &quot;split-view&quot; | &quot;custom&quot; | undefined, fallbackType: &quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot; | &quot;split-view&quot; | &quot;custom&quot;) =&gt; readonly (&quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot; | &quot;split-view&quot; | &quot;custom&quot;)[]</pre>
+(preset: &quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; | &quot;tabs-stack&quot; | &quot;stack-tabs&quot; | &quot;stack-tabs-stack&quot; | &quot;drawer&quot; | &quot;drawer-stack&quot; | &quot;stack-drawer&quot; | &quot;stack-drawer-stack&quot; | &quot;drawer-tabs&quot; | &quot;drawer-tabs-stack&quot; | &quot;stack-drawer-tabs&quot; | &quot;stack-drawer-tabs-stack&quot; | &quot;split-view&quot; | &quot;custom&quot; | undefined, fallbackType: &quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot; | &quot;split-view&quot; | &quot;custom&quot;) =&gt; readonly (&quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; | &quot;drawer&quot; | &quot;split-view&quot; | &quot;custom&quot;)[]</pre>
                   <table>
                     <thead>
                       <tr>
@@ -1550,12 +1550,12 @@
                         <td>
                           <code
                             >&quot;slot&quot; | &quot;stack&quot; | &quot;tabs&quot; |
-                            &quot;tabs-stack&quot; | &quot;drawer&quot; | &quot;drawer-stack&quot; |
-                            &quot;drawer-tabs&quot; | &quot;drawer-tabs-stack&quot; |
-                            &quot;root-stack-tabs&quot; | &quot;root-stack-tabs-stack&quot; |
-                            &quot;root-stack-drawer&quot; | &quot;root-stack-drawer-stack&quot; |
-                            &quot;root-stack-drawer-tabs&quot; |
-                            &quot;root-stack-drawer-tabs-stack&quot; | &quot;split-view&quot; |
+                            &quot;tabs-stack&quot; | &quot;stack-tabs&quot; |
+                            &quot;stack-tabs-stack&quot; | &quot;drawer&quot; |
+                            &quot;drawer-stack&quot; | &quot;stack-drawer&quot; |
+                            &quot;stack-drawer-stack&quot; | &quot;drawer-tabs&quot; |
+                            &quot;drawer-tabs-stack&quot; | &quot;stack-drawer-tabs&quot; |
+                            &quot;stack-drawer-tabs-stack&quot; | &quot;split-view&quot; |
                             &quot;custom&quot; | undefined</code
                           >
                         </td>
@@ -1631,12 +1631,12 @@
             <h2>Component registry</h2>
             <article
               class="item"
-              id="component-customtabslayout"
-              data-search="CustomTabsLayout src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. customPresentation ComponentType&lt;CustomTabsPresentationProps&gt; | undefined initialRouteName string | undefined presentations Readonly&lt;Record&lt;NavigatorResponsiveSize, ResolvedTabsPresentation&gt;&gt; resolveIconSource CustomTabsIconSourceResolver | undefined routes readonly CustomTabsRoute[]"
+              id="component-headlesstabslayout"
+              data-search="HeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. customPresentation ComponentType&lt;HeadlessTabsPresentationProps&gt; | undefined initialRouteName string | undefined presentations Readonly&lt;Record&lt;NavigatorResponsiveSize, ResolvedTabsPresentation&gt;&gt; resolveIconSource HeadlessTabsIconSourceResolver | undefined routes readonly HeadlessTabsRoute[]"
             >
-              <h3>CustomTabsLayout</h3>
+              <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:20:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Surface-owned
@@ -1656,7 +1656,7 @@
                   <tr>
                     <td><code>customPresentation</code></td>
                     <td>
-                      <code>ComponentType&lt;CustomTabsPresentationProps&gt; | undefined</code>
+                      <code>ComponentType&lt;HeadlessTabsPresentationProps&gt; | undefined</code>
                     </td>
                     <td>no</td>
                     <td></td>
@@ -1680,13 +1680,13 @@
                   </tr>
                   <tr>
                     <td><code>resolveIconSource</code></td>
-                    <td><code>CustomTabsIconSourceResolver | undefined</code></td>
+                    <td><code>HeadlessTabsIconSourceResolver | undefined</code></td>
                     <td>no</td>
                     <td></td>
                   </tr>
                   <tr>
                     <td><code>routes</code></td>
-                    <td><code>readonly CustomTabsRoute[]</code></td>
+                    <td><code>readonly HeadlessTabsRoute[]</code></td>
                     <td>yes</td>
                     <td></td>
                   </tr>
@@ -1772,9 +1772,9 @@
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_stack_domain_validateStackRouteOptions_ts
-                module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/CustomTabsLayout.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 package__ankhorage_navigator -.-&gt;
-                module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts
@@ -1810,7 +1810,7 @@
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt;
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
                 module_src_features_tabs_application_resolveTabsPlan_ts[&quot;src/features/tabs/application/resolveTabsPlan.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_application_resolveTabsPlan_ts
@@ -1821,12 +1821,12 @@
                 module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts
                 module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --&gt;
                 module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts[&quot;src/features/tabs/domain/resolveCustomTabsPresentation.ts&quot;]
-                package__ankhorage_navigator -.-&gt;
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
                 module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts[&quot;src/features/tabs/domain/resolveEffectiveTabsConfig.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts[&quot;src/features/tabs/domain/resolveHeadlessTabsPresentation.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
                 module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
                 module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
                 module_src_navigator_ts[&quot;src/navigator.ts&quot;]
@@ -2005,8 +2005,8 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_validateStackRouteOptions_ts
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/CustomTabsLayout.tsx&quot;]
-  package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; module_src_types_nativeIcons_ts
@@ -2028,17 +2028,17 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_application_createTabsAdapter_ts
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
-  module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt; module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
+  module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt; module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
   module_src_features_tabs_application_resolveTabsPlan_ts[&quot;src/features/tabs/application/resolveTabsPlan.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_application_resolveTabsPlan_ts
   module_src_features_tabs_application_resolveTabsPlan_ts --&gt; module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts[&quot;src/features/tabs/domain/addTabsAdapterDiagnostics.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --&gt; module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts[&quot;src/features/tabs/domain/resolveCustomTabsPresentation.ts&quot;]
-  package__ankhorage_navigator -.-&gt; module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
   module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts[&quot;src/features/tabs/domain/resolveEffectiveTabsConfig.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts[&quot;src/features/tabs/domain/resolveHeadlessTabsPresentation.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
   module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
   module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
   module_src_navigator_ts[&quot;src/navigator.ts&quot;]
@@ -2158,7 +2158,7 @@ graph TD
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
-                module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/CustomTabsLayout.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -2169,8 +2169,8 @@ graph TD
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
                 module_src_features_tabs_application_resolveTabsPlan_ts[&quot;src/features/tabs/application/resolveTabsPlan.ts&quot;]
                 module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts[&quot;src/features/tabs/domain/addTabsAdapterDiagnostics.ts&quot;]
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts[&quot;src/features/tabs/domain/resolveCustomTabsPresentation.ts&quot;]
                 module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts[&quot;src/features/tabs/domain/resolveEffectiveTabsConfig.ts&quot;]
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts[&quot;src/features/tabs/domain/resolveHeadlessTabsPresentation.ts&quot;]
                 module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
                 module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
                 module_src_navigator_ts[&quot;src/navigator.ts&quot;]
@@ -2213,7 +2213,7 @@ graph TD
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt;
                 module_src_types_nativeIcons_ts
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt;
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
                 module_src_features_tabs_application_resolveTabsPlan_ts --&gt;
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
                 module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --&gt;
@@ -2314,7 +2314,7 @@ graph LR
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/CustomTabsLayout.tsx&quot;]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -2325,8 +2325,8 @@ graph LR
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
   module_src_features_tabs_application_resolveTabsPlan_ts[&quot;src/features/tabs/application/resolveTabsPlan.ts&quot;]
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts[&quot;src/features/tabs/domain/addTabsAdapterDiagnostics.ts&quot;]
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts[&quot;src/features/tabs/domain/resolveCustomTabsPresentation.ts&quot;]
   module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts[&quot;src/features/tabs/domain/resolveEffectiveTabsConfig.ts&quot;]
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts[&quot;src/features/tabs/domain/resolveHeadlessTabsPresentation.ts&quot;]
   module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
   module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
   module_src_navigator_ts[&quot;src/navigator.ts&quot;]
@@ -2360,7 +2360,7 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt; module_src_types_nativeIcons_ts
-  module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt; module_src_features_tabs_domain_resolveCustomTabsPresentation_ts
+  module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt; module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
   module_src_features_tabs_application_resolveTabsPlan_ts --&gt; module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --&gt; module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
   module_src_utils_createNavigatorPlan_ts --&gt; module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts
@@ -2433,7 +2433,7 @@ graph LR
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
-                module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/CustomTabsLayout.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -2444,8 +2444,8 @@ graph LR
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
                 module_src_features_tabs_application_resolveTabsPlan_ts[&quot;src/features/tabs/application/resolveTabsPlan.ts&quot;]
                 module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts[&quot;src/features/tabs/domain/addTabsAdapterDiagnostics.ts&quot;]
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts[&quot;src/features/tabs/domain/resolveCustomTabsPresentation.ts&quot;]
                 module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts[&quot;src/features/tabs/domain/resolveEffectiveTabsConfig.ts&quot;]
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts[&quot;src/features/tabs/domain/resolveHeadlessTabsPresentation.ts&quot;]
                 module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
                 module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
                 module_src_navigator_ts[&quot;src/navigator.ts&quot;]
@@ -2473,14 +2473,14 @@ graph LR
                 module_tests_tabs_test_ts[&quot;tests/tabs.test.ts&quot;]
                 export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
                 module_src_utils_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
-                export_CustomTabsLayout[&quot;CustomTabsLayout&quot;]
-                module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx --&gt;
-                export_CustomTabsLayout
                 export_defineCustomNavigatorRegistry[&quot;defineCustomNavigatorRegistry&quot;]
                 module_src_features_custom_domain_defineCustomNavigatorRegistry_ts --&gt;
                 export_defineCustomNavigatorRegistry
                 export_generateNavigatorFiles[&quot;generateNavigatorFiles&quot;]
                 module_src_utils_generateNavigatorFiles_ts --&gt; export_generateNavigatorFiles
+                export_HeadlessTabsLayout[&quot;HeadlessTabsLayout&quot;]
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                export_HeadlessTabsLayout
                 export_NativeFontAwesome5Family[&quot;NativeFontAwesome5Family&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt;
                 export_NativeFontAwesome5Family
@@ -2499,9 +2499,9 @@ graph LR
                 export_NAVIGATOR_PACKAGE_METADATA[&quot;NAVIGATOR_PACKAGE_METADATA&quot;]
                 module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --&gt;
                 export_NAVIGATOR_PACKAGE_METADATA
-                export_resolveCustomTabsPresentation[&quot;resolveCustomTabsPresentation&quot;]
-                module_src_features_tabs_domain_resolveCustomTabsPresentation_ts --&gt;
-                export_resolveCustomTabsPresentation
+                export_resolveHeadlessTabsPresentation[&quot;resolveHeadlessTabsPresentation&quot;]
+                module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --&gt;
+                export_resolveHeadlessTabsPresentation
                 export_resolveNavigatorPreset[&quot;resolveNavigatorPreset&quot;]
                 module_src_utils_resolveNavigatorPreset_ts --&gt; export_resolveNavigatorPreset
                 export_resolveTabsNavigatorPlan[&quot;resolveTabsNavigatorPlan&quot;]
@@ -2533,7 +2533,7 @@ graph LR
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/CustomTabsLayout.tsx&quot;]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -2544,8 +2544,8 @@ graph LR
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
   module_src_features_tabs_application_resolveTabsPlan_ts[&quot;src/features/tabs/application/resolveTabsPlan.ts&quot;]
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts[&quot;src/features/tabs/domain/addTabsAdapterDiagnostics.ts&quot;]
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts[&quot;src/features/tabs/domain/resolveCustomTabsPresentation.ts&quot;]
   module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts[&quot;src/features/tabs/domain/resolveEffectiveTabsConfig.ts&quot;]
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts[&quot;src/features/tabs/domain/resolveHeadlessTabsPresentation.ts&quot;]
   module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
   module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
   module_src_navigator_ts[&quot;src/navigator.ts&quot;]
@@ -2573,12 +2573,12 @@ graph LR
   module_tests_tabs_test_ts[&quot;tests/tabs.test.ts&quot;]
   export_createNavigatorPlan[&quot;createNavigatorPlan&quot;]
   module_src_utils_createNavigatorPlan_ts --&gt; export_createNavigatorPlan
-  export_CustomTabsLayout[&quot;CustomTabsLayout&quot;]
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx --&gt; export_CustomTabsLayout
   export_defineCustomNavigatorRegistry[&quot;defineCustomNavigatorRegistry&quot;]
   module_src_features_custom_domain_defineCustomNavigatorRegistry_ts --&gt; export_defineCustomNavigatorRegistry
   export_generateNavigatorFiles[&quot;generateNavigatorFiles&quot;]
   module_src_utils_generateNavigatorFiles_ts --&gt; export_generateNavigatorFiles
+  export_HeadlessTabsLayout[&quot;HeadlessTabsLayout&quot;]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; export_HeadlessTabsLayout
   export_NativeFontAwesome5Family[&quot;NativeFontAwesome5Family&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; export_NativeFontAwesome5Family
   export_NativeFontAwesome6Family[&quot;NativeFontAwesome6Family&quot;]
@@ -2591,65 +2591,14 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt; export_NativeMaterialDesignIconsFamily
   export_NAVIGATOR_PACKAGE_METADATA[&quot;NAVIGATOR_PACKAGE_METADATA&quot;]
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --&gt; export_NAVIGATOR_PACKAGE_METADATA
-  export_resolveCustomTabsPresentation[&quot;resolveCustomTabsPresentation&quot;]
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts --&gt; export_resolveCustomTabsPresentation
+  export_resolveHeadlessTabsPresentation[&quot;resolveHeadlessTabsPresentation&quot;]
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --&gt; export_resolveHeadlessTabsPresentation
   export_resolveNavigatorPreset[&quot;resolveNavigatorPreset&quot;]
   module_src_utils_resolveNavigatorPreset_ts --&gt; export_resolveNavigatorPreset
   export_resolveTabsNavigatorPlan[&quot;resolveTabsNavigatorPlan&quot;]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt; export_resolveTabsNavigatorPlan
   export_validateNavigatorManifest[&quot;validateNavigatorManifest&quot;]
   module_src_utils_validateNavigatorManifest_ts --&gt; export_validateNavigatorManifest
-</pre>
-              </details>
-            </article>
-            <article
-              class="item"
-              data-search="CustomTabsLayout sequence diagrams/sequences/custom-tabs-layout.mmd"
-            >
-              <h3>CustomTabsLayout sequence</h3>
-              <p class="muted"><code>diagrams/sequences/custom-tabs-layout.mmd</code></p>
-              <div class="mermaid">
-                sequenceDiagram participant participant_CustomTabsLayout as CustomTabsLayout
-                participant participant_selectPresentation as selectPresentation participant
-                participant_useBreakpoint as useBreakpoint participant
-                participant_useHydrationSafeSize as useHydrationSafeSize participant
-                participant_useSafeAreaInsets as useSafeAreaInsets participant
-                participant_useSyncExternalStore as useSyncExternalStore
-                participant_CustomTabsLayout-&gt;&gt;participant_useHydrationSafeSize:
-                useHydrationSafeSize()
-                participant_useHydrationSafeSize-&gt;&gt;participant_useBreakpoint: useBreakpoint()
-                participant_useBreakpoint--&gt;&gt;participant_useHydrationSafeSize: return
-                participant_useHydrationSafeSize-&gt;&gt;participant_useSyncExternalStore:
-                useSyncExternalStore()
-                participant_useSyncExternalStore--&gt;&gt;participant_useHydrationSafeSize: return
-                participant_useHydrationSafeSize--&gt;&gt;participant_CustomTabsLayout: return
-                participant_CustomTabsLayout-&gt;&gt;participant_selectPresentation:
-                selectPresentation()
-                participant_selectPresentation--&gt;&gt;participant_CustomTabsLayout: return
-                participant_CustomTabsLayout-&gt;&gt;participant_useSafeAreaInsets:
-                useSafeAreaInsets()
-                participant_useSafeAreaInsets--&gt;&gt;participant_CustomTabsLayout: return
-              </div>
-              <details>
-                <summary>View Mermaid source</summary>
-                <pre>
-sequenceDiagram
-  participant participant_CustomTabsLayout as CustomTabsLayout
-  participant participant_selectPresentation as selectPresentation
-  participant participant_useBreakpoint as useBreakpoint
-  participant participant_useHydrationSafeSize as useHydrationSafeSize
-  participant participant_useSafeAreaInsets as useSafeAreaInsets
-  participant participant_useSyncExternalStore as useSyncExternalStore
-  participant_CustomTabsLayout-&gt;&gt;participant_useHydrationSafeSize: useHydrationSafeSize()
-  participant_useHydrationSafeSize-&gt;&gt;participant_useBreakpoint: useBreakpoint()
-  participant_useBreakpoint--&gt;&gt;participant_useHydrationSafeSize: return
-  participant_useHydrationSafeSize-&gt;&gt;participant_useSyncExternalStore: useSyncExternalStore()
-  participant_useSyncExternalStore--&gt;&gt;participant_useHydrationSafeSize: return
-  participant_useHydrationSafeSize--&gt;&gt;participant_CustomTabsLayout: return
-  participant_CustomTabsLayout-&gt;&gt;participant_selectPresentation: selectPresentation()
-  participant_selectPresentation--&gt;&gt;participant_CustomTabsLayout: return
-  participant_CustomTabsLayout-&gt;&gt;participant_useSafeAreaInsets: useSafeAreaInsets()
-  participant_useSafeAreaInsets--&gt;&gt;participant_CustomTabsLayout: return
 </pre>
               </details>
             </article>
@@ -2683,29 +2632,80 @@ sequenceDiagram
             </article>
             <article
               class="item"
-              data-search="resolveCustomTabsPresentation sequence diagrams/sequences/resolve-custom-tabs-presentation.mmd"
+              data-search="HeadlessTabsLayout sequence diagrams/sequences/headless-tabs-layout.mmd"
             >
-              <h3>resolveCustomTabsPresentation sequence</h3>
+              <h3>HeadlessTabsLayout sequence</h3>
+              <p class="muted"><code>diagrams/sequences/headless-tabs-layout.mmd</code></p>
+              <div class="mermaid">
+                sequenceDiagram participant participant_HeadlessTabsLayout as HeadlessTabsLayout
+                participant participant_selectPresentation as selectPresentation participant
+                participant_useBreakpoint as useBreakpoint participant
+                participant_useHydrationSafeSize as useHydrationSafeSize participant
+                participant_useSafeAreaInsets as useSafeAreaInsets participant
+                participant_useSyncExternalStore as useSyncExternalStore
+                participant_HeadlessTabsLayout-&gt;&gt;participant_useHydrationSafeSize:
+                useHydrationSafeSize()
+                participant_useHydrationSafeSize-&gt;&gt;participant_useBreakpoint: useBreakpoint()
+                participant_useBreakpoint--&gt;&gt;participant_useHydrationSafeSize: return
+                participant_useHydrationSafeSize-&gt;&gt;participant_useSyncExternalStore:
+                useSyncExternalStore()
+                participant_useSyncExternalStore--&gt;&gt;participant_useHydrationSafeSize: return
+                participant_useHydrationSafeSize--&gt;&gt;participant_HeadlessTabsLayout: return
+                participant_HeadlessTabsLayout-&gt;&gt;participant_selectPresentation:
+                selectPresentation()
+                participant_selectPresentation--&gt;&gt;participant_HeadlessTabsLayout: return
+                participant_HeadlessTabsLayout-&gt;&gt;participant_useSafeAreaInsets:
+                useSafeAreaInsets()
+                participant_useSafeAreaInsets--&gt;&gt;participant_HeadlessTabsLayout: return
+              </div>
+              <details>
+                <summary>View Mermaid source</summary>
+                <pre>
+sequenceDiagram
+  participant participant_HeadlessTabsLayout as HeadlessTabsLayout
+  participant participant_selectPresentation as selectPresentation
+  participant participant_useBreakpoint as useBreakpoint
+  participant participant_useHydrationSafeSize as useHydrationSafeSize
+  participant participant_useSafeAreaInsets as useSafeAreaInsets
+  participant participant_useSyncExternalStore as useSyncExternalStore
+  participant_HeadlessTabsLayout-&gt;&gt;participant_useHydrationSafeSize: useHydrationSafeSize()
+  participant_useHydrationSafeSize-&gt;&gt;participant_useBreakpoint: useBreakpoint()
+  participant_useBreakpoint--&gt;&gt;participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize-&gt;&gt;participant_useSyncExternalStore: useSyncExternalStore()
+  participant_useSyncExternalStore--&gt;&gt;participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize--&gt;&gt;participant_HeadlessTabsLayout: return
+  participant_HeadlessTabsLayout-&gt;&gt;participant_selectPresentation: selectPresentation()
+  participant_selectPresentation--&gt;&gt;participant_HeadlessTabsLayout: return
+  participant_HeadlessTabsLayout-&gt;&gt;participant_useSafeAreaInsets: useSafeAreaInsets()
+  participant_useSafeAreaInsets--&gt;&gt;participant_HeadlessTabsLayout: return
+</pre>
+              </details>
+            </article>
+            <article
+              class="item"
+              data-search="resolveHeadlessTabsPresentation sequence diagrams/sequences/resolve-headless-tabs-presentation.mmd"
+            >
+              <h3>resolveHeadlessTabsPresentation sequence</h3>
               <p class="muted">
-                <code>diagrams/sequences/resolve-custom-tabs-presentation.mmd</code>
+                <code>diagrams/sequences/resolve-headless-tabs-presentation.mmd</code>
               </p>
               <div class="mermaid">
-                sequenceDiagram participant participant_resolveCustomTabsPresentation as
-                resolveCustomTabsPresentation participant participant_resolveResponsivePresentation
-                as resolveResponsivePresentation
-                participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation:
+                sequenceDiagram participant participant_resolveHeadlessTabsPresentation as
+                resolveHeadlessTabsPresentation participant
+                participant_resolveResponsivePresentation as resolveResponsivePresentation
+                participant_resolveHeadlessTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation:
                 resolveResponsivePresentation()
-                participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation:
+                participant_resolveResponsivePresentation--&gt;&gt;participant_resolveHeadlessTabsPresentation:
                 return
               </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 sequenceDiagram
-  participant participant_resolveCustomTabsPresentation as resolveCustomTabsPresentation
+  participant participant_resolveHeadlessTabsPresentation as resolveHeadlessTabsPresentation
   participant participant_resolveResponsivePresentation as resolveResponsivePresentation
-  participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
-  participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation: return
+  participant_resolveHeadlessTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
+  participant_resolveResponsivePresentation--&gt;&gt;participant_resolveHeadlessTabsPresentation: return
 </pre>
               </details>
             </article>
@@ -2717,14 +2717,14 @@ sequenceDiagram
               <p class="muted"><code>diagrams/sequences/resolve-tabs-navigator-plan.mmd</code></p>
               <div class="mermaid">
                 sequenceDiagram participant participant_createAdaptiveTabsPlan as
-                createAdaptiveTabsPlan participant participant_createCustomTabsPlan as
-                createCustomTabsPlan participant participant_createJavaScriptTabsPlan as
+                createAdaptiveTabsPlan participant participant_createHeadlessTabsPlan as
+                createHeadlessTabsPlan participant participant_createJavaScriptTabsPlan as
                 createJavaScriptTabsPlan participant participant_createNativeTabsPlan as
                 createNativeTabsPlan participant participant_resolveAdaptiveConfig as
-                resolveAdaptiveConfig participant participant_resolveCustomTabsPresentation as
-                resolveCustomTabsPresentation participant participant_resolveResponsivePresentation
-                as resolveResponsivePresentation participant participant_resolveTabsNavigatorPlan as
-                resolveTabsNavigatorPlan
+                resolveAdaptiveConfig participant participant_resolveHeadlessTabsPresentation as
+                resolveHeadlessTabsPresentation participant
+                participant_resolveResponsivePresentation as resolveResponsivePresentation
+                participant participant_resolveTabsNavigatorPlan as resolveTabsNavigatorPlan
                 participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createAdaptiveTabsPlan:
                 createAdaptiveTabsPlan()
                 participant_createAdaptiveTabsPlan-&gt;&gt;participant_createNativeTabsPlan:
@@ -2733,16 +2733,18 @@ sequenceDiagram
                 participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig:
                 resolveAdaptiveConfig()
                 participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan:
-                return participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan:
-                createCustomTabsPlan()
-                participant_createCustomTabsPlan-&gt;&gt;participant_resolveCustomTabsPresentation:
-                resolveCustomTabsPresentation()
-                participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation:
-                resolveResponsivePresentation()
-                participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation:
                 return
-                participant_resolveCustomTabsPresentation--&gt;&gt;participant_createCustomTabsPlan:
-                return participant_createCustomTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan:
+                participant_createAdaptiveTabsPlan-&gt;&gt;participant_createHeadlessTabsPlan:
+                createHeadlessTabsPlan()
+                participant_createHeadlessTabsPlan-&gt;&gt;participant_resolveHeadlessTabsPresentation:
+                resolveHeadlessTabsPresentation()
+                participant_resolveHeadlessTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation:
+                resolveResponsivePresentation()
+                participant_resolveResponsivePresentation--&gt;&gt;participant_resolveHeadlessTabsPresentation:
+                return
+                participant_resolveHeadlessTabsPresentation--&gt;&gt;participant_createHeadlessTabsPlan:
+                return
+                participant_createHeadlessTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan:
                 return
                 participant_createAdaptiveTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
                 return
@@ -2754,9 +2756,9 @@ sequenceDiagram
                 createJavaScriptTabsPlan()
                 participant_createJavaScriptTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
                 return
-                participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createCustomTabsPlan:
-                createCustomTabsPlan()
-                participant_createCustomTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
+                participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createHeadlessTabsPlan:
+                createHeadlessTabsPlan()
+                participant_createHeadlessTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan:
                 return
               </div>
               <details>
@@ -2764,11 +2766,11 @@ sequenceDiagram
                 <pre>
 sequenceDiagram
   participant participant_createAdaptiveTabsPlan as createAdaptiveTabsPlan
-  participant participant_createCustomTabsPlan as createCustomTabsPlan
+  participant participant_createHeadlessTabsPlan as createHeadlessTabsPlan
   participant participant_createJavaScriptTabsPlan as createJavaScriptTabsPlan
   participant participant_createNativeTabsPlan as createNativeTabsPlan
   participant participant_resolveAdaptiveConfig as resolveAdaptiveConfig
-  participant participant_resolveCustomTabsPresentation as resolveCustomTabsPresentation
+  participant participant_resolveHeadlessTabsPresentation as resolveHeadlessTabsPresentation
   participant participant_resolveResponsivePresentation as resolveResponsivePresentation
   participant participant_resolveTabsNavigatorPlan as resolveTabsNavigatorPlan
   participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createAdaptiveTabsPlan: createAdaptiveTabsPlan()
@@ -2776,19 +2778,19 @@ sequenceDiagram
   participant_createNativeTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
   participant_createAdaptiveTabsPlan-&gt;&gt;participant_resolveAdaptiveConfig: resolveAdaptiveConfig()
   participant_resolveAdaptiveConfig--&gt;&gt;participant_createAdaptiveTabsPlan: return
-  participant_createAdaptiveTabsPlan-&gt;&gt;participant_createCustomTabsPlan: createCustomTabsPlan()
-  participant_createCustomTabsPlan-&gt;&gt;participant_resolveCustomTabsPresentation: resolveCustomTabsPresentation()
-  participant_resolveCustomTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
-  participant_resolveResponsivePresentation--&gt;&gt;participant_resolveCustomTabsPresentation: return
-  participant_resolveCustomTabsPresentation--&gt;&gt;participant_createCustomTabsPlan: return
-  participant_createCustomTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
+  participant_createAdaptiveTabsPlan-&gt;&gt;participant_createHeadlessTabsPlan: createHeadlessTabsPlan()
+  participant_createHeadlessTabsPlan-&gt;&gt;participant_resolveHeadlessTabsPresentation: resolveHeadlessTabsPresentation()
+  participant_resolveHeadlessTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
+  participant_resolveResponsivePresentation--&gt;&gt;participant_resolveHeadlessTabsPresentation: return
+  participant_resolveHeadlessTabsPresentation--&gt;&gt;participant_createHeadlessTabsPlan: return
+  participant_createHeadlessTabsPlan--&gt;&gt;participant_createAdaptiveTabsPlan: return
   participant_createAdaptiveTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
   participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createNativeTabsPlan: createNativeTabsPlan()
   participant_createNativeTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
   participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createJavaScriptTabsPlan: createJavaScriptTabsPlan()
   participant_createJavaScriptTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
-  participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createCustomTabsPlan: createCustomTabsPlan()
-  participant_createCustomTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
+  participant_resolveTabsNavigatorPlan-&gt;&gt;participant_createHeadlessTabsPlan: createHeadlessTabsPlan()
+  participant_createHeadlessTabsPlan--&gt;&gt;participant_resolveTabsNavigatorPlan: return
 </pre>
               </details>
             </article>
@@ -3144,15 +3146,15 @@ sequenceDiagram
             <h2>src/features/split-view/domain/addSplitViewDiagnostics.ts</h2>
             <article
               class="item"
-              data-search="addSplitViewDiagnostics src/features/split-view/domain/addSplitViewDiagnostics.ts Add constrained placement, binding, flow, version, and fallback diagnostics for Split View."
+              data-search="addSplitViewDiagnostics src/features/split-view/domain/addSplitViewDiagnostics.ts Add constrained placement, binding, version, and fallback diagnostics for Split View."
             >
               <h3>addSplitViewDiagnostics</h3>
               <p class="muted">
                 <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:11:1</code>
               </p>
               <p>
-                Add constrained placement, binding, flow, version, and fallback diagnostics for
-                Split View.
+                Add constrained placement, binding, version, and fallback diagnostics for Split
+                View.
               </p>
             </article>
             <article
@@ -3161,7 +3163,7 @@ sequenceDiagram
             >
               <h3>collectSplitViews</h3>
               <p class="muted">
-                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:59:1</code>
+                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:50:1</code>
               </p>
               <p>
                 Collect every Split View together with its parent topology and manifest pointer.
@@ -3173,7 +3175,7 @@ sequenceDiagram
             >
               <h3>addTopologyDiagnostics</h3>
               <p class="muted">
-                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:86:1</code>
+                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:77:1</code>
               </p>
               <p>
                 Reject Split View placement and route declarations unsupported by its Slot-based
@@ -3186,7 +3188,7 @@ sequenceDiagram
             >
               <h3>addColumnDiagnostics</h3>
               <p class="muted">
-                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:121:1</code>
+                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:112:1</code>
               </p>
               <p>Reject unresolved, duplicated, or incompatible Split View column references.</p>
             </article>
@@ -3196,7 +3198,7 @@ sequenceDiagram
             >
               <h3>addCollapseColumnDiagnostics</h3>
               <p class="muted">
-                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:157:1</code>
+                <code>src/features/split-view/domain/addSplitViewDiagnostics.ts:148:1</code>
               </p>
               <p>Reject invalid or unavailable iPhone collapse-column selections.</p>
             </article>
@@ -3394,20 +3396,20 @@ sequenceDiagram
           </section>
         </section>
         <section
-          id="view-src-features-tabs-adapters-inbound-customtabslayout-tsx"
+          id="view-src-features-tabs-adapters-inbound-headlesstabslayout-tsx"
           class="view"
-          data-view="src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"
+          data-view="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
           hidden
         >
           <section class="panel">
-            <h2>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx</h2>
+            <h2>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h2>
             <article
               class="item"
-              data-search="CustomTabsLayout src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations."
+              data-search="HeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations."
             >
-              <h3>CustomTabsLayout</h3>
+              <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:20:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Surface-owned
@@ -3416,21 +3418,21 @@ sequenceDiagram
             </article>
             <article
               class="item"
-              data-search="useHydrationSafeSize src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Resolve a hydration-safe semantic size from the Surface breakpoint owner."
+              data-search="useHydrationSafeSize src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Resolve a hydration-safe semantic size from the Surface breakpoint owner."
             >
               <h3>useHydrationSafeSize</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:106:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:106:1</code>
               </p>
               <p>Resolve a hydration-safe semantic size from the Surface breakpoint owner.</p>
             </article>
             <article
               class="item"
-              data-search="subscribeToHydration src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Provide the stable no-op subscription required for the hydration snapshot boundary."
+              data-search="subscribeToHydration src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Provide the stable no-op subscription required for the hydration snapshot boundary."
             >
               <h3>subscribeToHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:119:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:119:1</code>
               </p>
               <p>
                 Provide the stable no-op subscription required for the hydration snapshot boundary.
@@ -3438,51 +3440,51 @@ sequenceDiagram
             </article>
             <article
               class="item"
-              data-search="getClientHydration src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Report that client rendering can consume the live responsive breakpoint."
+              data-search="getClientHydration src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Report that client rendering can consume the live responsive breakpoint."
             >
               <h3>getClientHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:124:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:124:1</code>
               </p>
               <p>Report that client rendering can consume the live responsive breakpoint.</p>
             </article>
             <article
               class="item"
-              data-search="getServerHydration src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Keep server output deterministic at the compact presentation."
+              data-search="getServerHydration src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Keep server output deterministic at the compact presentation."
             >
               <h3>getServerHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:129:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:129:1</code>
               </p>
               <p>Keep server output deterministic at the compact presentation.</p>
             </article>
             <article
               class="item"
-              data-search="selectPresentation src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Select one fixed presentation without altering the Router-owned topology."
+              data-search="selectPresentation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Select one fixed presentation without altering the Router-owned topology."
             >
               <h3>selectPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:134:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:134:1</code>
               </p>
               <p>Select one fixed presentation without altering the Router-owned topology.</p>
             </article>
             <article
               class="item"
-              data-search="TabsNavigation src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Select built-in or registered custom chrome for the currently visible routes."
+              data-search="TabsNavigation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Select built-in or registered custom chrome for the currently visible routes."
             >
               <h3>TabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:149:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:149:1</code>
               </p>
               <p>Select built-in or registered custom chrome for the currently visible routes.</p>
             </article>
             <article
               class="item"
-              data-search="renderItem src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Bind one visible route to the shared Surface trigger for registered custom chrome."
+              data-search="renderItem src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Bind one visible route to the shared Surface trigger for registered custom chrome."
             >
               <h3>renderItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:162:9</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:162:9</code>
               </p>
               <p>
                 Bind one visible route to the shared Surface trigger for registered custom chrome.
@@ -3490,11 +3492,11 @@ sequenceDiagram
             </article>
             <article
               class="item"
-              data-search="SurfaceTabTrigger src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Render one Surface navigation control bound to Expo Router&#39;s headless tab trigger."
+              data-search="SurfaceTabTrigger src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one Surface navigation control bound to Expo Router&#39;s headless tab trigger."
             >
               <h3>SurfaceTabTrigger</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:186:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:186:1</code>
               </p>
               <p>
                 Render one Surface navigation control bound to Expo Router&#39;s headless tab
@@ -3503,21 +3505,21 @@ sequenceDiagram
             </article>
             <article
               class="item"
-              data-search="resolveIcon src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Convert portable route icon metadata to the Surface navigation icon contract."
+              data-search="resolveIcon src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Convert portable route icon metadata to the Surface navigation icon contract."
             >
               <h3>resolveIcon</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:216:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:216:1</code>
               </p>
               <p>Convert portable route icon metadata to the Surface navigation icon contract.</p>
             </article>
             <article
               class="item"
-              data-search="BuiltInPresentation src/features/tabs/adapters/inbound/CustomTabsLayout.tsx Render Surface-owned bottom, top, rail, or sidebar tab chrome."
+              data-search="BuiltInPresentation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render Surface-owned bottom, top, rail, or sidebar tab chrome."
             >
               <h3>BuiltInPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:242:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:242:1</code>
               </p>
               <p>Render Surface-owned bottom, top, rail, or sidebar tab chrome.</p>
             </article>
@@ -3602,43 +3604,44 @@ sequenceDiagram
             >
               <h3>nativeIconName</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:157:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:160:1</code>
               </p>
               <p>Read the required native vector-icon name from one planned route icon.</p>
             </article>
             <article
               class="item"
-              data-search="createCustomTabsFile src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts Create the generated cross-platform custom-tabs layout and registered integration imports."
+              data-search="createHeadlessTabsFile src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts Create the generated cross-platform headless-Tabs layout and registered integration imports."
             >
-              <h3>createCustomTabsFile</h3>
+              <h3>createHeadlessTabsFile</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:165:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:168:1</code>
               </p>
               <p>
-                Create the generated cross-platform custom-tabs layout and registered integration
+                Create the generated cross-platform headless-Tabs layout and registered integration
                 imports.
               </p>
             </article>
             <article
               class="item"
-              data-search="renderCustomTabRoutes src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts Render custom-tab route records as stable multiline source objects."
+              data-search="renderCustomTabRoutes src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts Render headless-Tabs route records as stable multiline source objects."
             >
               <h3>renderCustomTabRoutes</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:216:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:219:1</code>
               </p>
-              <p>Render custom-tab route records as stable multiline source objects.</p>
+              <p>Render headless-Tabs route records as stable multiline source objects.</p>
             </article>
             <article
               class="item"
-              data-search="renderCustomTabsReturn src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts Render the custom Tabs return statement without exceeding the canonical print width."
+              data-search="renderHeadlessTabsReturn src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts Render the headless Tabs return statement without exceeding the canonical print width."
             >
-              <h3>renderCustomTabsReturn</h3>
+              <h3>renderHeadlessTabsReturn</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:232:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:235:1</code>
               </p>
               <p>
-                Render the custom Tabs return statement without exceeding the canonical print width.
+                Render the headless Tabs return statement without exceeding the canonical print
+                width.
               </p>
             </article>
           </section>
@@ -3702,7 +3705,7 @@ sequenceDiagram
             >
               <h3>createNativeTabsPlan</h3>
               <p class="muted">
-                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:46:1</code>
+                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:49:1</code>
               </p>
               <p>Create the alpha native-tabs plan and reject unsupported Web usage.</p>
             </article>
@@ -3712,21 +3715,19 @@ sequenceDiagram
             >
               <h3>resolveAdaptiveConfig</h3>
               <p class="muted">
-                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:71:1</code>
+                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:74:1</code>
               </p>
               <p>Return the adaptive config when omission or `adaptive` selects that branch.</p>
             </article>
             <article
               class="item"
-              data-search="createCustomTabsPlan src/features/tabs/application/resolveTabsNavigatorPlan.ts Create the stable cross-platform headless custom-tabs plan for explicit custom use."
+              data-search="createHeadlessTabsPlan src/features/tabs/application/resolveTabsNavigatorPlan.ts Create the stable cross-platform plan for Expo Router headless Tabs."
             >
-              <h3>createCustomTabsPlan</h3>
+              <h3>createHeadlessTabsPlan</h3>
               <p class="muted">
-                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:81:1</code>
+                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:84:1</code>
               </p>
-              <p>
-                Create the stable cross-platform headless custom-tabs plan for explicit custom use.
-              </p>
+              <p>Create the stable cross-platform plan for Expo Router headless Tabs.</p>
             </article>
             <article
               class="item"
@@ -3734,7 +3735,7 @@ sequenceDiagram
             >
               <h3>createJavaScriptTabsPlan</h3>
               <p class="muted">
-                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:106:1</code>
+                <code>src/features/tabs/application/resolveTabsNavigatorPlan.ts:109:1</code>
               </p>
               <p>Create the stable JavaScript tabs plan for bottom or top presentation.</p>
             </article>
@@ -3750,14 +3751,14 @@ sequenceDiagram
             <h2>src/features/tabs/application/resolveTabsPlan.ts</h2>
             <article
               class="item"
-              data-search="resolveTabsPlan src/features/tabs/application/resolveTabsPlan.ts Retain an unavailable native-web plan for diagnostics or resolve the supported Tabs adapter."
+              data-search="resolveTabsPlan src/features/tabs/application/resolveTabsPlan.ts Retain an unsupported native-web plan for diagnostics or resolve the selected Tabs adapter."
             >
               <h3>resolveTabsPlan</h3>
               <p class="muted">
                 <code>src/features/tabs/application/resolveTabsPlan.ts:11:1</code>
               </p>
               <p>
-                Retain an unavailable native-web plan for diagnostics or resolve the supported Tabs
+                Retain an unsupported native-web plan for diagnostics or resolve the selected Tabs
                 adapter.
               </p>
             </article>
@@ -3807,7 +3808,7 @@ sequenceDiagram
             >
               <h3>addTabsIconDiagnostics</h3>
               <p class="muted">
-                <code>src/features/tabs/domain/addTabsAdapterDiagnostics.ts:121:1</code>
+                <code>src/features/tabs/domain/addTabsAdapterDiagnostics.ts:120:1</code>
               </p>
               <p>Validate route icon compatibility for native and Surface-backed tabs.</p>
             </article>
@@ -3817,39 +3818,9 @@ sequenceDiagram
             >
               <h3>addNativeVersionDiagnostics</h3>
               <p class="muted">
-                <code>src/features/tabs/domain/addTabsAdapterDiagnostics.ts:161:1</code>
+                <code>src/features/tabs/domain/addTabsAdapterDiagnostics.ts:160:1</code>
               </p>
               <p>Gate newer Native Tabs options on the Expo Router version that supports them.</p>
-            </article>
-          </section>
-        </section>
-        <section
-          id="view-src-features-tabs-domain-resolvecustomtabspresentation-ts"
-          class="view"
-          data-view="src/features/tabs/domain/resolveCustomTabsPresentation.ts"
-          hidden
-        >
-          <section class="panel">
-            <h2>src/features/tabs/domain/resolveCustomTabsPresentation.ts</h2>
-            <article
-              class="item"
-              data-search="resolveCustomTabsPresentation src/features/tabs/domain/resolveCustomTabsPresentation.ts Resolve one custom-tabs presentation for the current semantic responsive size."
-            >
-              <h3>resolveCustomTabsPresentation</h3>
-              <p class="muted">
-                <code>src/features/tabs/domain/resolveCustomTabsPresentation.ts:10:1</code>
-              </p>
-              <p>Resolve one custom-tabs presentation for the current semantic responsive size.</p>
-            </article>
-            <article
-              class="item"
-              data-search="resolveResponsivePresentation src/features/tabs/domain/resolveCustomTabsPresentation.ts Resolve the fixed presentation for one semantic responsive size."
-            >
-              <h3>resolveResponsivePresentation</h3>
-              <p class="muted">
-                <code>src/features/tabs/domain/resolveCustomTabsPresentation.ts:34:1</code>
-              </p>
-              <p>Resolve the fixed presentation for one semantic responsive size.</p>
             </article>
           </section>
         </section>
@@ -3894,6 +3865,38 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-features-tabs-domain-resolveheadlesstabspresentation-ts"
+          class="view"
+          data-view="src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts</h2>
+            <article
+              class="item"
+              data-search="resolveHeadlessTabsPresentation src/features/tabs/domain/resolveHeadlessTabsPresentation.ts Resolve one headless-Tabs presentation for the current semantic responsive size."
+            >
+              <h3>resolveHeadlessTabsPresentation</h3>
+              <p class="muted">
+                <code>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts:10:1</code>
+              </p>
+              <p>
+                Resolve one headless-Tabs presentation for the current semantic responsive size.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveResponsivePresentation src/features/tabs/domain/resolveHeadlessTabsPresentation.ts Resolve the fixed presentation for one semantic responsive size."
+            >
+              <h3>resolveResponsivePresentation</h3>
+              <p class="muted">
+                <code>src/features/tabs/domain/resolveHeadlessTabsPresentation.ts:34:1</code>
+              </p>
+              <p>Resolve the fixed presentation for one semantic responsive size.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-utils-createnavigatorplan-ts"
           class="view"
           data-view="src/utils/createNavigatorPlan.ts"
@@ -3906,7 +3909,7 @@ sequenceDiagram
               data-search="createNavigatorPlan src/utils/createNavigatorPlan.ts Create a disposable, provider-aware plan from only the navigator desired-state slice."
             >
               <h3>createNavigatorPlan</h3>
-              <p class="muted"><code>src/utils/createNavigatorPlan.ts:29:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:31:1</code></p>
               <p>
                 Create a disposable, provider-aware plan from only the navigator desired-state
                 slice.
@@ -3914,10 +3917,55 @@ sequenceDiagram
             </article>
             <article
               class="item"
+              data-search="resolvePlanSupport src/utils/createNavigatorPlan.ts Resolve the honest aggregate support status from diagnostics and every planned adapter."
+            >
+              <h3>resolvePlanSupport</h3>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:52:1</code></p>
+              <p>
+                Resolve the honest aggregate support status from diagnostics and every planned
+                adapter.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="collectAdapterSupport src/utils/createNavigatorPlan.ts Traverse a recursive plan to retain every adapter support classification."
+            >
+              <h3>collectAdapterSupport</h3>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:63:1</code></p>
+              <p>Traverse a recursive plan to retain every adapter support classification.</p>
+            </article>
+            <article
+              class="item"
+              data-search="collectCapabilityIds src/utils/createNavigatorPlan.ts Derive stable capability identifiers directly from the resolved adapter tree."
+            >
+              <h3>collectCapabilityIds</h3>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:73:1</code></p>
+              <p>Derive stable capability identifiers directly from the resolved adapter tree.</p>
+            </article>
+            <article
+              class="item"
+              data-search="collectAdapterIds src/utils/createNavigatorPlan.ts Traverse the plan to retain every concrete adapter identifier."
+            >
+              <h3>collectAdapterIds</h3>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:78:1</code></p>
+              <p>Traverse the plan to retain every concrete adapter identifier.</p>
+            </article>
+            <article
+              class="item"
+              data-search="collectDependencies src/utils/createNavigatorPlan.ts Derive generated-app dependency requirements from resolved runtime adapter imports."
+            >
+              <h3>collectDependencies</h3>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:88:1</code></p>
+              <p>
+                Derive generated-app dependency requirements from resolved runtime adapter imports.
+              </p>
+            </article>
+            <article
+              class="item"
               data-search="createNodePlan src/utils/createNavigatorPlan.ts Resolve a node and its descendants using one platform and responsive-size context."
             >
               <h3>createNodePlan</h3>
-              <p class="muted"><code>src/utils/createNavigatorPlan.ts:54:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:96:1</code></p>
               <p>
                 Resolve a node and its descendants using one platform and responsive-size context.
               </p>
@@ -3927,7 +3975,7 @@ sequenceDiagram
               data-search="createRoutePlan src/utils/createNavigatorPlan.ts Preserve portable route metadata and recursively plan a nested navigator when present."
             >
               <h3>createRoutePlan</h3>
-              <p class="muted"><code>src/utils/createNavigatorPlan.ts:95:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:137:1</code></p>
               <p>
                 Preserve portable route metadata and recursively plan a nested navigator when
                 present.
@@ -3938,7 +3986,7 @@ sequenceDiagram
               data-search="createAdapter src/utils/createNavigatorPlan.ts Dispatch adapter planning to the feature that owns the authored navigator type."
             >
               <h3>createAdapter</h3>
-              <p class="muted"><code>src/utils/createNavigatorPlan.ts:128:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:170:1</code></p>
               <p>Dispatch adapter planning to the feature that owns the authored navigator type.</p>
             </article>
             <article
@@ -3946,7 +3994,7 @@ sequenceDiagram
               data-search="createNodeDetails src/utils/createNavigatorPlan.ts Project each navigator&#39;s resolved configuration onto the shared recursive plan."
             >
               <h3>createNodeDetails</h3>
-              <p class="muted"><code>src/utils/createNavigatorPlan.ts:154:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorPlan.ts:196:1</code></p>
               <p>
                 Project each navigator&#39;s resolved configuration onto the shared recursive plan.
               </p>
@@ -3966,7 +4014,7 @@ sequenceDiagram
               data-search="generateNavigatorFiles src/utils/generateNavigatorFiles.ts Generate deterministic Expo Router files from a validated disposable plan and narrow bindings."
             >
               <h3>generateNavigatorFiles</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:19:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:20:1</code></p>
               <p>
                 Generate deterministic Expo Router files from a validated disposable plan and narrow
                 bindings.
@@ -3974,28 +4022,18 @@ sequenceDiagram
             </article>
             <article
               class="item"
-              data-search="validateFlowBindings src/utils/generateNavigatorFiles.ts Require enabled onboarding and authentication flows to reference an existing route."
+              data-search="createGenerationResult src/utils/generateNavigatorFiles.ts Return structured generation evidence for both generated and unsupported plans."
             >
-              <h3>validateFlowBindings</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:48:1</code></p>
-              <p>
-                Require enabled onboarding and authentication flows to reference an existing route.
-              </p>
-            </article>
-            <article
-              class="item"
-              data-search="collectRouteIds src/utils/generateNavigatorFiles.ts Collect nested route identifiers without changing their authored segment names."
-            >
-              <h3>collectRouteIds</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:65:1</code></p>
-              <p>Collect nested route identifiers without changing their authored segment names.</p>
+              <h3>createGenerationResult</h3>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:46:1</code></p>
+              <p>Return structured generation evidence for both generated and unsupported plans.</p>
             </article>
             <article
               class="item"
               data-search="resolveRootDirectory src/utils/generateNavigatorFiles.ts Resolve a safe directory below the Expo Router app root without filesystem normalization."
             >
               <h3>resolveRootDirectory</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:76:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:61:1</code></p>
               <p>
                 Resolve a safe directory below the Expo Router app root without filesystem
                 normalization.
@@ -4006,7 +4044,7 @@ sequenceDiagram
               data-search="collectFiles src/utils/generateNavigatorFiles.ts Traverse the plan to emit layouts and optional screen bindings in their route directories."
             >
               <h3>collectFiles</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:98:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:83:1</code></p>
               <p>
                 Traverse the plan to emit layouts and optional screen bindings in their route
                 directories.
@@ -4017,7 +4055,7 @@ sequenceDiagram
               data-search="createLayoutFile src/utils/generateNavigatorFiles.ts Dispatch specialized layout generation or render the shared Screen-registration contract."
             >
               <h3>createLayoutFile</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:126:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:111:1</code></p>
               <p>
                 Dispatch specialized layout generation or render the shared Screen-registration
                 contract.
@@ -4028,7 +4066,7 @@ sequenceDiagram
               data-search="createGuardImports src/utils/generateNavigatorFiles.ts Validate and alias every distinct guard binding used by a navigator&#39;s routes."
             >
               <h3>createGuardImports</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:170:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:155:1</code></p>
               <p>
                 Validate and alias every distinct guard binding used by a navigator&#39;s routes.
               </p>
@@ -4038,7 +4076,7 @@ sequenceDiagram
               data-search="createNavigatorContents src/utils/generateNavigatorFiles.ts Render navigator options and registered screens using the resolved adapter component."
             >
               <h3>createNavigatorContents</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:188:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:173:1</code></p>
               <p>
                 Render navigator options and registered screens using the resolved adapter
                 component.
@@ -4049,7 +4087,7 @@ sequenceDiagram
               data-search="renderScreen src/utils/generateNavigatorFiles.ts Wrap a generated screen in the conjunction of its registered route guards."
             >
               <h3>renderScreen</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:219:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:204:1</code></p>
               <p>Wrap a generated screen in the conjunction of its registered route guards.</p>
             </article>
             <article
@@ -4057,7 +4095,7 @@ sequenceDiagram
               data-search="routeOptions src/utils/generateNavigatorFiles.ts Merge route labels with the owning adapter&#39;s screen-option mapping."
             >
               <h3>routeOptions</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:248:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:233:1</code></p>
               <p>Merge route labels with the owning adapter&#39;s screen-option mapping.</p>
             </article>
             <article
@@ -4065,7 +4103,7 @@ sequenceDiagram
               data-search="renderScreenElement src/utils/generateNavigatorFiles.ts Render one generated Screen with a stable multiline options object when route options exist."
             >
               <h3>renderScreenElement</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:273:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:258:1</code></p>
               <p>
                 Render one generated Screen with a stable multiline options object when route
                 options exist.
@@ -4076,7 +4114,7 @@ sequenceDiagram
               data-search="assertRouteName src/utils/generateNavigatorFiles.ts Reject route segments that could escape or invalidate the generated directory."
             >
               <h3>assertRouteName</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:295:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:280:1</code></p>
               <p>Reject route segments that could escape or invalidate the generated directory.</p>
             </article>
             <article
@@ -4084,7 +4122,7 @@ sequenceDiagram
               data-search="createScreenFile src/utils/generateNavigatorFiles.ts Emit a route module that re-exports its registered screen as the default component."
             >
               <h3>createScreenFile</h3>
-              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:302:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigatorFiles.ts:287:1</code></p>
               <p>
                 Emit a route module that re-exports its registered screen as the default component.
               </p>

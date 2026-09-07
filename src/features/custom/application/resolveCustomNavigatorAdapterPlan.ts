@@ -23,7 +23,7 @@ export function resolveCustomNavigatorAdapterPlan(
     ...(registration === undefined
       ? {}
       : { module: registration.module, exportName: registration.exportName }),
-    support: supported ? 'supported' : 'unavailable',
+    support: supported ? 'supported' : 'unsupported',
     stability: registration?.stability ?? 'alpha',
     limitations: [
       'Requires an immutable registered expo-router-standard integration.',

@@ -17,7 +17,7 @@ graph LR
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts["src/features/stack/domain/resolveEffectiveStackConfig.ts"]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts["src/features/stack/domain/resolveEffectiveStackConfigSource.ts"]
   module_src_features_stack_domain_validateStackRouteOptions_ts["src/features/stack/domain/validateStackRouteOptions.ts"]
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx["src/features/tabs/adapters/inbound/CustomTabsLayout.tsx"]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx["src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts["src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts["src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts["src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts"]
@@ -28,8 +28,8 @@ graph LR
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts["src/features/tabs/application/resolveTabsNavigatorPlan.ts"]
   module_src_features_tabs_application_resolveTabsPlan_ts["src/features/tabs/application/resolveTabsPlan.ts"]
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts["src/features/tabs/domain/addTabsAdapterDiagnostics.ts"]
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts["src/features/tabs/domain/resolveCustomTabsPresentation.ts"]
   module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts["src/features/tabs/domain/resolveEffectiveTabsConfig.ts"]
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts["src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"]
   module_src_features_tabs_nativeIcons_ts["src/features/tabs/nativeIcons.ts"]
   module_src_features_tabs_tabs_ts["src/features/tabs/tabs.ts"]
   module_src_navigator_ts["src/navigator.ts"]
@@ -57,12 +57,12 @@ graph LR
   module_tests_tabs_test_ts["tests/tabs.test.ts"]
   export_createNavigatorPlan["createNavigatorPlan"]
   module_src_utils_createNavigatorPlan_ts --> export_createNavigatorPlan
-  export_CustomTabsLayout["CustomTabsLayout"]
-  module_src_features_tabs_adapters_inbound_CustomTabsLayout_tsx --> export_CustomTabsLayout
   export_defineCustomNavigatorRegistry["defineCustomNavigatorRegistry"]
   module_src_features_custom_domain_defineCustomNavigatorRegistry_ts --> export_defineCustomNavigatorRegistry
   export_generateNavigatorFiles["generateNavigatorFiles"]
   module_src_utils_generateNavigatorFiles_ts --> export_generateNavigatorFiles
+  export_HeadlessTabsLayout["HeadlessTabsLayout"]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> export_HeadlessTabsLayout
   export_NativeFontAwesome5Family["NativeFontAwesome5Family"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --> export_NativeFontAwesome5Family
   export_NativeFontAwesome6Family["NativeFontAwesome6Family"]
@@ -75,8 +75,8 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --> export_NativeMaterialDesignIconsFamily
   export_NAVIGATOR_PACKAGE_METADATA["NAVIGATOR_PACKAGE_METADATA"]
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> export_NAVIGATOR_PACKAGE_METADATA
-  export_resolveCustomTabsPresentation["resolveCustomTabsPresentation"]
-  module_src_features_tabs_domain_resolveCustomTabsPresentation_ts --> export_resolveCustomTabsPresentation
+  export_resolveHeadlessTabsPresentation["resolveHeadlessTabsPresentation"]
+  module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --> export_resolveHeadlessTabsPresentation
   export_resolveNavigatorPreset["resolveNavigatorPreset"]
   module_src_utils_resolveNavigatorPreset_ts --> export_resolveNavigatorPreset
   export_resolveTabsNavigatorPlan["resolveTabsNavigatorPlan"]

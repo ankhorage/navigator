@@ -22,8 +22,8 @@ export function addTabsAdapterDiagnostics(
     native:
       implementation === 'native' ||
       (implementation === 'adaptive' && validationContext.platform !== 'web'),
-    custom:
-      implementation === 'custom' ||
+    headless:
+      implementation === 'headless' ||
       (implementation === 'adaptive' && validationContext.platform === 'web'),
     platform: validationContext.platform,
   };
@@ -34,7 +34,7 @@ export function addTabsAdapterDiagnostics(
 
 interface TabsDiagnosticContext {
   native: boolean;
-  custom: boolean;
+  headless: boolean;
   platform: NavigatorValidationContext['platform'];
 }
 
@@ -96,7 +96,7 @@ function addTabsRouteDiagnostics(
         message: 'Hiding a Native Tabs trigger makes the route unreachable; use an owning stack.',
       });
     }
-    if ((context.native || context.custom) && (route.guards ?? []).length > 0) {
+    if ((context.native || context.headless) && (route.guards ?? []).length > 0) {
       diagnostics.push({
         code: 'unsupported-tabs-guard',
         severity: 'error',
@@ -104,13 +104,12 @@ function addTabsRouteDiagnostics(
         message: 'This Tabs implementation cannot register protected Screen entries.',
       });
     }
-    if (context.custom && route.path === undefined) {
+    if (context.headless && route.path === undefined) {
       diagnostics.push({
         code: 'missing-tabs-path',
         severity: 'error',
         path: `${routePointer}/path`,
-        message:
-          'Headless custom Tabs require an explicit route path; Navigator never infers URLs.',
+        message: 'Headless Tabs require an explicit route path; Navigator never infers URLs.',
       });
     }
     addTabsIconDiagnostics(diagnostics, route, routePointer, context);
@@ -137,7 +136,7 @@ function addTabsIconDiagnostics(
     route.icon !== undefined &&
     'name' in route.icon &&
     route.icon.provider !== undefined &&
-    (context.native || context.custom) &&
+    (context.native || context.headless) &&
     !SURFACE_ICON_PROVIDERS.has(route.icon.provider)
   ) {
     diagnostics.push({

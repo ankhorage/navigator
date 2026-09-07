@@ -32,12 +32,12 @@ describe('@ankhorage/navigator Experimental Stack planning', () => {
       platform: 'ios',
       expoRouterVersion: '57.0.18',
     });
-    expect(ios.supported).toBe(true);
+    expect(ios.support).toBe('testing-only');
     expect(ios.root.adapter).toMatchObject({
       id: 'stack.experimental',
       module: 'expo-router',
       exportName: 'ExperimentalStack',
-      support: 'supported',
+      support: 'testing-only',
       stability: 'alpha',
     });
 
@@ -45,7 +45,7 @@ describe('@ankhorage/navigator Experimental Stack planning', () => {
       platform: 'web',
       expoRouterVersion: '57.0.18',
     });
-    expect(web.supported).toBe(true);
+    expect(web.support).toBe('testing-only');
     expect(web.root.adapter.limitations).toContain(
       'Testing-only API; Expo Router falls back to the standard Stack on web.',
     );
@@ -59,7 +59,7 @@ describe('@ankhorage/navigator Experimental Stack planning', () => {
       platform: 'ios',
       expoRouterVersion: '55.0.0',
     });
-    expect(plan.supported).toBe(false);
+    expect(plan.support).toBe('unsupported');
     expect(diagnosticKeys(plan.diagnostics)).toContain(
       'unsupported-expo-router-version:/implementation:error',
     );
@@ -72,7 +72,7 @@ describe('@ankhorage/navigator Experimental Stack validation', () => {
       platform: 'android',
       expoRouterVersion: '57.0.18',
     });
-    expect(plan.supported).toBe(true);
+    expect(plan.support).toBe('testing-only');
     expect(diagnosticKeys(plan.diagnostics)).toContain(
       'android-predictive-back-required:/implementation:warning',
     );
@@ -157,7 +157,7 @@ describe('@ankhorage/navigator Experimental Stack generation', () => {
         guards: {
           authenticated: { module: '@/navigation/guards', exportName: 'isAuthenticated' },
         },
-      }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+      }).files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
     expect(layout).toContain("import { ExperimentalStack } from 'expo-router';");
     expect(layout).toContain('<ExperimentalStack screenOptions={{ headerShown: true }}>');

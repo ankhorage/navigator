@@ -3,6 +3,8 @@ import type {
   CreateNavigatorPlanOptions,
   CustomNavigatorRegistry,
   NavigatorAdapterPlan,
+  NavigatorCapabilityId,
+  NavigatorDependencyRequirement,
   NavigatorNode,
   NavigatorNodePlan,
   NavigatorPlan,
@@ -40,14 +42,54 @@ export function createNavigatorPlan(
     context,
     root,
     diagnostics,
-    supported:
-      diagnostics.every((diagnostic) => diagnostic.severity !== 'error') &&
-      root.adapter.support === 'supported',
-    flows: {
-      onboarding: manifest.flows?.onboarding ?? false,
-      authentication: manifest.flows?.authentication ?? false,
-    },
+    support: resolvePlanSupport(root, diagnostics),
+    capabilityIds: collectCapabilityIds(root),
+    dependencies: collectDependencies(),
   };
+}
+
+/*** Resolve the honest aggregate support status from diagnostics and every planned adapter. */
+function resolvePlanSupport(
+  root: NavigatorNodePlan,
+  diagnostics: readonly { severity: 'error' | 'warning' }[],
+): NavigatorPlan['support'] {
+  if (diagnostics.some((diagnostic) => diagnostic.severity === 'error')) return 'unsupported';
+  const adapterSupport = collectAdapterSupport(root);
+  if (adapterSupport.includes('unsupported')) return 'unsupported';
+  return adapterSupport.includes('testing-only') ? 'testing-only' : 'supported';
+}
+
+/*** Traverse a recursive plan to retain every adapter support classification. */
+function collectAdapterSupport(node: NavigatorNodePlan): readonly NavigatorPlan['support'][] {
+  return [
+    node.adapter.support,
+    ...node.routes.flatMap((route) =>
+      route.navigator === undefined ? [] : collectAdapterSupport(route.navigator),
+    ),
+  ];
+}
+
+/*** Derive stable capability identifiers directly from the resolved adapter tree. */
+function collectCapabilityIds(root: NavigatorNodePlan): readonly NavigatorCapabilityId[] {
+  return [...new Set(collectAdapterIds(root))].sort();
+}
+
+/*** Traverse the plan to retain every concrete adapter identifier. */
+function collectAdapterIds(node: NavigatorNodePlan): readonly NavigatorCapabilityId[] {
+  return [
+    node.adapter.id,
+    ...node.routes.flatMap((route) =>
+      route.navigator === undefined ? [] : collectAdapterIds(route.navigator),
+    ),
+  ];
+}
+
+/*** Derive generated-app dependency requirements from resolved runtime adapter imports. */
+function collectDependencies(): readonly NavigatorDependencyRequirement[] {
+  const dependencies: NavigatorDependencyRequirement[] = [
+    { packageName: 'expo-router', versionRange: '>=57.0.0 <58.0.0', kind: 'peerDependency' },
+  ];
+  return dependencies;
 }
 
 /*** Resolve a node and its descendants using one platform and responsive-size context. */

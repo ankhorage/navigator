@@ -16,7 +16,7 @@ export function createStackAdapter(
       id: 'stack.javascript',
       module: 'expo-router/js-stack',
       exportName: 'Stack',
-      support: routerMajor !== undefined && routerMajor >= 56 ? 'supported' : 'unavailable',
+      support: routerMajor !== undefined && routerMajor >= 56 ? 'supported' : 'unsupported',
       stability: 'stable',
       limitations: ['Requires Expo Router 56.0.0 or newer.'],
     };
@@ -26,7 +26,7 @@ export function createStackAdapter(
       id: 'stack.experimental',
       module: 'expo-router',
       exportName: 'ExperimentalStack',
-      support: routerMajor !== undefined && routerMajor >= 56 ? 'supported' : 'unavailable',
+      support: routerMajor !== undefined && routerMajor >= 56 ? 'testing-only' : 'unsupported',
       stability: 'alpha',
       limitations:
         platform === 'web'

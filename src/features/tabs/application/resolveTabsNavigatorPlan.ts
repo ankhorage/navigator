@@ -1,6 +1,6 @@
 import type {
   AdaptiveTabsConfig,
-  CustomTabsConfig,
+  HeadlessTabsConfig,
   JavaScriptTabsConfig,
   NavigatorResponsiveSize,
   NavigatorRuntimePlatform,
@@ -8,7 +8,7 @@ import type {
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import { resolveCustomTabsPresentation } from '../domain/resolveCustomTabsPresentation';
+import { resolveHeadlessTabsPresentation } from '../domain/resolveHeadlessTabsPresentation';
 
 /*** Resolve the Expo Router module/export and presentation for one tabs implementation. */
 export function resolveTabsNavigatorPlan(
@@ -26,8 +26,8 @@ export function resolveTabsNavigatorPlan(
       return createNativeTabsPlan(platform, config);
     case 'javascript':
       return createJavaScriptTabsPlan(config);
-    case 'custom':
-      return createCustomTabsPlan(config, size);
+    case 'headless':
+      return createHeadlessTabsPlan(config, size);
   }
 }
 
@@ -39,7 +39,10 @@ function createAdaptiveTabsPlan(
 ): TabsNavigatorPlan {
   if (platform !== 'web')
     return createNativeTabsPlan(platform, resolveAdaptiveConfig(config)?.native);
-  return createCustomTabsPlan(resolveAdaptiveConfig(config)?.web ?? DEFAULT_WEB_CUSTOM_TABS, size);
+  return createHeadlessTabsPlan(
+    resolveAdaptiveConfig(config)?.web ?? DEFAULT_WEB_HEADLESS_TABS,
+    size,
+  );
 }
 
 /*** Create the alpha native-tabs plan and reject unsupported Web usage. */
@@ -77,19 +80,19 @@ function resolveAdaptiveConfig(
     : undefined;
 }
 
-/*** Create the stable cross-platform headless custom-tabs plan for explicit custom use. */
-function createCustomTabsPlan(
-  config: Omit<CustomTabsConfig, 'implementation'>,
+/*** Create the stable cross-platform plan for Expo Router headless Tabs. */
+function createHeadlessTabsPlan(
+  config: Omit<HeadlessTabsConfig, 'implementation'>,
   size: NavigatorResponsiveSize,
 ): TabsNavigatorPlan {
-  const resolved = resolveCustomTabsPresentation(config, size);
+  const resolved = resolveHeadlessTabsPresentation(config, size);
   const presentations = {
-    compact: resolveCustomTabsPresentation(config, 'compact').presentation,
-    medium: resolveCustomTabsPresentation(config, 'medium').presentation,
-    expanded: resolveCustomTabsPresentation(config, 'expanded').presentation,
+    compact: resolveHeadlessTabsPresentation(config, 'compact').presentation,
+    medium: resolveHeadlessTabsPresentation(config, 'medium').presentation,
+    expanded: resolveHeadlessTabsPresentation(config, 'expanded').presentation,
   };
   return {
-    implementation: 'custom',
+    implementation: 'headless',
     module: 'expo-router/ui',
     exportName: 'Tabs',
     stability: 'stable',
@@ -98,7 +101,7 @@ function createCustomTabsPlan(
   };
 }
 
-const DEFAULT_WEB_CUSTOM_TABS = {
+const DEFAULT_WEB_HEADLESS_TABS = {
   presentation: 'responsive',
 } as const;
 

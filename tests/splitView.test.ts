@@ -39,13 +39,13 @@ describe('@ankhorage/navigator Split View planning', () => {
       platform: 'ios',
       expoRouterVersion: '57.0.18',
     });
-    expect(plan.supported).toBe(true);
+    expect(plan.support).toBe('testing-only');
     expect(plan.diagnostics).toEqual([]);
     expect(plan.root.adapter).toMatchObject({
       id: 'split-view',
       module: 'expo-router/unstable-split-view',
       exportName: 'SplitView',
-      support: 'supported',
+      support: 'testing-only',
       stability: 'alpha',
     });
     expect(plan.root.splitView).toEqual({
@@ -60,7 +60,7 @@ describe('@ankhorage/navigator Split View planning', () => {
       platform: 'web',
       expoRouterVersion: '57.0.18',
     });
-    expect(web.supported).toBe(true);
+    expect(web.support).toBe('testing-only');
     expect(web.diagnostics.map(({ code }) => code)).toContain('split-view-slot-fallback');
     expect(web.root.adapter.limitations[0]).toContain('Slot fallback');
     expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.splitView.fallback.web).toBe('slot');
@@ -69,7 +69,7 @@ describe('@ankhorage/navigator Split View planning', () => {
       platform: 'ios',
       expoRouterVersion: '54.0.0',
     });
-    expect(old.supported).toBe(false);
+    expect(old.support).toBe('unsupported');
     expect(old.diagnostics.map(({ code }) => code)).toContain('unsupported-expo-router-version');
   });
 });
@@ -122,7 +122,7 @@ describe('@ankhorage/navigator Split View placement', () => {
 });
 
 describe('@ankhorage/navigator Split View global constraints', () => {
-  test('rejects multiple Split Views and implicit flow wrappers', () => {
+  test('rejects multiple Split Views without flow-specific navigator state', () => {
     const multiple: AppNavigatorManifest = {
       type: 'slot',
       routes: [
@@ -136,14 +136,6 @@ describe('@ankhorage/navigator Split View global constraints', () => {
         expoRouterVersion: '57.0.18',
       }).map(({ code }) => code),
     ).toContain('multiple-split-views');
-
-    const withFlow = { ...SPLIT_VIEW_MANIFEST, flows: { authentication: true } };
-    expect(
-      validateNavigatorManifest(withFlow, {
-        platform: 'ios',
-        expoRouterVersion: '57.0.18',
-      }).map(({ code }) => code),
-    ).toContain('unsupported-split-view-flow-wrapper');
   });
 });
 
@@ -180,7 +172,7 @@ describe('@ankhorage/navigator Split View generation', () => {
       platform: 'ios',
       expoRouterVersion: '57.0.18',
     });
-    const files = generateNavigatorFiles(plan, BINDINGS);
+    const files = generateNavigatorFiles(plan, BINDINGS).files;
     const layout = files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
 
     expect(layout).toContain("from 'expo-router/unstable-split-view'");
@@ -225,7 +217,7 @@ describe('@ankhorage/navigator Split View two-column fallback', () => {
         platform,
         expoRouterVersion: '57.0.18',
       });
-      const files = generateNavigatorFiles(plan, BINDINGS);
+      const files = generateNavigatorFiles(plan, BINDINGS).files;
       expect(files.map(({ path }) => path)).toEqual([
         'src/app/_layout.tsx',
         'src/app/[id].tsx',

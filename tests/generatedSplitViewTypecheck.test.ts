@@ -69,7 +69,7 @@ test('generated Split View layout typechecks against Expo Router 57', () => {
         inspector: { module: './splitViewColumns', exportName: 'Inspector' },
         home: { module: '@/screens/home', exportName: 'Home' },
       },
-    }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+    }).files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
   const diagnostics = typeErrors(source);
   expect(
     diagnostics.map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')),

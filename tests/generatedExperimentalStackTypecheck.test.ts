@@ -52,7 +52,7 @@ test('generated Experimental Stack layouts typecheck against Expo Router 57', ()
       generateNavigatorFiles(plan, {
         guards: {},
         screens: { home: { module: '@/screens/home', exportName: 'Home' } },
-      }).find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+      }).files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
     const diagnostics = typeErrors(source);
     expect(
       diagnostics.map((diagnostic) =>
