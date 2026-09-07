@@ -1,0 +1,75 @@
+import { readdir, readFile } from 'node:fs/promises';
+import { extname, join } from 'node:path';
+
+import { describe, expect, test } from 'bun:test';
+
+import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
+
+async function collectProductionTypeScriptFiles(directory: string): Promise<string[]> {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(
+    entries.map(async (entry) => {
+      const full = join(directory, entry.name);
+      if (entry.isDirectory()) return collectProductionTypeScriptFiles(full);
+      return ['.ts', '.tsx'].includes(extname(entry.name)) && !entry.name.endsWith('.test.ts')
+        ? [full]
+        : [];
+    }),
+  );
+  return nested.flat();
+}
+
+describe('@ankhorage/navigator package boundary', () => {
+  test('publishes truthful standalone capability metadata', () => {
+    expect(NAVIGATOR_PACKAGE_METADATA.packageName).toBe('@ankhorage/navigator');
+    expect(NAVIGATOR_PACKAGE_METADATA.manifestProperty).toBe('navigator');
+    expect(NAVIGATOR_PACKAGE_METADATA.precedence).toEqual([
+      'platform override',
+      'node configuration',
+      'manifest default',
+      'stable default',
+    ]);
+    expect(NAVIGATOR_PACKAGE_METADATA.coreAdapters.javascriptStack.module).toBe(
+      'expo-router/js-stack',
+    );
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.tabs.support).toBe('supported');
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.experimentalStack).toMatchObject({
+      support: 'supported',
+      stability: 'alpha',
+      status: 'testing-only',
+      webFallback: 'stack.native',
+    });
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.splitView).toMatchObject({
+      support: 'supported',
+      stability: 'alpha',
+      status: 'testing-only',
+      fallback: { android: 'slot', web: 'slot' },
+    });
+    expect(NAVIGATOR_PACKAGE_METADATA.optionalAdapters.custom).toEqual({
+      support: 'registered',
+      minimumExpoRouterVersion: '56.0.0',
+      integration: 'expo-router-standard',
+      routerOwner: 'expo-router',
+      config: 'schema-validated-json',
+    });
+  });
+
+  test('keeps the Surface peer and development ranges synchronized', async () => {
+    const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
+      readonly devDependencies?: Readonly<Record<string, string>>;
+      readonly peerDependencies?: Readonly<Record<string, string>>;
+    };
+
+    const surfacePeerRange = packageJson.peerDependencies?.['@ankhorage/surface'];
+    expect(surfacePeerRange).toMatch(/^\^\d+\.\d+\.\d+$/u);
+    expect(packageJson.devDependencies?.['@ankhorage/surface']).toBe(surfacePeerRange);
+  });
+
+  test('never imports the full app manifest into production source', async () => {
+    const forbidden = ['App', 'Manifest'].join('');
+    const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));
+    const contents = await Promise.all(files.map((file) => readFile(file, 'utf8')));
+
+    expect(contents.some((content) => content.includes(forbidden))).toBe(false);
+  });
+});

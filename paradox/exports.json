@@ -5,13 +5,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/expo-router/createNavigatorPlan.ts",
+    "modulePath": "src/utils/createNavigatorPlan.ts",
     "sourceLocation": {
-      "filePath": "src/expo-router/createNavigatorPlan.ts",
-      "line": 283,
+      "filePath": "src/utils/createNavigatorPlan.ts",
+      "line": 29,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["CreateNavigatorPlanOptions", "NavigatorPlan"],
     "signatures": [
       {
@@ -43,13 +43,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/expo-router/createNavigatorPlan.ts",
+    "modulePath": "src/utils/CreateNavigatorPlanOptions.ts",
     "sourceLocation": {
-      "filePath": "src/expo-router/createNavigatorPlan.ts",
-      "line": 28,
+      "filePath": "src/utils/CreateNavigatorPlanOptions.ts",
+      "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [
       "CustomNavigatorRegistry",
       "NavigatorResponsiveSize",
@@ -94,13 +94,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "modulePath": "src/features/custom/domain/CustomNavigatorConfigIssue.ts",
     "sourceLocation": {
-      "filePath": "src/custom/CustomNavigatorRegistry.ts",
-      "line": 6,
+      "filePath": "src/features/custom/domain/CustomNavigatorConfigIssue.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -134,13 +134,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "modulePath": "src/features/custom/domain/CustomNavigatorRegistration.ts",
     "sourceLocation": {
-      "filePath": "src/custom/CustomNavigatorRegistry.ts",
-      "line": 12,
+      "filePath": "src/features/custom/domain/CustomNavigatorRegistration.ts",
+      "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [
       "CustomNavigatorConfigIssue",
       "NavigatorApiStability",
@@ -213,13 +213,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "modulePath": "src/features/custom/domain/CustomNavigatorRegistry.ts",
     "sourceLocation": {
-      "filePath": "src/custom/CustomNavigatorRegistry.ts",
-      "line": 27,
+      "filePath": "src/features/custom/domain/CustomNavigatorRegistry.ts",
+      "line": 3,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -231,13 +231,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsIconSourceResolver.ts",
     "sourceLocation": {
-      "filePath": "src/tabs/CustomTabsLayout.tsx",
-      "line": 40,
+      "filePath": "src/features/tabs/adapters/inbound/CustomTabsIconSourceResolver.ts",
+      "line": 4,
       "column": 1
     },
-    "exportPaths": ["src/tabs/index.ts"],
+    "exportPaths": ["src/features/tabs/tabs.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -249,13 +249,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
     "sourceLocation": {
-      "filePath": "src/tabs/CustomTabsLayout.tsx",
-      "line": 218,
+      "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayout.tsx",
+      "line": 23,
       "column": 1
     },
-    "exportPaths": ["src/tabs/index.ts"],
+    "exportPaths": ["src/features/tabs/tabs.ts"],
     "relatedSymbols": ["CustomTabsLayoutProps"],
     "signatures": [
       {
@@ -281,13 +281,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsLayoutProps.ts",
     "sourceLocation": {
-      "filePath": "src/tabs/CustomTabsLayout.tsx",
-      "line": 46,
+      "filePath": "src/features/tabs/adapters/inbound/CustomTabsLayoutProps.ts",
+      "line": 13,
       "column": 1
     },
-    "exportPaths": ["src/tabs/index.ts"],
+    "exportPaths": ["src/features/tabs/tabs.ts"],
     "relatedSymbols": [
       "CustomTabsIconSourceResolver",
       "CustomTabsPresentationProps",
@@ -341,13 +341,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsPresentationProps.ts",
     "sourceLocation": {
-      "filePath": "src/tabs/CustomTabsLayout.tsx",
-      "line": 30,
+      "filePath": "src/features/tabs/adapters/inbound/CustomTabsPresentationProps.ts",
+      "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/tabs/index.ts"],
+    "exportPaths": ["src/features/tabs/tabs.ts"],
     "relatedSymbols": ["CustomTabsRoute"],
     "signatures": [],
     "members": [
@@ -374,13 +374,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/tabs/CustomTabsLayout.tsx",
+    "modulePath": "src/features/tabs/adapters/inbound/CustomTabsRoute.ts",
     "sourceLocation": {
-      "filePath": "src/tabs/CustomTabsLayout.tsx",
-      "line": 21,
+      "filePath": "src/features/tabs/adapters/inbound/CustomTabsRoute.ts",
+      "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/tabs/index.ts"],
+    "exportPaths": ["src/features/tabs/tabs.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -401,7 +401,7 @@
       {
         "name": "icon",
         "kind": "property",
-        "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+        "type": "import(\"@ankhorage/contracts\").IconSpec | undefined",
         "required": false,
         "description": null
       },
@@ -435,13 +435,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/custom/CustomNavigatorRegistry.ts",
+    "modulePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
     "sourceLocation": {
-      "filePath": "src/custom/CustomNavigatorRegistry.ts",
-      "line": 35,
+      "filePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
+      "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["CustomNavigatorRegistration", "CustomNavigatorRegistry"],
     "signatures": [
       {
@@ -467,13 +467,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/ExpoRouterNavigatorModule.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 15,
+      "filePath": "src/utils/ExpoRouterNavigatorModule.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -485,13 +485,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/generation/generateNavigatorFiles.ts",
+    "modulePath": "src/utils/generateNavigatorFiles.ts",
     "sourceLocation": {
-      "filePath": "src/generation/generateNavigatorFiles.ts",
-      "line": 282,
+      "filePath": "src/utils/generateNavigatorFiles.ts",
+      "line": 18,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [
       "NavigatorGeneratedFile",
       "NavigatorGenerationBindings",
@@ -529,18 +529,108 @@
     "structuredRows": []
   },
   {
+    "name": "NativeFontAwesome5Family",
+    "description": "Regular-style Font Awesome 5 family adapter for Expo Native Tabs.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
+      "line": 9,
+      "column": 14
+    },
+    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "NativeFontAwesome6Family",
+    "description": "Regular-style Font Awesome 6 family adapter for Expo Native Tabs.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts",
+      "line": 10,
+      "column": 14
+    },
+    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "NativeFontAwesomeFamily",
+    "description": "Ionicons-compatible Font Awesome family adapter for Expo Native Tabs.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts",
+      "line": 6,
+      "column": 14
+    },
+    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "NativeIoniconsFamily",
+    "description": "Ionicons family adapter for Expo Native Tabs.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts",
+      "line": 6,
+      "column": 14
+    },
+    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "NativeMaterialDesignIconsFamily",
+    "description": "Material Design Icons family adapter for Expo Native Tabs.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts",
+    "sourceLocation": {
+      "filePath": "src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts",
+      "line": 6,
+      "column": 14
+    },
+    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "NAVIGATOR_PACKAGE_METADATA",
     "description": null,
     "isReadme": false,
     "examples": [],
     "kind": "value",
-    "modulePath": "src/metadata/index.ts",
+    "modulePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
     "sourceLocation": {
-      "filePath": "src/metadata/index.ts",
+      "filePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
       "line": 8,
       "column": 14
     },
-    "exportPaths": ["src/metadata/index.ts"],
+    "exportPaths": ["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -552,13 +642,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorAdapterId.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 25,
+      "filePath": "src/utils/NavigatorAdapterId.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -570,13 +660,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorAdapterPlan.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 49,
+      "filePath": "src/utils/NavigatorAdapterPlan.ts",
+      "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorAdapterId", "NavigatorApiStability", "NavigatorSupportStatus"],
     "signatures": [],
     "members": [
@@ -631,13 +721,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorApiStability.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 12,
+      "filePath": "src/utils/NavigatorApiStability.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -649,13 +739,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorDiagnostic.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 37,
+      "filePath": "src/utils/NavigatorDiagnostic.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -696,13 +786,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorGeneratedFile.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 155,
+      "filePath": "src/utils/NavigatorGeneratedFile.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -729,13 +819,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorGenerationBindings.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 136,
+      "filePath": "src/utils/NavigatorGenerationBindings.ts",
+      "line": 3,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorScreenModule"],
     "signatures": [],
     "members": [
@@ -783,13 +873,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorGenerationOptions.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 148,
+      "filePath": "src/utils/NavigatorGenerationOptions.ts",
+      "line": 2,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -816,13 +906,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorNodePlan.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 92,
+      "filePath": "src/utils/NavigatorNodePlan.ts",
+      "line": 13,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorAdapterPlan", "NavigatorRoutePlan", "TabsNavigatorPlan"],
     "signatures": [],
     "members": [
@@ -892,7 +982,7 @@
       {
         "name": "type",
         "kind": "property",
-        "type": "\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\"",
+        "type": "\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\"",
         "required": true,
         "description": null
       }
@@ -905,13 +995,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorPlan.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 120,
+      "filePath": "src/utils/NavigatorPlan.ts",
+      "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorDiagnostic", "NavigatorNodePlan", "NavigatorValidationContext"],
     "signatures": [],
     "members": [
@@ -959,13 +1049,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorResponsiveSize.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 11,
+      "filePath": "src/utils/NavigatorResponsiveSize.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -977,13 +1067,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorRoutePlan.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 80,
+      "filePath": "src/utils/NavigatorRoutePlan.ts",
+      "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorNodePlan"],
     "signatures": [],
     "members": [
@@ -997,7 +1087,7 @@
       {
         "name": "icon",
         "kind": "property",
-        "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+        "type": "import(\"@ankhorage/contracts\").IconSpec | undefined",
         "required": false,
         "description": null
       },
@@ -1059,13 +1149,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorRuntimePlatform.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 10,
+      "filePath": "src/utils/NavigatorRuntimePlatform.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -1077,13 +1167,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorScreenModule.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 131,
+      "filePath": "src/utils/NavigatorScreenModule.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -1110,13 +1200,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorSupportStatus.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 13,
+      "filePath": "src/utils/NavigatorSupportStatus.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -1128,13 +1218,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/utils/NavigatorValidationContext.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 44,
+      "filePath": "src/utils/NavigatorValidationContext.ts",
+      "line": 3,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorRuntimePlatform"],
     "signatures": [],
     "members": [
@@ -1161,13 +1251,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/presentation/resolveCustomTabsPresentation.ts",
+    "modulePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
     "sourceLocation": {
-      "filePath": "src/presentation/resolveCustomTabsPresentation.ts",
-      "line": 39,
+      "filePath": "src/features/tabs/domain/resolveCustomTabsPresentation.ts",
+      "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorResponsiveSize", "ResolvedCustomTabsPresentation"],
     "signatures": [
       {
@@ -1199,13 +1289,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/presentation/resolveCustomTabsPresentation.ts",
+    "modulePath": "src/features/tabs/domain/ResolvedCustomTabsPresentation.ts",
     "sourceLocation": {
-      "filePath": "src/presentation/resolveCustomTabsPresentation.ts",
-      "line": 18,
+      "filePath": "src/features/tabs/domain/ResolvedCustomTabsPresentation.ts",
+      "line": 3,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["ResolvedTabsPresentation"],
     "signatures": [],
     "members": [
@@ -1232,13 +1322,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/features/tabs/domain/ResolvedTabsImplementation.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 59,
+      "filePath": "src/features/tabs/domain/ResolvedTabsImplementation.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -1250,13 +1340,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/features/tabs/domain/ResolvedTabsPresentation.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 60,
+      "filePath": "src/features/tabs/domain/ResolvedTabsPresentation.ts",
+      "line": 1,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -1268,32 +1358,32 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/topology/resolveNavigatorPreset.ts",
+    "modulePath": "src/utils/resolveNavigatorPreset.ts",
     "sourceLocation": {
-      "filePath": "src/topology/resolveNavigatorPreset.ts",
+      "filePath": "src/utils/resolveNavigatorPreset.ts",
       "line": 4,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(preset: \"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined, fallbackType: \"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\") => readonly (\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\")[]",
+        "label": "(preset: \"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined, fallbackType: \"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\") => readonly (\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\")[]",
         "parameters": [
           {
             "name": "fallbackType",
-            "type": "\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\"",
+            "type": "\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\"",
             "required": true,
             "description": null
           },
           {
             "name": "preset",
-            "type": "\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined",
+            "type": "\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\" | \"tabs-stack\" | \"drawer-stack\" | \"drawer-tabs\" | \"drawer-tabs-stack\" | \"root-stack-tabs\" | \"root-stack-tabs-stack\" | \"root-stack-drawer\" | \"root-stack-drawer-stack\" | \"root-stack-drawer-tabs\" | \"root-stack-drawer-tabs-stack\" | undefined",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "readonly (\"stack\" | \"slot\" | \"drawer\" | \"split-view\" | \"custom\" | \"tabs\")[]",
+        "returnType": "readonly (\"stack\" | \"custom\" | \"slot\" | \"drawer\" | \"split-view\" | \"tabs\")[]",
         "returnDescription": null
       }
     ],
@@ -1306,13 +1396,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
+    "modulePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
     "sourceLocation": {
-      "filePath": "src/expo-router/resolveTabsNavigatorPlan.ts",
-      "line": 99,
+      "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
+      "line": 14,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": ["NavigatorResponsiveSize", "NavigatorRuntimePlatform", "TabsNavigatorPlan"],
     "signatures": [
       {
@@ -1350,13 +1440,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/definitions/NavigatorPlan.ts",
+    "modulePath": "src/features/tabs/domain/TabsNavigatorPlan.ts",
     "sourceLocation": {
-      "filePath": "src/definitions/NavigatorPlan.ts",
-      "line": 68,
+      "filePath": "src/features/tabs/domain/TabsNavigatorPlan.ts",
+      "line": 13,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [
       "ExpoRouterNavigatorModule",
       "NavigatorApiStability",
@@ -1438,13 +1528,13 @@
     "isReadme": false,
     "examples": [],
     "kind": "function",
-    "modulePath": "src/validation/validateNavigatorManifest.ts",
+    "modulePath": "src/utils/validateNavigatorManifest.ts",
     "sourceLocation": {
-      "filePath": "src/validation/validateNavigatorManifest.ts",
-      "line": 226,
+      "filePath": "src/utils/validateNavigatorManifest.ts",
+      "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/index.ts"],
+    "exportPaths": ["src/navigator.ts"],
     "relatedSymbols": [
       "CustomNavigatorRegistry",
       "NavigatorDiagnostic",

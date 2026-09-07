@@ -3,8 +3,8 @@
 ## createNavigatorPlan
 
 Kind: `function`
-Module: `src/expo-router/createNavigatorPlan.ts`
-Source: `src/expo-router/createNavigatorPlan.ts:283:1`
+Module: `src/utils/createNavigatorPlan.ts`
+Source: `src/utils/createNavigatorPlan.ts:29:1`
 
 Create a disposable, provider-aware plan from only the navigator desired-state slice.
 
@@ -18,8 +18,8 @@ Create a disposable, provider-aware plan from only the navigator desired-state s
 ## CreateNavigatorPlanOptions
 
 Kind: `type`
-Module: `src/expo-router/createNavigatorPlan.ts`
-Source: `src/expo-router/createNavigatorPlan.ts:28:1`
+Module: `src/utils/CreateNavigatorPlanOptions.ts`
+Source: `src/utils/CreateNavigatorPlanOptions.ts:5:1`
 
 ### Members
 
@@ -33,8 +33,8 @@ Source: `src/expo-router/createNavigatorPlan.ts:28:1`
 ## CustomNavigatorConfigIssue
 
 Kind: `type`
-Module: `src/custom/CustomNavigatorRegistry.ts`
-Source: `src/custom/CustomNavigatorRegistry.ts:6:1`
+Module: `src/features/custom/domain/CustomNavigatorConfigIssue.ts`
+Source: `src/features/custom/domain/CustomNavigatorConfigIssue.ts:1:1`
 
 ### Members
 
@@ -47,8 +47,8 @@ Source: `src/custom/CustomNavigatorRegistry.ts:6:1`
 ## CustomNavigatorRegistration
 
 Kind: `type`
-Module: `src/custom/CustomNavigatorRegistry.ts`
-Source: `src/custom/CustomNavigatorRegistry.ts:12:1`
+Module: `src/features/custom/domain/CustomNavigatorRegistration.ts`
+Source: `src/features/custom/domain/CustomNavigatorRegistration.ts:7:1`
 
 ### Members
 
@@ -66,20 +66,20 @@ Source: `src/custom/CustomNavigatorRegistry.ts:12:1`
 ## CustomNavigatorRegistry
 
 Kind: `unknown`
-Module: `src/custom/CustomNavigatorRegistry.ts`
-Source: `src/custom/CustomNavigatorRegistry.ts:27:1`
+Module: `src/features/custom/domain/CustomNavigatorRegistry.ts`
+Source: `src/features/custom/domain/CustomNavigatorRegistry.ts:3:1`
 
 ## CustomTabsIconSourceResolver
 
 Kind: `unknown`
-Module: `src/tabs/CustomTabsLayout.tsx`
-Source: `src/tabs/CustomTabsLayout.tsx:40:1`
+Module: `src/features/tabs/adapters/inbound/CustomTabsIconSourceResolver.ts`
+Source: `src/features/tabs/adapters/inbound/CustomTabsIconSourceResolver.ts:4:1`
 
 ## CustomTabsLayout
 
 Kind: `function`
-Module: `src/tabs/CustomTabsLayout.tsx`
-Source: `src/tabs/CustomTabsLayout.tsx:218:1`
+Module: `src/features/tabs/adapters/inbound/CustomTabsLayout.tsx`
+Source: `src/features/tabs/adapters/inbound/CustomTabsLayout.tsx:23:1`
 
 Render one stable headless Expo Router tab topology with Surface-owned presentations.
 
@@ -104,8 +104,8 @@ customPresentation: CustomPresentation,
 ## CustomTabsLayoutProps
 
 Kind: `type`
-Module: `src/tabs/CustomTabsLayout.tsx`
-Source: `src/tabs/CustomTabsLayout.tsx:46:1`
+Module: `src/features/tabs/adapters/inbound/CustomTabsLayoutProps.ts`
+Source: `src/features/tabs/adapters/inbound/CustomTabsLayoutProps.ts:13:1`
 
 ### Members
 
@@ -120,8 +120,8 @@ Source: `src/tabs/CustomTabsLayout.tsx:46:1`
 ## CustomTabsPresentationProps
 
 Kind: `type`
-Module: `src/tabs/CustomTabsLayout.tsx`
-Source: `src/tabs/CustomTabsLayout.tsx:30:1`
+Module: `src/features/tabs/adapters/inbound/CustomTabsPresentationProps.ts`
+Source: `src/features/tabs/adapters/inbound/CustomTabsPresentationProps.ts:5:1`
 
 ### Members
 
@@ -133,25 +133,25 @@ Source: `src/tabs/CustomTabsLayout.tsx:30:1`
 ## CustomTabsRoute
 
 Kind: `type`
-Module: `src/tabs/CustomTabsLayout.tsx`
-Source: `src/tabs/CustomTabsLayout.tsx:21:1`
+Module: `src/features/tabs/adapters/inbound/CustomTabsRoute.ts`
+Source: `src/features/tabs/adapters/inbound/CustomTabsRoute.ts:5:1`
 
 ### Members
 
-| Name    | Kind     | Type                                                              | Required | Description |
-| ------- | -------- | ----------------------------------------------------------------- | -------- | ----------- |
-| badge   | property | `ReactNode`                                                       | no       |             |
-| href    | property | `string`                                                          | yes      |             |
-| icon    | property | `import("@ankhorage/contracts/dist/types").IconSpec \| undefined` | no       |             |
-| label   | property | `string`                                                          | yes      |             |
-| name    | property | `string`                                                          | yes      |             |
-| visible | property | `boolean`                                                         | yes      |             |
+| Name    | Kind     | Type                                                   | Required | Description |
+| ------- | -------- | ------------------------------------------------------ | -------- | ----------- |
+| badge   | property | `ReactNode`                                            | no       |             |
+| href    | property | `string`                                               | yes      |             |
+| icon    | property | `import("@ankhorage/contracts").IconSpec \| undefined` | no       |             |
+| label   | property | `string`                                               | yes      |             |
+| name    | property | `string`                                               | yes      |             |
+| visible | property | `boolean`                                              | yes      |             |
 
 ## defineCustomNavigatorRegistry
 
 Kind: `function`
-Module: `src/custom/CustomNavigatorRegistry.ts`
-Source: `src/custom/CustomNavigatorRegistry.ts:35:1`
+Module: `src/features/custom/domain/defineCustomNavigatorRegistry.ts`
+Source: `src/features/custom/domain/defineCustomNavigatorRegistry.ts:7:1`
 
 Define an immutable, duplicate-free custom navigator registry for one composition boundary.
 
@@ -164,14 +164,14 @@ Define an immutable, duplicate-free custom navigator registry for one compositio
 ## ExpoRouterNavigatorModule
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:15:1`
+Module: `src/utils/ExpoRouterNavigatorModule.ts`
+Source: `src/utils/ExpoRouterNavigatorModule.ts:1:1`
 
 ## generateNavigatorFiles
 
 Kind: `function`
-Module: `src/generation/generateNavigatorFiles.ts`
-Source: `src/generation/generateNavigatorFiles.ts:282:1`
+Module: `src/utils/generateNavigatorFiles.ts`
+Source: `src/utils/generateNavigatorFiles.ts:18:1`
 
 Generate deterministic Expo Router files from a validated disposable plan and narrow bindings.
 
@@ -183,23 +183,63 @@ Generate deterministic Expo Router files from a validated disposable plan and na
   - plan: `NavigatorPlan`
   - returns: `readonly NavigatorGeneratedFile[]`
 
+## NativeFontAwesome5Family
+
+Kind: `value`
+Module: `src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts`
+Source: `src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts:9:14`
+
+Regular-style Font Awesome 5 family adapter for Expo Native Tabs.
+
+## NativeFontAwesome6Family
+
+Kind: `value`
+Module: `src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts`
+Source: `src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts:10:14`
+
+Regular-style Font Awesome 6 family adapter for Expo Native Tabs.
+
+## NativeFontAwesomeFamily
+
+Kind: `value`
+Module: `src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts`
+Source: `src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts:6:14`
+
+Ionicons-compatible Font Awesome family adapter for Expo Native Tabs.
+
+## NativeIoniconsFamily
+
+Kind: `value`
+Module: `src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts`
+Source: `src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts:6:14`
+
+Ionicons family adapter for Expo Native Tabs.
+
+## NativeMaterialDesignIconsFamily
+
+Kind: `value`
+Module: `src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts`
+Source: `src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts:6:14`
+
+Material Design Icons family adapter for Expo Native Tabs.
+
 ## NAVIGATOR_PACKAGE_METADATA
 
 Kind: `value`
-Module: `src/metadata/index.ts`
-Source: `src/metadata/index.ts:8:14`
+Module: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts`
+Source: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts:8:14`
 
 ## NavigatorAdapterId
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:25:1`
+Module: `src/utils/NavigatorAdapterId.ts`
+Source: `src/utils/NavigatorAdapterId.ts:1:1`
 
 ## NavigatorAdapterPlan
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:49:1`
+Module: `src/utils/NavigatorAdapterPlan.ts`
+Source: `src/utils/NavigatorAdapterPlan.ts:5:1`
 
 ### Members
 
@@ -215,14 +255,14 @@ Source: `src/definitions/NavigatorPlan.ts:49:1`
 ## NavigatorApiStability
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:12:1`
+Module: `src/utils/NavigatorApiStability.ts`
+Source: `src/utils/NavigatorApiStability.ts:1:1`
 
 ## NavigatorDiagnostic
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:37:1`
+Module: `src/utils/NavigatorDiagnostic.ts`
+Source: `src/utils/NavigatorDiagnostic.ts:1:1`
 
 ### Members
 
@@ -236,8 +276,8 @@ Source: `src/definitions/NavigatorPlan.ts:37:1`
 ## NavigatorGeneratedFile
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:155:1`
+Module: `src/utils/NavigatorGeneratedFile.ts`
+Source: `src/utils/NavigatorGeneratedFile.ts:1:1`
 
 ### Members
 
@@ -249,8 +289,8 @@ Source: `src/definitions/NavigatorPlan.ts:155:1`
 ## NavigatorGenerationBindings
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:136:1`
+Module: `src/utils/NavigatorGenerationBindings.ts`
+Source: `src/utils/NavigatorGenerationBindings.ts:3:1`
 
 ### Members
 
@@ -265,8 +305,8 @@ Source: `src/definitions/NavigatorPlan.ts:136:1`
 ## NavigatorGenerationOptions
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:148:1`
+Module: `src/utils/NavigatorGenerationOptions.ts`
+Source: `src/utils/NavigatorGenerationOptions.ts:2:1`
 
 ### Members
 
@@ -278,8 +318,8 @@ Source: `src/definitions/NavigatorPlan.ts:148:1`
 ## NavigatorNodePlan
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:92:1`
+Module: `src/utils/NavigatorNodePlan.ts`
+Source: `src/utils/NavigatorNodePlan.ts:13:1`
 
 ### Members
 
@@ -294,13 +334,13 @@ Source: `src/definitions/NavigatorPlan.ts:92:1`
 | splitView        | property | `{ columns: { primary: string; supplementary?: string; }; inspector?: string; topColumnForCollapsing?: "primary" \| "secondary" \| "supplementary"; } \| undefined` | no       |             |
 | stack            | property | `{ implementation: StackImplementation; options?: StackScreenOptions; } \| undefined`                                                                               | no       |             |
 | tabs             | property | `TabsNavigatorPlan \| undefined`                                                                                                                                    | no       |             |
-| type             | property | `"stack" \| "slot" \| "drawer" \| "split-view" \| "custom" \| "tabs"`                                                                                               | yes      |             |
+| type             | property | `"stack" \| "custom" \| "slot" \| "drawer" \| "split-view" \| "tabs"`                                                                                               | yes      |             |
 
 ## NavigatorPlan
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:120:1`
+Module: `src/utils/NavigatorPlan.ts`
+Source: `src/utils/NavigatorPlan.ts:5:1`
 
 ### Members
 
@@ -315,40 +355,40 @@ Source: `src/definitions/NavigatorPlan.ts:120:1`
 ## NavigatorResponsiveSize
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:11:1`
+Module: `src/utils/NavigatorResponsiveSize.ts`
+Source: `src/utils/NavigatorResponsiveSize.ts:1:1`
 
 ## NavigatorRoutePlan
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:80:1`
+Module: `src/utils/NavigatorRoutePlan.ts`
+Source: `src/utils/NavigatorRoutePlan.ts:5:1`
 
 ### Members
 
-| Name                    | Kind     | Type                                                              | Required | Description |
-| ----------------------- | -------- | ----------------------------------------------------------------- | -------- | ----------- |
-| guards                  | property | `readonly string[]`                                               | yes      |             |
-| icon                    | property | `import("@ankhorage/contracts/dist/types").IconSpec \| undefined` | no       |             |
-| label                   | property | `string \| undefined`                                             | no       |             |
-| name                    | property | `string`                                                          | yes      |             |
-| navigator               | property | `NavigatorNodePlan \| undefined`                                  | no       |             |
-| path                    | property | `string \| undefined`                                             | no       |             |
-| screenId                | property | `string \| undefined`                                             | no       |             |
-| showInPrimaryNavigation | property | `boolean \| undefined`                                            | no       |             |
-| stackOptions            | property | `StackScreenOptions \| undefined`                                 | no       |             |
+| Name                    | Kind     | Type                                                   | Required | Description |
+| ----------------------- | -------- | ------------------------------------------------------ | -------- | ----------- |
+| guards                  | property | `readonly string[]`                                    | yes      |             |
+| icon                    | property | `import("@ankhorage/contracts").IconSpec \| undefined` | no       |             |
+| label                   | property | `string \| undefined`                                  | no       |             |
+| name                    | property | `string`                                               | yes      |             |
+| navigator               | property | `NavigatorNodePlan \| undefined`                       | no       |             |
+| path                    | property | `string \| undefined`                                  | no       |             |
+| screenId                | property | `string \| undefined`                                  | no       |             |
+| showInPrimaryNavigation | property | `boolean \| undefined`                                 | no       |             |
+| stackOptions            | property | `StackScreenOptions \| undefined`                      | no       |             |
 
 ## NavigatorRuntimePlatform
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:10:1`
+Module: `src/utils/NavigatorRuntimePlatform.ts`
+Source: `src/utils/NavigatorRuntimePlatform.ts:1:1`
 
 ## NavigatorScreenModule
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:131:1`
+Module: `src/utils/NavigatorScreenModule.ts`
+Source: `src/utils/NavigatorScreenModule.ts:1:1`
 
 ### Members
 
@@ -360,14 +400,14 @@ Source: `src/definitions/NavigatorPlan.ts:131:1`
 ## NavigatorSupportStatus
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:13:1`
+Module: `src/utils/NavigatorSupportStatus.ts`
+Source: `src/utils/NavigatorSupportStatus.ts:1:1`
 
 ## NavigatorValidationContext
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:44:1`
+Module: `src/utils/NavigatorValidationContext.ts`
+Source: `src/utils/NavigatorValidationContext.ts:3:1`
 
 ### Members
 
@@ -379,8 +419,8 @@ Source: `src/definitions/NavigatorPlan.ts:44:1`
 ## resolveCustomTabsPresentation
 
 Kind: `function`
-Module: `src/presentation/resolveCustomTabsPresentation.ts`
-Source: `src/presentation/resolveCustomTabsPresentation.ts:39:1`
+Module: `src/features/tabs/domain/resolveCustomTabsPresentation.ts`
+Source: `src/features/tabs/domain/resolveCustomTabsPresentation.ts:11:1`
 
 Resolve one custom-tabs presentation for the current semantic responsive size.
 
@@ -394,8 +434,8 @@ Resolve one custom-tabs presentation for the current semantic responsive size.
 ## ResolvedCustomTabsPresentation
 
 Kind: `type`
-Module: `src/presentation/resolveCustomTabsPresentation.ts`
-Source: `src/presentation/resolveCustomTabsPresentation.ts:18:1`
+Module: `src/features/tabs/domain/ResolvedCustomTabsPresentation.ts`
+Source: `src/features/tabs/domain/ResolvedCustomTabsPresentation.ts:3:1`
 
 ### Members
 
@@ -407,35 +447,35 @@ Source: `src/presentation/resolveCustomTabsPresentation.ts:18:1`
 ## ResolvedTabsImplementation
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:59:1`
+Module: `src/features/tabs/domain/ResolvedTabsImplementation.ts`
+Source: `src/features/tabs/domain/ResolvedTabsImplementation.ts:1:1`
 
 ## ResolvedTabsPresentation
 
 Kind: `unknown`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:60:1`
+Module: `src/features/tabs/domain/ResolvedTabsPresentation.ts`
+Source: `src/features/tabs/domain/ResolvedTabsPresentation.ts:1:1`
 
 ## resolveNavigatorPreset
 
 Kind: `function`
-Module: `src/topology/resolveNavigatorPreset.ts`
-Source: `src/topology/resolveNavigatorPreset.ts:4:1`
+Module: `src/utils/resolveNavigatorPreset.ts`
+Source: `src/utils/resolveNavigatorPreset.ts:4:1`
 
 Resolve a canonical navigator preset into its ordered topology layers.
 
 ### Signatures
 
-- `(preset: "stack" | "slot" | "drawer" | "split-view" | "custom" | "tabs" | "tabs-stack" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | undefined, fallbackType: "stack" | "slot" | "drawer" | "split-view" | "custom" | "tabs") => readonly ("stack" | "slot" | "drawer" | "split-view" | "custom" | "tabs")[]`
-  - fallbackType: `"stack" | "slot" | "drawer" | "split-view" | "custom" | "tabs"`
-  - preset: `"stack" | "slot" | "drawer" | "split-view" | "custom" | "tabs" | "tabs-stack" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | undefined`
-  - returns: `readonly ("stack" | "slot" | "drawer" | "split-view" | "custom" | "tabs")[]`
+- `(preset: "stack" | "custom" | "slot" | "drawer" | "split-view" | "tabs" | "tabs-stack" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | undefined, fallbackType: "stack" | "custom" | "slot" | "drawer" | "split-view" | "tabs") => readonly ("stack" | "custom" | "slot" | "drawer" | "split-view" | "tabs")[]`
+  - fallbackType: `"stack" | "custom" | "slot" | "drawer" | "split-view" | "tabs"`
+  - preset: `"stack" | "custom" | "slot" | "drawer" | "split-view" | "tabs" | "tabs-stack" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "root-stack-tabs" | "root-stack-tabs-stack" | "root-stack-drawer" | "root-stack-drawer-stack" | "root-stack-drawer-tabs" | "root-stack-drawer-tabs-stack" | undefined`
+  - returns: `readonly ("stack" | "custom" | "slot" | "drawer" | "split-view" | "tabs")[]`
 
 ## resolveTabsNavigatorPlan
 
 Kind: `function`
-Module: `src/expo-router/resolveTabsNavigatorPlan.ts`
-Source: `src/expo-router/resolveTabsNavigatorPlan.ts:99:1`
+Module: `src/features/tabs/application/resolveTabsNavigatorPlan.ts`
+Source: `src/features/tabs/application/resolveTabsNavigatorPlan.ts:14:1`
 
 Resolve the Expo Router module/export and presentation for one tabs implementation.
 
@@ -450,8 +490,8 @@ Resolve the Expo Router module/export and presentation for one tabs implementati
 ## TabsNavigatorPlan
 
 Kind: `type`
-Module: `src/definitions/NavigatorPlan.ts`
-Source: `src/definitions/NavigatorPlan.ts:68:1`
+Module: `src/features/tabs/domain/TabsNavigatorPlan.ts`
+Source: `src/features/tabs/domain/TabsNavigatorPlan.ts:13:1`
 
 ### Members
 
@@ -470,8 +510,8 @@ Source: `src/definitions/NavigatorPlan.ts:68:1`
 ## validateNavigatorManifest
 
 Kind: `function`
-Module: `src/validation/validateNavigatorManifest.ts`
-Source: `src/validation/validateNavigatorManifest.ts:226:1`
+Module: `src/utils/validateNavigatorManifest.ts`
+Source: `src/utils/validateNavigatorManifest.ts:22:1`
 
 Validate one navigator desired-state slice for a concrete Expo Router target.
 

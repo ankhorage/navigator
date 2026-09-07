@@ -1,5 +1,7 @@
 import { defineParadoxConfig } from '@ankhorage/paradox';
 
+import packageJson from './package.json';
+
 export default defineParadoxConfig({
   mode: 'write',
 
@@ -11,7 +13,11 @@ export default defineParadoxConfig({
 
   package: {
     root: '.',
-    entrypoints: ['src/index.ts', 'src/metadata/index.ts', 'src/tabs/index.ts'],
+    entrypoints: Object.values(packageJson.exports).flatMap((entry) =>
+      typeof entry === 'string'
+        ? []
+        : [entry.default.replace('./dist/', 'src/').replace(/\.js$/u, '.ts')],
+    ),
   },
 
   output: {
