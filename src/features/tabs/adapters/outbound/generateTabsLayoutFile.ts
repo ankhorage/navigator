@@ -8,11 +8,6 @@ import type {
 import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/utility/string';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
-const HEADLESS_TABS_IMPORTS = [
-  "import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';",
-  "import { ResponsiveProvider } from '@ankhorage/surface';",
-] as const;
-
 /*** Generate the specialized layout file for a supported tabs implementation. */
 export function generateTabsLayoutFile(
   node: NavigatorNodePlan,
@@ -28,6 +23,11 @@ export function generateTabsLayoutFile(
   }
   return undefined;
 }
+
+const HEADLESS_TABS_IMPORTS = [
+  "import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';",
+  "import { ResponsiveProvider } from '@ankhorage/surface';",
+] as const;
 
 /*** Create the generated Native Tabs layout file and its narrow runtime imports. */
 function createNativeTabsFile(
