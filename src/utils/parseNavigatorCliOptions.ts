@@ -1,4 +1,4 @@
-import type { NavigatorCliOptions } from '../../types/NavigatorCliOptions';
+import type { NavigatorCliOptions } from '../types/navigatorCli';
 
 /*** Parse deterministic Navigator command flags without reading files or process globals. */
 export function parseNavigatorCliOptions(argv: readonly string[]): NavigatorCliOptions {

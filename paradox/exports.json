@@ -38,6 +38,24 @@
     "structuredRows": []
   },
   {
+    "name": "default",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/cli/createCliProvider.ts",
+    "sourceLocation": {
+      "filePath": "src/cli/createCliProvider.ts",
+      "line": 11,
+      "column": 1
+    },
+    "exportPaths": ["src/cli/createCliProvider.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "defineCustomNavigatorRegistry",
     "description": "Define an immutable, duplicate-free custom navigator registry for one composition boundary.",
     "isReadme": false,
@@ -311,32 +329,14 @@
     "structuredRows": []
   },
   {
-    "name": "navigatorRuntimeProvider",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "value",
-    "modulePath": "src/cli/provider/navigatorRuntimeProvider.ts",
-    "sourceLocation": {
-      "filePath": "src/cli/provider/navigatorRuntimeProvider.ts",
-      "line": 4,
-      "column": 14
-    },
-    "exportPaths": ["src/cli/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "NavigatorVerificationResult",
     "description": null,
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/types/NavigatorVerificationResult.ts",
+    "modulePath": "src/types/navigatorVerification.ts",
     "sourceLocation": {
-      "filePath": "src/types/NavigatorVerificationResult.ts",
+      "filePath": "src/types/navigatorVerification.ts",
       "line": 9,
       "column": 1
     },

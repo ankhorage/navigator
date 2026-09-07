@@ -1,16 +1,24 @@
-import type { AnkhCapabilityId } from '@ankhorage/contracts/cli';
+import type { AnkhCapabilityId, AnkhCommandProviderManifest } from '@ankhorage/contracts/cli';
 
-import packageJson from '../../../package.json';
-import type { NavigatorCliExecution } from '../../types/NavigatorCliExecution';
-import type { NavigatorRuntimeProvider } from '../../types/NavigatorRuntimeProvider';
-import { runNavigatorCatalogCommand } from '../commands/runNavigatorCatalogCommand';
-import { runNavigatorGenerateCommand } from '../commands/runNavigatorGenerateCommand';
-import { runNavigatorPlanCommand } from '../commands/runNavigatorPlanCommand';
-import { runNavigatorValidateCommand } from '../commands/runNavigatorValidateCommand';
-import { runNavigatorVerifyCommand } from '../commands/runNavigatorVerifyCommand';
+import packageJson from '../../package.json';
+import type { NavigatorCliExecution } from '../types/navigatorCli';
+import { catalog } from './commands/catalog';
+import { generate } from './commands/generate';
+import { plan } from './commands/plan';
+import { validate } from './commands/validate';
+import { verify } from './commands/verify';
+
+export default createCliProvider();
 
 /*** Create the package-owned provider for the standalone Navigator lifecycle. */
-export function createNavigatorRuntimeProvider(): NavigatorRuntimeProvider {
+function createCliProvider(): NavigatorCliProvider {
+  const capabilities = [
+    'navigator.catalog',
+    'navigator.validate',
+    'navigator.plan',
+    'navigator.generate',
+    'navigator.verify',
+  ] as const;
   const commands = [
     descriptor(
       'catalog',
@@ -42,15 +50,31 @@ export function createNavigatorRuntimeProvider(): NavigatorRuntimeProvider {
     id: packageJson.name,
     category: 'navigator',
     version: packageJson.version,
-    capabilities: CAPABILITIES,
+    capabilities,
     commands,
     handlers: [
-      binding('catalog', runNavigatorCatalogCommand),
-      binding('validate', runNavigatorValidateCommand),
-      binding('plan', runNavigatorPlanCommand),
-      binding('generate', runNavigatorGenerateCommand),
-      binding('verify', runNavigatorVerifyCommand),
+      binding('catalog', catalog),
+      binding('validate', validate),
+      binding('plan', plan),
+      binding('generate', generate),
+      binding('verify', verify),
     ],
+  };
+}
+
+interface NavigatorCliProvider extends AnkhCommandProviderManifest {
+  readonly handlers: readonly {
+    readonly path: readonly string[];
+    readonly handler: (request: NavigatorCliRequest) => Promise<{ readonly exitCode: number }>;
+  }[];
+}
+
+interface NavigatorCliRequest {
+  readonly argv: readonly string[];
+  readonly context: {
+    readonly cwd: string;
+    writeStdout(text: string): void;
+    writeStderr(text: string): void;
   };
 }
 
@@ -64,21 +88,13 @@ function descriptor(path: string, capability: AnkhCapabilityId, summary: string)
   };
 }
 
-const CAPABILITIES = [
-  'navigator.catalog',
-  'navigator.validate',
-  'navigator.plan',
-  'navigator.generate',
-  'navigator.verify',
-] as const;
-
 /*** Adapt the Ankh execution request to Navigator's narrow command input. */
 function binding(
   path: string,
   handler: (
     input: NavigatorCliExecution,
   ) => Promise<{ readonly exitCode: number }> | { readonly exitCode: number },
-): NavigatorRuntimeProvider['handlers'][number] {
+): NavigatorCliProvider['handlers'][number] {
   return {
     path: [path],
     handler: (request) =>

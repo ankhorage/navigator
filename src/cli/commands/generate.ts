@@ -1,19 +1,14 @@
-import type {
-  NavigatorCliExecution,
-  NavigatorCliRunResult,
-} from '../../types/NavigatorCliExecution';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
 import { createNavigatorPlan } from '../../utils/createNavigatorPlan';
 import { generateNavigator } from '../../utils/generateNavigator';
-import { writeNavigatorGeneratedFiles } from '../adapters/writeNavigatorGeneratedFiles';
-import { assertNavigatorCliOptions } from './assertNavigatorCliOptions';
-import { loadNavigatorCliInput } from './loadNavigatorCliInput';
-import { parseNavigatorCliOptions } from './parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from './reportNavigatorCliResult';
+import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
+import { writeNavigatorGeneratedFilesAsync } from '../../utils/writeNavigatorGeneratedFilesAsync';
 
 /*** Generate one structured Navigator file set and write it below an explicit target. */
-export async function runNavigatorGenerateCommand(
-  input: NavigatorCliExecution,
-): Promise<NavigatorCliRunResult> {
+export async function generate(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {
   try {
     const options = parseNavigatorCliOptions(input.argv);
     assertNavigatorCliOptions(
@@ -31,7 +26,7 @@ export async function runNavigatorGenerateCommand(
         'includeScreenFiles',
       ],
     );
-    const loaded = await loadNavigatorCliInput(options, input.cwd, true);
+    const loaded = await loadNavigatorCliInputAsync(options, input.cwd, true);
     if (loaded.bindings === undefined || options.targetDirectory === undefined) {
       throw new Error('Bindings and target directory are required for generation.');
     }
@@ -40,7 +35,7 @@ export async function runNavigatorGenerateCommand(
     const hasErrors = result.diagnostics.some(({ severity }) => severity === 'error');
     const written = hasErrors
       ? []
-      : await writeNavigatorGeneratedFiles(options.targetDirectory, input.cwd, result.files);
+      : await writeNavigatorGeneratedFilesAsync(options.targetDirectory, input.cwd, result.files);
     return reportNavigatorCliResult(
       input,
       options.format,

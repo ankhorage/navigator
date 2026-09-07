@@ -1,16 +1,13 @@
 import type { NavigatorDiagnostic } from '@ankhorage/contracts/navigator';
 
 import { getNavigatorCatalog } from '../../features/catalog/adapters/inbound/getNavigatorCatalog';
-import type {
-  NavigatorCliExecution,
-  NavigatorCliRunResult,
-} from '../../types/NavigatorCliExecution';
-import { assertNavigatorCliOptions } from './assertNavigatorCliOptions';
-import { parseNavigatorCliOptions } from './parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from './reportNavigatorCliResult';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
 
 /*** List or inspect the package-owned capability and preset catalog. */
-export function runNavigatorCatalogCommand(input: NavigatorCliExecution): NavigatorCliRunResult {
+export function catalog(input: NavigatorCliExecution): NavigatorCliRunResult {
   try {
     const options = parseNavigatorCliOptions(input.argv);
     assertNavigatorCliOptions(options, [], ['id', 'kind']);

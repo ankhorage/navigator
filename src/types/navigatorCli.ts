@@ -3,6 +3,17 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
+export interface NavigatorCliExecution {
+  readonly argv: readonly string[];
+  readonly cwd: string;
+  readonly writeStdout: (text: string) => void;
+  readonly writeStderr: (text: string) => void;
+}
+
+export interface NavigatorCliRunResult {
+  readonly exitCode: number;
+}
+
 export interface NavigatorCliOptions {
   readonly format: 'human' | 'json';
   readonly id?: string;

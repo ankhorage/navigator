@@ -15,6 +15,12 @@ Create a disposable, provider-aware plan from only the navigator desired-state s
   - options: `CreateNavigatorPlanOptions`
   - returns: `NavigatorPlan`
 
+## default
+
+Kind: `unknown`
+Module: `src/cli/createCliProvider.ts`
+Source: `src/cli/createCliProvider.ts:11:1`
+
 ## defineCustomNavigatorRegistry
 
 Kind: `function`
@@ -146,17 +152,11 @@ Source: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts:5:14`
 
 Publish package identity and the single Navigator-owned capability catalog.
 
-## navigatorRuntimeProvider
-
-Kind: `value`
-Module: `src/cli/provider/navigatorRuntimeProvider.ts`
-Source: `src/cli/provider/navigatorRuntimeProvider.ts:4:14`
-
 ## NavigatorVerificationResult
 
 Kind: `type`
-Module: `src/types/NavigatorVerificationResult.ts`
-Source: `src/types/NavigatorVerificationResult.ts:9:1`
+Module: `src/types/navigatorVerification.ts`
+Source: `src/types/navigatorVerification.ts:9:1`
 
 ### Members
 

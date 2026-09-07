@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { afterEach, describe, expect, test } from 'bun:test';
 
 import packageJson from '../package.json';
-import { createNavigatorRuntimeProvider } from '../src/cli/provider/createNavigatorRuntimeProvider';
+import createCliProvider from '../src/cli/createCliProvider';
 
 const temporaryDirectories: string[] = [];
 
@@ -17,7 +17,7 @@ afterEach(async () => {
 
 describe('Navigator Ankh provider', () => {
   test('publishes the package-owned lifecycle commands and capabilities', () => {
-    const provider = createNavigatorRuntimeProvider();
+    const provider = createCliProvider;
 
     expect(provider).toMatchObject({
       id: packageJson.name,
@@ -159,9 +159,7 @@ async function run(
 ): Promise<{ exitCode: number; envelope: Record<string, unknown> }> {
   const output: string[] = [];
   const errors: string[] = [];
-  const handler = createNavigatorRuntimeProvider().handlers.find(
-    (candidate) => candidate.path.join(' ') === path,
-  );
+  const handler = createCliProvider.handlers.find((candidate) => candidate.path.join(' ') === path);
   if (handler === undefined) throw new Error(`Missing Navigator command ${path}.`);
   const result = await handler.handler({
     argv,

@@ -1,17 +1,12 @@
-import type {
-  NavigatorCliExecution,
-  NavigatorCliRunResult,
-} from '../../types/NavigatorCliExecution';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
 import { createNavigatorPlan } from '../../utils/createNavigatorPlan';
-import { assertNavigatorCliOptions } from './assertNavigatorCliOptions';
-import { loadNavigatorCliInput } from './loadNavigatorCliInput';
-import { parseNavigatorCliOptions } from './parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from './reportNavigatorCliResult';
+import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
 
 /*** Resolve and print one deterministic Navigator plan and its dependency requirements. */
-export async function runNavigatorPlanCommand(
-  input: NavigatorCliExecution,
-): Promise<NavigatorCliRunResult> {
+export async function plan(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {
   try {
     const options = parseNavigatorCliOptions(input.argv);
     assertNavigatorCliOptions(
@@ -19,7 +14,7 @@ export async function runNavigatorPlanCommand(
       ['manifestPath', 'platform', 'expoRouterVersion'],
       ['manifestPath', 'customNavigatorsPath', 'platform', 'expoRouterVersion', 'responsiveSize'],
     );
-    const loaded = await loadNavigatorCliInput(options, input.cwd, false);
+    const loaded = await loadNavigatorCliInputAsync(options, input.cwd, false);
     const plan = createNavigatorPlan(loaded.manifest, loaded.planOptions);
     return reportNavigatorCliResult(
       input,

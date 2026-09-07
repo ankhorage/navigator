@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 import type { CustomNavigatorRegistry } from '@ankhorage/contracts/navigator';
 
 /*** Load an explicit consumer-owned custom navigator registry module. */
-export async function loadCustomNavigatorRegistry(
+export async function loadCustomNavigatorRegistryAsync(
   path: string | undefined,
   cwd: string,
 ): Promise<CustomNavigatorRegistry | undefined> {

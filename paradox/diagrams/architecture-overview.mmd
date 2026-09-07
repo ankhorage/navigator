@@ -1,7 +1,7 @@
 graph TD
   package__ankhorage_navigator["NAVIGATOR"]
-  entrypoint_src_cli_index_ts["src/cli/index.ts"]
-  package__ankhorage_navigator --> entrypoint_src_cli_index_ts
+  entrypoint_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
+  package__ankhorage_navigator --> entrypoint_src_cli_createCliProvider_ts
   entrypoint_src_features_tabs_nativeIcons_ts["src/features/tabs/nativeIcons.ts"]
   package__ankhorage_navigator --> entrypoint_src_features_tabs_nativeIcons_ts
   entrypoint_src_features_tabs_tabs_ts["src/features/tabs/tabs.ts"]
@@ -12,86 +12,58 @@ graph TD
   package__ankhorage_navigator --> entrypoint_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
   module_package_json["package.json"]
   package__ankhorage_navigator -.-> module_package_json
-  module_src_cli_adapters_loadCustomNavigatorRegistry_ts["src/cli/adapters/loadCustomNavigatorRegistry.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_adapters_loadCustomNavigatorRegistry_ts
-  module_src_cli_adapters_readNavigatorCliJson_ts["src/cli/adapters/readNavigatorCliJson.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_adapters_readNavigatorCliJson_ts
-  module_src_cli_adapters_writeNavigatorGeneratedFiles_ts["src/cli/adapters/writeNavigatorGeneratedFiles.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_adapters_writeNavigatorGeneratedFiles_ts
-  module_src_cli_commands_assertNavigatorCliOptions_ts["src/cli/commands/assertNavigatorCliOptions.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_assertNavigatorCliOptions_ts
-  module_src_cli_commands_assertNavigatorCliOptions_ts --> module_src_types_NavigatorCliOptions_ts
-  module_src_cli_commands_loadNavigatorCliInput_ts["src/cli/commands/loadNavigatorCliInput.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_loadNavigatorCliInput_ts
-  module_src_cli_commands_loadNavigatorCliInput_ts --> module_src_cli_adapters_loadCustomNavigatorRegistry_ts
-  module_src_cli_commands_loadNavigatorCliInput_ts --> module_src_cli_adapters_readNavigatorCliJson_ts
-  module_src_cli_commands_loadNavigatorCliInput_ts --> module_src_types_NavigatorCliOptions_ts
-  module_src_cli_commands_loadNavigatorCliInput_ts --> module_src_utils_isNavigatorGenerationBindings_ts
-  module_src_cli_commands_parseNavigatorCliOptions_ts["src/cli/commands/parseNavigatorCliOptions.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_parseNavigatorCliOptions_ts
-  module_src_cli_commands_parseNavigatorCliOptions_ts --> module_src_types_NavigatorCliOptions_ts
-  module_src_cli_commands_reportNavigatorCliResult_ts["src/cli/commands/reportNavigatorCliResult.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_reportNavigatorCliResult_ts
-  module_src_cli_commands_reportNavigatorCliResult_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_commands_runNavigatorCatalogCommand_ts["src/cli/commands/runNavigatorCatalogCommand.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_runNavigatorCatalogCommand_ts
-  module_src_cli_commands_runNavigatorCatalogCommand_ts --> module_src_cli_commands_assertNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorCatalogCommand_ts --> module_src_cli_commands_parseNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorCatalogCommand_ts --> module_src_cli_commands_reportNavigatorCliResult_ts
-  module_src_cli_commands_runNavigatorCatalogCommand_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
-  module_src_cli_commands_runNavigatorCatalogCommand_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts["src/cli/commands/runNavigatorGenerateCommand.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_runNavigatorGenerateCommand_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_cli_adapters_writeNavigatorGeneratedFiles_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_cli_commands_assertNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_cli_commands_loadNavigatorCliInput_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_cli_commands_parseNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_cli_commands_reportNavigatorCliResult_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_utils_createNavigatorPlan_ts
-  module_src_cli_commands_runNavigatorGenerateCommand_ts --> module_src_utils_generateNavigator_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts["src/cli/commands/runNavigatorPlanCommand.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_runNavigatorPlanCommand_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts --> module_src_cli_commands_assertNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts --> module_src_cli_commands_loadNavigatorCliInput_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts --> module_src_cli_commands_parseNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts --> module_src_cli_commands_reportNavigatorCliResult_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_commands_runNavigatorPlanCommand_ts --> module_src_utils_createNavigatorPlan_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts["src/cli/commands/runNavigatorValidateCommand.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_runNavigatorValidateCommand_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_cli_adapters_loadCustomNavigatorRegistry_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_cli_adapters_readNavigatorCliJson_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_cli_commands_assertNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_cli_commands_parseNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_cli_commands_reportNavigatorCliResult_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_commands_runNavigatorValidateCommand_ts --> module_src_utils_validateNavigator_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts["src/cli/commands/runNavigatorVerifyCommand.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_commands_runNavigatorVerifyCommand_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_cli_commands_assertNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_cli_commands_loadNavigatorCliInput_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_cli_commands_parseNavigatorCliOptions_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_cli_commands_reportNavigatorCliResult_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_types_NavigatorVerificationResult_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_utils_createNavigatorPlan_ts
-  module_src_cli_commands_runNavigatorVerifyCommand_ts --> module_src_utils_verifyNavigator_ts
-  module_src_cli_index_ts["src/cli/index.ts"]
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts["src/cli/provider/createNavigatorRuntimeProvider.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_provider_createNavigatorRuntimeProvider_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_package_json
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_cli_commands_runNavigatorCatalogCommand_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_cli_commands_runNavigatorGenerateCommand_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_cli_commands_runNavigatorPlanCommand_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_cli_commands_runNavigatorValidateCommand_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_cli_commands_runNavigatorVerifyCommand_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_types_NavigatorCliExecution_ts
-  module_src_cli_provider_createNavigatorRuntimeProvider_ts --> module_src_types_NavigatorRuntimeProvider_ts
-  module_src_cli_provider_navigatorRuntimeProvider_ts["src/cli/provider/navigatorRuntimeProvider.ts"]
-  package__ankhorage_navigator -.-> module_src_cli_provider_navigatorRuntimeProvider_ts
-  module_src_cli_provider_navigatorRuntimeProvider_ts --> module_src_cli_provider_createNavigatorRuntimeProvider_ts
-  module_src_cli_provider_navigatorRuntimeProvider_ts --> module_src_types_NavigatorRuntimeProvider_ts
+  module_src_cli_commands_catalog_ts["src/cli/commands/catalog.ts"]
+  package__ankhorage_navigator -.-> module_src_cli_commands_catalog_ts
+  module_src_cli_commands_catalog_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
+  module_src_cli_commands_catalog_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_catalog_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_catalog_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_catalog_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_generate_ts["src/cli/commands/generate.ts"]
+  package__ankhorage_navigator -.-> module_src_cli_commands_generate_ts
+  module_src_cli_commands_generate_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_createNavigatorPlan_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_generateNavigator_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_loadNavigatorCliInputAsync_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_generate_ts --> module_src_utils_writeNavigatorGeneratedFilesAsync_ts
+  module_src_cli_commands_plan_ts["src/cli/commands/plan.ts"]
+  package__ankhorage_navigator -.-> module_src_cli_commands_plan_ts
+  module_src_cli_commands_plan_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_plan_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_plan_ts --> module_src_utils_createNavigatorPlan_ts
+  module_src_cli_commands_plan_ts --> module_src_utils_loadNavigatorCliInputAsync_ts
+  module_src_cli_commands_plan_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_plan_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_validate_ts["src/cli/commands/validate.ts"]
+  package__ankhorage_navigator -.-> module_src_cli_commands_validate_ts
+  module_src_cli_commands_validate_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_validate_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_validate_ts --> module_src_utils_loadCustomNavigatorRegistryAsync_ts
+  module_src_cli_commands_validate_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_validate_ts --> module_src_utils_readNavigatorCliJsonAsync_ts
+  module_src_cli_commands_validate_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_validate_ts --> module_src_utils_validateNavigator_ts
+  module_src_cli_commands_verify_ts["src/cli/commands/verify.ts"]
+  package__ankhorage_navigator -.-> module_src_cli_commands_verify_ts
+  module_src_cli_commands_verify_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_verify_ts --> module_src_types_navigatorVerification_ts
+  module_src_cli_commands_verify_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_verify_ts --> module_src_utils_createNavigatorPlan_ts
+  module_src_cli_commands_verify_ts --> module_src_utils_loadNavigatorCliInputAsync_ts
+  module_src_cli_commands_verify_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_verify_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_verify_ts --> module_src_utils_verifyNavigator_ts
+  module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
+  module_src_cli_createCliProvider_ts --> module_package_json
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_catalog_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_generate_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_plan_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_validate_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_verify_ts
+  module_src_cli_createCliProvider_ts --> module_src_types_navigatorCli_ts
   module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts["src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"]
   package__ankhorage_navigator -.-> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
   module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts --> module_package_json
@@ -185,14 +157,13 @@ graph TD
   module_src_navigator_ts["src/navigator.ts"]
   module_src_types_nativeIcons_ts["src/types/nativeIcons.ts"]
   package__ankhorage_navigator -.-> module_src_types_nativeIcons_ts
-  module_src_types_NavigatorCliExecution_ts["src/types/NavigatorCliExecution.ts"]
-  package__ankhorage_navigator -.-> module_src_types_NavigatorCliExecution_ts
-  module_src_types_NavigatorCliOptions_ts["src/types/NavigatorCliOptions.ts"]
-  package__ankhorage_navigator -.-> module_src_types_NavigatorCliOptions_ts
-  module_src_types_NavigatorRuntimeProvider_ts["src/types/NavigatorRuntimeProvider.ts"]
-  package__ankhorage_navigator -.-> module_src_types_NavigatorRuntimeProvider_ts
-  module_src_types_NavigatorVerificationResult_ts["src/types/NavigatorVerificationResult.ts"]
-  package__ankhorage_navigator -.-> module_src_types_NavigatorVerificationResult_ts
+  module_src_types_navigatorCli_ts["src/types/navigatorCli.ts"]
+  package__ankhorage_navigator -.-> module_src_types_navigatorCli_ts
+  module_src_types_navigatorVerification_ts["src/types/navigatorVerification.ts"]
+  package__ankhorage_navigator -.-> module_src_types_navigatorVerification_ts
+  module_src_utils_assertNavigatorCliOptions_ts["src/utils/assertNavigatorCliOptions.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_utils_assertNavigatorCliOptions_ts --> module_src_types_navigatorCli_ts
   module_src_utils_createNavigatorPlan_ts["src/utils/createNavigatorPlan.ts"]
   package__ankhorage_navigator -.-> module_src_utils_createNavigatorPlan_ts
   module_src_utils_createNavigatorPlan_ts --> module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts
@@ -216,6 +187,14 @@ graph TD
   module_src_utils_generateNavigator_ts --> module_src_utils_validateNavigatorBindings_ts
   module_src_utils_isNavigatorGenerationBindings_ts["src/utils/isNavigatorGenerationBindings.ts"]
   package__ankhorage_navigator -.-> module_src_utils_isNavigatorGenerationBindings_ts
+  module_src_utils_loadCustomNavigatorRegistryAsync_ts["src/utils/loadCustomNavigatorRegistryAsync.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_loadCustomNavigatorRegistryAsync_ts
+  module_src_utils_loadNavigatorCliInputAsync_ts["src/utils/loadNavigatorCliInputAsync.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_loadNavigatorCliInputAsync_ts
+  module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_types_navigatorCli_ts
+  module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_utils_isNavigatorGenerationBindings_ts
+  module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_utils_loadCustomNavigatorRegistryAsync_ts
+  module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_utils_readNavigatorCliJsonAsync_ts
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"]
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> module_package_json
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
@@ -223,6 +202,14 @@ graph TD
   package__ankhorage_navigator -.-> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_utils_parseExpoRouterMajor_ts["src/utils/parseExpoRouterMajor.ts"]
   package__ankhorage_navigator -.-> module_src_utils_parseExpoRouterMajor_ts
+  module_src_utils_parseNavigatorCliOptions_ts["src/utils/parseNavigatorCliOptions.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_utils_parseNavigatorCliOptions_ts --> module_src_types_navigatorCli_ts
+  module_src_utils_readNavigatorCliJsonAsync_ts["src/utils/readNavigatorCliJsonAsync.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_readNavigatorCliJsonAsync_ts
+  module_src_utils_reportNavigatorCliResult_ts["src/utils/reportNavigatorCliResult.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_reportNavigatorCliResult_ts
+  module_src_utils_reportNavigatorCliResult_ts --> module_src_types_navigatorCli_ts
   module_src_utils_resolveNavigatorDependencies_ts["src/utils/resolveNavigatorDependencies.ts"]
   package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorDependencies_ts
   module_src_utils_resolveNavigatorDependencies_ts --> module_package_json
@@ -253,12 +240,14 @@ graph TD
   module_src_utils_verifyNavigator_ts["src/utils/verifyNavigator.ts"]
   package__ankhorage_navigator -.-> module_src_utils_verifyNavigator_ts
   module_src_utils_verifyNavigator_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
-  module_src_utils_verifyNavigator_ts --> module_src_types_NavigatorVerificationResult_ts
+  module_src_utils_verifyNavigator_ts --> module_src_types_navigatorVerification_ts
   module_src_utils_verifyNavigator_ts --> module_src_utils_generateNavigator_ts
+  module_src_utils_writeNavigatorGeneratedFilesAsync_ts["src/utils/writeNavigatorGeneratedFilesAsync.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_writeNavigatorGeneratedFilesAsync_ts
   module_tests_cli_test_ts["tests/cli.test.ts"]
   package__ankhorage_navigator -.-> module_tests_cli_test_ts
   module_tests_cli_test_ts --> module_package_json
-  module_tests_cli_test_ts --> module_src_cli_provider_createNavigatorRuntimeProvider_ts
+  module_tests_cli_test_ts --> module_src_cli_createCliProvider_ts
   module_tests_composableGeneration_test_ts["tests/composableGeneration.test.ts"]
   package__ankhorage_navigator -.-> module_tests_composableGeneration_test_ts
   module_tests_composableGeneration_test_ts --> module_src_navigator_ts

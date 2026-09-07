@@ -44,8 +44,8 @@
       "default": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.js"
     },
     "./cli": {
-      "types": "./dist/cli/index.d.ts",
-      "default": "./dist/cli/index.js"
+      "types": "./dist/cli/createCliProvider.d.ts",
+      "default": "./dist/cli/createCliProvider.js"
     },
     "./tabs": {
       "types": "./dist/features/tabs/tabs.d.ts",
@@ -59,7 +59,7 @@
   },
   "ankh": {
     "category": "navigator",
-    "provider": "./dist/cli/index.js",
+    "provider": "./dist/cli/createCliProvider.js",
     "capabilities": [
       "navigator.catalog",
       "navigator.validate",

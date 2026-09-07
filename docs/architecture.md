@@ -36,7 +36,7 @@ there is no second CLI policy table.
 | Public import                            | Explicit source entrypoint                |
 | ---------------------------------------- | ----------------------------------------- |
 | `@ankhorage/navigator`                   | `src/navigator.ts`                        |
-| `@ankhorage/navigator/cli`               | `src/cli/index.ts`                        |
+| `@ankhorage/navigator/cli`               | `src/cli/createCliProvider.ts`            |
 | `@ankhorage/navigator/metadata`          | `src/utils/NAVIGATOR_PACKAGE_METADATA.ts` |
 | `@ankhorage/navigator/tabs`              | `src/features/tabs/tabs.ts`               |
 | `@ankhorage/navigator/tabs/native-icons` | `src/features/tabs/nativeIcons.ts`        |

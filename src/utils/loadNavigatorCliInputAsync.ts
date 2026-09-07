@@ -6,13 +6,13 @@ import type {
 } from '@ankhorage/contracts/navigator';
 import { isAppNavigatorManifest } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorCliOptions } from '../../types/NavigatorCliOptions';
-import { isNavigatorGenerationBindings } from '../../utils/isNavigatorGenerationBindings';
-import { loadCustomNavigatorRegistry } from '../adapters/loadCustomNavigatorRegistry';
-import { readNavigatorCliJson } from '../adapters/readNavigatorCliJson';
+import type { NavigatorCliOptions } from '../types/navigatorCli';
+import { isNavigatorGenerationBindings } from './isNavigatorGenerationBindings';
+import { loadCustomNavigatorRegistryAsync } from './loadCustomNavigatorRegistryAsync';
+import { readNavigatorCliJsonAsync } from './readNavigatorCliJsonAsync';
 
 /*** Load and narrow standalone manifest, binding, registry, and target-context CLI input. */
-export async function loadNavigatorCliInput(
+export async function loadNavigatorCliInputAsync(
   options: NavigatorCliOptions,
   cwd: string,
   requireBindings: boolean,
@@ -24,12 +24,15 @@ export async function loadNavigatorCliInput(
   ) {
     throw new Error('Manifest, platform, and Expo Router version are required.');
   }
-  const manifest = await readNavigatorCliJson(options.manifestPath, cwd);
+  const manifest = await readNavigatorCliJsonAsync(options.manifestPath, cwd);
   if (!isAppNavigatorManifest(manifest)) {
     throw new Error('Manifest file must contain a structurally valid AppNavigatorManifest value.');
   }
   const bindings = await loadBindings(options.bindingsPath, cwd, requireBindings);
-  const customNavigators = await loadCustomNavigatorRegistry(options.customNavigatorsPath, cwd);
+  const customNavigators = await loadCustomNavigatorRegistryAsync(
+    options.customNavigatorsPath,
+    cwd,
+  );
   return {
     manifest,
     bindings,
@@ -63,7 +66,7 @@ async function loadBindings(
     if (required) throw new Error('A bindings file is required for this command.');
     return undefined;
   }
-  const bindings = await readNavigatorCliJson(path, cwd);
+  const bindings = await readNavigatorCliJsonAsync(path, cwd);
   if (!isNavigatorGenerationBindings(bindings)) {
     throw new Error('Bindings file must contain only valid module/symbol binding records.');
   }

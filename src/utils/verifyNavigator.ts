@@ -6,7 +6,7 @@ import type {
 } from '@ankhorage/contracts/navigator';
 
 import { getNavigatorCatalog } from '../features/catalog/adapters/inbound/getNavigatorCatalog';
-import type { NavigatorVerificationResult } from '../types/NavigatorVerificationResult';
+import type { NavigatorVerificationResult } from '../types/navigatorVerification';
 import { generateNavigator } from './generateNavigator';
 
 /*** Verify deterministic Navigator-owned structure and report stronger runtime evidence separately. */

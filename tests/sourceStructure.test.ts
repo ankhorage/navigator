@@ -35,8 +35,16 @@ test('keeps the catalog and six topology capabilities as peers, without legacy d
     'stack',
     'tabs',
   ]);
+  expect(readdirSync(join(sourceRoot, 'cli')).sort()).toEqual(['commands', 'createCliProvider.ts']);
+  expect(readdirSync(join(sourceRoot, 'cli/commands')).sort()).toEqual([
+    'catalog.ts',
+    'generate.ts',
+    'plan.ts',
+    'validate.ts',
+    'verify.ts',
+  ]);
   for (const file of sources.keys()) {
-    if (basename(file) === 'index.ts') expect(relative(sourceRoot, file)).toBe('cli/index.ts');
+    expect(basename(file)).not.toBe('index.ts');
     expect(relative(sourceRoot, file).split('/')).not.toContain('shared');
     expect(relative(sourceRoot, file).split('/')).not.toContain('common');
     expect(relative(sourceRoot, file).split('/')).not.toContain('helpers');
@@ -65,9 +73,16 @@ test('gives implementation modules one matching export before private declaratio
     }
     expect(exports.length, relative(sourceRoot, file)).toBe(1);
     expect(exports[0], relative(sourceRoot, file)).toBe(declarations[0]);
-    expect(exportedName(exports[0]), relative(sourceRoot, file)).toBe(
-      basename(file).replace(/\.tsx?$/u, ''),
-    );
+    const local = relative(sourceRoot, file);
+    const implementationExport = exports[0];
+    if (implementationExport === undefined) throw new Error(`Missing export in ${local}.`);
+    if (local === 'cli/createCliProvider.ts') {
+      expect(ts.isExportAssignment(implementationExport), local).toBe(true);
+    } else {
+      expect(exportedName(implementationExport), local).toBe(
+        basename(file).replace(/\.tsx?$/u, ''),
+      );
+    }
   }
 });
 

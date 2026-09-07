@@ -2,7 +2,7 @@ export { getNavigatorCatalog } from './features/catalog/adapters/inbound/getNavi
 export { defineCustomNavigatorRegistry } from './features/custom/domain/defineCustomNavigatorRegistry';
 export { resolveTabsNavigatorPlan } from './features/tabs/application/resolveTabsNavigatorPlan';
 export { resolveHeadlessTabsPresentation } from './features/tabs/domain/resolveHeadlessTabsPresentation';
-export type { NavigatorVerificationResult } from './types/NavigatorVerificationResult';
+export type { NavigatorVerificationResult } from './types/navigatorVerification';
 export { createNavigatorPlan } from './utils/createNavigatorPlan';
 export { generateNavigator } from './utils/generateNavigator';
 export { isNavigatorGenerationBindings } from './utils/isNavigatorGenerationBindings';

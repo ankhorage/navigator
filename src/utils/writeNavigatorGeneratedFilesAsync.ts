@@ -4,7 +4,7 @@ import { dirname, parse, relative, resolve, sep } from 'node:path';
 import type { NavigatorGeneratedFile } from '@ankhorage/contracts/navigator';
 
 /*** Materialize a prevalidated generated file set below one explicit target directory. */
-export async function writeNavigatorGeneratedFiles(
+export async function writeNavigatorGeneratedFilesAsync(
   targetDirectory: string,
   cwd: string,
   files: readonly NavigatorGeneratedFile[],

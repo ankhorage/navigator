@@ -1,20 +1,15 @@
 import type { CreateNavigatorPlanOptions } from '@ankhorage/contracts/navigator';
 
-import type {
-  NavigatorCliExecution,
-  NavigatorCliRunResult,
-} from '../../types/NavigatorCliExecution';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
+import { loadCustomNavigatorRegistryAsync } from '../../utils/loadCustomNavigatorRegistryAsync';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
+import { readNavigatorCliJsonAsync } from '../../utils/readNavigatorCliJsonAsync';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
 import { validateNavigator } from '../../utils/validateNavigator';
-import { loadCustomNavigatorRegistry } from '../adapters/loadCustomNavigatorRegistry';
-import { readNavigatorCliJson } from '../adapters/readNavigatorCliJson';
-import { assertNavigatorCliOptions } from './assertNavigatorCliOptions';
-import { parseNavigatorCliOptions } from './parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from './reportNavigatorCliResult';
 
 /*** Structurally and semantically validate a manifest and narrow bindings without writes. */
-export async function runNavigatorValidateCommand(
-  input: NavigatorCliExecution,
-): Promise<NavigatorCliRunResult> {
+export async function validate(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {
   try {
     const options = parseNavigatorCliOptions(input.argv);
     assertNavigatorCliOptions(
@@ -35,8 +30,8 @@ export async function runNavigatorValidateCommand(
     if (manifestPath === undefined || bindingsPath === undefined) {
       throw new Error('Manifest and bindings paths are required for validation.');
     }
-    const manifest = await readNavigatorCliJson(manifestPath, input.cwd);
-    const bindings = await readNavigatorCliJson(bindingsPath, input.cwd);
+    const manifest = await readNavigatorCliJsonAsync(manifestPath, input.cwd);
+    const bindings = await readNavigatorCliJsonAsync(bindingsPath, input.cwd);
     const planOptions = await createPlanOptions(options, input.cwd);
     const diagnostics = validateNavigator(manifest, bindings, planOptions, {
       includeScreenFiles: options.includeScreenFiles,
@@ -64,7 +59,10 @@ async function createPlanOptions(
   if (platform === undefined || expoRouterVersion === undefined) {
     throw new Error('Platform and Expo Router version are required for validation.');
   }
-  const customNavigators = await loadCustomNavigatorRegistry(options.customNavigatorsPath, cwd);
+  const customNavigators = await loadCustomNavigatorRegistryAsync(
+    options.customNavigatorsPath,
+    cwd,
+  );
   return {
     platform,
     expoRouterVersion,

@@ -75,7 +75,7 @@
   "readmeConfig": null,
   "config": null,
   "entrypoints": [
-    "src/cli/index.ts",
+    "src/cli/createCliProvider.ts",
     "src/features/tabs/nativeIcons.ts",
     "src/features/tabs/tabs.ts",
     "src/navigator.ts",
@@ -89,150 +89,87 @@
       "exports": []
     },
     {
-      "path": "src/cli/adapters/loadCustomNavigatorRegistry.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": ["loadCustomNavigatorRegistry"]
-    },
-    {
-      "path": "src/cli/adapters/readNavigatorCliJson.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": ["readNavigatorCliJson"]
-    },
-    {
-      "path": "src/cli/adapters/writeNavigatorGeneratedFiles.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": ["writeNavigatorGeneratedFiles"]
-    },
-    {
-      "path": "src/cli/commands/assertNavigatorCliOptions.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/types/NavigatorCliOptions.ts"],
-      "exports": ["assertNavigatorCliOptions"]
-    },
-    {
-      "path": "src/cli/commands/loadNavigatorCliInput.ts",
+      "path": "src/cli/commands/catalog.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/cli/adapters/loadCustomNavigatorRegistry.ts",
-        "src/cli/adapters/readNavigatorCliJson.ts",
-        "src/types/NavigatorCliOptions.ts",
-        "src/utils/isNavigatorGenerationBindings.ts"
-      ],
-      "exports": ["loadNavigatorCliInput"]
-    },
-    {
-      "path": "src/cli/commands/parseNavigatorCliOptions.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/types/NavigatorCliOptions.ts"],
-      "exports": ["parseNavigatorCliOptions"]
-    },
-    {
-      "path": "src/cli/commands/reportNavigatorCliResult.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/types/NavigatorCliExecution.ts"],
-      "exports": ["reportNavigatorCliResult"]
-    },
-    {
-      "path": "src/cli/commands/runNavigatorCatalogCommand.ts",
-      "isEntrypoint": false,
-      "dependencies": [
-        "src/cli/commands/assertNavigatorCliOptions.ts",
-        "src/cli/commands/parseNavigatorCliOptions.ts",
-        "src/cli/commands/reportNavigatorCliResult.ts",
         "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
-        "src/types/NavigatorCliExecution.ts"
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts"
       ],
-      "exports": ["runNavigatorCatalogCommand"]
+      "exports": ["catalog"]
     },
     {
-      "path": "src/cli/commands/runNavigatorGenerateCommand.ts",
+      "path": "src/cli/commands/generate.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/cli/adapters/writeNavigatorGeneratedFiles.ts",
-        "src/cli/commands/assertNavigatorCliOptions.ts",
-        "src/cli/commands/loadNavigatorCliInput.ts",
-        "src/cli/commands/parseNavigatorCliOptions.ts",
-        "src/cli/commands/reportNavigatorCliResult.ts",
-        "src/types/NavigatorCliExecution.ts",
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
         "src/utils/createNavigatorPlan.ts",
-        "src/utils/generateNavigator.ts"
+        "src/utils/generateNavigator.ts",
+        "src/utils/loadNavigatorCliInputAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts",
+        "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       ],
-      "exports": ["runNavigatorGenerateCommand"]
+      "exports": ["generate"]
     },
     {
-      "path": "src/cli/commands/runNavigatorPlanCommand.ts",
+      "path": "src/cli/commands/plan.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/cli/commands/assertNavigatorCliOptions.ts",
-        "src/cli/commands/loadNavigatorCliInput.ts",
-        "src/cli/commands/parseNavigatorCliOptions.ts",
-        "src/cli/commands/reportNavigatorCliResult.ts",
-        "src/types/NavigatorCliExecution.ts",
-        "src/utils/createNavigatorPlan.ts"
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/createNavigatorPlan.ts",
+        "src/utils/loadNavigatorCliInputAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts"
       ],
-      "exports": ["runNavigatorPlanCommand"]
+      "exports": ["plan"]
     },
     {
-      "path": "src/cli/commands/runNavigatorValidateCommand.ts",
+      "path": "src/cli/commands/validate.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/cli/adapters/loadCustomNavigatorRegistry.ts",
-        "src/cli/adapters/readNavigatorCliJson.ts",
-        "src/cli/commands/assertNavigatorCliOptions.ts",
-        "src/cli/commands/parseNavigatorCliOptions.ts",
-        "src/cli/commands/reportNavigatorCliResult.ts",
-        "src/types/NavigatorCliExecution.ts",
+        "src/types/navigatorCli.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
+        "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/readNavigatorCliJsonAsync.ts",
+        "src/utils/reportNavigatorCliResult.ts",
         "src/utils/validateNavigator.ts"
       ],
-      "exports": ["runNavigatorValidateCommand"]
+      "exports": ["validate"]
     },
     {
-      "path": "src/cli/commands/runNavigatorVerifyCommand.ts",
+      "path": "src/cli/commands/verify.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/cli/commands/assertNavigatorCliOptions.ts",
-        "src/cli/commands/loadNavigatorCliInput.ts",
-        "src/cli/commands/parseNavigatorCliOptions.ts",
-        "src/cli/commands/reportNavigatorCliResult.ts",
-        "src/types/NavigatorCliExecution.ts",
-        "src/types/NavigatorVerificationResult.ts",
+        "src/types/navigatorCli.ts",
+        "src/types/navigatorVerification.ts",
+        "src/utils/assertNavigatorCliOptions.ts",
         "src/utils/createNavigatorPlan.ts",
+        "src/utils/loadNavigatorCliInputAsync.ts",
+        "src/utils/parseNavigatorCliOptions.ts",
+        "src/utils/reportNavigatorCliResult.ts",
         "src/utils/verifyNavigator.ts"
       ],
-      "exports": ["runNavigatorVerifyCommand"]
+      "exports": ["verify"]
     },
     {
-      "path": "src/cli/index.ts",
+      "path": "src/cli/createCliProvider.ts",
       "isEntrypoint": true,
-      "dependencies": [],
-      "exports": ["default"]
-    },
-    {
-      "path": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-      "isEntrypoint": false,
       "dependencies": [
         "package.json",
-        "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "src/cli/commands/runNavigatorPlanCommand.ts",
-        "src/cli/commands/runNavigatorValidateCommand.ts",
-        "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "src/types/NavigatorCliExecution.ts",
-        "src/types/NavigatorRuntimeProvider.ts"
+        "src/cli/commands/catalog.ts",
+        "src/cli/commands/generate.ts",
+        "src/cli/commands/plan.ts",
+        "src/cli/commands/validate.ts",
+        "src/cli/commands/verify.ts",
+        "src/types/navigatorCli.ts"
       ],
-      "exports": ["createNavigatorRuntimeProvider"]
-    },
-    {
-      "path": "src/cli/provider/navigatorRuntimeProvider.ts",
-      "isEntrypoint": false,
-      "dependencies": [
-        "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "src/types/NavigatorRuntimeProvider.ts"
-      ],
-      "exports": ["navigatorRuntimeProvider"]
+      "exports": ["default"]
     },
     {
       "path": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
@@ -483,28 +420,22 @@
       "exports": ["NativeVectorIconFamily"]
     },
     {
-      "path": "src/types/NavigatorCliExecution.ts",
+      "path": "src/types/navigatorCli.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["NavigatorCliExecution", "NavigatorCliRunResult"]
+      "exports": ["NavigatorCliExecution", "NavigatorCliOptions", "NavigatorCliRunResult"]
     },
     {
-      "path": "src/types/NavigatorCliOptions.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": ["NavigatorCliOptions"]
-    },
-    {
-      "path": "src/types/NavigatorRuntimeProvider.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": ["NavigatorRuntimeProvider"]
-    },
-    {
-      "path": "src/types/NavigatorVerificationResult.ts",
+      "path": "src/types/navigatorVerification.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["NavigatorVerificationResult"]
+    },
+    {
+      "path": "src/utils/assertNavigatorCliOptions.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/navigatorCli.ts"],
+      "exports": ["assertNavigatorCliOptions"]
     },
     {
       "path": "src/utils/createNavigatorPlan.ts",
@@ -544,6 +475,23 @@
       "exports": ["isNavigatorGenerationBindings"]
     },
     {
+      "path": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["loadCustomNavigatorRegistryAsync"]
+    },
+    {
+      "path": "src/utils/loadNavigatorCliInputAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/navigatorCli.ts",
+        "src/utils/isNavigatorGenerationBindings.ts",
+        "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "src/utils/readNavigatorCliJsonAsync.ts"
+      ],
+      "exports": ["loadNavigatorCliInputAsync"]
+    },
+    {
       "path": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
       "isEntrypoint": true,
       "dependencies": [
@@ -563,6 +511,24 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["parseExpoRouterMajor"]
+    },
+    {
+      "path": "src/utils/parseNavigatorCliOptions.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/navigatorCli.ts"],
+      "exports": ["parseNavigatorCliOptions"]
+    },
+    {
+      "path": "src/utils/readNavigatorCliJsonAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["readNavigatorCliJsonAsync"]
+    },
+    {
+      "path": "src/utils/reportNavigatorCliResult.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/navigatorCli.ts"],
+      "exports": ["reportNavigatorCliResult"]
     },
     {
       "path": "src/utils/resolveNavigatorDependencies.ts",
@@ -619,15 +585,21 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
-        "src/types/NavigatorVerificationResult.ts",
+        "src/types/navigatorVerification.ts",
         "src/utils/generateNavigator.ts"
       ],
       "exports": ["verifyNavigator"]
     },
     {
+      "path": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["writeNavigatorGeneratedFilesAsync"]
+    },
+    {
       "path": "tests/cli.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["package.json", "src/cli/provider/createNavigatorRuntimeProvider.ts"],
+      "dependencies": ["package.json", "src/cli/createCliProvider.ts"],
       "exports": []
     },
     {
@@ -790,6 +762,24 @@
           "returnDescription": null
         }
       ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "default",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/cli/createCliProvider.ts",
+      "sourceLocation": {
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 11,
+        "column": 1
+      },
+      "exportPaths": ["src/cli/createCliProvider.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
       "members": [],
       "structuredRows": []
     },
@@ -1067,32 +1057,14 @@
       "structuredRows": []
     },
     {
-      "name": "navigatorRuntimeProvider",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "value",
-      "modulePath": "src/cli/provider/navigatorRuntimeProvider.ts",
-      "sourceLocation": {
-        "filePath": "src/cli/provider/navigatorRuntimeProvider.ts",
-        "line": 4,
-        "column": 14
-      },
-      "exportPaths": ["src/cli/index.ts"],
-      "relatedSymbols": [],
-      "signatures": [],
-      "members": [],
-      "structuredRows": []
-    },
-    {
       "name": "NavigatorVerificationResult",
       "description": null,
       "isReadme": false,
       "examples": [],
       "kind": "type",
-      "modulePath": "src/types/NavigatorVerificationResult.ts",
+      "modulePath": "src/types/navigatorVerification.ts",
       "sourceLocation": {
-        "filePath": "src/types/NavigatorVerificationResult.ts",
+        "filePath": "src/types/navigatorVerification.ts",
         "line": 9,
         "column": 1
       },
@@ -1490,119 +1462,11 @@
   ],
   "sourceFunctions": [
     {
-      "name": "loadCustomNavigatorRegistry",
-      "description": "Load an explicit consumer-owned custom navigator registry module.",
-      "sourceLocation": {
-        "filePath": "src/cli/adapters/loadCustomNavigatorRegistry.ts",
-        "line": 7,
-        "column": 1
-      }
-    },
-    {
-      "name": "readNavigatorCliJson",
-      "description": "Read one explicit CLI input as unknown JSON for owner-boundary parsing.",
-      "sourceLocation": {
-        "filePath": "src/cli/adapters/readNavigatorCliJson.ts",
-        "line": 5,
-        "column": 1
-      }
-    },
-    {
-      "name": "writeNavigatorGeneratedFiles",
-      "description": "Materialize a prevalidated generated file set below one explicit target directory.",
-      "sourceLocation": {
-        "filePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts",
-        "line": 7,
-        "column": 1
-      }
-    },
-    {
-      "name": "assertNavigatorCliOptions",
-      "description": "Enforce each public command's required and accepted option surface.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "line": 4,
-        "column": 1
-      }
-    },
-    {
-      "name": "optionName",
-      "description": "Map parsed option properties back to stable public flag names.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "line": 24,
-        "column": 1
-      }
-    },
-    {
-      "name": "loadNavigatorCliInput",
-      "description": "Load and narrow standalone manifest, binding, registry, and target-context CLI input.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "line": 15,
-        "column": 1
-      }
-    },
-    {
-      "name": "loadBindings",
-      "description": "Load required or optional generated-module bindings from JSON.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "line": 57,
-        "column": 1
-      }
-    },
-    {
-      "name": "optional",
-      "description": "Include one optional typed value without materializing undefined.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "line": 74,
-        "column": 1
-      }
-    },
-    {
-      "name": "parseNavigatorCliOptions",
-      "description": "Parse deterministic Navigator command flags without reading files or process globals.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "line": 4,
-        "column": 1
-      }
-    },
-    {
-      "name": "finiteValue",
-      "description": "Read one finite flag value and reject values outside its public vocabulary.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "line": 49,
-        "column": 1
-      }
-    },
-    {
-      "name": "optional",
-      "description": "Include optional parsed values without materializing undefined fields.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "line": 62,
-        "column": 1
-      }
-    },
-    {
-      "name": "reportNavigatorCliResult",
-      "description": "Render one stable human or JSON Navigator command result with deterministic exit semantics.",
-      "sourceLocation": {
-        "filePath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "line": 9,
-        "column": 1
-      }
-    },
-    {
-      "name": "runNavigatorCatalogCommand",
+      "name": "catalog",
       "description": "List or inspect the package-owned capability and preset catalog.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "line": 13,
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 10,
         "column": 1
       }
     },
@@ -1610,8 +1474,8 @@
       "name": "selectCatalog",
       "description": "Select an unambiguous catalog entry or a filtered listing.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "line": 33,
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 30,
         "column": 1
       }
     },
@@ -1619,8 +1483,8 @@
       "name": "renderCatalog",
       "description": "Render compact human catalog output without creating a second metadata table.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "line": 67,
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 64,
         "column": 1
       }
     },
@@ -1628,17 +1492,17 @@
       "name": "reportInputFailure",
       "description": "Report deterministic option and input failures.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "line": 86,
+        "filePath": "src/cli/commands/catalog.ts",
+        "line": 83,
         "column": 1
       }
     },
     {
-      "name": "runNavigatorGenerateCommand",
+      "name": "generate",
       "description": "Generate one structured Navigator file set and write it below an explicit target.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "line": 14,
+        "filePath": "src/cli/commands/generate.ts",
+        "line": 11,
         "column": 1
       }
     },
@@ -1646,17 +1510,17 @@
       "name": "reportInputFailure",
       "description": "Report deterministic Generate-stage input or write failures.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "line": 63,
+        "filePath": "src/cli/commands/generate.ts",
+        "line": 58,
         "column": 1
       }
     },
     {
-      "name": "runNavigatorPlanCommand",
+      "name": "plan",
       "description": "Resolve and print one deterministic Navigator plan and its dependency requirements.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "line": 12,
+        "filePath": "src/cli/commands/plan.ts",
+        "line": 9,
         "column": 1
       }
     },
@@ -1664,17 +1528,17 @@
       "name": "reportInputFailure",
       "description": "Report deterministic Plan-stage input failures.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "line": 45,
+        "filePath": "src/cli/commands/plan.ts",
+        "line": 40,
         "column": 1
       }
     },
     {
-      "name": "runNavigatorValidateCommand",
+      "name": "validate",
       "description": "Structurally and semantically validate a manifest and narrow bindings without writes.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "line": 15,
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 12,
         "column": 1
       }
     },
@@ -1682,8 +1546,8 @@
       "name": "createPlanOptions",
       "description": "Resolve target context and an optional executable custom-navigator registry.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "line": 59,
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 54,
         "column": 1
       }
     },
@@ -1691,17 +1555,17 @@
       "name": "reportInputFailure",
       "description": "Report file, JSON, registry, and option failures separately from navigator diagnostics.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "line": 77,
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 75,
         "column": 1
       }
     },
     {
-      "name": "runNavigatorVerifyCommand",
+      "name": "verify",
       "description": "Verify Navigator-owned structural and deterministic generation evidence without writes.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "line": 14,
+        "filePath": "src/cli/commands/verify.ts",
+        "line": 11,
         "column": 1
       }
     },
@@ -1709,8 +1573,8 @@
       "name": "renderVerification",
       "description": "Render each verification layer without promoting unverified runtime claims.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "line": 54,
+        "filePath": "src/cli/commands/verify.ts",
+        "line": 49,
         "column": 1
       }
     },
@@ -1718,17 +1582,17 @@
       "name": "reportInputFailure",
       "description": "Report deterministic Verify-stage input failures.",
       "sourceLocation": {
-        "filePath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "line": 64,
+        "filePath": "src/cli/commands/verify.ts",
+        "line": 59,
         "column": 1
       }
     },
     {
-      "name": "createNavigatorRuntimeProvider",
+      "name": "createCliProvider",
       "description": "Create the package-owned provider for the standalone Navigator lifecycle.",
       "sourceLocation": {
-        "filePath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "line": 13,
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 14,
         "column": 1
       }
     },
@@ -1736,8 +1600,8 @@
       "name": "descriptor",
       "description": "Define one public command descriptor from its package-owned capability.",
       "sourceLocation": {
-        "filePath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "line": 58,
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 82,
         "column": 1
       }
     },
@@ -1745,8 +1609,8 @@
       "name": "binding",
       "description": "Adapt the Ankh execution request to Navigator's narrow command input.",
       "sourceLocation": {
-        "filePath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "line": 76,
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 92,
         "column": 1
       }
     },
@@ -2570,6 +2434,24 @@
       }
     },
     {
+      "name": "assertNavigatorCliOptions",
+      "description": "Enforce each public command's required and accepted option surface.",
+      "sourceLocation": {
+        "filePath": "src/utils/assertNavigatorCliOptions.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionName",
+      "description": "Map parsed option properties back to stable public flag names.",
+      "sourceLocation": {
+        "filePath": "src/utils/assertNavigatorCliOptions.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
       "name": "createNavigatorPlan",
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
       "sourceLocation": {
@@ -2804,11 +2686,92 @@
       }
     },
     {
+      "name": "loadCustomNavigatorRegistryAsync",
+      "description": "Load an explicit consumer-owned custom navigator registry module.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "loadNavigatorCliInputAsync",
+      "description": "Load and narrow standalone manifest, binding, registry, and target-context CLI input.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "loadBindings",
+      "description": "Load required or optional generated-module bindings from JSON.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "line": 60,
+        "column": 1
+      }
+    },
+    {
+      "name": "optional",
+      "description": "Include one optional typed value without materializing undefined.",
+      "sourceLocation": {
+        "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "line": 77,
+        "column": 1
+      }
+    },
+    {
       "name": "parseExpoRouterMajor",
       "description": "Read the major version only from an exact semantic Expo Router version.",
       "sourceLocation": {
         "filePath": "src/utils/parseExpoRouterMajor.ts",
         "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseNavigatorCliOptions",
+      "description": "Parse deterministic Navigator command flags without reading files or process globals.",
+      "sourceLocation": {
+        "filePath": "src/utils/parseNavigatorCliOptions.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "finiteValue",
+      "description": "Read one finite flag value and reject values outside its public vocabulary.",
+      "sourceLocation": {
+        "filePath": "src/utils/parseNavigatorCliOptions.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "optional",
+      "description": "Include optional parsed values without materializing undefined fields.",
+      "sourceLocation": {
+        "filePath": "src/utils/parseNavigatorCliOptions.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "readNavigatorCliJsonAsync",
+      "description": "Read one explicit CLI input as unknown JSON for owner-boundary parsing.",
+      "sourceLocation": {
+        "filePath": "src/utils/readNavigatorCliJsonAsync.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "reportNavigatorCliResult",
+      "description": "Render one stable human or JSON Navigator command result with deterministic exit semantics.",
+      "sourceLocation": {
+        "filePath": "src/utils/reportNavigatorCliResult.ts",
+        "line": 6,
         "column": 1
       }
     },
@@ -3027,6 +2990,15 @@
         "line": 62,
         "column": 1
       }
+    },
+    {
+      "name": "writeNavigatorGeneratedFilesAsync",
+      "description": "Materialize a prevalidated generated file set below one explicit target directory.",
+      "sourceLocation": {
+        "filePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+        "line": 7,
+        "column": 1
+      }
     }
   ],
   "sequenceScenarios": [
@@ -3159,7 +3131,7 @@
       },
       {
         "fromPath": "src/navigator.ts",
-        "toPath": "src/types/NavigatorVerificationResult.ts",
+        "toPath": "src/types/navigatorVerification.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
@@ -3209,7 +3181,7 @@
       },
       {
         "fromPath": "tests/cli.test.ts",
-        "toPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
+        "toPath": "src/cli/createCliProvider.ts",
         "sourcePath": "tests/cli.test.ts"
       },
       {
@@ -3428,9 +3400,44 @@
         "sourcePath": "tests/tabs.test.ts"
       },
       {
-        "fromPath": "src/cli/index.ts",
-        "toPath": "src/cli/provider/navigatorRuntimeProvider.ts",
-        "sourcePath": "src/cli/index.ts"
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/catalog.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/generate.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/plan.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/validate.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/verify.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/utils/assertNavigatorCliOptions.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/assertNavigatorCliOptions.ts"
       },
       {
         "fromPath": "src/utils/createNavigatorPlan.ts",
@@ -3518,6 +3525,26 @@
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/utils/isNavigatorGenerationBindings.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "toPath": "src/utils/readNavigatorCliJsonAsync.ts",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
         "fromPath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
         "toPath": "package.json",
         "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
@@ -3526,6 +3553,16 @@
         "fromPath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
         "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
         "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+      },
+      {
+        "fromPath": "src/utils/parseNavigatorCliOptions.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/parseNavigatorCliOptions.ts"
+      },
+      {
+        "fromPath": "src/utils/reportNavigatorCliResult.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/utils/reportNavigatorCliResult.ts"
       },
       {
         "fromPath": "src/utils/resolveNavigatorDependencies.ts",
@@ -3609,7 +3646,7 @@
       },
       {
         "fromPath": "src/utils/verifyNavigator.ts",
-        "toPath": "src/types/NavigatorVerificationResult.ts",
+        "toPath": "src/types/navigatorVerification.ts",
         "sourcePath": "src/utils/verifyNavigator.ts"
       },
       {
@@ -3618,259 +3655,174 @@
         "sourcePath": "src/utils/verifyNavigator.ts"
       },
       {
-        "fromPath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "toPath": "src/types/NavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/assertNavigatorCliOptions.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "toPath": "src/types/NavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "toPath": "src/utils/isNavigatorGenerationBindings.ts",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "toPath": "src/cli/adapters/loadCustomNavigatorRegistry.ts",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "toPath": "src/cli/adapters/readNavigatorCliJson.ts",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "toPath": "src/types/NavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/parseNavigatorCliOptions.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/commands/reportNavigatorCliResult.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorCatalogCommand.ts",
+        "fromPath": "src/cli/commands/catalog.ts",
         "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "toPath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "toPath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "toPath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "fromPath": "src/cli/commands/catalog.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/generate.ts",
         "toPath": "src/utils/createNavigatorPlan.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
+        "fromPath": "src/cli/commands/generate.ts",
         "toPath": "src/utils/generateNavigator.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "toPath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "toPath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "toPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "toPath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromPath": "src/cli/commands/generate.ts",
+        "toPath": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "toPath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorPlanCommand.ts",
+        "fromPath": "src/cli/commands/plan.ts",
         "toPath": "src/utils/createNavigatorPlan.ts",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "toPath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "toPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "toPath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "fromPath": "src/cli/commands/plan.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "toPath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/readNavigatorCliJsonAsync.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
         "toPath": "src/utils/validateNavigator.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "toPath": "src/cli/adapters/loadCustomNavigatorRegistry.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/types/navigatorCli.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "toPath": "src/cli/adapters/readNavigatorCliJson.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/types/navigatorVerification.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "toPath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/assertNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "toPath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "toPath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "toPath": "src/types/NavigatorVerificationResult.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
+        "fromPath": "src/cli/commands/verify.ts",
         "toPath": "src/utils/createNavigatorPlan.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/loadNavigatorCliInputAsync.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/parseNavigatorCliOptions.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
+        "toPath": "src/utils/reportNavigatorCliResult.ts",
+        "sourcePath": "src/cli/commands/verify.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/verify.ts",
         "toPath": "src/utils/verifyNavigator.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "toPath": "src/cli/commands/assertNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "toPath": "src/cli/commands/loadNavigatorCliInput.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "toPath": "src/cli/commands/parseNavigatorCliOptions.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "toPath": "src/cli/commands/reportNavigatorCliResult.ts",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "package.json",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/types/NavigatorCliExecution.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/types/NavigatorRuntimeProvider.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/cli/commands/runNavigatorCatalogCommand.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/cli/commands/runNavigatorGenerateCommand.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/cli/commands/runNavigatorPlanCommand.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/cli/commands/runNavigatorValidateCommand.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "toPath": "src/cli/commands/runNavigatorVerifyCommand.ts",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/navigatorRuntimeProvider.ts",
-        "toPath": "src/types/NavigatorRuntimeProvider.ts",
-        "sourcePath": "src/cli/provider/navigatorRuntimeProvider.ts"
-      },
-      {
-        "fromPath": "src/cli/provider/navigatorRuntimeProvider.ts",
-        "toPath": "src/cli/provider/createNavigatorRuntimeProvider.ts",
-        "sourcePath": "src/cli/provider/navigatorRuntimeProvider.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
         "fromPath": "src/features/tabs/nativeIcons.ts",
@@ -4050,12 +4002,6 @@
       },
       {
         "fromSymbol": "tests/cli.test.ts",
-        "toSymbol": "createNavigatorRuntimeProvider",
-        "callExpression": "createNavigatorRuntimeProvider",
-        "sourcePath": "tests/cli.test.ts"
-      },
-      {
-        "fromSymbol": "tests/cli.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "tests/cli.test.ts"
@@ -4100,12 +4046,6 @@
         "fromSymbol": "createFixture",
         "toSymbol": "tmpdir",
         "callExpression": "tmpdir",
-        "sourcePath": "tests/cli.test.ts"
-      },
-      {
-        "fromSymbol": "run",
-        "toSymbol": "createNavigatorRuntimeProvider",
-        "callExpression": "createNavigatorRuntimeProvider",
         "sourcePath": "tests/cli.test.ts"
       },
       {
@@ -4841,6 +4781,48 @@
         "sourcePath": "tests/tabs.test.ts"
       },
       {
+        "fromSymbol": "src/cli/createCliProvider.ts",
+        "toSymbol": "createCliProvider",
+        "callExpression": "createCliProvider",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "createCliProvider",
+        "toSymbol": "descriptor",
+        "callExpression": "descriptor",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "createCliProvider",
+        "toSymbol": "binding",
+        "callExpression": "binding",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "handler",
+        "callExpression": "handler",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "writeStdout",
+        "toSymbol": "writeStdout",
+        "callExpression": "request.context.writeStdout",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "writeStderr",
+        "toSymbol": "writeStderr",
+        "callExpression": "request.context.writeStderr",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "assertNavigatorCliOptions",
+        "toSymbol": "optionName",
+        "callExpression": "optionName",
+        "sourcePath": "src/utils/assertNavigatorCliOptions.ts"
+      },
+      {
         "fromSymbol": "createNavigatorPlan",
         "toSymbol": "validateNavigatorManifest",
         "callExpression": "validateNavigatorManifest",
@@ -5171,10 +5153,100 @@
         "sourcePath": "src/utils/isNavigatorGenerationBindings.ts"
       },
       {
+        "fromSymbol": "loadCustomNavigatorRegistryAsync",
+        "toSymbol": "pathToFileURL",
+        "callExpression": "pathToFileURL",
+        "sourcePath": "src/utils/loadCustomNavigatorRegistryAsync.ts"
+      },
+      {
+        "fromSymbol": "loadCustomNavigatorRegistryAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/utils/loadCustomNavigatorRegistryAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "readNavigatorCliJsonAsync",
+        "callExpression": "readNavigatorCliJsonAsync",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "isAppNavigatorManifest",
+        "callExpression": "isAppNavigatorManifest",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "loadBindings",
+        "callExpression": "loadBindings",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "loadCustomNavigatorRegistryAsync",
+        "callExpression": "loadCustomNavigatorRegistryAsync",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadNavigatorCliInputAsync",
+        "toSymbol": "optional",
+        "callExpression": "optional",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadBindings",
+        "toSymbol": "readNavigatorCliJsonAsync",
+        "callExpression": "readNavigatorCliJsonAsync",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
+        "fromSymbol": "loadBindings",
+        "toSymbol": "isNavigatorGenerationBindings",
+        "callExpression": "isNavigatorGenerationBindings",
+        "sourcePath": "src/utils/loadNavigatorCliInputAsync.ts"
+      },
+      {
         "fromSymbol": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
         "toSymbol": "getNavigatorCatalog",
         "callExpression": "getNavigatorCatalog",
         "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+      },
+      {
+        "fromSymbol": "parseNavigatorCliOptions",
+        "toSymbol": "finiteValue",
+        "callExpression": "finiteValue",
+        "sourcePath": "src/utils/parseNavigatorCliOptions.ts"
+      },
+      {
+        "fromSymbol": "parseNavigatorCliOptions",
+        "toSymbol": "optional",
+        "callExpression": "optional",
+        "sourcePath": "src/utils/parseNavigatorCliOptions.ts"
+      },
+      {
+        "fromSymbol": "readNavigatorCliJsonAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/utils/readNavigatorCliJsonAsync.ts"
+      },
+      {
+        "fromSymbol": "readNavigatorCliJsonAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/utils/readNavigatorCliJsonAsync.ts"
+      },
+      {
+        "fromSymbol": "reportNavigatorCliResult",
+        "toSymbol": "writeStdout",
+        "callExpression": "input.writeStdout",
+        "sourcePath": "src/utils/reportNavigatorCliResult.ts"
+      },
+      {
+        "fromSymbol": "reportNavigatorCliResult",
+        "toSymbol": "writeStderr",
+        "callExpression": "input.writeStderr",
+        "sourcePath": "src/utils/reportNavigatorCliResult.ts"
       },
       {
         "fromSymbol": "resolveNavigatorDependencies",
@@ -5423,436 +5495,304 @@
         "sourcePath": "src/utils/verifyNavigator.ts"
       },
       {
-        "fromSymbol": "loadCustomNavigatorRegistry",
-        "toSymbol": "pathToFileURL",
-        "callExpression": "pathToFileURL",
-        "sourcePath": "src/cli/adapters/loadCustomNavigatorRegistry.ts"
-      },
-      {
-        "fromSymbol": "loadCustomNavigatorRegistry",
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
         "toSymbol": "resolve",
         "callExpression": "resolve",
-        "sourcePath": "src/cli/adapters/loadCustomNavigatorRegistry.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "readNavigatorCliJson",
-        "toSymbol": "readFile",
-        "callExpression": "readFile",
-        "sourcePath": "src/cli/adapters/readNavigatorCliJson.ts"
-      },
-      {
-        "fromSymbol": "readNavigatorCliJson",
-        "toSymbol": "resolve",
-        "callExpression": "resolve",
-        "sourcePath": "src/cli/adapters/readNavigatorCliJson.ts"
-      },
-      {
-        "fromSymbol": "writeNavigatorGeneratedFiles",
-        "toSymbol": "resolve",
-        "callExpression": "resolve",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
-      },
-      {
-        "fromSymbol": "writeNavigatorGeneratedFiles",
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
         "toSymbol": "parse",
         "callExpression": "parse",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "src/cli/adapters/writeNavigatorGeneratedFiles.ts",
+        "fromSymbol": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
         "toSymbol": "resolve",
         "callExpression": "resolve",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "writeNavigatorGeneratedFiles",
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
         "toSymbol": "relative",
         "callExpression": "relative",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "writeNavigatorGeneratedFiles",
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
         "toSymbol": "mkdir",
         "callExpression": "mkdir",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "writeNavigatorGeneratedFiles",
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
         "toSymbol": "dirname",
         "callExpression": "dirname",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "writeNavigatorGeneratedFiles",
+        "fromSymbol": "writeNavigatorGeneratedFilesAsync",
         "toSymbol": "writeFile",
         "callExpression": "writeFile",
-        "sourcePath": "src/cli/adapters/writeNavigatorGeneratedFiles.ts"
+        "sourcePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts"
       },
       {
-        "fromSymbol": "assertNavigatorCliOptions",
-        "toSymbol": "optionName",
-        "callExpression": "optionName",
-        "sourcePath": "src/cli/commands/assertNavigatorCliOptions.ts"
-      },
-      {
-        "fromSymbol": "loadNavigatorCliInput",
-        "toSymbol": "readNavigatorCliJson",
-        "callExpression": "readNavigatorCliJson",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "loadNavigatorCliInput",
-        "toSymbol": "isAppNavigatorManifest",
-        "callExpression": "isAppNavigatorManifest",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "loadNavigatorCliInput",
-        "toSymbol": "loadBindings",
-        "callExpression": "loadBindings",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "loadNavigatorCliInput",
-        "toSymbol": "loadCustomNavigatorRegistry",
-        "callExpression": "loadCustomNavigatorRegistry",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "loadNavigatorCliInput",
-        "toSymbol": "optional",
-        "callExpression": "optional",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "loadBindings",
-        "toSymbol": "readNavigatorCliJson",
-        "callExpression": "readNavigatorCliJson",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "loadBindings",
-        "toSymbol": "isNavigatorGenerationBindings",
-        "callExpression": "isNavigatorGenerationBindings",
-        "sourcePath": "src/cli/commands/loadNavigatorCliInput.ts"
-      },
-      {
-        "fromSymbol": "parseNavigatorCliOptions",
-        "toSymbol": "finiteValue",
-        "callExpression": "finiteValue",
-        "sourcePath": "src/cli/commands/parseNavigatorCliOptions.ts"
-      },
-      {
-        "fromSymbol": "parseNavigatorCliOptions",
-        "toSymbol": "optional",
-        "callExpression": "optional",
-        "sourcePath": "src/cli/commands/parseNavigatorCliOptions.ts"
-      },
-      {
-        "fromSymbol": "reportNavigatorCliResult",
-        "toSymbol": "writeStdout",
-        "callExpression": "input.writeStdout",
-        "sourcePath": "src/cli/commands/reportNavigatorCliResult.ts"
-      },
-      {
-        "fromSymbol": "reportNavigatorCliResult",
-        "toSymbol": "writeStderr",
-        "callExpression": "input.writeStderr",
-        "sourcePath": "src/cli/commands/reportNavigatorCliResult.ts"
-      },
-      {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "parseNavigatorCliOptions",
         "callExpression": "parseNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "assertNavigatorCliOptions",
         "callExpression": "assertNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "getNavigatorCatalog",
         "callExpression": "getNavigatorCatalog",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "selectCatalog",
         "callExpression": "selectCatalog",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "renderCatalog",
         "callExpression": "renderCatalog",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorCatalogCommand",
+        "fromSymbol": "catalog",
         "toSymbol": "reportInputFailure",
         "callExpression": "reportInputFailure",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
         "fromSymbol": "renderCatalog",
         "toSymbol": "getNavigatorCatalog",
         "callExpression": "getNavigatorCatalog",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
         "fromSymbol": "reportInputFailure",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorCatalogCommand.ts"
+        "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
+        "fromSymbol": "generate",
         "toSymbol": "parseNavigatorCliOptions",
         "callExpression": "parseNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
+        "fromSymbol": "generate",
         "toSymbol": "assertNavigatorCliOptions",
         "callExpression": "assertNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
-        "toSymbol": "loadNavigatorCliInput",
-        "callExpression": "loadNavigatorCliInput",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromSymbol": "generate",
+        "toSymbol": "loadNavigatorCliInputAsync",
+        "callExpression": "loadNavigatorCliInputAsync",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
+        "fromSymbol": "generate",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
+        "fromSymbol": "generate",
         "toSymbol": "generateNavigator",
         "callExpression": "generateNavigator",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
-        "toSymbol": "writeNavigatorGeneratedFiles",
-        "callExpression": "writeNavigatorGeneratedFiles",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "fromSymbol": "generate",
+        "toSymbol": "writeNavigatorGeneratedFilesAsync",
+        "callExpression": "writeNavigatorGeneratedFilesAsync",
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
+        "fromSymbol": "generate",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorGenerateCommand",
+        "fromSymbol": "generate",
         "toSymbol": "reportInputFailure",
         "callExpression": "reportInputFailure",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
         "fromSymbol": "reportInputFailure",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorGenerateCommand.ts"
+        "sourcePath": "src/cli/commands/generate.ts"
       },
       {
-        "fromSymbol": "runNavigatorPlanCommand",
+        "fromSymbol": "plan",
         "toSymbol": "parseNavigatorCliOptions",
         "callExpression": "parseNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromSymbol": "runNavigatorPlanCommand",
+        "fromSymbol": "plan",
         "toSymbol": "assertNavigatorCliOptions",
         "callExpression": "assertNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromSymbol": "runNavigatorPlanCommand",
-        "toSymbol": "loadNavigatorCliInput",
-        "callExpression": "loadNavigatorCliInput",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "fromSymbol": "plan",
+        "toSymbol": "loadNavigatorCliInputAsync",
+        "callExpression": "loadNavigatorCliInputAsync",
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromSymbol": "runNavigatorPlanCommand",
+        "fromSymbol": "plan",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromSymbol": "runNavigatorPlanCommand",
+        "fromSymbol": "plan",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromSymbol": "runNavigatorPlanCommand",
+        "fromSymbol": "plan",
         "toSymbol": "reportInputFailure",
         "callExpression": "reportInputFailure",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
         "fromSymbol": "reportInputFailure",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorPlanCommand.ts"
+        "sourcePath": "src/cli/commands/plan.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
+        "fromSymbol": "validate",
         "toSymbol": "parseNavigatorCliOptions",
         "callExpression": "parseNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
+        "fromSymbol": "validate",
         "toSymbol": "assertNavigatorCliOptions",
         "callExpression": "assertNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
-        "toSymbol": "readNavigatorCliJson",
-        "callExpression": "readNavigatorCliJson",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "fromSymbol": "validate",
+        "toSymbol": "readNavigatorCliJsonAsync",
+        "callExpression": "readNavigatorCliJsonAsync",
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
+        "fromSymbol": "validate",
         "toSymbol": "createPlanOptions",
         "callExpression": "createPlanOptions",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
+        "fromSymbol": "validate",
         "toSymbol": "validateNavigator",
         "callExpression": "validateNavigator",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
+        "fromSymbol": "validate",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorValidateCommand",
+        "fromSymbol": "validate",
         "toSymbol": "reportInputFailure",
         "callExpression": "reportInputFailure",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
         "fromSymbol": "createPlanOptions",
-        "toSymbol": "loadCustomNavigatorRegistry",
-        "callExpression": "loadCustomNavigatorRegistry",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "toSymbol": "loadCustomNavigatorRegistryAsync",
+        "callExpression": "loadCustomNavigatorRegistryAsync",
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
         "fromSymbol": "reportInputFailure",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorValidateCommand.ts"
+        "sourcePath": "src/cli/commands/validate.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "parseNavigatorCliOptions",
         "callExpression": "parseNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "assertNavigatorCliOptions",
         "callExpression": "assertNavigatorCliOptions",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
-        "toSymbol": "loadNavigatorCliInput",
-        "callExpression": "loadNavigatorCliInput",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "fromSymbol": "verify",
+        "toSymbol": "loadNavigatorCliInputAsync",
+        "callExpression": "loadNavigatorCliInputAsync",
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "verifyNavigator",
         "callExpression": "verifyNavigator",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "renderVerification",
         "callExpression": "renderVerification",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
-        "fromSymbol": "runNavigatorVerifyCommand",
+        "fromSymbol": "verify",
         "toSymbol": "reportInputFailure",
         "callExpression": "reportInputFailure",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
         "fromSymbol": "reportInputFailure",
         "toSymbol": "reportNavigatorCliResult",
         "callExpression": "reportNavigatorCliResult",
-        "sourcePath": "src/cli/commands/runNavigatorVerifyCommand.ts"
-      },
-      {
-        "fromSymbol": "createNavigatorRuntimeProvider",
-        "toSymbol": "descriptor",
-        "callExpression": "descriptor",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromSymbol": "createNavigatorRuntimeProvider",
-        "toSymbol": "binding",
-        "callExpression": "binding",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromSymbol": "handler",
-        "toSymbol": "handler",
-        "callExpression": "handler",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromSymbol": "writeStdout",
-        "toSymbol": "writeStdout",
-        "callExpression": "request.context.writeStdout",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromSymbol": "writeStderr",
-        "toSymbol": "writeStderr",
-        "callExpression": "request.context.writeStderr",
-        "sourcePath": "src/cli/provider/createNavigatorRuntimeProvider.ts"
-      },
-      {
-        "fromSymbol": "src/cli/provider/navigatorRuntimeProvider.ts",
-        "toSymbol": "createNavigatorRuntimeProvider",
-        "callExpression": "createNavigatorRuntimeProvider",
-        "sourcePath": "src/cli/provider/navigatorRuntimeProvider.ts"
+        "sourcePath": "src/cli/commands/verify.ts"
       },
       {
         "fromSymbol": "createNavigatorCatalog",
@@ -6484,22 +6424,22 @@
       {
         "fromSymbol": "NavigatorVerificationResult",
         "toType": "NavigatorDiagnostic",
-        "sourcePath": "src/types/NavigatorVerificationResult.ts"
+        "sourcePath": "src/types/navigatorVerification.ts"
       },
       {
         "fromSymbol": "NavigatorVerificationResult",
         "toType": "NavigatorSupportStatus",
-        "sourcePath": "src/types/NavigatorVerificationResult.ts"
+        "sourcePath": "src/types/navigatorVerification.ts"
       },
       {
         "fromSymbol": "NavigatorVerificationResult",
         "toType": "NavigatorVerificationKind",
-        "sourcePath": "src/types/NavigatorVerificationResult.ts"
+        "sourcePath": "src/types/navigatorVerification.ts"
       },
       {
         "fromSymbol": "NavigatorVerificationResult",
         "toType": "NavigatorVerificationStatus",
-        "sourcePath": "src/types/NavigatorVerificationResult.ts"
+        "sourcePath": "src/types/navigatorVerification.ts"
       },
       {
         "fromSymbol": "createNavigatorPlan",

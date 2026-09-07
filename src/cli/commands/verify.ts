@@ -1,19 +1,14 @@
-import type {
-  NavigatorCliExecution,
-  NavigatorCliRunResult,
-} from '../../types/NavigatorCliExecution';
-import type { NavigatorVerificationResult } from '../../types/NavigatorVerificationResult';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
+import type { NavigatorVerificationResult } from '../../types/navigatorVerification';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
 import { createNavigatorPlan } from '../../utils/createNavigatorPlan';
+import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
 import { verifyNavigator } from '../../utils/verifyNavigator';
-import { assertNavigatorCliOptions } from './assertNavigatorCliOptions';
-import { loadNavigatorCliInput } from './loadNavigatorCliInput';
-import { parseNavigatorCliOptions } from './parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from './reportNavigatorCliResult';
 
 /*** Verify Navigator-owned structural and deterministic generation evidence without writes. */
-export async function runNavigatorVerifyCommand(
-  input: NavigatorCliExecution,
-): Promise<NavigatorCliRunResult> {
+export async function verify(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {
   try {
     const options = parseNavigatorCliOptions(input.argv);
     assertNavigatorCliOptions(
@@ -30,7 +25,7 @@ export async function runNavigatorVerifyCommand(
         'includeScreenFiles',
       ],
     );
-    const loaded = await loadNavigatorCliInput(options, input.cwd, true);
+    const loaded = await loadNavigatorCliInputAsync(options, input.cwd, true);
     if (loaded.bindings === undefined) throw new Error('Bindings are required for verification.');
     const verification = verifyNavigator(
       createNavigatorPlan(loaded.manifest, loaded.planOptions),
