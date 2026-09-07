@@ -1,6 +1,7 @@
 import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { describe, expect, test } from 'bun:test';
 import expoRouterPackage from 'expo-router/package.json' with { type: 'json' };
+import { format, resolveConfig } from 'prettier';
 import ts from 'typescript';
 
 import {
@@ -32,7 +33,7 @@ function generatedLayout(manifest: AppNavigatorManifest, platform: 'android' | '
 }
 
 describe('@ankhorage/navigator platform tabs generation', () => {
-  test('generates Native Tabs triggers, icons, initial route and bottom accessory', () => {
+  test('generates formatter-stable Native Tabs triggers, icons, initial route and bottom accessory', async () => {
     const { layout, plan } = generatedLayout(
       {
         type: 'tabs',
@@ -64,9 +65,10 @@ describe('@ankhorage/navigator platform tabs generation', () => {
       'src={<NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily} name="home" />}',
     );
     expect(layout).toContain(
-      'src={\n            <NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily} name="information-circle-outline" />\n          }',
+      '<NativeTabs.Trigger.VectorIcon\n              family={NativeIoniconsFamily}\n              name="information-circle-outline"',
     );
-    expect(layout).not.toContain('<NativeTabs.Trigger.VectorIcon\n');
+    const prettierConfig = await resolveConfig(new URL('../package.json', import.meta.url));
+    expect(await format(layout, { ...prettierConfig, parser: 'typescript' })).toBe(layout);
     expect(layout.indexOf("from '@ankhorage/navigator/tabs/native-icons'")).toBeLessThan(
       layout.indexOf("from 'expo-router/unstable-native-tabs'"),
     );

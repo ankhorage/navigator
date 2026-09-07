@@ -149,7 +149,10 @@ function nativeIconSource(componentName: string, family: string, name: string): 
   const inlineSource = `          src={${vectorIcon}}`;
   if (inlineSource.length <= 100) return inlineSource;
   return `          src={
-            ${vectorIcon}
+            <${componentName}.Trigger.VectorIcon
+              family={${family}}
+              name=${JSON.stringify(name)}
+            />
           }`;
 }
 
