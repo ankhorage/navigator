@@ -79,6 +79,7 @@ describe('standalone Navigator examples', () => {
           `${prefix}tsconfig.json`,
         ]),
       );
+      expect(paths).not.toContain(`${prefix}expo-env.d.ts`);
       const packageFile = appFiles.find(({ path }) => path === `${prefix}package.json`);
       const manifest = JSON.parse(packageFile?.contents ?? '{}') as {
         dependencies?: Record<string, string>;

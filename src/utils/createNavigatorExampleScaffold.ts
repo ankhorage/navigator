@@ -30,7 +30,6 @@ export function createNavigatorExampleScaffold(
       contents: renderNavigatorExampleReadme(definition, descriptor, generationPlatform),
     },
     { path: 'app.json', contents: json(createAppConfig(definition, runnablePlatforms)) },
-    { path: 'expo-env.d.ts', contents: '/// <reference types="expo/types" />\n' },
     { path: 'navigator.bindings.json', contents: json(definition.bindings) },
     { path: 'navigator.example.json', contents: json(descriptor) },
     { path: 'navigator.manifest.json', contents: json(definition.manifest) },
@@ -156,7 +155,6 @@ function createTypeScriptConfig(): Readonly<Record<string, unknown>> {
       strict: true,
     },
     include: [
-      'expo-env.d.ts',
       'navigator.custom-navigators.ts',
       'src/**/*.ts',
       'src/**/*.tsx',
