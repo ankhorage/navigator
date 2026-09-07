@@ -1,0 +1,19 @@
+{
+  "type": "custom",
+  "navigatorId": "example-tabs",
+  "config": {
+    "backBehavior": "history"
+  },
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "screenId": "example"
+    }
+  ]
+}

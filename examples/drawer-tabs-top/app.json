@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Navigator — Drawer → Top Tabs",
+    "slug": "navigator-drawer-tabs-top",
+    "scheme": "navigator-drawer-tabs-top",
+    "version": "1.0.0",
+    "orientation": "default",
+    "platforms": ["android", "ios", "web"],
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

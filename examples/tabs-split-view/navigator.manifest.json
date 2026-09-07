@@ -1,0 +1,36 @@
+{
+  "type": "tabs",
+  "implementation": "javascript",
+  "presentation": "bottom",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "split",
+      "label": "Split",
+      "navigator": {
+        "type": "split-view",
+        "columns": {
+          "primary": {
+            "screenId": "primary"
+          }
+        },
+        "routes": [
+          {
+            "name": "index",
+            "label": "Overview",
+            "screenId": "example"
+          },
+          {
+            "name": "details",
+            "label": "Details",
+            "screenId": "example"
+          }
+        ]
+      }
+    }
+  ]
+}

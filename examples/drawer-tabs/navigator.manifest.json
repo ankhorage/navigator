@@ -1,0 +1,31 @@
+{
+  "type": "drawer",
+  "routes": [
+    {
+      "name": "(workspace)",
+      "label": "Workspace",
+      "navigator": {
+        "type": "tabs",
+        "implementation": "javascript",
+        "presentation": "bottom",
+        "routes": [
+          {
+            "name": "index",
+            "label": "Overview",
+            "screenId": "example"
+          },
+          {
+            "name": "activity",
+            "label": "Activity",
+            "screenId": "example"
+          }
+        ]
+      }
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "screenId": "example"
+    }
+  ]
+}

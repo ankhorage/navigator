@@ -1,0 +1,30 @@
+{
+  "type": "drawer",
+  "routes": [
+    {
+      "name": "(overview)",
+      "label": "Overview",
+      "navigator": {
+        "type": "stack",
+        "implementation": "native",
+        "routes": [
+          {
+            "name": "index",
+            "label": "Overview",
+            "screenId": "example"
+          },
+          {
+            "name": "details",
+            "label": "Details",
+            "screenId": "example"
+          }
+        ]
+      }
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "screenId": "example"
+    }
+  ]
+}

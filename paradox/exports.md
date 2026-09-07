@@ -19,7 +19,7 @@ Create a disposable, provider-aware plan from only the navigator desired-state s
 
 Kind: `unknown`
 Module: `src/cli/createCliProvider.ts`
-Source: `src/cli/createCliProvider.ts:11:1`
+Source: `src/cli/createCliProvider.ts:13:1`
 
 ## defineCustomNavigatorRegistry
 
@@ -51,6 +51,20 @@ Generate a structured deterministic Expo Router result from one resolved plan an
   - plan: `NavigatorPlan`
   - returns: `NavigatorGenerationResult`
 
+## generateNavigatorExamples
+
+Kind: `function`
+Module: `src/utils/generateNavigatorExamples.ts`
+Source: `src/utils/generateNavigatorExamples.ts:22:1`
+
+Generate one or every complete root examples application as a deterministic file set.
+
+### Signatures
+
+- `(id?: NavigatorExampleId | undefined) => NavigatorExampleGenerationResult`
+  - id: `NavigatorExampleId | undefined` (optional)
+  - returns: `NavigatorExampleGenerationResult`
+
 ## getNavigatorCatalog
 
 Kind: `function`
@@ -63,6 +77,19 @@ Return the package-owned catalog with dependencies derived from published owner 
 
 - `() => NavigatorCatalog`
   - returns: `NavigatorCatalog`
+
+## getNavigatorExampleCatalog
+
+Kind: `function`
+Module: `src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts`
+Source: `src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts:16:1`
+
+Return the standalone composition catalog with target truth derived from Navigator policy.
+
+### Signatures
+
+- `() => readonly NavigatorExampleDescriptor[]`
+  - returns: `readonly NavigatorExampleDescriptor[]`
 
 ## HeadlessTabsLayout
 
@@ -152,6 +179,69 @@ Source: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts:5:14`
 
 Publish package identity and the single Navigator-owned capability catalog.
 
+## NavigatorExampleDescriptor
+
+Kind: `type`
+Module: `src/types/navigatorExamples.ts`
+Source: `src/types/navigatorExamples.ts:58:1`
+
+### Members
+
+| Name        | Kind     | Type                                | Required | Description |
+| ----------- | -------- | ----------------------------------- | -------- | ----------- |
+| description | property | `string`                            | yes      |             |
+| id          | property | `NavigatorExampleId`                | yes      |             |
+| targets     | property | `readonly NavigatorExampleTarget[]` | yes      |             |
+| title       | property | `string`                            | yes      |             |
+
+## NavigatorExampleGenerationResult
+
+Kind: `type`
+Module: `src/types/navigatorExamples.ts`
+Source: `src/types/navigatorExamples.ts:65:1`
+
+### Members
+
+| Name     | Kind     | Type                                    | Required | Description |
+| -------- | -------- | --------------------------------------- | -------- | ----------- |
+| examples | property | `readonly NavigatorExampleDescriptor[]` | yes      |             |
+| files    | property | `readonly NavigatorGeneratedFile[]`     | yes      |             |
+
+## NavigatorExampleId
+
+Kind: `unknown`
+Module: `src/types/navigatorExamples.ts`
+Source: `src/types/navigatorExamples.ts:14:1`
+
+## NavigatorExampleTarget
+
+Kind: `type`
+Module: `src/types/navigatorExamples.ts`
+Source: `src/types/navigatorExamples.ts:47:1`
+
+### Members
+
+| Name          | Kind     | Type                                                                                                     | Required | Description |
+| ------------- | -------- | -------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| capabilityIds | property | `readonly string[]`                                                                                      | yes      |             |
+| diagnostics   | property | `readonly NavigatorDiagnostic[]`                                                                         | yes      |             |
+| platform      | property | `NavigatorRuntimePlatform`                                                                               | yes      |             |
+| support       | property | `NavigatorSupportStatus`                                                                                 | yes      |             |
+| verification  | property | `readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; }[]` | yes      |             |
+
+## NavigatorExampleVerificationResult
+
+Kind: `type`
+Module: `src/types/navigatorExamples.ts`
+Source: `src/types/navigatorExamples.ts:70:1`
+
+### Members
+
+| Name     | Kind     | Type                                                                                                                                                             | Required | Description |
+| -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| examples | property | `readonly { readonly id: NavigatorExampleId; readonly current: boolean; readonly missingFiles: readonly string[]; readonly changedFiles: readonly string[]; }[]` | yes      |             |
+| verified | property | `boolean`                                                                                                                                                        | yes      |             |
+
 ## NavigatorVerificationResult
 
 Kind: `type`
@@ -193,10 +283,10 @@ Resolve a canonical navigator preset into its ordered topology layers.
 
 ### Signatures
 
-- `(preset: "slot" | "stack" | "tabs" | "tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "drawer" | "drawer-stack" | "stack-drawer" | "stack-drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "split-view" | "custom" | undefined, fallbackType: "slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom") => readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]`
-  - fallbackType: `"slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom"`
-  - preset: `"slot" | "stack" | "tabs" | "tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "drawer" | "drawer-stack" | "stack-drawer" | "stack-drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "split-view" | "custom" | undefined`
-  - returns: `readonly ("slot" | "stack" | "tabs" | "drawer" | "split-view" | "custom")[]`
+- `(preset: "drawer" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "slot" | "stack" | "stack-drawer" | "stack-drawer-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "tabs" | "tabs-stack" | "split-view" | "custom" | undefined, fallbackType: "drawer" | "slot" | "stack" | "tabs" | "split-view" | "custom") => readonly ("drawer" | "slot" | "stack" | "tabs" | "split-view" | "custom")[]`
+  - fallbackType: `"drawer" | "slot" | "stack" | "tabs" | "split-view" | "custom"`
+  - preset: `"drawer" | "drawer-stack" | "drawer-tabs" | "drawer-tabs-stack" | "slot" | "stack" | "stack-drawer" | "stack-drawer-stack" | "stack-drawer-tabs" | "stack-drawer-tabs-stack" | "stack-tabs" | "stack-tabs-stack" | "tabs" | "tabs-stack" | "split-view" | "custom" | undefined`
+  - returns: `readonly ("drawer" | "slot" | "stack" | "tabs" | "split-view" | "custom")[]`
 
 ## resolveTabsNavigatorPlan
 
@@ -278,3 +368,19 @@ Verify deterministic Navigator-owned structure and report stronger runtime evide
   - options: `NavigatorGenerationOptions` (optional)
   - plan: `NavigatorPlan`
   - returns: `NavigatorVerificationResult`
+
+## verifyNavigatorExamplesAsync
+
+Kind: `function`
+Module: `src/utils/verifyNavigatorExamplesAsync.ts`
+Source: `src/utils/verifyNavigatorExamplesAsync.ts:11:1`
+
+Verify checked-in example bytes and app-owned lockfiles against deterministic generation.
+
+### Signatures
+
+- `(targetDirectory: string, cwd: string, id?: NavigatorExampleId | undefined) => Promise<NavigatorExampleVerificationResult>`
+  - cwd: `string`
+  - id: `NavigatorExampleId | undefined` (optional)
+  - targetDirectory: `string`
+  - returns: `Promise<NavigatorExampleVerificationResult>`

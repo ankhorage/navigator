@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Navigator — Drawer → Split View",
+    "slug": "navigator-drawer-split-view",
+    "scheme": "navigator-drawer-split-view",
+    "version": "1.0.0",
+    "orientation": "default",
+    "platforms": ["web"],
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

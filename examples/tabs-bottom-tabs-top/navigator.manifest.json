@@ -1,0 +1,33 @@
+{
+  "type": "tabs",
+  "implementation": "javascript",
+  "presentation": "bottom",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "library",
+      "label": "Library",
+      "navigator": {
+        "type": "tabs",
+        "implementation": "javascript",
+        "presentation": "top",
+        "routes": [
+          {
+            "name": "index",
+            "label": "Overview",
+            "screenId": "example"
+          },
+          {
+            "name": "settings",
+            "label": "Settings",
+            "screenId": "example"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -119,6 +119,11 @@ describe('@ankhorage/navigator JavaScript tabs generation', () => {
       expect(layout).toContain(
         presentation === 'top' ? "tabBarItemStyle: { display: 'none' }" : 'href: null',
       );
+      expect(plan.dependencies.map(({ packageName }) => packageName)).toEqual(
+        presentation === 'top'
+          ? ['expo-router', 'react-native-pager-view', 'react-native-tab-view']
+          : ['expo-router'],
+      );
     }
   });
 });
@@ -151,8 +156,10 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
       medium: 'rail',
     });
     expect(layout).toContain("from '@ankhorage/navigator/tabs'");
+    expect(layout).toContain("import { ResponsiveProvider } from '@ankhorage/surface';");
     expect(layout).toContain('initialRouteName="settings"');
-    expect(layout).toContain('return (\n    <HeadlessTabsLayout');
+    expect(layout).toContain('return (\n    <ResponsiveProvider>');
+    expect(layout).toContain('<HeadlessTabsLayout');
     expect(layout).toContain("href: '/settings'");
     expect(layout).toContain('visible: false');
   });

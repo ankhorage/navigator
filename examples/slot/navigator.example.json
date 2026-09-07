@@ -1,0 +1,99 @@
+{
+  "id": "slot",
+  "title": "Slot",
+  "description": "Direct file-based routing without navigator-owned state.",
+  "targets": [
+    {
+      "platform": "android",
+      "support": "supported",
+      "capabilityIds": ["slot"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "support": "supported",
+      "capabilityIds": ["slot"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "web",
+      "support": "supported",
+      "capabilityIds": ["slot"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "browser",
+          "status": "unverified"
+        }
+      ]
+    }
+  ]
+}

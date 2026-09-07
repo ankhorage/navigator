@@ -1,0 +1,113 @@
+{
+  "id": "split-view-two-column",
+  "title": "Split View — two column",
+  "description": "Testing-only iOS two-column Split View with explicit non-iOS diagnostics.",
+  "targets": [
+    {
+      "platform": "android",
+      "support": "unsupported",
+      "capabilityIds": ["split-view.two-column"],
+      "diagnostics": [
+        {
+          "code": "unsupported-platform",
+          "severity": "error",
+          "path": "",
+          "message": "Split View is unavailable on android; Expo Router's Slot fallback is not a split-pane capability."
+        }
+      ],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "unverified"
+        },
+        {
+          "kind": "generation",
+          "status": "unverified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "support": "testing-only",
+      "capabilityIds": ["split-view.two-column"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "web",
+      "support": "unsupported",
+      "capabilityIds": ["split-view.two-column"],
+      "diagnostics": [
+        {
+          "code": "unsupported-platform",
+          "severity": "error",
+          "path": "",
+          "message": "Split View is unavailable on web; Expo Router's Slot fallback is not a split-pane capability."
+        }
+      ],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "unverified"
+        },
+        {
+          "kind": "generation",
+          "status": "unverified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "browser",
+          "status": "unverified"
+        }
+      ]
+    }
+  ]
+}

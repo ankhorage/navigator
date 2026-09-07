@@ -26,36 +26,69 @@ function visitNode(
   platform: NavigatorRuntimePlatform,
   packageNames: Set<string>,
 ): void {
-  if (node.adapter.id === 'drawer' && platform !== 'web') {
-    packageNames.add('react-native-gesture-handler');
-    packageNames.add('react-native-reanimated');
-    packageNames.add('react-native-worklets');
-  }
-  if (node.adapter.id === 'tabs.headless') {
-    packageNames.add(packageJson.name);
-    packageNames.add('@ankhorage/surface');
-    packageNames.add('react');
-    packageNames.add('react-native');
-    packageNames.add('react-native-safe-area-context');
-    if (platform === 'web') {
-      packageNames.add('react-dom');
-      packageNames.add('react-native-web');
-    }
-  }
-  if (node.adapter.id === 'tabs.native') {
-    for (const route of node.routes) {
-      const provider =
-        route.icon === undefined || 'source' in route.icon
-          ? undefined
-          : (route.icon.provider ?? 'Ionicons');
-      const packageName = provider === undefined ? undefined : ICON_PACKAGES.get(provider);
-      if (packageName !== undefined) packageNames.add(packageName);
-    }
-    if (node.routes.some((route) => route.icon !== undefined)) packageNames.add(packageJson.name);
-  }
+  addDrawerDependencies(node, platform, packageNames);
+  addHeadlessTabsDependencies(node, platform, packageNames);
+  addJavaScriptTopTabsDependencies(node, packageNames);
+  addNativeTabsDependencies(node, packageNames);
   for (const route of node.routes) {
     if (route.navigator !== undefined) visitNode(route.navigator, platform, packageNames);
   }
+}
+
+/*** Add packages imported by the native Drawer runtime. */
+function addDrawerDependencies(
+  node: NavigatorNodePlan,
+  platform: NavigatorRuntimePlatform,
+  packageNames: Set<string>,
+): void {
+  if (node.adapter.id !== 'drawer' || platform === 'web') return;
+  packageNames.add('react-native-gesture-handler');
+  packageNames.add('react-native-reanimated');
+  packageNames.add('react-native-worklets');
+}
+
+/*** Add packages imported by Navigator and Surface headless Tabs runtime. */
+function addHeadlessTabsDependencies(
+  node: NavigatorNodePlan,
+  platform: NavigatorRuntimePlatform,
+  packageNames: Set<string>,
+): void {
+  if (node.adapter.id !== 'tabs.headless') return;
+  for (const packageName of [
+    packageJson.name,
+    '@ankhorage/surface',
+    'react',
+    'react-native',
+    'react-native-safe-area-context',
+  ])
+    packageNames.add(packageName);
+  if (platform !== 'web') return;
+  packageNames.add('react-dom');
+  packageNames.add('react-native-web');
+}
+
+/*** Add the upstream packages imported by JavaScript Top Tabs. */
+function addJavaScriptTopTabsDependencies(
+  node: NavigatorNodePlan,
+  packageNames: Set<string>,
+): void {
+  if (node.adapter.id !== 'tabs.javascript' || node.tabs?.presentation !== 'top') return;
+  packageNames.add('react-native-pager-view');
+  packageNames.add('react-native-tab-view');
+}
+
+/*** Add the selected native icon families imported by generated Native Tabs. */
+function addNativeTabsDependencies(node: NavigatorNodePlan, packageNames: Set<string>): void {
+  if (node.adapter.id !== 'tabs.native') return;
+  for (const route of node.routes) {
+    const provider =
+      route.icon === undefined || 'source' in route.icon
+        ? undefined
+        : (route.icon.provider ?? 'Ionicons');
+    const packageName = provider === undefined ? undefined : ICON_PACKAGES.get(provider);
+    if (packageName !== undefined) packageNames.add(packageName);
+  }
+  if (node.routes.some((route) => route.icon !== undefined)) packageNames.add(packageJson.name);
 }
 
 /*** Resolve one dependency range from package-owned peer policy or the current package version. */

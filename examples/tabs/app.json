@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Navigator — Tabs",
+    "slug": "navigator-tabs",
+    "scheme": "navigator-tabs",
+    "version": "1.0.0",
+    "orientation": "default",
+    "platforms": ["android", "ios"],
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

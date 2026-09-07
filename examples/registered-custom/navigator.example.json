@@ -1,0 +1,99 @@
+{
+  "id": "registered-custom",
+  "title": "Registered custom navigator",
+  "description": "Registered Expo Router standard tab integration with validated JSON config.",
+  "targets": [
+    {
+      "platform": "android",
+      "support": "supported",
+      "capabilityIds": ["custom.registered"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "support": "supported",
+      "capabilityIds": ["custom.registered"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "web",
+      "support": "supported",
+      "capabilityIds": ["custom.registered"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "browser",
+          "status": "unverified"
+        }
+      ]
+    }
+  ]
+}

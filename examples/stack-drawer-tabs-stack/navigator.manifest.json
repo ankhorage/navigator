@@ -1,0 +1,61 @@
+{
+  "type": "stack",
+  "implementation": "native",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Entry",
+      "screenId": "example"
+    },
+    {
+      "name": "workspace",
+      "label": "Workspace",
+      "navigator": {
+        "type": "drawer",
+        "routes": [
+          {
+            "name": "sections",
+            "label": "Sections",
+            "navigator": {
+              "type": "tabs",
+              "implementation": "javascript",
+              "presentation": "bottom",
+              "routes": [
+                {
+                  "name": "(overview)",
+                  "label": "Overview",
+                  "navigator": {
+                    "type": "stack",
+                    "implementation": "native",
+                    "routes": [
+                      {
+                        "name": "index",
+                        "label": "Overview",
+                        "screenId": "example"
+                      },
+                      {
+                        "name": "details",
+                        "label": "Details",
+                        "screenId": "example"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "activity",
+                  "label": "Activity",
+                  "screenId": "example"
+                }
+              ]
+            }
+          },
+          {
+            "name": "settings",
+            "label": "Settings",
+            "screenId": "example"
+          }
+        ]
+      }
+    }
+  ]
+}

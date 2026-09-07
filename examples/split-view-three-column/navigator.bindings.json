@@ -1,0 +1,21 @@
+{
+  "screens": {
+    "example": {
+      "module": "@/screens/example-screen",
+      "exportName": "ExampleScreen"
+    },
+    "primary": {
+      "module": "@/screens/primary-column-screen",
+      "exportName": "PrimaryColumnScreen"
+    },
+    "supplementary": {
+      "module": "@/screens/supplementary-column-screen",
+      "exportName": "SupplementaryColumnScreen"
+    },
+    "inspector": {
+      "module": "@/screens/inspector-screen",
+      "exportName": "InspectorScreen"
+    }
+  },
+  "guards": {}
+}

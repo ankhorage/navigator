@@ -1,0 +1,27 @@
+{
+  "type": "stack",
+  "preset": "stack",
+  "implementation": "native",
+  "initialRouteName": "index",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "details",
+      "label": "Details",
+      "screenId": "example",
+      "guards": ["example-enabled"]
+    },
+    {
+      "name": "modal",
+      "label": "Modal",
+      "screenId": "example",
+      "stackOptions": {
+        "presentation": "modal"
+      }
+    }
+  ]
+}

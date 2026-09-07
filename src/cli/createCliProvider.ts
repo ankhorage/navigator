@@ -3,23 +3,27 @@ import type { AnkhCapabilityId, AnkhCommandProviderManifest } from '@ankhorage/c
 import packageJson from '../../package.json';
 import type { NavigatorCliExecution } from '../types/navigatorCli';
 import { catalog } from './commands/catalog';
+import { generate as generateExamples } from './commands/examples/generate';
+import { verify as verifyExamples } from './commands/examples/verify';
 import { generate } from './commands/generate';
 import { plan } from './commands/plan';
 import { validate } from './commands/validate';
 import { verify } from './commands/verify';
 
-export default createCliProvider();
-
-/*** Create the package-owned provider for the standalone Navigator lifecycle. */
-function createCliProvider(): NavigatorCliProvider {
-  const capabilities = [
+export default {
+  id: packageJson.name,
+  category: 'navigator',
+  version: packageJson.version,
+  capabilities: [
     'navigator.catalog',
     'navigator.validate',
     'navigator.plan',
     'navigator.generate',
     'navigator.verify',
-  ] as const;
-  const commands = [
+    'navigator.examples.generate',
+    'navigator.examples.verify',
+  ],
+  commands: [
     descriptor(
       'catalog',
       'navigator.catalog',
@@ -45,22 +49,27 @@ function createCliProvider(): NavigatorCliProvider {
       'navigator.verify',
       'Verify structural and deterministic generation evidence',
     ),
-  ] as const;
-  return {
-    id: packageJson.name,
-    category: 'navigator',
-    version: packageJson.version,
-    capabilities,
-    commands,
-    handlers: [
-      binding('catalog', catalog),
-      binding('validate', validate),
-      binding('plan', plan),
-      binding('generate', generate),
-      binding('verify', verify),
-    ],
-  };
-}
+    descriptor(
+      ['examples', 'generate'],
+      'navigator.examples.generate',
+      'Generate one or every standalone Navigator example',
+    ),
+    descriptor(
+      ['examples', 'verify'],
+      'navigator.examples.verify',
+      'Verify generated examples and app-owned lockfiles',
+    ),
+  ],
+  handlers: [
+    binding('catalog', catalog),
+    binding('validate', validate),
+    binding('plan', plan),
+    binding('generate', generate),
+    binding('verify', verify),
+    binding(['examples', 'generate'], generateExamples),
+    binding(['examples', 'verify'], verifyExamples),
+  ],
+} satisfies NavigatorCliProvider;
 
 interface NavigatorCliProvider extends AnkhCommandProviderManifest {
   readonly handlers: readonly {
@@ -79,24 +88,29 @@ interface NavigatorCliRequest {
 }
 
 /*** Define one public command descriptor from its package-owned capability. */
-function descriptor(path: string, capability: AnkhCapabilityId, summary: string) {
+function descriptor(
+  path: string | readonly string[],
+  capability: AnkhCapabilityId,
+  summary: string,
+) {
+  const segments = typeof path === 'string' ? [path] : path;
   return {
-    path: [path],
+    path: segments,
     capability,
     summary,
-    examples: [`ankh navigator ${path} --help`],
+    examples: [`ankh navigator ${segments.join(' ')} --help`],
   };
 }
 
 /*** Adapt the Ankh execution request to Navigator's narrow command input. */
 function binding(
-  path: string,
+  path: string | readonly string[],
   handler: (
     input: NavigatorCliExecution,
   ) => Promise<{ readonly exitCode: number }> | { readonly exitCode: number },
 ): NavigatorCliProvider['handlers'][number] {
   return {
-    path: [path],
+    path: typeof path === 'string' ? [path] : path,
     handler: (request) =>
       Promise.resolve(
         handler({

@@ -1,0 +1,99 @@
+{
+  "id": "tabs-stack",
+  "title": "Tabs → Stack",
+  "description": "Headless bottom Tabs whose primary branch owns Stack navigation.",
+  "targets": [
+    {
+      "platform": "android",
+      "support": "supported",
+      "capabilityIds": ["stack.native", "tabs.headless.bottom"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "support": "supported",
+      "capabilityIds": ["stack.native", "tabs.headless.bottom"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "web",
+      "support": "supported",
+      "capabilityIds": ["stack.native", "tabs.headless.bottom"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "browser",
+          "status": "unverified"
+        }
+      ]
+    }
+  ]
+}

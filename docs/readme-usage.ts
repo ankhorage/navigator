@@ -39,13 +39,42 @@
  * with `--custom-navigators`; screen, guard, icon-resolver, and custom Tabs-presentation bindings
  * remain narrow JSON module/symbol records.
  *
+ * Navigator also publishes a deterministic catalog of 22 standalone applications under the
+ * repository-root `examples/<stable-example-id>/` directories:
+ *
+ * `drawer`, `drawer-split-view`, `drawer-stack`, `drawer-tabs`, `drawer-tabs-stack`,
+ * `drawer-tabs-top`, `registered-custom`, `slot`, `split-view-three-column`,
+ * `split-view-two-column`, `stack`, `stack-drawer`, `stack-drawer-stack`, `stack-drawer-tabs`,
+ * `stack-drawer-tabs-stack`, `stack-tabs`, `stack-tabs-stack`, `stack-tabs-top`, `tabs`,
+ * `tabs-bottom-tabs-top`, `tabs-split-view`, and `tabs-stack`.
+ *
+ * Generate or compare one app with `--id`, or omit it for the complete catalog:
+ *
+ * ```sh
+ * ankh navigator examples generate --target .
+ * ankh navigator examples verify --target .
+ * ankh navigator examples generate --id drawer --target .
+ * ankh navigator examples verify --id drawer --target . --json
+ * ```
+ *
+ * Each example owns its manifest, narrow bindings, package metadata, and lockfile and uses only
+ * registry dependencies. Repository acceptance extends deterministic CLI verification with fresh
+ * frozen installs, strict typechecks, the Devtools-managed examples lint configuration, every
+ * supported or testing-only Expo export target, and browser runtime checks:
+ *
+ * ```sh
+ * bun run examples:acceptance
+ * ```
+ *
  * Capability metadata separates `support`, `stability`, and each verification layer. Experimental
  * Stack and iOS Split View are testing-only. A non-iOS Slot fallback is explicitly not Split View.
- * Install, export, browser, simulator, and device evidence remains unverified until the standalone
- * example acceptance layer records it; planning or compilation never promotes those claims.
+ * The checked-in catalog does not turn the existence of a plan into runtime evidence: CI executes
+ * install, export, and browser acceptance independently. Simulator and physical-device claims stay
+ * unverified until those native environments record evidence.
  *
- * Studio and future composers read `getNavigatorCatalog()`, author `manifest.navigator`, and invoke
- * this same lifecycle. They do not own a second capability table.
+ * Studio and future composers read `getNavigatorCatalog()` and `getNavigatorExampleCatalog()`,
+ * author `manifest.navigator`, and invoke this same lifecycle. They do not own a second capability
+ * or examples table.
  *
  * @usage
  */
@@ -59,6 +88,7 @@ import {
   createNavigatorPlan,
   generateNavigator,
   getNavigatorCatalog,
+  getNavigatorExampleCatalog,
   validateNavigator,
   verifyNavigator,
 } from '@ankhorage/navigator';
@@ -92,6 +122,7 @@ const verification = verifyNavigator(plan, bindings);
 
 console.log({
   catalog: getNavigatorCatalog(),
+  examples: getNavigatorExampleCatalog(),
   diagnostics,
   plan,
   generation,

@@ -1,0 +1,34 @@
+{
+  "type": "drawer",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "split",
+      "label": "Split",
+      "navigator": {
+        "type": "split-view",
+        "columns": {
+          "primary": {
+            "screenId": "primary"
+          }
+        },
+        "routes": [
+          {
+            "name": "index",
+            "label": "Overview",
+            "screenId": "example"
+          },
+          {
+            "name": "details",
+            "label": "Details",
+            "screenId": "example"
+          }
+        ]
+      }
+    }
+  ]
+}

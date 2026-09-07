@@ -24,6 +24,11 @@ export function generateTabsLayoutFile(
   return undefined;
 }
 
+const HEADLESS_TABS_IMPORTS = [
+  "import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';",
+  "import { ResponsiveProvider } from '@ankhorage/surface';",
+] as const;
+
 /*** Create the generated Native Tabs layout file and its narrow runtime imports. */
 function createNativeTabsFile(
   node: NavigatorNodePlan,
@@ -174,7 +179,7 @@ function createHeadlessTabsFile(
   if (tabs?.presentations === undefined) {
     throw new Error('Headless Tabs planning did not preserve responsive presentations.');
   }
-  const imports = ["import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';"];
+  const imports: string[] = [...HEADLESS_TABS_IMPORTS];
   let customPresentation = '';
   let iconSourceResolver = '';
   if (tabs.customPresentationId !== undefined) {
@@ -208,7 +213,7 @@ function createHeadlessTabsFile(
       ? ''
       : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
   const routeSource = renderHeadlessTabRoutes(routes);
-  const component = `<HeadlessTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />`;
+  const component = `<ResponsiveProvider>\n      <HeadlessTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />\n    </ResponsiveProvider>`;
   return {
     path: `${directory}/_layout.tsx`,
     contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component)}\n}\n`,

@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Navigator — Split View — three column",
+    "slug": "navigator-split-view-three-column",
+    "scheme": "navigator-split-view-three-column",
+    "version": "1.0.0",
+    "orientation": "default",
+    "platforms": ["ios"],
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

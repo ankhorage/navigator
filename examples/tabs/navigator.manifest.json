@@ -1,0 +1,25 @@
+{
+  "type": "tabs",
+  "implementation": "native",
+  "initialRouteName": "index",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example",
+      "icon": {
+        "provider": "Ionicons",
+        "name": "home"
+      }
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "screenId": "example",
+      "icon": {
+        "provider": "Ionicons",
+        "name": "settings"
+      }
+    }
+  ]
+}
