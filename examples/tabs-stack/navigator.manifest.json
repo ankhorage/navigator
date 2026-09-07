@@ -1,0 +1,34 @@
+{
+  "type": "tabs",
+  "implementation": "headless",
+  "presentation": "bottom",
+  "routes": [
+    {
+      "name": "(overview)",
+      "label": "Overview",
+      "path": "/",
+      "navigator": {
+        "type": "stack",
+        "implementation": "native",
+        "routes": [
+          {
+            "name": "index",
+            "label": "Overview",
+            "screenId": "example"
+          },
+          {
+            "name": "details",
+            "label": "Details",
+            "screenId": "example"
+          }
+        ]
+      }
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "screenId": "example",
+      "path": "/settings"
+    }
+  ]
+}

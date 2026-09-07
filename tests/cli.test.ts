@@ -31,6 +31,8 @@ describe('Navigator Ankh provider', () => {
       'plan',
       'generate',
       'verify',
+      'examples generate',
+      'examples verify',
     ]);
     expect(provider.handlers.map(({ path }) => path.join(' '))).toEqual(
       provider.commands.map(({ path }) => path.join(' ')),
@@ -132,6 +134,37 @@ describe('Navigator Ankh provider', () => {
       ['export', 'unverified'],
       ['browser', 'unverified'],
     ]);
+  });
+
+  test('generates and verifies one standalone root example', async () => {
+    const directory = await createFixture();
+    const generated = await run(
+      'examples generate',
+      ['--id', 'slot', '--target', '.', '--json'],
+      directory,
+    );
+    const missingLock = await run(
+      'examples verify',
+      ['--id', 'slot', '--target', '.', '--json'],
+      directory,
+    );
+    await Bun.write(join(directory, 'examples/slot/bun.lock'), 'lockfileVersion = 1\n');
+    const verified = await run(
+      'examples verify',
+      ['--id', 'slot', '--target', '.', '--json'],
+      directory,
+    );
+
+    expect(generated.exitCode).toBe(0);
+    expect(generated.envelope.data).toMatchObject({
+      examples: [expect.objectContaining({ id: 'slot' })],
+    });
+    expect(missingLock.exitCode).toBe(1);
+    expect(missingLock.envelope.diagnostics).toEqual([
+      expect.objectContaining({ code: 'stale-examples' }),
+    ]);
+    expect(verified.exitCode).toBe(0);
+    expect(verified.envelope.data).toMatchObject({ verified: true });
   });
 });
 

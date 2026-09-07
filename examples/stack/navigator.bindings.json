@@ -1,0 +1,14 @@
+{
+  "screens": {
+    "example": {
+      "module": "@/screens/example-screen",
+      "exportName": "ExampleScreen"
+    }
+  },
+  "guards": {
+    "example-enabled": {
+      "module": "@/guards/is-example-enabled",
+      "exportName": "isExampleEnabled"
+    }
+  }
+}

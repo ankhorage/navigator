@@ -25,7 +25,7 @@ export function generateSplitViewLayoutFile(
   const imports = [
     "import { SplitView } from 'expo-router/unstable-split-view';",
     renderSplitViewImports(referencedScreens),
-  ].join('\n');
+  ].join('\n\n');
   const children = referencedScreens.map(renderSplitViewChild).join('\n');
   return {
     path: `${directory}/_layout.tsx`,
@@ -91,6 +91,7 @@ function renderSplitViewImports(bindings: readonly SplitViewBinding[]): string {
       ({ alias, module }) =>
         `import { ${module.exportName} as ${alias} } from ${quoteJavaScriptString(module.module)};`,
     )
+    .sort((left, right) => left.localeCompare(right))
     .join('\n');
 }
 

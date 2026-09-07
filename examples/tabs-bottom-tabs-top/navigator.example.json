@@ -1,0 +1,99 @@
+{
+  "id": "tabs-bottom-tabs-top",
+  "title": "Bottom Tabs → Top Tabs",
+  "description": "JavaScript bottom Tabs with a nested JavaScript top Tabs branch.",
+  "targets": [
+    {
+      "platform": "android",
+      "support": "supported",
+      "capabilityIds": ["tabs.javascript.bottom", "tabs.javascript.top"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "support": "supported",
+      "capabilityIds": ["tabs.javascript.bottom", "tabs.javascript.top"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "web",
+      "support": "supported",
+      "capabilityIds": ["tabs.javascript.bottom", "tabs.javascript.top"],
+      "diagnostics": [],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "browser",
+          "status": "unverified"
+        }
+      ]
+    }
+  ]
+}

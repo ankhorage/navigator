@@ -26,10 +26,19 @@ Shared generation handles the common `Screen` / `Protected` registration contrac
 layouts and feature-specific policy remain feature-owned. No feature imports the shared orchestration
 back into its domain or application layer.
 
-`src/cli/` is the package composition boundary for `ankh navigator`. Its adapters perform the
-explicit JSON reads, custom-registry module load, and generated-file writes. Command handlers call
-the same public Catalog → Validate → Plan → Generate → Verify functions used by library consumers;
-there is no second CLI policy table.
+`src/cli/` is the package composition boundary for `ankh navigator`. It contains only
+`createCliProvider.ts` and command handlers below `commands/`; it has no adapter directory or CLI
+barrel. Command handlers call the same public Catalog → Validate → Plan → Generate → Verify
+functions used by library consumers, while shared filesystem and reporting operations remain in
+`src/utils/`. There is no second CLI policy table.
+
+The standalone applications live at repository-root `examples/<stable-example-id>/`, parallel to
+`src/`, exactly like other Ankhorage package repositories. Example definitions belong to the
+existing `catalog` capability; cross-feature generation and verification orchestration belongs to
+`src/utils/`. There is deliberately no `src/features/examples` capability. Each generated app owns
+its manifest, bindings, package metadata, lockfile, routes, and neutral screens without workspace
+or sibling-source dependencies. `eslint.examples.config.mjs` is synchronized from Devtools after
+the root `examples/` directory exists.
 
 ## Published entrypoints
 
@@ -76,7 +85,9 @@ topic type modules, facade isolation, and transitive inward dependencies.
 `tests/contractsBoundary.test.ts` exercises the shared public Contracts boundary. Cross-feature
 behavior and generated consumer-layout typechecks live in `tests/` and run with `bun run test`.
 
-The public verifier proves only Navigator-owned structural and deterministic generation behavior.
-Its remaining install, export, browser, simulator, and device checks are deliberately `unverified`
-until an independently installed example records that evidence. This prevents a successful typecheck
-or non-native Slot fallback from being presented as native runtime proof.
+The public verifier proves Navigator-owned structural and deterministic generation behavior.
+Repository acceptance then performs fresh frozen installs and typechecks for all 22 isolated apps,
+uses the Devtools-managed examples lint configuration, exports all catalog-derived supported or
+testing-only platform targets, and runs browser behavior checks for every Web-supported example.
+Simulator and physical-device evidence remains explicitly unverified. This separation prevents a
+successful typecheck or non-native Slot fallback from being presented as native runtime proof.

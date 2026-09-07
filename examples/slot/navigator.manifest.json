@@ -1,0 +1,16 @@
+{
+  "type": "slot",
+  "preset": "slot",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "details",
+      "label": "Details",
+      "screenId": "example"
+    }
+  ]
+}

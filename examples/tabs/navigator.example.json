@@ -1,0 +1,126 @@
+{
+  "id": "tabs",
+  "title": "Tabs",
+  "description": "Native Tabs on iOS and Android with explicit unsupported Web status.",
+  "targets": [
+    {
+      "platform": "android",
+      "support": "supported",
+      "capabilityIds": ["tabs.native"],
+      "diagnostics": [
+        {
+          "code": "alpha-adapter",
+          "severity": "warning",
+          "path": "",
+          "message": "Native Tabs are an alpha Expo Router API."
+        }
+      ],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "support": "supported",
+      "capabilityIds": ["tabs.native"],
+      "diagnostics": [
+        {
+          "code": "alpha-adapter",
+          "severity": "warning",
+          "path": "",
+          "message": "Native Tabs are an alpha Expo Router API."
+        }
+      ],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "verified"
+        },
+        {
+          "kind": "generation",
+          "status": "verified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "simulator",
+          "status": "unverified"
+        },
+        {
+          "kind": "device",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "platform": "web",
+      "support": "unsupported",
+      "capabilityIds": ["tabs.native"],
+      "diagnostics": [
+        {
+          "code": "alpha-adapter",
+          "severity": "warning",
+          "path": "",
+          "message": "Native Tabs are an alpha Expo Router API."
+        },
+        {
+          "code": "unsupported-platform",
+          "severity": "error",
+          "path": "",
+          "message": "Native Tabs are not available on web."
+        }
+      ],
+      "verification": [
+        {
+          "kind": "structural",
+          "status": "unverified"
+        },
+        {
+          "kind": "generation",
+          "status": "unverified"
+        },
+        {
+          "kind": "install",
+          "status": "unverified"
+        },
+        {
+          "kind": "export",
+          "status": "unverified"
+        },
+        {
+          "kind": "browser",
+          "status": "unverified"
+        }
+      ]
+    }
+  ]
+}

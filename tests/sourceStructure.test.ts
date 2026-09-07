@@ -38,9 +38,14 @@ test('keeps the catalog and six topology capabilities as peers, without legacy d
   expect(readdirSync(join(sourceRoot, 'cli')).sort()).toEqual(['commands', 'createCliProvider.ts']);
   expect(readdirSync(join(sourceRoot, 'cli/commands')).sort()).toEqual([
     'catalog.ts',
+    'examples',
     'generate.ts',
     'plan.ts',
     'validate.ts',
+    'verify.ts',
+  ]);
+  expect(readdirSync(join(sourceRoot, 'cli/commands/examples')).sort()).toEqual([
+    'generate.ts',
     'verify.ts',
   ]);
   for (const file of sources.keys()) {

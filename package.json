@@ -65,7 +65,9 @@
       "navigator.validate",
       "navigator.plan",
       "navigator.generate",
-      "navigator.verify"
+      "navigator.verify",
+      "navigator.examples.generate",
+      "navigator.examples.verify"
     ]
   },
   "publishConfig": {
@@ -76,8 +78,14 @@
     "changeset": "ankhorage-changeset",
     "changeset:status": "ankhorage-changeset status --since=origin/main",
     "docs": "paradox",
+    "examples:generate": "bun run build && ankh navigator examples generate --target . && bun run format",
+    "examples:exports": "bun scripts/verify-example-exports.ts",
+    "examples:browser": "bun scripts/verify-example-browser.ts",
+    "examples:acceptance": "bun run examples:validate && bun run examples:exports && bun run examples:browser",
+    "examples:validate": "bun scripts/validate-example-projects.ts",
+    "examples:verify": "bun run build && ankh navigator examples verify --target .",
     "test": "bun test src tests",
-    "typecheck": "bun x tsc --noEmit -p tsconfig.json",
+    "typecheck": "bun x tsc --noEmit -p tsconfig.json && bun x tsc --noEmit -p tsconfig.scripts.json",
     "version-packages": "ankhorage-changeset version",
     "lint": "ankhorage-eslint . --max-warnings=0",
     "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
@@ -101,16 +109,24 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.x",
     "react-native-gesture-handler": "*",
+    "react-native-pager-view": "8.0.2",
     "react-native-reanimated": "*",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-web": "~0.21.0",
+    "react-native-tab-view": "^4.3.2",
     "react-native-worklets": "*"
   },
   "peerDependenciesMeta": {
     "react-native-gesture-handler": {
       "optional": true
     },
+    "react-native-pager-view": {
+      "optional": true
+    },
     "react-native-reanimated": {
+      "optional": true
+    },
+    "react-native-tab-view": {
       "optional": true
     },
     "react-native-worklets": {
@@ -118,9 +134,11 @@
     }
   },
   "devDependencies": {
+    "@ankhorage/ankh": "^0.8.11",
     "@ankhorage/devtools": "^1.12.0",
     "@ankhorage/paradox": "^0.1.24",
     "@ankhorage/surface": "^3.4.4",
+    "@playwright/test": "^1.63.0",
     "@react-native-vector-icons/fontawesome": "^13.1.3",
     "@react-native-vector-icons/fontawesome5": "^13.1.3",
     "@react-native-vector-icons/fontawesome6": "^13.1.3",
@@ -129,12 +147,18 @@
     "@types/bun": "^1.4.1",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
+    "expo": "^57.0.20",
     "expo-router": "57.0.18",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
+    "react-native-gesture-handler": "^3.2.1",
+    "react-native-pager-view": "8.0.2",
+    "react-native-reanimated": "^4.6.0",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-web": "~0.21.0",
+    "react-native-tab-view": "^4.3.2",
+    "react-native-worklets": "^0.12.1",
     "typescript": "~6.0.3"
   },
   "packageManager": "bun@1.4.2"

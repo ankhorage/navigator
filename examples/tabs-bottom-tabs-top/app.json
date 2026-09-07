@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Navigator — Bottom Tabs → Top Tabs",
+    "slug": "navigator-tabs-bottom-tabs-top",
+    "scheme": "navigator-tabs-bottom-tabs-top",
+    "version": "1.0.0",
+    "orientation": "default",
+    "platforms": ["android", "ios", "web"],
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

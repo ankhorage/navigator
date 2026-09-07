@@ -1,0 +1,69 @@
+{
+  "type": "stack",
+  "implementation": "native",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Entry",
+      "screenId": "example"
+    },
+    {
+      "name": "workspace",
+      "label": "Workspace",
+      "navigator": {
+        "type": "tabs",
+        "implementation": "headless",
+        "presentation": "responsive",
+        "responsive": {
+          "compact": "bottom",
+          "medium": "rail",
+          "expanded": "sidebar"
+        },
+        "routes": [
+          {
+            "name": "(overview)",
+            "label": "Overview",
+            "path": "/workspace",
+            "navigator": {
+              "type": "stack",
+              "implementation": "native",
+              "routes": [
+                {
+                  "name": "index",
+                  "label": "Overview",
+                  "screenId": "example"
+                },
+                {
+                  "name": "details",
+                  "label": "Details",
+                  "screenId": "example"
+                }
+              ]
+            }
+          },
+          {
+            "name": "library",
+            "label": "Library",
+            "path": "/workspace/library",
+            "navigator": {
+              "type": "stack",
+              "implementation": "native",
+              "routes": [
+                {
+                  "name": "index",
+                  "label": "Overview",
+                  "screenId": "example"
+                },
+                {
+                  "name": "details",
+                  "label": "Details",
+                  "screenId": "example"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

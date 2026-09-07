@@ -1,0 +1,9 @@
+{
+  "screens": {
+    "example": {
+      "module": "@/screens/example-screen",
+      "exportName": "ExampleScreen"
+    }
+  },
+  "guards": {}
+}

@@ -1,0 +1,26 @@
+{
+  "type": "split-view",
+  "columns": {
+    "primary": {
+      "screenId": "primary"
+    },
+    "supplementary": {
+      "screenId": "supplementary"
+    }
+  },
+  "inspector": {
+    "screenId": "inspector"
+  },
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "details",
+      "label": "Details",
+      "screenId": "example"
+    }
+  ]
+}

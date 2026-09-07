@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Navigator — Drawer → Tabs → Stack",
+    "slug": "navigator-drawer-tabs-stack",
+    "scheme": "navigator-drawer-tabs-stack",
+    "version": "1.0.0",
+    "orientation": "default",
+    "platforms": ["android", "ios", "web"],
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

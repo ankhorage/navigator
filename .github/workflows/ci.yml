@@ -84,6 +84,12 @@ jobs:
             echo "No typecheck script found; skipping."
           fi
 
+      - name: Install Chromium for example acceptance
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run standalone example acceptance
+        run: bun run examples:acceptance
+
       - name: Check changesets
         if: github.event_name == 'pull_request'
         run: |

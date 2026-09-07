@@ -1,13 +1,23 @@
 graph LR
   module_package_json["package.json"]
   module_src_cli_commands_catalog_ts["src/cli/commands/catalog.ts"]
+  module_src_cli_commands_examples_generate_ts["src/cli/commands/examples/generate.ts"]
+  module_src_cli_commands_examples_verify_ts["src/cli/commands/examples/verify.ts"]
   module_src_cli_commands_generate_ts["src/cli/commands/generate.ts"]
   module_src_cli_commands_plan_ts["src/cli/commands/plan.ts"]
   module_src_cli_commands_validate_ts["src/cli/commands/validate.ts"]
   module_src_cli_commands_verify_ts["src/cli/commands/verify.ts"]
   module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
   module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts["src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"]
+  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts["src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"]
+  module_src_features_catalog_domain_createCoreNavigatorExamples_ts["src/features/catalog/domain/createCoreNavigatorExamples.ts"]
+  module_src_features_catalog_domain_createCustomNavigatorExamples_ts["src/features/catalog/domain/createCustomNavigatorExamples.ts"]
+  module_src_features_catalog_domain_createDrawerNavigatorExamples_ts["src/features/catalog/domain/createDrawerNavigatorExamples.ts"]
+  module_src_features_catalog_domain_createExampleScreenRoute_ts["src/features/catalog/domain/createExampleScreenRoute.ts"]
   module_src_features_catalog_domain_createNavigatorCatalog_ts["src/features/catalog/domain/createNavigatorCatalog.ts"]
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts["src/features/catalog/domain/createNavigatorExampleDefinitions.ts"]
+  module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts["src/features/catalog/domain/createSplitViewNavigatorExamples.ts"]
+  module_src_features_catalog_domain_createTabsNavigatorExamples_ts["src/features/catalog/domain/createTabsNavigatorExamples.ts"]
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts["src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts"]
   module_src_features_custom_domain_addCustomNavigatorDiagnostics_ts["src/features/custom/domain/addCustomNavigatorDiagnostics.ts"]
   module_src_features_custom_domain_defineCustomNavigatorRegistry_ts["src/features/custom/domain/defineCustomNavigatorRegistry.ts"]
@@ -43,10 +53,16 @@ graph LR
   module_src_navigator_ts["src/navigator.ts"]
   module_src_types_nativeIcons_ts["src/types/nativeIcons.ts"]
   module_src_types_navigatorCli_ts["src/types/navigatorCli.ts"]
+  module_src_types_navigatorExamples_ts["src/types/navigatorExamples.ts"]
   module_src_types_navigatorVerification_ts["src/types/navigatorVerification.ts"]
   module_src_utils_assertNavigatorCliOptions_ts["src/utils/assertNavigatorCliOptions.ts"]
+  module_src_utils_createNavigatorExamplePlan_ts["src/utils/createNavigatorExamplePlan.ts"]
+  module_src_utils_createNavigatorExampleScaffold_ts["src/utils/createNavigatorExampleScaffold.ts"]
+  module_src_utils_createNavigatorExampleScreenFiles_ts["src/utils/createNavigatorExampleScreenFiles.ts"]
   module_src_utils_createNavigatorPlan_ts["src/utils/createNavigatorPlan.ts"]
   module_src_utils_generateNavigator_ts["src/utils/generateNavigator.ts"]
+  module_src_utils_generateNavigatorExamples_ts["src/utils/generateNavigatorExamples.ts"]
+  module_src_utils_isNavigatorExampleId_ts["src/utils/isNavigatorExampleId.ts"]
   module_src_utils_isNavigatorGenerationBindings_ts["src/utils/isNavigatorGenerationBindings.ts"]
   module_src_utils_loadCustomNavigatorRegistryAsync_ts["src/utils/loadCustomNavigatorRegistryAsync.ts"]
   module_src_utils_loadNavigatorCliInputAsync_ts["src/utils/loadNavigatorCliInputAsync.ts"]
@@ -55,6 +71,8 @@ graph LR
   module_src_utils_parseExpoRouterMajor_ts["src/utils/parseExpoRouterMajor.ts"]
   module_src_utils_parseNavigatorCliOptions_ts["src/utils/parseNavigatorCliOptions.ts"]
   module_src_utils_readNavigatorCliJsonAsync_ts["src/utils/readNavigatorCliJsonAsync.ts"]
+  module_src_utils_renderNavigatorExampleReadme_ts["src/utils/renderNavigatorExampleReadme.ts"]
+  module_src_utils_renderNavigatorExamplesIndex_ts["src/utils/renderNavigatorExamplesIndex.ts"]
   module_src_utils_reportNavigatorCliResult_ts["src/utils/reportNavigatorCliResult.ts"]
   module_src_utils_resolveNavigatorDependencies_ts["src/utils/resolveNavigatorDependencies.ts"]
   module_src_utils_resolveNavigatorPreset_ts["src/utils/resolveNavigatorPreset.ts"]
@@ -63,11 +81,13 @@ graph LR
   module_src_utils_validateNavigatorManifest_ts["src/utils/validateNavigatorManifest.ts"]
   module_src_utils_validatePresetTopology_ts["src/utils/validatePresetTopology.ts"]
   module_src_utils_verifyNavigator_ts["src/utils/verifyNavigator.ts"]
+  module_src_utils_verifyNavigatorExamplesAsync_ts["src/utils/verifyNavigatorExamplesAsync.ts"]
   module_src_utils_writeNavigatorGeneratedFilesAsync_ts["src/utils/writeNavigatorGeneratedFilesAsync.ts"]
   module_tests_cli_test_ts["tests/cli.test.ts"]
   module_tests_composableGeneration_test_ts["tests/composableGeneration.test.ts"]
   module_tests_contractsBoundary_test_ts["tests/contractsBoundary.test.ts"]
   module_tests_CustomNavigatorRegistry_test_ts["tests/CustomNavigatorRegistry.test.ts"]
+  module_tests_examples_test_ts["tests/examples.test.ts"]
   module_tests_experimentalStack_test_ts["tests/experimentalStack.test.ts"]
   module_tests_generatedCustomNavigatorTypecheck_test_ts["tests/generatedCustomNavigatorTypecheck.test.ts"]
   module_tests_generatedExperimentalStackTypecheck_test_ts["tests/generatedExperimentalStackTypecheck.test.ts"]
@@ -86,6 +106,21 @@ graph LR
   module_src_cli_commands_catalog_ts --> module_src_utils_assertNavigatorCliOptions_ts
   module_src_cli_commands_catalog_ts --> module_src_utils_parseNavigatorCliOptions_ts
   module_src_cli_commands_catalog_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_types_navigatorExamples_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_utils_generateNavigatorExamples_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_utils_isNavigatorExampleId_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_examples_generate_ts --> module_src_utils_writeNavigatorGeneratedFilesAsync_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_types_navigatorCli_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_types_navigatorExamples_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_utils_assertNavigatorCliOptions_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_utils_isNavigatorExampleId_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_utils_parseNavigatorCliOptions_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_utils_reportNavigatorCliResult_ts
+  module_src_cli_commands_examples_verify_ts --> module_src_utils_verifyNavigatorExamplesAsync_ts
   module_src_cli_commands_generate_ts --> module_src_types_navigatorCli_ts
   module_src_cli_commands_generate_ts --> module_src_utils_assertNavigatorCliOptions_ts
   module_src_cli_commands_generate_ts --> module_src_utils_createNavigatorPlan_ts
@@ -117,6 +152,8 @@ graph LR
   module_src_cli_commands_verify_ts --> module_src_utils_verifyNavigator_ts
   module_src_cli_createCliProvider_ts --> module_package_json
   module_src_cli_createCliProvider_ts --> module_src_cli_commands_catalog_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_examples_generate_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_examples_verify_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_commands_generate_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_commands_plan_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_commands_validate_ts
@@ -124,8 +161,29 @@ graph LR
   module_src_cli_createCliProvider_ts --> module_src_types_navigatorCli_ts
   module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts --> module_package_json
   module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts --> module_src_features_catalog_domain_createNavigatorCatalog_ts
+  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
+  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts --> module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts
+  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts --> module_src_types_navigatorExamples_ts
+  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts --> module_src_utils_createNavigatorExamplePlan_ts
+  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts --> module_src_utils_verifyNavigator_ts
+  module_src_features_catalog_domain_createCoreNavigatorExamples_ts --> module_src_features_catalog_domain_createExampleScreenRoute_ts
+  module_src_features_catalog_domain_createCoreNavigatorExamples_ts --> module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createCustomNavigatorExamples_ts --> module_src_features_catalog_domain_createExampleScreenRoute_ts
+  module_src_features_catalog_domain_createCustomNavigatorExamples_ts --> module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createDrawerNavigatorExamples_ts --> module_src_features_catalog_domain_createExampleScreenRoute_ts
+  module_src_features_catalog_domain_createDrawerNavigatorExamples_ts --> module_src_types_navigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts --> module_src_utils_resolveNavigatorPreset_ts
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createCoreNavigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createCustomNavigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createDrawerNavigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createTabsNavigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --> module_src_features_catalog_domain_createExampleScreenRoute_ts
+  module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --> module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createTabsNavigatorExamples_ts --> module_src_features_catalog_domain_createExampleScreenRoute_ts
+  module_src_features_catalog_domain_createTabsNavigatorExamples_ts --> module_src_types_navigatorExamples_ts
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_custom_domain_addCustomNavigatorDiagnostics_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_split_view_application_resolveSplitViewAdapterPlan_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
@@ -147,6 +205,15 @@ graph LR
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --> module_src_features_tabs_domain_resolveEffectiveTabsConfig_ts
   module_src_features_tabs_domain_addTabsAdapterDiagnostics_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_utils_assertNavigatorCliOptions_ts --> module_src_types_navigatorCli_ts
+  module_src_utils_createNavigatorExamplePlan_ts --> module_package_json
+  module_src_utils_createNavigatorExamplePlan_ts --> module_src_features_custom_domain_defineCustomNavigatorRegistry_ts
+  module_src_utils_createNavigatorExamplePlan_ts --> module_src_types_navigatorExamples_ts
+  module_src_utils_createNavigatorExamplePlan_ts --> module_src_utils_createNavigatorPlan_ts
+  module_src_utils_createNavigatorExampleScaffold_ts --> module_package_json
+  module_src_utils_createNavigatorExampleScaffold_ts --> module_src_types_navigatorExamples_ts
+  module_src_utils_createNavigatorExampleScaffold_ts --> module_src_utils_createNavigatorExampleScreenFiles_ts
+  module_src_utils_createNavigatorExampleScaffold_ts --> module_src_utils_renderNavigatorExampleReadme_ts
+  module_src_utils_createNavigatorExampleScreenFiles_ts --> module_src_types_navigatorExamples_ts
   module_src_utils_createNavigatorPlan_ts --> module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts
   module_src_utils_createNavigatorPlan_ts --> module_src_features_drawer_application_createDrawerAdapter_ts
   module_src_utils_createNavigatorPlan_ts --> module_src_features_slot_application_createSlotAdapter_ts
@@ -164,6 +231,15 @@ graph LR
   module_src_utils_generateNavigator_ts --> module_src_features_split_view_adapters_outbound_generateSplitViewLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_utils_validateNavigatorBindings_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_types_navigatorExamples_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_utils_createNavigatorExamplePlan_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_utils_createNavigatorExampleScaffold_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_utils_generateNavigator_ts
+  module_src_utils_generateNavigatorExamples_ts --> module_src_utils_renderNavigatorExamplesIndex_ts
+  module_src_utils_isNavigatorExampleId_ts --> module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts
+  module_src_utils_isNavigatorExampleId_ts --> module_src_types_navigatorExamples_ts
   module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_types_navigatorCli_ts
   module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_utils_isNavigatorGenerationBindings_ts
   module_src_utils_loadNavigatorCliInputAsync_ts --> module_src_utils_loadCustomNavigatorRegistryAsync_ts
@@ -171,6 +247,8 @@ graph LR
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> module_package_json
   module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
   module_src_utils_parseNavigatorCliOptions_ts --> module_src_types_navigatorCli_ts
+  module_src_utils_renderNavigatorExampleReadme_ts --> module_src_types_navigatorExamples_ts
+  module_src_utils_renderNavigatorExamplesIndex_ts --> module_src_types_navigatorExamples_ts
   module_src_utils_reportNavigatorCliResult_ts --> module_src_types_navigatorCli_ts
   module_src_utils_resolveNavigatorDependencies_ts --> module_package_json
   module_src_utils_validateNavigator_ts --> module_src_utils_createNavigatorPlan_ts
@@ -190,6 +268,8 @@ graph LR
   module_src_utils_verifyNavigator_ts --> module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts
   module_src_utils_verifyNavigator_ts --> module_src_types_navigatorVerification_ts
   module_src_utils_verifyNavigator_ts --> module_src_utils_generateNavigator_ts
+  module_src_utils_verifyNavigatorExamplesAsync_ts --> module_src_types_navigatorExamples_ts
+  module_src_utils_verifyNavigatorExamplesAsync_ts --> module_src_utils_generateNavigatorExamples_ts
   module_tests_cli_test_ts --> module_package_json
   module_tests_cli_test_ts --> module_src_cli_createCliProvider_ts
   module_tests_composableGeneration_test_ts --> module_src_navigator_ts
@@ -203,6 +283,7 @@ graph LR
   module_tests_CustomNavigatorRegistry_test_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_tests_CustomNavigatorRegistry_test_ts --> module_tests_generateFiles_ts
   module_tests_CustomNavigatorRegistry_test_ts --> module_tests_routerPolicy_ts
+  module_tests_examples_test_ts --> module_src_navigator_ts
   module_tests_experimentalStack_test_ts --> module_src_navigator_ts
   module_tests_experimentalStack_test_ts --> module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
   module_tests_experimentalStack_test_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts

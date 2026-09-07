@@ -1,0 +1,15 @@
+{
+  "type": "drawer",
+  "routes": [
+    {
+      "name": "index",
+      "label": "Overview",
+      "screenId": "example"
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "screenId": "example"
+    }
+  ]
+}

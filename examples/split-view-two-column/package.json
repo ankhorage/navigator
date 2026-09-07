@@ -1,0 +1,30 @@
+{
+  "name": "navigator-example-split-view-two-column",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "export:android": "expo export --platform android --output-dir dist/android",
+    "export:ios": "expo export --platform ios --output-dir dist/ios",
+    "export:web": "expo export --platform web --output-dir dist/web",
+    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform ios --expo-router-version 57.0.18 --target ."
+  },
+  "dependencies": {
+    "@ankhorage/navigator": "3.0.0",
+    "expo": "^57.0.20",
+    "expo-router": "57.0.18",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  },
+  "devDependencies": {
+    "@ankhorage/ankh": "^0.8.11",
+    "@types/react": "^19.2.18",
+    "typescript": "~6.0.3"
+  },
+  "packageManager": "bun@1.4.2"
+}
