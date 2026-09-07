@@ -1,7 +1,6 @@
 import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { describe, expect, test } from 'bun:test';
 import expoRouterPackage from 'expo-router/package.json' with { type: 'json' };
-import { format, resolveConfig } from 'prettier';
 import ts from 'typescript';
 
 import {
@@ -17,6 +16,24 @@ const screens = {
 } as const;
 
 const EXPO_ROUTER_VERSION = expoRouterPackage.version;
+
+async function formatGeneratedLayout(layout: string) {
+  const formatter = Bun.spawn(
+    ['ankhorage-prettier', '--stdin-filepath', 'src/app/_layout.tsx'],
+    {
+      stderr: 'pipe',
+      stdin: new Blob([layout]),
+      stdout: 'pipe',
+    },
+  );
+  const [exitCode, formatted, error] = await Promise.all([
+    formatter.exited,
+    new Response(formatter.stdout).text(),
+    new Response(formatter.stderr).text(),
+  ]);
+  if (exitCode !== 0) throw new Error(error);
+  return formatted;
+}
 
 function generatedLayout(manifest: AppNavigatorManifest, platform: 'android' | 'ios' | 'web') {
   const plan = createNavigatorPlan(manifest, { expoRouterVersion: EXPO_ROUTER_VERSION, platform });
@@ -67,8 +84,7 @@ describe('@ankhorage/navigator platform tabs generation', () => {
     expect(layout).toContain(
       '<NativeTabs.Trigger.VectorIcon\n              family={NativeIoniconsFamily}\n              name="information-circle-outline"',
     );
-    const prettierConfig = await resolveConfig(new URL('../package.json', import.meta.url));
-    expect(await format(layout, { ...prettierConfig, parser: 'typescript' })).toBe(layout);
+    expect(await formatGeneratedLayout(layout)).toBe(layout);
     expect(layout.indexOf("from '@ankhorage/navigator/tabs/native-icons'")).toBeLessThan(
       layout.indexOf("from 'expo-router/unstable-native-tabs'"),
     );
