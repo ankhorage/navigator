@@ -1,11 +1,10 @@
 import type {
   AppNavigatorManifest,
   NavigatorPlatforms,
+  NavigatorRuntimePlatform,
   TabsImplementationConfig,
   TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
 
 /*** Resolve Tabs configuration in platform, node, then manifest-default precedence. */
 export function resolveEffectiveTabsConfig(

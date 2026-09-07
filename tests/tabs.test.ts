@@ -14,6 +14,7 @@ const screens = {
   home: { module: '@/screens/home', exportName: 'Home' },
   settings: { module: '@/screens/settings', exportName: 'Settings' },
 } as const;
+
 const EXPO_ROUTER_VERSION = expoRouterPackage.version;
 
 function generatedLayout(manifest: AppNavigatorManifest, platform: 'android' | 'ios' | 'web') {

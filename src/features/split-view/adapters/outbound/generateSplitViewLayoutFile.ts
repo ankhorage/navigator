@@ -1,10 +1,11 @@
-import { assertModuleBinding } from '../../../../utils/assertModuleBinding';
-import type { NavigatorGeneratedFile } from '../../../../utils/NavigatorGeneratedFile';
-import type { NavigatorGenerationBindings } from '../../../../utils/NavigatorGenerationBindings';
-import type { NavigatorNodePlan } from '../../../../utils/NavigatorNodePlan';
-import type { NavigatorScreenModule } from '../../../../utils/NavigatorScreenModule';
-import { quote } from '../../../../utils/quote';
-import { quoteJsxAttribute } from '../../../../utils/quoteJsxAttribute';
+import type {
+  NavigatorGeneratedFile,
+  NavigatorGenerationBindings,
+  NavigatorNodePlan,
+  NavigatorScreenModule,
+} from '@ankhorage/contracts/navigator';
+import { quoteJavaScriptString } from '@ankhorage/utility/string';
+import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
 /*** Generate a Split View layout while leaving the routed main column to Expo Router's Slot. */
 export function generateSplitViewLayoutFile(
@@ -17,7 +18,7 @@ export function generateSplitViewLayoutFile(
   const props = [
     node.splitView.topColumnForCollapsing === undefined
       ? undefined
-      : `topColumnForCollapsing=${quoteJsxAttribute(node.splitView.topColumnForCollapsing)}`,
+      : `topColumnForCollapsing=${JSON.stringify(node.splitView.topColumnForCollapsing)}`,
     node.splitView.inspector === undefined ? undefined : 'showInspector',
   ].filter((value): value is string => value !== undefined);
   const openingTag = `<SplitView${props.length === 0 ? '' : ` ${props.join(' ')}`}>`;
@@ -72,7 +73,11 @@ function resolveSplitViewBinding(
   if (module === undefined) {
     throw new Error(`Missing Split View ${role} screen binding for ${JSON.stringify(screenId)}.`);
   }
-  assertModuleBinding(module, `Split View ${role} screen ${JSON.stringify(screenId)}`);
+  assertStaticImportBinding(
+    module.module,
+    module.exportName,
+    `Split View ${role} screen ${JSON.stringify(screenId)}`,
+  );
   const alias = `Navigator${role[0]?.toUpperCase()}${role.slice(1)}Screen`;
   return { alias, element, module };
 }
@@ -84,7 +89,7 @@ function renderSplitViewImports(bindings: readonly SplitViewBinding[]): string {
   return bindings
     .map(
       ({ alias, module }) =>
-        `import { ${module.exportName} as ${alias} } from ${quote(module.module)};`,
+        `import { ${module.exportName} as ${alias} } from ${quoteJavaScriptString(module.module)};`,
     )
     .join('\n');
 }

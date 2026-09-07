@@ -1,4 +1,8 @@
-import type { RouteDefinition } from '@ankhorage/contracts/navigator';
+import type {
+  NavigatorResponsiveSize,
+  ResolvedTabsPresentation,
+  RouteDefinition,
+} from '@ankhorage/contracts/navigator';
 import {
   NavigationItem,
   type NavigationItemIcon,
@@ -8,16 +12,9 @@ import {
 } from '@ankhorage/surface';
 import type { Href } from 'expo-router';
 import { TabList, Tabs, TabSlot, TabTrigger, useTabTrigger } from 'expo-router/ui';
-import { type ComponentType, useSyncExternalStore } from 'react';
+import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react';
 import { StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import type { NavigatorResponsiveSize } from '../../../../utils/NavigatorResponsiveSize';
-import type { ResolvedTabsPresentation } from '../../domain/ResolvedTabsPresentation';
-import type { CustomTabsIconSourceResolver } from './CustomTabsIconSourceResolver';
-import type { CustomTabsLayoutProps } from './CustomTabsLayoutProps';
-import type { CustomTabsPresentationProps } from './CustomTabsPresentationProps';
-import type { CustomTabsRoute } from './CustomTabsRoute';
 
 /*** Render one stable headless Expo Router tab topology with Surface-owned presentations. */
 export function CustomTabsLayout({
@@ -68,6 +65,42 @@ export function CustomTabsLayout({
     </Tabs>
   );
 }
+
+/** One explicit Expo Router tab registration plus optional Surface-owned presentation metadata. */
+interface CustomTabsRoute {
+  name: string;
+  href: string;
+  label: string;
+  icon?: RouteDefinition['icon'];
+  badge?: ReactNode;
+  visible: boolean;
+}
+
+/**
+ * Runtime inputs for the cross-platform custom-tabs adapter. Routes remain mounted in one headless Router
+ * topology while Surface selects bottom, top, rail, sidebar, or registered custom chrome.
+ */
+interface CustomTabsLayoutProps {
+  routes: readonly CustomTabsRoute[];
+  presentations: Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>;
+  initialRouteName?: string;
+  resolveIconSource?: CustomTabsIconSourceResolver;
+  customPresentation?: ComponentType<CustomTabsPresentationProps>;
+}
+
+interface CustomTabsPresentationProps {
+  routes: readonly CustomTabsRoute[];
+  renderItem: (route: CustomTabsRoute, compact?: boolean) => ReactNode;
+}
+
+type CustomTabsIconSourceResolver = (source: IconMediaReference) => ResolvedSvgSource;
+
+type IconMediaReference = Extract<
+  NonNullable<RouteDefinition['icon']>,
+  { source: unknown }
+>['source'];
+
+type ResolvedSvgSource = Extract<NavigationItemIcon, { source: unknown }>['source'];
 
 /*** Resolve a hydration-safe semantic size from the Surface breakpoint owner. */
 function useHydrationSafeSize(): NavigatorResponsiveSize {

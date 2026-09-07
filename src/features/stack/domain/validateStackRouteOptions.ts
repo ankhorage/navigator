@@ -1,6 +1,8 @@
-import type { NavigatorNode, StackImplementation } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
+import type {
+  NavigatorDiagnostic,
+  NavigatorNode,
+  StackImplementation,
+} from '@ankhorage/contracts/navigator';
 
 /*** Reject Stack options on other navigator types and native-only options on JavaScript Stack. */
 export function validateStackRouteOptions(

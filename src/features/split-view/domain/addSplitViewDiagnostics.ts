@@ -1,12 +1,11 @@
 import type {
   AppNavigatorManifest,
+  NavigatorDiagnostic,
   NavigatorNode,
   NavigatorType,
+  NavigatorValidationContext,
   SplitViewNavigatorNode,
 } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
-import type { NavigatorValidationContext } from '../../../utils/NavigatorValidationContext';
 
 /*** Add constrained placement, binding, flow, version, and fallback diagnostics for Split View. */
 export function addSplitViewDiagnostics(

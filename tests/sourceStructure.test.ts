@@ -7,7 +7,9 @@ import ts from 'typescript';
 import packageJson from '../package.json';
 
 const sourceRoot = resolve(import.meta.dir, '../src');
+
 const sources = collectSources(sourceRoot);
+
 const entrypoints = new Set(
   Object.values(packageJson.exports).flatMap((entry) =>
     typeof entry === 'string'
@@ -17,7 +19,7 @@ const entrypoints = new Set(
 );
 
 test('keeps exactly the six navigator capabilities as peers, without legacy directories', () => {
-  expect(readdirSync(sourceRoot).sort()).toEqual(['features', 'navigator.ts', 'utils']);
+  expect(readdirSync(sourceRoot).sort()).toEqual(['features', 'navigator.ts', 'types', 'utils']);
   expect(readdirSync(join(sourceRoot, 'features')).sort()).toEqual([
     'custom',
     'drawer',
@@ -41,6 +43,12 @@ test('gives implementation modules one matching export before private declaratio
       (statement) => !ts.isImportDeclaration(statement),
     );
     const exports = declarations.filter(isExported);
+    if (relative(sourceRoot, file).startsWith('types/')) {
+      expect(declarations.every(isTypeDeclaration), file).toBe(true);
+      expect(exports.length, file).toBeGreaterThan(0);
+      continue;
+    }
+    expect(exports.some(isTypeDeclaration), file).toBe(false);
     const facade = entrypoints.has(file) && declarations.every(ts.isExportDeclaration);
     if (facade) {
       for (const declaration of declarations) {
@@ -73,6 +81,32 @@ test('never uses a public package facade as an internal shortcut', () => {
     }
   }
 });
+
+test('extracts a topic type only when more than one production module imports it', () => {
+  for (const [file, source] of sources) {
+    if (!relative(sourceRoot, file).startsWith('types/')) continue;
+    for (const declaration of source.statements.filter(isExported)) {
+      const name = exportedName(declaration);
+      const consumers = [...sources].filter(([consumer, parsed]) =>
+        parsed.statements.filter(ts.isImportDeclaration).some((statement) => {
+          const specifier = importSpecifier(statement);
+          const bindings = statement.importClause?.namedBindings;
+          return (
+            specifier.startsWith('.') &&
+            resolveModule(consumer, specifier) === file &&
+            bindings !== undefined &&
+            ts.isNamedImports(bindings) &&
+            bindings.elements.some(
+              (element) => (element.propertyName ?? element.name).text === name,
+            )
+          );
+        }),
+      );
+      expect(consumers.length, `${file}: ${name}`).toBeGreaterThan(1);
+    }
+  }
+});
+
 function collectSources(directory: string): Map<string, ts.SourceFile> {
   return new Map(
     readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -95,6 +129,10 @@ function isExported(statement: ts.Statement): boolean {
         .getModifiers(statement)
         ?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) === true)
   );
+}
+
+function isTypeDeclaration(statement: ts.Statement): boolean {
+  return ts.isInterfaceDeclaration(statement) || ts.isTypeAliasDeclaration(statement);
 }
 
 function exportedName(statement: ts.Statement | undefined): string | undefined {
@@ -130,8 +168,12 @@ function assertInwardDependencies(file: string, domainOnly: boolean, visited: Se
   for (const statement of source?.statements.filter(ts.isImportDeclaration) ?? []) {
     const specifier = importSpecifier(statement);
     if (!specifier.startsWith('.')) {
-      expect(specifier, file).toBe('@ankhorage/contracts/navigator');
-      expect(statement.importClause?.isTypeOnly, file).toBe(true);
+      expect(['@ankhorage/contracts/navigator', '@ankhorage/utility/validation'], file).toContain(
+        specifier,
+      );
+      if (specifier === '@ankhorage/contracts/navigator') {
+        expect(statement.importClause?.isTypeOnly, file).toBe(true);
+      }
       continue;
     }
     const target = resolveModule(file, specifier);

@@ -1,5 +1,7 @@
-import type { NavigatorAdapterPlan } from '../../../utils/NavigatorAdapterPlan';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
+import type {
+  NavigatorAdapterPlan,
+  NavigatorRuntimePlatform,
+} from '@ankhorage/contracts/navigator';
 
 /*** Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback. */
 export function resolveSplitViewAdapterPlan(

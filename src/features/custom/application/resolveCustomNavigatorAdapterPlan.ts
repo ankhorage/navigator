@@ -1,8 +1,9 @@
-import type { CustomNavigatorNode } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorAdapterPlan } from '../../../utils/NavigatorAdapterPlan';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
-import type { CustomNavigatorRegistry } from '../domain/CustomNavigatorRegistry';
+import type {
+  CustomNavigatorNode,
+  CustomNavigatorRegistry,
+  NavigatorAdapterPlan,
+  NavigatorRuntimePlatform,
+} from '@ankhorage/contracts/navigator';
 
 /*** Resolve a registered standard-router integration without materializing executable manifest data. */
 export function resolveCustomNavigatorAdapterPlan(

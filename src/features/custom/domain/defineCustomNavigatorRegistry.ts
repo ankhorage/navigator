@@ -1,7 +1,9 @@
-import { assertModuleBinding } from '../../../utils/assertModuleBinding';
-import type { NavigatorRuntimePlatform } from '../../../utils/NavigatorRuntimePlatform';
-import type { CustomNavigatorRegistration } from './CustomNavigatorRegistration';
-import type { CustomNavigatorRegistry } from './CustomNavigatorRegistry';
+import type {
+  CustomNavigatorRegistration,
+  CustomNavigatorRegistry,
+  NavigatorRuntimePlatform,
+} from '@ankhorage/contracts/navigator';
+import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
 /*** Define an immutable, duplicate-free custom navigator registry for one composition boundary. */
 export function defineCustomNavigatorRegistry(
@@ -33,7 +35,11 @@ export function defineCustomNavigatorRegistry(
         `Custom navigator ${JSON.stringify(registration.id)} must provide a config validator.`,
       );
     }
-    assertModuleBinding(registration, `Custom navigator ${JSON.stringify(registration.id)}`);
+    assertStaticImportBinding(
+      registration.module,
+      registration.exportName,
+      `Custom navigator ${JSON.stringify(registration.id)}`,
+    );
     registry[registration.id] = Object.freeze({
       ...registration,
       platforms: Object.freeze([...registration.platforms]),

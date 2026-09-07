@@ -1,8 +1,10 @@
-import type { AppNavigatorManifest, NavigatorNode } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
-import type { NavigatorValidationContext } from '../../../utils/NavigatorValidationContext';
-import type { CustomNavigatorRegistry } from './CustomNavigatorRegistry';
+import type {
+  AppNavigatorManifest,
+  CustomNavigatorRegistry,
+  NavigatorDiagnostic,
+  NavigatorNode,
+  NavigatorValidationContext,
+} from '@ankhorage/contracts/navigator';
 
 /*** Validate all deliberately registered custom navigator extension nodes. */
 export function addCustomNavigatorDiagnostics(

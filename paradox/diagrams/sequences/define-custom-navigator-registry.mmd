@@ -1,5 +1,5 @@
 sequenceDiagram
-  participant participant_assertModuleBinding as assertModuleBinding
+  participant participant_assertStaticImportBinding as assertStaticImportBinding
   participant participant_defineCustomNavigatorRegistry as defineCustomNavigatorRegistry
-  participant_defineCustomNavigatorRegistry->>participant_assertModuleBinding: assertModuleBinding()
-  participant_assertModuleBinding-->>participant_defineCustomNavigatorRegistry: return
+  participant_defineCustomNavigatorRegistry->>participant_assertStaticImportBinding: assertStaticImportBinding()
+  participant_assertStaticImportBinding-->>participant_defineCustomNavigatorRegistry: return

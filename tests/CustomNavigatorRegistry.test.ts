@@ -1,8 +1,10 @@
-import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
+import type {
+  AppNavigatorManifest,
+  CustomNavigatorRegistration,
+  CustomNavigatorRegistry,
+} from '@ankhorage/contracts/navigator';
 import { expect, test } from 'bun:test';
 
-import type { CustomNavigatorRegistration } from '../src/features/custom/domain/CustomNavigatorRegistration';
-import type { CustomNavigatorRegistry } from '../src/features/custom/domain/CustomNavigatorRegistry';
 import { defineCustomNavigatorRegistry } from '../src/features/custom/domain/defineCustomNavigatorRegistry';
 import { createNavigatorPlan } from '../src/utils/createNavigatorPlan';
 import { generateNavigatorFiles } from '../src/utils/generateNavigatorFiles';

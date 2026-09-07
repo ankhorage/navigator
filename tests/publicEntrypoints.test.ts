@@ -5,49 +5,19 @@ import ts from 'typescript';
 
 import packageJson from '../package.json';
 
-// Published symbol names are the compatibility contract, independent of internal file locations.
+// Runtime exports stay stable; shared types now belong to Contracts, private adapter types stay local.
 const publicSymbols = {
   '.': [
-    'CustomNavigatorConfigIssue',
-    'CustomNavigatorRegistration',
-    'CustomNavigatorRegistry',
     'defineCustomNavigatorRegistry',
-    'ExpoRouterNavigatorModule',
-    'NavigatorAdapterId',
-    'NavigatorAdapterPlan',
-    'NavigatorApiStability',
-    'NavigatorDiagnostic',
-    'NavigatorGeneratedFile',
-    'NavigatorGenerationBindings',
-    'NavigatorGenerationOptions',
-    'NavigatorNodePlan',
-    'NavigatorPlan',
-    'NavigatorResponsiveSize',
-    'NavigatorRoutePlan',
-    'NavigatorRuntimePlatform',
-    'NavigatorScreenModule',
-    'NavigatorSupportStatus',
-    'NavigatorValidationContext',
-    'ResolvedTabsImplementation',
-    'ResolvedTabsPresentation',
-    'TabsNavigatorPlan',
-    'CreateNavigatorPlanOptions',
     'createNavigatorPlan',
     'resolveTabsNavigatorPlan',
     'generateNavigatorFiles',
-    'ResolvedCustomTabsPresentation',
     'resolveCustomTabsPresentation',
     'resolveNavigatorPreset',
     'validateNavigatorManifest',
   ],
   './metadata': ['NAVIGATOR_PACKAGE_METADATA'],
-  './tabs': [
-    'CustomTabsIconSourceResolver',
-    'CustomTabsLayout',
-    'CustomTabsLayoutProps',
-    'CustomTabsPresentationProps',
-    'CustomTabsRoute',
-  ],
+  './tabs': ['CustomTabsLayout'],
   './tabs/native-icons': [
     'NativeFontAwesome5Family',
     'NativeFontAwesome6Family',
@@ -57,7 +27,7 @@ const publicSymbols = {
   ],
 } as const;
 
-test('preserves every published subpath and its resolved type and runtime exports', () => {
+test('preserves runtime subpaths without compatibility exports for relocated or private types', () => {
   expect(Object.keys(packageJson.exports).sort()).toEqual(
     [...Object.keys(publicSymbols), './package.json'].sort(),
   );

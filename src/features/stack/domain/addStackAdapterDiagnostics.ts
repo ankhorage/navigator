@@ -1,7 +1,10 @@
-import type { AppNavigatorManifest, StackNavigatorNode } from '@ankhorage/contracts/navigator';
+import type {
+  AppNavigatorManifest,
+  NavigatorDiagnostic,
+  NavigatorValidationContext,
+  StackNavigatorNode,
+} from '@ankhorage/contracts/navigator';
 
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
-import type { NavigatorValidationContext } from '../../../utils/NavigatorValidationContext';
 import { resolveEffectiveStackConfig } from './resolveEffectiveStackConfig';
 
 /*** Diagnose a JavaScript Stack selection that requires a newer Expo Router version. */

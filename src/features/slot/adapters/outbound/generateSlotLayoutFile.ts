@@ -1,4 +1,4 @@
-import type { NavigatorGeneratedFile } from '../../../../utils/NavigatorGeneratedFile';
+import type { NavigatorGeneratedFile } from '@ankhorage/contracts/navigator';
 
 /*** Render a stateless Slot layout using the validated adapter import. */
 export function generateSlotLayoutFile(

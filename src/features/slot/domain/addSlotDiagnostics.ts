@@ -1,6 +1,4 @@
-import type { NavigatorNode } from '@ankhorage/contracts/navigator';
-
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
+import type { NavigatorDiagnostic, NavigatorNode } from '@ankhorage/contracts/navigator';
 
 /*** Reject stateful initial routes and protected screen registrations on a stateless Slot. */
 export function addSlotDiagnostics(

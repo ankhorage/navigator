@@ -1,12 +1,12 @@
 import type {
   AppNavigatorManifest,
+  NavigatorDiagnostic,
   NavigatorNode,
+  NavigatorValidationContext,
   StackImplementation,
   StackScreenOptions,
 } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorDiagnostic } from '../../../utils/NavigatorDiagnostic';
-import type { NavigatorValidationContext } from '../../../utils/NavigatorValidationContext';
 import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource';
 
 /*** Add app-wide platform, version, option, and runtime requirements for Experimental Stack. */
