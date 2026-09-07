@@ -2,7 +2,7 @@
   "type": "drawer",
   "routes": [
     {
-      "name": "workspace",
+      "name": "(workspace)",
       "label": "Workspace",
       "navigator": {
         "type": "tabs",

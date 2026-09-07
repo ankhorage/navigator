@@ -5,11 +5,11 @@ import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from 'r
 
 const routes = [
   {
-    href: '/workspace',
+    href: '/',
     label: 'Overview',
   },
   {
-    href: '/workspace/activity',
+    href: '/activity',
     label: 'Activity',
   },
   {

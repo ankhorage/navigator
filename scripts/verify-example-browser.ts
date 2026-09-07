@@ -1,4 +1,4 @@
-import { existsSync, readdirSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { extname, resolve } from 'node:path';
 
 import { chromium } from '@playwright/test';
@@ -37,7 +37,7 @@ async function verifyExampleAsync(id: string, title: string): Promise<void> {
   page.on('pageerror', (error) => errors.push(error.message));
   try {
     const origin = `http://127.0.0.1:${server.port}`;
-    const entryRoute = findEntryRoute(exportRoot);
+    const entryRoute = '/';
     const url = new URL(entryRoute, origin).href;
     console.log(`\n> ${id}:web ${url}`);
     await page.goto(url, { waitUntil: 'networkidle' });
@@ -118,24 +118,6 @@ async function assertNavigationAsync(
     .getByText(/Current route:/u)
     .first()
     .waitFor();
-}
-
-/*** Choose a real exported leaf route, preferring an index route when present. */
-function findEntryRoute(root: string): string {
-  const routes = readdirSync(root, { recursive: true })
-    .filter((path): path is string => typeof path === 'string' && path.endsWith('.html'))
-    .filter((path) => !path.startsWith('_') && !path.startsWith('+'))
-    .sort(
-      (left, right) => Number(!left.endsWith('index.html')) - Number(!right.endsWith('index.html')),
-    )
-    .map((path) =>
-      path === 'index.html'
-        ? '/'
-        : `/${path.replace(/\/index\.html$/u, '').replace(/\.html$/u, '')}`,
-    );
-  const route = routes[0];
-  if (route === undefined) throw new Error(`No exported HTML route found in ${root}.`);
-  return route;
 }
 
 /*** Verify the generated screen remains meaningful under dark appearance and reload. */

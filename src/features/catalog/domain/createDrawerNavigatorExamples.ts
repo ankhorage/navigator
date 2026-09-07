@@ -22,19 +22,19 @@ function createDrawerRootExamples(): readonly NavigatorExampleDefinition[] {
       'drawer-tabs',
       'Drawer → Tabs',
       'Drawer with a JavaScript bottom Tabs branch.',
-      drawer(nested('workspace', 'Workspace', tabs('bottom'))),
+      drawer(nested('(workspace)', 'Workspace', tabs('bottom'))),
     ),
     definition(
       'drawer-tabs-stack',
       'Drawer → Tabs → Stack',
       'Drawer with bottom Tabs whose primary branch owns a Stack.',
-      drawer(nested('workspace', 'Workspace', tabsWithStack('bottom'))),
+      drawer(nested('(workspace)', 'Workspace', tabsWithStack('bottom'))),
     ),
     definition(
       'drawer-tabs-top',
       'Drawer → Top Tabs',
       'Drawer with a JavaScript top Tabs branch.',
-      drawer(nested('workspace', 'Workspace', tabs('top'))),
+      drawer(nested('(workspace)', 'Workspace', tabs('top'))),
     ),
   ];
 }

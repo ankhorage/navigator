@@ -7,11 +7,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "export:android": "expo export --platform android --output-dir dist/android",
     "export:ios": "expo export --platform ios --output-dir dist/ios",
-    "export:web": "expo export --platform web --output-dir dist/web",
     "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform ios --expo-router-version 57.0.18 --target ."
   },
   "dependencies": {

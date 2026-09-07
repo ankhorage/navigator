@@ -83,6 +83,7 @@ describe('standalone Navigator examples', () => {
       const packageFile = appFiles.find(({ path }) => path === `${prefix}package.json`);
       const manifest = JSON.parse(packageFile?.contents ?? '{}') as {
         dependencies?: Record<string, string>;
+        scripts?: Record<string, string>;
       };
       expect(manifest.dependencies?.['@ankhorage/navigator']).toBeDefined();
       for (const range of Object.values(manifest.dependencies ?? {})) {
@@ -91,6 +92,29 @@ describe('standalone Navigator examples', () => {
       }
       const config = appFiles.find(({ path }) => path === `${prefix}tsconfig.json`);
       expect(config?.contents).not.toContain('@ankhorage/navigator');
+
+      const descriptor = getNavigatorExampleCatalog().find((example) => example.id === id);
+      const hasRunnableTarget = descriptor?.targets.some(
+        ({ support }) => support !== 'unsupported',
+      );
+      for (const target of descriptor?.targets ?? []) {
+        const exposesRunnableScript =
+          target.support !== 'unsupported' ||
+          (hasRunnableTarget === false && target.platform === 'web');
+        expect(manifest.scripts?.[target.platform] !== undefined).toBe(exposesRunnableScript);
+        expect(manifest.scripts?.[`export:${target.platform}`] !== undefined).toBe(
+          exposesRunnableScript,
+        );
+      }
+    }
+  });
+
+  test('uses route groups for nested primary branches so runnable apps own the root URL', () => {
+    const paths = generateNavigatorExamples().files.map(({ path }) => path);
+
+    for (const id of ['drawer-tabs', 'drawer-tabs-stack', 'drawer-tabs-top'] as const) {
+      expect(paths).toContain(`examples/${id}/src/app/(workspace)/_layout.tsx`);
+      expect(paths).not.toContain(`examples/${id}/src/app/workspace/_layout.tsx`);
     }
   });
 

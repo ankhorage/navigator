@@ -4,7 +4,7 @@ export default function NavigatorLayout() {
   return (
     <Drawer>
       <Drawer.Screen
-        name="workspace"
+        name="(workspace)"
         options={{
           title: 'Workspace',
           drawerLabel: 'Workspace',
