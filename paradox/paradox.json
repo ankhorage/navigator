@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.6.2",
+      "value": "v2.0.0",
       "color": "cb3837"
     },
     {
@@ -1397,7 +1397,7 @@
       "description": "Read the required native vector-icon name from one planned route icon.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 160,
+        "line": 157,
         "column": 1
       }
     },
@@ -1406,7 +1406,7 @@
       "description": "Create the generated cross-platform custom-tabs layout and registered integration imports.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 168,
+        "line": 165,
         "column": 1
       }
     },
@@ -1415,7 +1415,7 @@
       "description": "Render custom-tab route records as stable multiline source objects.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 219,
+        "line": 216,
         "column": 1
       }
     },
@@ -1424,7 +1424,7 @@
       "description": "Render the custom Tabs return statement without exceeding the canonical print width.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 235,
+        "line": 232,
         "column": 1
       }
     },

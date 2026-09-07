@@ -64,8 +64,9 @@ describe('@ankhorage/navigator platform tabs generation', () => {
       'src={<NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily} name="home" />}',
     );
     expect(layout).toContain(
-      '<NativeTabs.Trigger.VectorIcon\n              family={NativeIoniconsFamily}',
+      'src={\n            <NativeTabs.Trigger.VectorIcon family={NativeIoniconsFamily} name="information-circle-outline" />\n          }',
     );
+    expect(layout).not.toContain('<NativeTabs.Trigger.VectorIcon\n');
     expect(layout.indexOf("from '@ankhorage/navigator/tabs/native-icons'")).toBeLessThan(
       layout.indexOf("from 'expo-router/unstable-native-tabs'"),
     );
