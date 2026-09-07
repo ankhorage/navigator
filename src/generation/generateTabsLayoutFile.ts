@@ -167,7 +167,7 @@ function renderCustomTabsReturn(component: string): string {
   return directReturn.length <= 100 ? directReturn : `  return (\n    ${component}\n  );`;
 }
 
-/*** Create the generated Web custom-tabs layout file and registered integration imports. */
+/*** Create the generated cross-platform custom-tabs layout and registered integration imports. */
 function createCustomTabsFile(
   node: NavigatorNodePlan,
   directory: string,

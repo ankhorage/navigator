@@ -40,7 +40,7 @@ type ResolvedSvgSource = Extract<NavigationItemIcon, { source: unknown }>['sourc
 export type CustomTabsIconSourceResolver = (source: IconMediaReference) => ResolvedSvgSource;
 
 /**
- * Runtime inputs for the Web custom-tabs adapter. Routes remain mounted in one headless Router
+ * Runtime inputs for the cross-platform custom-tabs adapter. Routes remain mounted in one headless Router
  * topology while Surface selects bottom, top, rail, sidebar, or registered custom chrome.
  */
 export interface CustomTabsLayoutProps {

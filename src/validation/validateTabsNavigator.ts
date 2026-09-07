@@ -48,14 +48,6 @@ function addTabsPlatformDiagnostics(
       message: 'Native Tabs are an alpha Expo Router API.',
     });
   }
-  if (context.custom && context.platform !== 'web') {
-    diagnostics.push({
-      code: 'unsupported-platform',
-      severity: 'error',
-      path: pointer,
-      message: 'Surface custom Tabs are only available on web.',
-    });
-  }
 }
 
 /*** Validate route icon compatibility for native and Surface-backed tabs. */

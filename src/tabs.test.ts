@@ -197,7 +197,7 @@ describe('@ankhorage/navigator tabs route diagnostics', () => {
 });
 
 describe('@ankhorage/navigator tabs SVG source registration', () => {
-  test('passes media-backed Web SVG icons through a registered Surface resolver', () => {
+  test('passes media-backed SVG icons through a registered Surface resolver on native', () => {
     const plan = createNavigatorPlan(
       {
         type: 'tabs',
@@ -207,7 +207,7 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
           { name: 'home', path: '/', screenId: 'home', icon: { source: { mediaId: 'home' } } },
         ],
       },
-      { expoRouterVersion: '57.0.18', platform: 'web' },
+      { expoRouterVersion: '57.0.18', platform: 'ios' },
     );
     expect(plan.diagnostics).toEqual([]);
     expect(() => generateNavigatorFiles(plan, { guards: {}, screens })).toThrow(
@@ -225,7 +225,7 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
 });
 
 describe('@ankhorage/navigator tabs adapter diagnostics', () => {
-  test('version-gates new native features and platform-gates custom tabs', () => {
+  test('version-gates native features while custom tabs work on every supported platform', () => {
     const native = validateNavigatorManifest(
       {
         type: 'tabs',
@@ -237,15 +237,17 @@ describe('@ankhorage/navigator tabs adapter diagnostics', () => {
     );
     expect(native.map((item) => item.code)).toContain('unsupported-expo-router-version');
 
-    const custom = validateNavigatorManifest(
-      {
-        type: 'tabs',
-        implementation: 'custom',
-        presentation: 'bottom',
-        routes: [{ name: 'home', path: '/', screenId: 'home' }],
-      },
-      { expoRouterVersion: '57.0.18', platform: 'ios' },
-    );
-    expect(custom.map((item) => item.code)).toContain('unsupported-platform');
+    for (const platform of ['android', 'ios', 'web'] as const) {
+      const custom = validateNavigatorManifest(
+        {
+          type: 'tabs',
+          implementation: 'custom',
+          presentation: 'bottom',
+          routes: [{ name: 'home', path: '/', screenId: 'home' }],
+        },
+        { expoRouterVersion: '57.0.18', platform },
+      );
+      expect(custom).toEqual([]);
+    }
   });
 });

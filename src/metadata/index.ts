@@ -28,7 +28,11 @@ export const NAVIGATOR_PACKAGE_METADATA = {
       support: 'supported',
       native: { platforms: ['android', 'ios'], stability: 'alpha' },
       javascript: { platforms: ['android', 'ios', 'web'], stability: 'stable' },
-      custom: { platforms: ['web'], stability: 'stable', presentationOwner: '@ankhorage/surface' },
+      custom: {
+        platforms: ['android', 'ios', 'web'],
+        stability: 'stable',
+        presentationOwner: '@ankhorage/surface',
+      },
     },
     experimentalStack: {
       support: 'supported',
