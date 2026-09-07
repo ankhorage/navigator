@@ -18,14 +18,11 @@ const screens = {
 const EXPO_ROUTER_VERSION = expoRouterPackage.version;
 
 async function formatGeneratedLayout(layout: string) {
-  const formatter = Bun.spawn(
-    ['ankhorage-prettier', '--stdin-filepath', 'src/app/_layout.tsx'],
-    {
-      stderr: 'pipe',
-      stdin: new Blob([layout]),
-      stdout: 'pipe',
-    },
-  );
+  const formatter = Bun.spawn(['ankhorage-prettier', '--stdin-filepath', 'src/app/_layout.tsx'], {
+    stderr: 'pipe',
+    stdin: new Blob([layout]),
+    stdout: 'pipe',
+  });
   const [exitCode, formatted, error] = await Promise.all([
     formatter.exited,
     new Response(formatter.stdout).text(),
