@@ -88,18 +88,17 @@ function createTabsAdapter(
   const nativeUnavailable =
     tabs.implementation === 'native' &&
     (platform === 'web' || routerMajor === undefined || routerMajor < 54);
-  const customUnavailable = tabs.implementation === 'custom' && platform !== 'web';
   return {
     id: `tabs.${tabs.implementation}`,
     module: tabs.module,
     exportName: tabs.exportName,
-    support: nativeUnavailable || customUnavailable ? 'unavailable' : 'supported',
+    support: nativeUnavailable ? 'unavailable' : 'supported',
     stability: tabs.stability,
     limitations:
       tabs.implementation === 'native'
         ? ['Alpha API; unavailable on web and requires Expo Router 54.0.0 or newer.']
         : tabs.implementation === 'custom'
-          ? ['Web-only Surface presentation over Expo Router headless tabs.']
+          ? ['Surface presentation over Expo Router headless tabs.']
           : [],
   };
 }

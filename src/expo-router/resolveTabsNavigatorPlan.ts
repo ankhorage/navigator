@@ -63,7 +63,7 @@ function createJavaScriptTabsPlan(config: JavaScriptTabsConfig): TabsNavigatorPl
   };
 }
 
-/*** Create the stable headless custom-tabs plan for Web or explicit custom use. */
+/*** Create the stable cross-platform headless custom-tabs plan for explicit custom use. */
 function createCustomTabsPlan(
   config: Omit<CustomTabsConfig, 'implementation'>,
   size: NavigatorResponsiveSize,
