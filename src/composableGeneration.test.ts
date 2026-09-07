@@ -39,6 +39,9 @@ describe('@ankhorage/navigator composable generation', () => {
       'src/app/(generated)/_layout.tsx',
       'src/app/(generated)/(app)/_layout.tsx',
     ]);
+    expect(layouts[0]?.contents).toContain(
+      "import { Stack } from 'expo-router';\n\nimport { isAuthenticated as navigatorGuard0 } from '@/navigation/guards';",
+    );
     expect(layouts[0]?.contents).toContain('<Stack.Protected guard={navigatorGuard0()}>');
     expect(() =>
       generateNavigatorFiles(
