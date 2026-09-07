@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "@ankhorage/contracts": "^11.0.0",
-    "@ankhorage/utility": "^0.3.0"
+    "@ankhorage/utility": "^0.4.0"
   },
   "peerDependencies": {
     "@ankhorage/surface": "^3.4.4",
@@ -88,9 +88,9 @@
     "react-native-web": "~0.21.0"
   },
   "devDependencies": {
-    "@ankhorage/surface": "^3.4.4",
-    "@ankhorage/devtools": "^1.11.10",
+    "@ankhorage/devtools": "^1.11.11",
     "@ankhorage/paradox": "^0.1.24",
+    "@ankhorage/surface": "^3.4.4",
     "@react-native-vector-icons/fontawesome": "^13.1.3",
     "@react-native-vector-icons/fontawesome5": "^13.1.3",
     "@react-native-vector-icons/fontawesome6": "^13.1.3",
