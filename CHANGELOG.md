@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 1.5.3
+
+### Patch Changes
+
+- ca1fb9a: Separate package and application-alias imports in guarded generated layouts.
+
 ## 1.5.2
 
 ### Patch Changes
