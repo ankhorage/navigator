@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.2.2
+
+### Patch Changes
+
+- fac3ba0: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 3.2.1
 
 ### Patch Changes
