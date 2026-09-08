@@ -1,5 +1,12 @@
 # @ankhorage/navigator
 
+## 3.2.1
+
+### Patch Changes
+
+- f75005c: Keep standalone example applications and generated documentation synchronized with each published
+  Navigator version, and restore example acceptance in repository-owned CI.
+
 ## 3.2.0
 
 ### Minor Changes
