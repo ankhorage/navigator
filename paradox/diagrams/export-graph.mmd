@@ -16,6 +16,7 @@ graph LR
   module_src_features_catalog_domain_createExampleScreenRoute_ts["src/features/catalog/domain/createExampleScreenRoute.ts"]
   module_src_features_catalog_domain_createNavigatorCatalog_ts["src/features/catalog/domain/createNavigatorCatalog.ts"]
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts["src/features/catalog/domain/createNavigatorExampleDefinitions.ts"]
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts["src/features/catalog/domain/createNavigatorPresetCatalog.ts"]
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts["src/features/catalog/domain/createSplitViewNavigatorExamples.ts"]
   module_src_features_catalog_domain_createTabsNavigatorExamples_ts["src/features/catalog/domain/createTabsNavigatorExamples.ts"]
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts["src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts"]
@@ -34,6 +35,7 @@ graph LR
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts["src/features/stack/domain/addStackAdapterDiagnostics.ts"]
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts["src/features/stack/domain/resolveEffectiveStackConfig.ts"]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts["src/features/stack/domain/resolveEffectiveStackConfigSource.ts"]
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts["src/features/stack/domain/resolveNavigatorHeaderOwnership.ts"]
   module_src_features_stack_domain_validateStackRouteOptions_ts["src/features/stack/domain/validateStackRouteOptions.ts"]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx["src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts["src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts"]
@@ -97,6 +99,7 @@ graph LR
   module_tests_index_test_ts["tests/index.test.ts"]
   module_tests_packageBoundary_test_ts["tests/packageBoundary.test.ts"]
   module_tests_publicEntrypoints_test_ts["tests/publicEntrypoints.test.ts"]
+  module_tests_resolveNavigatorHeaderOwnership_test_ts["tests/resolveNavigatorHeaderOwnership.test.ts"]
   module_tests_routerPolicy_ts["tests/routerPolicy.ts"]
   module_tests_sourceStructure_test_ts["tests/sourceStructure.test.ts"]
   module_tests_splitView_test_ts["tests/splitView.test.ts"]
@@ -152,6 +155,8 @@ graph LR
   module_src_types_navigatorVerification_ts --> export_NavigatorVerificationResult
   export_resolveHeadlessTabsPresentation["resolveHeadlessTabsPresentation"]
   module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --> export_resolveHeadlessTabsPresentation
+  export_resolveNavigatorHeaderOwnership["resolveNavigatorHeaderOwnership"]
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts --> export_resolveNavigatorHeaderOwnership
   export_resolveNavigatorPreset["resolveNavigatorPreset"]
   module_src_utils_resolveNavigatorPreset_ts --> export_resolveNavigatorPreset
   export_resolveTabsNavigatorPlan["resolveTabsNavigatorPlan"]

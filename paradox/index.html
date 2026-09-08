@@ -321,7 +321,7 @@
                 data-target="src/features/catalog/domain/createNavigatorCatalog.ts"
               >
                 src/features/catalog/domain/createNavigatorCatalog.ts
-                <small>15 functions</small>
+                <small>12 functions</small>
               </button>
             </li>
             <li>
@@ -332,6 +332,16 @@
               >
                 src/features/catalog/domain/createNavigatorExampleDefinitions.ts
                 <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/features/catalog/domain/createNavigatorPresetCatalog.ts"
+              >
+                src/features/catalog/domain/createNavigatorPresetCatalog.ts
+                <small>3 functions</small>
               </button>
             </li>
             <li>
@@ -518,6 +528,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/stack/domain/resolveNavigatorHeaderOwnership.ts"
+              >
+                src/features/stack/domain/resolveNavigatorHeaderOwnership.ts
+                <small>6 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/stack/domain/validateStackRouteOptions.ts"
               >
                 src/features/stack/domain/validateStackRouteOptions.ts
@@ -531,7 +551,7 @@
                 data-target="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
               >
                 src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx
-                <small>11 functions</small>
+                <small>13 functions</small>
               </button>
             </li>
             <li>
@@ -631,7 +651,7 @@
                 data-target="src/utils/createNavigatorExampleScaffold.ts"
               >
                 src/utils/createNavigatorExampleScaffold.ts
-                <small>9 functions</small>
+                <small>10 functions</small>
               </button>
             </li>
             <li>
@@ -657,7 +677,7 @@
             <li>
               <button class="nav-button" type="button" data-target="src/utils/generateNavigator.ts">
                 src/utils/generateNavigator.ts
-                <small>12 functions</small>
+                <small>13 functions</small>
               </button>
             </li>
             <li>
@@ -777,7 +797,7 @@
                 data-target="src/utils/resolveNavigatorDependencies.ts"
               >
                 src/utils/resolveNavigatorDependencies.ts
-                <small>3 functions</small>
+                <small>7 functions</small>
               </button>
             </li>
             <li>
@@ -860,9 +880,9 @@
           <section class="panel">
             <h2>Package overview</h2>
             <div class="summary">
-              <div><strong>29</strong><span class="muted">public exports</span></div>
+              <div><strong>30</strong><span class="muted">public exports</span></div>
               <div><strong>1</strong><span class="muted">components</span></div>
-              <div><strong>102</strong><span class="muted">modules</span></div>
+              <div><strong>105</strong><span class="muted">modules</span></div>
               <div><strong>5</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -1098,13 +1118,14 @@
             </article>
             <article
               class="item"
-              data-search="src/features/catalog/domain/createNavigatorCatalog.ts src/utils/NAVIGATOR_ROUTER_POLICY.ts src/utils/resolveNavigatorPreset.ts createNavigatorCatalog"
+              data-search="src/features/catalog/domain/createNavigatorCatalog.ts src/features/catalog/domain/createNavigatorPresetCatalog.ts src/utils/NAVIGATOR_ROUTER_POLICY.ts createNavigatorCatalog"
             >
               <h3>src/features/catalog/domain/createNavigatorCatalog.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
-                <strong>Dependencies:</strong> <code>src/utils/NAVIGATOR_ROUTER_POLICY.ts</code>,
-                <code>src/utils/resolveNavigatorPreset.ts</code>
+                <strong>Dependencies:</strong>
+                <code>src/features/catalog/domain/createNavigatorPresetCatalog.ts</code>,
+                <code>src/utils/NAVIGATOR_ROUTER_POLICY.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>createNavigatorCatalog</code></p>
             </article>
@@ -1124,6 +1145,15 @@
                 <code>src/types/navigatorExamples.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>createNavigatorExampleDefinitions</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/catalog/domain/createNavigatorPresetCatalog.ts src/utils/resolveNavigatorPreset.ts createNavigatorPresetCatalog"
+            >
+              <h3>src/features/catalog/domain/createNavigatorPresetCatalog.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/utils/resolveNavigatorPreset.ts</code></p>
+              <p><strong>Exports:</strong> <code>createNavigatorPresetCatalog</code></p>
             </article>
             <article
               class="item"
@@ -1318,6 +1348,15 @@
             </article>
             <article
               class="item"
+              data-search="src/features/stack/domain/resolveNavigatorHeaderOwnership.ts resolveNavigatorHeaderOwnership"
+            >
+              <h3>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>resolveNavigatorHeaderOwnership</code></p>
+            </article>
+            <article
+              class="item"
               data-search="src/features/stack/domain/validateStackRouteOptions.ts validateStackRouteOptions"
             >
               <h3>src/features/stack/domain/validateStackRouteOptions.ts</h3>
@@ -1475,7 +1514,7 @@
             </article>
             <article
               class="item"
-              data-search="src/navigator.ts createNavigatorPlan defineCustomNavigatorRegistry generateNavigator generateNavigatorExamples getNavigatorCatalog getNavigatorExampleCatalog isNavigatorGenerationBindings NavigatorExampleDescriptor NavigatorExampleGenerationResult NavigatorExampleId NavigatorExampleTarget NavigatorExampleVerificationResult NavigatorVerificationResult resolveHeadlessTabsPresentation resolveNavigatorPreset resolveTabsNavigatorPlan validateNavigator validateNavigatorBindings validateNavigatorManifest verifyNavigator verifyNavigatorExamplesAsync"
+              data-search="src/navigator.ts createNavigatorPlan defineCustomNavigatorRegistry generateNavigator generateNavigatorExamples getNavigatorCatalog getNavigatorExampleCatalog isNavigatorGenerationBindings NavigatorExampleDescriptor NavigatorExampleGenerationResult NavigatorExampleId NavigatorExampleTarget NavigatorExampleVerificationResult NavigatorVerificationResult resolveHeadlessTabsPresentation resolveNavigatorHeaderOwnership resolveNavigatorPreset resolveTabsNavigatorPlan validateNavigator validateNavigatorBindings validateNavigatorManifest verifyNavigator verifyNavigatorExamplesAsync"
             >
               <h3>src/navigator.ts</h3>
               <p class="muted">Configured entrypoint</p>
@@ -1490,7 +1529,8 @@
                 <code>NavigatorExampleTarget</code>,
                 <code>NavigatorExampleVerificationResult</code>,
                 <code>NavigatorVerificationResult</code>,
-                <code>resolveHeadlessTabsPresentation</code>, <code>resolveNavigatorPreset</code>,
+                <code>resolveHeadlessTabsPresentation</code>,
+                <code>resolveNavigatorHeaderOwnership</code>, <code>resolveNavigatorPreset</code>,
                 <code>resolveTabsNavigatorPlan</code>, <code>validateNavigator</code>,
                 <code>validateNavigatorBindings</code>, <code>validateNavigatorManifest</code>,
                 <code>verifyNavigator</code>, <code>verifyNavigatorExamplesAsync</code>
@@ -2027,6 +2067,15 @@
             </article>
             <article
               class="item"
+              data-search="tests/resolveNavigatorHeaderOwnership.test.ts src/navigator.ts"
+            >
+              <h3>tests/resolveNavigatorHeaderOwnership.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/navigator.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
               data-search="tests/routerPolicy.ts EXPO_ROUTER_VERSION expoRouterVersionBefore"
             >
               <h3>tests/routerPolicy.ts</h3>
@@ -2194,6 +2243,53 @@
               </article>
             </section>
             <section>
+              <h3>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts</h3>
+              <article
+                class="item"
+                id="symbol-resolvenavigatorheaderownership"
+                data-search="resolveNavigatorHeaderOwnership function src/features/stack/domain/resolveNavigatorHeaderOwnership.ts  (plan: NavigatorPlan, args?: NavigatorHeaderOwnershipArgs) =&gt; NavigatorHeaderOwnership"
+              >
+                <h4>resolveNavigatorHeaderOwnership</h4>
+                <p class="muted">
+                  function •
+                  <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:11:1</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/navigator.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(plan: NavigatorPlan, args?: NavigatorHeaderOwnershipArgs) =&gt; NavigatorHeaderOwnership</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>args</code></td>
+                        <td><code>NavigatorHeaderOwnershipArgs</code></td>
+                        <td>no</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>plan</code></td>
+                        <td><code>NavigatorPlan</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>NavigatorHeaderOwnership</code></p>
+                </div>
+              </article>
+            </section>
+            <section>
               <h3>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h3>
               <article
                 class="item"
@@ -2203,7 +2299,7 @@
                 <h4>HeadlessTabsLayout</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1</code>
+                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
                 </p>
                 <p>
                   Render one stable headless Expo Router tab topology with Surface-owned
@@ -3317,7 +3413,7 @@
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Surface-owned
@@ -3542,9 +3638,9 @@
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_catalog_domain_createNavigatorCatalog_ts
                 module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt;
-                module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
                 module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt;
-                module_src_utils_resolveNavigatorPreset_ts
+                module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts[&quot;src/features/catalog/domain/createNavigatorExampleDefinitions.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts
@@ -3560,6 +3656,11 @@
                 module_src_features_catalog_domain_createTabsNavigatorExamples_ts
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt;
                 module_src_types_navigatorExamples_ts
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts[&quot;src/features/catalog/domain/createNavigatorPresetCatalog.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts --&gt;
+                module_src_utils_resolveNavigatorPreset_ts
                 module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts[&quot;src/features/catalog/domain/createSplitViewNavigatorExamples.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
@@ -3642,6 +3743,9 @@
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+                module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_stack_domain_validateStackRouteOptions_ts
@@ -3974,6 +4078,10 @@
                 module_tests_publicEntrypoints_test_ts[&quot;tests/publicEntrypoints.test.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_tests_publicEntrypoints_test_ts
                 module_tests_publicEntrypoints_test_ts --&gt; module_package_json
+                module_tests_resolveNavigatorHeaderOwnership_test_ts[&quot;tests/resolveNavigatorHeaderOwnership.test.ts&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_tests_resolveNavigatorHeaderOwnership_test_ts
+                module_tests_resolveNavigatorHeaderOwnership_test_ts --&gt; module_src_navigator_ts
                 module_tests_routerPolicy_ts[&quot;tests/routerPolicy.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_tests_routerPolicy_ts
                 module_tests_sourceStructure_test_ts[&quot;tests/sourceStructure.test.ts&quot;]
@@ -4109,8 +4217,8 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_features_catalog_domain_createExampleScreenRoute_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts[&quot;src/features/catalog/domain/createNavigatorCatalog.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_catalog_domain_createNavigatorCatalog_ts
+  module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt; module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt; module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
-  module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt; module_src_utils_resolveNavigatorPreset_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts[&quot;src/features/catalog/domain/createNavigatorExampleDefinitions.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createCoreNavigatorExamples_ts
@@ -4119,6 +4227,9 @@ graph TD
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createTabsNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts[&quot;src/features/catalog/domain/createNavigatorPresetCatalog.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts --&gt; module_src_utils_resolveNavigatorPreset_ts
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts[&quot;src/features/catalog/domain/createSplitViewNavigatorExamples.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --&gt; module_src_features_catalog_domain_createExampleScreenRoute_ts
@@ -4169,6 +4280,8 @@ graph TD
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_validateStackRouteOptions_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
@@ -4404,6 +4517,9 @@ graph TD
   module_tests_publicEntrypoints_test_ts[&quot;tests/publicEntrypoints.test.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_tests_publicEntrypoints_test_ts
   module_tests_publicEntrypoints_test_ts --&gt; module_package_json
+  module_tests_resolveNavigatorHeaderOwnership_test_ts[&quot;tests/resolveNavigatorHeaderOwnership.test.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_tests_resolveNavigatorHeaderOwnership_test_ts
+  module_tests_resolveNavigatorHeaderOwnership_test_ts --&gt; module_src_navigator_ts
   module_tests_routerPolicy_ts[&quot;tests/routerPolicy.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_tests_routerPolicy_ts
   module_tests_sourceStructure_test_ts[&quot;tests/sourceStructure.test.ts&quot;]
@@ -4448,6 +4564,7 @@ graph TD
                 module_src_features_catalog_domain_createExampleScreenRoute_ts[&quot;src/features/catalog/domain/createExampleScreenRoute.ts&quot;]
                 module_src_features_catalog_domain_createNavigatorCatalog_ts[&quot;src/features/catalog/domain/createNavigatorCatalog.ts&quot;]
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts[&quot;src/features/catalog/domain/createNavigatorExampleDefinitions.ts&quot;]
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts[&quot;src/features/catalog/domain/createNavigatorPresetCatalog.ts&quot;]
                 module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts[&quot;src/features/catalog/domain/createSplitViewNavigatorExamples.ts&quot;]
                 module_src_features_catalog_domain_createTabsNavigatorExamples_ts[&quot;src/features/catalog/domain/createTabsNavigatorExamples.ts&quot;]
                 module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts[&quot;src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts&quot;]
@@ -4466,6 +4583,7 @@ graph TD
                 module_src_features_stack_domain_addStackAdapterDiagnostics_ts[&quot;src/features/stack/domain/addStackAdapterDiagnostics.ts&quot;]
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
+                module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -4529,6 +4647,7 @@ graph TD
                 module_tests_index_test_ts[&quot;tests/index.test.ts&quot;]
                 module_tests_packageBoundary_test_ts[&quot;tests/packageBoundary.test.ts&quot;]
                 module_tests_publicEntrypoints_test_ts[&quot;tests/publicEntrypoints.test.ts&quot;]
+                module_tests_resolveNavigatorHeaderOwnership_test_ts[&quot;tests/resolveNavigatorHeaderOwnership.test.ts&quot;]
                 module_tests_routerPolicy_ts[&quot;tests/routerPolicy.ts&quot;]
                 module_tests_sourceStructure_test_ts[&quot;tests/sourceStructure.test.ts&quot;]
                 module_tests_splitView_test_ts[&quot;tests/splitView.test.ts&quot;]
@@ -4639,9 +4758,9 @@ graph TD
                 module_src_features_catalog_domain_createDrawerNavigatorExamples_ts --&gt;
                 module_src_types_navigatorExamples_ts
                 module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt;
-                module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
                 module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt;
-                module_src_utils_resolveNavigatorPreset_ts
+                module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt;
                 module_src_features_catalog_domain_createCoreNavigatorExamples_ts
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt;
@@ -4654,6 +4773,8 @@ graph TD
                 module_src_features_catalog_domain_createTabsNavigatorExamples_ts
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt;
                 module_src_types_navigatorExamples_ts
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts --&gt;
+                module_src_utils_resolveNavigatorPreset_ts
                 module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --&gt;
                 module_src_features_catalog_domain_createExampleScreenRoute_ts
                 module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --&gt;
@@ -4859,6 +4980,7 @@ graph TD
                 module_tests_packageBoundary_test_ts --&gt;
                 module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
                 module_tests_publicEntrypoints_test_ts --&gt; module_package_json
+                module_tests_resolveNavigatorHeaderOwnership_test_ts --&gt; module_src_navigator_ts
                 module_tests_sourceStructure_test_ts --&gt; module_package_json
                 module_tests_splitView_test_ts --&gt; module_src_navigator_ts
                 module_tests_splitView_test_ts --&gt; module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
@@ -4890,6 +5012,7 @@ graph LR
   module_src_features_catalog_domain_createExampleScreenRoute_ts[&quot;src/features/catalog/domain/createExampleScreenRoute.ts&quot;]
   module_src_features_catalog_domain_createNavigatorCatalog_ts[&quot;src/features/catalog/domain/createNavigatorCatalog.ts&quot;]
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts[&quot;src/features/catalog/domain/createNavigatorExampleDefinitions.ts&quot;]
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts[&quot;src/features/catalog/domain/createNavigatorPresetCatalog.ts&quot;]
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts[&quot;src/features/catalog/domain/createSplitViewNavigatorExamples.ts&quot;]
   module_src_features_catalog_domain_createTabsNavigatorExamples_ts[&quot;src/features/catalog/domain/createTabsNavigatorExamples.ts&quot;]
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts[&quot;src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts&quot;]
@@ -4908,6 +5031,7 @@ graph LR
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts[&quot;src/features/stack/domain/addStackAdapterDiagnostics.ts&quot;]
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -4971,6 +5095,7 @@ graph LR
   module_tests_index_test_ts[&quot;tests/index.test.ts&quot;]
   module_tests_packageBoundary_test_ts[&quot;tests/packageBoundary.test.ts&quot;]
   module_tests_publicEntrypoints_test_ts[&quot;tests/publicEntrypoints.test.ts&quot;]
+  module_tests_resolveNavigatorHeaderOwnership_test_ts[&quot;tests/resolveNavigatorHeaderOwnership.test.ts&quot;]
   module_tests_routerPolicy_ts[&quot;tests/routerPolicy.ts&quot;]
   module_tests_sourceStructure_test_ts[&quot;tests/sourceStructure.test.ts&quot;]
   module_tests_splitView_test_ts[&quot;tests/splitView.test.ts&quot;]
@@ -5046,14 +5171,15 @@ graph LR
   module_src_features_catalog_domain_createCustomNavigatorExamples_ts --&gt; module_src_types_navigatorExamples_ts
   module_src_features_catalog_domain_createDrawerNavigatorExamples_ts --&gt; module_src_features_catalog_domain_createExampleScreenRoute_ts
   module_src_features_catalog_domain_createDrawerNavigatorExamples_ts --&gt; module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt; module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt; module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
-  module_src_features_catalog_domain_createNavigatorCatalog_ts --&gt; module_src_utils_resolveNavigatorPreset_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createCoreNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createCustomNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createDrawerNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_features_catalog_domain_createTabsNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --&gt; module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts --&gt; module_src_utils_resolveNavigatorPreset_ts
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --&gt; module_src_features_catalog_domain_createExampleScreenRoute_ts
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --&gt; module_src_types_navigatorExamples_ts
   module_src_features_catalog_domain_createTabsNavigatorExamples_ts --&gt; module_src_features_catalog_domain_createExampleScreenRoute_ts
@@ -5181,6 +5307,7 @@ graph LR
   module_tests_index_test_ts --&gt; module_tests_routerPolicy_ts
   module_tests_packageBoundary_test_ts --&gt; module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
   module_tests_publicEntrypoints_test_ts --&gt; module_package_json
+  module_tests_resolveNavigatorHeaderOwnership_test_ts --&gt; module_src_navigator_ts
   module_tests_sourceStructure_test_ts --&gt; module_package_json
   module_tests_splitView_test_ts --&gt; module_src_navigator_ts
   module_tests_splitView_test_ts --&gt; module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
@@ -5214,6 +5341,7 @@ graph LR
                 module_src_features_catalog_domain_createExampleScreenRoute_ts[&quot;src/features/catalog/domain/createExampleScreenRoute.ts&quot;]
                 module_src_features_catalog_domain_createNavigatorCatalog_ts[&quot;src/features/catalog/domain/createNavigatorCatalog.ts&quot;]
                 module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts[&quot;src/features/catalog/domain/createNavigatorExampleDefinitions.ts&quot;]
+                module_src_features_catalog_domain_createNavigatorPresetCatalog_ts[&quot;src/features/catalog/domain/createNavigatorPresetCatalog.ts&quot;]
                 module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts[&quot;src/features/catalog/domain/createSplitViewNavigatorExamples.ts&quot;]
                 module_src_features_catalog_domain_createTabsNavigatorExamples_ts[&quot;src/features/catalog/domain/createTabsNavigatorExamples.ts&quot;]
                 module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts[&quot;src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts&quot;]
@@ -5232,6 +5360,7 @@ graph LR
                 module_src_features_stack_domain_addStackAdapterDiagnostics_ts[&quot;src/features/stack/domain/addStackAdapterDiagnostics.ts&quot;]
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
+                module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -5295,6 +5424,7 @@ graph LR
                 module_tests_index_test_ts[&quot;tests/index.test.ts&quot;]
                 module_tests_packageBoundary_test_ts[&quot;tests/packageBoundary.test.ts&quot;]
                 module_tests_publicEntrypoints_test_ts[&quot;tests/publicEntrypoints.test.ts&quot;]
+                module_tests_resolveNavigatorHeaderOwnership_test_ts[&quot;tests/resolveNavigatorHeaderOwnership.test.ts&quot;]
                 module_tests_routerPolicy_ts[&quot;tests/routerPolicy.ts&quot;]
                 module_tests_sourceStructure_test_ts[&quot;tests/sourceStructure.test.ts&quot;]
                 module_tests_splitView_test_ts[&quot;tests/splitView.test.ts&quot;]
@@ -5364,6 +5494,9 @@ graph LR
                 export_resolveHeadlessTabsPresentation[&quot;resolveHeadlessTabsPresentation&quot;]
                 module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --&gt;
                 export_resolveHeadlessTabsPresentation
+                export_resolveNavigatorHeaderOwnership[&quot;resolveNavigatorHeaderOwnership&quot;]
+                module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts --&gt;
+                export_resolveNavigatorHeaderOwnership
                 export_resolveNavigatorPreset[&quot;resolveNavigatorPreset&quot;]
                 module_src_utils_resolveNavigatorPreset_ts --&gt; export_resolveNavigatorPreset
                 export_resolveTabsNavigatorPlan[&quot;resolveTabsNavigatorPlan&quot;]
@@ -5406,6 +5539,7 @@ graph LR
   module_src_features_catalog_domain_createExampleScreenRoute_ts[&quot;src/features/catalog/domain/createExampleScreenRoute.ts&quot;]
   module_src_features_catalog_domain_createNavigatorCatalog_ts[&quot;src/features/catalog/domain/createNavigatorCatalog.ts&quot;]
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts[&quot;src/features/catalog/domain/createNavigatorExampleDefinitions.ts&quot;]
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts[&quot;src/features/catalog/domain/createNavigatorPresetCatalog.ts&quot;]
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts[&quot;src/features/catalog/domain/createSplitViewNavigatorExamples.ts&quot;]
   module_src_features_catalog_domain_createTabsNavigatorExamples_ts[&quot;src/features/catalog/domain/createTabsNavigatorExamples.ts&quot;]
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts[&quot;src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts&quot;]
@@ -5424,6 +5558,7 @@ graph LR
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts[&quot;src/features/stack/domain/addStackAdapterDiagnostics.ts&quot;]
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfig.ts&quot;]
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -5487,6 +5622,7 @@ graph LR
   module_tests_index_test_ts[&quot;tests/index.test.ts&quot;]
   module_tests_packageBoundary_test_ts[&quot;tests/packageBoundary.test.ts&quot;]
   module_tests_publicEntrypoints_test_ts[&quot;tests/publicEntrypoints.test.ts&quot;]
+  module_tests_resolveNavigatorHeaderOwnership_test_ts[&quot;tests/resolveNavigatorHeaderOwnership.test.ts&quot;]
   module_tests_routerPolicy_ts[&quot;tests/routerPolicy.ts&quot;]
   module_tests_sourceStructure_test_ts[&quot;tests/sourceStructure.test.ts&quot;]
   module_tests_splitView_test_ts[&quot;tests/splitView.test.ts&quot;]
@@ -5542,6 +5678,8 @@ graph LR
   module_src_types_navigatorVerification_ts --&gt; export_NavigatorVerificationResult
   export_resolveHeadlessTabsPresentation[&quot;resolveHeadlessTabsPresentation&quot;]
   module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts --&gt; export_resolveHeadlessTabsPresentation
+  export_resolveNavigatorHeaderOwnership[&quot;resolveNavigatorHeaderOwnership&quot;]
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts --&gt; export_resolveNavigatorHeaderOwnership
   export_resolveNavigatorPreset[&quot;resolveNavigatorPreset&quot;]
   module_src_utils_resolveNavigatorPreset_ts --&gt; export_resolveNavigatorPreset
   export_resolveTabsNavigatorPlan[&quot;resolveTabsNavigatorPlan&quot;]
@@ -5597,8 +5735,9 @@ sequenceDiagram
               <h3>HeadlessTabsLayout sequence</h3>
               <p class="muted"><code>diagrams/sequences/headless-tabs-layout.mmd</code></p>
               <div class="mermaid">
-                sequenceDiagram participant participant_HeadlessTabsLayout as HeadlessTabsLayout
-                participant participant_selectPresentation as selectPresentation participant
+                sequenceDiagram participant participant_createTabsNavigation as createTabsNavigation
+                participant participant_HeadlessTabsLayout as HeadlessTabsLayout participant
+                participant_selectPresentation as selectPresentation participant
                 participant_useBreakpoint as useBreakpoint participant
                 participant_useHydrationSafeSize as useHydrationSafeSize participant
                 participant_useSafeAreaInsets as useSafeAreaInsets participant
@@ -5617,11 +5756,15 @@ sequenceDiagram
                 participant_HeadlessTabsLayout-&gt;&gt;participant_useSafeAreaInsets:
                 useSafeAreaInsets()
                 participant_useSafeAreaInsets--&gt;&gt;participant_HeadlessTabsLayout: return
+                participant_HeadlessTabsLayout-&gt;&gt;participant_createTabsNavigation:
+                createTabsNavigation()
+                participant_createTabsNavigation--&gt;&gt;participant_HeadlessTabsLayout: return
               </div>
               <details>
                 <summary>View Mermaid source</summary>
                 <pre>
 sequenceDiagram
+  participant participant_createTabsNavigation as createTabsNavigation
   participant participant_HeadlessTabsLayout as HeadlessTabsLayout
   participant participant_selectPresentation as selectPresentation
   participant participant_useBreakpoint as useBreakpoint
@@ -5638,6 +5781,8 @@ sequenceDiagram
   participant_selectPresentation--&gt;&gt;participant_HeadlessTabsLayout: return
   participant_HeadlessTabsLayout-&gt;&gt;participant_useSafeAreaInsets: useSafeAreaInsets()
   participant_useSafeAreaInsets--&gt;&gt;participant_HeadlessTabsLayout: return
+  participant_HeadlessTabsLayout-&gt;&gt;participant_createTabsNavigation: createTabsNavigation()
+  participant_createTabsNavigation--&gt;&gt;participant_HeadlessTabsLayout: return
 </pre>
               </details>
             </article>
@@ -5721,6 +5866,59 @@ sequenceDiagram
   participant participant_resolveResponsivePresentation as resolveResponsivePresentation
   participant_resolveHeadlessTabsPresentation-&gt;&gt;participant_resolveResponsivePresentation: resolveResponsivePresentation()
   participant_resolveResponsivePresentation--&gt;&gt;participant_resolveHeadlessTabsPresentation: return
+</pre>
+              </details>
+            </article>
+            <article
+              class="item"
+              data-search="resolveNavigatorHeaderOwnership sequence diagrams/sequences/resolve-navigator-header-ownership.mmd"
+            >
+              <h3>resolveNavigatorHeaderOwnership sequence</h3>
+              <p class="muted">
+                <code>diagrams/sequences/resolve-navigator-header-ownership.mmd</code>
+              </p>
+              <div class="mermaid">
+                sequenceDiagram participant participant_isStackHeaderVisible as isStackHeaderVisible
+                participant participant_resolveHeaderTitle as resolveHeaderTitle participant
+                participant_resolveNavigatorHeaderOwnership as resolveNavigatorHeaderOwnership
+                participant participant_resolveVisibleHeaders as resolveVisibleHeaders participant
+                participant_selectActiveRoute as selectActiveRoute
+                participant_resolveNavigatorHeaderOwnership-&gt;&gt;participant_resolveVisibleHeaders:
+                resolveVisibleHeaders()
+                participant_resolveVisibleHeaders-&gt;&gt;participant_selectActiveRoute:
+                selectActiveRoute()
+                participant_selectActiveRoute--&gt;&gt;participant_resolveVisibleHeaders: return
+                participant_resolveVisibleHeaders-&gt;&gt;participant_resolveVisibleHeaders:
+                resolveVisibleHeaders()
+                participant_resolveVisibleHeaders-&gt;&gt;participant_isStackHeaderVisible:
+                isStackHeaderVisible()
+                participant_isStackHeaderVisible--&gt;&gt;participant_resolveVisibleHeaders: return
+                participant_resolveVisibleHeaders-&gt;&gt;participant_resolveHeaderTitle:
+                resolveHeaderTitle()
+                participant_resolveHeaderTitle--&gt;&gt;participant_resolveVisibleHeaders: return
+                participant_resolveVisibleHeaders--&gt;&gt;participant_resolveVisibleHeaders: return
+                participant_resolveVisibleHeaders--&gt;&gt;participant_resolveNavigatorHeaderOwnership:
+                return
+              </div>
+              <details>
+                <summary>View Mermaid source</summary>
+                <pre>
+sequenceDiagram
+  participant participant_isStackHeaderVisible as isStackHeaderVisible
+  participant participant_resolveHeaderTitle as resolveHeaderTitle
+  participant participant_resolveNavigatorHeaderOwnership as resolveNavigatorHeaderOwnership
+  participant participant_resolveVisibleHeaders as resolveVisibleHeaders
+  participant participant_selectActiveRoute as selectActiveRoute
+  participant_resolveNavigatorHeaderOwnership-&gt;&gt;participant_resolveVisibleHeaders: resolveVisibleHeaders()
+  participant_resolveVisibleHeaders-&gt;&gt;participant_selectActiveRoute: selectActiveRoute()
+  participant_selectActiveRoute--&gt;&gt;participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders-&gt;&gt;participant_resolveVisibleHeaders: resolveVisibleHeaders()
+  participant_resolveVisibleHeaders-&gt;&gt;participant_isStackHeaderVisible: isStackHeaderVisible()
+  participant_isStackHeaderVisible--&gt;&gt;participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders-&gt;&gt;participant_resolveHeaderTitle: resolveHeaderTitle()
+  participant_resolveHeaderTitle--&gt;&gt;participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders--&gt;&gt;participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders--&gt;&gt;participant_resolveNavigatorHeaderOwnership: return
 </pre>
               </details>
             </article>
@@ -6343,7 +6541,7 @@ sequenceDiagram
             >
               <h3>createNavigatorCatalog</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:16:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:14:1</code>
               </p>
               <p>
                 Create the package-owned navigation catalog from explicit owner dependency policy.
@@ -6355,7 +6553,7 @@ sequenceDiagram
             >
               <h3>createCoreCapabilities</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:28:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:26:1</code>
               </p>
               <p>Describe Slot, Stack, and root Drawer capabilities.</p>
             </article>
@@ -6365,7 +6563,7 @@ sequenceDiagram
             >
               <h3>createTabsCapabilities</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:70:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:68:1</code>
               </p>
               <p>Describe native, JavaScript, and Headless Tabs variants.</p>
             </article>
@@ -6375,7 +6573,7 @@ sequenceDiagram
             >
               <h3>javaScriptTopTabsDependencies</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:109:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:107:1</code>
               </p>
               <p>Report the runtime requirements of Expo Router JavaScript Top Tabs.</p>
             </article>
@@ -6385,19 +6583,9 @@ sequenceDiagram
             >
               <h3>createExtensionCapabilities</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:118:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:116:1</code>
               </p>
               <p>Describe testing-only Split View and registered extension capability metadata.</p>
-            </article>
-            <article
-              class="item"
-              data-search="createPresets src/features/catalog/domain/createNavigatorCatalog.ts Enumerate the finite transparent preset catalog in contract order."
-            >
-              <h3>createPresets</h3>
-              <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:149:1</code>
-              </p>
-              <p>Enumerate the finite transparent preset catalog in contract order.</p>
             </article>
             <article
               class="item"
@@ -6405,7 +6593,7 @@ sequenceDiagram
             >
               <h3>capability</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:179:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:153:1</code>
               </p>
               <p>
                 Build one capability descriptor with deterministic targets and owner-derived
@@ -6418,7 +6606,7 @@ sequenceDiagram
             >
               <h3>resolveTargetSupport</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:211:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:185:1</code>
               </p>
               <p>Resolve platform status without indexing consumer-provided object keys.</p>
             </article>
@@ -6428,7 +6616,7 @@ sequenceDiagram
             >
               <h3>requires</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:238:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:212:1</code>
               </p>
               <p>Create one capability requirement record.</p>
             </article>
@@ -6438,7 +6626,7 @@ sequenceDiagram
             >
               <h3>requiresRouter</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:243:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:217:1</code>
               </p>
               <p>Describe one Expo Router major-version requirement from owner policy.</p>
             </article>
@@ -6448,7 +6636,7 @@ sequenceDiagram
             >
               <h3>dependency</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:248:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:222:1</code>
               </p>
               <p>
                 Resolve a consumer dependency from package-owned peer or package-version metadata.
@@ -6460,7 +6648,7 @@ sequenceDiagram
             >
               <h3>headlessTabsDependencies</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:263:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:237:1</code>
               </p>
               <p>Report the runtime requirements of Navigator-owned Headless Tabs.</p>
             </article>
@@ -6470,29 +6658,9 @@ sequenceDiagram
             >
               <h3>nativeTabsDependencies</h3>
               <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:279:1</code>
+                <code>src/features/catalog/domain/createNavigatorCatalog.ts:253:1</code>
               </p>
               <p>Report the conservative runtime requirements of Native Tabs icon generation.</p>
-            </article>
-            <article
-              class="item"
-              data-search="createPreset src/features/catalog/domain/createNavigatorCatalog.ts Build one transparent structural preset descriptor in contract order."
-            >
-              <h3>createPreset</h3>
-              <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:296:1</code>
-              </p>
-              <p>Build one transparent structural preset descriptor in contract order.</p>
-            </article>
-            <article
-              class="item"
-              data-search="describePreset src/features/catalog/domain/createNavigatorCatalog.ts Describe one structural preset without adding application-flow semantics."
-            >
-              <h3>describePreset</h3>
-              <p class="muted">
-                <code>src/features/catalog/domain/createNavigatorCatalog.ts:305:1</code>
-              </p>
-              <p>Describe one structural preset without adding application-flow semantics.</p>
             </article>
           </section>
         </section>
@@ -6515,6 +6683,46 @@ sequenceDiagram
               <p>
                 Return every required standalone example composition in stable identifier order.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-catalog-domain-createnavigatorpresetcatalog-ts"
+          class="view"
+          data-view="src/features/catalog/domain/createNavigatorPresetCatalog.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/catalog/domain/createNavigatorPresetCatalog.ts</h2>
+            <article
+              class="item"
+              data-search="createNavigatorPresetCatalog src/features/catalog/domain/createNavigatorPresetCatalog.ts Enumerate the finite transparent preset catalog in contract order."
+            >
+              <h3>createNavigatorPresetCatalog</h3>
+              <p class="muted">
+                <code>src/features/catalog/domain/createNavigatorPresetCatalog.ts:6:1</code>
+              </p>
+              <p>Enumerate the finite transparent preset catalog in contract order.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createPreset src/features/catalog/domain/createNavigatorPresetCatalog.ts Build one transparent structural preset descriptor in contract order."
+            >
+              <h3>createPreset</h3>
+              <p class="muted">
+                <code>src/features/catalog/domain/createNavigatorPresetCatalog.ts:30:1</code>
+              </p>
+              <p>Build one transparent structural preset descriptor in contract order.</p>
+            </article>
+            <article
+              class="item"
+              data-search="describePreset src/features/catalog/domain/createNavigatorPresetCatalog.ts Describe one structural preset without adding application-flow semantics."
+            >
+              <h3>describePreset</h3>
+              <p class="muted">
+                <code>src/features/catalog/domain/createNavigatorPresetCatalog.ts:39:1</code>
+              </p>
+              <p>Describe one structural preset without adding application-flow semantics.</p>
             </article>
           </section>
         </section>
@@ -7267,6 +7475,76 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-features-stack-domain-resolvenavigatorheaderownership-ts"
+          class="view"
+          data-view="src/features/stack/domain/resolveNavigatorHeaderOwnership.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts</h2>
+            <article
+              class="item"
+              data-search="resolveNavigatorHeaderOwnership src/features/stack/domain/resolveNavigatorHeaderOwnership.ts "
+            >
+              <h3>resolveNavigatorHeaderOwnership</h3>
+              <p class="muted">
+                <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:11:1</code>
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveVisibleHeaders src/features/stack/domain/resolveNavigatorHeaderOwnership.ts "
+            >
+              <h3>resolveVisibleHeaders</h3>
+              <p class="muted">
+                <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:51:1</code>
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="selectActiveRoute src/features/stack/domain/resolveNavigatorHeaderOwnership.ts "
+            >
+              <h3>selectActiveRoute</h3>
+              <p class="muted">
+                <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:72:1</code>
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="navigatorContainsScreen src/features/stack/domain/resolveNavigatorHeaderOwnership.ts "
+            >
+              <h3>navigatorContainsScreen</h3>
+              <p class="muted">
+                <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:86:1</code>
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="isStackHeaderVisible src/features/stack/domain/resolveNavigatorHeaderOwnership.ts "
+            >
+              <h3>isStackHeaderVisible</h3>
+              <p class="muted">
+                <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:95:1</code>
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveHeaderTitle src/features/stack/domain/resolveNavigatorHeaderOwnership.ts "
+            >
+              <h3>resolveHeaderTitle</h3>
+              <p class="muted">
+                <code>src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:100:1</code>
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-features-stack-domain-validatestackrouteoptions-ts"
           class="view"
           data-view="src/features/stack/domain/validateStackRouteOptions.ts"
@@ -7303,7 +7581,7 @@ sequenceDiagram
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Surface-owned
@@ -7312,11 +7590,34 @@ sequenceDiagram
             </article>
             <article
               class="item"
+              data-search="createTabsNavigation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Construct the current Surface presentation without changing the headless Expo Router topology."
+            >
+              <h3>createTabsNavigation</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:69:1</code>
+              </p>
+              <p>
+                Construct the current Surface presentation without changing the headless Expo Router
+                topology.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="HeadlessTabsBody src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Place themed navigation chrome around the bounded tab content slot."
+            >
+              <h3>HeadlessTabsBody</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:74:1</code>
+              </p>
+              <p>Place themed navigation chrome around the bounded tab content slot.</p>
+            </article>
+            <article
+              class="item"
               data-search="useHydrationSafeSize src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Resolve a hydration-safe semantic size from the Surface breakpoint owner."
             >
               <h3>useHydrationSafeSize</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:106:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:143:1</code>
               </p>
               <p>Resolve a hydration-safe semantic size from the Surface breakpoint owner.</p>
             </article>
@@ -7326,7 +7627,7 @@ sequenceDiagram
             >
               <h3>subscribeToHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:119:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:156:1</code>
               </p>
               <p>
                 Provide the stable no-op subscription required for the hydration snapshot boundary.
@@ -7338,7 +7639,7 @@ sequenceDiagram
             >
               <h3>getClientHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:124:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:161:1</code>
               </p>
               <p>Report that client rendering can consume the live responsive breakpoint.</p>
             </article>
@@ -7348,7 +7649,7 @@ sequenceDiagram
             >
               <h3>getServerHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:129:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:166:1</code>
               </p>
               <p>Keep server output deterministic at the compact presentation.</p>
             </article>
@@ -7358,7 +7659,7 @@ sequenceDiagram
             >
               <h3>selectPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:134:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:171:1</code>
               </p>
               <p>Select one fixed presentation without altering the Router-owned topology.</p>
             </article>
@@ -7368,7 +7669,7 @@ sequenceDiagram
             >
               <h3>TabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:149:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:186:1</code>
               </p>
               <p>Select built-in or registered custom chrome for the currently visible routes.</p>
             </article>
@@ -7378,7 +7679,7 @@ sequenceDiagram
             >
               <h3>renderItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:162:9</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:199:9</code>
               </p>
               <p>
                 Bind one visible route to the shared Surface trigger for registered custom chrome.
@@ -7390,7 +7691,7 @@ sequenceDiagram
             >
               <h3>SurfaceTabTrigger</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:186:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:223:1</code>
               </p>
               <p>
                 Render one Surface navigation control bound to Expo Router&#39;s headless tab
@@ -7403,7 +7704,7 @@ sequenceDiagram
             >
               <h3>resolveIcon</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:216:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:253:1</code>
               </p>
               <p>Convert portable route icon metadata to the Surface navigation icon contract.</p>
             </article>
@@ -7413,7 +7714,7 @@ sequenceDiagram
             >
               <h3>BuiltInPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:242:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:279:1</code>
               </p>
               <p>Render Surface-owned bottom, top, rail, or sidebar tab chrome.</p>
             </article>
@@ -7443,7 +7744,7 @@ sequenceDiagram
             >
               <h3>createNativeTabsFile</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:28:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:33:1</code>
               </p>
               <p>Create the generated Native Tabs layout file and its narrow runtime imports.</p>
             </article>
@@ -7453,7 +7754,7 @@ sequenceDiagram
             >
               <h3>nativeIconFamily</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:72:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:77:1</code>
               </p>
               <p>Map a supported provider to the Navigator-owned Native Tabs family export.</p>
             </article>
@@ -7463,7 +7764,7 @@ sequenceDiagram
             >
               <h3>nativeIconProvider</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:91:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:96:1</code>
               </p>
               <p>
                 Resolve and validate the native vector-icon provider for one planned route icon.
@@ -7475,7 +7776,7 @@ sequenceDiagram
             >
               <h3>createNativeTabsContents</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:109:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:114:1</code>
               </p>
               <p>Render a complete Native Tabs layout module from one validated node plan.</p>
             </article>
@@ -7485,7 +7786,7 @@ sequenceDiagram
             >
               <h3>nativeIconSource</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:147:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:152:1</code>
               </p>
               <p>
                 Render a Native Tabs vector icon source within the canonical generated-code print
@@ -7498,7 +7799,7 @@ sequenceDiagram
             >
               <h3>nativeIconName</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:160:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:165:1</code>
               </p>
               <p>Read the required native vector-icon name from one planned route icon.</p>
             </article>
@@ -7508,7 +7809,7 @@ sequenceDiagram
             >
               <h3>createHeadlessTabsFile</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:168:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:173:1</code>
               </p>
               <p>
                 Create the generated cross-platform headless-tabs layout and registered integration
@@ -7521,7 +7822,7 @@ sequenceDiagram
             >
               <h3>renderHeadlessTabRoutes</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:222:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:224:1</code>
               </p>
               <p>Render Headless Tabs route records as stable multiline source objects.</p>
             </article>
@@ -7531,7 +7832,7 @@ sequenceDiagram
             >
               <h3>renderHeadlessTabsReturn</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:238:1</code>
+                <code>src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts:240:1</code>
               </p>
               <p>
                 Render the Headless Tabs return statement without exceeding the canonical print
@@ -7862,7 +8163,7 @@ sequenceDiagram
               data-search="createAppConfig src/utils/createNavigatorExampleScaffold.ts Create an Expo Router application manifest with only truthfully runnable platforms."
             >
               <h3>createAppConfig</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:50:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:64:1</code></p>
               <p>
                 Create an Expo Router application manifest with only truthfully runnable platforms.
               </p>
@@ -7872,7 +8173,7 @@ sequenceDiagram
               data-search="createPackageManifest src/utils/createNavigatorExampleScaffold.ts Create one isolated dependency graph from owner policy and the selected plan requirements."
             >
               <h3>createPackageManifest</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:70:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:84:1</code></p>
               <p>
                 Create one isolated dependency graph from owner policy and the selected plan
                 requirements.
@@ -7880,10 +8181,20 @@ sequenceDiagram
             </article>
             <article
               class="item"
+              data-search="createExampleScripts src/utils/createNavigatorExampleScaffold.ts Expose only runnable platform commands while retaining the generic Expo launcher."
+            >
+              <h3>createExampleScripts</h3>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:119:1</code></p>
+              <p>
+                Expose only runnable platform commands while retaining the generic Expo launcher.
+              </p>
+            </article>
+            <article
+              class="item"
               data-search="supportsWebTarget src/utils/createNavigatorExampleScaffold.ts Decide whether the isolated app needs Web runtime peers."
             >
               <h3>supportsWebTarget</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:120:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:147:1</code></p>
               <p>Decide whether the isolated app needs Web runtime peers.</p>
             </article>
             <article
@@ -7891,7 +8202,7 @@ sequenceDiagram
               data-search="createGenerationScript src/utils/createNavigatorExampleScaffold.ts Render the example-local public CLI invocation without workspace paths."
             >
               <h3>createGenerationScript</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:132:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:159:1</code></p>
               <p>Render the example-local public CLI invocation without workspace paths.</p>
             </article>
             <article
@@ -7899,7 +8210,7 @@ sequenceDiagram
               data-search="resolvePackageRange src/utils/createNavigatorExampleScaffold.ts Resolve example versions from the package&#39;s published or acceptance dependency policy."
             >
               <h3>resolvePackageRange</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:137:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:164:1</code></p>
               <p>
                 Resolve example versions from the package&#39;s published or acceptance dependency
                 policy.
@@ -7910,7 +8221,7 @@ sequenceDiagram
               data-search="createTypeScriptConfig src/utils/createNavigatorExampleScaffold.ts Create a strict Expo TypeScript configuration without a local Navigator alias."
             >
               <h3>createTypeScriptConfig</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:149:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:176:1</code></p>
               <p>Create a strict Expo TypeScript configuration without a local Navigator alias.</p>
             </article>
             <article
@@ -7918,7 +8229,7 @@ sequenceDiagram
               data-search="renderCustomRegistry src/utils/createNavigatorExampleScaffold.ts Render the executable custom registration consumed by the public CLI option."
             >
               <h3>renderCustomRegistry</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:169:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:196:1</code></p>
               <p>Render the executable custom registration consumed by the public CLI option.</p>
             </article>
             <article
@@ -7926,7 +8237,7 @@ sequenceDiagram
               data-search="json src/utils/createNavigatorExampleScaffold.ts Serialize checked-in data files with stable formatting."
             >
               <h3>json</h3>
-              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:191:1</code></p>
+              <p class="muted"><code>src/utils/createNavigatorExampleScaffold.ts:218:1</code></p>
               <p>Serialize checked-in data files with stable formatting.</p>
             </article>
           </section>
@@ -8214,10 +8525,21 @@ sequenceDiagram
             </article>
             <article
               class="item"
+              data-search="shouldHideUnnamedGroupHeader src/utils/generateNavigator.ts Keep Expo Router implementation groups from becoming visible Stack headers by default."
+            >
+              <h3>shouldHideUnnamedGroupHeader</h3>
+              <p class="muted"><code>src/utils/generateNavigator.ts:275:1</code></p>
+              <p>
+                Keep Expo Router implementation groups from becoming visible Stack headers by
+                default.
+              </p>
+            </article>
+            <article
+              class="item"
               data-search="renderScreenElement src/utils/generateNavigator.ts Render one generated Screen with a stable multiline options object when route options exist."
             >
               <h3>renderScreenElement</h3>
-              <p class="muted"><code>src/utils/generateNavigator.ts:274:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigator.ts:286:1</code></p>
               <p>
                 Render one generated Screen with a stable multiline options object when route
                 options exist.
@@ -8228,7 +8550,7 @@ sequenceDiagram
               data-search="assertRouteName src/utils/generateNavigator.ts Reject route segments that could escape or invalidate the generated directory."
             >
               <h3>assertRouteName</h3>
-              <p class="muted"><code>src/utils/generateNavigator.ts:296:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigator.ts:308:1</code></p>
               <p>Reject route segments that could escape or invalidate the generated directory.</p>
             </article>
             <article
@@ -8236,7 +8558,7 @@ sequenceDiagram
               data-search="createScreenFile src/utils/generateNavigator.ts Emit a route module that re-exports its registered screen as the default component."
             >
               <h3>createScreenFile</h3>
-              <p class="muted"><code>src/utils/generateNavigator.ts:303:1</code></p>
+              <p class="muted"><code>src/utils/generateNavigator.ts:315:1</code></p>
               <p>
                 Emit a route module that re-exports its registered screen as the default component.
               </p>
@@ -8603,10 +8925,42 @@ sequenceDiagram
             </article>
             <article
               class="item"
+              data-search="addDrawerDependencies src/utils/resolveNavigatorDependencies.ts Add packages imported by the native Drawer runtime."
+            >
+              <h3>addDrawerDependencies</h3>
+              <p class="muted"><code>src/utils/resolveNavigatorDependencies.ts:39:1</code></p>
+              <p>Add packages imported by the native Drawer runtime.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addHeadlessTabsDependencies src/utils/resolveNavigatorDependencies.ts Add packages imported by Navigator and Surface headless Tabs runtime."
+            >
+              <h3>addHeadlessTabsDependencies</h3>
+              <p class="muted"><code>src/utils/resolveNavigatorDependencies.ts:51:1</code></p>
+              <p>Add packages imported by Navigator and Surface headless Tabs runtime.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addJavaScriptTopTabsDependencies src/utils/resolveNavigatorDependencies.ts Add the upstream packages imported by JavaScript Top Tabs."
+            >
+              <h3>addJavaScriptTopTabsDependencies</h3>
+              <p class="muted"><code>src/utils/resolveNavigatorDependencies.ts:71:1</code></p>
+              <p>Add the upstream packages imported by JavaScript Top Tabs.</p>
+            </article>
+            <article
+              class="item"
+              data-search="addNativeTabsDependencies src/utils/resolveNavigatorDependencies.ts Add the selected native icon families imported by generated Native Tabs."
+            >
+              <h3>addNativeTabsDependencies</h3>
+              <p class="muted"><code>src/utils/resolveNavigatorDependencies.ts:81:1</code></p>
+              <p>Add the selected native icon families imported by generated Native Tabs.</p>
+            </article>
+            <article
+              class="item"
               data-search="resolveVersionRange src/utils/resolveNavigatorDependencies.ts Resolve one dependency range from package-owned peer policy or the current package version."
             >
               <h3>resolveVersionRange</h3>
-              <p class="muted"><code>src/utils/resolveNavigatorDependencies.ts:66:1</code></p>
+              <p class="muted"><code>src/utils/resolveNavigatorDependencies.ts:95:1</code></p>
               <p>
                 Resolve one dependency range from package-owned peer policy or the current package
                 version.

@@ -222,7 +222,7 @@
     "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
     "sourceLocation": {
       "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-      "line": 20,
+      "line": 21,
       "column": 1
     },
     "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -656,6 +656,44 @@
           }
         ],
         "returnType": "ResolvedHeadlessTabsPresentation",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "resolveNavigatorHeaderOwnership",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
+    "sourceLocation": {
+      "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
+      "line": 11,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(plan: NavigatorPlan, args?: NavigatorHeaderOwnershipArgs) => NavigatorHeaderOwnership",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "NavigatorHeaderOwnershipArgs",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "plan",
+            "type": "NavigatorPlan",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "NavigatorHeaderOwnership",
         "returnDescription": null
       }
     ],

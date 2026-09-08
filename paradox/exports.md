@@ -95,7 +95,7 @@ Return the standalone composition catalog with target truth derived from Navigat
 
 Kind: `function`
 Module: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx`
-Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:20:1`
+Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1`
 
 Render one stable headless Expo Router tab topology with Surface-owned presentations.
 
@@ -272,6 +272,19 @@ Resolve one headless-tabs presentation for the current semantic responsive size.
   - config: `Omit<HeadlessTabsConfig, "implementation">`
   - size: `NavigatorResponsiveSize`
   - returns: `ResolvedHeadlessTabsPresentation`
+
+## resolveNavigatorHeaderOwnership
+
+Kind: `function`
+Module: `src/features/stack/domain/resolveNavigatorHeaderOwnership.ts`
+Source: `src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:11:1`
+
+### Signatures
+
+- `(plan: NavigatorPlan, args?: NavigatorHeaderOwnershipArgs) => NavigatorHeaderOwnership`
+  - args: `NavigatorHeaderOwnershipArgs` (optional)
+  - plan: `NavigatorPlan`
+  - returns: `NavigatorHeaderOwnership`
 
 ## resolveNavigatorPreset
 
