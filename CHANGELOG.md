@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.2.0
+
+### Minor Changes
+
+- 1c5e0ce: Render themed Headless Tabs surfaces, contain tab-screen overflow, hide unnamed group headers, and expose resolved Navigator header ownership.
+
 ## 3.1.0
 
 ### Minor Changes
