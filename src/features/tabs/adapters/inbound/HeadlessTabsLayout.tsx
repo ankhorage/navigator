@@ -4,6 +4,7 @@ import type {
   RouteDefinition,
 } from '@ankhorage/contracts/navigator';
 import {
+  Box,
   NavigationItem,
   type NavigationItemIcon,
   type NavigationItemSpec,
@@ -13,7 +14,7 @@ import {
 import type { Href } from 'expo-router';
 import { TabList, Tabs, TabSlot, TabTrigger, useTabTrigger } from 'expo-router/ui';
 import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react';
-import { StyleSheet, View, type ViewStyle } from 'react-native';
+import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 /*** Render one stable headless Expo Router tab topology with Surface-owned presentations. */
@@ -27,14 +28,12 @@ export function HeadlessTabsLayout({
   const size = useHydrationSafeSize();
   const presentation = selectPresentation(presentations, size);
   const insets = useSafeAreaInsets();
-  const navigation = (
-    <TabsNavigation
-      CustomPresentation={CustomPresentation}
-      presentation={presentation}
-      resolveIconSource={resolveIconSource}
-      routes={routes}
-    />
-  );
+  const navigation = createTabsNavigation({
+    CustomPresentation,
+    presentation,
+    resolveIconSource,
+    routes,
+  });
   const vertical = presentation === 'rail' || presentation === 'sidebar';
   const navigationFirst = vertical || presentation === 'top' || presentation === 'custom';
   const navigationInsets: ViewStyle | undefined =
@@ -50,19 +49,57 @@ export function HeadlessTabsLayout({
 
   return (
     <Tabs options={{ initialRouteName }} style={styles.root}>
-      <View style={layoutStyle}>
-        {navigationFirst ? <View style={navigationInsets}>{navigation}</View> : null}
-        <View style={styles.screen}>
-          <TabSlot />
-        </View>
-        {!navigationFirst ? <View style={bottomNavigationStyle}>{navigation}</View> : null}
-      </View>
+      <HeadlessTabsBody
+        bottomNavigationStyle={bottomNavigationStyle}
+        layoutStyle={layoutStyle}
+        navigation={navigation}
+        navigationFirst={navigationFirst}
+        navigationInsets={navigationInsets}
+      />
       <TabList style={styles.hidden}>
         {routes.map((route) => (
           <TabTrigger href={route.href as Href} key={route.name} name={route.name} />
         ))}
       </TabList>
     </Tabs>
+  );
+}
+
+/*** Construct the current Surface presentation without changing the headless Expo Router topology. */
+function createTabsNavigation(props: Parameters<typeof TabsNavigation>[0]) {
+  return <TabsNavigation {...props} />;
+}
+
+/*** Place themed navigation chrome around the bounded tab content slot. */
+function HeadlessTabsBody({
+  bottomNavigationStyle,
+  layoutStyle,
+  navigation,
+  navigationFirst,
+  navigationInsets,
+}: {
+  bottomNavigationStyle: StyleProp<ViewStyle>;
+  layoutStyle: StyleProp<ViewStyle>;
+  navigation: ReactNode;
+  navigationFirst: boolean;
+  navigationInsets: ViewStyle | undefined;
+}) {
+  return (
+    <Box bg="background" style={layoutStyle}>
+      {navigationFirst ? (
+        <Box bg="background" style={navigationInsets}>
+          {navigation}
+        </Box>
+      ) : null}
+      <View style={styles.screen}>
+        <TabSlot />
+      </View>
+      {!navigationFirst ? (
+        <Box bg="background" style={bottomNavigationStyle}>
+          {navigation}
+        </Box>
+      ) : null}
+    </Box>
   );
 }
 
@@ -273,6 +310,6 @@ const styles = StyleSheet.create({
   horizontalNavigation: { flexDirection: 'row' },
   root: { flex: 1 },
   row: { flex: 1, flexDirection: 'row' },
-  screen: { flex: 1 },
+  screen: { flex: 1, minHeight: 0, minWidth: 0, overflow: 'hidden' },
   verticalNavigation: { flexDirection: 'column' },
 });
