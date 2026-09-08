@@ -15,6 +15,7 @@ const publicSymbols = {
     'generateNavigator',
     'isNavigatorGenerationBindings',
     'resolveHeadlessTabsPresentation',
+    'resolveNavigatorHeaderOwnership',
     'resolveNavigatorPreset',
     'validateNavigator',
     'validateNavigatorManifest',

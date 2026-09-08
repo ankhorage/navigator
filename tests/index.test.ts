@@ -49,6 +49,32 @@ const CORE_MANIFEST: AppNavigatorManifest = {
 };
 
 describe('@ankhorage/navigator topology and validation', () => {
+  test('hides an unnamed Stack group header when that route owns a nested navigator', () => {
+    const plan = createNavigatorPlan(
+      {
+        type: 'stack',
+        routes: [
+          {
+            name: '(tabs)',
+            navigator: {
+              type: 'tabs',
+              implementation: 'headless',
+              presentation: 'bottom',
+              routes: [{ name: 'home', path: '/', screenId: 'home' }],
+            },
+          },
+        ],
+      },
+      { expoRouterVersion: EXPO_ROUTER_VERSION, platform: 'web' },
+    );
+    const layout = generateNavigator(plan, { guards: {}, screens: SCREEN_BINDINGS }).files.find(
+      (file) => file.path === 'src/app/_layout.tsx',
+    )?.contents;
+
+    expect(layout).toContain('name="(tabs)"');
+    expect(layout).toContain('headerShown: false');
+  });
+
   test('resolves every finite preset family', () => {
     expect(resolveNavigatorPreset('slot', 'stack')).toEqual(['slot']);
     expect(resolveNavigatorPreset('stack-tabs-stack', 'tabs')).toEqual(['stack', 'tabs', 'stack']);

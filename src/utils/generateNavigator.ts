@@ -256,6 +256,7 @@ function routeOptions(
   if (node.type === 'stack' && route.stackOptions !== undefined) {
     Object.assign(options, route.stackOptions);
   }
+  if (shouldHideUnnamedGroupHeader(node, route)) options.headerShown = false;
   if (node.type === 'drawer') {
     Object.assign(options, resolveDrawerRouteOptions(route));
   }
@@ -268,6 +269,17 @@ function routeOptions(
     else options.href = null;
   }
   return Object.keys(options).length === 0 ? undefined : options;
+}
+
+/*** Keep Expo Router implementation groups from becoming visible Stack headers by default. */
+function shouldHideUnnamedGroupHeader(node: NavigatorNodePlan, route: NavigatorRoutePlan): boolean {
+  return (
+    node.type === 'stack' &&
+    route.navigator !== undefined &&
+    route.label === undefined &&
+    route.stackOptions?.headerShown === undefined &&
+    /^\([^/()]+\)$/.test(route.name)
+  );
 }
 
 /*** Render one generated Screen with a stable multiline options object when route options exist. */
