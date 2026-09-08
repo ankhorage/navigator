@@ -83,6 +83,7 @@
     "examples:browser": "bun scripts/verify-example-browser.ts",
     "examples:acceptance": "bun run examples:validate && bun run examples:exports && bun run examples:browser",
     "examples:validate": "bun scripts/validate-example-projects.ts",
+    "examples:synchronize": "bun run examples:generate && bun scripts/synchronize-example-lockfiles.ts",
     "examples:verify": "bun run build && ankh navigator examples verify --target .",
     "test": "bun test src tests",
     "typecheck": "bun x tsc --noEmit -p tsconfig.json && bun x tsc --noEmit -p tsconfig.scripts.json",
@@ -91,7 +92,8 @@
     "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
     "format": "ankhorage-prettier --write .",
     "format:check": "ankhorage-prettier --check .",
-    "knip:check": "ankhorage-knip"
+    "knip:check": "ankhorage-knip",
+    "release:synchronize": "bun run examples:synchronize && bun run docs && bun run format"
   },
   "dependencies": {
     "@ankhorage/contracts": "^12.0.1",

@@ -112,8 +112,8 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_catalog_domain_createExampleScreenRoute_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts["src/features/catalog/domain/createNavigatorCatalog.ts"]
   package__ankhorage_navigator -.-> module_src_features_catalog_domain_createNavigatorCatalog_ts
+  module_src_features_catalog_domain_createNavigatorCatalog_ts --> module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
   module_src_features_catalog_domain_createNavigatorCatalog_ts --> module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
-  module_src_features_catalog_domain_createNavigatorCatalog_ts --> module_src_utils_resolveNavigatorPreset_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts["src/features/catalog/domain/createNavigatorExampleDefinitions.ts"]
   package__ankhorage_navigator -.-> module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createCoreNavigatorExamples_ts
@@ -122,6 +122,9 @@ graph TD
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_features_catalog_domain_createTabsNavigatorExamples_ts
   module_src_features_catalog_domain_createNavigatorExampleDefinitions_ts --> module_src_types_navigatorExamples_ts
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts["src/features/catalog/domain/createNavigatorPresetCatalog.ts"]
+  package__ankhorage_navigator -.-> module_src_features_catalog_domain_createNavigatorPresetCatalog_ts
+  module_src_features_catalog_domain_createNavigatorPresetCatalog_ts --> module_src_utils_resolveNavigatorPreset_ts
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts["src/features/catalog/domain/createSplitViewNavigatorExamples.ts"]
   package__ankhorage_navigator -.-> module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts --> module_src_features_catalog_domain_createExampleScreenRoute_ts
@@ -172,6 +175,8 @@ graph TD
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts --> module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts["src/features/stack/domain/resolveEffectiveStackConfigSource.ts"]
   package__ankhorage_navigator -.-> module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+  module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts["src/features/stack/domain/resolveNavigatorHeaderOwnership.ts"]
+  package__ankhorage_navigator -.-> module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts
   module_src_features_stack_domain_validateStackRouteOptions_ts["src/features/stack/domain/validateStackRouteOptions.ts"]
   package__ankhorage_navigator -.-> module_src_features_stack_domain_validateStackRouteOptions_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx["src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"]
@@ -407,6 +412,9 @@ graph TD
   module_tests_publicEntrypoints_test_ts["tests/publicEntrypoints.test.ts"]
   package__ankhorage_navigator -.-> module_tests_publicEntrypoints_test_ts
   module_tests_publicEntrypoints_test_ts --> module_package_json
+  module_tests_resolveNavigatorHeaderOwnership_test_ts["tests/resolveNavigatorHeaderOwnership.test.ts"]
+  package__ankhorage_navigator -.-> module_tests_resolveNavigatorHeaderOwnership_test_ts
+  module_tests_resolveNavigatorHeaderOwnership_test_ts --> module_src_navigator_ts
   module_tests_routerPolicy_ts["tests/routerPolicy.ts"]
   package__ankhorage_navigator -.-> module_tests_routerPolicy_ts
   module_tests_sourceStructure_test_ts["tests/sourceStructure.test.ts"]

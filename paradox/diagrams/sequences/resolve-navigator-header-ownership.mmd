@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant participant_isStackHeaderVisible as isStackHeaderVisible
+  participant participant_resolveHeaderTitle as resolveHeaderTitle
+  participant participant_resolveNavigatorHeaderOwnership as resolveNavigatorHeaderOwnership
+  participant participant_resolveVisibleHeaders as resolveVisibleHeaders
+  participant participant_selectActiveRoute as selectActiveRoute
+  participant_resolveNavigatorHeaderOwnership->>participant_resolveVisibleHeaders: resolveVisibleHeaders()
+  participant_resolveVisibleHeaders->>participant_selectActiveRoute: selectActiveRoute()
+  participant_selectActiveRoute-->>participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders->>participant_resolveVisibleHeaders: resolveVisibleHeaders()
+  participant_resolveVisibleHeaders->>participant_isStackHeaderVisible: isStackHeaderVisible()
+  participant_isStackHeaderVisible-->>participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders->>participant_resolveHeaderTitle: resolveHeaderTitle()
+  participant_resolveHeaderTitle-->>participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders-->>participant_resolveVisibleHeaders: return
+  participant_resolveVisibleHeaders-->>participant_resolveNavigatorHeaderOwnership: return
