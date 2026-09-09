@@ -12,10 +12,12 @@ import {
   useBreakpoint,
 } from '@ankhorage/surface';
 import type { Href } from 'expo-router';
-import { TabList, Tabs, TabSlot, TabTrigger, useTabTrigger } from 'expo-router/ui';
+import { TabList, Tabs, TabTrigger, useTabTrigger } from 'expo-router/ui';
 import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react';
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { HeadlessTabsViewport } from './HeadlessTabsViewport';
 
 /*** Render one stable headless Expo Router tab topology with Surface-owned presentations. */
 export function HeadlessTabsLayout({
@@ -91,9 +93,7 @@ function HeadlessTabsBody({
           {navigation}
         </Box>
       ) : null}
-      <View style={styles.screen}>
-        <TabSlot />
-      </View>
+      <HeadlessTabsViewport />
       {!navigationFirst ? (
         <Box bg="background" style={bottomNavigationStyle}>
           {navigation}
@@ -310,6 +310,5 @@ const styles = StyleSheet.create({
   horizontalNavigation: { flexDirection: 'row' },
   root: { flex: 1 },
   row: { flex: 1, flexDirection: 'row' },
-  screen: { flex: 1, minHeight: 0, minWidth: 0, overflow: 'hidden' },
   verticalNavigation: { flexDirection: 'column' },
 });
