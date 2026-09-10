@@ -3,12 +3,12 @@ import {
   ButtonBase,
   Icon,
   type IconSource,
-  Text,
   type SurfaceTheme,
+  Text,
   useTheme,
 } from '@ankhorage/surface';
 import type { ReactNode } from 'react';
-import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 /*** Render one Navigator-owned tab trigger using current Surface foundation primitives. */
 export function NavigatorTabItem({
@@ -30,7 +30,7 @@ export function NavigatorTabItem({
       accessibilityRole="tab"
       accessibilityState={{ selected: active }}
       onPress={onPress}
-      style={horizontal ? { flex: 1 } : undefined}
+      style={horizontal ? styles.horizontalButton : undefined}
       testID={testID}
     >
       {(state) =>
@@ -66,58 +66,83 @@ interface NavigatorTabItemRenderState {
 }
 
 interface NavigatorTabItemContentInput
-  extends Omit<NavigatorTabItemProps, 'onPress' | 'orientation' | 'testID'> {
+  extends Omit<
+    NavigatorTabItemProps,
+    'onPress' | 'orientation' | 'testID'
+  > {
   horizontal: boolean;
   state: NavigatorTabItemRenderState;
   theme: SurfaceTheme;
 }
 
-/*** Render the tab trigger content for horizontal or vertical Navigator presentations. */
-function renderNavigatorTabItemContent({
-  active,
-  badge,
-  compact,
-  horizontal,
-  icon,
-  label,
-  state,
-  theme,
-}: NavigatorTabItemContentInput) {
-  const colors = resolveNavigatorTabItemColors(theme, active, state);
-  const iconSpacing = horizontal
-    ? { marginBottom: label ? theme.spacing.xs : 0 }
-    : { marginRight: theme.spacing.s };
+/*** Select the horizontal or vertical content renderer for one Navigator tab item. */
+function renderNavigatorTabItemContent(input: NavigatorTabItemContentInput) {
+  const colors = resolveNavigatorTabItemColors(input.theme, input.active, input.state);
+  return input.horizontal
+    ? renderHorizontalNavigatorTabItem(input, colors)
+    : renderVerticalNavigatorTabItem(input, colors);
+}
 
+interface NavigatorTabItemColors {
+  backgroundColor: string;
+  contentColor: string;
+}
+
+/*** Render a bottom/top Navigator tab item. */
+function renderHorizontalNavigatorTabItem(
+  { active, compact, icon, label }: NavigatorTabItemContentInput,
+  colors: NavigatorTabItemColors,
+) {
+  return (
+    <Box bg={colors.backgroundColor} px="m" py={compact ? 's' : 'm'} style={styles.horizontalContent}>
+      {icon ? (
+        <Box mb="xs">
+          <Icon {...icon} color={colors.contentColor} size={compact ? 's' : 'm'} />
+        </Box>
+      ) : null}
+      <Text
+        color={active ? 'primary' : undefined}
+        emphasis={active ? 'default' : 'muted'}
+        numberOfLines={1}
+        variant={compact ? 'bodySmall' : 'label'}
+        weight="medium"
+      >
+        {label}
+      </Text>
+    </Box>
+  );
+}
+
+/*** Render a rail/sidebar Navigator tab item. */
+function renderVerticalNavigatorTabItem(
+  { active, badge, compact, icon, label }: NavigatorTabItemContentInput,
+  colors: NavigatorTabItemColors,
+) {
   return (
     <Box
+      bg={colors.backgroundColor}
       px="m"
       py={compact ? 's' : 'm'}
-      radius={horizontal ? undefined : 'm'}
-      style={{
-        alignItems: 'center',
-        backgroundColor: colors.backgroundColor,
-        flex: horizontal ? 1 : undefined,
-        flexDirection: horizontal ? 'column' : 'row',
-        justifyContent: horizontal ? 'center' : undefined,
-      }}
+      radius="m"
+      style={styles.verticalContent}
     >
       {icon ? (
-        <View style={iconSpacing}>
+        <Box mr="s">
           <Icon {...icon} color={colors.contentColor} size={compact ? 's' : 'm'} />
-        </View>
+        </Box>
       ) : null}
-      <Box flex={horizontal ? undefined : 1}>
+      <Box flex={1}>
         <Text
           color={active ? 'primary' : undefined}
           emphasis={active ? 'default' : 'muted'}
           numberOfLines={1}
-          variant={horizontal ? (compact ? 'bodySmall' : 'label') : compact ? 'bodySmall' : 'body'}
+          variant={compact ? 'bodySmall' : 'body'}
           weight="medium"
         >
           {label}
         </Text>
       </Box>
-      {!horizontal && badge ? <View style={{ marginLeft: theme.spacing.s }}>{badge}</View> : null}
+      {badge ? <Box ml="s">{badge}</Box> : null}
     </Box>
   );
 }
@@ -127,7 +152,7 @@ function resolveNavigatorTabItemColors(
   theme: SurfaceTheme,
   active: boolean,
   state: NavigatorTabItemRenderState,
-) {
+): NavigatorTabItemColors {
   if (active) {
     return {
       backgroundColor: state.pressed
@@ -152,3 +177,17 @@ function resolveNavigatorTabItemColors(
     contentColor: theme.semantics.content.default,
   };
 }
+
+const styles = StyleSheet.create({
+  horizontalButton: { flex: 1 },
+  horizontalContent: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  verticalContent: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});
