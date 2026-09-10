@@ -3,21 +3,16 @@ import type {
   ResolvedTabsPresentation,
   RouteDefinition,
 } from '@ankhorage/contracts/navigator';
-import {
-  Box,
-  NavigationItem,
-  type NavigationItemIcon,
-  type NavigationItemSpec,
-  TabBarItem,
-  useBreakpoint,
-} from '@ankhorage/surface';
+import { Box, type IconSource, useBreakpoint } from '@ankhorage/surface';
 import type { Href } from 'expo-router';
 import { TabList, Tabs, TabSlot, TabTrigger, useTabTrigger } from 'expo-router/ui';
 import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react';
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-/*** Render one stable headless Expo Router tab topology with Surface-owned presentations. */
+import { NavigatorTabItem } from './NavigatorTabItem';
+
+/*** Render one stable headless Expo Router tab topology with Navigator-owned presentations. */
 export function HeadlessTabsLayout({
   routes,
   presentations,
@@ -65,12 +60,12 @@ export function HeadlessTabsLayout({
   );
 }
 
-/*** Construct the current Surface presentation without changing the headless Expo Router topology. */
+/*** Construct the current Navigator presentation without changing the headless Expo Router topology. */
 function createTabsNavigation(props: Parameters<typeof TabsNavigation>[0]) {
   return <TabsNavigation {...props} />;
 }
 
-/*** Place themed navigation chrome around the bounded tab content slot. */
+/*** Place Navigator-owned navigation chrome around the bounded tab content slot. */
 function HeadlessTabsBody({
   bottomNavigationStyle,
   layoutStyle,
@@ -103,7 +98,7 @@ function HeadlessTabsBody({
   );
 }
 
-/** One explicit Expo Router tab registration plus optional Surface-owned presentation metadata. */
+/** One explicit Expo Router tab registration plus optional Navigator presentation metadata. */
 interface HeadlessTabsRoute {
   name: string;
   href: string;
@@ -115,7 +110,7 @@ interface HeadlessTabsRoute {
 
 /**
  * Runtime inputs for the cross-platform headless-tabs adapter. Routes remain mounted in one headless Router
- * topology while Surface selects bottom, top, rail, sidebar, or registered custom chrome.
+ * topology while Navigator selects bottom, top, rail, sidebar, or registered custom chrome.
  */
 interface HeadlessTabsLayoutProps {
   routes: readonly HeadlessTabsRoute[];
@@ -137,7 +132,7 @@ type IconMediaReference = Extract<
   { source: unknown }
 >['source'];
 
-type ResolvedSvgSource = Extract<NavigationItemIcon, { source: unknown }>['source'];
+type ResolvedSvgSource = Extract<IconSource, { source: unknown }>['source'];
 
 /*** Resolve a hydration-safe semantic size from the Surface breakpoint owner. */
 function useHydrationSafeSize(): NavigatorResponsiveSize {
@@ -195,7 +190,7 @@ function TabsNavigation({
   routes: readonly HeadlessTabsRoute[];
 }) {
   const visibleRoutes = routes.filter((route) => route.visible);
-  /*** Bind one visible route to the shared Surface trigger for registered custom chrome. */
+  /*** Bind one visible route to the shared Navigator trigger for registered custom chrome. */
   const renderItem = (route: HeadlessTabsRoute, compact = false) => (
     <SurfaceTabTrigger
       compact={compact}
@@ -219,7 +214,7 @@ function TabsNavigation({
   );
 }
 
-/*** Render one Surface navigation control bound to Expo Router's headless tab trigger. */
+/*** Render one Navigator-owned navigation control bound to Expo Router's headless tab trigger. */
 function SurfaceTabTrigger({
   route,
   presentation,
@@ -232,28 +227,25 @@ function SurfaceTabTrigger({
   resolveIconSource: HeadlessTabsIconSourceResolver | undefined;
 }) {
   const { switchTab, trigger } = useTabTrigger({ name: route.name });
-  const item: NavigationItemSpec = {
-    id: route.name,
-    label: route.label,
-    active: trigger?.isFocused ?? false,
-    onPress: () => switchTab(route.name, {}),
-    accessibilityLabel: route.label,
-    accessibilityRole: 'tab',
-    icon: resolveIcon(route.icon, resolveIconSource),
-    badge: route.badge,
-  };
-  return presentation === 'horizontal' ? (
-    <TabBarItem compact={compact} item={item} testID="navigator-tabs" />
-  ) : (
-    <NavigationItem compact={compact} item={item} testID="navigator-tabs" />
+  return (
+    <NavigatorTabItem
+      active={trigger?.isFocused ?? false}
+      badge={route.badge}
+      compact={compact}
+      icon={resolveIcon(route.icon, resolveIconSource)}
+      label={route.label}
+      onPress={() => switchTab(route.name, {})}
+      orientation={presentation}
+      testID={`navigator-tabs-item-${route.name}`}
+    />
   );
 }
 
-/*** Convert portable route icon metadata to the Surface navigation icon contract. */
+/*** Convert portable route icon metadata to the current Surface icon contract. */
 function resolveIcon(
   icon: RouteDefinition['icon'],
   resolveIconSource: HeadlessTabsIconSourceResolver | undefined,
-): NavigationItemIcon | undefined {
+): IconSource | undefined {
   if (icon === undefined) return undefined;
   if ('source' in icon) {
     return resolveIconSource === undefined || icon.source === undefined
@@ -264,7 +256,7 @@ function resolveIcon(
   if (!ICON_PROVIDERS.has(provider)) return undefined;
   const variant =
     provider === 'FontAwesome5' || provider === 'FontAwesome6' ? 'regular' : undefined;
-  return { name: icon.name, provider, variant } as NavigationItemIcon;
+  return { name: icon.name, provider, variant } as IconSource;
 }
 
 const ICON_PROVIDERS = new Set([
@@ -275,7 +267,7 @@ const ICON_PROVIDERS = new Set([
   'MaterialDesignIcons',
 ]);
 
-/*** Render Surface-owned bottom, top, rail, or sidebar tab chrome. */
+/*** Render Navigator-owned bottom, top, rail, or sidebar tab chrome. */
 function BuiltInPresentation({
   presentation,
   routes,
