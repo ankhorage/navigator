@@ -1,3 +1,4 @@
+import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import type { NavigatorRuntimePlatform } from '@ankhorage/contracts/navigator';
@@ -10,11 +11,34 @@ const targets = getNavigatorExampleCatalog().flatMap((example) =>
     .filter(({ support }) => support !== 'unsupported')
     .map(({ platform, support }) => ({ id: example.id, platform, support })),
 );
+const targetIds = [...new Set(targets.map(({ id }) => id))];
 let nextTarget = 0;
 
+for (const id of targetIds) stageCurrentNavigatorBuild(id);
 await Promise.all(Array.from({ length: 4 }, runWorkerAsync));
 
 console.log(`\nExported ${targets.length} supported or testing-only example targets.`);
+
+/*** Replace the installed published package with the current built package for PR acceptance. */
+function stageCurrentNavigatorBuild(id: string): void {
+  const sourceDist = resolve(repositoryRoot, 'dist');
+  if (!existsSync(sourceDist)) {
+    throw new Error('Navigator must be built before standalone example exports.');
+  }
+
+  const targetRoot = resolve(
+    repositoryRoot,
+    'examples',
+    id,
+    'node_modules',
+    '@ankhorage',
+    'navigator',
+  );
+  rmSync(targetRoot, { force: true, recursive: true });
+  mkdirSync(targetRoot, { recursive: true });
+  cpSync(sourceDist, resolve(targetRoot, 'dist'), { recursive: true });
+  cpSync(resolve(repositoryRoot, 'package.json'), resolve(targetRoot, 'package.json'));
+}
 
 /*** Export matrix entries with bounded concurrency while preserving app ownership. */
 async function runWorkerAsync(): Promise<void> {

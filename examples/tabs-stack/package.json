@@ -15,8 +15,8 @@
     "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform web --expo-router-version 57.0.18 --target ."
   },
   "dependencies": {
-    "@ankhorage/navigator": "3.2.2",
-    "@ankhorage/surface": "^3.4.4",
+    "@ankhorage/navigator": "3.2.3",
+    "@ankhorage/surface": "^4.0.0",
     "expo": "^57.0.20",
     "expo-router": "57.0.18",
     "react": "19.2.3",

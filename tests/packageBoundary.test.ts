@@ -81,6 +81,19 @@ describe('@ankhorage/navigator package boundary', () => {
     }
   });
 
+  test('uses Surface 4 without importing removed navigation chrome', async () => {
+    const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
+      readonly peerDependencies?: Readonly<Record<string, string>>;
+    };
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toMatch(/^\^4\./u);
+
+    const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));
+    const contents = (await Promise.all(files.map((file) => readFile(file, 'utf8')))).join('\n');
+    for (const removedSymbol of ['NavigationItemIcon', 'NavigationItemSpec', 'TabBarItem']) {
+      expect(contents).not.toContain(removedSymbol);
+    }
+  });
+
   test('never imports the full app manifest into production source', async () => {
     const forbidden = ['App', 'Manifest'].join('');
     const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));

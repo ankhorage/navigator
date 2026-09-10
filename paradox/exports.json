@@ -215,14 +215,14 @@
   },
   {
     "name": "HeadlessTabsLayout",
-    "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+    "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
     "isReadme": false,
     "examples": [],
     "kind": "function",
     "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
     "sourceLocation": {
       "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-      "line": 21,
+      "line": 16,
       "column": 1
     },
     "exportPaths": ["src/features/tabs/tabs.ts"],
