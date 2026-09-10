@@ -416,7 +416,7 @@
     {
       "path": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"],
       "exports": ["HeadlessTabsLayout"]
     },
     {
@@ -448,6 +448,12 @@
       "isEntrypoint": false,
       "dependencies": ["src/types/nativeIcons.ts"],
       "exports": ["NativeMaterialDesignIconsFamily"]
+    },
+    {
+      "path": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["NavigatorTabItem"]
     },
     {
       "path": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
@@ -1165,14 +1171,14 @@
     },
     {
       "name": "HeadlessTabsLayout",
-      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "isReadme": false,
       "examples": [],
       "kind": "function",
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 21,
+        "line": 16,
         "column": 1
       },
       "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -1962,13 +1968,13 @@
   "components": [
     {
       "name": "HeadlessTabsLayout",
-      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "isReadme": false,
       "examples": [],
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 21,
+        "line": 16,
         "column": 1
       },
       "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -2999,28 +3005,28 @@
     },
     {
       "name": "HeadlessTabsLayout",
-      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 21,
+        "line": 16,
         "column": 1
       }
     },
     {
       "name": "createTabsNavigation",
-      "description": "Construct the current Surface presentation without changing the headless Expo Router topology.",
+      "description": "Construct the current Navigator presentation without changing the headless Expo Router topology.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 69,
+        "line": 64,
         "column": 1
       }
     },
     {
       "name": "HeadlessTabsBody",
-      "description": "Place themed navigation chrome around the bounded tab content slot.",
+      "description": "Place Navigator-owned navigation chrome around the bounded tab content slot.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 74,
+        "line": 69,
         "column": 1
       }
     },
@@ -3029,7 +3035,7 @@
       "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 143,
+        "line": 138,
         "column": 1
       }
     },
@@ -3038,7 +3044,7 @@
       "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 156,
+        "line": 151,
         "column": 1
       }
     },
@@ -3047,7 +3053,7 @@
       "description": "Report that client rendering can consume the live responsive breakpoint.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 161,
+        "line": 156,
         "column": 1
       }
     },
@@ -3056,7 +3062,7 @@
       "description": "Keep server output deterministic at the compact presentation.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 166,
+        "line": 161,
         "column": 1
       }
     },
@@ -3065,7 +3071,7 @@
       "description": "Select one fixed presentation without altering the Router-owned topology.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 171,
+        "line": 166,
         "column": 1
       }
     },
@@ -3074,43 +3080,88 @@
       "description": "Select built-in or registered custom chrome for the currently visible routes.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 186,
+        "line": 181,
         "column": 1
       }
     },
     {
       "name": "renderItem",
-      "description": "Bind one visible route to the shared Surface trigger for registered custom chrome.",
+      "description": "Bind one visible route to the shared Navigator trigger for registered custom chrome.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 199,
+        "line": 194,
         "column": 9
       }
     },
     {
       "name": "SurfaceTabTrigger",
-      "description": "Render one Surface navigation control bound to Expo Router's headless tab trigger.",
+      "description": "Render one Navigator-owned navigation control bound to Expo Router's headless tab trigger.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 223,
+        "line": 218,
         "column": 1
       }
     },
     {
       "name": "resolveIcon",
-      "description": "Convert portable route icon metadata to the Surface navigation icon contract.",
+      "description": "Convert portable route icon metadata to the current Surface icon contract.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 253,
+        "line": 245,
         "column": 1
       }
     },
     {
       "name": "BuiltInPresentation",
-      "description": "Render Surface-owned bottom, top, rail, or sidebar tab chrome.",
+      "description": "Render Navigator-owned bottom, top, rail, or sidebar tab chrome.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 279,
+        "line": 271,
+        "column": 1
+      }
+    },
+    {
+      "name": "NavigatorTabItem",
+      "description": "Render one Navigator-owned tab trigger using current Surface foundation primitives.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderNavigatorTabItemContent",
+      "description": "Select the horizontal or vertical content renderer for one Navigator tab item.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "line": 78,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderHorizontalNavigatorTabItem",
+      "description": "Render a bottom/top Navigator tab item.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "line": 91,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderVerticalNavigatorTabItem",
+      "description": "Render a rail/sidebar Navigator tab item.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "line": 121,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveNavigatorTabItemColors",
+      "description": "Resolve Navigator tab colors from the current Surface theme interaction tokens.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "line": 155,
         "column": 1
       }
     },
@@ -4339,7 +4390,7 @@
       "name": "HeadlessTabsLayout",
       "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "symbolName": "HeadlessTabsLayout",
-      "description": "Render one stable headless Expo Router tab topology with Surface-owned presentations.",
+      "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "isReadme": false
     },
     {
@@ -5604,6 +5655,11 @@
         "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
         "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
         "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+        "toPath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
@@ -8729,15 +8785,15 @@
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromSymbol": "onPress",
-        "toSymbol": "switchTab",
-        "callExpression": "switchTab",
-        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
-      },
-      {
         "fromSymbol": "SurfaceTabTrigger",
         "toSymbol": "resolveIcon",
         "callExpression": "resolveIcon",
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+        "toSymbol": "switchTab",
+        "callExpression": "switchTab",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
@@ -8745,6 +8801,36 @@
         "toSymbol": "resolveIconSource",
         "callExpression": "resolveIconSource",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "NavigatorTabItem",
+        "toSymbol": "useTheme",
+        "callExpression": "useTheme",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+      },
+      {
+        "fromSymbol": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "toSymbol": "renderNavigatorTabItemContent",
+        "callExpression": "renderNavigatorTabItemContent",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+      },
+      {
+        "fromSymbol": "renderNavigatorTabItemContent",
+        "toSymbol": "resolveNavigatorTabItemColors",
+        "callExpression": "resolveNavigatorTabItemColors",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+      },
+      {
+        "fromSymbol": "renderNavigatorTabItemContent",
+        "toSymbol": "renderHorizontalNavigatorTabItem",
+        "callExpression": "renderHorizontalNavigatorTabItem",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+      },
+      {
+        "fromSymbol": "renderNavigatorTabItemContent",
+        "toSymbol": "renderVerticalNavigatorTabItem",
+        "callExpression": "renderVerticalNavigatorTabItem",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
       },
       {
         "fromSymbol": "generateTabsLayoutFile",

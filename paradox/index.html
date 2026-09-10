@@ -558,6 +558,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+              >
+                src/features/tabs/adapters/inbound/NavigatorTabItem.tsx
+                <small>5 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
               >
                 src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts
@@ -882,7 +892,7 @@
             <div class="summary">
               <div><strong>30</strong><span class="muted">public exports</span></div>
               <div><strong>1</strong><span class="muted">components</span></div>
-              <div><strong>105</strong><span class="muted">modules</span></div>
+              <div><strong>106</strong><span class="muted">modules</span></div>
               <div><strong>5</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -1366,11 +1376,14 @@
             </article>
             <article
               class="item"
-              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx HeadlessTabsLayout"
+              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx src/features/tabs/adapters/inbound/NavigatorTabItem.tsx HeadlessTabsLayout"
             >
               <h3>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h3>
               <p class="muted">Referenced module</p>
-              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx</code>
+              </p>
               <p><strong>Exports:</strong> <code>HeadlessTabsLayout</code></p>
             </article>
             <article
@@ -1417,6 +1430,15 @@
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <code>src/types/nativeIcons.ts</code></p>
               <p><strong>Exports:</strong> <code>NativeMaterialDesignIconsFamily</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/tabs/adapters/inbound/NavigatorTabItem.tsx NavigatorTabItem"
+            >
+              <h3>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>NavigatorTabItem</code></p>
             </article>
             <article
               class="item"
@@ -2294,15 +2316,15 @@
               <article
                 class="item"
                 id="symbol-headlesstabslayout"
-                data-search='HeadlessTabsLayout function src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. ({&#10;  routes,&#10;  presentations,&#10;  initialRouteName,&#10;  resolveIconSource,&#10;  customPresentation: CustomPresentation,&#10;}: HeadlessTabsLayoutProps) =&gt; import("react").JSX.Element'
+                data-search='HeadlessTabsLayout function src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Navigator-owned presentations. ({&#10;  routes,&#10;  presentations,&#10;  initialRouteName,&#10;  resolveIconSource,&#10;  customPresentation: CustomPresentation,&#10;}: HeadlessTabsLayoutProps) =&gt; import("react").JSX.Element'
               >
                 <h4>HeadlessTabsLayout</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
+                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1</code>
                 </p>
                 <p>
-                  Render one stable headless Expo Router tab topology with Surface-owned
+                  Render one stable headless Expo Router tab topology with Navigator-owned
                   presentations.
                 </p>
                 <p><strong>Export paths:</strong> <code>src/features/tabs/tabs.ts</code></p>
@@ -3409,14 +3431,14 @@
             <article
               class="item"
               id="component-headlesstabslayout"
-              data-search="HeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations. customPresentation ComponentType&lt;HeadlessTabsPresentationProps&gt; | undefined initialRouteName string | undefined presentations Readonly&lt;Record&lt;NavigatorResponsiveSize, ResolvedTabsPresentation&gt;&gt; resolveIconSource HeadlessTabsIconSourceResolver | undefined routes readonly HeadlessTabsRoute[]"
+              data-search="HeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Navigator-owned presentations. customPresentation ComponentType&lt;HeadlessTabsPresentationProps&gt; | undefined initialRouteName string | undefined presentations Readonly&lt;Record&lt;NavigatorResponsiveSize, ResolvedTabsPresentation&gt;&gt; resolveIconSource HeadlessTabsIconSourceResolver | undefined routes readonly HeadlessTabsRoute[]"
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1</code>
               </p>
               <p>
-                Render one stable headless Expo Router tab topology with Surface-owned
+                Render one stable headless Expo Router tab topology with Navigator-owned
                 presentations.
               </p>
               <p><strong>Export paths:</strong> <code>src/features/tabs/tabs.ts</code></p>
@@ -3752,6 +3774,8 @@
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts
@@ -3777,6 +3801,9 @@
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt;
                 module_src_types_nativeIcons_ts
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
@@ -4286,6 +4313,7 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_validateStackRouteOptions_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; module_src_types_nativeIcons_ts
@@ -4301,6 +4329,8 @@ graph TD
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt; module_src_types_nativeIcons_ts
+  module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
   module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
@@ -4591,6 +4621,7 @@ graph TD
                 module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
                 module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -4803,6 +4834,8 @@ graph TD
                 module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt;
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt;
                 module_src_types_nativeIcons_ts
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts --&gt;
@@ -5039,6 +5072,7 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
+  module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
   module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -5194,6 +5228,7 @@ graph LR
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfig_ts
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts --&gt; module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts --&gt; module_src_types_nativeIcons_ts
@@ -5368,6 +5403,7 @@ graph LR
                 module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
                 module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -5566,6 +5602,7 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
+  module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
   module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -7577,39 +7614,39 @@ sequenceDiagram
             <h2>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h2>
             <article
               class="item"
-              data-search="HeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Surface-owned presentations."
+              data-search="HeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one stable headless Expo Router tab topology with Navigator-owned presentations."
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1</code>
               </p>
               <p>
-                Render one stable headless Expo Router tab topology with Surface-owned
+                Render one stable headless Expo Router tab topology with Navigator-owned
                 presentations.
               </p>
             </article>
             <article
               class="item"
-              data-search="createTabsNavigation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Construct the current Surface presentation without changing the headless Expo Router topology."
+              data-search="createTabsNavigation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Construct the current Navigator presentation without changing the headless Expo Router topology."
             >
               <h3>createTabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:69:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:64:1</code>
               </p>
               <p>
-                Construct the current Surface presentation without changing the headless Expo Router
-                topology.
+                Construct the current Navigator presentation without changing the headless Expo
+                Router topology.
               </p>
             </article>
             <article
               class="item"
-              data-search="HeadlessTabsBody src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Place themed navigation chrome around the bounded tab content slot."
+              data-search="HeadlessTabsBody src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Place Navigator-owned navigation chrome around the bounded tab content slot."
             >
               <h3>HeadlessTabsBody</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:74:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:69:1</code>
               </p>
-              <p>Place themed navigation chrome around the bounded tab content slot.</p>
+              <p>Place Navigator-owned navigation chrome around the bounded tab content slot.</p>
             </article>
             <article
               class="item"
@@ -7617,7 +7654,7 @@ sequenceDiagram
             >
               <h3>useHydrationSafeSize</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:143:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:138:1</code>
               </p>
               <p>Resolve a hydration-safe semantic size from the Surface breakpoint owner.</p>
             </article>
@@ -7627,7 +7664,7 @@ sequenceDiagram
             >
               <h3>subscribeToHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:156:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:151:1</code>
               </p>
               <p>
                 Provide the stable no-op subscription required for the hydration snapshot boundary.
@@ -7639,7 +7676,7 @@ sequenceDiagram
             >
               <h3>getClientHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:161:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:156:1</code>
               </p>
               <p>Report that client rendering can consume the live responsive breakpoint.</p>
             </article>
@@ -7649,7 +7686,7 @@ sequenceDiagram
             >
               <h3>getServerHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:166:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:161:1</code>
               </p>
               <p>Keep server output deterministic at the compact presentation.</p>
             </article>
@@ -7659,7 +7696,7 @@ sequenceDiagram
             >
               <h3>selectPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:171:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:166:1</code>
               </p>
               <p>Select one fixed presentation without altering the Router-owned topology.</p>
             </article>
@@ -7669,54 +7706,116 @@ sequenceDiagram
             >
               <h3>TabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:186:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:181:1</code>
               </p>
               <p>Select built-in or registered custom chrome for the currently visible routes.</p>
             </article>
             <article
               class="item"
-              data-search="renderItem src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Bind one visible route to the shared Surface trigger for registered custom chrome."
+              data-search="renderItem src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Bind one visible route to the shared Navigator trigger for registered custom chrome."
             >
               <h3>renderItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:199:9</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:194:9</code>
               </p>
               <p>
-                Bind one visible route to the shared Surface trigger for registered custom chrome.
+                Bind one visible route to the shared Navigator trigger for registered custom chrome.
               </p>
             </article>
             <article
               class="item"
-              data-search="SurfaceTabTrigger src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one Surface navigation control bound to Expo Router&#39;s headless tab trigger."
+              data-search="SurfaceTabTrigger src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one Navigator-owned navigation control bound to Expo Router&#39;s headless tab trigger."
             >
               <h3>SurfaceTabTrigger</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:223:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:218:1</code>
               </p>
               <p>
-                Render one Surface navigation control bound to Expo Router&#39;s headless tab
-                trigger.
+                Render one Navigator-owned navigation control bound to Expo Router&#39;s headless
+                tab trigger.
               </p>
             </article>
             <article
               class="item"
-              data-search="resolveIcon src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Convert portable route icon metadata to the Surface navigation icon contract."
+              data-search="resolveIcon src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Convert portable route icon metadata to the current Surface icon contract."
             >
               <h3>resolveIcon</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:253:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:245:1</code>
               </p>
-              <p>Convert portable route icon metadata to the Surface navigation icon contract.</p>
+              <p>Convert portable route icon metadata to the current Surface icon contract.</p>
             </article>
             <article
               class="item"
-              data-search="BuiltInPresentation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render Surface-owned bottom, top, rail, or sidebar tab chrome."
+              data-search="BuiltInPresentation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render Navigator-owned bottom, top, rail, or sidebar tab chrome."
             >
               <h3>BuiltInPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:279:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:271:1</code>
               </p>
-              <p>Render Surface-owned bottom, top, rail, or sidebar tab chrome.</p>
+              <p>Render Navigator-owned bottom, top, rail, or sidebar tab chrome.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-tabs-adapters-inbound-navigatortabitem-tsx"
+          class="view"
+          data-view="src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx</h2>
+            <article
+              class="item"
+              data-search="NavigatorTabItem src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Render one Navigator-owned tab trigger using current Surface foundation primitives."
+            >
+              <h3>NavigatorTabItem</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:14:1</code>
+              </p>
+              <p>
+                Render one Navigator-owned tab trigger using current Surface foundation primitives.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="renderNavigatorTabItemContent src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Select the horizontal or vertical content renderer for one Navigator tab item."
+            >
+              <h3>renderNavigatorTabItemContent</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:78:1</code>
+              </p>
+              <p>Select the horizontal or vertical content renderer for one Navigator tab item.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderHorizontalNavigatorTabItem src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Render a bottom/top Navigator tab item."
+            >
+              <h3>renderHorizontalNavigatorTabItem</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:91:1</code>
+              </p>
+              <p>Render a bottom/top Navigator tab item.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderVerticalNavigatorTabItem src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Render a rail/sidebar Navigator tab item."
+            >
+              <h3>renderVerticalNavigatorTabItem</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:121:1</code>
+              </p>
+              <p>Render a rail/sidebar Navigator tab item.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveNavigatorTabItemColors src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Resolve Navigator tab colors from the current Surface theme interaction tokens."
+            >
+              <h3>resolveNavigatorTabItemColors</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:155:1</code>
+              </p>
+              <p>Resolve Navigator tab colors from the current Surface theme interaction tokens.</p>
             </article>
           </section>
         </section>

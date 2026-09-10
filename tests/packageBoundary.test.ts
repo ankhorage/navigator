@@ -89,11 +89,7 @@ describe('@ankhorage/navigator package boundary', () => {
 
     const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));
     const contents = (await Promise.all(files.map((file) => readFile(file, 'utf8')))).join('\n');
-    for (const removedSymbol of [
-      'NavigationItemIcon',
-      'NavigationItemSpec',
-      'TabBarItem',
-    ]) {
+    for (const removedSymbol of ['NavigationItemIcon', 'NavigationItemSpec', 'TabBarItem']) {
       expect(contents).not.toContain(removedSymbol);
     }
   });

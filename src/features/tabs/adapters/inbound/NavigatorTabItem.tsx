@@ -65,11 +65,10 @@ interface NavigatorTabItemRenderState {
   pressed: boolean;
 }
 
-interface NavigatorTabItemContentInput
-  extends Omit<
-    NavigatorTabItemProps,
-    'onPress' | 'orientation' | 'testID'
-  > {
+interface NavigatorTabItemContentInput extends Omit<
+  NavigatorTabItemProps,
+  'onPress' | 'orientation' | 'testID'
+> {
   horizontal: boolean;
   state: NavigatorTabItemRenderState;
   theme: SurfaceTheme;
@@ -94,7 +93,12 @@ function renderHorizontalNavigatorTabItem(
   colors: NavigatorTabItemColors,
 ) {
   return (
-    <Box bg={colors.backgroundColor} px="m" py={compact ? 's' : 'm'} style={styles.horizontalContent}>
+    <Box
+      bg={colors.backgroundColor}
+      px="m"
+      py={compact ? 's' : 'm'}
+      style={styles.horizontalContent}
+    >
       {icon ? (
         <Box mb="xs">
           <Icon {...icon} color={colors.contentColor} size={compact ? 's' : 'm'} />
