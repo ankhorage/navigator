@@ -558,6 +558,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx"
+              >
+                src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
               >
                 src/features/tabs/adapters/inbound/NavigatorTabItem.tsx
@@ -892,7 +902,7 @@
             <div class="summary">
               <div><strong>30</strong><span class="muted">public exports</span></div>
               <div><strong>1</strong><span class="muted">components</span></div>
-              <div><strong>106</strong><span class="muted">modules</span></div>
+              <div><strong>107</strong><span class="muted">modules</span></div>
               <div><strong>5</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -1376,15 +1386,25 @@
             </article>
             <article
               class="item"
-              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx src/features/tabs/adapters/inbound/NavigatorTabItem.tsx HeadlessTabsLayout"
+              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx src/features/tabs/adapters/inbound/NavigatorTabItem.tsx HeadlessTabsLayout"
             >
               <h3>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx</code>,
                 <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx</code>
               </p>
               <p><strong>Exports:</strong> <code>HeadlessTabsLayout</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx HeadlessTabsViewport"
+            >
+              <h3>src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>HeadlessTabsViewport</code></p>
             </article>
             <article
               class="item"
@@ -2321,7 +2341,7 @@
                 <h4>HeadlessTabsLayout</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1</code>
+                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1</code>
                 </p>
                 <p>
                   Render one stable headless Expo Router tab topology with Navigator-owned
@@ -3435,7 +3455,7 @@
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Navigator-owned
@@ -3775,7 +3795,12 @@
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
                 module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts
@@ -4313,7 +4338,10 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_validateStackRouteOptions_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; module_src_types_nativeIcons_ts
@@ -4616,6 +4644,7 @@ graph TD
                 module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -4834,6 +4863,8 @@ graph TD
                 module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt;
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
                 module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt;
@@ -5067,6 +5098,7 @@ graph LR
   module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -5228,6 +5260,7 @@ graph LR
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfig_ts
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts --&gt; module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts --&gt; module_src_types_nativeIcons_ts
@@ -5398,6 +5431,7 @@ graph LR
                 module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -5597,6 +5631,7 @@ graph LR
   module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
+  module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts&quot;]
@@ -7618,7 +7653,7 @@ sequenceDiagram
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Navigator-owned
@@ -7631,7 +7666,7 @@ sequenceDiagram
             >
               <h3>createTabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:64:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:65:1</code>
               </p>
               <p>
                 Construct the current Navigator presentation without changing the headless Expo
@@ -7644,7 +7679,7 @@ sequenceDiagram
             >
               <h3>HeadlessTabsBody</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:69:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:70:1</code>
               </p>
               <p>Place Navigator-owned navigation chrome around the bounded tab content slot.</p>
             </article>
@@ -7654,7 +7689,7 @@ sequenceDiagram
             >
               <h3>useHydrationSafeSize</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:138:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:137:1</code>
               </p>
               <p>Resolve a hydration-safe semantic size from the Surface breakpoint owner.</p>
             </article>
@@ -7664,7 +7699,7 @@ sequenceDiagram
             >
               <h3>subscribeToHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:151:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:150:1</code>
               </p>
               <p>
                 Provide the stable no-op subscription required for the hydration snapshot boundary.
@@ -7676,7 +7711,7 @@ sequenceDiagram
             >
               <h3>getClientHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:156:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:155:1</code>
               </p>
               <p>Report that client rendering can consume the live responsive breakpoint.</p>
             </article>
@@ -7686,7 +7721,7 @@ sequenceDiagram
             >
               <h3>getServerHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:161:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:160:1</code>
               </p>
               <p>Keep server output deterministic at the compact presentation.</p>
             </article>
@@ -7696,7 +7731,7 @@ sequenceDiagram
             >
               <h3>selectPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:166:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:165:1</code>
               </p>
               <p>Select one fixed presentation without altering the Router-owned topology.</p>
             </article>
@@ -7706,7 +7741,7 @@ sequenceDiagram
             >
               <h3>TabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:181:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:180:1</code>
               </p>
               <p>Select built-in or registered custom chrome for the currently visible routes.</p>
             </article>
@@ -7716,7 +7751,7 @@ sequenceDiagram
             >
               <h3>renderItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:194:9</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:193:9</code>
               </p>
               <p>
                 Bind one visible route to the shared Navigator trigger for registered custom chrome.
@@ -7728,7 +7763,7 @@ sequenceDiagram
             >
               <h3>SurfaceTabTrigger</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:218:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:217:1</code>
               </p>
               <p>
                 Render one Navigator-owned navigation control bound to Expo Router&#39;s headless
@@ -7741,7 +7776,7 @@ sequenceDiagram
             >
               <h3>resolveIcon</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:245:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:244:1</code>
               </p>
               <p>Convert portable route icon metadata to the current Surface icon contract.</p>
             </article>
@@ -7751,9 +7786,32 @@ sequenceDiagram
             >
               <h3>BuiltInPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:271:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:270:1</code>
               </p>
               <p>Render Navigator-owned bottom, top, rail, or sidebar tab chrome.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-tabs-adapters-inbound-headlesstabsviewport-tsx"
+          class="view"
+          data-view="src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx</h2>
+            <article
+              class="item"
+              data-search="HeadlessTabsViewport src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx Bound the Expo Router tab slot so route-owned scrolling receives the available viewport."
+            >
+              <h3>HeadlessTabsViewport</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx:5:1</code>
+              </p>
+              <p>
+                Bound the Expo Router tab slot so route-owned scrolling receives the available
+                viewport.
+              </p>
             </article>
           </section>
         </section>

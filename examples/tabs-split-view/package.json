@@ -10,7 +10,7 @@
     "export:web": "expo export --platform web --output-dir dist/web"
   },
   "dependencies": {
-    "@ankhorage/navigator": "3.2.3",
+    "@ankhorage/navigator": "3.2.4",
     "expo": "^57.0.20",
     "expo-router": "57.0.18",
     "react": "19.2.3",

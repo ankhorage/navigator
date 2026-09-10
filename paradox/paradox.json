@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.2.3",
+      "value": "v3.2.4",
       "color": "cb3837"
     },
     {
@@ -416,8 +416,17 @@
     {
       "path": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "isEntrypoint": false,
-      "dependencies": ["src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"],
+      "dependencies": [
+        "src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx",
+        "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+      ],
       "exports": ["HeadlessTabsLayout"]
+    },
+    {
+      "path": "src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["HeadlessTabsViewport"]
     },
     {
       "path": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
@@ -1178,7 +1187,7 @@
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 16,
+        "line": 17,
         "column": 1
       },
       "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -1974,7 +1983,7 @@
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 16,
+        "line": 17,
         "column": 1
       },
       "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -3008,7 +3017,7 @@
       "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 16,
+        "line": 17,
         "column": 1
       }
     },
@@ -3017,7 +3026,7 @@
       "description": "Construct the current Navigator presentation without changing the headless Expo Router topology.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 64,
+        "line": 65,
         "column": 1
       }
     },
@@ -3026,7 +3035,7 @@
       "description": "Place Navigator-owned navigation chrome around the bounded tab content slot.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 69,
+        "line": 70,
         "column": 1
       }
     },
@@ -3035,7 +3044,7 @@
       "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 138,
+        "line": 137,
         "column": 1
       }
     },
@@ -3044,7 +3053,7 @@
       "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 151,
+        "line": 150,
         "column": 1
       }
     },
@@ -3053,7 +3062,7 @@
       "description": "Report that client rendering can consume the live responsive breakpoint.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 156,
+        "line": 155,
         "column": 1
       }
     },
@@ -3062,7 +3071,7 @@
       "description": "Keep server output deterministic at the compact presentation.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 161,
+        "line": 160,
         "column": 1
       }
     },
@@ -3071,7 +3080,7 @@
       "description": "Select one fixed presentation without altering the Router-owned topology.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 166,
+        "line": 165,
         "column": 1
       }
     },
@@ -3080,7 +3089,7 @@
       "description": "Select built-in or registered custom chrome for the currently visible routes.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 181,
+        "line": 180,
         "column": 1
       }
     },
@@ -3089,7 +3098,7 @@
       "description": "Bind one visible route to the shared Navigator trigger for registered custom chrome.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 194,
+        "line": 193,
         "column": 9
       }
     },
@@ -3098,7 +3107,7 @@
       "description": "Render one Navigator-owned navigation control bound to Expo Router's headless tab trigger.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 218,
+        "line": 217,
         "column": 1
       }
     },
@@ -3107,7 +3116,7 @@
       "description": "Convert portable route icon metadata to the current Surface icon contract.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 245,
+        "line": 244,
         "column": 1
       }
     },
@@ -3116,7 +3125,16 @@
       "description": "Render Navigator-owned bottom, top, rail, or sidebar tab chrome.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 271,
+        "line": 270,
+        "column": 1
+      }
+    },
+    {
+      "name": "HeadlessTabsViewport",
+      "description": "Bound the Expo Router tab slot so route-owned scrolling receives the available viewport.",
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx",
+        "line": 5,
         "column": 1
       }
     },
@@ -5655,6 +5673,11 @@
         "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
         "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
         "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+        "toPath": "src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx",
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",

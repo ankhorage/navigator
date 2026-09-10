@@ -95,7 +95,7 @@ Return the standalone composition catalog with target truth derived from Navigat
 
 Kind: `function`
 Module: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx`
-Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1`
+Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1`
 
 Render one stable headless Expo Router tab topology with Navigator-owned presentations.
 
