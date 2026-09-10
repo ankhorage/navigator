@@ -2,9 +2,9 @@
 
 ## HeadlessTabsLayout
 
-Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1`
+Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:16:1`
 
-Render one stable headless Expo Router tab topology with Surface-owned presentations.
+Render one stable headless Expo Router tab topology with Navigator-owned presentations.
 
 Export paths: `src/features/tabs/tabs.ts`
 
