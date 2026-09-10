@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.2.4
+
+### Patch Changes
+
+- 0631b14: Bound headless tab slots to the available Navigator viewport so route-owned scroll views remain scrollable.
+
 ## 3.2.3
 
 ### Patch Changes
