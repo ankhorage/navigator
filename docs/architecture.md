@@ -18,6 +18,13 @@ imports. Application modules resolve plain configuration into adapter descriptio
 the described runtime modules. Inbound adapters bind the runtime UI to Expo Router and Surface.
 Outbound adapters translate plans into generated Expo Router source.
 
+The headless Tabs inbound adapter owns the built-in navigation chrome. At the Surface `md`
+breakpoint, `rail` uses an 88 px icon-first column. At `lg` and wider, `sidebar` uses a 280 px
+panel with token-backed internal spacing, full-width 48 px route targets, a semantic divider, and
+independent vertical overflow. Route screens continue to own their content width and scrolling;
+Navigator adds no arbitrary gap between the persistent navigation panel and the bounded tab
+viewport.
+
 `src/utils/` owns genuinely cross-feature topology traversal, shared route validation, generation
 orchestration, Router-version policy, verification, and package metadata. Portable public planning,
 generation, catalog, and extension contracts are owned by `@ankhorage/contracts/navigator`, not by

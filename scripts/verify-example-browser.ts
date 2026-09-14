@@ -42,6 +42,7 @@ async function verifyExampleAsync(id: string, title: string): Promise<void> {
     console.log(`\n> ${id}:web ${url}`);
     await page.goto(url, { waitUntil: 'networkidle' });
     await assertPageShellAsync(page, title);
+    await assertResponsiveNavigationGeometryAsync(page, id, origin);
     await assertInteractionAsync(page);
     await assertNavigationAsync(page, origin, entryRoute, errors);
     await assertAppearanceAsync(page, title);
@@ -49,6 +50,53 @@ async function verifyExampleAsync(id: string, title: string): Promise<void> {
   } finally {
     await page.close();
     server.stop(true);
+  }
+}
+
+/*** Verify deliberate widths, item targets, and the medium-to-expanded navigation transition. */
+async function assertResponsiveNavigationGeometryAsync(
+  page: import('@playwright/test').Page,
+  exampleId: string,
+  origin: string,
+): Promise<void> {
+  if (exampleId !== 'stack-tabs-stack') return;
+  await page.goto(new URL('/workspace', origin).href, { waitUntil: 'networkidle' });
+  const sidebar = page.getByTestId('navigator-tabs-sidebar');
+  await sidebar.waitFor();
+  await assertVerticalNavigationGeometryAsync(page, 'sidebar', 280, 48);
+  await page.setViewportSize({ height: 768, width: 800 });
+  const rail = page.getByTestId('navigator-tabs-rail');
+  await rail.waitFor();
+  await assertVerticalNavigationGeometryAsync(page, 'rail', 88, 64);
+  await page.setViewportSize({ height: 768, width: 1024 });
+  await sidebar.waitFor();
+  await page.goto(origin, { waitUntil: 'networkidle' });
+}
+
+/*** Assert one vertical presentation and its route controls occupy the intended geometry. */
+async function assertVerticalNavigationGeometryAsync(
+  page: import('@playwright/test').Page,
+  presentation: 'rail' | 'sidebar',
+  expectedWidth: number,
+  expectedItemHeight: number,
+): Promise<void> {
+  const navigation = page.getByTestId(`navigator-tabs-${presentation}`);
+  await navigation.waitFor();
+  const navigationBounds = await navigation.boundingBox();
+  if (navigationBounds === null || Math.round(navigationBounds.width) !== expectedWidth) {
+    throw new Error(
+      `${presentation} width was ${navigationBounds?.width ?? 'unavailable'} instead of ${expectedWidth}.`,
+    );
+  }
+  const firstItem = page.locator('[data-testid^="navigator-tabs-item-"]').first();
+  const itemBounds = await firstItem.boundingBox();
+  if (itemBounds === null || Math.round(itemBounds.height) < expectedItemHeight) {
+    throw new Error(
+      `${presentation} item height was ${itemBounds?.height ?? 'unavailable'} instead of at least ${expectedItemHeight}.`,
+    );
+  }
+  if (presentation === 'sidebar' && Math.round(itemBounds.width) !== 248) {
+    throw new Error(`Sidebar items must fill the 248 px padded navigation content width.`);
   }
 }
 

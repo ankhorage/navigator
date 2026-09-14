@@ -548,10 +548,20 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"
+              >
+                src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
               >
                 src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx
-                <small>13 functions</small>
+                <small>11 functions</small>
               </button>
             </li>
             <li>
@@ -571,7 +581,17 @@
                 data-target="src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
               >
                 src/features/tabs/adapters/inbound/NavigatorTabItem.tsx
-                <small>5 functions</small>
+                <small>6 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+              >
+                src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx
+                <small>2 functions</small>
               </button>
             </li>
             <li>
@@ -902,7 +922,7 @@
             <div class="summary">
               <div><strong>30</strong><span class="muted">public exports</span></div>
               <div><strong>1</strong><span class="muted">components</span></div>
-              <div><strong>107</strong><span class="muted">modules</span></div>
+              <div><strong>110</strong><span class="muted">modules</span></div>
               <div><strong>5</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -1386,14 +1406,29 @@
             </article>
             <article
               class="item"
-              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx src/features/tabs/adapters/inbound/NavigatorTabItem.tsx HeadlessTabsLayout"
+              data-search="src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx src/types/headlessTabs.ts BuiltInTabsPresentation"
+            >
+              <h3>src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx</code>,
+                <code>src/types/headlessTabs.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>BuiltInTabsPresentation</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx src/types/headlessTabs.ts HeadlessTabsLayout"
             >
               <h3>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong>
+                <code>src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx</code>,
                 <code>src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx</code>,
-                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx</code>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx</code>,
+                <code>src/types/headlessTabs.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>HeadlessTabsLayout</code></p>
             </article>
@@ -1459,6 +1494,19 @@
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p><strong>Exports:</strong> <code>NavigatorTabItem</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx src/features/tabs/adapters/inbound/NavigatorTabItem.tsx src/types/headlessTabs.ts NavigatorTabTrigger"
+            >
+              <h3>src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx</code>,
+                <code>src/types/headlessTabs.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>NavigatorTabTrigger</code></p>
             </article>
             <article
               class="item"
@@ -1576,6 +1624,18 @@
                 <code>resolveTabsNavigatorPlan</code>, <code>validateNavigator</code>,
                 <code>validateNavigatorBindings</code>, <code>validateNavigatorManifest</code>,
                 <code>verifyNavigator</code>, <code>verifyNavigatorExamplesAsync</code>
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/types/headlessTabs.ts HeadlessTabsIconSourceResolver HeadlessTabsRoute"
+            >
+              <h3>src/types/headlessTabs.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>HeadlessTabsIconSourceResolver</code>,
+                <code>HeadlessTabsRoute</code>
               </p>
             </article>
             <article class="item" data-search="src/types/nativeIcons.ts NativeVectorIconFamily">
@@ -2341,7 +2401,7 @@
                 <h4>HeadlessTabsLayout</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1</code>
+                  <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
                 </p>
                 <p>
                   Render one stable headless Expo Router tab topology with Navigator-owned
@@ -3455,7 +3515,7 @@
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Navigator-owned
@@ -3791,13 +3851,24 @@
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_stack_domain_validateStackRouteOptions_ts
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx[&quot;src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt;
+                module_src_types_headlessTabs_ts
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
                 module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
-                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_types_headlessTabs_ts
                 module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
@@ -3829,6 +3900,13 @@
                 module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx&quot;]
+                package__ankhorage_navigator -.-&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt;
+                module_src_types_headlessTabs_ts
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
                 package__ankhorage_navigator -.-&gt;
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
@@ -3863,6 +3941,8 @@
                 module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
                 module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
                 module_src_navigator_ts[&quot;src/navigator.ts&quot;]
+                module_src_types_headlessTabs_ts[&quot;src/types/headlessTabs.ts&quot;]
+                package__ankhorage_navigator -.-&gt; module_src_types_headlessTabs_ts
                 module_src_types_nativeIcons_ts[&quot;src/types/nativeIcons.ts&quot;]
                 package__ankhorage_navigator -.-&gt; module_src_types_nativeIcons_ts
                 module_src_types_navigatorCli_ts[&quot;src/types/navigatorCli.ts&quot;]
@@ -4336,10 +4416,16 @@ graph TD
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_stack_domain_validateStackRouteOptions_ts
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx[&quot;src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt; module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
-  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -4359,6 +4445,10 @@ graph TD
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt; module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
   module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
@@ -4381,6 +4471,8 @@ graph TD
   module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
   module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
   module_src_navigator_ts[&quot;src/navigator.ts&quot;]
+  module_src_types_headlessTabs_ts[&quot;src/types/headlessTabs.ts&quot;]
+  package__ankhorage_navigator -.-&gt; module_src_types_headlessTabs_ts
   module_src_types_nativeIcons_ts[&quot;src/types/nativeIcons.ts&quot;]
   package__ankhorage_navigator -.-&gt; module_src_types_nativeIcons_ts
   module_src_types_navigatorCli_ts[&quot;src/types/navigatorCli.ts&quot;]
@@ -4643,6 +4735,7 @@ graph TD
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
                 module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx[&quot;src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -4651,6 +4744,7 @@ graph TD
                 module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx&quot;]
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
                 module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -4661,6 +4755,7 @@ graph TD
                 module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
                 module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
                 module_src_navigator_ts[&quot;src/navigator.ts&quot;]
+                module_src_types_headlessTabs_ts[&quot;src/types/headlessTabs.ts&quot;]
                 module_src_types_nativeIcons_ts[&quot;src/types/nativeIcons.ts&quot;]
                 module_src_types_navigatorCli_ts[&quot;src/types/navigatorCli.ts&quot;]
                 module_src_types_navigatorExamples_ts[&quot;src/types/navigatorExamples.ts&quot;]
@@ -4863,10 +4958,18 @@ graph TD
                 module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
                 module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt;
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt;
+                module_src_types_headlessTabs_ts
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
                 module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
-                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+                module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt;
+                module_src_types_headlessTabs_ts
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt;
                 module_src_types_nativeIcons_ts
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts --&gt;
@@ -4877,6 +4980,10 @@ graph TD
                 module_src_types_nativeIcons_ts
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt;
                 module_src_types_nativeIcons_ts
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt;
+                module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt;
+                module_src_types_headlessTabs_ts
                 module_src_features_tabs_application_createTabsAdapter_ts --&gt;
                 module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt;
@@ -5097,6 +5204,7 @@ graph LR
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
   module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx[&quot;src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -5105,6 +5213,7 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx&quot;]
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
   module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -5115,6 +5224,7 @@ graph LR
   module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
   module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
   module_src_navigator_ts[&quot;src/navigator.ts&quot;]
+  module_src_types_headlessTabs_ts[&quot;src/types/headlessTabs.ts&quot;]
   module_src_types_nativeIcons_ts[&quot;src/types/nativeIcons.ts&quot;]
   module_src_types_navigatorCli_ts[&quot;src/types/navigatorCli.ts&quot;]
   module_src_types_navigatorExamples_ts[&quot;src/types/navigatorExamples.ts&quot;]
@@ -5260,13 +5370,19 @@ graph LR
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfig_ts
   module_src_features_stack_domain_addStackAdapterDiagnostics_ts --&gt; module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_stack_domain_resolveEffectiveStackConfig_ts --&gt; module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --&gt; module_src_types_headlessTabs_ts
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
-  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --&gt; module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesome6Family_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeFontAwesomeFamily_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts --&gt; module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --&gt; module_src_types_nativeIcons_ts
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt; module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --&gt; module_src_types_headlessTabs_ts
   module_src_features_tabs_application_createTabsAdapter_ts --&gt; module_src_utils_NAVIGATOR_ROUTER_POLICY_ts
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --&gt; module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
   module_src_features_tabs_application_resolveTabsPlan_ts --&gt; module_src_features_tabs_application_resolveTabsNavigatorPlan_ts
@@ -5430,6 +5546,7 @@ graph LR
                 module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
                 module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
                 module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
+                module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx[&quot;src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
                 module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -5438,6 +5555,7 @@ graph LR
                 module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
                 module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
+                module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx&quot;]
                 module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
                 module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
                 module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -5448,6 +5566,7 @@ graph LR
                 module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
                 module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
                 module_src_navigator_ts[&quot;src/navigator.ts&quot;]
+                module_src_types_headlessTabs_ts[&quot;src/types/headlessTabs.ts&quot;]
                 module_src_types_nativeIcons_ts[&quot;src/types/nativeIcons.ts&quot;]
                 module_src_types_navigatorCli_ts[&quot;src/types/navigatorCli.ts&quot;]
                 module_src_types_navigatorExamples_ts[&quot;src/types/navigatorExamples.ts&quot;]
@@ -5630,6 +5749,7 @@ graph LR
   module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts[&quot;src/features/stack/domain/resolveEffectiveStackConfigSource.ts&quot;]
   module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts[&quot;src/features/stack/domain/resolveNavigatorHeaderOwnership.ts&quot;]
   module_src_features_stack_domain_validateStackRouteOptions_ts[&quot;src/features/stack/domain/validateStackRouteOptions.ts&quot;]
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx[&quot;src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx&quot;]
   module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx[&quot;src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx&quot;]
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts[&quot;src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts&quot;]
@@ -5638,6 +5758,7 @@ graph LR
   module_src_features_tabs_adapters_inbound_NativeIoniconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts[&quot;src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts&quot;]
   module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabItem.tsx&quot;]
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx[&quot;src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx&quot;]
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts[&quot;src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts&quot;]
   module_src_features_tabs_application_createTabsAdapter_ts[&quot;src/features/tabs/application/createTabsAdapter.ts&quot;]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts[&quot;src/features/tabs/application/resolveTabsNavigatorPlan.ts&quot;]
@@ -5648,6 +5769,7 @@ graph LR
   module_src_features_tabs_nativeIcons_ts[&quot;src/features/tabs/nativeIcons.ts&quot;]
   module_src_features_tabs_tabs_ts[&quot;src/features/tabs/tabs.ts&quot;]
   module_src_navigator_ts[&quot;src/navigator.ts&quot;]
+  module_src_types_headlessTabs_ts[&quot;src/types/headlessTabs.ts&quot;]
   module_src_types_nativeIcons_ts[&quot;src/types/nativeIcons.ts&quot;]
   module_src_types_navigatorCli_ts[&quot;src/types/navigatorCli.ts&quot;]
   module_src_types_navigatorExamples_ts[&quot;src/types/navigatorExamples.ts&quot;]
@@ -5809,6 +5931,7 @@ sequenceDiagram
               <div class="mermaid">
                 sequenceDiagram participant participant_createTabsNavigation as createTabsNavigation
                 participant participant_HeadlessTabsLayout as HeadlessTabsLayout participant
+                participant_resolveHeadlessTabsLayout as resolveHeadlessTabsLayout participant
                 participant_selectPresentation as selectPresentation participant
                 participant_useBreakpoint as useBreakpoint participant
                 participant_useHydrationSafeSize as useHydrationSafeSize participant
@@ -5828,7 +5951,10 @@ sequenceDiagram
                 participant_HeadlessTabsLayout-&gt;&gt;participant_useSafeAreaInsets:
                 useSafeAreaInsets()
                 participant_useSafeAreaInsets--&gt;&gt;participant_HeadlessTabsLayout: return
-                participant_HeadlessTabsLayout-&gt;&gt;participant_createTabsNavigation:
+                participant_HeadlessTabsLayout-&gt;&gt;participant_resolveHeadlessTabsLayout:
+                resolveHeadlessTabsLayout()
+                participant_resolveHeadlessTabsLayout--&gt;&gt;participant_HeadlessTabsLayout:
+                return participant_HeadlessTabsLayout-&gt;&gt;participant_createTabsNavigation:
                 createTabsNavigation()
                 participant_createTabsNavigation--&gt;&gt;participant_HeadlessTabsLayout: return
               </div>
@@ -5838,6 +5964,7 @@ sequenceDiagram
 sequenceDiagram
   participant participant_createTabsNavigation as createTabsNavigation
   participant participant_HeadlessTabsLayout as HeadlessTabsLayout
+  participant participant_resolveHeadlessTabsLayout as resolveHeadlessTabsLayout
   participant participant_selectPresentation as selectPresentation
   participant participant_useBreakpoint as useBreakpoint
   participant participant_useHydrationSafeSize as useHydrationSafeSize
@@ -5853,6 +5980,8 @@ sequenceDiagram
   participant_selectPresentation--&gt;&gt;participant_HeadlessTabsLayout: return
   participant_HeadlessTabsLayout-&gt;&gt;participant_useSafeAreaInsets: useSafeAreaInsets()
   participant_useSafeAreaInsets--&gt;&gt;participant_HeadlessTabsLayout: return
+  participant_HeadlessTabsLayout-&gt;&gt;participant_resolveHeadlessTabsLayout: resolveHeadlessTabsLayout()
+  participant_resolveHeadlessTabsLayout--&gt;&gt;participant_HeadlessTabsLayout: return
   participant_HeadlessTabsLayout-&gt;&gt;participant_createTabsNavigation: createTabsNavigation()
   participant_createTabsNavigation--&gt;&gt;participant_HeadlessTabsLayout: return
 </pre>
@@ -7640,6 +7769,26 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-features-tabs-adapters-inbound-builtintabspresentation-tsx"
+          class="view"
+          data-view="src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx</h2>
+            <article
+              class="item"
+              data-search="BuiltInTabsPresentation src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx Render Navigator-owned bottom, top, rail, or sidebar tab chrome."
+            >
+              <h3>BuiltInTabsPresentation</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx:12:1</code>
+              </p>
+              <p>Render Navigator-owned bottom, top, rail, or sidebar tab chrome.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-features-tabs-adapters-inbound-headlesstabslayout-tsx"
           class="view"
           data-view="src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
@@ -7653,7 +7802,7 @@ sequenceDiagram
             >
               <h3>HeadlessTabsLayout</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:17:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1</code>
               </p>
               <p>
                 Render one stable headless Expo Router tab topology with Navigator-owned
@@ -7666,7 +7815,7 @@ sequenceDiagram
             >
               <h3>createTabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:65:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:59:1</code>
               </p>
               <p>
                 Construct the current Navigator presentation without changing the headless Expo
@@ -7679,9 +7828,19 @@ sequenceDiagram
             >
               <h3>HeadlessTabsBody</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:70:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:64:1</code>
               </p>
               <p>Place Navigator-owned navigation chrome around the bounded tab content slot.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveHeadlessTabsLayout src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Resolve shell geometry and safe areas for the current built-in presentation."
+            >
+              <h3>resolveHeadlessTabsLayout</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:120:1</code>
+              </p>
+              <p>Resolve shell geometry and safe areas for the current built-in presentation.</p>
             </article>
             <article
               class="item"
@@ -7689,7 +7848,7 @@ sequenceDiagram
             >
               <h3>useHydrationSafeSize</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:137:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:163:1</code>
               </p>
               <p>Resolve a hydration-safe semantic size from the Surface breakpoint owner.</p>
             </article>
@@ -7699,7 +7858,7 @@ sequenceDiagram
             >
               <h3>subscribeToHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:150:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:176:1</code>
               </p>
               <p>
                 Provide the stable no-op subscription required for the hydration snapshot boundary.
@@ -7711,7 +7870,7 @@ sequenceDiagram
             >
               <h3>getClientHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:155:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:181:1</code>
               </p>
               <p>Report that client rendering can consume the live responsive breakpoint.</p>
             </article>
@@ -7721,7 +7880,7 @@ sequenceDiagram
             >
               <h3>getServerHydration</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:160:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:186:1</code>
               </p>
               <p>Keep server output deterministic at the compact presentation.</p>
             </article>
@@ -7731,7 +7890,7 @@ sequenceDiagram
             >
               <h3>selectPresentation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:165:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:191:1</code>
               </p>
               <p>Select one fixed presentation without altering the Router-owned topology.</p>
             </article>
@@ -7741,7 +7900,7 @@ sequenceDiagram
             >
               <h3>TabsNavigation</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:180:1</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:206:1</code>
               </p>
               <p>Select built-in or registered custom chrome for the currently visible routes.</p>
             </article>
@@ -7751,44 +7910,11 @@ sequenceDiagram
             >
               <h3>renderItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:193:9</code>
+                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:219:9</code>
               </p>
               <p>
                 Bind one visible route to the shared Navigator trigger for registered custom chrome.
               </p>
-            </article>
-            <article
-              class="item"
-              data-search="SurfaceTabTrigger src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render one Navigator-owned navigation control bound to Expo Router&#39;s headless tab trigger."
-            >
-              <h3>SurfaceTabTrigger</h3>
-              <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:217:1</code>
-              </p>
-              <p>
-                Render one Navigator-owned navigation control bound to Expo Router&#39;s headless
-                tab trigger.
-              </p>
-            </article>
-            <article
-              class="item"
-              data-search="resolveIcon src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Convert portable route icon metadata to the current Surface icon contract."
-            >
-              <h3>resolveIcon</h3>
-              <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:244:1</code>
-              </p>
-              <p>Convert portable route icon metadata to the current Surface icon contract.</p>
-            </article>
-            <article
-              class="item"
-              data-search="BuiltInPresentation src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx Render Navigator-owned bottom, top, rail, or sidebar tab chrome."
-            >
-              <h3>BuiltInPresentation</h3>
-              <p class="muted">
-                <code>src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:270:1</code>
-              </p>
-              <p>Render Navigator-owned bottom, top, rail, or sidebar tab chrome.</p>
             </article>
           </section>
         </section>
@@ -7851,19 +7977,29 @@ sequenceDiagram
             >
               <h3>renderHorizontalNavigatorTabItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:91:1</code>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:92:1</code>
               </p>
               <p>Render a bottom/top Navigator tab item.</p>
             </article>
             <article
               class="item"
-              data-search="renderVerticalNavigatorTabItem src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Render a rail/sidebar Navigator tab item."
+              data-search="renderRailNavigatorTabItem src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Render a compact navigation-rail item with icon-first vertical rhythm."
             >
-              <h3>renderVerticalNavigatorTabItem</h3>
+              <h3>renderRailNavigatorTabItem</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:121:1</code>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:117:1</code>
               </p>
-              <p>Render a rail/sidebar Navigator tab item.</p>
+              <p>Render a compact navigation-rail item with icon-first vertical rhythm.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderSidebarNavigatorTabItem src/features/tabs/adapters/inbound/NavigatorTabItem.tsx Render a full-width navigation-sidebar item with comfortable horizontal rhythm."
+            >
+              <h3>renderSidebarNavigatorTabItem</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:148:1</code>
+              </p>
+              <p>Render a full-width navigation-sidebar item with comfortable horizontal rhythm.</p>
             </article>
             <article
               class="item"
@@ -7871,9 +8007,42 @@ sequenceDiagram
             >
               <h3>resolveNavigatorTabItemColors</h3>
               <p class="muted">
-                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:155:1</code>
+                <code>src/features/tabs/adapters/inbound/NavigatorTabItem.tsx:176:1</code>
               </p>
               <p>Resolve Navigator tab colors from the current Surface theme interaction tokens.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-tabs-adapters-inbound-navigatortabtrigger-tsx"
+          class="view"
+          data-view="src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx</h2>
+            <article
+              class="item"
+              data-search="NavigatorTabTrigger src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx Bind one visible route to an Expo Router headless tab trigger and Surface route item."
+            >
+              <h3>NavigatorTabTrigger</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx:12:1</code>
+              </p>
+              <p>
+                Bind one visible route to an Expo Router headless tab trigger and Surface route
+                item.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveIcon src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx Convert portable route icon metadata to the current Surface icon contract."
+            >
+              <h3>resolveIcon</h3>
+              <p class="muted">
+                <code>src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx:38:1</code>
+              </p>
+              <p>Convert portable route icon metadata to the current Surface icon contract.</p>
             </article>
           </section>
         </section>
