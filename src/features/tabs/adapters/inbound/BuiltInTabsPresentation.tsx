@@ -1,6 +1,6 @@
 import type { ResolvedTabsPresentation } from '@ankhorage/contracts/navigator';
-import { ScrollArea, Stack } from '@ankhorage/surface';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, View } from '@ankhorage/surface';
+import { StyleSheet } from 'react-native';
 
 import type {
   HeadlessTabsIconSourceResolver,
@@ -17,13 +17,13 @@ export function BuiltInTabsPresentation({
   const horizontal = presentation === 'bottom' || presentation === 'top';
   if (!horizontal) {
     return (
-      <ScrollArea
+      <ScrollView
         accessibilityRole="tablist"
         showsVerticalScrollIndicator={false}
         style={styles.verticalNavigation}
         testID={`navigator-tabs-${presentation}`}
       >
-        <Stack gap="s" px={presentation === 'rail' ? 's' : 'm'} py="l" width="100%">
+        <View gap="s" px={presentation === 'rail' ? 's' : 'm'} py="l" width="100%">
           {routes.map((route) => (
             <NavigatorTabTrigger
               key={route.name}
@@ -32,8 +32,8 @@ export function BuiltInTabsPresentation({
               route={route}
             />
           ))}
-        </Stack>
-      </ScrollArea>
+        </View>
+      </ScrollView>
     );
   }
   return (

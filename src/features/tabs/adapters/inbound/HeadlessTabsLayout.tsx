@@ -2,7 +2,7 @@ import type {
   NavigatorResponsiveSize,
   ResolvedTabsPresentation,
 } from '@ankhorage/contracts/navigator';
-import { Box, Divider, useBreakpoint } from '@ankhorage/surface';
+import { Divider, useBreakpoint, View } from '@ankhorage/surface';
 import type { Href } from 'expo-router';
 import { TabList, Tabs, TabTrigger } from 'expo-router/ui';
 import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react';
@@ -79,23 +79,23 @@ function HeadlessTabsBody({
   vertical: boolean;
 }) {
   return (
-    <Box bg="background" style={layoutStyle}>
+    <View bg="background" style={layoutStyle}>
       {navigationFirst ? (
-        <Box
+        <View
           bg={vertical ? 'surface' : 'background'}
           style={[navigationPanelStyle, navigationInsets]}
         >
           {navigation}
-        </Box>
+        </View>
       ) : null}
       {vertical ? <Divider orientation="vertical" /> : null}
       <HeadlessTabsViewport />
       {!navigationFirst ? (
-        <Box bg="background" style={bottomNavigationStyle}>
+        <View bg="background" style={bottomNavigationStyle}>
           {navigation}
-        </Box>
+        </View>
       ) : null}
-    </Box>
+    </View>
   );
 }
 

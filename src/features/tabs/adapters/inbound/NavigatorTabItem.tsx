@@ -1,11 +1,11 @@
 import {
-  Box,
-  ButtonBase,
   Icon,
   type IconSource,
+  Pressable,
   type SurfaceTheme,
   Text,
   useTheme,
+  View,
 } from '@ankhorage/surface';
 import type { ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
@@ -25,7 +25,7 @@ export function NavigatorTabItem({
   const rail = orientation === 'rail';
 
   return (
-    <ButtonBase
+    <Pressable
       accessibilityLabel={label}
       accessibilityRole="tab"
       accessibilityState={{ selected: active }}
@@ -45,7 +45,7 @@ export function NavigatorTabItem({
           theme,
         })
       }
-    </ButtonBase>
+    </Pressable>
   );
 }
 
@@ -94,11 +94,11 @@ function renderHorizontalNavigatorTabItem(
   colors: NavigatorTabItemColors,
 ) {
   return (
-    <Box bg={colors.backgroundColor} px="m" py="m" style={styles.horizontalContent}>
+    <View bg={colors.backgroundColor} px="m" py="m" style={styles.horizontalContent}>
       {icon ? (
-        <Box mb="xs">
+        <View mb="xs">
           <Icon {...icon} color={colors.contentColor} size="m" />
-        </Box>
+        </View>
       ) : null}
       <Text
         color={active ? 'primary' : undefined}
@@ -109,7 +109,7 @@ function renderHorizontalNavigatorTabItem(
       >
         {label}
       </Text>
-    </Box>
+    </View>
   );
 }
 
@@ -119,11 +119,11 @@ function renderRailNavigatorTabItem(
   colors: NavigatorTabItemColors,
 ) {
   return (
-    <Box bg={colors.backgroundColor} px="xs" py="s" radius="m" style={styles.railContent}>
+    <View bg={colors.backgroundColor} px="xs" py="s" radius="m" style={styles.railContent}>
       {icon ? (
-        <Box mb="xs">
+        <View mb="xs">
           <Icon {...icon} color={colors.contentColor} size="m" />
-        </Box>
+        </View>
       ) : null}
       <Text
         align="center"
@@ -136,11 +136,11 @@ function renderRailNavigatorTabItem(
         {label}
       </Text>
       {badge ? (
-        <Box position="absolute" right={theme.spacing.xs} top={theme.spacing.xs}>
+        <View position="absolute" right={theme.spacing.xs} top={theme.spacing.xs}>
           {badge}
-        </Box>
+        </View>
       ) : null}
-    </Box>
+    </View>
   );
 }
 
@@ -150,13 +150,13 @@ function renderSidebarNavigatorTabItem(
   colors: NavigatorTabItemColors,
 ) {
   return (
-    <Box bg={colors.backgroundColor} px="m" py="s" radius="m" style={styles.sidebarContent}>
+    <View bg={colors.backgroundColor} px="m" py="s" radius="m" style={styles.sidebarContent}>
       {icon ? (
-        <Box mr="s">
+        <View mr="s">
           <Icon {...icon} color={colors.contentColor} size="l" />
-        </Box>
+        </View>
       ) : null}
-      <Box flex={1}>
+      <View flex={1}>
         <Text
           color={active ? 'primary' : undefined}
           emphasis={active ? 'default' : 'muted'}
@@ -166,9 +166,9 @@ function renderSidebarNavigatorTabItem(
         >
           {label}
         </Text>
-      </Box>
-      {badge ? <Box ml="s">{badge}</Box> : null}
-    </Box>
+      </View>
+      {badge ? <View ml="s">{badge}</View> : null}
+    </View>
   );
 }
 
