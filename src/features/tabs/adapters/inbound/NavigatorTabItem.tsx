@@ -1,11 +1,11 @@
 import {
-  Pressable,
   Icon,
   type IconSource,
+  Pressable,
   type SurfaceTheme,
   Text,
-  View,
   useTheme,
+  View,
 } from '@ankhorage/surface';
 import type { ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
