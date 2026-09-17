@@ -81,11 +81,11 @@ describe('@ankhorage/navigator package boundary', () => {
     }
   });
 
-  test('uses Surface 4 without importing removed navigation chrome', async () => {
+  test('uses Surface 9 without importing removed navigation chrome', async () => {
     const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
       readonly peerDependencies?: Readonly<Record<string, string>>;
     };
-    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toMatch(/^\^4\./u);
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toMatch(/^\^9\./u);
 
     const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));
     const contents = (await Promise.all(files.map((file) => readFile(file, 'utf8')))).join('\n');
