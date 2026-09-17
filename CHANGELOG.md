@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.2.6
+
+### Patch Changes
+
+- c81ebce: Use the current Surface View primitive for headless tab layout so generated apps do not render an undefined layout component.
+
 ## 3.2.5
 
 ### Patch Changes
