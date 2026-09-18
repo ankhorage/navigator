@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.2.7
+
+### Patch Changes
+
+- 0fe2607: Update Ankhorage dependencies: `@ankhorage/paradox`, `@ankhorage/utility`.
+
 ## 3.2.6
 
 ### Patch Changes
