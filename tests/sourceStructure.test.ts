@@ -18,13 +18,14 @@ const entrypoints = new Set(
   ),
 );
 
-test('keeps the catalog and six topology capabilities as peers, without legacy directories', () => {
+test('keeps the catalog and navigation capabilities as peers, without legacy directories', () => {
   expect(readdirSync(sourceRoot).sort()).toEqual([
     'cli',
     'features',
     'navigator.ts',
     'types',
     'utils',
+    'workspace.ts',
   ]);
   expect(readdirSync(join(sourceRoot, 'features')).sort()).toEqual([
     'catalog',
@@ -34,6 +35,7 @@ test('keeps the catalog and six topology capabilities as peers, without legacy d
     'split-view',
     'stack',
     'tabs',
+    'workspace',
   ]);
   expect(readdirSync(join(sourceRoot, 'cli')).sort()).toEqual(['commands', 'createCliProvider.ts']);
   expect(readdirSync(join(sourceRoot, 'cli/commands')).sort()).toEqual([
@@ -109,7 +111,7 @@ test('never uses a public package facade as an internal shortcut', () => {
   }
 });
 
-test('extracts a topic type only when more than one production module imports it', () => {
+test('extracts topic types for shared consumers or explicit public API ownership', () => {
   for (const [file, source] of sources) {
     if (!relative(sourceRoot, file).startsWith('types/')) continue;
     for (const declaration of source.statements.filter(isExported)) {
@@ -129,7 +131,20 @@ test('extracts a topic type only when more than one production module imports it
           );
         }),
       );
-      expect(consumers.length, `${file}: ${name}`).toBeGreaterThan(1);
+      const publicType = [...entrypoints].some((entrypoint) => {
+        const source = sources.get(entrypoint);
+        return source?.statements.some(
+          (statement) =>
+            ts.isExportDeclaration(statement) &&
+            statement.moduleSpecifier &&
+            ts.isStringLiteral(statement.moduleSpecifier) &&
+            resolveModule(entrypoint, statement.moduleSpecifier.text) === file &&
+            statement.exportClause &&
+            ts.isNamedExports(statement.exportClause) &&
+            statement.exportClause.elements.some((element) => element.name.text === name),
+        );
+      });
+      expect(consumers.length, `${file}: ${name}`).toBeGreaterThanOrEqual(publicType ? 0 : 2);
     }
   }
 });
@@ -195,9 +210,14 @@ function assertInwardDependencies(file: string, domainOnly: boolean, visited: Se
   for (const statement of source?.statements.filter(ts.isImportDeclaration) ?? []) {
     const specifier = importSpecifier(statement);
     if (!specifier.startsWith('.')) {
-      expect(['@ankhorage/contracts/navigator', '@ankhorage/utility/validation'], file).toContain(
-        specifier,
-      );
+      expect(
+        [
+          '@ankhorage/contracts/navigator',
+          '@ankhorage/utility/string',
+          '@ankhorage/utility/validation',
+        ],
+        file,
+      ).toContain(specifier);
       if (specifier === '@ankhorage/contracts/navigator') {
         expect(statement.importClause?.isTypeOnly, file).toBe(true);
       }

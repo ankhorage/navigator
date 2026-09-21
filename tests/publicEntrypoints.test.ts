@@ -13,6 +13,7 @@ const publicSymbols = {
     'getNavigatorCatalog',
     'resolveTabsNavigatorPlan',
     'generateNavigator',
+    'generateWorkspaceLayout',
     'isNavigatorGenerationBindings',
     'resolveHeadlessTabsPresentation',
     'resolveNavigatorHeaderOwnership',
@@ -40,6 +41,12 @@ const publicSymbols = {
     'NativeFontAwesomeFamily',
     'NativeIoniconsFamily',
     'NativeMaterialDesignIconsFamily',
+  ],
+  './workspace': [
+    'WorkspaceNavigator',
+    'WorkspaceExitDestination',
+    'WorkspaceNavigationRoute',
+    'WorkspaceNavigatorProps',
   ],
 } as const;
 

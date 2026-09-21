@@ -15,6 +15,7 @@ import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
+import { resolveNavigatorRootDirectory } from './resolveNavigatorRootDirectory';
 import { validateNavigatorBindings } from './validateNavigatorBindings';
 
 /*** Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings. */
@@ -26,7 +27,7 @@ export function generateNavigator(
   const diagnostics = [...plan.diagnostics, ...validateNavigatorBindings(plan, bindings, options)];
   let rootDirectory: string;
   try {
-    rootDirectory = resolveRootDirectory(options.rootDirectory);
+    rootDirectory = resolveNavigatorRootDirectory(options.rootDirectory);
   } catch (error) {
     diagnostics.push({
       code: 'invalid-output-directory',
@@ -71,24 +72,6 @@ function createGenerationResult(
     plan,
     files,
   };
-}
-
-/*** Resolve a safe directory below the Expo Router app root without filesystem normalization. */
-function resolveRootDirectory(rootDirectory: string | undefined): string {
-  const directory = rootDirectory ?? APP_DIRECTORY;
-  const segments = directory.split('/');
-  if (
-    segments[0] !== 'src' ||
-    segments[1] !== 'app' ||
-    segments.length < 2 ||
-    segments.some((segment) => segment.length === 0 || segment === '.' || segment === '..') ||
-    segments.slice(2).some((segment) => !SAFE_ROUTE_NAME.test(segment))
-  ) {
-    throw new Error(
-      `Navigator root directory ${JSON.stringify(directory)} must be src/app or a safe descendant.`,
-    );
-  }
-  return directory;
 }
 
 const APP_DIRECTORY = 'src/app';

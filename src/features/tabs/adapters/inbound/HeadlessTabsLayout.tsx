@@ -2,10 +2,10 @@ import type {
   NavigatorResponsiveSize,
   ResolvedTabsPresentation,
 } from '@ankhorage/contracts/navigator';
-import { Divider, useBreakpoint, View } from '@ankhorage/surface';
+import { Divider, View } from '@ankhorage/surface';
 import type { Href } from 'expo-router';
 import { TabList, Tabs, TabTrigger } from 'expo-router/ui';
-import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react';
+import { type ComponentType, type ReactNode } from 'react';
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import { type EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -13,6 +13,7 @@ import type {
   HeadlessTabsIconSourceResolver,
   HeadlessTabsRoute,
 } from '../../../../types/headlessTabs';
+import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize';
 import { BuiltInTabsPresentation } from './BuiltInTabsPresentation';
 import { HeadlessTabsViewport } from './HeadlessTabsViewport';
 import { NavigatorTabTrigger } from './NavigatorTabTrigger';
@@ -157,34 +158,6 @@ interface ResolvedHeadlessTabsLayout {
   navigationInsets: ViewStyle | undefined;
   navigationPanelStyle: StyleProp<ViewStyle>;
   vertical: boolean;
-}
-
-/*** Resolve a hydration-safe semantic size from the Surface breakpoint owner. */
-function useHydrationSafeSize(): NavigatorResponsiveSize {
-  const breakpoint = useBreakpoint();
-  const hydrated = useSyncExternalStore(
-    subscribeToHydration,
-    getClientHydration,
-    getServerHydration,
-  );
-  if (!hydrated) return 'compact';
-  if (breakpoint === 'base' || breakpoint === 'sm') return 'compact';
-  return breakpoint === 'md' ? 'medium' : 'expanded';
-}
-
-/*** Provide the stable no-op subscription required for the hydration snapshot boundary. */
-function subscribeToHydration(): () => void {
-  return () => undefined;
-}
-
-/*** Report that client rendering can consume the live responsive breakpoint. */
-function getClientHydration(): boolean {
-  return true;
-}
-
-/*** Keep server output deterministic at the compact presentation. */
-function getServerHydration(): boolean {
-  return false;
 }
 
 /*** Select one fixed presentation without altering the Router-owned topology. */

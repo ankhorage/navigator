@@ -4,6 +4,7 @@ export { defineCustomNavigatorRegistry } from './features/custom/domain/defineCu
 export { resolveNavigatorHeaderOwnership } from './features/stack/domain/resolveNavigatorHeaderOwnership';
 export { resolveTabsNavigatorPlan } from './features/tabs/application/resolveTabsNavigatorPlan';
 export { resolveHeadlessTabsPresentation } from './features/tabs/domain/resolveHeadlessTabsPresentation';
+export { generateWorkspaceLayout } from './features/workspace/adapters/outbound/generateWorkspaceLayout';
 export type {
   NavigatorExampleDescriptor,
   NavigatorExampleGenerationResult,

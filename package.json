@@ -55,6 +55,10 @@
       "types": "./dist/features/tabs/nativeIcons.d.ts",
       "default": "./dist/features/tabs/nativeIcons.js"
     },
+    "./workspace": {
+      "types": "./dist/workspace.d.ts",
+      "default": "./dist/workspace.js"
+    },
     "./package.json": "./package.json"
   },
   "ankh": {
