@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.0
+
+### Minor Changes
+
+- 9593f62: Add a Navigator-owned responsive workspace layout and generator for independently owned route trees, including contextual destinations, active ancestors, and an external return destination.
+
 ## 3.2.7
 
 ### Patch Changes
