@@ -14,7 +14,7 @@ export function useExampleWorkspace(): WorkspaceNavigatorProps {
     title: 'Example',
     exit: { label: 'Back to app', href: '/products' },
     routes: [
-      { id: 'home', label: 'Home', href: '/admin' },
+      { id: 'home', label: 'Home', icon: { name: 'home-outline', provider: 'Ionicons' }, href: '/admin' },
       { id: 'items', label: 'Items', href: '/admin/items' },
       { id: 'detail', label: 'Detail', href: '/admin/items/42', parentId: 'items', visible: false },
       { id: 'properties', label: 'Properties', href: null },

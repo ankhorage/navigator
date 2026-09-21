@@ -1,4 +1,4 @@
-import { useBreakpoint, useTheme } from '@ankhorage/surface';
+import { Icon, useBreakpoint, useTheme } from '@ankhorage/surface';
 import { Slot, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -8,6 +8,7 @@ import type {
   ResolvedWorkspaceNavigationRoute,
   WorkspaceNavigatorProps,
 } from '../../../../types/workspaceNavigation';
+import { resolveNavigatorIcon } from '../../../../utils/resolveNavigatorIcon';
 import { resolveWorkspaceNavigation } from '../../domain/resolveWorkspaceNavigation';
 
 /*** Render Navigator-owned responsive workspace chrome around Expo Router page content. */
@@ -197,31 +198,40 @@ function WorkspaceNavigationList({
     >
       <Text style={[styles.navigationTitle, { color: theme.colors.textSecondary }]}>{title}</Text>
       {navigation.map((route) => (
-        <Pressable
-          accessibilityLabel={route.label}
-          accessibilityRole="link"
-          accessibilityState={{ disabled: route.href === null, selected: route.selected }}
-          disabled={route.href === null}
-          key={route.id}
-          onPress={() => onNavigate(route)}
-          style={[
-            styles.navigationItem,
-            { marginLeft: route.depth * 16 },
-            route.active ? { backgroundColor: theme.colors.background } : null,
-            route.href === null ? styles.disabled : null,
-          ]}
-        >
-          <Text
-            style={[
-              { color: route.active ? theme.colors.primary : theme.colors.text },
-              route.selected ? styles.selectedText : null,
-            ]}
-          >
-            {route.label}
-          </Text>
-        </Pressable>
+        <WorkspaceNavigationItem key={route.id} onNavigate={onNavigate} route={route} />
       ))}
     </ScrollView>
+  );
+}
+
+/*** Render one destination with its availability, icon, and active state. */
+function WorkspaceNavigationItem({
+  onNavigate,
+  route,
+}: {
+  onNavigate: (route: ResolvedWorkspaceNavigationRoute) => void;
+  route: ResolvedWorkspaceNavigationRoute;
+}) {
+  const { theme } = useTheme();
+  const icon = resolveNavigatorIcon(route.icon);
+  const color = route.active ? theme.colors.primary : theme.colors.text;
+  return (
+    <Pressable
+      accessibilityLabel={route.label}
+      accessibilityRole="link"
+      accessibilityState={{ disabled: route.href === null, selected: route.selected }}
+      disabled={route.href === null}
+      onPress={() => onNavigate(route)}
+      style={[
+        styles.navigationItem,
+        { marginLeft: route.depth * 16 },
+        route.active ? { backgroundColor: theme.colors.background } : null,
+        route.href === null ? styles.disabled : null,
+      ]}
+    >
+      {icon ? <Icon {...icon} color={color} size="m" /> : null}
+      <Text style={[{ color }, route.selected ? styles.selectedText : null]}>{route.label}</Text>
+    </Pressable>
   );
 }
 
@@ -245,8 +255,11 @@ const styles = StyleSheet.create({
   navigationContent: { gap: 4, padding: 12 },
   navigationTitle: { fontSize: 12, fontWeight: '700', padding: 8 },
   navigationItem: {
+    alignItems: 'center',
     borderRadius: 8,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 8,
+    justifyContent: 'flex-start',
     minHeight: 44,
     paddingHorizontal: 12,
   },

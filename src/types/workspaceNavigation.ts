@@ -1,7 +1,10 @@
+import type { RouteDefinition } from '@ankhorage/contracts/navigator';
+
 /** One consumer-owned destination projected into Navigator's workspace presentation. */
 export interface WorkspaceNavigationRoute {
   readonly id: string;
   readonly label: string;
+  readonly icon?: RouteDefinition['icon'];
   readonly href: string | null;
   readonly parentId?: string;
   readonly description?: string;
