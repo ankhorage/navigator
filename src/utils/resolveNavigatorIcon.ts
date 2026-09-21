@@ -9,10 +9,8 @@ export function resolveNavigatorIcon(
   resolveIconSource?: HeadlessTabsIconSourceResolver,
 ): IconSource | undefined {
   if (icon === undefined) return undefined;
-  if ('source' in icon) {
-    return resolveIconSource === undefined || icon.source === undefined
-      ? undefined
-      : { source: resolveIconSource(icon.source) };
+  if (icon.source !== undefined) {
+    return resolveIconSource === undefined ? undefined : { source: resolveIconSource(icon.source) };
   }
   const provider = icon.provider ?? 'Ionicons';
   if (!ICON_PROVIDERS.has(provider)) return undefined;
