@@ -1,10 +1,12 @@
 /***
  * Catalog → Validate → Plan → Generate → Verify
  *
- * Navigator consumes only an `AppNavigatorManifest`, narrow module bindings, and target context.
- * It never needs the complete `AppManifest`, themes, secrets, infrastructure, deployment data, or
- * Studio state. `@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic
- * target validation, capability metadata, planning, generation, and Navigator-specific evidence.
+ * Manifest navigation consumes only an `AppNavigatorManifest`, narrow module bindings, and target
+ * context. A separate workspace layout consumes runtime destinations from its owning application,
+ * without persisting that workspace into `AppManifest.navigator`. Neither capability needs the
+ * complete `AppManifest`, themes, secrets, infrastructure, deployment data, or Studio state.
+ * `@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic target
+ * validation, capability metadata, planning, generation, and Navigator-specific evidence.
  *
  * The taxonomy stays orthogonal:
  *

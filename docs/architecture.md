@@ -1,7 +1,7 @@
 # Navigator source ownership
 
 Navigator capabilities are equal siblings under `src/features/`: `catalog`, `slot`, `stack`,
-`tabs`, `drawer`, `split-view`, and `custom`. Only layers with an implementation are present.
+`tabs`, `drawer`, `split-view`, `custom`, and `workspace`. Only layers with an implementation are present.
 
 | Feature      | Owned responsibilities                                                                                                     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------- |
@@ -12,11 +12,19 @@ Navigator capabilities are equal siblings under `src/features/`: `catalog`, `slo
 | `drawer`     | Drawer adapter selection and screen-option translation                                                                     |
 | `split-view` | Placement and column constraints, platform fallback planning, generated column bindings                                    |
 | `custom`     | Immutable registration contract, portable config validation, registered adapter planning                                   |
+| `workspace`  | Responsive route-tree presentation, active ancestors, external exit, and an Expo Router layout generator                   |
 
 Domain modules contain portable policy and type-only manifest contracts, without framework or SDK
 imports. Application modules resolve plain configuration into adapter descriptions; they do not load
 the described runtime modules. Inbound adapters bind the runtime UI to Expo Router and Surface.
 Outbound adapters translate plans into generated Expo Router source.
+
+The workspace inbound adapter owns navigation chrome for a consumer-owned route model. It accepts
+resolved destinations and active route identity at runtime, so a development or administration
+workspace can navigate without writing its topology into `AppManifest.navigator`. The consumer owns
+page availability, paths, and access gating; Navigator owns responsive presentation, route changes,
+ancestor highlighting, compact menu state, and the generated `_layout.tsx`. The external exit
+destination is supplied by the consumer and performed through Expo Router by Navigator.
 
 The headless Tabs inbound adapter owns the built-in navigation chrome. At the Surface `md`
 breakpoint, `rail` uses an 88 px icon-first column. At `lg` and wider, `sidebar` uses a 280 px
@@ -56,6 +64,7 @@ the root `examples/` directory exists.
 | `@ankhorage/navigator/metadata`          | `src/utils/NAVIGATOR_PACKAGE_METADATA.ts` |
 | `@ankhorage/navigator/tabs`              | `src/features/tabs/tabs.ts`               |
 | `@ankhorage/navigator/tabs/native-icons` | `src/features/tabs/nativeIcons.ts`        |
+| `@ankhorage/navigator/workspace`         | `src/workspace.ts`                        |
 
 Every production implementation module has one named runtime export matching its filename, before
 private types and helpers. The deliberate public facades contain only explicit named runtime
@@ -69,7 +78,9 @@ implementations. `package.json` maps the unchanged public subpaths to the new bu
   live below their owning function without exports. Component consumers can derive props using
   `ComponentProps<typeof HeadlessTabsLayout>` instead of depending on private type names.
 - Reused repository-local types are grouped by topic in `src/types/`. The native icon family adapter
-  contract is reused by five adapters and belongs in `src/types/nativeIcons.ts`.
+  contract is reused by five adapters and belongs in `src/types/nativeIcons.ts`. Workspace runtime
+  inputs are exported from Navigator because they include a callback and cannot be serializable
+  Contracts values.
 - Portable public types are imported directly from `@ankhorage/contracts/navigator`. Their canonical
   declarations are grouped by planning, generation, and custom-extension topics in Contracts.
   Navigator does not retain compatibility re-exports of these types.
