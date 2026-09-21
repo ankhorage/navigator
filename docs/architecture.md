@@ -22,7 +22,7 @@ Outbound adapters translate plans into generated Expo Router source.
 The workspace inbound adapter owns navigation chrome for a consumer-owned route model. It accepts
 resolved destinations and active route identity at runtime, so a development or administration
 workspace can navigate without writing its topology into `AppManifest.navigator`. The consumer owns
-page availability, paths, icons, and access gating; Navigator owns responsive presentation, route changes,
+page availability, paths, named font icons, and access gating; Navigator owns responsive presentation, route changes,
 ancestor highlighting, compact menu state, and the generated `_layout.tsx`. The external exit
 destination is supplied by the consumer and performed through Expo Router by Navigator.
 

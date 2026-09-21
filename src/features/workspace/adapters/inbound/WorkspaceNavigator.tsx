@@ -1,4 +1,4 @@
-import { Icon, useBreakpoint, useTheme } from '@ankhorage/surface';
+import { Icon, useTheme } from '@ankhorage/surface';
 import { Slot, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -9,16 +9,17 @@ import type {
   WorkspaceNavigatorProps,
 } from '../../../../types/workspaceNavigation';
 import { resolveNavigatorIcon } from '../../../../utils/resolveNavigatorIcon';
+import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize';
 import { resolveWorkspaceNavigation } from '../../domain/resolveWorkspaceNavigation';
 
 /*** Render Navigator-owned responsive workspace chrome around Expo Router page content. */
 export function WorkspaceNavigator(props: WorkspaceNavigatorProps) {
   const { routes, activeRouteId, title, exit, onNavigate } = props;
   const router = useRouter();
-  const breakpoint = useBreakpoint();
+  const size = useHydrationSafeSize();
   const { theme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const compact = breakpoint === 'base' || breakpoint === 'sm';
+  const compact = size === 'compact';
   const navigation = resolveWorkspaceNavigation(routes, activeRouteId);
   const active = routes.find((route) => route.id === activeRouteId);
 
@@ -49,7 +50,7 @@ export function WorkspaceNavigator(props: WorkspaceNavigatorProps) {
       />
       <WorkspaceBody
         compact={compact}
-        medium={breakpoint === 'md'}
+        medium={size === 'medium'}
         navigation={navigation}
         onNavigate={navigate}
         title={title}

@@ -5,8 +5,16 @@ import ts from 'typescript';
 
 import { generateWorkspaceLayout } from '../src/navigator';
 
-const WORKSPACE_BINDING = `import type { WorkspaceNavigatorProps } from '@ankhorage/navigator/workspace';
+const WORKSPACE_BINDING = `import type { WorkspaceNavigationRoute, WorkspaceNavigatorProps } from '@ankhorage/navigator/workspace';
 import type { ReactNode } from 'react';
+
+export const unsupportedMediaIconRoute: WorkspaceNavigationRoute = {
+  id: 'media',
+  label: 'Media',
+  href: '/admin/media',
+  // @ts-expect-error Workspace icons are named font icons, not unresolved media references.
+  icon: { source: { kind: 'bundled', path: 'assets/icon.svg' } },
+};
 
 export function useExampleWorkspace(): WorkspaceNavigatorProps {
   return {

@@ -4,7 +4,8 @@ import type { RouteDefinition } from '@ankhorage/contracts/navigator';
 export interface WorkspaceNavigationRoute {
   readonly id: string;
   readonly label: string;
-  readonly icon?: RouteDefinition['icon'];
+  /** Font icon metadata; workspace destinations do not resolve media references. */
+  readonly icon?: Extract<NonNullable<RouteDefinition['icon']>, { name: string }>;
   readonly href: string | null;
   readonly parentId?: string;
   readonly description?: string;
