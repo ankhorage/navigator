@@ -18,7 +18,7 @@
     "react-native": "0.86.3"
   },
   "devDependencies": {
-    "@ankhorage/ankh": "^0.8.11",
+    "@ankhorage/ankh": "^0.10.4",
     "@types/react": "^19.2.18",
     "typescript": "~6.0.3"
   },

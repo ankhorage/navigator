@@ -22,5 +22,6 @@ export default createKnipConfig({
     'paradox.config.ts',
     'prettier.local.config.js',
   ],
-  ignoreDependencies: ['react-native-pager-view', 'react-native-tab-view'],
+  // Ankh is consumed as package metadata when generating standalone example devDependencies.
+  ignoreDependencies: ['@ankhorage/ankh', 'react-native-pager-view', 'react-native-tab-view'],
 });

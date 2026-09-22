@@ -6,11 +6,11 @@ The checked-in Router files were generated for `web` through the public Navigato
 
 ## Target matrix
 
-| Platform | Support   | Capabilities                                | Diagnostics |
-| -------- | --------- | ------------------------------------------- | ----------- |
-| android  | supported | tabs.javascript.bottom, tabs.javascript.top | none        |
-| ios      | supported | tabs.javascript.bottom, tabs.javascript.top | none        |
-| web      | supported | tabs.javascript.bottom, tabs.javascript.top | none        |
+| Platform | Support | Capabilities | Diagnostics |
+| --- | --- | --- | --- |
+| android | supported | tabs.javascript.bottom, tabs.javascript.top | none |
+| ios | supported | tabs.javascript.bottom, tabs.javascript.top | none |
+| web | supported | tabs.javascript.bottom, tabs.javascript.top | none |
 
 ## Install and run
 
