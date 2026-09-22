@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.9
+
+### Patch Changes
+
+- 91e627b: Update Ankhorage dependencies: `@ankhorage/surface`.
+
 ## 3.3.8
 
 ### Patch Changes
