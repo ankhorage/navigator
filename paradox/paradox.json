@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.3.1",
+      "value": "v3.3.2",
       "color": "cb3837"
     },
     {
@@ -2189,7 +2189,7 @@
         {
           "name": "icon",
           "kind": "property",
-          "type": "import(\"@ankhorage/contracts/dist/types\").NamedIconSpec | undefined",
+          "type": "import(\"@ankhorage/contracts\").NamedIconSpec | undefined",
           "required": false,
           "description": null
         },
