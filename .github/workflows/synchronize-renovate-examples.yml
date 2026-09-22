@@ -1,0 +1,55 @@
+name: Synchronize Renovate standalone examples
+
+on:
+  push:
+    branches:
+      - renovate/ankhorage-cli-and-devtools-toolchain
+
+permissions:
+  contents: read
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Create the scoped synchronization token
+        id: synchronization-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.ANKHORAGE_RENOVATE_SYNC_CLIENT_ID }}
+          private-key: ${{ secrets.ANKHORAGE_RENOVATE_SYNC_PRIVATE_KEY }}
+          owner: ankhorage
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+
+      - name: Checkout Renovate branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: renovate/ankhorage-cli-and-devtools-toolchain
+          token: ${{ steps.synchronization-token.outputs.token }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.2'
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Synchronize standalone examples
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bun run examples:synchronize
+
+      - name: Commit synchronized examples
+        run: |
+          rm .github/workflows/synchronize-renovate-examples.yml
+          git config user.name "ankhorage-renovate-sync[bot]"
+          git config user.email "ankhorage-renovate-sync[bot]@users.noreply.github.com"
+          git add examples .github/workflows/synchronize-renovate-examples.yml
+          git commit -m "chore(examples): regenerate local provider acceptance fixtures"
+          git push origin HEAD:renovate/ankhorage-cli-and-devtools-toolchain
