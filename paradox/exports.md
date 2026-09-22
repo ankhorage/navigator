@@ -39,7 +39,7 @@ Define an immutable, duplicate-free custom navigator registry for one compositio
 
 Kind: `function`
 Module: `src/utils/generateNavigator.ts`
-Source: `src/utils/generateNavigator.ts:21:1`
+Source: `src/utils/generateNavigator.ts:22:1`
 
 Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.
 
@@ -64,6 +64,20 @@ Generate one or every complete root examples application as a deterministic file
 - `(id?: NavigatorExampleId | undefined) => NavigatorExampleGenerationResult`
   - id: `NavigatorExampleId | undefined` (optional)
   - returns: `NavigatorExampleGenerationResult`
+
+## generateWorkspaceLayout
+
+Kind: `function`
+Module: `src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts`
+Source: `src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts:8:1`
+
+Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.
+
+### Signatures
+
+- `(input: { readonly rootDirectory: string; readonly useWorkspace: NavigatorScreenModule; readonly accessGate?: NavigatorScreenModule; }) => NavigatorGeneratedFile`
+  - input: `{ readonly rootDirectory: string; readonly useWorkspace: NavigatorScreenModule; readonly accessGate?: NavigatorScreenModule; }`
+  - returns: `NavigatorGeneratedFile`
 
 ## getNavigatorCatalog
 
@@ -95,7 +109,7 @@ Return the standalone composition catalog with target truth derived from Navigat
 
 Kind: `function`
 Module: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx`
-Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:21:1`
+Source: `src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx:22:1`
 
 Render one stable headless Expo Router tab topology with Navigator-owned presentations.
 
@@ -397,3 +411,64 @@ Verify checked-in example bytes and app-owned lockfiles against deterministic ge
   - id: `NavigatorExampleId | undefined` (optional)
   - targetDirectory: `string`
   - returns: `Promise<NavigatorExampleVerificationResult>`
+
+## WorkspaceExitDestination
+
+Kind: `type`
+Module: `src/types/workspaceNavigation.ts`
+Source: `src/types/workspaceNavigation.ts:16:1`
+
+### Members
+
+| Name  | Kind     | Type     | Required | Description |
+| ----- | -------- | -------- | -------- | ----------- |
+| href  | property | `string` | yes      |             |
+| label | property | `string` | yes      |             |
+
+## WorkspaceNavigationRoute
+
+Kind: `type`
+Module: `src/types/workspaceNavigation.ts`
+Source: `src/types/workspaceNavigation.ts:4:1`
+
+### Members
+
+| Name        | Kind     | Type                                                        | Required | Description |
+| ----------- | -------- | ----------------------------------------------------------- | -------- | ----------- |
+| description | property | `string \| undefined`                                       | no       |             |
+| href        | property | `string \| null`                                            | yes      |             |
+| icon        | property | `import("@ankhorage/contracts").NamedIconSpec \| undefined` | no       |             |
+| id          | property | `string`                                                    | yes      |             |
+| label       | property | `string`                                                    | yes      |             |
+| parentId    | property | `string \| undefined`                                       | no       |             |
+| visible     | property | `boolean \| undefined`                                      | no       |             |
+
+## WorkspaceNavigator
+
+Kind: `function`
+Module: `src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx`
+Source: `src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx:16:1`
+
+Render Navigator-owned responsive workspace chrome around Expo Router page content.
+
+### Signatures
+
+- `(props: WorkspaceNavigatorProps) => import("react").JSX.Element`
+  - props: `WorkspaceNavigatorProps`
+  - returns: `import("react").JSX.Element`
+
+## WorkspaceNavigatorProps
+
+Kind: `type`
+Module: `src/types/workspaceNavigation.ts`
+Source: `src/types/workspaceNavigation.ts:22:1`
+
+### Members
+
+| Name          | Kind     | Type                                       | Required | Description |
+| ------------- | -------- | ------------------------------------------ | -------- | ----------- |
+| activeRouteId | property | `string`                                   | yes      |             |
+| exit          | property | `WorkspaceExitDestination \| undefined`    | no       |             |
+| onNavigate    | property | `((routeId: string) => void) \| undefined` | no       |             |
+| routes        | property | `readonly WorkspaceNavigationRoute[]`      | yes      |             |
+| title         | property | `string`                                   | yes      |             |

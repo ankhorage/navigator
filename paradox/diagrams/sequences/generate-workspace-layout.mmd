@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant participant_assertStaticImportBinding as assertStaticImportBinding
+  participant participant_generateWorkspaceLayout as generateWorkspaceLayout
+  participant participant_quoteJavaScriptString as quoteJavaScriptString
+  participant participant_resolveNavigatorRootDirectory as resolveNavigatorRootDirectory
+  participant_generateWorkspaceLayout->>participant_resolveNavigatorRootDirectory: resolveNavigatorRootDirectory()
+  participant_resolveNavigatorRootDirectory-->>participant_generateWorkspaceLayout: return
+  participant_generateWorkspaceLayout->>participant_assertStaticImportBinding: assertStaticImportBinding()
+  participant_assertStaticImportBinding-->>participant_generateWorkspaceLayout: return
+  participant_generateWorkspaceLayout->>participant_quoteJavaScriptString: quoteJavaScriptString()
+  participant_quoteJavaScriptString-->>participant_generateWorkspaceLayout: return

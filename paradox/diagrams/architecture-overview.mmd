@@ -10,6 +10,8 @@ graph TD
   package__ankhorage_navigator --> entrypoint_src_navigator_ts
   entrypoint_src_utils_NAVIGATOR_PACKAGE_METADATA_ts["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"]
   package__ankhorage_navigator --> entrypoint_src_utils_NAVIGATOR_PACKAGE_METADATA_ts
+  entrypoint_src_workspace_ts["src/workspace.ts"]
+  package__ankhorage_navigator --> entrypoint_src_workspace_ts
   module_package_json["package.json"]
   package__ankhorage_navigator -.-> module_package_json
   module_src_cli_commands_catalog_ts["src/cli/commands/catalog.ts"]
@@ -189,6 +191,7 @@ graph TD
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> module_src_types_headlessTabs_ts
+  module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> module_src_utils_useHydrationSafeSize_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx["src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx"]
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_inbound_HeadlessTabsViewport_tsx
   module_src_features_tabs_adapters_inbound_NativeFontAwesome5Family_ts["src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts"]
@@ -212,6 +215,7 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
   module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_types_headlessTabs_ts
+  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_utils_resolveNavigatorIcon_ts
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts["src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"]
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
   module_src_features_tabs_application_createTabsAdapter_ts["src/features/tabs/application/createTabsAdapter.ts"]
@@ -233,6 +237,24 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_tabs_domain_resolveHeadlessTabsPresentation_ts
   module_src_features_tabs_nativeIcons_ts["src/features/tabs/nativeIcons.ts"]
   module_src_features_tabs_tabs_ts["src/features/tabs/tabs.ts"]
+  module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx["src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"]
+  package__ankhorage_navigator -.-> module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx
+  module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_features_workspace_domain_resolveWorkspaceNavigation_ts
+  module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_types_workspaceNavigation_ts
+  module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_utils_resolveNavigatorIcon_ts
+  module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_utils_useHydrationSafeSize_ts
+  module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_test_ts["src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts"]
+  package__ankhorage_navigator -.-> module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_test_ts
+  module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_test_ts --> module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_ts
+  module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_ts["src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"]
+  package__ankhorage_navigator -.-> module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_ts
+  module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_ts --> module_src_utils_resolveNavigatorRootDirectory_ts
+  module_src_features_workspace_domain_resolveWorkspaceNavigation_test_ts["src/features/workspace/domain/resolveWorkspaceNavigation.test.ts"]
+  package__ankhorage_navigator -.-> module_src_features_workspace_domain_resolveWorkspaceNavigation_test_ts
+  module_src_features_workspace_domain_resolveWorkspaceNavigation_test_ts --> module_src_features_workspace_domain_resolveWorkspaceNavigation_ts
+  module_src_features_workspace_domain_resolveWorkspaceNavigation_ts["src/features/workspace/domain/resolveWorkspaceNavigation.ts"]
+  package__ankhorage_navigator -.-> module_src_features_workspace_domain_resolveWorkspaceNavigation_ts
+  module_src_features_workspace_domain_resolveWorkspaceNavigation_ts --> module_src_types_workspaceNavigation_ts
   module_src_navigator_ts["src/navigator.ts"]
   module_src_types_headlessTabs_ts["src/types/headlessTabs.ts"]
   package__ankhorage_navigator -.-> module_src_types_headlessTabs_ts
@@ -244,6 +266,8 @@ graph TD
   package__ankhorage_navigator -.-> module_src_types_navigatorExamples_ts
   module_src_types_navigatorVerification_ts["src/types/navigatorVerification.ts"]
   package__ankhorage_navigator -.-> module_src_types_navigatorVerification_ts
+  module_src_types_workspaceNavigation_ts["src/types/workspaceNavigation.ts"]
+  package__ankhorage_navigator -.-> module_src_types_workspaceNavigation_ts
   module_src_utils_assertNavigatorCliOptions_ts["src/utils/assertNavigatorCliOptions.ts"]
   package__ankhorage_navigator -.-> module_src_utils_assertNavigatorCliOptions_ts
   module_src_utils_assertNavigatorCliOptions_ts --> module_src_types_navigatorCli_ts
@@ -282,6 +306,7 @@ graph TD
   module_src_utils_generateNavigator_ts --> module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_split_view_adapters_outbound_generateSplitViewLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
+  module_src_utils_generateNavigator_ts --> module_src_utils_resolveNavigatorRootDirectory_ts
   module_src_utils_generateNavigator_ts --> module_src_utils_validateNavigatorBindings_ts
   module_src_utils_generateNavigatorExamples_ts["src/utils/generateNavigatorExamples.ts"]
   package__ankhorage_navigator -.-> module_src_utils_generateNavigatorExamples_ts
@@ -330,8 +355,18 @@ graph TD
   module_src_utils_resolveNavigatorDependencies_ts["src/utils/resolveNavigatorDependencies.ts"]
   package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorDependencies_ts
   module_src_utils_resolveNavigatorDependencies_ts --> module_package_json
+  module_src_utils_resolveNavigatorIcon_test_ts["src/utils/resolveNavigatorIcon.test.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorIcon_test_ts
+  module_src_utils_resolveNavigatorIcon_test_ts --> module_src_utils_resolveNavigatorIcon_ts
+  module_src_utils_resolveNavigatorIcon_ts["src/utils/resolveNavigatorIcon.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorIcon_ts
+  module_src_utils_resolveNavigatorIcon_ts --> module_src_types_headlessTabs_ts
   module_src_utils_resolveNavigatorPreset_ts["src/utils/resolveNavigatorPreset.ts"]
   package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorPreset_ts
+  module_src_utils_resolveNavigatorRootDirectory_ts["src/utils/resolveNavigatorRootDirectory.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorRootDirectory_ts
+  module_src_utils_useHydrationSafeSize_ts["src/utils/useHydrationSafeSize.ts"]
+  package__ankhorage_navigator -.-> module_src_utils_useHydrationSafeSize_ts
   module_src_utils_validateNavigator_ts["src/utils/validateNavigator.ts"]
   package__ankhorage_navigator -.-> module_src_utils_validateNavigator_ts
   module_src_utils_validateNavigator_ts --> module_src_utils_createNavigatorPlan_ts
@@ -365,6 +400,7 @@ graph TD
   module_src_utils_verifyNavigatorExamplesAsync_ts --> module_src_utils_generateNavigatorExamples_ts
   module_src_utils_writeNavigatorGeneratedFilesAsync_ts["src/utils/writeNavigatorGeneratedFilesAsync.ts"]
   package__ankhorage_navigator -.-> module_src_utils_writeNavigatorGeneratedFilesAsync_ts
+  module_src_workspace_ts["src/workspace.ts"]
   module_tests_cli_test_ts["tests/cli.test.ts"]
   package__ankhorage_navigator -.-> module_tests_cli_test_ts
   module_tests_cli_test_ts --> module_package_json
@@ -416,6 +452,9 @@ graph TD
   module_tests_generatedTabsTypecheck_test_ts --> module_src_navigator_ts
   module_tests_generatedTabsTypecheck_test_ts --> module_tests_generateFiles_ts
   module_tests_generatedTabsTypecheck_test_ts --> module_tests_routerPolicy_ts
+  module_tests_generatedWorkspaceTypecheck_test_ts["tests/generatedWorkspaceTypecheck.test.ts"]
+  package__ankhorage_navigator -.-> module_tests_generatedWorkspaceTypecheck_test_ts
+  module_tests_generatedWorkspaceTypecheck_test_ts --> module_src_navigator_ts
   module_tests_generateFiles_ts["tests/generateFiles.ts"]
   package__ankhorage_navigator -.-> module_tests_generateFiles_ts
   module_tests_generateFiles_ts --> module_src_navigator_ts

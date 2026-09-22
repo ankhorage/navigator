@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.2.7",
+      "value": "v3.3.0",
       "color": "cb3837"
     },
     {
@@ -65,7 +65,7 @@
   "readmeUsage": [
     {
       "title": "Catalog → Validate → Plan → Generate → Verify",
-      "description": "Catalog → Validate → Plan → Generate → Verify\n\nNavigator consumes only an `AppNavigatorManifest`, narrow module bindings, and target context.\nIt never needs the complete `AppManifest`, themes, secrets, infrastructure, deployment data, or\nStudio state. `@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic\ntarget validation, capability metadata, planning, generation, and Navigator-specific evidence.\n\nThe taxonomy stays orthogonal:\n\n| Dimension | Examples |\n| --- | --- |\n| Topology | Slot, Stack, Tabs, Drawer, Split View, registered Custom |\n| Implementation | native, JavaScript, headless, experimental |\n| Presentation | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |\n| Preset | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack` |\n\nTabs are always Tabs; top and bottom are presentations. `drawer` is a complete root preset with\ndirect routes. Presets resolve to ordinary recursive manifest input. Navigator has no flow field:\nonboarding, survey, setup, checkout, and authentication are app-owned routes, nested navigators,\nguards, and state. For example, `stack-tabs-stack` can represent a neutral pre-main sequence\nfollowed by Tabs whose branches own Stacks without encoding application semantics.\n\nThe programmatic example below returns stable relative files and contents, dependency\nrequirements, diagnostics, support, the resolved plan, and capability IDs. It performs no writes.\nTo materialize the same contract into an Expo app, save the manifest and bindings as JSON and run:\n\n```sh\nankh navigator catalog\nankh navigator validate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nankh navigator plan --manifest navigator.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --json\nankh navigator generate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --target ./my-app\nankh navigator verify --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nbun --cwd ./my-app expo start\n```\n\nHuman-readable output is the default; `--json` emits the stable versioned envelope. Generation\nrequires an explicit target. Custom navigator registries are executable consumer modules passed\nwith `--custom-navigators`; screen, guard, icon-resolver, and custom Tabs-presentation bindings\nremain narrow JSON module/symbol records.\n\nNavigator also publishes a deterministic catalog of 22 standalone applications under the\nrepository-root `examples/<stable-example-id>/` directories:\n\n`drawer`, `drawer-split-view`, `drawer-stack`, `drawer-tabs`, `drawer-tabs-stack`,\n`drawer-tabs-top`, `registered-custom`, `slot`, `split-view-three-column`,\n`split-view-two-column`, `stack`, `stack-drawer`, `stack-drawer-stack`, `stack-drawer-tabs`,\n`stack-drawer-tabs-stack`, `stack-tabs`, `stack-tabs-stack`, `stack-tabs-top`, `tabs`,\n`tabs-bottom-tabs-top`, `tabs-split-view`, and `tabs-stack`.\n\nGenerate or compare one app with `--id`, or omit it for the complete catalog:\n\n```sh\nankh navigator examples generate --target .\nankh navigator examples verify --target .\nankh navigator examples generate --id drawer --target .\nankh navigator examples verify --id drawer --target . --json\n```\n\nEach example owns its manifest, narrow bindings, package metadata, and lockfile and uses only\nregistry dependencies. Repository acceptance extends deterministic CLI verification with fresh\nfrozen installs, strict typechecks, the Devtools-managed examples lint configuration, every\nsupported or testing-only Expo export target, and browser runtime checks:\n\n```sh\nbun run examples:acceptance\n```\n\nCapability metadata separates `support`, `stability`, and each verification layer. Experimental\nStack and iOS Split View are testing-only. A non-iOS Slot fallback is explicitly not Split View.\nThe checked-in catalog does not turn the existence of a plan into runtime evidence: CI executes\ninstall, export, and browser acceptance independently. Simulator and physical-device claims stay\nunverified until those native environments record evidence.\n\nStudio and future composers read `getNavigatorCatalog()` and `getNavigatorExampleCatalog()`,\nauthor `manifest.navigator`, and invoke this same lifecycle. They do not own a second capability\nor examples table.",
+      "description": "Catalog → Validate → Plan → Generate → Verify\n\nManifest navigation consumes only an `AppNavigatorManifest`, narrow module bindings, and target\ncontext. A separate workspace layout consumes runtime destinations from its owning application,\nwithout persisting that workspace into `AppManifest.navigator`. Neither capability needs the\ncomplete `AppManifest`, themes, secrets, infrastructure, deployment data, or Studio state.\n`@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic target\nvalidation, capability metadata, planning, generation, and Navigator-specific evidence.\n\nThe taxonomy stays orthogonal:\n\n| Dimension | Examples |\n| --- | --- |\n| Topology | Slot, Stack, Tabs, Drawer, Split View, registered Custom |\n| Implementation | native, JavaScript, headless, experimental |\n| Presentation | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |\n| Preset | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack` |\n\nTabs are always Tabs; top and bottom are presentations. `drawer` is a complete root preset with\ndirect routes. Presets resolve to ordinary recursive manifest input. Navigator has no flow field:\nonboarding, survey, setup, checkout, and authentication are app-owned routes, nested navigators,\nguards, and state. For example, `stack-tabs-stack` can represent a neutral pre-main sequence\nfollowed by Tabs whose branches own Stacks without encoding application semantics.\n\nThe programmatic example below returns stable relative files and contents, dependency\nrequirements, diagnostics, support, the resolved plan, and capability IDs. It performs no writes.\nTo materialize the same contract into an Expo app, save the manifest and bindings as JSON and run:\n\n```sh\nankh navigator catalog\nankh navigator validate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nankh navigator plan --manifest navigator.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --json\nankh navigator generate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --target ./my-app\nankh navigator verify --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nbun --cwd ./my-app expo start\n```\n\nHuman-readable output is the default; `--json` emits the stable versioned envelope. Generation\nrequires an explicit target. Custom navigator registries are executable consumer modules passed\nwith `--custom-navigators`; screen, guard, icon-resolver, and custom Tabs-presentation bindings\nremain narrow JSON module/symbol records.\n\nNavigator also publishes a deterministic catalog of 22 standalone applications under the\nrepository-root `examples/<stable-example-id>/` directories:\n\n`drawer`, `drawer-split-view`, `drawer-stack`, `drawer-tabs`, `drawer-tabs-stack`,\n`drawer-tabs-top`, `registered-custom`, `slot`, `split-view-three-column`,\n`split-view-two-column`, `stack`, `stack-drawer`, `stack-drawer-stack`, `stack-drawer-tabs`,\n`stack-drawer-tabs-stack`, `stack-tabs`, `stack-tabs-stack`, `stack-tabs-top`, `tabs`,\n`tabs-bottom-tabs-top`, `tabs-split-view`, and `tabs-stack`.\n\nGenerate or compare one app with `--id`, or omit it for the complete catalog:\n\n```sh\nankh navigator examples generate --target .\nankh navigator examples verify --target .\nankh navigator examples generate --id drawer --target .\nankh navigator examples verify --id drawer --target . --json\n```\n\nEach example owns its manifest, narrow bindings, package metadata, and lockfile and uses only\nregistry dependencies. Repository acceptance extends deterministic CLI verification with fresh\nfrozen installs, strict typechecks, the Devtools-managed examples lint configuration, every\nsupported or testing-only Expo export target, and browser runtime checks:\n\n```sh\nbun run examples:acceptance\n```\n\nCapability metadata separates `support`, `stability`, and each verification layer. Experimental\nStack and iOS Split View are testing-only. A non-iOS Slot fallback is explicitly not Split View.\nThe checked-in catalog does not turn the existence of a plan into runtime evidence: CI executes\ninstall, export, and browser acceptance independently. Simulator and physical-device claims stay\nunverified until those native environments record evidence.\n\nStudio and future composers read `getNavigatorCatalog()` and `getNavigatorExampleCatalog()`,\nauthor `manifest.navigator`, and invoke this same lifecycle. They do not own a second capability\nor examples table.",
       "language": "ts",
       "code": "import type {\n  AppNavigatorManifest,\n  NavigatorGenerationBindings,\n} from '@ankhorage/contracts/navigator';\nimport expoRouterPackage from 'expo-router/package.json';\n\nimport {\n  createNavigatorPlan,\n  generateNavigator,\n  getNavigatorCatalog,\n  getNavigatorExampleCatalog,\n  validateNavigator,\n  verifyNavigator,\n} from '@ankhorage/navigator';\n\nconst manifest = {\n  type: 'drawer',\n  initialRouteName: 'index',\n  routes: [\n    { name: 'index', label: 'Home', screenId: 'home' },\n    { name: 'settings', label: 'Settings', screenId: 'settings' },\n  ],\n} as const satisfies AppNavigatorManifest;\n\nconst bindings = {\n  screens: {\n    home: { module: '@/screens/HomeScreen', exportName: 'HomeScreen' },\n    settings: { module: '@/screens/SettingsScreen', exportName: 'SettingsScreen' },\n  },\n  guards: {},\n} as const satisfies NavigatorGenerationBindings;\n\nconst target = {\n  platform: 'web',\n  expoRouterVersion: expoRouterPackage.version,\n} as const;\n\nconst diagnostics = validateNavigator(manifest, bindings, target);\nconst plan = createNavigatorPlan(manifest, target);\nconst generation = generateNavigator(plan, bindings);\nconst verification = verifyNavigator(plan, bindings);\n\nconsole.log({\n  catalog: getNavigatorCatalog(),\n  examples: getNavigatorExampleCatalog(),\n  diagnostics,\n  plan,\n  generation,\n  verification,\n});",
       "sourcePath": "docs/readme-usage.ts"
@@ -79,7 +79,8 @@
     "src/features/tabs/nativeIcons.ts",
     "src/features/tabs/tabs.ts",
     "src/navigator.ts",
-    "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+    "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+    "src/workspace.ts"
   ],
   "modules": [
     {
@@ -429,7 +430,8 @@
         "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
         "src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx",
         "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
-        "src/types/headlessTabs.ts"
+        "src/types/headlessTabs.ts",
+        "src/utils/useHydrationSafeSize.ts"
       ],
       "exports": ["HeadlessTabsLayout"]
     },
@@ -480,7 +482,8 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "src/types/headlessTabs.ts"
+        "src/types/headlessTabs.ts",
+        "src/utils/resolveNavigatorIcon.ts"
       ],
       "exports": ["NavigatorTabTrigger"]
     },
@@ -548,6 +551,41 @@
       "exports": ["HeadlessTabsLayout"]
     },
     {
+      "path": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "src/types/workspaceNavigation.ts",
+        "src/utils/resolveNavigatorIcon.ts",
+        "src/utils/useHydrationSafeSize.ts"
+      ],
+      "exports": ["WorkspaceNavigator"]
+    },
+    {
+      "path": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/utils/resolveNavigatorRootDirectory.ts"],
+      "exports": ["generateWorkspaceLayout"]
+    },
+    {
+      "path": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/features/workspace/domain/resolveWorkspaceNavigation.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/workspaceNavigation.ts"],
+      "exports": ["resolveWorkspaceNavigation"]
+    },
+    {
       "path": "src/navigator.ts",
       "isEntrypoint": true,
       "dependencies": [],
@@ -556,6 +594,7 @@
         "defineCustomNavigatorRegistry",
         "generateNavigator",
         "generateNavigatorExamples",
+        "generateWorkspaceLayout",
         "getNavigatorCatalog",
         "getNavigatorExampleCatalog",
         "isNavigatorGenerationBindings",
@@ -612,6 +651,17 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["NavigatorVerificationResult"]
+    },
+    {
+      "path": "src/types/workspaceNavigation.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ResolvedWorkspaceNavigationRoute",
+        "WorkspaceExitDestination",
+        "WorkspaceNavigationRoute",
+        "WorkspaceNavigatorProps"
+      ]
     },
     {
       "path": "src/utils/assertNavigatorCliOptions.ts",
@@ -674,6 +724,7 @@
         "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
         "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "src/utils/resolveNavigatorRootDirectory.ts",
         "src/utils/validateNavigatorBindings.ts"
       ],
       "exports": ["generateNavigator"]
@@ -782,10 +833,34 @@
       "exports": ["resolveNavigatorDependencies"]
     },
     {
+      "path": "src/utils/resolveNavigatorIcon.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/utils/resolveNavigatorIcon.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/utils/resolveNavigatorIcon.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/headlessTabs.ts"],
+      "exports": ["resolveNavigatorIcon"]
+    },
+    {
       "path": "src/utils/resolveNavigatorPreset.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["resolveNavigatorPreset"]
+    },
+    {
+      "path": "src/utils/resolveNavigatorRootDirectory.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["resolveNavigatorRootDirectory"]
+    },
+    {
+      "path": "src/utils/useHydrationSafeSize.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["useHydrationSafeSize"]
     },
     {
       "path": "src/utils/validateNavigator.ts",
@@ -846,6 +921,17 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["writeNavigatorGeneratedFilesAsync"]
+    },
+    {
+      "path": "src/workspace.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "WorkspaceExitDestination",
+        "WorkspaceNavigationRoute",
+        "WorkspaceNavigator",
+        "WorkspaceNavigatorProps"
+      ]
     },
     {
       "path": "tests/cli.test.ts",
@@ -918,6 +1004,12 @@
       "path": "tests/generatedTabsTypecheck.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/navigator.ts", "tests/generateFiles.ts", "tests/routerPolicy.ts"],
+      "exports": []
+    },
+    {
+      "path": "tests/generatedWorkspaceTypecheck.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/navigator.ts"],
       "exports": []
     },
     {
@@ -1087,7 +1179,7 @@
       "modulePath": "src/utils/generateNavigator.ts",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 21,
+        "line": 22,
         "column": 1
       },
       "exportPaths": ["src/navigator.ts"],
@@ -1155,6 +1247,38 @@
       "structuredRows": []
     },
     {
+      "name": "generateWorkspaceLayout",
+      "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+        "line": 8,
+        "column": 1
+      },
+      "exportPaths": ["src/navigator.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(input: { readonly rootDirectory: string; readonly useWorkspace: NavigatorScreenModule; readonly accessGate?: NavigatorScreenModule; }) => NavigatorGeneratedFile",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "{ readonly rootDirectory: string; readonly useWorkspace: NavigatorScreenModule; readonly accessGate?: NavigatorScreenModule; }",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "NavigatorGeneratedFile",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "getNavigatorCatalog",
       "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
       "isReadme": false,
@@ -1213,7 +1337,7 @@
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 21,
+        "line": 22,
         "column": 1
       },
       "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -1998,6 +2122,193 @@
       ],
       "members": [],
       "structuredRows": []
+    },
+    {
+      "name": "WorkspaceExitDestination",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/workspaceNavigation.ts",
+      "sourceLocation": {
+        "filePath": "src/types/workspaceNavigation.ts",
+        "line": 16,
+        "column": 1
+      },
+      "exportPaths": ["src/workspace.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "href",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "label",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "WorkspaceNavigationRoute",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/workspaceNavigation.ts",
+      "sourceLocation": {
+        "filePath": "src/types/workspaceNavigation.ts",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": ["src/workspace.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "description",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "href",
+          "kind": "property",
+          "type": "string | null",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "icon",
+          "kind": "property",
+          "type": "import(\"@ankhorage/contracts\").NamedIconSpec | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "label",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "parentId",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "visible",
+          "kind": "property",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "WorkspaceNavigator",
+      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 16,
+        "column": 1
+      },
+      "exportPaths": ["src/workspace.ts"],
+      "relatedSymbols": ["WorkspaceNavigatorProps"],
+      "signatures": [
+        {
+          "label": "(props: WorkspaceNavigatorProps) => import(\"react\").JSX.Element",
+          "parameters": [
+            {
+              "name": "props",
+              "type": "WorkspaceNavigatorProps",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "import(\"react\").JSX.Element",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "WorkspaceNavigatorProps",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/workspaceNavigation.ts",
+      "sourceLocation": {
+        "filePath": "src/types/workspaceNavigation.ts",
+        "line": 22,
+        "column": 1
+      },
+      "exportPaths": ["src/workspace.ts"],
+      "relatedSymbols": ["WorkspaceExitDestination", "WorkspaceNavigationRoute"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "activeRouteId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "exit",
+          "kind": "property",
+          "type": "WorkspaceExitDestination | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "onNavigate",
+          "kind": "property",
+          "type": "((routeId: string) => void) | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "routes",
+          "kind": "property",
+          "type": "readonly WorkspaceNavigationRoute[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "title",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
     }
   ],
   "components": [
@@ -2009,7 +2320,7 @@
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 21,
+        "line": 22,
         "column": 1
       },
       "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -2041,6 +2352,51 @@
         {
           "name": "routes",
           "type": "readonly HeadlessTabsRoute[]",
+          "required": true,
+          "description": null
+        }
+      ]
+    },
+    {
+      "name": "WorkspaceNavigator",
+      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "isReadme": false,
+      "examples": [],
+      "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 16,
+        "column": 1
+      },
+      "exportPaths": ["src/workspace.ts"],
+      "props": [
+        {
+          "name": "activeRouteId",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "exit",
+          "type": "WorkspaceExitDestination | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "onNavigate",
+          "type": "(routeId: string) => void | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "routes",
+          "type": "readonly WorkspaceNavigationRoute[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "title",
+          "type": "string",
           "required": true,
           "description": null
         }
@@ -3052,7 +3408,7 @@
       "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 21,
+        "line": 22,
         "column": 1
       }
     },
@@ -3061,7 +3417,7 @@
       "description": "Construct the current Navigator presentation without changing the headless Expo Router topology.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 59,
+        "line": 60,
         "column": 1
       }
     },
@@ -3070,7 +3426,7 @@
       "description": "Place Navigator-owned navigation chrome around the bounded tab content slot.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 64,
+        "line": 65,
         "column": 1
       }
     },
@@ -3079,43 +3435,7 @@
       "description": "Resolve shell geometry and safe areas for the current built-in presentation.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 120,
-        "column": 1
-      }
-    },
-    {
-      "name": "useHydrationSafeSize",
-      "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 163,
-        "column": 1
-      }
-    },
-    {
-      "name": "subscribeToHydration",
-      "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 176,
-        "column": 1
-      }
-    },
-    {
-      "name": "getClientHydration",
-      "description": "Report that client rendering can consume the live responsive breakpoint.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 181,
-        "column": 1
-      }
-    },
-    {
-      "name": "getServerHydration",
-      "description": "Keep server output deterministic at the compact presentation.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 186,
+        "line": 121,
         "column": 1
       }
     },
@@ -3124,7 +3444,7 @@
       "description": "Select one fixed presentation without altering the Router-owned topology.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 191,
+        "line": 164,
         "column": 1
       }
     },
@@ -3133,7 +3453,7 @@
       "description": "Select built-in or registered custom chrome for the currently visible routes.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 206,
+        "line": 179,
         "column": 1
       }
     },
@@ -3142,7 +3462,7 @@
       "description": "Bind one visible route to the shared Navigator trigger for registered custom chrome.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 219,
+        "line": 192,
         "column": 9
       }
     },
@@ -3214,16 +3534,7 @@
       "description": "Bind one visible route to an Expo Router headless tab trigger and Surface route item.",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
-        "line": 12,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveIcon",
-      "description": "Convert portable route icon metadata to the current Surface icon contract.",
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
-        "line": 38,
+        "line": 11,
         "column": 1
       }
     },
@@ -3476,6 +3787,105 @@
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
         "line": 34,
+        "column": 1
+      }
+    },
+    {
+      "name": "WorkspaceNavigator",
+      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 16,
+        "column": 1
+      }
+    },
+    {
+      "name": "navigate",
+      "description": "Change one workspace destination through Expo Router and dismiss compact navigation.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 27,
+        "column": 9
+      }
+    },
+    {
+      "name": "leave",
+      "description": "Leave the workspace through the consumer-provided external destination.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 35,
+        "column": 9
+      }
+    },
+    {
+      "name": "WorkspaceBody",
+      "description": "Keep routed page content bounded beside the permanent medium or expanded navigation.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 71,
+        "column": 1
+      }
+    },
+    {
+      "name": "WorkspaceHeader",
+      "description": "Present the current page title, external exit, and compact menu action.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 102,
+        "column": 1
+      }
+    },
+    {
+      "name": "WorkspaceNavigationOverlay",
+      "description": "Overlay the same navigation list above routed content on compact viewports.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 152,
+        "column": 1
+      }
+    },
+    {
+      "name": "WorkspaceNavigationList",
+      "description": "Present the same hierarchy in a permanent panel or compact overlay.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 182,
+        "column": 1
+      }
+    },
+    {
+      "name": "WorkspaceNavigationItem",
+      "description": "Render one destination with its availability, icon, and active state.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "line": 209,
+        "column": 1
+      }
+    },
+    {
+      "name": "generateWorkspaceLayout",
+      "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveWorkspaceNavigation",
+      "description": "Resolve visible destinations and selected ancestors from one consumer-owned route tree.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveAncestorIds",
+      "description": "Walk one validated parent chain without mutating the consumer-owned route tree.",
+      "sourceLocation": {
+        "filePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "line": 30,
         "column": 1
       }
     },
@@ -3763,7 +4173,7 @@
       "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 21,
+        "line": 22,
         "column": 1
       }
     },
@@ -3772,16 +4182,7 @@
       "description": "Assemble the portable generation result without adding filesystem side effects.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 61,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveRootDirectory",
-      "description": "Resolve a safe directory below the Expo Router app root without filesystem normalization.",
-      "sourceLocation": {
-        "filePath": "src/utils/generateNavigator.ts",
-        "line": 77,
+        "line": 62,
         "column": 1
       }
     },
@@ -3790,7 +4191,7 @@
       "description": "Traverse the plan to emit layouts and optional screen bindings in their route directories.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 99,
+        "line": 82,
         "column": 1
       }
     },
@@ -3799,7 +4200,7 @@
       "description": "Dispatch specialized layout generation or render the shared Screen-registration contract.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 127,
+        "line": 110,
         "column": 1
       }
     },
@@ -3808,7 +4209,7 @@
       "description": "Validate and alias every distinct guard binding used by a navigator's routes.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 171,
+        "line": 154,
         "column": 1
       }
     },
@@ -3817,7 +4218,7 @@
       "description": "Render navigator options and registered screens using the resolved adapter component.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 189,
+        "line": 172,
         "column": 1
       }
     },
@@ -3826,7 +4227,7 @@
       "description": "Wrap a generated screen in the conjunction of its registered route guards.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 220,
+        "line": 203,
         "column": 1
       }
     },
@@ -3835,7 +4236,7 @@
       "description": "Merge route labels with the owning adapter's screen-option mapping.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 249,
+        "line": 232,
         "column": 1
       }
     },
@@ -3844,7 +4245,7 @@
       "description": "Keep Expo Router implementation groups from becoming visible Stack headers by default.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 275,
+        "line": 258,
         "column": 1
       }
     },
@@ -3853,7 +4254,7 @@
       "description": "Render one generated Screen with a stable multiline options object when route options exist.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 286,
+        "line": 269,
         "column": 1
       }
     },
@@ -3862,7 +4263,7 @@
       "description": "Reject route segments that could escape or invalidate the generated directory.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 308,
+        "line": 291,
         "column": 1
       }
     },
@@ -3871,7 +4272,7 @@
       "description": "Emit a route module that re-exports its registered screen as the default component.",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 315,
+        "line": 298,
         "column": 1
       }
     },
@@ -4164,11 +4565,65 @@
       }
     },
     {
+      "name": "resolveNavigatorIcon",
+      "description": "Convert portable route icon metadata to the current Surface icon contract.",
+      "sourceLocation": {
+        "filePath": "src/utils/resolveNavigatorIcon.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveNavigatorPreset",
       "description": "Resolve a canonical navigator preset into its ordered topology layers.",
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorPreset.ts",
         "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveNavigatorRootDirectory",
+      "description": "Resolve a safe directory below the Expo Router app root without filesystem normalization.",
+      "sourceLocation": {
+        "filePath": "src/utils/resolveNavigatorRootDirectory.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "useHydrationSafeSize",
+      "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
+      "sourceLocation": {
+        "filePath": "src/utils/useHydrationSafeSize.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "subscribeToHydration",
+      "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
+      "sourceLocation": {
+        "filePath": "src/utils/useHydrationSafeSize.ts",
+        "line": 19,
+        "column": 1
+      }
+    },
+    {
+      "name": "getClientHydration",
+      "description": "Report that client rendering can consume the live responsive breakpoint.",
+      "sourceLocation": {
+        "filePath": "src/utils/useHydrationSafeSize.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "getServerHydration",
+      "description": "Keep server output deterministic at the compact presentation.",
+      "sourceLocation": {
+        "filePath": "src/utils/useHydrationSafeSize.ts",
+        "line": 29,
         "column": 1
       }
     },
@@ -4433,6 +4888,14 @@
     },
     {
       "kind": "export",
+      "name": "generateWorkspaceLayout",
+      "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+      "symbolName": "generateWorkspaceLayout",
+      "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "getNavigatorCatalog",
       "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
       "symbolName": "getNavigatorCatalog",
@@ -4534,6 +4997,14 @@
       "symbolName": "verifyNavigatorExamplesAsync",
       "description": "Verify checked-in example bytes and app-owned lockfiles against deterministic generation.",
       "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "WorkspaceNavigator",
+      "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+      "symbolName": "WorkspaceNavigator",
+      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "isReadme": false
     }
   ],
   "graphs": {
@@ -4566,6 +5037,11 @@
       {
         "fromPath": "src/navigator.ts",
         "toPath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
+        "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "src/navigator.ts",
+        "toPath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
@@ -4627,6 +5103,16 @@
         "fromPath": "src/navigator.ts",
         "toPath": "src/utils/verifyNavigatorExamplesAsync.ts",
         "sourcePath": "src/navigator.ts"
+      },
+      {
+        "fromPath": "src/workspace.ts",
+        "toPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "sourcePath": "src/workspace.ts"
+      },
+      {
+        "fromPath": "src/workspace.ts",
+        "toPath": "src/types/workspaceNavigation.ts",
+        "sourcePath": "src/workspace.ts"
       },
       {
         "fromPath": "tests/cli.test.ts",
@@ -4782,6 +5268,11 @@
         "fromPath": "tests/generatedTabsTypecheck.test.ts",
         "toPath": "tests/routerPolicy.ts",
         "sourcePath": "tests/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromPath": "tests/generatedWorkspaceTypecheck.test.ts",
+        "toPath": "src/navigator.ts",
+        "sourcePath": "tests/generatedWorkspaceTypecheck.test.ts"
       },
       {
         "fromPath": "tests/generateFiles.ts",
@@ -5040,6 +5531,11 @@
       },
       {
         "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/utils/resolveNavigatorRootDirectory.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/utils/validateNavigatorBindings.ts",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
@@ -5142,6 +5638,16 @@
         "fromPath": "src/utils/resolveNavigatorDependencies.ts",
         "toPath": "package.json",
         "sourcePath": "src/utils/resolveNavigatorDependencies.ts"
+      },
+      {
+        "fromPath": "src/utils/resolveNavigatorIcon.test.ts",
+        "toPath": "src/utils/resolveNavigatorIcon.ts",
+        "sourcePath": "src/utils/resolveNavigatorIcon.test.ts"
+      },
+      {
+        "fromPath": "src/utils/resolveNavigatorIcon.ts",
+        "toPath": "src/types/headlessTabs.ts",
+        "sourcePath": "src/utils/resolveNavigatorIcon.ts"
       },
       {
         "fromPath": "src/utils/validateNavigator.ts",
@@ -5684,6 +6190,16 @@
         "sourcePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts"
       },
       {
+        "fromPath": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts",
+        "toPath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts"
+      },
+      {
+        "fromPath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "toPath": "src/types/workspaceNavigation.ts",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
+      },
+      {
         "fromPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
         "toPath": "package.json",
         "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
@@ -5735,6 +6251,11 @@
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+        "toPath": "src/utils/useHydrationSafeSize.ts",
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
+      },
+      {
+        "fromPath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "toPath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
@@ -5780,8 +6301,43 @@
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
+        "toPath": "src/utils/resolveNavigatorIcon.ts",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+      },
+      {
+        "fromPath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "toPath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+      },
+      {
+        "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "toPath": "src/types/workspaceNavigation.ts",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "toPath": "src/utils/resolveNavigatorIcon.ts",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "toPath": "src/utils/useHydrationSafeSize.ts",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "toPath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromPath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts",
+        "toPath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts"
+      },
+      {
+        "fromPath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+        "toPath": "src/utils/resolveNavigatorRootDirectory.ts",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"
       }
     ],
     "calls": [
@@ -6234,6 +6790,36 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "tests/generatedTabsTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "tests/generatedWorkspaceTypecheck.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "tests/generatedWorkspaceTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "tests/generatedWorkspaceTypecheck.test.ts",
+        "toSymbol": "generateWorkspaceLayout",
+        "callExpression": "generateWorkspaceLayout",
+        "sourcePath": "tests/generatedWorkspaceTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "tests/generatedWorkspaceTypecheck.test.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "tests/generatedWorkspaceTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "tests/generatedWorkspaceTypecheck.test.ts",
+        "toSymbol": "getSourceFile",
+        "callExpression": "getSourceFile",
+        "sourcePath": "tests/generatedWorkspaceTypecheck.test.ts"
+      },
+      {
+        "fromSymbol": "tests/generatedWorkspaceTypecheck.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/generatedWorkspaceTypecheck.test.ts"
       },
       {
         "fromSymbol": "generateFiles",
@@ -6969,8 +7555,8 @@
       },
       {
         "fromSymbol": "generateNavigator",
-        "toSymbol": "resolveRootDirectory",
-        "callExpression": "resolveRootDirectory",
+        "toSymbol": "resolveNavigatorRootDirectory",
+        "callExpression": "resolveNavigatorRootDirectory",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -7374,6 +7960,42 @@
         "toSymbol": "visitNode",
         "callExpression": "visitNode",
         "sourcePath": "src/utils/resolveNavigatorDependencies.ts"
+      },
+      {
+        "fromSymbol": "src/utils/resolveNavigatorIcon.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/utils/resolveNavigatorIcon.test.ts"
+      },
+      {
+        "fromSymbol": "src/utils/resolveNavigatorIcon.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/utils/resolveNavigatorIcon.test.ts"
+      },
+      {
+        "fromSymbol": "src/utils/resolveNavigatorIcon.test.ts",
+        "toSymbol": "resolveNavigatorIcon",
+        "callExpression": "resolveNavigatorIcon",
+        "sourcePath": "src/utils/resolveNavigatorIcon.test.ts"
+      },
+      {
+        "fromSymbol": "resolveNavigatorIcon",
+        "toSymbol": "resolveIconSource",
+        "callExpression": "resolveIconSource",
+        "sourcePath": "src/utils/resolveNavigatorIcon.ts"
+      },
+      {
+        "fromSymbol": "useHydrationSafeSize",
+        "toSymbol": "useBreakpoint",
+        "callExpression": "useBreakpoint",
+        "sourcePath": "src/utils/useHydrationSafeSize.ts"
+      },
+      {
+        "fromSymbol": "useHydrationSafeSize",
+        "toSymbol": "useSyncExternalStore",
+        "callExpression": "useSyncExternalStore",
+        "sourcePath": "src/utils/useHydrationSafeSize.ts"
       },
       {
         "fromSymbol": "validateNavigator",
@@ -8768,6 +9390,42 @@
         "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
       },
       {
+        "fromSymbol": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts",
+        "toSymbol": "resolveWorkspaceNavigation",
+        "callExpression": "resolveWorkspaceNavigation",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
+        "toSymbol": "resolveAncestorIds",
+        "callExpression": "resolveAncestorIds",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
+      },
+      {
+        "fromSymbol": "resolveWorkspaceNavigation",
+        "toSymbol": "resolveAncestorIds",
+        "callExpression": "resolveAncestorIds",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
+      },
+      {
+        "fromSymbol": "resolveAncestorIds",
+        "toSymbol": "resolveAncestorIds",
+        "callExpression": "resolveAncestorIds",
+        "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
+      },
+      {
         "fromSymbol": "getNavigatorCatalog",
         "toSymbol": "createNavigatorCatalog",
         "callExpression": "createNavigatorCatalog",
@@ -8870,18 +9528,6 @@
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromSymbol": "useHydrationSafeSize",
-        "toSymbol": "useBreakpoint",
-        "callExpression": "useBreakpoint",
-        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
-      },
-      {
-        "fromSymbol": "useHydrationSafeSize",
-        "toSymbol": "useSyncExternalStore",
-        "callExpression": "useSyncExternalStore",
-        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
-      },
-      {
         "fromSymbol": "NavigatorTabItem",
         "toSymbol": "useTheme",
         "callExpression": "useTheme",
@@ -8925,20 +9571,14 @@
       },
       {
         "fromSymbol": "NavigatorTabTrigger",
-        "toSymbol": "resolveIcon",
-        "callExpression": "resolveIcon",
+        "toSymbol": "resolveNavigatorIcon",
+        "callExpression": "resolveNavigatorIcon",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
       },
       {
         "fromSymbol": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "toSymbol": "switchTab",
         "callExpression": "switchTab",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
-      },
-      {
-        "fromSymbol": "resolveIcon",
-        "toSymbol": "resolveIconSource",
-        "callExpression": "resolveIconSource",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
       },
       {
@@ -9042,6 +9682,126 @@
         "toSymbol": "serializeJavaScriptLiteral",
         "callExpression": "serializeJavaScriptLiteral",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigator",
+        "toSymbol": "useRouter",
+        "callExpression": "useRouter",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigator",
+        "toSymbol": "useHydrationSafeSize",
+        "callExpression": "useHydrationSafeSize",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigator",
+        "toSymbol": "useTheme",
+        "callExpression": "useTheme",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigator",
+        "toSymbol": "useState",
+        "callExpression": "useState",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigator",
+        "toSymbol": "resolveWorkspaceNavigation",
+        "callExpression": "resolveWorkspaceNavigation",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "navigate",
+        "toSymbol": "onNavigate",
+        "callExpression": "onNavigate",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "navigate",
+        "toSymbol": "setMenuOpen",
+        "callExpression": "setMenuOpen",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "leave",
+        "toSymbol": "setMenuOpen",
+        "callExpression": "setMenuOpen",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "toSymbol": "setMenuOpen",
+        "callExpression": "setMenuOpen",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceHeader",
+        "toSymbol": "useTheme",
+        "callExpression": "useTheme",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigationList",
+        "toSymbol": "useTheme",
+        "callExpression": "useTheme",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigationItem",
+        "toSymbol": "useTheme",
+        "callExpression": "useTheme",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigationItem",
+        "toSymbol": "resolveNavigatorIcon",
+        "callExpression": "resolveNavigatorIcon",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+        "toSymbol": "onNavigate",
+        "callExpression": "onNavigate",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts",
+        "toSymbol": "generateWorkspaceLayout",
+        "callExpression": "generateWorkspaceLayout",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts"
+      },
+      {
+        "fromSymbol": "generateWorkspaceLayout",
+        "toSymbol": "resolveNavigatorRootDirectory",
+        "callExpression": "resolveNavigatorRootDirectory",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"
+      },
+      {
+        "fromSymbol": "generateWorkspaceLayout",
+        "toSymbol": "assertStaticImportBinding",
+        "callExpression": "assertStaticImportBinding",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"
+      },
+      {
+        "fromSymbol": "generateWorkspaceLayout",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"
       }
     ],
     "typeReferences": [
@@ -9119,6 +9879,16 @@
         "fromSymbol": "resolveHeadlessTabsPresentation",
         "toType": "ResolvedHeadlessTabsPresentation",
         "sourcePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts"
+      },
+      {
+        "fromSymbol": "generateWorkspaceLayout",
+        "toType": "NavigatorGeneratedFile",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"
+      },
+      {
+        "fromSymbol": "generateWorkspaceLayout",
+        "toType": "NavigatorScreenModule",
+        "sourcePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"
       },
       {
         "fromSymbol": "NavigatorExampleDescriptor",
@@ -9319,6 +10089,26 @@
         "fromSymbol": "HeadlessTabsLayout",
         "toType": "HeadlessTabsLayoutProps",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigator",
+        "toType": "WorkspaceNavigatorProps",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigationRoute",
+        "toType": "NamedIconSpec",
+        "sourcePath": "src/types/workspaceNavigation.ts"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigatorProps",
+        "toType": "WorkspaceExitDestination",
+        "sourcePath": "src/types/workspaceNavigation.ts"
+      },
+      {
+        "fromSymbol": "WorkspaceNavigatorProps",
+        "toType": "WorkspaceNavigationRoute",
+        "sourcePath": "src/types/workspaceNavigation.ts"
       }
     ],
     "componentComposition": [
@@ -9345,6 +10135,30 @@
         "toComponent": "TabTrigger",
         "jsxElement": "<TabTrigger href={route.href as Href} key={route.name} name={route.name} />",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
+      },
+      {
+        "fromComponent": "WorkspaceNavigator",
+        "toComponent": "SafeAreaView",
+        "jsxElement": "<SafeAreaView style={[styles.root, { backgroundColor: theme.colors.background }]}>",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromComponent": "WorkspaceNavigator",
+        "toComponent": "WorkspaceHeader",
+        "jsxElement": "<WorkspaceHeader\n        active={active}\n        compact={compact}\n        exitLabel={exit?.label}\n        onExit={leave}\n        onOpenMenu={() => setMenuOpen(true)}\n        title={title}\n      />",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromComponent": "WorkspaceNavigator",
+        "toComponent": "WorkspaceBody",
+        "jsxElement": "<WorkspaceBody\n        compact={compact}\n        medium={size === 'medium'}\n        navigation={navigation}\n        onNavigate={navigate}\n        title={title}\n      />",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
+      },
+      {
+        "fromComponent": "WorkspaceNavigator",
+        "toComponent": "WorkspaceNavigationOverlay",
+        "jsxElement": "<WorkspaceNavigationOverlay\n          navigation={navigation}\n          onClose={() => setMenuOpen(false)}\n          onNavigate={navigate}\n          title={title}\n        />",
+        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
       }
     ]
   }

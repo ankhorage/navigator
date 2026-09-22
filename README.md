@@ -3,7 +3,7 @@
 
 # NAVIGATOR
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v3.2.7](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v3.3.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
 Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.
 
@@ -11,10 +11,12 @@ Standalone manifest-driven Navigator capability for cataloging, validating, plan
 
 ### Catalog → Validate → Plan → Generate → Verify
 
-Navigator consumes only an `AppNavigatorManifest`, narrow module bindings, and target context.
-It never needs the complete `AppManifest`, themes, secrets, infrastructure, deployment data, or
-Studio state. `@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic
-target validation, capability metadata, planning, generation, and Navigator-specific evidence.
+Manifest navigation consumes only an `AppNavigatorManifest`, narrow module bindings, and target
+context. A separate workspace layout consumes runtime destinations from its owning application,
+without persisting that workspace into `AppManifest.navigator`. Neither capability needs the
+complete `AppManifest`, themes, secrets, infrastructure, deployment data, or Studio state.
+`@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic target
+validation, capability metadata, planning, generation, and Navigator-specific evidence.
 
 The taxonomy stays orthogonal:
 
@@ -150,6 +152,7 @@ console.log({
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
 - [defineCustomNavigatorRegistry sequence](././paradox/diagrams/sequences/define-custom-navigator-registry.mmd)
+- [generateWorkspaceLayout sequence](././paradox/diagrams/sequences/generate-workspace-layout.mmd)
 - [HeadlessTabsLayout sequence](././paradox/diagrams/sequences/headless-tabs-layout.mmd)
 - [isNavigatorGenerationBindings sequence](././paradox/diagrams/sequences/is-navigator-generation-bindings.mmd)
 - [resolveHeadlessTabsPresentation sequence](././paradox/diagrams/sequences/resolve-headless-tabs-presentation.mmd)

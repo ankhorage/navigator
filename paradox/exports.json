@@ -96,7 +96,7 @@
     "modulePath": "src/utils/generateNavigator.ts",
     "sourceLocation": {
       "filePath": "src/utils/generateNavigator.ts",
-      "line": 21,
+      "line": 22,
       "column": 1
     },
     "exportPaths": ["src/navigator.ts"],
@@ -164,6 +164,38 @@
     "structuredRows": []
   },
   {
+    "name": "generateWorkspaceLayout",
+    "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+    "sourceLocation": {
+      "filePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
+      "line": 8,
+      "column": 1
+    },
+    "exportPaths": ["src/navigator.ts"],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(input: { readonly rootDirectory: string; readonly useWorkspace: NavigatorScreenModule; readonly accessGate?: NavigatorScreenModule; }) => NavigatorGeneratedFile",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "{ readonly rootDirectory: string; readonly useWorkspace: NavigatorScreenModule; readonly accessGate?: NavigatorScreenModule; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "NavigatorGeneratedFile",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "getNavigatorCatalog",
     "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
     "isReadme": false,
@@ -222,7 +254,7 @@
     "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
     "sourceLocation": {
       "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-      "line": 21,
+      "line": 22,
       "column": 1
     },
     "exportPaths": ["src/features/tabs/tabs.ts"],
@@ -1006,6 +1038,193 @@
       }
     ],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "WorkspaceExitDestination",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/workspaceNavigation.ts",
+    "sourceLocation": {
+      "filePath": "src/types/workspaceNavigation.ts",
+      "line": 16,
+      "column": 1
+    },
+    "exportPaths": ["src/workspace.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "href",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "label",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "WorkspaceNavigationRoute",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/workspaceNavigation.ts",
+    "sourceLocation": {
+      "filePath": "src/types/workspaceNavigation.ts",
+      "line": 4,
+      "column": 1
+    },
+    "exportPaths": ["src/workspace.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "description",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "href",
+        "kind": "property",
+        "type": "string | null",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "icon",
+        "kind": "property",
+        "type": "import(\"@ankhorage/contracts\").NamedIconSpec | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "label",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "parentId",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "visible",
+        "kind": "property",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "WorkspaceNavigator",
+    "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+    "sourceLocation": {
+      "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
+      "line": 16,
+      "column": 1
+    },
+    "exportPaths": ["src/workspace.ts"],
+    "relatedSymbols": ["WorkspaceNavigatorProps"],
+    "signatures": [
+      {
+        "label": "(props: WorkspaceNavigatorProps) => import(\"react\").JSX.Element",
+        "parameters": [
+          {
+            "name": "props",
+            "type": "WorkspaceNavigatorProps",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"react\").JSX.Element",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "WorkspaceNavigatorProps",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/workspaceNavigation.ts",
+    "sourceLocation": {
+      "filePath": "src/types/workspaceNavigation.ts",
+      "line": 22,
+      "column": 1
+    },
+    "exportPaths": ["src/workspace.ts"],
+    "relatedSymbols": ["WorkspaceExitDestination", "WorkspaceNavigationRoute"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "activeRouteId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "exit",
+        "kind": "property",
+        "type": "WorkspaceExitDestination | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "onNavigate",
+        "kind": "property",
+        "type": "((routeId: string) => void) | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "routes",
+        "kind": "property",
+        "type": "readonly WorkspaceNavigationRoute[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "title",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   }
 ]
