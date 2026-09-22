@@ -5,7 +5,7 @@
     "": {
       "name": "navigator-example-stack-drawer-tabs",
       "dependencies": {
-        "@ankhorage/navigator": "3.3.3",
+        "@ankhorage/navigator": "3.3.4",
         "expo": "^57.0.20",
         "expo-router": "57.0.18",
         "react": "19.2.3",
@@ -30,7 +30,7 @@
 
     "@ankhorage/contracts": ["@ankhorage/contracts@22.2.0", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.1", "@ankhorage/utility": "^1.4.0" } }, "sha512-iI98/LVo/HdCQtXuQsilcLX2yOWQAY40+Lbh0ClBCMHw7iFHmH5sod9RRyu09E/E9dxPJSmh8fH9hW5fd8kToA=="],
 
-    "@ankhorage/navigator": ["@ankhorage/navigator@3.3.3", "", { "dependencies": { "@ankhorage/contracts": "^22.3.0", "@ankhorage/utility": "^1.4.0" }, "peerDependencies": { "@ankhorage/surface": "^9.0.12", "@react-native-vector-icons/fontawesome": "^13.1.3", "@react-native-vector-icons/fontawesome5": "^13.1.3", "@react-native-vector-icons/fontawesome6": "^13.1.3", "@react-native-vector-icons/ionicons": "^13.1.3", "@react-native-vector-icons/material-design-icons": "^13.1.3", "expo-router": ">=57.0.0 <58.0.0", "react": "19.2.3", "react-dom": "19.2.3", "react-native": "0.86.x", "react-native-gesture-handler": "*", "react-native-pager-view": "8.0.2", "react-native-reanimated": "*", "react-native-safe-area-context": "~5.7.0", "react-native-tab-view": "^4.3.2", "react-native-web": "~0.21.0", "react-native-worklets": "*" }, "optionalPeers": ["react-native-gesture-handler", "react-native-pager-view", "react-native-reanimated", "react-native-tab-view", "react-native-worklets"] }, "sha512-V4lFyyJzzkmUiB856t/hWiaC0RKiiMKK9XWfC7vQ7p7bWkCJ5wF3BBjRI21T/OPAUWTxSnFu3pX+zFVRcgRNXg=="],
+    "@ankhorage/navigator": ["@ankhorage/navigator@3.3.4", "", { "dependencies": { "@ankhorage/contracts": "^22.3.0", "@ankhorage/utility": "^1.4.0" }, "peerDependencies": { "@ankhorage/surface": "^9.0.13", "@react-native-vector-icons/fontawesome": "^13.1.3", "@react-native-vector-icons/fontawesome5": "^13.1.3", "@react-native-vector-icons/fontawesome6": "^13.1.3", "@react-native-vector-icons/ionicons": "^13.1.3", "@react-native-vector-icons/material-design-icons": "^13.1.3", "expo-router": ">=57.0.0 <58.0.0", "react": "19.2.3", "react-dom": "19.2.3", "react-native": "0.86.x", "react-native-gesture-handler": "*", "react-native-pager-view": "8.0.2", "react-native-reanimated": "*", "react-native-safe-area-context": "~5.7.0", "react-native-tab-view": "^4.3.2", "react-native-web": "~0.21.0", "react-native-worklets": "*" }, "optionalPeers": ["react-native-gesture-handler", "react-native-pager-view", "react-native-reanimated", "react-native-tab-view", "react-native-worklets"] }, "sha512-fNiHyp2sbh9JhG0t5UE2DUoHqQkmaoT2cbw8jdrR+qPAf8QIyzpz+16nQHz0dmZgYS4bjIYfiyiY2EUhCLS4YQ=="],
 
     "@ankhorage/surface": ["@ankhorage/surface@3.4.4", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.0", "@ankhorage/contracts": "^11.0.0" }, "peerDependencies": { "@react-native-vector-icons/fontawesome": "^13.1.3", "@react-native-vector-icons/fontawesome5": "^13.1.3", "@react-native-vector-icons/fontawesome6": "^13.1.3", "@react-native-vector-icons/ionicons": "^13.1.3", "@react-native-vector-icons/material-design-icons": "^13.1.3", "react": "19.2.3", "react-native": "0.86.x", "react-native-safe-area-context": "~5.7.0", "react-native-svg": "15.15.4", "react-native-web": "~0.21.0" } }, "sha512-V0manKccbgbacAR50Cy73unBYhgd9TzXze5LCXQ+QGFV4WuVcvJDq8jUvtViP5Gw7eutU510palXUQfp7oF5vw=="],
 
