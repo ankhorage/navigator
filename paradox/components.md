@@ -8,13 +8,13 @@ Render one stable headless Expo Router tab topology with Navigator-owned present
 
 Export paths: `src/features/tabs/tabs.ts`
 
-| Prop               | Type                                                                  | Required | Default | Description |
-| ------------------ | --------------------------------------------------------------------- | -------- | ------- | ----------- |
-| customPresentation | `ComponentType<HeadlessTabsPresentationProps> \| undefined`           | no       | —       |             |
-| initialRouteName   | `string \| undefined`                                                 | no       | —       |             |
-| presentations      | `Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>` | yes      | —       |             |
-| resolveIconSource  | `HeadlessTabsIconSourceResolver \| undefined`                         | no       | —       |             |
-| routes             | `readonly HeadlessTabsRoute[]`                                        | yes      | —       |             |
+| Prop | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| customPresentation | `ComponentType<HeadlessTabsPresentationProps> \| undefined` | no | — |  |
+| initialRouteName | `string \| undefined` | no | — |  |
+| presentations | `Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>` | yes | — |  |
+| resolveIconSource | `HeadlessTabsIconSourceResolver \| undefined` | no | — |  |
+| routes | `readonly HeadlessTabsRoute[]` | yes | — |  |
 
 ## WorkspaceNavigator
 
@@ -24,10 +24,10 @@ Render Navigator-owned responsive workspace chrome around Expo Router page conte
 
 Export paths: `src/workspace.ts`
 
-| Prop          | Type                                     | Required | Default | Description |
-| ------------- | ---------------------------------------- | -------- | ------- | ----------- |
-| activeRouteId | `string`                                 | yes      | —       |             |
-| exit          | `WorkspaceExitDestination \| undefined`  | no       | —       |             |
-| onNavigate    | `(routeId: string) => void \| undefined` | no       | —       |             |
-| routes        | `readonly WorkspaceNavigationRoute[]`    | yes      | —       |             |
-| title         | `string`                                 | yes      | —       |             |
+| Prop | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| activeRouteId | `string` | yes | — |  |
+| exit | `WorkspaceExitDestination \| undefined` | no | — |  |
+| onNavigate | `(routeId: string) => void \| undefined` | no | — |  |
+| routes | `readonly WorkspaceNavigationRoute[]` | yes | — |  |
+| title | `string` | yes | — |  |

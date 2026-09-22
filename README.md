@@ -20,12 +20,12 @@ validation, capability metadata, planning, generation, and Navigator-specific ev
 
 The taxonomy stays orthogonal:
 
-| Dimension      | Examples                                                               |
-| -------------- | ---------------------------------------------------------------------- |
-| Topology       | Slot, Stack, Tabs, Drawer, Split View, registered Custom               |
-| Implementation | native, JavaScript, headless, experimental                             |
-| Presentation   | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |
-| Preset         | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack`        |
+| Dimension | Examples |
+| --- | --- |
+| Topology | Slot, Stack, Tabs, Drawer, Split View, registered Custom |
+| Implementation | native, JavaScript, headless, experimental |
+| Presentation | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |
+| Preset | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack` |
 
 Tabs are always Tabs; top and bottom are presentations. `drawer` is a complete root preset with
 direct routes. Presets resolve to ordinary recursive manifest input. Navigator has no flow field:

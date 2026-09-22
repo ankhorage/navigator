@@ -11,7 +11,9 @@
       "line": 31,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -49,7 +51,9 @@
       "line": 13,
       "column": 1
     },
-    "exportPaths": ["src/cli/createCliProvider.ts"],
+    "exportPaths": [
+      "src/cli/createCliProvider.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -67,7 +71,9 @@
       "line": 9,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -99,7 +105,9 @@
       "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -143,8 +151,13 @@
       "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorExampleGenerationResult", "NavigatorExampleId"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorExampleGenerationResult",
+      "NavigatorExampleId"
+    ],
     "signatures": [
       {
         "label": "(id?: NavigatorExampleId | undefined) => NavigatorExampleGenerationResult",
@@ -175,7 +188,9 @@
       "line": 8,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -207,7 +222,9 @@
       "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -232,8 +249,12 @@
       "line": 16,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorExampleDescriptor"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorExampleDescriptor"
+    ],
     "signatures": [
       {
         "label": "() => readonly NavigatorExampleDescriptor[]",
@@ -257,7 +278,9 @@
       "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/features/tabs/tabs.ts"],
+    "exportPaths": [
+      "src/features/tabs/tabs.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -289,7 +312,9 @@
       "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -321,7 +346,9 @@
       "line": 9,
       "column": 14
     },
-    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "exportPaths": [
+      "src/features/tabs/nativeIcons.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -339,7 +366,9 @@
       "line": 10,
       "column": 14
     },
-    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "exportPaths": [
+      "src/features/tabs/nativeIcons.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -357,7 +386,9 @@
       "line": 6,
       "column": 14
     },
-    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "exportPaths": [
+      "src/features/tabs/nativeIcons.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -375,7 +406,9 @@
       "line": 6,
       "column": 14
     },
-    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "exportPaths": [
+      "src/features/tabs/nativeIcons.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -393,7 +426,9 @@
       "line": 6,
       "column": 14
     },
-    "exportPaths": ["src/features/tabs/nativeIcons.ts"],
+    "exportPaths": [
+      "src/features/tabs/nativeIcons.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -411,7 +446,9 @@
       "line": 5,
       "column": 14
     },
-    "exportPaths": ["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"],
+    "exportPaths": [
+      "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -429,8 +466,13 @@
       "line": 58,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorExampleId", "NavigatorExampleTarget"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorExampleId",
+      "NavigatorExampleTarget"
+    ],
     "signatures": [],
     "members": [
       {
@@ -476,8 +518,12 @@
       "line": 65,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorExampleDescriptor"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorExampleDescriptor"
+    ],
     "signatures": [],
     "members": [
       {
@@ -509,7 +555,9 @@
       "line": 14,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -527,7 +575,9 @@
       "line": 47,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -581,8 +631,12 @@
       "line": 70,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorExampleId"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorExampleId"
+    ],
     "signatures": [],
     "members": [
       {
@@ -614,7 +668,9 @@
       "line": 9,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -668,7 +724,9 @@
       "line": 10,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -706,7 +764,9 @@
       "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -744,7 +804,9 @@
       "line": 4,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -782,7 +844,9 @@
       "line": 14,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -826,7 +890,9 @@
       "line": 12,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -876,7 +942,9 @@
       "line": 14,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -920,7 +988,9 @@
       "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [
       {
@@ -964,8 +1034,12 @@
       "line": 13,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorVerificationResult"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorVerificationResult"
+    ],
     "signatures": [
       {
         "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorVerificationResult",
@@ -1008,8 +1082,13 @@
       "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/navigator.ts"],
-    "relatedSymbols": ["NavigatorExampleId", "NavigatorExampleVerificationResult"],
+    "exportPaths": [
+      "src/navigator.ts"
+    ],
+    "relatedSymbols": [
+      "NavigatorExampleId",
+      "NavigatorExampleVerificationResult"
+    ],
     "signatures": [
       {
         "label": "(targetDirectory: string, cwd: string, id?: NavigatorExampleId | undefined) => Promise<NavigatorExampleVerificationResult>",
@@ -1052,7 +1131,9 @@
       "line": 16,
       "column": 1
     },
-    "exportPaths": ["src/workspace.ts"],
+    "exportPaths": [
+      "src/workspace.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -1085,7 +1166,9 @@
       "line": 4,
       "column": 1
     },
-    "exportPaths": ["src/workspace.ts"],
+    "exportPaths": [
+      "src/workspace.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -1153,8 +1236,12 @@
       "line": 16,
       "column": 1
     },
-    "exportPaths": ["src/workspace.ts"],
-    "relatedSymbols": ["WorkspaceNavigatorProps"],
+    "exportPaths": [
+      "src/workspace.ts"
+    ],
+    "relatedSymbols": [
+      "WorkspaceNavigatorProps"
+    ],
     "signatures": [
       {
         "label": "(props: WorkspaceNavigatorProps) => import(\"react\").JSX.Element",
@@ -1185,8 +1272,13 @@
       "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/workspace.ts"],
-    "relatedSymbols": ["WorkspaceExitDestination", "WorkspaceNavigationRoute"],
+    "exportPaths": [
+      "src/workspace.ts"
+    ],
+    "relatedSymbols": [
+      "WorkspaceExitDestination",
+      "WorkspaceNavigationRoute"
+    ],
     "signatures": [],
     "members": [
       {

@@ -116,19 +116,19 @@ Render one stable headless Expo Router tab topology with Navigator-owned present
 ### Signatures
 
 - `({
-routes,
-presentations,
-initialRouteName,
-resolveIconSource,
-customPresentation: CustomPresentation,
+  routes,
+  presentations,
+  initialRouteName,
+  resolveIconSource,
+  customPresentation: CustomPresentation,
 }: HeadlessTabsLayoutProps) => import("react").JSX.Element`
   - {
-    routes,
-    presentations,
-    initialRouteName,
-    resolveIconSource,
-    customPresentation: CustomPresentation,
-    }: `HeadlessTabsLayoutProps`
+  routes,
+  presentations,
+  initialRouteName,
+  resolveIconSource,
+  customPresentation: CustomPresentation,
+}: `HeadlessTabsLayoutProps`
   - returns: `import("react").JSX.Element`
 
 ## isNavigatorGenerationBindings
@@ -201,12 +201,12 @@ Source: `src/types/navigatorExamples.ts:58:1`
 
 ### Members
 
-| Name        | Kind     | Type                                | Required | Description |
-| ----------- | -------- | ----------------------------------- | -------- | ----------- |
-| description | property | `string`                            | yes      |             |
-| id          | property | `NavigatorExampleId`                | yes      |             |
-| targets     | property | `readonly NavigatorExampleTarget[]` | yes      |             |
-| title       | property | `string`                            | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| description | property | `string` | yes |  |
+| id | property | `NavigatorExampleId` | yes |  |
+| targets | property | `readonly NavigatorExampleTarget[]` | yes |  |
+| title | property | `string` | yes |  |
 
 ## NavigatorExampleGenerationResult
 
@@ -216,10 +216,10 @@ Source: `src/types/navigatorExamples.ts:65:1`
 
 ### Members
 
-| Name     | Kind     | Type                                    | Required | Description |
-| -------- | -------- | --------------------------------------- | -------- | ----------- |
-| examples | property | `readonly NavigatorExampleDescriptor[]` | yes      |             |
-| files    | property | `readonly NavigatorGeneratedFile[]`     | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| examples | property | `readonly NavigatorExampleDescriptor[]` | yes |  |
+| files | property | `readonly NavigatorGeneratedFile[]` | yes |  |
 
 ## NavigatorExampleId
 
@@ -235,13 +235,13 @@ Source: `src/types/navigatorExamples.ts:47:1`
 
 ### Members
 
-| Name          | Kind     | Type                                                                                                     | Required | Description |
-| ------------- | -------- | -------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| capabilityIds | property | `readonly string[]`                                                                                      | yes      |             |
-| diagnostics   | property | `readonly NavigatorDiagnostic[]`                                                                         | yes      |             |
-| platform      | property | `NavigatorRuntimePlatform`                                                                               | yes      |             |
-| support       | property | `NavigatorSupportStatus`                                                                                 | yes      |             |
-| verification  | property | `readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; }[]` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilityIds | property | `readonly string[]` | yes |  |
+| diagnostics | property | `readonly NavigatorDiagnostic[]` | yes |  |
+| platform | property | `NavigatorRuntimePlatform` | yes |  |
+| support | property | `NavigatorSupportStatus` | yes |  |
+| verification | property | `readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; }[]` | yes |  |
 
 ## NavigatorExampleVerificationResult
 
@@ -251,10 +251,10 @@ Source: `src/types/navigatorExamples.ts:70:1`
 
 ### Members
 
-| Name     | Kind     | Type                                                                                                                                                             | Required | Description |
-| -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| examples | property | `readonly { readonly id: NavigatorExampleId; readonly current: boolean; readonly missingFiles: readonly string[]; readonly changedFiles: readonly string[]; }[]` | yes      |             |
-| verified | property | `boolean`                                                                                                                                                        | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| examples | property | `readonly { readonly id: NavigatorExampleId; readonly current: boolean; readonly missingFiles: readonly string[]; readonly changedFiles: readonly string[]; }[]` | yes |  |
+| verified | property | `boolean` | yes |  |
 
 ## NavigatorVerificationResult
 
@@ -264,13 +264,13 @@ Source: `src/types/navigatorVerification.ts:9:1`
 
 ### Members
 
-| Name          | Kind     | Type                                                                                                                               | Required | Description |
-| ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| capabilityIds | property | `readonly string[]`                                                                                                                | yes      |             |
-| checks        | property | `readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; readonly message: string; }[]` | yes      |             |
-| deterministic | property | `boolean`                                                                                                                          | yes      |             |
-| diagnostics   | property | `readonly NavigatorDiagnostic[]`                                                                                                   | yes      |             |
-| support       | property | `NavigatorSupportStatus`                                                                                                           | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilityIds | property | `readonly string[]` | yes |  |
+| checks | property | `readonly { readonly kind: NavigatorVerificationKind; readonly status: NavigatorVerificationStatus; readonly message: string; }[]` | yes |  |
+| deterministic | property | `boolean` | yes |  |
+| diagnostics | property | `readonly NavigatorDiagnostic[]` | yes |  |
+| support | property | `NavigatorSupportStatus` | yes |  |
 
 ## resolveHeadlessTabsPresentation
 
@@ -420,10 +420,10 @@ Source: `src/types/workspaceNavigation.ts:16:1`
 
 ### Members
 
-| Name  | Kind     | Type     | Required | Description |
-| ----- | -------- | -------- | -------- | ----------- |
-| href  | property | `string` | yes      |             |
-| label | property | `string` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| href | property | `string` | yes |  |
+| label | property | `string` | yes |  |
 
 ## WorkspaceNavigationRoute
 
@@ -433,15 +433,15 @@ Source: `src/types/workspaceNavigation.ts:4:1`
 
 ### Members
 
-| Name        | Kind     | Type                                                        | Required | Description |
-| ----------- | -------- | ----------------------------------------------------------- | -------- | ----------- |
-| description | property | `string \| undefined`                                       | no       |             |
-| href        | property | `string \| null`                                            | yes      |             |
-| icon        | property | `import("@ankhorage/contracts").NamedIconSpec \| undefined` | no       |             |
-| id          | property | `string`                                                    | yes      |             |
-| label       | property | `string`                                                    | yes      |             |
-| parentId    | property | `string \| undefined`                                       | no       |             |
-| visible     | property | `boolean \| undefined`                                      | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| description | property | `string \| undefined` | no |  |
+| href | property | `string \| null` | yes |  |
+| icon | property | `import("@ankhorage/contracts").NamedIconSpec \| undefined` | no |  |
+| id | property | `string` | yes |  |
+| label | property | `string` | yes |  |
+| parentId | property | `string \| undefined` | no |  |
+| visible | property | `boolean \| undefined` | no |  |
 
 ## WorkspaceNavigator
 
@@ -465,10 +465,10 @@ Source: `src/types/workspaceNavigation.ts:22:1`
 
 ### Members
 
-| Name          | Kind     | Type                                       | Required | Description |
-| ------------- | -------- | ------------------------------------------ | -------- | ----------- |
-| activeRouteId | property | `string`                                   | yes      |             |
-| exit          | property | `WorkspaceExitDestination \| undefined`    | no       |             |
-| onNavigate    | property | `((routeId: string) => void) \| undefined` | no       |             |
-| routes        | property | `readonly WorkspaceNavigationRoute[]`      | yes      |             |
-| title         | property | `string`                                   | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| activeRouteId | property | `string` | yes |  |
+| exit | property | `WorkspaceExitDestination \| undefined` | no |  |
+| onNavigate | property | `((routeId: string) => void) \| undefined` | no |  |
+| routes | property | `readonly WorkspaceNavigationRoute[]` | yes |  |
+| title | property | `string` | yes |  |
