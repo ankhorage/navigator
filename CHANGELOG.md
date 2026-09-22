@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.7
+
+### Patch Changes
+
+- c94fb4c: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 3.3.6
 
 ### Patch Changes
