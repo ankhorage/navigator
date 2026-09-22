@@ -101,7 +101,7 @@
     "release:synchronize": "bun run examples:synchronize && bun run docs && bun run format"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^22.3.0",
+    "@ankhorage/contracts": "^22.5.0",
     "@ankhorage/utility": "^1.4.0"
   },
   "peerDependencies": {
