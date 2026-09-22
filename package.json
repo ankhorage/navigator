@@ -101,8 +101,8 @@
     "release:synchronize": "bun run examples:synchronize && bun run docs && bun run format"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^12.0.1",
-    "@ankhorage/utility": "^0.8.0"
+    "@ankhorage/contracts": "^22.2.0",
+    "@ankhorage/utility": "^1.4.0"
   },
   "peerDependencies": {
     "@ankhorage/surface": "^9.0.1",
