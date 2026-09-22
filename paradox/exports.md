@@ -433,15 +433,15 @@ Source: `src/types/workspaceNavigation.ts:4:1`
 
 ### Members
 
-| Name        | Kind     | Type                                                                   | Required | Description |
-| ----------- | -------- | ---------------------------------------------------------------------- | -------- | ----------- |
-| description | property | `string \| undefined`                                                  | no       |             |
-| href        | property | `string \| null`                                                       | yes      |             |
-| icon        | property | `import("@ankhorage/contracts/dist/types").NamedIconSpec \| undefined` | no       |             |
-| id          | property | `string`                                                               | yes      |             |
-| label       | property | `string`                                                               | yes      |             |
-| parentId    | property | `string \| undefined`                                                  | no       |             |
-| visible     | property | `boolean \| undefined`                                                 | no       |             |
+| Name        | Kind     | Type                                                        | Required | Description |
+| ----------- | -------- | ----------------------------------------------------------- | -------- | ----------- |
+| description | property | `string \| undefined`                                       | no       |             |
+| href        | property | `string \| null`                                            | yes      |             |
+| icon        | property | `import("@ankhorage/contracts").NamedIconSpec \| undefined` | no       |             |
+| id          | property | `string`                                                    | yes      |             |
+| label       | property | `string`                                                    | yes      |             |
+| parentId    | property | `string \| undefined`                                       | no       |             |
+| visible     | property | `boolean \| undefined`                                      | no       |             |
 
 ## WorkspaceNavigator
 

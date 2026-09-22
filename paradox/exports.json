@@ -1106,7 +1106,7 @@
       {
         "name": "icon",
         "kind": "property",
-        "type": "import(\"@ankhorage/contracts/dist/types\").NamedIconSpec | undefined",
+        "type": "import(\"@ankhorage/contracts\").NamedIconSpec | undefined",
         "required": false,
         "description": null
       },
