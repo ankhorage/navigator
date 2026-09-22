@@ -6,11 +6,11 @@ The checked-in Router files were generated for `web` through the public Navigato
 
 ## Target matrix
 
-| Platform | Support   | Capabilities | Diagnostics |
-| -------- | --------- | ------------ | ----------- |
-| android  | supported | slot         | none        |
-| ios      | supported | slot         | none        |
-| web      | supported | slot         | none        |
+| Platform | Support | Capabilities | Diagnostics |
+| --- | --- | --- | --- |
+| android | supported | slot | none |
+| ios | supported | slot | none |
+| web | supported | slot | none |
 
 ## Install and run
 

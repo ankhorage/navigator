@@ -6,11 +6,11 @@ Navigator generation is intentionally rejected on every target. The runnable she
 
 ## Target matrix
 
-| Platform | Support     | Capabilities                  | Diagnostics                                        |
-| -------- | ----------- | ----------------------------- | -------------------------------------------------- |
-| android  | unsupported | drawer, split-view.two-column | invalid-split-view-placement, unsupported-platform |
-| ios      | unsupported | drawer, split-view.two-column | invalid-split-view-placement                       |
-| web      | unsupported | drawer, split-view.two-column | invalid-split-view-placement, unsupported-platform |
+| Platform | Support | Capabilities | Diagnostics |
+| --- | --- | --- | --- |
+| android | unsupported | drawer, split-view.two-column | invalid-split-view-placement, unsupported-platform |
+| ios | unsupported | drawer, split-view.two-column | invalid-split-view-placement |
+| web | unsupported | drawer, split-view.two-column | invalid-split-view-placement, unsupported-platform |
 
 ## Install and run
 

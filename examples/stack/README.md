@@ -6,11 +6,11 @@ The checked-in Router files were generated for `web` through the public Navigato
 
 ## Target matrix
 
-| Platform | Support   | Capabilities | Diagnostics |
-| -------- | --------- | ------------ | ----------- |
-| android  | supported | stack.native | none        |
-| ios      | supported | stack.native | none        |
-| web      | supported | stack.native | none        |
+| Platform | Support | Capabilities | Diagnostics |
+| --- | --- | --- | --- |
+| android | supported | stack.native | none |
+| ios | supported | stack.native | none |
+| web | supported | stack.native | none |
 
 ## Install and run
 

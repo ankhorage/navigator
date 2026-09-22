@@ -6,11 +6,11 @@ The checked-in Router files were generated for `ios` through the public Navigato
 
 ## Target matrix
 
-| Platform | Support     | Capabilities | Diagnostics                         |
-| -------- | ----------- | ------------ | ----------------------------------- |
-| android  | supported   | tabs.native  | alpha-adapter                       |
-| ios      | supported   | tabs.native  | alpha-adapter                       |
-| web      | unsupported | tabs.native  | alpha-adapter, unsupported-platform |
+| Platform | Support | Capabilities | Diagnostics |
+| --- | --- | --- | --- |
+| android | supported | tabs.native | alpha-adapter |
+| ios | supported | tabs.native | alpha-adapter |
+| web | unsupported | tabs.native | alpha-adapter, unsupported-platform |
 
 ## Install and run
 

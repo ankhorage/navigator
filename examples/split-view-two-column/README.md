@@ -6,11 +6,11 @@ The checked-in Router files were generated for `ios` through the public Navigato
 
 ## Target matrix
 
-| Platform | Support      | Capabilities          | Diagnostics          |
-| -------- | ------------ | --------------------- | -------------------- |
-| android  | unsupported  | split-view.two-column | unsupported-platform |
-| ios      | testing-only | split-view.two-column | none                 |
-| web      | unsupported  | split-view.two-column | unsupported-platform |
+| Platform | Support | Capabilities | Diagnostics |
+| --- | --- | --- | --- |
+| android | unsupported | split-view.two-column | unsupported-platform |
+| ios | testing-only | split-view.two-column | none |
+| web | unsupported | split-view.two-column | unsupported-platform |
 
 ## Install and run
 
