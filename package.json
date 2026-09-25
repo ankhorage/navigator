@@ -102,7 +102,7 @@
   },
   "dependencies": {
     "@ankhorage/contracts": "^22.8.2",
-    "@ankhorage/utility": "^1.8.0"
+    "@ankhorage/utility": "^1.8.1"
   },
   "peerDependencies": {
     "@ankhorage/surface": "^9.1.7",
@@ -143,7 +143,7 @@
   "devDependencies": {
     "@ankhorage/ankh": "^0.10.4",
     "@ankhorage/devtools": "^1.18.5",
-    "@ankhorage/paradox": "^0.2.2",
+    "@ankhorage/paradox": "^0.2.3",
     "@ankhorage/surface": "^9.1.7",
     "@playwright/test": "^1.63.0",
     "@react-native-vector-icons/fontawesome": "^13.1.3",
