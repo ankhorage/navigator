@@ -142,7 +142,7 @@
   },
   "devDependencies": {
     "@ankhorage/ankh": "^0.10.4",
-    "@ankhorage/devtools": "^1.18.5",
+    "@ankhorage/devtools": "^1.21.3",
     "@ankhorage/paradox": "^0.2.5",
     "@ankhorage/surface": "^9.1.7",
     "@playwright/test": "^1.63.0",
