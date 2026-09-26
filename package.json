@@ -120,7 +120,7 @@
     "react-native-reanimated": "*",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-tab-view": "^4.3.2",
-    "react-native-web": "~0.21.0",
+    "react-native-web": "~0.21.3",
     "react-native-worklets": "*"
   },
   "peerDependenciesMeta": {
@@ -164,7 +164,7 @@
     "react-native-reanimated": "^4.6.0",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-tab-view": "^4.3.2",
-    "react-native-web": "~0.21.0",
+    "react-native-web": "~0.21.3",
     "react-native-worklets": "^0.12.1",
     "typescript": "~6.0.3"
   },
