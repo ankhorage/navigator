@@ -2,4 +2,4 @@
 '@ankhorage/navigator': patch
 ---
 
-Update dependencies from Renovate pull request #162.
+Update Ankhorage dependencies: `@ankhorage/paradox`, `@ankhorage/utility`.
