@@ -20,7 +20,7 @@
     "expo-router": "57.0.18",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-native": "0.86.3",
+    "react-native": "0.87.1",
     "react-native-pager-view": "8.0.2",
     "react-native-tab-view": "^4.3.2",
     "react-native-web": "~0.21.0"
