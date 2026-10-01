@@ -101,8 +101,8 @@
     "release:synchronize": "bun run examples:synchronize && bun run docs && bun run format"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^22.8.6",
-    "@ankhorage/utility": "^1.9.5"
+    "@ankhorage/contracts": "^22.8.12",
+    "@ankhorage/utility": "^1.9.9"
   },
   "peerDependencies": {
     "@ankhorage/surface": "^9.1.7",
@@ -144,7 +144,7 @@
     "@ankhorage/ankh": "^0.10.4",
     "@ankhorage/devtools": "^2.0.0",
     "@ankhorage/paradox": "^0.2.8",
-    "@ankhorage/surface": "^9.1.15",
+    "@ankhorage/surface": "^9.1.19",
     "@playwright/test": "^1.63.0",
     "@react-native-vector-icons/fontawesome": "^13.1.4",
     "@react-native-vector-icons/fontawesome5": "^13.1.3",
