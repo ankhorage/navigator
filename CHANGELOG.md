@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.20
+
+### Patch Changes
+
+- c039867: Update dependencies: `@ankhorage/contracts`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.19
 
 ### Patch Changes
