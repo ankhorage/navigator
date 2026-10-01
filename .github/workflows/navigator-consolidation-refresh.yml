@@ -1,0 +1,34 @@
+name: Navigator Consolidation Refresh
+
+on:
+  push:
+    branches:
+      - fix/renovate-consolidation
+
+permissions:
+  contents: write
+
+jobs:
+  synchronize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/renovate-consolidation
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.2'
+      - run: bun install
+      - run: bun run examples:synchronize
+      - name: Commit refreshed dependency state
+        run: |
+          if git diff --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bun.lock examples
+          git commit -m "fix(deps): refresh consolidated Navigator state"
+          git push origin HEAD:fix/renovate-consolidation
