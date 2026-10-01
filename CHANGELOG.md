@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.34
+
+### Patch Changes
+
+- 0456124: Update Renovate-managed workflows.
+
 ## 3.3.33
 
 ### Patch Changes
