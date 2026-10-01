@@ -105,7 +105,7 @@
     "@ankhorage/utility": "^1.9.0"
   },
   "peerDependencies": {
-    "@ankhorage/surface": "^9.1.8",
+    "@ankhorage/surface": "^9.1.10",
     "@react-native-vector-icons/fontawesome": "^13.1.4",
     "@react-native-vector-icons/fontawesome5": "^13.1.4",
     "@react-native-vector-icons/fontawesome6": "^13.1.4",
@@ -144,7 +144,7 @@
     "@ankhorage/ankh": "^0.10.4",
     "@ankhorage/devtools": "^2.0.19",
     "@ankhorage/paradox": "^0.2.8",
-    "@ankhorage/surface": "^9.1.8",
+    "@ankhorage/surface": "^9.1.10",
     "@playwright/test": "^1.63.0",
     "@react-native-vector-icons/fontawesome": "^13.1.4",
     "@react-native-vector-icons/fontawesome5": "^13.1.4",
