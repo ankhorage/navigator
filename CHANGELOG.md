@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.35
+
+### Patch Changes
+
+- 0202520: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.34
 
 ### Patch Changes
