@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@ankhorage/navigator": "3.3.15",
-    "@ankhorage/surface": "^9.1.8",
+    "@ankhorage/surface": "^9.1.10",
     "expo": "^57.0.25",
     "expo-router": "57.0.23",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-native": "0.87.1",
+    "react-native": "0.86.3",
     "react-native-safe-area-context": "~5.10.1",
     "react-native-web": "~0.21.3"
   },
