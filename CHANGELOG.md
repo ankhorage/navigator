@@ -1,5 +1,12 @@
 # @ankhorage/navigator
 
+## 3.3.33
+
+### Patch Changes
+
+- cbcacbb: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+- e392d66: Update Renovate-managed workflows.
+
 ## 3.3.32
 
 ### Patch Changes
