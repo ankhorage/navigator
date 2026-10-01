@@ -65,20 +65,22 @@ describe('@ankhorage/navigator package boundary', () => {
     ]);
   });
 
-  test('keeps capability-owned peer and development ranges synchronized', async () => {
+  test('keeps capability-owned peer ranges compatible with newer development baselines', async () => {
     const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
       readonly devDependencies?: Readonly<Record<string, string>>;
       readonly peerDependencies?: Readonly<Record<string, string>>;
     };
 
-    const surfacePeerRange = packageJson.peerDependencies?.['@ankhorage/surface'];
-    expect(surfacePeerRange).toMatch(/^\^\d+\.\d+\.\d+$/u);
-    expect(packageJson.devDependencies?.['@ankhorage/surface']).toBe(surfacePeerRange);
-    for (const packageName of ['react-dom', 'react-native-safe-area-context']) {
-      expect(packageJson.devDependencies?.[packageName]).toBe(
-        packageJson.peerDependencies?.[packageName],
-      );
-    }
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toMatch(/^\^9\.\d+\.\d+$/u);
+    expect(packageJson.devDependencies?.['@ankhorage/surface']).toMatch(/^\^9\.\d+\.\d+$/u);
+    expect(packageJson.peerDependencies?.['react-dom']).toMatch(/^19\.\d+\.\d+$/u);
+    expect(packageJson.devDependencies?.['react-dom']).toMatch(/^19\.\d+\.\d+$/u);
+    expect(packageJson.peerDependencies?.['react-native-safe-area-context']).toMatch(
+      /^~5\.\d+\.\d+$/u,
+    );
+    expect(packageJson.devDependencies?.['react-native-safe-area-context']).toMatch(
+      /^~5\.\d+\.\d+$/u,
+    );
   });
 
   test('uses Surface 9 without importing removed navigation chrome', async () => {
