@@ -1,5 +1,20 @@
 # @ankhorage/navigator
 
+## 3.3.15
+
+### Patch Changes
+
+- 1874118: Keep repository-only Renovate configuration out of published documentation.
+- f7a3aba: Update Ankhorage dependencies: `@ankhorage/paradox`, `@ankhorage/utility`.
+- 71aec34: Update dependencies from Renovate pull request #149.
+- ea4a44e: Update dependencies from Renovate pull request #155.
+- 1e2e2af: Update dependencies from Renovate pull request #157.
+- ab54668: Update dependencies from Renovate pull request #158.
+- b5311c0: Update dependencies from Renovate pull request #160.
+- 30329ae: Update Ankhorage dependencies: `@ankhorage/paradox`, `@ankhorage/utility`.
+- 89a2c1d: Update dependencies from Renovate pull request #163.
+- 831e893: Update the development toolchain to `@ankhorage/devtools` v2.
+
 ## 3.3.14
 
 ### Patch Changes

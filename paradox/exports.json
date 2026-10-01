@@ -1,9 +1,11 @@
 [
   {
     "name": "createNavigatorPlan",
+    "title": null,
     "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/createNavigatorPlan.ts",
     "sourceLocation": {
@@ -41,9 +43,11 @@
   },
   {
     "name": "default",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "unknown",
     "modulePath": "src/cli/createCliProvider.ts",
     "sourceLocation": {
@@ -61,9 +65,11 @@
   },
   {
     "name": "defineCustomNavigatorRegistry",
+    "title": null,
     "description": "Define an immutable, duplicate-free custom navigator registry for one composition boundary.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
     "sourceLocation": {
@@ -95,9 +101,11 @@
   },
   {
     "name": "generateNavigator",
+    "title": null,
     "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/generateNavigator.ts",
     "sourceLocation": {
@@ -141,9 +149,11 @@
   },
   {
     "name": "generateNavigatorExamples",
+    "title": null,
     "description": "Generate one or every complete root examples application as a deterministic file set.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/generateNavigatorExamples.ts",
     "sourceLocation": {
@@ -178,9 +188,11 @@
   },
   {
     "name": "generateWorkspaceLayout",
+    "title": null,
     "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
     "sourceLocation": {
@@ -212,9 +224,11 @@
   },
   {
     "name": "getNavigatorCatalog",
+    "title": null,
     "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
     "sourceLocation": {
@@ -239,9 +253,11 @@
   },
   {
     "name": "getNavigatorExampleCatalog",
+    "title": null,
     "description": "Return the standalone composition catalog with target truth derived from Navigator policy.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
     "sourceLocation": {
@@ -268,9 +284,11 @@
   },
   {
     "name": "HeadlessTabsLayout",
+    "title": null,
     "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
     "sourceLocation": {
@@ -302,9 +320,11 @@
   },
   {
     "name": "isNavigatorGenerationBindings",
+    "title": null,
     "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/isNavigatorGenerationBindings.ts",
     "sourceLocation": {
@@ -336,9 +356,11 @@
   },
   {
     "name": "NativeFontAwesome5Family",
+    "title": null,
     "description": "Regular-style Font Awesome 5 family adapter for Expo Native Tabs.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "value",
     "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
     "sourceLocation": {
@@ -356,9 +378,11 @@
   },
   {
     "name": "NativeFontAwesome6Family",
+    "title": null,
     "description": "Regular-style Font Awesome 6 family adapter for Expo Native Tabs.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "value",
     "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts",
     "sourceLocation": {
@@ -376,9 +400,11 @@
   },
   {
     "name": "NativeFontAwesomeFamily",
+    "title": null,
     "description": "Ionicons-compatible Font Awesome family adapter for Expo Native Tabs.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "value",
     "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts",
     "sourceLocation": {
@@ -396,9 +422,11 @@
   },
   {
     "name": "NativeIoniconsFamily",
+    "title": null,
     "description": "Ionicons family adapter for Expo Native Tabs.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "value",
     "modulePath": "src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts",
     "sourceLocation": {
@@ -416,9 +444,11 @@
   },
   {
     "name": "NativeMaterialDesignIconsFamily",
+    "title": null,
     "description": "Material Design Icons family adapter for Expo Native Tabs.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "value",
     "modulePath": "src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts",
     "sourceLocation": {
@@ -436,9 +466,11 @@
   },
   {
     "name": "NAVIGATOR_PACKAGE_METADATA",
+    "title": null,
     "description": "Publish package identity and the single Navigator-owned capability catalog.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "value",
     "modulePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
     "sourceLocation": {
@@ -456,9 +488,11 @@
   },
   {
     "name": "NavigatorExampleDescriptor",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/navigatorExamples.ts",
     "sourceLocation": {
@@ -508,9 +542,11 @@
   },
   {
     "name": "NavigatorExampleGenerationResult",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/navigatorExamples.ts",
     "sourceLocation": {
@@ -545,9 +581,11 @@
   },
   {
     "name": "NavigatorExampleId",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "unknown",
     "modulePath": "src/types/navigatorExamples.ts",
     "sourceLocation": {
@@ -565,9 +603,11 @@
   },
   {
     "name": "NavigatorExampleTarget",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/navigatorExamples.ts",
     "sourceLocation": {
@@ -621,9 +661,11 @@
   },
   {
     "name": "NavigatorExampleVerificationResult",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/navigatorExamples.ts",
     "sourceLocation": {
@@ -658,9 +700,11 @@
   },
   {
     "name": "NavigatorVerificationResult",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/navigatorVerification.ts",
     "sourceLocation": {
@@ -714,9 +758,11 @@
   },
   {
     "name": "resolveHeadlessTabsPresentation",
+    "title": null,
     "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
     "sourceLocation": {
@@ -754,9 +800,11 @@
   },
   {
     "name": "resolveNavigatorHeaderOwnership",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
     "sourceLocation": {
@@ -794,9 +842,11 @@
   },
   {
     "name": "resolveNavigatorPreset",
+    "title": null,
     "description": "Resolve a canonical navigator preset into its ordered topology layers.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/resolveNavigatorPreset.ts",
     "sourceLocation": {
@@ -834,9 +884,11 @@
   },
   {
     "name": "resolveTabsNavigatorPlan",
+    "title": null,
     "description": "Resolve the Expo Router module/export and presentation for one tabs implementation.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
     "sourceLocation": {
@@ -880,9 +932,11 @@
   },
   {
     "name": "validateNavigator",
+    "title": null,
     "description": "Structurally and semantically validate standalone navigator input without writing files.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/validateNavigator.ts",
     "sourceLocation": {
@@ -932,9 +986,11 @@
   },
   {
     "name": "validateNavigatorBindings",
+    "title": null,
     "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/validateNavigatorBindings.ts",
     "sourceLocation": {
@@ -978,9 +1034,11 @@
   },
   {
     "name": "validateNavigatorManifest",
+    "title": null,
     "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/validateNavigatorManifest.ts",
     "sourceLocation": {
@@ -1024,9 +1082,11 @@
   },
   {
     "name": "verifyNavigator",
+    "title": null,
     "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/verifyNavigator.ts",
     "sourceLocation": {
@@ -1072,9 +1132,11 @@
   },
   {
     "name": "verifyNavigatorExamplesAsync",
+    "title": null,
     "description": "Verify checked-in example bytes and app-owned lockfiles against deterministic generation.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/utils/verifyNavigatorExamplesAsync.ts",
     "sourceLocation": {
@@ -1121,9 +1183,11 @@
   },
   {
     "name": "WorkspaceExitDestination",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/workspaceNavigation.ts",
     "sourceLocation": {
@@ -1156,9 +1220,11 @@
   },
   {
     "name": "WorkspaceNavigationRoute",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/workspaceNavigation.ts",
     "sourceLocation": {
@@ -1226,9 +1292,11 @@
   },
   {
     "name": "WorkspaceNavigator",
+    "title": null,
     "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
     "sourceLocation": {
@@ -1262,9 +1330,11 @@
   },
   {
     "name": "WorkspaceNavigatorProps",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/workspaceNavigation.ts",
     "sourceLocation": {

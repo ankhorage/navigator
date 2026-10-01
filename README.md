@@ -3,143 +3,43 @@
 
 # NAVIGATOR
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v3.3.14](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v3.3.15](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![paradox: warnings](././paradox/badges/docs.svg)
 
 Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.
 
-## Usage
+## Configuration
 
-### Catalog → Validate → Plan → Generate → Verify
-
-Manifest navigation consumes only an `AppNavigatorManifest`, narrow module bindings, and target
-context. A separate workspace layout consumes runtime destinations from its owning application,
-without persisting that workspace into `AppManifest.navigator`. Neither capability needs the
-complete `AppManifest`, themes, secrets, infrastructure, deployment data, or Studio state.
-`@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic target
-validation, capability metadata, planning, generation, and Navigator-specific evidence.
-
-The taxonomy stays orthogonal:
-
-| Dimension | Examples |
-| --- | --- |
-| Topology | Slot, Stack, Tabs, Drawer, Split View, registered Custom |
-| Implementation | native, JavaScript, headless, experimental |
-| Presentation | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |
-| Preset | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack` |
-
-Tabs are always Tabs; top and bottom are presentations. `drawer` is a complete root preset with
-direct routes. Presets resolve to ordinary recursive manifest input. Navigator has no flow field:
-onboarding, survey, setup, checkout, and authentication are app-owned routes, nested navigators,
-guards, and state. For example, `stack-tabs-stack` can represent a neutral pre-main sequence
-followed by Tabs whose branches own Stacks without encoding application semantics.
-
-The programmatic example below returns stable relative files and contents, dependency
-requirements, diagnostics, support, the resolved plan, and capability IDs. It performs no writes.
-To materialize the same contract into an Expo app, save the manifest and bindings as JSON and run:
-
-```sh
-ankh navigator catalog
-ankh navigator validate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version "$EXPO_ROUTER_VERSION"
-ankh navigator plan --manifest navigator.json --platform web --expo-router-version "$EXPO_ROUTER_VERSION" --json
-ankh navigator generate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version "$EXPO_ROUTER_VERSION" --target ./my-app
-ankh navigator verify --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version "$EXPO_ROUTER_VERSION"
-bun --cwd ./my-app expo start
-```
-
-Human-readable output is the default; `--json` emits the stable versioned envelope. Generation
-requires an explicit target. Custom navigator registries are executable consumer modules passed
-with `--custom-navigators`; screen, guard, icon-resolver, and custom Tabs-presentation bindings
-remain narrow JSON module/symbol records.
-
-Navigator also publishes a deterministic catalog of 22 standalone applications under the
-repository-root `examples/<stable-example-id>/` directories:
-
-`drawer`, `drawer-split-view`, `drawer-stack`, `drawer-tabs`, `drawer-tabs-stack`,
-`drawer-tabs-top`, `registered-custom`, `slot`, `split-view-three-column`,
-`split-view-two-column`, `stack`, `stack-drawer`, `stack-drawer-stack`, `stack-drawer-tabs`,
-`stack-drawer-tabs-stack`, `stack-tabs`, `stack-tabs-stack`, `stack-tabs-top`, `tabs`,
-`tabs-bottom-tabs-top`, `tabs-split-view`, and `tabs-stack`.
-
-Generate or compare one app with `--id`, or omit it for the complete catalog:
-
-```sh
-ankh navigator examples generate --target .
-ankh navigator examples verify --target .
-ankh navigator examples generate --id drawer --target .
-ankh navigator examples verify --id drawer --target . --json
-```
-
-Each example owns its manifest, narrow bindings, package metadata, and lockfile and uses only
-registry dependencies. Repository acceptance extends deterministic CLI verification with fresh
-frozen installs, strict typechecks, the Devtools-managed examples lint configuration, every
-supported or testing-only Expo export target, and browser runtime checks:
-
-```sh
-bun run examples:acceptance
-```
-
-Capability metadata separates `support`, `stability`, and each verification layer. Experimental
-Stack and iOS Split View are testing-only. A non-iOS Slot fallback is explicitly not Split View.
-The checked-in catalog does not turn the existence of a plan into runtime evidence: CI executes
-install, export, and browser acceptance independently. Simulator and physical-device claims stay
-unverified until those native environments record evidence.
-
-Studio and future composers read `getNavigatorCatalog()` and `getNavigatorExampleCatalog()`,
-author `manifest.navigator`, and invoke this same lifecycle. They do not own a second capability
-or examples table.
-
-Source: `docs/readme-usage.ts`
+### Example
 
 ```ts
-import type {
-  AppNavigatorManifest,
-  NavigatorGenerationBindings,
-} from '@ankhorage/contracts/navigator';
-import expoRouterPackage from 'expo-router/package.json';
+import { defineParadoxConfig } from '@ankhorage/paradox';
 
-import {
-  createNavigatorPlan,
-  generateNavigator,
-  getNavigatorCatalog,
-  getNavigatorExampleCatalog,
-  validateNavigator,
-  verifyNavigator,
-} from '@ankhorage/navigator';
+import packageJson from './package.json';
 
-const manifest = {
-  type: 'drawer',
-  initialRouteName: 'index',
-  routes: [
-    { name: 'index', label: 'Home', screenId: 'home' },
-    { name: 'settings', label: 'Settings', screenId: 'settings' },
-  ],
-} as const satisfies AppNavigatorManifest;
+export default defineParadoxConfig({
+  mode: 'write',
 
-const bindings = {
-  screens: {
-    home: { module: '@/screens/HomeScreen', exportName: 'HomeScreen' },
-    settings: { module: '@/screens/SettingsScreen', exportName: 'SettingsScreen' },
+  docs: {
+    title: 'NAVIGATOR',
+    description:
+      'Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.',
+    usage: {
+      entrypoints: ['docs/readme-usage.ts'],
+    },
   },
-  guards: {},
-} as const satisfies NavigatorGenerationBindings;
 
-const target = {
-  platform: 'web',
-  expoRouterVersion: expoRouterPackage.version,
-} as const;
+  package: {
+    root: '.',
+    entrypoints: Object.values(packageJson.exports).flatMap((entry) =>
+      typeof entry === 'string'
+        ? []
+        : [entry.default.replace('./dist/', 'src/').replace(/\.js$/u, '.ts')],
+    ),
+  },
 
-const diagnostics = validateNavigator(manifest, bindings, target);
-const plan = createNavigatorPlan(manifest, target);
-const generation = generateNavigator(plan, bindings);
-const verification = verifyNavigator(plan, bindings);
-
-console.log({
-  catalog: getNavigatorCatalog(),
-  examples: getNavigatorExampleCatalog(),
-  diagnostics,
-  plan,
-  generation,
-  verification,
+  output: {
+    dir: './paradox',
+  },
 });
 ```
 

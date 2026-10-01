@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.3.14",
+      "value": "v3.3.15",
       "color": "cb3837"
     },
     {
@@ -55,24 +55,31 @@
     },
     {
       "id": "docs",
-      "label": "docs",
-      "value": "paradox",
-      "color": "0f766e"
+      "label": "paradox",
+      "value": "warnings",
+      "color": "ca8a04"
     }
   ],
-  "usage": null,
-  "readmeUsageDescription": null,
-  "readmeUsage": [
+  "usage": {
+    "packageName": "@ankhorage/navigator",
+    "command": "ankh navigator --help"
+  },
+  "usageEntries": [],
+  "exampleCount": 22,
+  "findings": [
     {
-      "title": "Catalog → Validate → Plan → Generate → Verify",
-      "description": "Catalog → Validate → Plan → Generate → Verify\n\nManifest navigation consumes only an `AppNavigatorManifest`, narrow module bindings, and target\ncontext. A separate workspace layout consumes runtime destinations from its owning application,\nwithout persisting that workspace into `AppManifest.navigator`. Neither capability needs the\ncomplete `AppManifest`, themes, secrets, infrastructure, deployment data, or Studio state.\n`@ankhorage/contracts/navigator` owns structural parsing; Navigator owns semantic target\nvalidation, capability metadata, planning, generation, and Navigator-specific evidence.\n\nThe taxonomy stays orthogonal:\n\n| Dimension | Examples |\n| --- | --- |\n| Topology | Slot, Stack, Tabs, Drawer, Split View, registered Custom |\n| Implementation | native, JavaScript, headless, experimental |\n| Presentation | bottom, top, rail, sidebar, adaptive, custom, two-column, three-column |\n| Preset | `drawer`, `stack-tabs`, `stack-tabs-stack`, `drawer-tabs-stack` |\n\nTabs are always Tabs; top and bottom are presentations. `drawer` is a complete root preset with\ndirect routes. Presets resolve to ordinary recursive manifest input. Navigator has no flow field:\nonboarding, survey, setup, checkout, and authentication are app-owned routes, nested navigators,\nguards, and state. For example, `stack-tabs-stack` can represent a neutral pre-main sequence\nfollowed by Tabs whose branches own Stacks without encoding application semantics.\n\nThe programmatic example below returns stable relative files and contents, dependency\nrequirements, diagnostics, support, the resolved plan, and capability IDs. It performs no writes.\nTo materialize the same contract into an Expo app, save the manifest and bindings as JSON and run:\n\n```sh\nankh navigator catalog\nankh navigator validate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nankh navigator plan --manifest navigator.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --json\nankh navigator generate --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\" --target ./my-app\nankh navigator verify --manifest navigator.json --bindings navigator.bindings.json --platform web --expo-router-version \"$EXPO_ROUTER_VERSION\"\nbun --cwd ./my-app expo start\n```\n\nHuman-readable output is the default; `--json` emits the stable versioned envelope. Generation\nrequires an explicit target. Custom navigator registries are executable consumer modules passed\nwith `--custom-navigators`; screen, guard, icon-resolver, and custom Tabs-presentation bindings\nremain narrow JSON module/symbol records.\n\nNavigator also publishes a deterministic catalog of 22 standalone applications under the\nrepository-root `examples/<stable-example-id>/` directories:\n\n`drawer`, `drawer-split-view`, `drawer-stack`, `drawer-tabs`, `drawer-tabs-stack`,\n`drawer-tabs-top`, `registered-custom`, `slot`, `split-view-three-column`,\n`split-view-two-column`, `stack`, `stack-drawer`, `stack-drawer-stack`, `stack-drawer-tabs`,\n`stack-drawer-tabs-stack`, `stack-tabs`, `stack-tabs-stack`, `stack-tabs-top`, `tabs`,\n`tabs-bottom-tabs-top`, `tabs-split-view`, and `tabs-stack`.\n\nGenerate or compare one app with `--id`, or omit it for the complete catalog:\n\n```sh\nankh navigator examples generate --target .\nankh navigator examples verify --target .\nankh navigator examples generate --id drawer --target .\nankh navigator examples verify --id drawer --target . --json\n```\n\nEach example owns its manifest, narrow bindings, package metadata, and lockfile and uses only\nregistry dependencies. Repository acceptance extends deterministic CLI verification with fresh\nfrozen installs, strict typechecks, the Devtools-managed examples lint configuration, every\nsupported or testing-only Expo export target, and browser runtime checks:\n\n```sh\nbun run examples:acceptance\n```\n\nCapability metadata separates `support`, `stability`, and each verification layer. Experimental\nStack and iOS Split View are testing-only. A non-iOS Slot fallback is explicitly not Split View.\nThe checked-in catalog does not turn the existence of a plan into runtime evidence: CI executes\ninstall, export, and browser acceptance independently. Simulator and physical-device claims stay\nunverified until those native environments record evidence.\n\nStudio and future composers read `getNavigatorCatalog()` and `getNavigatorExampleCatalog()`,\nauthor `manifest.navigator`, and invoke this same lifecycle. They do not own a second capability\nor examples table.",
-      "language": "ts",
-      "code": "import type {\n  AppNavigatorManifest,\n  NavigatorGenerationBindings,\n} from '@ankhorage/contracts/navigator';\nimport expoRouterPackage from 'expo-router/package.json';\n\nimport {\n  createNavigatorPlan,\n  generateNavigator,\n  getNavigatorCatalog,\n  getNavigatorExampleCatalog,\n  validateNavigator,\n  verifyNavigator,\n} from '@ankhorage/navigator';\n\nconst manifest = {\n  type: 'drawer',\n  initialRouteName: 'index',\n  routes: [\n    { name: 'index', label: 'Home', screenId: 'home' },\n    { name: 'settings', label: 'Settings', screenId: 'settings' },\n  ],\n} as const satisfies AppNavigatorManifest;\n\nconst bindings = {\n  screens: {\n    home: { module: '@/screens/HomeScreen', exportName: 'HomeScreen' },\n    settings: { module: '@/screens/SettingsScreen', exportName: 'SettingsScreen' },\n  },\n  guards: {},\n} as const satisfies NavigatorGenerationBindings;\n\nconst target = {\n  platform: 'web',\n  expoRouterVersion: expoRouterPackage.version,\n} as const;\n\nconst diagnostics = validateNavigator(manifest, bindings, target);\nconst plan = createNavigatorPlan(manifest, target);\nconst generation = generateNavigator(plan, bindings);\nconst verification = verifyNavigator(plan, bindings);\n\nconsole.log({\n  catalog: getNavigatorCatalog(),\n  examples: getNavigatorExampleCatalog(),\n  diagnostics,\n  plan,\n  generation,\n  verification,\n});",
-      "sourcePath": "docs/readme-usage.ts"
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveNavigatorHeaderOwnership has no Paradox description.",
+      "sourcePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
+      "line": 11
     }
   ],
-  "readmeCli": null,
-  "readmeConfig": null,
+  "readmeConfig": {
+    "language": "ts",
+    "code": "import { defineParadoxConfig } from '@ankhorage/paradox';\n\nimport packageJson from './package.json';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  docs: {\n    title: 'NAVIGATOR',\n    description:\n      'Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.',\n    usage: {\n      entrypoints: ['docs/readme-usage.ts'],\n    },\n  },\n\n  package: {\n    root: '.',\n    entrypoints: Object.values(packageJson.exports).flatMap((entry) =>\n      typeof entry === 'string'\n        ? []\n        : [entry.default.replace('./dist/', 'src/').replace(/\\.js$/u, '.ts')],\n    ),\n  },\n\n  output: {\n    dir: './paradox',\n  },\n});",
+    "sourcePath": "paradox.config.ts"
+  },
   "config": null,
   "entrypoints": [
     "src/cli/createCliProvider.ts",
@@ -1384,9 +1391,11 @@
   "exports": [
     {
       "name": "createNavigatorPlan",
+      "title": null,
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/createNavigatorPlan.ts",
       "sourceLocation": {
@@ -1424,9 +1433,11 @@
     },
     {
       "name": "default",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/cli/createCliProvider.ts",
       "sourceLocation": {
@@ -1444,9 +1455,11 @@
     },
     {
       "name": "defineCustomNavigatorRegistry",
+      "title": null,
       "description": "Define an immutable, duplicate-free custom navigator registry for one composition boundary.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
       "sourceLocation": {
@@ -1478,9 +1491,11 @@
     },
     {
       "name": "generateNavigator",
+      "title": null,
       "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/generateNavigator.ts",
       "sourceLocation": {
@@ -1524,9 +1539,11 @@
     },
     {
       "name": "generateNavigatorExamples",
+      "title": null,
       "description": "Generate one or every complete root examples application as a deterministic file set.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/generateNavigatorExamples.ts",
       "sourceLocation": {
@@ -1561,9 +1578,11 @@
     },
     {
       "name": "generateWorkspaceLayout",
+      "title": null,
       "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
       "sourceLocation": {
@@ -1595,9 +1614,11 @@
     },
     {
       "name": "getNavigatorCatalog",
+      "title": null,
       "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
       "sourceLocation": {
@@ -1622,9 +1643,11 @@
     },
     {
       "name": "getNavigatorExampleCatalog",
+      "title": null,
       "description": "Return the standalone composition catalog with target truth derived from Navigator policy.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
       "sourceLocation": {
@@ -1651,9 +1674,11 @@
     },
     {
       "name": "HeadlessTabsLayout",
+      "title": null,
       "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
@@ -1685,9 +1710,11 @@
     },
     {
       "name": "isNavigatorGenerationBindings",
+      "title": null,
       "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/isNavigatorGenerationBindings.ts",
       "sourceLocation": {
@@ -1719,9 +1746,11 @@
     },
     {
       "name": "NativeFontAwesome5Family",
+      "title": null,
       "description": "Regular-style Font Awesome 5 family adapter for Expo Native Tabs.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesome5Family.ts",
       "sourceLocation": {
@@ -1739,9 +1768,11 @@
     },
     {
       "name": "NativeFontAwesome6Family",
+      "title": null,
       "description": "Regular-style Font Awesome 6 family adapter for Expo Native Tabs.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesome6Family.ts",
       "sourceLocation": {
@@ -1759,9 +1790,11 @@
     },
     {
       "name": "NativeFontAwesomeFamily",
+      "title": null,
       "description": "Ionicons-compatible Font Awesome family adapter for Expo Native Tabs.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/features/tabs/adapters/inbound/NativeFontAwesomeFamily.ts",
       "sourceLocation": {
@@ -1779,9 +1812,11 @@
     },
     {
       "name": "NativeIoniconsFamily",
+      "title": null,
       "description": "Ionicons family adapter for Expo Native Tabs.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/features/tabs/adapters/inbound/NativeIoniconsFamily.ts",
       "sourceLocation": {
@@ -1799,9 +1834,11 @@
     },
     {
       "name": "NativeMaterialDesignIconsFamily",
+      "title": null,
       "description": "Material Design Icons family adapter for Expo Native Tabs.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts",
       "sourceLocation": {
@@ -1819,9 +1856,11 @@
     },
     {
       "name": "NAVIGATOR_PACKAGE_METADATA",
+      "title": null,
       "description": "Publish package identity and the single Navigator-owned capability catalog.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
       "sourceLocation": {
@@ -1839,9 +1878,11 @@
     },
     {
       "name": "NavigatorExampleDescriptor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/navigatorExamples.ts",
       "sourceLocation": {
@@ -1891,9 +1932,11 @@
     },
     {
       "name": "NavigatorExampleGenerationResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/navigatorExamples.ts",
       "sourceLocation": {
@@ -1928,9 +1971,11 @@
     },
     {
       "name": "NavigatorExampleId",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/types/navigatorExamples.ts",
       "sourceLocation": {
@@ -1948,9 +1993,11 @@
     },
     {
       "name": "NavigatorExampleTarget",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/navigatorExamples.ts",
       "sourceLocation": {
@@ -2004,9 +2051,11 @@
     },
     {
       "name": "NavigatorExampleVerificationResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/navigatorExamples.ts",
       "sourceLocation": {
@@ -2041,9 +2090,11 @@
     },
     {
       "name": "NavigatorVerificationResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/navigatorVerification.ts",
       "sourceLocation": {
@@ -2097,9 +2148,11 @@
     },
     {
       "name": "resolveHeadlessTabsPresentation",
+      "title": null,
       "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
       "sourceLocation": {
@@ -2137,9 +2190,11 @@
     },
     {
       "name": "resolveNavigatorHeaderOwnership",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
       "sourceLocation": {
@@ -2177,9 +2232,11 @@
     },
     {
       "name": "resolveNavigatorPreset",
+      "title": null,
       "description": "Resolve a canonical navigator preset into its ordered topology layers.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/resolveNavigatorPreset.ts",
       "sourceLocation": {
@@ -2217,9 +2274,11 @@
     },
     {
       "name": "resolveTabsNavigatorPlan",
+      "title": null,
       "description": "Resolve the Expo Router module/export and presentation for one tabs implementation.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
       "sourceLocation": {
@@ -2263,9 +2322,11 @@
     },
     {
       "name": "validateNavigator",
+      "title": null,
       "description": "Structurally and semantically validate standalone navigator input without writing files.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/validateNavigator.ts",
       "sourceLocation": {
@@ -2315,9 +2376,11 @@
     },
     {
       "name": "validateNavigatorBindings",
+      "title": null,
       "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/validateNavigatorBindings.ts",
       "sourceLocation": {
@@ -2361,9 +2424,11 @@
     },
     {
       "name": "validateNavigatorManifest",
+      "title": null,
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/validateNavigatorManifest.ts",
       "sourceLocation": {
@@ -2407,9 +2472,11 @@
     },
     {
       "name": "verifyNavigator",
+      "title": null,
       "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/verifyNavigator.ts",
       "sourceLocation": {
@@ -2455,9 +2522,11 @@
     },
     {
       "name": "verifyNavigatorExamplesAsync",
+      "title": null,
       "description": "Verify checked-in example bytes and app-owned lockfiles against deterministic generation.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/utils/verifyNavigatorExamplesAsync.ts",
       "sourceLocation": {
@@ -2504,9 +2573,11 @@
     },
     {
       "name": "WorkspaceExitDestination",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/workspaceNavigation.ts",
       "sourceLocation": {
@@ -2539,9 +2610,11 @@
     },
     {
       "name": "WorkspaceNavigationRoute",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/workspaceNavigation.ts",
       "sourceLocation": {
@@ -2609,9 +2682,11 @@
     },
     {
       "name": "WorkspaceNavigator",
+      "title": null,
       "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
       "sourceLocation": {
@@ -2645,9 +2720,11 @@
     },
     {
       "name": "WorkspaceNavigatorProps",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/types/workspaceNavigation.ts",
       "sourceLocation": {
@@ -2708,7 +2785,8 @@
       "name": "HeadlessTabsLayout",
       "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
@@ -2755,7 +2833,8 @@
       "name": "WorkspaceNavigator",
       "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
@@ -2803,6 +2882,8 @@
     {
       "name": "catalog",
       "description": "List or inspect the package-owned capability and preset catalog.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/catalog.ts",
         "line": 10,
@@ -2812,6 +2893,8 @@
     {
       "name": "selectCatalog",
       "description": "Select an unambiguous catalog entry or a filtered listing.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/catalog.ts",
         "line": 30,
@@ -2821,6 +2904,8 @@
     {
       "name": "renderCatalog",
       "description": "Render compact human catalog output without creating a second metadata table.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/catalog.ts",
         "line": 64,
@@ -2830,6 +2915,8 @@
     {
       "name": "reportInputFailure",
       "description": "Report deterministic option and input failures.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/catalog.ts",
         "line": 83,
@@ -2839,6 +2926,8 @@
     {
       "name": "generate",
       "description": "Generate one or every standalone example below a root examples directory.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/examples/generate.ts",
         "line": 11,
@@ -2848,6 +2937,8 @@
     {
       "name": "reportFailure",
       "description": "Report deterministic example-generation input or write failures.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/examples/generate.ts",
         "line": 39,
@@ -2857,6 +2948,8 @@
     {
       "name": "verify",
       "description": "Verify one or every root example against deterministic generation and lockfile ownership.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/examples/verify.ts",
         "line": 10,
@@ -2866,6 +2959,8 @@
     {
       "name": "reportFailure",
       "description": "Report deterministic example-verification input or filesystem failures.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/examples/verify.ts",
         "line": 51,
@@ -2875,6 +2970,8 @@
     {
       "name": "generate",
       "description": "Generate one structured Navigator file set and write it below an explicit target.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/generate.ts",
         "line": 11,
@@ -2884,6 +2981,8 @@
     {
       "name": "reportInputFailure",
       "description": "Report deterministic Generate-stage input or write failures.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/generate.ts",
         "line": 58,
@@ -2893,6 +2992,8 @@
     {
       "name": "plan",
       "description": "Resolve and print one deterministic Navigator plan and its dependency requirements.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/plan.ts",
         "line": 9,
@@ -2902,6 +3003,8 @@
     {
       "name": "reportInputFailure",
       "description": "Report deterministic Plan-stage input failures.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/plan.ts",
         "line": 40,
@@ -2911,6 +3014,8 @@
     {
       "name": "validate",
       "description": "Structurally and semantically validate a manifest and narrow bindings without writes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/validate.ts",
         "line": 12,
@@ -2920,6 +3025,8 @@
     {
       "name": "createPlanOptions",
       "description": "Resolve target context and an optional executable custom-navigator registry.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/validate.ts",
         "line": 54,
@@ -2929,6 +3036,8 @@
     {
       "name": "reportInputFailure",
       "description": "Report file, JSON, registry, and option failures separately from navigator diagnostics.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/validate.ts",
         "line": 75,
@@ -2938,6 +3047,8 @@
     {
       "name": "verify",
       "description": "Verify Navigator-owned structural and deterministic generation evidence without writes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/verify.ts",
         "line": 11,
@@ -2947,6 +3058,8 @@
     {
       "name": "renderVerification",
       "description": "Render each verification layer without promoting unverified runtime claims.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/verify.ts",
         "line": 49,
@@ -2956,6 +3069,8 @@
     {
       "name": "reportInputFailure",
       "description": "Report deterministic Verify-stage input failures.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/commands/verify.ts",
         "line": 59,
@@ -2965,6 +3080,8 @@
     {
       "name": "descriptor",
       "description": "Define one public command descriptor from its package-owned capability.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/createCliProvider.ts",
         "line": 91,
@@ -2974,6 +3091,8 @@
     {
       "name": "binding",
       "description": "Adapt the Ankh execution request to Navigator's narrow command input.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/createCliProvider.ts",
         "line": 106,
@@ -2983,6 +3102,8 @@
     {
       "name": "getNavigatorCatalog",
       "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
         "line": 7,
@@ -2992,6 +3113,8 @@
     {
       "name": "getNavigatorExampleCatalog",
       "description": "Return the standalone composition catalog with target truth derived from Navigator policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
         "line": 16,
@@ -3001,6 +3124,8 @@
     {
       "name": "createTarget",
       "description": "Resolve one target entry through planning and the package-owned verification vocabulary.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
         "line": 28,
@@ -3010,6 +3135,8 @@
     {
       "name": "mergeDeclaredVerification",
       "description": "Preserve declared layers while applying the verifier's current structural evidence.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
         "line": 44,
@@ -3019,6 +3146,8 @@
     {
       "name": "createCoreNavigatorExamples",
       "description": "Define the standalone Slot and Stack examples.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createCoreNavigatorExamples.ts",
         "line": 5,
@@ -3028,6 +3157,8 @@
     {
       "name": "sharedBindings",
       "description": "Create narrow bindings shared by ordinary example screens and optional guards.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createCoreNavigatorExamples.ts",
         "line": 42,
@@ -3037,6 +3168,8 @@
     {
       "name": "createCustomNavigatorExamples",
       "description": "Define the registered custom navigator example and its narrow integration record.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createCustomNavigatorExamples.ts",
         "line": 7,
@@ -3046,6 +3179,8 @@
     {
       "name": "createDrawerNavigatorExamples",
       "description": "Define standalone Drawer compositions without introducing product-flow semantics.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 7,
@@ -3055,6 +3190,8 @@
     {
       "name": "createDrawerRootExamples",
       "description": "Define compositions rooted directly in Drawer.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 12,
@@ -3064,6 +3201,8 @@
     {
       "name": "createStackRootExamples",
       "description": "Define neutral Stack sequences that lead into Drawer compositions.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 43,
@@ -3073,6 +3212,8 @@
     {
       "name": "definition",
       "description": "Create one example definition with the common screen binding.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 73,
@@ -3082,6 +3223,8 @@
     {
       "name": "drawer",
       "description": "Define a Drawer with direct content and an optional leading nested branch.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 92,
@@ -3091,6 +3234,8 @@
     {
       "name": "stack",
       "description": "Define a neutral Stack sequence that leads into another navigator.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 103,
@@ -3100,6 +3245,8 @@
     {
       "name": "tabs",
       "description": "Define JavaScript Tabs with direct screen routes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 115,
@@ -3109,6 +3256,8 @@
     {
       "name": "tabsWithStack",
       "description": "Define JavaScript Tabs whose primary branch owns a Stack.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 128,
@@ -3118,6 +3267,8 @@
     {
       "name": "stackRoute",
       "description": "Create one nested Stack route.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 141,
@@ -3127,6 +3278,8 @@
     {
       "name": "nested",
       "description": "Create one ordinary nested navigator route.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createDrawerNavigatorExamples.ts",
         "line": 157,
@@ -3136,6 +3289,8 @@
     {
       "name": "createExampleScreenRoute",
       "description": "Create one neutral example route backed by the shared observable screen.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createExampleScreenRoute.ts",
         "line": 4,
@@ -3145,6 +3300,8 @@
     {
       "name": "createNavigatorCatalog",
       "description": "Create the package-owned navigation catalog from explicit owner dependency policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 14,
@@ -3154,6 +3311,8 @@
     {
       "name": "createCoreCapabilities",
       "description": "Describe Slot, Stack, and root Drawer capabilities.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 26,
@@ -3163,6 +3322,8 @@
     {
       "name": "createTabsCapabilities",
       "description": "Describe native, JavaScript, and Headless Tabs variants.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 68,
@@ -3172,6 +3333,8 @@
     {
       "name": "javaScriptTopTabsDependencies",
       "description": "Report the runtime requirements of Expo Router JavaScript Top Tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 107,
@@ -3181,6 +3344,8 @@
     {
       "name": "createExtensionCapabilities",
       "description": "Describe testing-only Split View and registered extension capability metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 116,
@@ -3190,6 +3355,8 @@
     {
       "name": "capability",
       "description": "Build one capability descriptor with deterministic targets and owner-derived dependencies.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 153,
@@ -3199,6 +3366,8 @@
     {
       "name": "resolveTargetSupport",
       "description": "Resolve platform status without indexing consumer-provided object keys.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 185,
@@ -3208,6 +3377,8 @@
     {
       "name": "requires",
       "description": "Create one capability requirement record.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 212,
@@ -3217,6 +3388,8 @@
     {
       "name": "requiresRouter",
       "description": "Describe one Expo Router major-version requirement from owner policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 217,
@@ -3226,6 +3399,8 @@
     {
       "name": "dependency",
       "description": "Resolve a consumer dependency from package-owned peer or package-version metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 222,
@@ -3235,6 +3410,8 @@
     {
       "name": "headlessTabsDependencies",
       "description": "Report the runtime requirements of Navigator-owned Headless Tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 237,
@@ -3244,6 +3421,8 @@
     {
       "name": "nativeTabsDependencies",
       "description": "Report the conservative runtime requirements of Native Tabs icon generation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
         "line": 253,
@@ -3253,6 +3432,8 @@
     {
       "name": "createNavigatorExampleDefinitions",
       "description": "Return every required standalone example composition in stable identifier order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorExampleDefinitions.ts",
         "line": 9,
@@ -3262,6 +3443,8 @@
     {
       "name": "createNavigatorPresetCatalog",
       "description": "Enumerate the finite transparent preset catalog in contract order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorPresetCatalog.ts",
         "line": 6,
@@ -3271,6 +3454,8 @@
     {
       "name": "createPreset",
       "description": "Build one transparent structural preset descriptor in contract order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorPresetCatalog.ts",
         "line": 30,
@@ -3280,6 +3465,8 @@
     {
       "name": "describePreset",
       "description": "Describe one structural preset without adding application-flow semantics.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorPresetCatalog.ts",
         "line": 39,
@@ -3289,6 +3476,8 @@
     {
       "name": "createSplitViewNavigatorExamples",
       "description": "Define supported iOS Split View examples and explicit invalid nesting cases.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createSplitViewNavigatorExamples.ts",
         "line": 7,
@@ -3298,6 +3487,8 @@
     {
       "name": "definition",
       "description": "Create one Split View example definition with all referenced column bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createSplitViewNavigatorExamples.ts",
         "line": 51,
@@ -3307,6 +3498,8 @@
     {
       "name": "splitView",
       "description": "Define one two- or three-column Split View manifest.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createSplitViewNavigatorExamples.ts",
         "line": 78,
@@ -3316,6 +3509,8 @@
     {
       "name": "createTabsNavigatorExamples",
       "description": "Define standalone native, JavaScript, Headless, nested, and top Tabs examples.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 7,
@@ -3325,6 +3520,8 @@
     {
       "name": "createTabsRootExamples",
       "description": "Define compositions rooted directly in Tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 12,
@@ -3334,6 +3531,8 @@
     {
       "name": "createStackRootExamples",
       "description": "Define neutral Stack sequences that lead into Tabs compositions.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 42,
@@ -3343,6 +3542,8 @@
     {
       "name": "definition",
       "description": "Create one example definition with ordinary screen bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 76,
@@ -3352,6 +3553,8 @@
     {
       "name": "nativeTabs",
       "description": "Define the Native Tabs example with portable named icons.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 95,
@@ -3361,6 +3564,8 @@
     {
       "name": "javascriptTabs",
       "description": "Define JavaScript Tabs with direct routes unless explicit branches are supplied.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 112,
@@ -3370,6 +3575,8 @@
     {
       "name": "headlessTabs",
       "description": "Define Headless Tabs with fixed or responsive Surface presentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 123,
@@ -3379,6 +3586,8 @@
     {
       "name": "stackRoutes",
       "description": "Define a native Stack with two neutral direct routes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 136,
@@ -3388,6 +3597,8 @@
     {
       "name": "stackWith",
       "description": "Wrap one navigator behind a neutral root Stack sequence.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 148,
@@ -3397,6 +3608,8 @@
     {
       "name": "nested",
       "description": "Create one nested navigator route with an optional explicit Headless Tabs path.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createTabsNavigatorExamples.ts",
         "line": 157,
@@ -3406,6 +3619,8 @@
     {
       "name": "resolveCustomNavigatorAdapterPlan",
       "description": "Resolve a registered standard-router integration without materializing executable manifest data.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts",
         "line": 11,
@@ -3415,6 +3630,8 @@
     {
       "name": "addCustomNavigatorDiagnostics",
       "description": "Validate all deliberately registered custom navigator extension nodes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
         "line": 12,
@@ -3424,6 +3641,8 @@
     {
       "name": "validateCustomTree",
       "description": "Traverse custom navigator extensions independently from built-in navigator option policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
         "line": 23,
@@ -3433,6 +3652,8 @@
     {
       "name": "addCustomNodeDiagnostics",
       "description": "Add registry, platform, version, and schema diagnostics for one custom navigator node.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
         "line": 49,
@@ -3442,6 +3663,8 @@
     {
       "name": "addCompatibilityDiagnostics",
       "description": "Add platform and Expo Router compatibility diagnostics for one registered extension.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
         "line": 72,
@@ -3451,6 +3674,8 @@
     {
       "name": "addConfigDiagnostics",
       "description": "Run one registration's schema-specific validator after the portable JSON boundary.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
         "line": 102,
@@ -3460,6 +3685,8 @@
     {
       "name": "isPortableConfig",
       "description": "Validate finite JSON manifest data without accepting functions, symbols, cycles, or prototypes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
         "line": 137,
@@ -3469,6 +3696,8 @@
     {
       "name": "defineCustomNavigatorRegistry",
       "description": "Define an immutable, duplicate-free custom navigator registry for one composition boundary.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts",
         "line": 9,
@@ -3478,6 +3707,8 @@
     {
       "name": "resolveDrawerRouteOptions",
       "description": "Translate a route label and primary-navigation visibility into Drawer screen options.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/drawer/adapters/outbound/resolveDrawerRouteOptions.ts",
         "line": 4,
@@ -3487,6 +3718,8 @@
     {
       "name": "createDrawerAdapter",
       "description": "Describe the standard Expo Router Drawer adapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/drawer/application/createDrawerAdapter.ts",
         "line": 4,
@@ -3496,6 +3729,8 @@
     {
       "name": "generateSlotLayoutFile",
       "description": "Render a stateless Slot layout using the validated adapter import.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
         "line": 4,
@@ -3505,6 +3740,8 @@
     {
       "name": "createSlotAdapter",
       "description": "Describe the stateless Expo Router Slot adapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/slot/application/createSlotAdapter.ts",
         "line": 4,
@@ -3514,6 +3751,8 @@
     {
       "name": "addSlotDiagnostics",
       "description": "Reject stateful initial routes and protected screen registrations on a stateless Slot.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/slot/domain/addSlotDiagnostics.ts",
         "line": 4,
@@ -3523,6 +3762,8 @@
     {
       "name": "generateSplitViewLayoutFile",
       "description": "Generate a Split View layout while leaving the routed main column to Expo Router's Slot.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "line": 11,
@@ -3532,6 +3773,8 @@
     {
       "name": "collectSplitViewBindings",
       "description": "Resolve the ordered primary, supplementary, and inspector bindings for one Split View.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "line": 37,
@@ -3541,6 +3784,8 @@
     {
       "name": "resolveSplitViewBinding",
       "description": "Resolve one Split View screen reference through the narrow generated-screen binding port.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "line": 66,
@@ -3550,6 +3795,8 @@
     {
       "name": "renderSplitViewImports",
       "description": "Render deterministic imports for referenced Split View column and inspector screens.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "line": 88,
@@ -3559,6 +3806,8 @@
     {
       "name": "renderSplitViewChild",
       "description": "Render one referenced screen as an upstream Split View child.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "line": 99,
@@ -3568,6 +3817,8 @@
     {
       "name": "resolveSplitViewAdapterPlan",
       "description": "Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts",
         "line": 9,
@@ -3577,6 +3828,8 @@
     {
       "name": "addSplitViewDiagnostics",
       "description": "Add constrained placement, binding, version, and fallback diagnostics for Split View.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
         "line": 13,
@@ -3586,6 +3839,8 @@
     {
       "name": "collectSplitViews",
       "description": "Collect every Split View together with its parent topology and manifest pointer.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
         "line": 52,
@@ -3595,6 +3850,8 @@
     {
       "name": "addTopologyDiagnostics",
       "description": "Reject Split View placement and route declarations unsupported by its Slot-based topology.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
         "line": 79,
@@ -3604,6 +3861,8 @@
     {
       "name": "addColumnDiagnostics",
       "description": "Reject unresolved, duplicated, or incompatible Split View column references.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
         "line": 114,
@@ -3613,6 +3872,8 @@
     {
       "name": "addCollapseColumnDiagnostics",
       "description": "Reject invalid or unavailable iPhone collapse-column selections.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/domain/addSplitViewDiagnostics.ts",
         "line": 150,
@@ -3622,6 +3883,8 @@
     {
       "name": "createStackAdapter",
       "description": "Resolve a Stack implementation to its version- and platform-aware Expo Router adapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/application/createStackAdapter.ts",
         "line": 10,
@@ -3631,6 +3894,8 @@
     {
       "name": "createJavaScriptStackAdapter",
       "description": "Resolve the version-gated JavaScript Stack adapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/application/createStackAdapter.ts",
         "line": 30,
@@ -3640,6 +3905,8 @@
     {
       "name": "createExperimentalStackAdapter",
       "description": "Resolve the platform- and version-gated Experimental Stack adapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/application/createStackAdapter.ts",
         "line": 48,
@@ -3649,6 +3916,8 @@
     {
       "name": "addExperimentalStackDiagnostics",
       "description": "Add app-wide platform, version, option, and runtime requirements for Experimental Stack.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
         "line": 14,
@@ -3658,6 +3927,8 @@
     {
       "name": "auditStackTree",
       "description": "Traverse the authored topology using the resolved platform and default precedence.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
         "line": 77,
@@ -3667,6 +3938,8 @@
     {
       "name": "auditExperimentalStackNode",
       "description": "Audit one resolved experimental Stack node and its route-level option surface.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
         "line": 115,
@@ -3676,6 +3949,8 @@
     {
       "name": "addUnsupportedOptionDiagnostics",
       "description": "Add actionable diagnostics for options ignored by Expo Router Experimental Stack.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
         "line": 137,
@@ -3685,6 +3960,8 @@
     {
       "name": "addStackAdapterDiagnostics",
       "description": "Diagnose a JavaScript Stack selection that requires a newer Expo Router version.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/addStackAdapterDiagnostics.ts",
         "line": 12,
@@ -3694,6 +3971,8 @@
     {
       "name": "resolveEffectiveStackConfig",
       "description": "Resolve effective Stack configuration using platform, node, default, and stable precedence.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveEffectiveStackConfig.ts",
         "line": 11,
@@ -3703,6 +3982,8 @@
     {
       "name": "resolveEffectiveStackConfigSource",
       "description": "Resolve effective Stack configuration together with its authored diagnostic location.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveEffectiveStackConfigSource.ts",
         "line": 10,
@@ -3712,6 +3993,8 @@
     {
       "name": "resolvePlatformStackConfig",
       "description": "Read a platform override only when it selects a Stack implementation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveEffectiveStackConfigSource.ts",
         "line": 35,
@@ -3721,6 +4004,8 @@
     {
       "name": "resolveNodeStackConfig",
       "description": "Preserve explicitly authored Stack options without inventing a node override.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveEffectiveStackConfigSource.ts",
         "line": 50,
@@ -3730,6 +4015,8 @@
     {
       "name": "resolveNavigatorHeaderOwnership",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
         "line": 11,
@@ -3739,6 +4026,8 @@
     {
       "name": "resolveVisibleHeaders",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
         "line": 51,
@@ -3748,6 +4037,8 @@
     {
       "name": "selectActiveRoute",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
         "line": 72,
@@ -3757,6 +4048,8 @@
     {
       "name": "navigatorContainsScreen",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
         "line": 86,
@@ -3766,6 +4059,8 @@
     {
       "name": "isStackHeaderVisible",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
         "line": 95,
@@ -3775,6 +4070,8 @@
     {
       "name": "resolveHeaderTitle",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/resolveNavigatorHeaderOwnership.ts",
         "line": 100,
@@ -3784,6 +4081,8 @@
     {
       "name": "validateStackRouteOptions",
       "description": "Reject Stack options on other navigator types and native-only options on JavaScript Stack.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/stack/domain/validateStackRouteOptions.ts",
         "line": 8,
@@ -3793,6 +4092,8 @@
     {
       "name": "BuiltInTabsPresentation",
       "description": "Render Navigator-owned bottom, top, rail, or sidebar tab chrome.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
         "line": 12,
@@ -3802,6 +4103,8 @@
     {
       "name": "HeadlessTabsLayout",
       "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 22,
@@ -3811,6 +4114,8 @@
     {
       "name": "createTabsNavigation",
       "description": "Construct the current Navigator presentation without changing the headless Expo Router topology.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 60,
@@ -3820,6 +4125,8 @@
     {
       "name": "HeadlessTabsBody",
       "description": "Place Navigator-owned navigation chrome around the bounded tab content slot.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 65,
@@ -3829,6 +4136,8 @@
     {
       "name": "resolveHeadlessTabsLayout",
       "description": "Resolve shell geometry and safe areas for the current built-in presentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 121,
@@ -3838,6 +4147,8 @@
     {
       "name": "selectPresentation",
       "description": "Select one fixed presentation without altering the Router-owned topology.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 164,
@@ -3847,6 +4158,8 @@
     {
       "name": "TabsNavigation",
       "description": "Select built-in or registered custom chrome for the currently visible routes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 179,
@@ -3856,6 +4169,8 @@
     {
       "name": "renderItem",
       "description": "Bind one visible route to the shared Navigator trigger for registered custom chrome.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
         "line": 192,
@@ -3865,6 +4180,8 @@
     {
       "name": "HeadlessTabsViewport",
       "description": "Bound the Expo Router tab slot so route-owned scrolling receives the available viewport.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsViewport.tsx",
         "line": 5,
@@ -3874,6 +4191,8 @@
     {
       "name": "NavigatorTabItem",
       "description": "Render one Navigator-owned tab trigger using current Surface foundation primitives.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "line": 14,
@@ -3883,6 +4202,8 @@
     {
       "name": "renderNavigatorTabItemContent",
       "description": "Select the horizontal or vertical content renderer for one Navigator tab item.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "line": 78,
@@ -3892,6 +4213,8 @@
     {
       "name": "renderHorizontalNavigatorTabItem",
       "description": "Render a bottom/top Navigator tab item.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "line": 92,
@@ -3901,6 +4224,8 @@
     {
       "name": "renderRailNavigatorTabItem",
       "description": "Render a compact navigation-rail item with icon-first vertical rhythm.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "line": 117,
@@ -3910,6 +4235,8 @@
     {
       "name": "renderSidebarNavigatorTabItem",
       "description": "Render a full-width navigation-sidebar item with comfortable horizontal rhythm.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "line": 148,
@@ -3919,6 +4246,8 @@
     {
       "name": "resolveNavigatorTabItemColors",
       "description": "Resolve Navigator tab colors from the current Surface theme interaction tokens.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "line": 176,
@@ -3928,6 +4257,8 @@
     {
       "name": "NavigatorTabTrigger",
       "description": "Bind one visible route to an Expo Router headless tab trigger and Surface route item.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "line": 11,
@@ -3937,6 +4268,8 @@
     {
       "name": "generateTabsLayoutFile",
       "description": "Generate the specialized layout file for a supported tabs implementation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 12,
@@ -3946,6 +4279,8 @@
     {
       "name": "createNativeTabsFile",
       "description": "Create the generated Native Tabs layout file and its narrow runtime imports.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 33,
@@ -3955,6 +4290,8 @@
     {
       "name": "nativeIconFamily",
       "description": "Map a supported provider to the Navigator-owned Native Tabs family export.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 77,
@@ -3964,6 +4301,8 @@
     {
       "name": "nativeIconProvider",
       "description": "Resolve and validate the native vector-icon provider for one planned route icon.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 96,
@@ -3973,6 +4312,8 @@
     {
       "name": "createNativeTabsContents",
       "description": "Render a complete Native Tabs layout module from one validated node plan.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 114,
@@ -3982,6 +4323,8 @@
     {
       "name": "nativeIconSource",
       "description": "Render a Native Tabs vector icon source within the canonical generated-code print width.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 152,
@@ -3991,6 +4334,8 @@
     {
       "name": "nativeIconName",
       "description": "Read the required native vector-icon name from one planned route icon.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 165,
@@ -4000,6 +4345,8 @@
     {
       "name": "createHeadlessTabsFile",
       "description": "Create the generated cross-platform headless-tabs layout and registered integration imports.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 173,
@@ -4009,6 +4356,8 @@
     {
       "name": "renderHeadlessTabRoutes",
       "description": "Render Headless Tabs route records as stable multiline source objects.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 224,
@@ -4018,6 +4367,8 @@
     {
       "name": "renderHeadlessTabsReturn",
       "description": "Render the Headless Tabs return statement without exceeding the canonical print width.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "line": 240,
@@ -4027,6 +4378,8 @@
     {
       "name": "createTabsAdapter",
       "description": "Describe Tabs adapter support, stability, and limitations for the target platform and version.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/createTabsAdapter.ts",
         "line": 10,
@@ -4036,6 +4389,8 @@
     {
       "name": "resolveTabsNavigatorPlan",
       "description": "Resolve the Expo Router module/export and presentation for one tabs implementation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
         "line": 14,
@@ -4045,6 +4400,8 @@
     {
       "name": "createAdaptiveTabsPlan",
       "description": "Resolve the adaptive tabs plan for the selected runtime platform.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
         "line": 35,
@@ -4054,6 +4411,8 @@
     {
       "name": "createNativeTabsPlan",
       "description": "Create the alpha native-tabs plan and reject unsupported Web usage.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
         "line": 49,
@@ -4063,6 +4422,8 @@
     {
       "name": "resolveAdaptiveConfig",
       "description": "Return the adaptive config when omission or `adaptive` selects that branch.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
         "line": 74,
@@ -4072,6 +4433,8 @@
     {
       "name": "createHeadlessTabsPlan",
       "description": "Create the stable cross-platform Headless Tabs plan and resolve its presentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
         "line": 84,
@@ -4081,6 +4444,8 @@
     {
       "name": "createJavaScriptTabsPlan",
       "description": "Create the stable JavaScript tabs plan for bottom or top presentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsNavigatorPlan.ts",
         "line": 109,
@@ -4090,6 +4455,8 @@
     {
       "name": "resolveTabsPlan",
       "description": "Retain an unavailable native-web plan for diagnostics or resolve the supported Tabs adapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/application/resolveTabsPlan.ts",
         "line": 11,
@@ -4099,6 +4466,8 @@
     {
       "name": "addTabsAdapterDiagnostics",
       "description": "Add tabs-specific semantic diagnostics for one manifest navigator node.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
         "line": 12,
@@ -4108,6 +4477,8 @@
     {
       "name": "addTabsPlatformDiagnostics",
       "description": "Add platform and stability diagnostics for the resolved tabs implementation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
         "line": 43,
@@ -4117,6 +4488,8 @@
     {
       "name": "addTabsRouteDiagnostics",
       "description": "Validate route reachability, guards, paths, counts, and icons for tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
         "line": 80,
@@ -4126,6 +4499,8 @@
     {
       "name": "addTabsIconDiagnostics",
       "description": "Validate route icon compatibility for native and Surface-backed tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
         "line": 125,
@@ -4135,6 +4510,8 @@
     {
       "name": "addNativeVersionDiagnostics",
       "description": "Gate newer Native Tabs options on the Expo Router version that supports them.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/addTabsAdapterDiagnostics.ts",
         "line": 165,
@@ -4144,6 +4521,8 @@
     {
       "name": "resolveEffectiveTabsConfig",
       "description": "Resolve Tabs configuration in platform, node, then manifest-default precedence.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
         "line": 10,
@@ -4153,6 +4532,8 @@
     {
       "name": "resolvePlatformTabsConfig",
       "description": "Read a platform override only when it selects a Tabs implementation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
         "line": 23,
@@ -4162,6 +4543,8 @@
     {
       "name": "resolveNodeTabsConfig",
       "description": "Preserve an explicitly authored Tabs implementation as the node-level override.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/resolveEffectiveTabsConfig.ts",
         "line": 38,
@@ -4171,6 +4554,8 @@
     {
       "name": "resolveHeadlessTabsPresentation",
       "description": "Resolve one headless-tabs presentation for the current semantic responsive size.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
         "line": 10,
@@ -4180,6 +4565,8 @@
     {
       "name": "resolveResponsivePresentation",
       "description": "Resolve the fixed presentation for one semantic responsive size.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/domain/resolveHeadlessTabsPresentation.ts",
         "line": 34,
@@ -4189,6 +4576,8 @@
     {
       "name": "WorkspaceNavigator",
       "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 16,
@@ -4198,6 +4587,8 @@
     {
       "name": "navigate",
       "description": "Change one workspace destination through Expo Router and dismiss compact navigation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 27,
@@ -4207,6 +4598,8 @@
     {
       "name": "leave",
       "description": "Leave the workspace through the consumer-provided external destination.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 35,
@@ -4216,6 +4609,8 @@
     {
       "name": "WorkspaceBody",
       "description": "Keep routed page content bounded beside the permanent medium or expanded navigation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 71,
@@ -4225,6 +4620,8 @@
     {
       "name": "WorkspaceHeader",
       "description": "Present the current page title, external exit, and compact menu action.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 102,
@@ -4234,6 +4631,8 @@
     {
       "name": "WorkspaceNavigationOverlay",
       "description": "Overlay the same navigation list above routed content on compact viewports.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 152,
@@ -4243,6 +4642,8 @@
     {
       "name": "WorkspaceNavigationList",
       "description": "Present the same hierarchy in a permanent panel or compact overlay.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 182,
@@ -4252,6 +4653,8 @@
     {
       "name": "WorkspaceNavigationItem",
       "description": "Render one destination with its availability, icon, and active state.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "line": 209,
@@ -4261,6 +4664,8 @@
     {
       "name": "generateWorkspaceLayout",
       "description": "Generate an Expo Router workspace layout from consumer-owned runtime and access bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts",
         "line": 8,
@@ -4270,6 +4675,8 @@
     {
       "name": "resolveWorkspaceNavigation",
       "description": "Resolve visible destinations and selected ancestors from one consumer-owned route tree.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
         "line": 7,
@@ -4279,6 +4686,8 @@
     {
       "name": "resolveAncestorIds",
       "description": "Walk one validated parent chain without mutating the consumer-owned route tree.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
         "line": 30,
@@ -4288,6 +4697,8 @@
     {
       "name": "assertNavigatorCliOptions",
       "description": "Enforce each public command's required and accepted option surface.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/assertNavigatorCliOptions.ts",
         "line": 4,
@@ -4297,6 +4708,8 @@
     {
       "name": "optionName",
       "description": "Map parsed option properties back to stable public flag names.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/assertNavigatorCliOptions.ts",
         "line": 24,
@@ -4306,6 +4719,8 @@
     {
       "name": "createNavigatorExamplePlan",
       "description": "Resolve one example through the same public planning policy used by library and CLI consumers.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExamplePlan.ts",
         "line": 9,
@@ -4315,6 +4730,8 @@
     {
       "name": "createNavigatorExampleScaffold",
       "description": "Create one complete app-owned Expo shell around Navigator-generated route files.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 16,
@@ -4324,6 +4741,8 @@
     {
       "name": "createAppConfig",
       "description": "Create an Expo Router application manifest with only truthfully runnable platforms.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 64,
@@ -4333,6 +4752,8 @@
     {
       "name": "createPackageManifest",
       "description": "Create one isolated dependency graph from owner policy and the selected plan requirements.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 84,
@@ -4342,6 +4763,8 @@
     {
       "name": "createExampleScripts",
       "description": "Expose only runnable platform commands while retaining the generic Expo launcher.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 119,
@@ -4351,6 +4774,8 @@
     {
       "name": "supportsWebTarget",
       "description": "Decide whether the isolated app needs Web runtime peers.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 147,
@@ -4360,6 +4785,8 @@
     {
       "name": "createGenerationScript",
       "description": "Render the example-local public CLI invocation without workspace paths.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 159,
@@ -4369,6 +4796,8 @@
     {
       "name": "resolvePackageRange",
       "description": "Resolve example versions from the package's published or acceptance dependency policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 164,
@@ -4378,6 +4807,8 @@
     {
       "name": "createTypeScriptConfig",
       "description": "Create a strict Expo TypeScript configuration without a local Navigator alias.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 176,
@@ -4387,6 +4818,8 @@
     {
       "name": "renderCustomRegistry",
       "description": "Render the executable custom registration consumed by the public CLI option.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 196,
@@ -4396,6 +4829,8 @@
     {
       "name": "json",
       "description": "Serialize checked-in data files with stable formatting.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScaffold.ts",
         "line": 218,
@@ -4405,6 +4840,8 @@
     {
       "name": "createNavigatorExampleScreenFiles",
       "description": "Create the app-owned observable screens, guards, and registered integration for one example.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 9,
@@ -4414,6 +4851,8 @@
     {
       "name": "exampleScreenFile",
       "description": "Create the observable screen shared by generated route bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 43,
@@ -4423,6 +4862,8 @@
     {
       "name": "unsupportedScreenFiles",
       "description": "Create the runnable explanation shell for deliberately unsupported compositions.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 51,
@@ -4432,6 +4873,8 @@
     {
       "name": "collectRoutes",
       "description": "Collect public leaf paths without treating Expo Router groups as URL segments.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 79,
@@ -4441,6 +4884,8 @@
     {
       "name": "renderExampleScreen",
       "description": "Render the shared neutral screen with route, state, navigation, scroll, and final-action proof.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 93,
@@ -4450,6 +4895,8 @@
     {
       "name": "renderScreenComponents",
       "description": "Render the small generated components around dynamic catalog copy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 158,
@@ -4459,6 +4906,8 @@
     {
       "name": "columnScreen",
       "description": "Create one Split View column module backed by the same observable screen.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 255,
@@ -4468,6 +4917,8 @@
     {
       "name": "renderUnsupportedScreen",
       "description": "Render a runnable shell that explains a deliberately unsupported composition.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 263,
@@ -4477,6 +4928,8 @@
     {
       "name": "escapeTemplateText",
       "description": "Escape template-significant characters in generated plain text.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorExampleScreenFiles.ts",
         "line": 294,
@@ -4486,6 +4939,8 @@
     {
       "name": "createNavigatorPlan",
       "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 31,
@@ -4495,6 +4950,8 @@
     {
       "name": "resolvePlanSupport",
       "description": "Reduce every nested adapter status to the plan's least-supported classification.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 55,
@@ -4504,6 +4961,8 @@
     {
       "name": "collectCapabilityIds",
       "description": "Report stable capability IDs for every distinct resolved node variant.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 62,
@@ -4513,6 +4972,8 @@
     {
       "name": "collectNodes",
       "description": "Flatten one recursive plan in deterministic route order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 67,
@@ -4522,6 +4983,8 @@
     {
       "name": "resolveCapabilityId",
       "description": "Map one resolved node to its public catalog capability identifier.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 77,
@@ -4531,6 +4994,8 @@
     {
       "name": "createNodePlan",
       "description": "Resolve a node and its descendants using one platform and responsive-size context.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 97,
@@ -4540,6 +5005,8 @@
     {
       "name": "createRoutePlan",
       "description": "Preserve portable route metadata and recursively plan a nested navigator when present.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 138,
@@ -4549,6 +5016,8 @@
     {
       "name": "createAdapter",
       "description": "Dispatch adapter planning to the feature that owns the authored navigator type.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 171,
@@ -4558,6 +5027,8 @@
     {
       "name": "createNodeDetails",
       "description": "Project each navigator's resolved configuration onto the shared recursive plan.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
         "line": 197,
@@ -4567,6 +5038,8 @@
     {
       "name": "generateNavigator",
       "description": "Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 22,
@@ -4576,6 +5049,8 @@
     {
       "name": "createGenerationResult",
       "description": "Assemble the portable generation result without adding filesystem side effects.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 62,
@@ -4585,6 +5060,8 @@
     {
       "name": "collectFiles",
       "description": "Traverse the plan to emit layouts and optional screen bindings in their route directories.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 82,
@@ -4594,6 +5071,8 @@
     {
       "name": "createLayoutFile",
       "description": "Dispatch specialized layout generation or render the shared Screen-registration contract.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 110,
@@ -4603,6 +5082,8 @@
     {
       "name": "createGuardImports",
       "description": "Validate and alias every distinct guard binding used by a navigator's routes.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 154,
@@ -4612,6 +5093,8 @@
     {
       "name": "createNavigatorContents",
       "description": "Render navigator options and registered screens using the resolved adapter component.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 172,
@@ -4621,6 +5104,8 @@
     {
       "name": "renderScreen",
       "description": "Wrap a generated screen in the conjunction of its registered route guards.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 203,
@@ -4630,6 +5115,8 @@
     {
       "name": "routeOptions",
       "description": "Merge route labels with the owning adapter's screen-option mapping.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 232,
@@ -4639,6 +5126,8 @@
     {
       "name": "shouldHideUnnamedGroupHeader",
       "description": "Keep Expo Router implementation groups from becoming visible Stack headers by default.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 258,
@@ -4648,6 +5137,8 @@
     {
       "name": "renderScreenElement",
       "description": "Render one generated Screen with a stable multiline options object when route options exist.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 269,
@@ -4657,6 +5148,8 @@
     {
       "name": "assertRouteName",
       "description": "Reject route segments that could escape or invalidate the generated directory.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 291,
@@ -4666,6 +5159,8 @@
     {
       "name": "createScreenFile",
       "description": "Emit a route module that re-exports its registered screen as the default component.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
         "line": 298,
@@ -4675,6 +5170,8 @@
     {
       "name": "generateNavigatorExamples",
       "description": "Generate one or every complete root examples application as a deterministic file set.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 22,
@@ -4684,6 +5181,8 @@
     {
       "name": "selectDefinitions",
       "description": "Select one stable example id or return the complete catalog.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 45,
@@ -4693,6 +5192,8 @@
     {
       "name": "generateExample",
       "description": "Generate one prefixed app from a supported target or an explicit unsupported shell.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 56,
@@ -4702,6 +5203,8 @@
     {
       "name": "selectGenerationPlatform",
       "description": "Choose Web when supported, then iOS, then Android for stable checked-in source.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 81,
@@ -4711,6 +5214,8 @@
     {
       "name": "supportedPlatforms",
       "description": "Return every target that can truthfully execute the composition.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 92,
@@ -4720,6 +5225,8 @@
     {
       "name": "isSupportedTarget",
       "description": "Narrow one catalog target to an executable support claim.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 99,
@@ -4729,6 +5236,8 @@
     {
       "name": "mergeRequirements",
       "description": "Merge target-aware requirements without weakening concrete version policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigatorExamples.ts",
         "line": 104,
@@ -4738,6 +5247,8 @@
     {
       "name": "isNavigatorExampleId",
       "description": "Check one CLI value against the package-owned example catalog.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/isNavigatorExampleId.ts",
         "line": 5,
@@ -4747,6 +5258,8 @@
     {
       "name": "isNavigatorGenerationBindings",
       "description": "Narrow unknown CLI or composer input to the portable generated-module binding shape.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/isNavigatorGenerationBindings.ts",
         "line": 7,
@@ -4756,6 +5269,8 @@
     {
       "name": "isModuleRecord",
       "description": "Validate a record of static module/symbol pairs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/isNavigatorGenerationBindings.ts",
         "line": 17,
@@ -4765,6 +5280,8 @@
     {
       "name": "isModule",
       "description": "Validate one static module/symbol pair before semantic binding checks.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/isNavigatorGenerationBindings.ts",
         "line": 22,
@@ -4774,6 +5291,8 @@
     {
       "name": "isRecord",
       "description": "Check an object-like JSON value without accepting arrays.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/isNavigatorGenerationBindings.ts",
         "line": 32,
@@ -4783,6 +5302,8 @@
     {
       "name": "hasOnlyKeys",
       "description": "Reject accidental Studio or application context at the narrow binding boundary.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/isNavigatorGenerationBindings.ts",
         "line": 37,
@@ -4792,6 +5313,8 @@
     {
       "name": "loadCustomNavigatorRegistryAsync",
       "description": "Load an explicit consumer-owned custom navigator registry module.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/loadCustomNavigatorRegistryAsync.ts",
         "line": 7,
@@ -4801,6 +5324,8 @@
     {
       "name": "loadNavigatorCliInputAsync",
       "description": "Load and narrow standalone manifest, binding, registry, and target-context CLI input.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
         "line": 15,
@@ -4810,6 +5335,8 @@
     {
       "name": "loadBindings",
       "description": "Load required or optional generated-module bindings from JSON.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
         "line": 60,
@@ -4819,6 +5346,8 @@
     {
       "name": "optional",
       "description": "Include one optional typed value without materializing undefined.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/loadNavigatorCliInputAsync.ts",
         "line": 77,
@@ -4828,6 +5357,8 @@
     {
       "name": "parseExpoRouterMajor",
       "description": "Read the major version only from an exact semantic Expo Router version.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/parseExpoRouterMajor.ts",
         "line": 2,
@@ -4837,6 +5368,8 @@
     {
       "name": "parseNavigatorCliOptions",
       "description": "Parse deterministic Navigator command flags without reading files or process globals.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/parseNavigatorCliOptions.ts",
         "line": 4,
@@ -4846,6 +5379,8 @@
     {
       "name": "finiteValue",
       "description": "Read one finite flag value and reject values outside its public vocabulary.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/parseNavigatorCliOptions.ts",
         "line": 49,
@@ -4855,6 +5390,8 @@
     {
       "name": "optional",
       "description": "Include optional parsed values without materializing undefined fields.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/parseNavigatorCliOptions.ts",
         "line": 62,
@@ -4864,6 +5401,8 @@
     {
       "name": "readNavigatorCliJsonAsync",
       "description": "Read one explicit CLI input as unknown JSON for owner-boundary parsing.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/readNavigatorCliJsonAsync.ts",
         "line": 5,
@@ -4873,6 +5412,8 @@
     {
       "name": "renderNavigatorExampleReadme",
       "description": "Render standalone install, generation, execution, and target-status documentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/renderNavigatorExampleReadme.ts",
         "line": 7,
@@ -4882,6 +5423,8 @@
     {
       "name": "renderNavigatorExamplesIndex",
       "description": "Render the root catalog index from the same public descriptors used for verification.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/renderNavigatorExamplesIndex.ts",
         "line": 4,
@@ -4891,6 +5434,8 @@
     {
       "name": "reportNavigatorCliResult",
       "description": "Render one stable human or JSON Navigator command result with deterministic exit semantics.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/reportNavigatorCliResult.ts",
         "line": 6,
@@ -4900,6 +5445,8 @@
     {
       "name": "resolveNavigatorDependencies",
       "description": "Derive generated-app dependency requirements from the resolved navigator plan.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 10,
@@ -4909,6 +5456,8 @@
     {
       "name": "visitNode",
       "description": "Collect runtime packages imported by Navigator-owned generated files or runtime adapters.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 24,
@@ -4918,6 +5467,8 @@
     {
       "name": "addDrawerDependencies",
       "description": "Add packages imported by the native Drawer runtime.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 39,
@@ -4927,6 +5478,8 @@
     {
       "name": "addHeadlessTabsDependencies",
       "description": "Add packages imported by Navigator and Surface headless Tabs runtime.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 51,
@@ -4936,6 +5489,8 @@
     {
       "name": "addJavaScriptTopTabsDependencies",
       "description": "Add the upstream packages imported by JavaScript Top Tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 71,
@@ -4945,6 +5500,8 @@
     {
       "name": "addNativeTabsDependencies",
       "description": "Add the selected native icon families imported by generated Native Tabs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 81,
@@ -4954,6 +5511,8 @@
     {
       "name": "resolveVersionRange",
       "description": "Resolve one dependency range from package-owned peer policy or the current package version.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
         "line": 95,
@@ -4963,6 +5522,8 @@
     {
       "name": "resolveNavigatorIcon",
       "description": "Convert portable route icon metadata to the current Surface icon contract.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorIcon.ts",
         "line": 7,
@@ -4972,6 +5533,8 @@
     {
       "name": "resolveNavigatorPreset",
       "description": "Resolve a canonical navigator preset into its ordered topology layers.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorPreset.ts",
         "line": 4,
@@ -4981,6 +5544,8 @@
     {
       "name": "resolveNavigatorRootDirectory",
       "description": "Resolve a safe directory below the Expo Router app root without filesystem normalization.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorRootDirectory.ts",
         "line": 2,
@@ -4990,6 +5555,8 @@
     {
       "name": "useHydrationSafeSize",
       "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
         "line": 6,
@@ -4999,6 +5566,8 @@
     {
       "name": "subscribeToHydration",
       "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
         "line": 19,
@@ -5008,6 +5577,8 @@
     {
       "name": "getClientHydration",
       "description": "Report that client rendering can consume the live responsive breakpoint.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
         "line": 24,
@@ -5017,6 +5588,8 @@
     {
       "name": "getServerHydration",
       "description": "Keep server output deterministic at the compact presentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
         "line": 29,
@@ -5026,6 +5599,8 @@
     {
       "name": "validateNavigator",
       "description": "Structurally and semantically validate standalone navigator input without writing files.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigator.ts",
         "line": 12,
@@ -5035,6 +5610,8 @@
     {
       "name": "validateNavigatorBindings",
       "description": "Validate only the narrow generated-module bindings required by a resolved navigator plan.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 14,
@@ -5044,6 +5621,8 @@
     {
       "name": "validateSuppliedBindings",
       "description": "Validate every supplied module record, including currently unreferenced bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 41,
@@ -5053,6 +5632,8 @@
     {
       "name": "validateNodeBindings",
       "description": "Traverse one node and validate every screen, guard, and presentation module it references.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 70,
@@ -5062,6 +5643,8 @@
     {
       "name": "validateTabsBindings",
       "description": "Validate optional Headless and Native Tabs runtime bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 105,
@@ -5071,6 +5654,8 @@
     {
       "name": "validateSplitViewBindings",
       "description": "Validate Split View column and inspector screen bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 141,
@@ -5080,6 +5665,8 @@
     {
       "name": "validateModuleBinding",
       "description": "Validate one required module/symbol pair and emit a portable diagnostic on failure.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 164,
@@ -5089,6 +5676,8 @@
     {
       "name": "validateStaticImport",
       "description": "Emit a portable diagnostic for an unsafe supplied module or export name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
         "line": 182,
@@ -5098,6 +5687,8 @@
     {
       "name": "validateNavigatorManifest",
       "description": "Validate one navigator desired-state slice for a concrete Expo Router target.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 22,
@@ -5107,6 +5698,8 @@
     {
       "name": "validateNode",
       "description": "Traverse each navigator with local route-name state and its resolved Stack policy.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 51,
@@ -5116,6 +5709,8 @@
     {
       "name": "addUnsupportedAdapterDiagnostics",
       "description": "Delegate adapter availability checks to the owning Stack or Tabs feature.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 85,
@@ -5125,6 +5720,8 @@
     {
       "name": "validateInitialRoute",
       "description": "Require a declared initial route to exist among the navigator's immediate children.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 102,
@@ -5134,6 +5731,8 @@
     {
       "name": "validateLocalRoute",
       "description": "Validate one route's name, target, guards, and resolved Stack options.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 122,
@@ -5143,6 +5742,8 @@
     {
       "name": "validateRouteName",
       "description": "Reject duplicate names and unsafe Expo Router file segments within one navigator.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 136,
@@ -5152,6 +5753,8 @@
     {
       "name": "validateRouteTarget",
       "description": "Require exactly one screen binding or nested navigator per route.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 162,
@@ -5161,6 +5764,8 @@
     {
       "name": "validateRouteGuards",
       "description": "Reject repeated guard references on a single route.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
         "line": 178,
@@ -5170,6 +5775,8 @@
     {
       "name": "validatePresetTopology",
       "description": "Reject preset metadata that contradicts the explicitly authored navigator spine.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validatePresetTopology.ts",
         "line": 10,
@@ -5179,6 +5786,8 @@
     {
       "name": "visit",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validatePresetTopology.ts",
         "line": 18,
@@ -5188,6 +5797,8 @@
     {
       "name": "verifyNavigator",
       "description": "Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/verifyNavigator.ts",
         "line": 13,
@@ -5197,6 +5808,8 @@
     {
       "name": "collectDeclaredChecks",
       "description": "Collect the verification layers declared by every resolved capability for one target.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/verifyNavigator.ts",
         "line": 62,
@@ -5206,6 +5819,8 @@
     {
       "name": "verifyNavigatorExamplesAsync",
       "description": "Verify checked-in example bytes and app-owned lockfiles against deterministic generation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/verifyNavigatorExamplesAsync.ts",
         "line": 11,
@@ -5215,6 +5830,8 @@
     {
       "name": "readOptionalFile",
       "description": "Read one expected file while treating absence as verification data.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/verifyNavigatorExamplesAsync.ts",
         "line": 53,
@@ -5224,6 +5841,8 @@
     {
       "name": "matchesGeneratedFile",
       "description": "Compare semantic data and Navigator-owned route output without coupling to formatter whitespace.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/verifyNavigatorExamplesAsync.ts",
         "line": 63,
@@ -5233,6 +5852,8 @@
     {
       "name": "canonicalJson",
       "description": "Normalize JSON while preserving array order and object insertion order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/verifyNavigatorExamplesAsync.ts",
         "line": 71,
@@ -5242,6 +5863,8 @@
     {
       "name": "writeNavigatorGeneratedFilesAsync",
       "description": "Materialize a prevalidated generated file set below one explicit target directory.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/utils/writeNavigatorGeneratedFilesAsync.ts",
         "line": 7,
