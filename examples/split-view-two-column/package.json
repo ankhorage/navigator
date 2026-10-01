@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "@ankhorage/navigator": "3.3.17",
-    "expo": "^57.0.20",
-    "expo-router": "57.0.18",
-    "react": "19.2.3",
+    "expo": "^57.0.26",
+    "expo-router": "57.0.24",
+    "react": "19.3.0",
     "react-native": "0.86.3"
   },
   "devDependencies": {
     "@ankhorage/ankh": "^0.10.4",
-    "@types/react": "^19.2.18",
+    "@types/react": "^19.3.0",
     "typescript": "~6.0.3"
   },
   "packageManager": "bun@1.4.2"
