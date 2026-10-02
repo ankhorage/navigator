@@ -230,9 +230,9 @@
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+    "modulePath": "src/features/catalog/composition/getNavigatorCatalog.ts",
     "sourceLocation": {
-      "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "filePath": "src/features/catalog/composition/getNavigatorCatalog.ts",
       "line": 7,
       "column": 1
     },
@@ -259,9 +259,9 @@
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+    "modulePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
     "sourceLocation": {
-      "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+      "filePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
       "line": 16,
       "column": 1
     },

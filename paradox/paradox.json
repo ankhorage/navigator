@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.3.69",
+      "value": "v3.3.70",
       "color": "cb3837"
     },
     {
@@ -95,7 +95,7 @@
       "path": "src/cli/commands/catalog.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "src/features/catalog/composition/getNavigatorCatalog.ts",
         "src/types/navigatorCli.ts",
         "src/utils/assertNavigatorCliOptions.ts",
         "src/utils/parseNavigatorCliOptions.ts",
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "path": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "path": "src/features/catalog/composition/getNavigatorCatalog.ts",
       "isEntrypoint": false,
       "dependencies": [
         "package.json",
@@ -233,10 +233,10 @@
       ]
     },
     {
-      "path": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+      "path": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "src/features/catalog/composition/getNavigatorCatalog.ts",
         "src/features/catalog/domain/createNavigatorExampleDefinitions.ts",
         "src/types/navigatorExamples.ts",
         "src/utils/createNavigatorExamplePlan.ts",
@@ -919,7 +919,7 @@
       "path": "src/utils/generateNavigatorExamples.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "src/features/catalog/domain/createNavigatorExampleDefinitions.ts",
         "src/types/navigatorExamples.ts",
         "src/utils/createNavigatorExamplePlan.ts",
@@ -976,7 +976,7 @@
       "isEntrypoint": true,
       "dependencies": [
         "package.json",
-        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
+        "src/features/catalog/composition/getNavigatorCatalog.ts"
       ],
       "exports": [
         "NAVIGATOR_PACKAGE_METADATA"
@@ -1152,7 +1152,7 @@
       "path": "src/utils/verifyNavigator.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "src/features/catalog/composition/getNavigatorCatalog.ts",
         "src/types/navigatorVerification.ts",
         "src/utils/generateNavigator.ts"
       ],
@@ -1615,9 +1615,9 @@
       "see": [],
       "security": [],
       "kind": "function",
-      "modulePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "modulePath": "src/features/catalog/composition/getNavigatorCatalog.ts",
       "sourceLocation": {
-        "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "filePath": "src/features/catalog/composition/getNavigatorCatalog.ts",
         "line": 7,
         "column": 1
       },
@@ -1644,9 +1644,9 @@
       "see": [],
       "security": [],
       "kind": "function",
-      "modulePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+      "modulePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
       "sourceLocation": {
-        "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "filePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "line": 16,
         "column": 1
       },
@@ -3100,7 +3100,7 @@
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "filePath": "src/features/catalog/composition/getNavigatorCatalog.ts",
         "line": 7,
         "column": 1
       }
@@ -3111,7 +3111,7 @@
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "filePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "line": 16,
         "column": 1
       }
@@ -3122,7 +3122,7 @@
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "filePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "line": 28,
         "column": 1
       }
@@ -3133,7 +3133,7 @@
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "filePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "line": 44,
         "column": 1
       }
@@ -5911,7 +5911,7 @@
     {
       "kind": "export",
       "name": "getNavigatorCatalog",
-      "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+      "sourcePath": "src/features/catalog/composition/getNavigatorCatalog.ts",
       "symbolName": "getNavigatorCatalog",
       "description": "Return the package-owned catalog with dependencies derived from published owner metadata.",
       "isReadme": false
@@ -5919,7 +5919,7 @@
     {
       "kind": "export",
       "name": "getNavigatorExampleCatalog",
-      "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+      "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
       "symbolName": "getNavigatorExampleCatalog",
       "description": "Return the standalone composition catalog with target truth derived from Navigator policy.",
       "isReadme": false
@@ -6025,12 +6025,12 @@
     "imports": [
       {
         "fromPath": "src/navigator.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
         "fromPath": "src/navigator.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "sourcePath": "src/navigator.ts"
       },
       {
@@ -6555,7 +6555,7 @@
       },
       {
         "fromPath": "src/utils/generateNavigatorExamples.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
         "sourcePath": "src/utils/generateNavigatorExamples.ts"
       },
       {
@@ -6625,7 +6625,7 @@
       },
       {
         "fromPath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
         "sourcePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
       },
       {
@@ -6735,7 +6735,7 @@
       },
       {
         "fromPath": "src/utils/verifyNavigator.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
         "sourcePath": "src/utils/verifyNavigator.ts"
       },
       {
@@ -6760,7 +6760,7 @@
       },
       {
         "fromPath": "src/cli/commands/catalog.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
         "sourcePath": "src/cli/commands/catalog.ts"
       },
       {
@@ -7034,6 +7034,41 @@
         "sourcePath": "src/cli/commands/examples/verify.ts"
       },
       {
+        "fromPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/features/catalog/composition/getNavigatorCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
+        "toPath": "src/features/catalog/domain/createNavigatorCatalog.ts",
+        "sourcePath": "src/features/catalog/composition/getNavigatorCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
+        "toPath": "src/types/navigatorExamples.ts",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
+        "toPath": "src/utils/createNavigatorExamplePlan.ts",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
+        "toPath": "src/utils/verifyNavigator.ts",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
+        "toPath": "src/features/catalog/domain/createNavigatorExampleDefinitions.ts",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromPath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
+        "toPath": "src/features/catalog/composition/getNavigatorCatalog.ts",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
         "fromPath": "src/features/catalog/domain/createCoreNavigatorExamples.ts",
         "toPath": "src/types/navigatorExamples.ts",
         "sourcePath": "src/features/catalog/domain/createCoreNavigatorExamples.ts"
@@ -7212,41 +7247,6 @@
         "fromPath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
         "toPath": "src/types/workspaceNavigation.ts",
         "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
-        "toPath": "package.json",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
-        "toPath": "src/features/catalog/domain/createNavigatorCatalog.ts",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
-        "toPath": "src/types/navigatorExamples.ts",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
-        "toPath": "src/utils/createNavigatorExamplePlan.ts",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
-        "toPath": "src/utils/verifyNavigator.ts",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
-        "toPath": "src/features/catalog/domain/createNavigatorExampleDefinitions.ts",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromPath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
-        "toPath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
@@ -9672,6 +9672,48 @@
         "sourcePath": "src/cli/commands/examples/verify.ts"
       },
       {
+        "fromSymbol": "getNavigatorCatalog",
+        "toSymbol": "createNavigatorCatalog",
+        "callExpression": "createNavigatorCatalog",
+        "sourcePath": "src/features/catalog/composition/getNavigatorCatalog.ts"
+      },
+      {
+        "fromSymbol": "getNavigatorExampleCatalog",
+        "toSymbol": "createNavigatorExampleDefinitions",
+        "callExpression": "createNavigatorExampleDefinitions",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromSymbol": "src/features/catalog/composition/getNavigatorExampleCatalog.ts",
+        "toSymbol": "createTarget",
+        "callExpression": "createTarget",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromSymbol": "createTarget",
+        "toSymbol": "createNavigatorExamplePlan",
+        "callExpression": "createNavigatorExamplePlan",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromSymbol": "createTarget",
+        "toSymbol": "verifyNavigator",
+        "callExpression": "verifyNavigator",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromSymbol": "createTarget",
+        "toSymbol": "mergeDeclaredVerification",
+        "callExpression": "mergeDeclaredVerification",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
+        "fromSymbol": "mergeDeclaredVerification",
+        "toSymbol": "getNavigatorCatalog",
+        "callExpression": "getNavigatorCatalog",
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
+      },
+      {
         "fromSymbol": "createCoreNavigatorExamples",
         "toSymbol": "createExampleScreenRoute",
         "callExpression": "createExampleScreenRoute",
@@ -10440,48 +10482,6 @@
         "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
       },
       {
-        "fromSymbol": "getNavigatorCatalog",
-        "toSymbol": "createNavigatorCatalog",
-        "callExpression": "createNavigatorCatalog",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
-      },
-      {
-        "fromSymbol": "getNavigatorExampleCatalog",
-        "toSymbol": "createNavigatorExampleDefinitions",
-        "callExpression": "createNavigatorExampleDefinitions",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromSymbol": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts",
-        "toSymbol": "createTarget",
-        "callExpression": "createTarget",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromSymbol": "createTarget",
-        "toSymbol": "createNavigatorExamplePlan",
-        "callExpression": "createNavigatorExamplePlan",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromSymbol": "createTarget",
-        "toSymbol": "verifyNavigator",
-        "callExpression": "verifyNavigator",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromSymbol": "createTarget",
-        "toSymbol": "mergeDeclaredVerification",
-        "callExpression": "mergeDeclaredVerification",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
-        "fromSymbol": "mergeDeclaredVerification",
-        "toSymbol": "getNavigatorCatalog",
-        "callExpression": "getNavigatorCatalog",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
-      },
-      {
         "fromSymbol": "generateSplitViewLayoutFile",
         "toSymbol": "collectSplitViewBindings",
         "callExpression": "collectSplitViewBindings",
@@ -10822,12 +10822,12 @@
       {
         "fromSymbol": "getNavigatorCatalog",
         "toType": "NavigatorCatalog",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"
+        "sourcePath": "src/features/catalog/composition/getNavigatorCatalog.ts"
       },
       {
         "fromSymbol": "getNavigatorExampleCatalog",
         "toType": "NavigatorExampleDescriptor",
-        "sourcePath": "src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"
+        "sourcePath": "src/features/catalog/composition/getNavigatorExampleCatalog.ts"
       },
       {
         "fromSymbol": "defineCustomNavigatorRegistry",

@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.70
+
+### Patch Changes
+
+- da19d28: Update dependencies: `@ankhorage/ankh`, `@ankhorage/devtools`.
+
 ## 3.3.69
 
 ### Patch Changes

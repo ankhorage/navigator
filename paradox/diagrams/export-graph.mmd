@@ -8,8 +8,8 @@ graph LR
   module_src_cli_commands_validate_ts["src/cli/commands/validate.ts"]
   module_src_cli_commands_verify_ts["src/cli/commands/verify.ts"]
   module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
-  module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts["src/features/catalog/adapters/inbound/getNavigatorCatalog.ts"]
-  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts["src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts"]
+  module_src_features_catalog_composition_getNavigatorCatalog_ts["src/features/catalog/composition/getNavigatorCatalog.ts"]
+  module_src_features_catalog_composition_getNavigatorExampleCatalog_ts["src/features/catalog/composition/getNavigatorExampleCatalog.ts"]
   module_src_features_catalog_domain_createCoreNavigatorExamples_ts["src/features/catalog/domain/createCoreNavigatorExamples.ts"]
   module_src_features_catalog_domain_createCustomNavigatorExamples_ts["src/features/catalog/domain/createCustomNavigatorExamples.ts"]
   module_src_features_catalog_domain_createDrawerNavigatorExamples_ts["src/features/catalog/domain/createDrawerNavigatorExamples.ts"]
@@ -136,9 +136,9 @@ graph LR
   export_generateWorkspaceLayout["generateWorkspaceLayout"]
   module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_ts --> export_generateWorkspaceLayout
   export_getNavigatorCatalog["getNavigatorCatalog"]
-  module_src_features_catalog_adapters_inbound_getNavigatorCatalog_ts --> export_getNavigatorCatalog
+  module_src_features_catalog_composition_getNavigatorCatalog_ts --> export_getNavigatorCatalog
   export_getNavigatorExampleCatalog["getNavigatorExampleCatalog"]
-  module_src_features_catalog_adapters_inbound_getNavigatorExampleCatalog_ts --> export_getNavigatorExampleCatalog
+  module_src_features_catalog_composition_getNavigatorExampleCatalog_ts --> export_getNavigatorExampleCatalog
   export_getNavigatorExampleCatalog -.-> export_NavigatorExampleDescriptor
   export_HeadlessTabsLayout["HeadlessTabsLayout"]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> export_HeadlessTabsLayout

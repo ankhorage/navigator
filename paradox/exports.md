@@ -82,8 +82,8 @@ Generate an Expo Router workspace layout from consumer-owned runtime and access 
 ## getNavigatorCatalog
 
 Kind: `function`
-Module: `src/features/catalog/adapters/inbound/getNavigatorCatalog.ts`
-Source: `src/features/catalog/adapters/inbound/getNavigatorCatalog.ts:7:1`
+Module: `src/features/catalog/composition/getNavigatorCatalog.ts`
+Source: `src/features/catalog/composition/getNavigatorCatalog.ts:7:1`
 
 Return the package-owned catalog with dependencies derived from published owner metadata.
 
@@ -95,8 +95,8 @@ Return the package-owned catalog with dependencies derived from published owner 
 ## getNavigatorExampleCatalog
 
 Kind: `function`
-Module: `src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts`
-Source: `src/features/catalog/adapters/inbound/getNavigatorExampleCatalog.ts:16:1`
+Module: `src/features/catalog/composition/getNavigatorExampleCatalog.ts`
+Source: `src/features/catalog/composition/getNavigatorExampleCatalog.ts:16:1`
 
 Return the standalone composition catalog with target truth derived from Navigator policy.
 
