@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.40
+
+### Patch Changes
+
+- 07c429d: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.39
 
 ### Patch Changes
