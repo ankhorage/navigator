@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.61
+
+### Patch Changes
+
+- 770bfa1: Update dependencies: `@ankhorage/contracts`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.60
 
 ### Patch Changes
