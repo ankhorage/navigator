@@ -5,7 +5,7 @@ import type {
   NavigatorVerificationKind,
 } from '@ankhorage/contracts/navigator';
 
-import { getNavigatorCatalog } from '../features/catalog/adapters/inbound/getNavigatorCatalog';
+import { getNavigatorCatalog } from '../features/catalog/composition/getNavigatorCatalog';
 import type { NavigatorVerificationResult } from '../types/navigatorVerification';
 import { generateNavigator } from './generateNavigator';
 

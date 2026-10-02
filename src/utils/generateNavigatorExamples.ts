@@ -4,7 +4,7 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
-import { getNavigatorExampleCatalog } from '../features/catalog/adapters/inbound/getNavigatorExampleCatalog';
+import { getNavigatorExampleCatalog } from '../features/catalog/composition/getNavigatorExampleCatalog';
 import { createNavigatorExampleDefinitions } from '../features/catalog/domain/createNavigatorExampleDefinitions';
 import type {
   NavigatorExampleDefinition,

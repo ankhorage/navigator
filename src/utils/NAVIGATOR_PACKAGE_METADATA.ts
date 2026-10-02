@@ -1,5 +1,5 @@
 import packageJson from '../../package.json';
-import { getNavigatorCatalog } from '../features/catalog/adapters/inbound/getNavigatorCatalog';
+import { getNavigatorCatalog } from '../features/catalog/composition/getNavigatorCatalog';
 
 /*** Publish package identity and the single Navigator-owned capability catalog. */
 export const NAVIGATOR_PACKAGE_METADATA = {

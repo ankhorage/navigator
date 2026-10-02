@@ -6,10 +6,10 @@ import type {
 import type {
   NavigatorExampleDescriptor,
   NavigatorExampleTarget,
-} from '../../../../types/navigatorExamples';
-import { createNavigatorExamplePlan } from '../../../../utils/createNavigatorExamplePlan';
-import { verifyNavigator } from '../../../../utils/verifyNavigator';
-import { createNavigatorExampleDefinitions } from '../../domain/createNavigatorExampleDefinitions';
+} from '../../../types/navigatorExamples';
+import { createNavigatorExamplePlan } from '../../../utils/createNavigatorExamplePlan';
+import { verifyNavigator } from '../../../utils/verifyNavigator';
+import { createNavigatorExampleDefinitions } from '../domain/createNavigatorExampleDefinitions';
 import { getNavigatorCatalog } from './getNavigatorCatalog';
 
 /*** Return the standalone composition catalog with target truth derived from Navigator policy. */
