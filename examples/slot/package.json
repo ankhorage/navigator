@@ -12,20 +12,20 @@
     "export:android": "expo export --platform android --output-dir dist/android",
     "export:ios": "expo export --platform ios --output-dir dist/ios",
     "export:web": "expo export --platform web --output-dir dist/web",
-    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform web --expo-router-version 57.0.18 --target ."
+    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform web --expo-router-version 57.0.24 --target ."
   },
   "dependencies": {
     "@ankhorage/navigator": "3.3.70",
-    "expo": "^57.0.20",
-    "expo-router": "57.0.18",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "expo": "^57.0.26",
+    "expo-router": "57.0.24",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-native": "0.86.3",
     "react-native-web": "~0.21.3"
   },
   "devDependencies": {
     "@ankhorage/ankh": "^0.10.80",
-    "@types/react": "^19.2.18",
+    "@types/react": "^19.3.0",
     "typescript": "~6.0.3"
   },
   "packageManager": "bun@1.4.2"
