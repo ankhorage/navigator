@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.3.39
+
+### Patch Changes
+
+- ce5a457: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.38
 
 ### Patch Changes
