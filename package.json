@@ -141,7 +141,7 @@
     }
   },
   "devDependencies": {
-    "@ankhorage/ankh": "^0.10.80",
+    "@ankhorage/ankh": "^0.10.82",
     "@ankhorage/devtools": "^2.0.115",
     "@ankhorage/paradox": "^0.2.25",
     "@ankhorage/surface": "^9.1.99",
