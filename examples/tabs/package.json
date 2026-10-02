@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "export:android": "expo export --platform android --output-dir dist/android",
     "export:ios": "expo export --platform ios --output-dir dist/ios",
-    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform ios --expo-router-version 57.0.18 --target ."
+    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform ios --expo-router-version 57.0.24 --target ."
   },
   "dependencies": {
     "@ankhorage/navigator": "3.3.70",
