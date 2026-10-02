@@ -102,7 +102,7 @@
   },
   "dependencies": {
     "@ankhorage/contracts": "^22.8.70",
-    "@ankhorage/utility": "^1.9.57"
+    "@ankhorage/utility": "^1.9.59"
   },
   "peerDependencies": {
     "@ankhorage/surface": "^9.1.7",
@@ -144,7 +144,7 @@
     "@ankhorage/ankh": "^0.10.4",
     "@ankhorage/devtools": "^2.0.0",
     "@ankhorage/paradox": "^0.2.22",
-    "@ankhorage/surface": "^9.1.81",
+    "@ankhorage/surface": "^9.1.83",
     "@playwright/test": "^1.63.0",
     "@react-native-vector-icons/fontawesome": "^13.1.4",
     "@react-native-vector-icons/fontawesome5": "^13.1.3",
