@@ -12,7 +12,7 @@
     "export:android": "expo export --platform android --output-dir dist/android",
     "export:ios": "expo export --platform ios --output-dir dist/ios",
     "export:web": "expo export --platform web --output-dir dist/web",
-    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform web --expo-router-version 57.0.18 --target ."
+    "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform web --expo-router-version 57.0.24 --target ."
   },
   "dependencies": {
     "@ankhorage/navigator": "3.3.70",
