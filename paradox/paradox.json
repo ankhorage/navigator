@@ -75,11 +75,7 @@
       "line": 11
     }
   ],
-  "readmeConfig": {
-    "language": "ts",
-    "code": "import { defineParadoxConfig } from '@ankhorage/paradox';\n\nimport packageJson from './package.json';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  docs: {\n    title: 'NAVIGATOR',\n    description:\n      'Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.',\n    usage: {\n      entrypoints: ['docs/readme-usage.ts'],\n    },\n  },\n\n  package: {\n    root: '.',\n    entrypoints: Object.values(packageJson.exports).flatMap((entry) =>\n      typeof entry === 'string'\n        ? []\n        : [entry.default.replace('./dist/', 'src/').replace(/\\.js$/u, '.ts')],\n    ),\n  },\n\n  output: {\n    dir: './paradox',\n  },\n});",
-    "sourcePath": "paradox.config.ts"
-  },
+  "readmeConfig": null,
   "config": null,
   "entrypoints": [
     "src/cli/createCliProvider.ts",
