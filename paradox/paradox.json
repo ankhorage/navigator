@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.3.58",
+      "value": "v3.3.59",
       "color": "cb3837"
     },
     {
@@ -75,7 +75,6 @@
       "line": 11
     }
   ],
-  "readmeConfig": null,
   "config": null,
   "entrypoints": [
     "src/cli/createCliProvider.ts",
