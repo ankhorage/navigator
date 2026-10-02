@@ -1,5 +1,12 @@
 # @ankhorage/navigator
 
+## 3.3.37
+
+### Patch Changes
+
+- dff9959: Update Renovate-managed workflows.
+- 39423b2: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.36
 
 ### Patch Changes
