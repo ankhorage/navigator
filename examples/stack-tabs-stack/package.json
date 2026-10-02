@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ankhorage/navigator": "3.3.39",
-    "@ankhorage/surface": "^9.1.57",
+    "@ankhorage/surface": "^9.1.58",
     "expo": "^57.0.20",
     "expo-router": "57.0.18",
     "react": "19.2.3",
