@@ -4,7 +4,7 @@ import type {
   NavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import { resolveNavigatorPreset } from './resolveNavigatorPreset';
+import { resolveNavigatorPreset } from '../features/catalog/domain/resolveNavigatorPreset';
 
 /*** Reject preset metadata that contradicts the explicitly authored navigator spine. */
 export function validatePresetTopology(

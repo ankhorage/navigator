@@ -1,6 +1,6 @@
 import type { NavigatorPreset, NavigatorPresetDescriptor } from '@ankhorage/contracts/navigator';
 
-import { resolveNavigatorPreset } from '../../../utils/resolveNavigatorPreset';
+import { resolveNavigatorPreset } from './resolveNavigatorPreset';
 
 /*** Enumerate the finite transparent preset catalog in contract order. */
 export function createNavigatorPresetCatalog(): readonly NavigatorPresetDescriptor[] {
