@@ -76,7 +76,7 @@ describe('@ankhorage/navigator package boundary', () => {
     expect(packageJson.peerDependencies?.['react-dom']).toMatch(/^19\.\d+\.\d+$/u);
     expect(packageJson.devDependencies?.['react-dom']).toMatch(/^19\.\d+\.\d+$/u);
     expect(packageJson.peerDependencies?.['react-native-safe-area-context']).toMatch(
-      /^~5\.\d+\.\d+$/u,
+      /^~5\.\d+\.\d+(?: \\|\\| ~5\.\d+\.\d+)*$/u,
     );
     expect(packageJson.devDependencies?.['react-native-safe-area-context']).toMatch(
       /^~5\.\d+\.\d+$/u,
