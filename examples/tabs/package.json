@@ -13,7 +13,7 @@
     "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform ios --expo-router-version 57.0.24 --target ."
   },
   "dependencies": {
-    "@ankhorage/navigator": "3.3.72",
+    "@ankhorage/navigator": "3.4.0",
     "@react-native-vector-icons/ionicons": "^13.1.4",
     "expo": "^57.0.26",
     "expo-router": "57.0.24",
