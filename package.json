@@ -40,8 +40,8 @@
       "default": "./dist/navigator.js"
     },
     "./metadata": {
-      "types": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.d.ts",
-      "default": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.js"
+      "types": "./dist/metadata.d.ts",
+      "default": "./dist/metadata.js"
     },
     "./cli": {
       "types": "./dist/cli/createCliProvider.d.ts",

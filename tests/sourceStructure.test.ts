@@ -24,6 +24,7 @@ test('keeps the catalog and navigation capabilities as peers, without legacy dir
     'cli',
     'constants',
     'features',
+    'metadata.ts',
     'navigator.ts',
     'types',
     'utils',
@@ -82,20 +83,24 @@ test('gives implementation modules one matching export before private declaratio
       }
       continue;
     }
-    expect(exports.length, relative(sourceRoot, file)).toBe(1);
-    expect(exports[0], relative(sourceRoot, file)).toBe(declarations[0]);
     const local = relative(sourceRoot, file);
+    if (local === 'constants/navigator.ts') {
+      expect(exports.length, local).toBe(2);
+      expect(exports.map(exportedName), local).toEqual([
+        'NAVIGATOR_PACKAGE_METADATA',
+        'NAVIGATOR_ROUTER_POLICY',
+      ]);
+      continue;
+    }
+    expect(exports.length, local).toBe(1);
+    expect(exports[0], relative(sourceRoot, file)).toBe(declarations[0]);
     const implementationExport = exports[0];
     if (implementationExport === undefined) throw new Error(`Missing export in ${local}.`);
     if (local === 'cli/createCliProvider.ts') {
       expect(ts.isExportAssignment(implementationExport), local).toBe(true);
     } else {
       expect(exportedName(implementationExport), local).toBe(
-        local === 'capabilities/index.ts'
-          ? 'CAPABILITIES'
-          : local === 'constants/navigator.ts'
-            ? 'NAVIGATOR_ROUTER_POLICY'
-            : basename(file).replace(/\.tsx?$/u, ''),
+        local === 'capabilities/index.ts' ? 'CAPABILITIES' : basename(file).replace(/\.tsx?$/u, ''),
       );
     }
   }
@@ -231,6 +236,7 @@ function assertInwardDependencies(file: string, domainOnly: boolean, visited: Se
       }
       continue;
     }
+    if (specifier.endsWith('package.json')) continue;
     const target = resolveModule(file, specifier);
     expect(target, file).not.toMatch(/\/(adapters|composition|cli)\//u);
     if (domainOnly) expect(target, file).not.toContain('/application/');

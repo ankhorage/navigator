@@ -1,10 +1,10 @@
+import { verifyNavigatorExamplesAsync } from '../../../features/catalog/composition/verifyNavigatorExamplesAsync';
 import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../../types/navigatorCli';
 import type { NavigatorExampleVerificationResult } from '../../../types/navigatorExamples';
 import { assertNavigatorCliOptions } from '../../../utils/assertNavigatorCliOptions';
 import { isNavigatorExampleId } from '../../../utils/isNavigatorExampleId';
 import { parseNavigatorCliOptions } from '../../../utils/parseNavigatorCliOptions';
 import { reportNavigatorCliResult } from '../../../utils/reportNavigatorCliResult';
-import { verifyNavigatorExamplesAsync } from '../../../utils/verifyNavigatorExamplesAsync';
 
 /*** Verify one or every root example against deterministic generation and lockfile ownership. */
 export async function verify(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {

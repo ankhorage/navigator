@@ -6,7 +6,7 @@ import {
   generateNavigator,
   validateNavigatorManifest,
 } from '../src/navigator';
-import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
+import { getNavigatorCatalog } from '../src/features/catalog/composition/getNavigatorCatalog';
 import { NAVIGATOR_ROUTER_POLICY } from '../src/constants/navigator';
 import { generateFiles } from './generateFiles';
 import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
@@ -67,8 +67,8 @@ describe('@ankhorage/navigator Split View planning', () => {
     expect(web.diagnostics.map(({ code }) => code)).toContain('unsupported-platform');
     expect(web.root.adapter.limitations[0]).toContain('split-pane presentation');
     expect(
-      NAVIGATOR_PACKAGE_METADATA.catalog.capabilities
-        .find(({ id }) => id === 'split-view.two-column')
+      getNavigatorCatalog()
+        .capabilities.find(({ id }) => id === 'split-view.two-column')
         ?.targets.find(({ platform }) => platform === 'web')?.support,
     ).toBe('unsupported');
 

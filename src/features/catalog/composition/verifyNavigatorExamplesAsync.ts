@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import type {
   NavigatorExampleId,
   NavigatorExampleVerificationResult,
-} from '../types/navigatorExamples';
+} from '../../../types/navigatorExamples';
 import { generateNavigatorExamples } from './generateNavigatorExamples';
 
 /*** Verify checked-in example bytes and app-owned lockfiles against deterministic generation. */

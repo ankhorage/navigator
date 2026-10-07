@@ -4,19 +4,19 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
-import { getNavigatorExampleCatalog } from '../features/catalog/composition/getNavigatorExampleCatalog';
-import { createNavigatorExampleDefinitions } from '../features/catalog/domain/createNavigatorExampleDefinitions';
 import type {
   NavigatorExampleDefinition,
   NavigatorExampleDescriptor,
   NavigatorExampleGenerationResult,
   NavigatorExampleId,
   NavigatorExampleTarget,
-} from '../types/navigatorExamples';
-import { createNavigatorExamplePlan } from './createNavigatorExamplePlan';
-import { createNavigatorExampleScaffold } from './createNavigatorExampleScaffold';
-import { generateNavigator } from './generateNavigator';
-import { renderNavigatorExamplesIndex } from './renderNavigatorExamplesIndex';
+} from '../../../types/navigatorExamples';
+import { createNavigatorExamplePlan } from '../../../utils/createNavigatorExamplePlan';
+import { createNavigatorExampleScaffold } from '../../../utils/createNavigatorExampleScaffold';
+import { generateNavigator } from '../../../utils/generateNavigator';
+import { renderNavigatorExamplesIndex } from '../../../utils/renderNavigatorExamplesIndex';
+import { createNavigatorExampleDefinitions } from '../domain/createNavigatorExampleDefinitions';
+import { getNavigatorExampleCatalog } from './getNavigatorExampleCatalog';
 
 /*** Generate one or every complete root examples application as a deterministic file set. */
 export function generateNavigatorExamples(

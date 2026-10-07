@@ -5,8 +5,9 @@ import type {
 import { describe, expect, test } from 'bun:test';
 
 import { createNavigatorPlan, validateNavigatorManifest } from '../src/navigator';
-import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
+import { NAVIGATOR_PACKAGE_METADATA } from '../src/constants/navigator';
 import { NAVIGATOR_ROUTER_POLICY } from '../src/constants/navigator';
+import { getNavigatorCatalog } from '../src/features/catalog/composition/getNavigatorCatalog';
 import { generateFiles } from './generateFiles';
 import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 
@@ -49,8 +50,8 @@ describe('@ankhorage/navigator Experimental Stack planning', () => {
       'Testing-only API; Expo Router falls back to the standard Stack on web.',
     );
     expect(
-      NAVIGATOR_PACKAGE_METADATA.catalog.capabilities
-        .find(({ id }) => id === 'stack.experimental')
+      getNavigatorCatalog()
+        .capabilities.find(({ id }) => id === 'stack.experimental')
         ?.targets.find(({ platform }) => platform === 'web')?.support,
     ).toBe('unsupported');
   });

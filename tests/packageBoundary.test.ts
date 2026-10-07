@@ -3,7 +3,8 @@ import { extname, join } from 'node:path';
 
 import { describe, expect, test } from 'bun:test';
 
-import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
+import { getNavigatorCatalog } from '../src/features/catalog/composition/getNavigatorCatalog';
+import { NAVIGATOR_PACKAGE_METADATA } from '../src/metadata';
 
 async function collectProductionTypeScriptFiles(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -29,7 +30,8 @@ describe('@ankhorage/navigator package boundary', () => {
       'manifest default',
       'stable default',
     ]);
-    const capabilities = NAVIGATOR_PACKAGE_METADATA.catalog.capabilities;
+    const catalog = getNavigatorCatalog();
+    const capabilities = catalog.capabilities;
     expect(capabilities.find(({ id }) => id === 'stack.javascript')).toMatchObject({
       topology: 'stack',
       implementation: 'javascript',
@@ -48,7 +50,7 @@ describe('@ankhorage/navigator package boundary', () => {
       topology: 'custom',
       stability: 'stable',
     });
-    expect(NAVIGATOR_PACKAGE_METADATA.catalog.presets.find(({ id }) => id === 'drawer')).toEqual({
+    expect(catalog.presets.find(({ id }) => id === 'drawer')).toEqual({
       id: 'drawer',
       description: 'Drawer root with direct routes and no forced Stack.',
       topology: ['drawer'],

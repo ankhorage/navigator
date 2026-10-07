@@ -1,5 +1,4 @@
 import type { AnkhCommandExecutionRequest, AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
-import type { Capability } from '@ankhorage/contracts/capabilities';
 
 import packageJson from '../../package.json';
 import { CAPABILITIES } from '../capabilities';
@@ -68,7 +67,7 @@ export default {
 /*** Define one public command descriptor from its package-owned capability. */
 function descriptor(
   path: string | readonly string[],
-  capability: Capability['id'],
+  capability: (typeof CAPABILITIES)[number]['id'],
   summary: string,
 ) {
   const segments = typeof path === 'string' ? [path] : path;
