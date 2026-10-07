@@ -1,5 +1,13 @@
 # Public API
 
+## CAPABILITIES
+
+Kind: `value`
+Module: `src/capabilities/index.ts`
+Source: `src/capabilities/index.ts:4:14`
+
+Publish the portable action capabilities implemented by Navigator's Ankh provider.
+
 ## createNavigatorPlan
 
 Kind: `function`
@@ -19,7 +27,7 @@ Create a disposable, provider-aware plan from only the navigator desired-state s
 
 Kind: `unknown`
 Module: `src/cli/createCliProvider.ts`
-Source: `src/cli/createCliProvider.ts:13:1`
+Source: `src/cli/createCliProvider.ts:14:1`
 
 ## defineCustomNavigatorRegistry
 
@@ -54,8 +62,8 @@ Generate a structured deterministic Expo Router result from one resolved plan an
 ## generateNavigatorExamples
 
 Kind: `function`
-Module: `src/utils/generateNavigatorExamples.ts`
-Source: `src/utils/generateNavigatorExamples.ts:22:1`
+Module: `src/features/catalog/composition/generateNavigatorExamples.ts`
+Source: `src/features/catalog/composition/generateNavigatorExamples.ts:22:1`
 
 Generate one or every complete root examples application as a deterministic file set.
 
@@ -188,10 +196,10 @@ Material Design Icons family adapter for Expo Native Tabs.
 ## NAVIGATOR_PACKAGE_METADATA
 
 Kind: `value`
-Module: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts`
-Source: `src/utils/NAVIGATOR_PACKAGE_METADATA.ts:5:14`
+Module: `src/constants/navigator.ts`
+Source: `src/constants/navigator.ts:4:14`
 
-Publish package identity and the single Navigator-owned capability catalog.
+Publish static Navigator package metadata without composing the runtime catalog.
 
 ## NavigatorExampleDescriptor
 
@@ -303,8 +311,8 @@ Source: `src/features/stack/domain/resolveNavigatorHeaderOwnership.ts:11:1`
 ## resolveNavigatorPreset
 
 Kind: `function`
-Module: `src/utils/resolveNavigatorPreset.ts`
-Source: `src/utils/resolveNavigatorPreset.ts:4:1`
+Module: `src/features/catalog/domain/resolveNavigatorPreset.ts`
+Source: `src/features/catalog/domain/resolveNavigatorPreset.ts:4:1`
 
 Resolve a canonical navigator preset into its ordered topology layers.
 
@@ -384,7 +392,7 @@ Validate one navigator desired-state slice for a concrete Expo Router target.
 
 Kind: `function`
 Module: `src/utils/verifyNavigator.ts`
-Source: `src/utils/verifyNavigator.ts:13:1`
+Source: `src/utils/verifyNavigator.ts:15:1`
 
 Verify deterministic Navigator-owned structure and report stronger runtime evidence separately.
 
@@ -399,8 +407,8 @@ Verify deterministic Navigator-owned structure and report stronger runtime evide
 ## verifyNavigatorExamplesAsync
 
 Kind: `function`
-Module: `src/utils/verifyNavigatorExamplesAsync.ts`
-Source: `src/utils/verifyNavigatorExamplesAsync.ts:11:1`
+Module: `src/features/catalog/composition/verifyNavigatorExamplesAsync.ts`
+Source: `src/features/catalog/composition/verifyNavigatorExamplesAsync.ts:11:1`
 
 Verify checked-in example bytes and app-owned lockfiles against deterministic generation.
 

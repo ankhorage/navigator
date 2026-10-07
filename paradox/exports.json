@@ -1,5 +1,27 @@
 [
   {
+    "name": "CAPABILITIES",
+    "title": null,
+    "description": "Publish the portable action capabilities implemented by Navigator's Ankh provider.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "value",
+    "modulePath": "src/capabilities/index.ts",
+    "sourceLocation": {
+      "filePath": "src/capabilities/index.ts",
+      "line": 4,
+      "column": 14
+    },
+    "exportPaths": [
+      "src/capabilities/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "createNavigatorPlan",
     "title": null,
     "description": "Create a disposable, provider-aware plan from only the navigator desired-state slice.",
@@ -52,7 +74,7 @@
     "modulePath": "src/cli/createCliProvider.ts",
     "sourceLocation": {
       "filePath": "src/cli/createCliProvider.ts",
-      "line": 13,
+      "line": 14,
       "column": 1
     },
     "exportPaths": [
@@ -155,9 +177,9 @@
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/utils/generateNavigatorExamples.ts",
+    "modulePath": "src/features/catalog/composition/generateNavigatorExamples.ts",
     "sourceLocation": {
-      "filePath": "src/utils/generateNavigatorExamples.ts",
+      "filePath": "src/features/catalog/composition/generateNavigatorExamples.ts",
       "line": 22,
       "column": 1
     },
@@ -467,19 +489,19 @@
   {
     "name": "NAVIGATOR_PACKAGE_METADATA",
     "title": null,
-    "description": "Publish package identity and the single Navigator-owned capability catalog.",
+    "description": "Publish static Navigator package metadata without composing the runtime catalog.",
     "isReadme": false,
     "see": [],
     "security": [],
     "kind": "value",
-    "modulePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
+    "modulePath": "src/constants/navigator.ts",
     "sourceLocation": {
-      "filePath": "src/utils/NAVIGATOR_PACKAGE_METADATA.ts",
-      "line": 5,
+      "filePath": "src/constants/navigator.ts",
+      "line": 4,
       "column": 14
     },
     "exportPaths": [
-      "src/utils/NAVIGATOR_PACKAGE_METADATA.ts"
+      "src/metadata.ts"
     ],
     "relatedSymbols": [],
     "signatures": [],
@@ -848,9 +870,9 @@
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/utils/resolveNavigatorPreset.ts",
+    "modulePath": "src/features/catalog/domain/resolveNavigatorPreset.ts",
     "sourceLocation": {
-      "filePath": "src/utils/resolveNavigatorPreset.ts",
+      "filePath": "src/features/catalog/domain/resolveNavigatorPreset.ts",
       "line": 4,
       "column": 1
     },
@@ -1091,7 +1113,7 @@
     "modulePath": "src/utils/verifyNavigator.ts",
     "sourceLocation": {
       "filePath": "src/utils/verifyNavigator.ts",
-      "line": 13,
+      "line": 15,
       "column": 1
     },
     "exportPaths": [
@@ -1138,9 +1160,9 @@
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/utils/verifyNavigatorExamplesAsync.ts",
+    "modulePath": "src/features/catalog/composition/verifyNavigatorExamplesAsync.ts",
     "sourceLocation": {
-      "filePath": "src/utils/verifyNavigatorExamplesAsync.ts",
+      "filePath": "src/features/catalog/composition/verifyNavigatorExamplesAsync.ts",
       "line": 11,
       "column": 1
     },

@@ -1,5 +1,6 @@
 graph LR
   module_package_json["package.json"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
   module_src_cli_commands_catalog_ts["src/cli/commands/catalog.ts"]
   module_src_cli_commands_examples_generate_ts["src/cli/commands/examples/generate.ts"]
   module_src_cli_commands_examples_verify_ts["src/cli/commands/examples/verify.ts"]
@@ -8,8 +9,12 @@ graph LR
   module_src_cli_commands_validate_ts["src/cli/commands/validate.ts"]
   module_src_cli_commands_verify_ts["src/cli/commands/verify.ts"]
   module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
+  module_src_constants_navigator_ts["src/constants/navigator.ts"]
+  module_src_features_catalog_composition_generateNavigatorExamples_ts["src/features/catalog/composition/generateNavigatorExamples.ts"]
   module_src_features_catalog_composition_getNavigatorCatalog_ts["src/features/catalog/composition/getNavigatorCatalog.ts"]
   module_src_features_catalog_composition_getNavigatorExampleCatalog_ts["src/features/catalog/composition/getNavigatorExampleCatalog.ts"]
+  module_src_features_catalog_composition_verifyNavigatorExamplesAsync_ts["src/features/catalog/composition/verifyNavigatorExamplesAsync.ts"]
+  module_src_features_catalog_domain_collectNavigatorVerificationKinds_ts["src/features/catalog/domain/collectNavigatorVerificationKinds.ts"]
   module_src_features_catalog_domain_createCoreNavigatorExamples_ts["src/features/catalog/domain/createCoreNavigatorExamples.ts"]
   module_src_features_catalog_domain_createCustomNavigatorExamples_ts["src/features/catalog/domain/createCustomNavigatorExamples.ts"]
   module_src_features_catalog_domain_createDrawerNavigatorExamples_ts["src/features/catalog/domain/createDrawerNavigatorExamples.ts"]
@@ -19,6 +24,7 @@ graph LR
   module_src_features_catalog_domain_createNavigatorPresetCatalog_ts["src/features/catalog/domain/createNavigatorPresetCatalog.ts"]
   module_src_features_catalog_domain_createSplitViewNavigatorExamples_ts["src/features/catalog/domain/createSplitViewNavigatorExamples.ts"]
   module_src_features_catalog_domain_createTabsNavigatorExamples_ts["src/features/catalog/domain/createTabsNavigatorExamples.ts"]
+  module_src_features_catalog_domain_resolveNavigatorPreset_ts["src/features/catalog/domain/resolveNavigatorPreset.ts"]
   module_src_features_custom_application_resolveCustomNavigatorAdapterPlan_ts["src/features/custom/application/resolveCustomNavigatorAdapterPlan.ts"]
   module_src_features_custom_domain_addCustomNavigatorDiagnostics_ts["src/features/custom/domain/addCustomNavigatorDiagnostics.ts"]
   module_src_features_custom_domain_defineCustomNavigatorRegistry_ts["src/features/custom/domain/defineCustomNavigatorRegistry.ts"]
@@ -61,6 +67,7 @@ graph LR
   module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_ts["src/features/workspace/adapters/outbound/generateWorkspaceLayout.ts"]
   module_src_features_workspace_domain_resolveWorkspaceNavigation_test_ts["src/features/workspace/domain/resolveWorkspaceNavigation.test.ts"]
   module_src_features_workspace_domain_resolveWorkspaceNavigation_ts["src/features/workspace/domain/resolveWorkspaceNavigation.ts"]
+  module_src_metadata_ts["src/metadata.ts"]
   module_src_navigator_ts["src/navigator.ts"]
   module_src_types_headlessTabs_ts["src/types/headlessTabs.ts"]
   module_src_types_nativeIcons_ts["src/types/nativeIcons.ts"]
@@ -74,13 +81,10 @@ graph LR
   module_src_utils_createNavigatorExampleScreenFiles_ts["src/utils/createNavigatorExampleScreenFiles.ts"]
   module_src_utils_createNavigatorPlan_ts["src/utils/createNavigatorPlan.ts"]
   module_src_utils_generateNavigator_ts["src/utils/generateNavigator.ts"]
-  module_src_utils_generateNavigatorExamples_ts["src/utils/generateNavigatorExamples.ts"]
   module_src_utils_isNavigatorExampleId_ts["src/utils/isNavigatorExampleId.ts"]
   module_src_utils_isNavigatorGenerationBindings_ts["src/utils/isNavigatorGenerationBindings.ts"]
   module_src_utils_loadCustomNavigatorRegistryAsync_ts["src/utils/loadCustomNavigatorRegistryAsync.ts"]
   module_src_utils_loadNavigatorCliInputAsync_ts["src/utils/loadNavigatorCliInputAsync.ts"]
-  module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts["src/utils/NAVIGATOR_PACKAGE_METADATA.ts"]
-  module_src_utils_NAVIGATOR_ROUTER_POLICY_ts["src/utils/NAVIGATOR_ROUTER_POLICY.ts"]
   module_src_utils_parseExpoRouterMajor_ts["src/utils/parseExpoRouterMajor.ts"]
   module_src_utils_parseNavigatorCliOptions_ts["src/utils/parseNavigatorCliOptions.ts"]
   module_src_utils_readNavigatorCliJsonAsync_ts["src/utils/readNavigatorCliJsonAsync.ts"]
@@ -90,7 +94,6 @@ graph LR
   module_src_utils_resolveNavigatorDependencies_ts["src/utils/resolveNavigatorDependencies.ts"]
   module_src_utils_resolveNavigatorIcon_test_ts["src/utils/resolveNavigatorIcon.test.ts"]
   module_src_utils_resolveNavigatorIcon_ts["src/utils/resolveNavigatorIcon.ts"]
-  module_src_utils_resolveNavigatorPreset_ts["src/utils/resolveNavigatorPreset.ts"]
   module_src_utils_resolveNavigatorRootDirectory_ts["src/utils/resolveNavigatorRootDirectory.ts"]
   module_src_utils_useHydrationSafeSize_ts["src/utils/useHydrationSafeSize.ts"]
   module_src_utils_validateNavigator_ts["src/utils/validateNavigator.ts"]
@@ -98,9 +101,9 @@ graph LR
   module_src_utils_validateNavigatorManifest_ts["src/utils/validateNavigatorManifest.ts"]
   module_src_utils_validatePresetTopology_ts["src/utils/validatePresetTopology.ts"]
   module_src_utils_verifyNavigator_ts["src/utils/verifyNavigator.ts"]
-  module_src_utils_verifyNavigatorExamplesAsync_ts["src/utils/verifyNavigatorExamplesAsync.ts"]
   module_src_utils_writeNavigatorGeneratedFilesAsync_ts["src/utils/writeNavigatorGeneratedFilesAsync.ts"]
   module_src_workspace_ts["src/workspace.ts"]
+  module_tests_capabilities_test_ts["tests/capabilities.test.ts"]
   module_tests_cli_test_ts["tests/cli.test.ts"]
   module_tests_composableGeneration_test_ts["tests/composableGeneration.test.ts"]
   module_tests_contractsBoundary_test_ts["tests/contractsBoundary.test.ts"]
@@ -121,6 +124,8 @@ graph LR
   module_tests_sourceStructure_test_ts["tests/sourceStructure.test.ts"]
   module_tests_splitView_test_ts["tests/splitView.test.ts"]
   module_tests_tabs_test_ts["tests/tabs.test.ts"]
+  export_CAPABILITIES["CAPABILITIES"]
+  module_src_capabilities_index_ts --> export_CAPABILITIES
   export_createNavigatorPlan["createNavigatorPlan"]
   module_src_utils_createNavigatorPlan_ts --> export_createNavigatorPlan
   export_default["default"]
@@ -130,7 +135,7 @@ graph LR
   export_generateNavigator["generateNavigator"]
   module_src_utils_generateNavigator_ts --> export_generateNavigator
   export_generateNavigatorExamples["generateNavigatorExamples"]
-  module_src_utils_generateNavigatorExamples_ts --> export_generateNavigatorExamples
+  module_src_features_catalog_composition_generateNavigatorExamples_ts --> export_generateNavigatorExamples
   export_generateNavigatorExamples -.-> export_NavigatorExampleGenerationResult
   export_generateNavigatorExamples -.-> export_NavigatorExampleId
   export_generateWorkspaceLayout["generateWorkspaceLayout"]
@@ -155,7 +160,7 @@ graph LR
   export_NativeMaterialDesignIconsFamily["NativeMaterialDesignIconsFamily"]
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --> export_NativeMaterialDesignIconsFamily
   export_NAVIGATOR_PACKAGE_METADATA["NAVIGATOR_PACKAGE_METADATA"]
-  module_src_utils_NAVIGATOR_PACKAGE_METADATA_ts --> export_NAVIGATOR_PACKAGE_METADATA
+  module_src_constants_navigator_ts --> export_NAVIGATOR_PACKAGE_METADATA
   export_NavigatorExampleDescriptor["NavigatorExampleDescriptor"]
   module_src_types_navigatorExamples_ts --> export_NavigatorExampleDescriptor
   export_NavigatorExampleDescriptor -.-> export_NavigatorExampleId
@@ -177,7 +182,7 @@ graph LR
   export_resolveNavigatorHeaderOwnership["resolveNavigatorHeaderOwnership"]
   module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts --> export_resolveNavigatorHeaderOwnership
   export_resolveNavigatorPreset["resolveNavigatorPreset"]
-  module_src_utils_resolveNavigatorPreset_ts --> export_resolveNavigatorPreset
+  module_src_features_catalog_domain_resolveNavigatorPreset_ts --> export_resolveNavigatorPreset
   export_resolveTabsNavigatorPlan["resolveTabsNavigatorPlan"]
   module_src_features_tabs_application_resolveTabsNavigatorPlan_ts --> export_resolveTabsNavigatorPlan
   export_validateNavigator["validateNavigator"]
@@ -190,7 +195,7 @@ graph LR
   module_src_utils_verifyNavigator_ts --> export_verifyNavigator
   export_verifyNavigator -.-> export_NavigatorVerificationResult
   export_verifyNavigatorExamplesAsync["verifyNavigatorExamplesAsync"]
-  module_src_utils_verifyNavigatorExamplesAsync_ts --> export_verifyNavigatorExamplesAsync
+  module_src_features_catalog_composition_verifyNavigatorExamplesAsync_ts --> export_verifyNavigatorExamplesAsync
   export_verifyNavigatorExamplesAsync -.-> export_NavigatorExampleId
   export_verifyNavigatorExamplesAsync -.-> export_NavigatorExampleVerificationResult
   export_WorkspaceExitDestination["WorkspaceExitDestination"]

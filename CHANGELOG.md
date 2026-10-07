@@ -1,5 +1,17 @@
 # @ankhorage/navigator
 
+## 3.4.0
+
+### Minor Changes
+
+- c4f7a5b: Migrate package, provider, and command metadata to canonical `Capability` descriptors.
+
+### Patch Changes
+
+- c622923: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+- b747d5e: Update dependencies: `react-native-safe-area-context`.
+- 59b5548: Update dependencies: `@ankhorage/paradox`, `@ankhorage/surface`, `@ankhorage/utility`.
+
 ## 3.3.72
 
 ### Patch Changes
