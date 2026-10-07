@@ -5,7 +5,7 @@ import type {
   StackNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
 import { resolveEffectiveStackConfig } from './resolveEffectiveStackConfig';
 
 /*** Diagnose a JavaScript Stack selection that requires a newer Expo Router version. */

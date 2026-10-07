@@ -8,7 +8,7 @@ import {
   generateNavigator,
   validateNavigatorManifest,
 } from '../src/navigator';
-import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/constants/navigator';
 import { expoRouterVersionBefore } from './routerPolicy';
 
 const screens = {
@@ -20,11 +20,18 @@ const screens = {
 const EXPO_ROUTER_VERSION = expoRouterPackage.version;
 
 async function formatGeneratedLayout(layout: string) {
-  const formatter = Bun.spawn(['ankhorage-prettier', '--stdin-filepath', 'src/app/_layout.tsx'], {
-    stderr: 'pipe',
-    stdin: new Blob([layout]),
-    stdout: 'pipe',
-  });
+  const formatter = Bun.spawn(
+    [
+      resolve(process.cwd(), 'node_modules/.bin/ankhorage-prettier'),
+      '--stdin-filepath',
+      'src/app/_layout.tsx',
+    ],
+    {
+      stderr: 'pipe',
+      stdin: new Blob([layout]),
+      stdout: 'pipe',
+    },
+  );
   const [exitCode, formatted, error] = await Promise.all([
     formatter.exited,
     new Response(formatter.stdout).text(),
@@ -292,3 +299,4 @@ describe('@ankhorage/navigator tabs adapter diagnostics', () => {
     }
   });
 });
+import { resolve } from 'node:path';

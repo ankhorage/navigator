@@ -7,7 +7,7 @@ import {
   validateNavigatorManifest,
 } from '../src/navigator';
 import { NAVIGATOR_PACKAGE_METADATA } from '../src/utils/NAVIGATOR_PACKAGE_METADATA';
-import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/constants/navigator';
 import { generateFiles } from './generateFiles';
 import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 

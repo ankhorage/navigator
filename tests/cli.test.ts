@@ -3,8 +3,15 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 
 import { afterEach, describe, expect, test } from 'bun:test';
+import {
+  createPackageRegistry,
+  createProviderRegistry,
+  type AnkhCommandListing,
+  type AnkhLoadedProvider,
+} from '@ankhorage/ankh';
 
 import packageJson from '../package.json';
+import { CAPABILITIES } from '../src/capabilities';
 import createCliProvider from '../src/cli/createCliProvider';
 
 const temporaryDirectories: string[] = [];
@@ -194,18 +201,57 @@ async function run(
   const errors: string[] = [];
   const handler = createCliProvider.handlers.find((candidate) => candidate.path.join(' ') === path);
   if (handler === undefined) throw new Error(`Missing Navigator command ${path}.`);
+  const descriptor = createCliProvider.commands.find(
+    (candidate) => candidate.path.join(' ') === path,
+  );
+  if (descriptor === undefined) throw new Error(`Missing Navigator descriptor ${path}.`);
+  const provider = createProvider();
+  const command: AnkhCommandListing = {
+    ...descriptor,
+    category: createCliProvider.category,
+    packageName: packageJson.name,
+    providerId: createCliProvider.id,
+  };
   const result = await handler.handler({
     argv,
+    command,
     context: {
       cwd,
+      env: {},
+      packageRegistry: createPackageRegistry(),
+      providerRegistry: createProviderRegistry(),
+      version: packageJson.version,
       writeStdout: (text) => output.push(text),
       writeStderr: (text) => errors.push(text),
     },
+    provider,
   });
+  if (result === undefined)
+    throw new Error(`Navigator command ${path} did not return an exit code.`);
   expect(errors).toEqual([]);
   expect(output).toHaveLength(1);
   return {
     exitCode: result.exitCode,
     envelope: JSON.parse(output[0] ?? '') as Record<string, unknown>,
+  };
+}
+
+function createProvider(): AnkhLoadedProvider {
+  return {
+    discoveredPackage: {
+      metadata: {
+        category: createCliProvider.category,
+        provider: './dist/cli/createCliProvider.js',
+        capabilities: CAPABILITIES,
+      },
+      packageJsonPath: `${process.cwd()}/package.json`,
+      packageName: packageJson.name,
+      packageRoot: process.cwd(),
+      source: 'current-package',
+    },
+    manifest: createCliProvider,
+    providerModuleDefaultExport: createCliProvider,
+    providerModulePath: `${process.cwd()}/dist/cli/createCliProvider.js`,
+    providerModuleUrl: 'file:///navigator/createCliProvider.js',
   };
 }

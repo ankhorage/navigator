@@ -3,7 +3,7 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
 
 /*** Resolve the upstream iOS Split View adapter and its honest cross-platform Slot fallback. */
 export function resolveSplitViewAdapterPlan(

@@ -33,6 +33,7 @@ const publicSymbols = {
     'NavigatorExampleVerificationResult',
   ],
   './cli': ['default'],
+  './capabilities': ['CAPABILITIES'],
   './metadata': ['NAVIGATOR_PACKAGE_METADATA'],
   './tabs': ['HeadlessTabsLayout'],
   './tabs/native-icons': [
