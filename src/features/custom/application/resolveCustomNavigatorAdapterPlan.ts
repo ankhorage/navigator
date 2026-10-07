@@ -5,7 +5,7 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
 
 /*** Resolve a registered standard-router integration without materializing executable manifest data. */
 export function resolveCustomNavigatorAdapterPlan(

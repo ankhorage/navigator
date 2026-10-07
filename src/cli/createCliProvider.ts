@@ -1,6 +1,7 @@
-import type { AnkhCapabilityId, AnkhCommandProviderManifest } from '@ankhorage/contracts/cli';
+import type { AnkhCommandExecutionRequest, AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
 
 import packageJson from '../../package.json';
+import { CAPABILITIES } from '../capabilities';
 import type { NavigatorCliExecution } from '../types/navigatorCli';
 import { catalog } from './commands/catalog';
 import { generate as generateExamples } from './commands/examples/generate';
@@ -14,15 +15,7 @@ export default {
   id: packageJson.name,
   category: 'navigator',
   version: packageJson.version,
-  capabilities: [
-    'navigator.catalog',
-    'navigator.validate',
-    'navigator.plan',
-    'navigator.generate',
-    'navigator.verify',
-    'navigator.examples.generate',
-    'navigator.examples.verify',
-  ],
+  capabilities: CAPABILITIES,
   commands: [
     descriptor(
       'catalog',
@@ -69,28 +62,12 @@ export default {
     binding(['examples', 'generate'], generateExamples),
     binding(['examples', 'verify'], verifyExamples),
   ],
-} satisfies NavigatorCliProvider;
-
-interface NavigatorCliProvider extends AnkhCommandProviderManifest {
-  readonly handlers: readonly {
-    readonly path: readonly string[];
-    readonly handler: (request: NavigatorCliRequest) => Promise<{ readonly exitCode: number }>;
-  }[];
-}
-
-interface NavigatorCliRequest {
-  readonly argv: readonly string[];
-  readonly context: {
-    readonly cwd: string;
-    writeStdout(text: string): void;
-    writeStderr(text: string): void;
-  };
-}
+} satisfies AnkhRuntimeCommandProvider;
 
 /*** Define one public command descriptor from its package-owned capability. */
 function descriptor(
   path: string | readonly string[],
-  capability: AnkhCapabilityId,
+  capability: (typeof CAPABILITIES)[number]['id'],
   summary: string,
 ) {
   const segments = typeof path === 'string' ? [path] : path;
@@ -108,10 +85,10 @@ function binding(
   handler: (
     input: NavigatorCliExecution,
   ) => Promise<{ readonly exitCode: number }> | { readonly exitCode: number },
-): NavigatorCliProvider['handlers'][number] {
+): NonNullable<AnkhRuntimeCommandProvider['handlers']>[number] {
   return {
     path: typeof path === 'string' ? [path] : path,
-    handler: (request) =>
+    handler: (request: AnkhCommandExecutionRequest) =>
       Promise.resolve(
         handler({
           argv: request.argv,

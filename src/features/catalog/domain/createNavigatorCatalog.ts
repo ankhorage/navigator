@@ -7,6 +7,7 @@ import type {
   NavigatorType,
 } from '@ankhorage/contracts/navigator';
 
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
 import { createNavigatorPresetCatalog } from './createNavigatorPresetCatalog';
 
 /*** Create the package-owned navigation catalog from explicit owner dependency policy. */
@@ -20,15 +21,6 @@ export function createNavigatorCatalog(policy: NavigatorCatalogDependencyPolicy)
     presets: createNavigatorPresetCatalog(),
   } satisfies NavigatorCatalog;
 }
-
-const NAVIGATOR_ROUTER_POLICY = {
-  customNavigatorMinimumMajor: 56,
-  experimentalStackMinimumMajor: 56,
-  javaScriptStackMinimumMajor: 56,
-  nativeTabsMinimumMajor: 54,
-  nativeTabsAccessoryMinimumMajor: 55,
-  splitViewMinimumMajor: 55,
-} as const;
 
 /*** Describe Slot, Stack, and root Drawer capabilities. */
 function createCoreCapabilities(

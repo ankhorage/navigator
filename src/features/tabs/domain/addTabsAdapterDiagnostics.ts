@@ -5,7 +5,7 @@ import type {
   TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
 import { resolveEffectiveTabsConfig } from './resolveEffectiveTabsConfig';
 
 /*** Add tabs-specific semantic diagnostics for one manifest navigator node. */

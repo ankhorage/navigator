@@ -1,7 +1,7 @@
+import { generateNavigatorExamples } from '../../../features/catalog/composition/generateNavigatorExamples';
 import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../../types/navigatorCli';
 import type { NavigatorExampleGenerationResult } from '../../../types/navigatorExamples';
 import { assertNavigatorCliOptions } from '../../../utils/assertNavigatorCliOptions';
-import { generateNavigatorExamples } from '../../../utils/generateNavigatorExamples';
 import { isNavigatorExampleId } from '../../../utils/isNavigatorExampleId';
 import { parseNavigatorCliOptions } from '../../../utils/parseNavigatorCliOptions';
 import { reportNavigatorCliResult } from '../../../utils/reportNavigatorCliResult';

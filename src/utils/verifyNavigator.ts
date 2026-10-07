@@ -1,11 +1,13 @@
 import type {
+  NavigatorCatalog,
   NavigatorGenerationBindings,
   NavigatorGenerationOptions,
   NavigatorPlan,
-  NavigatorVerificationKind,
 } from '@ankhorage/contracts/navigator';
 
-import { getNavigatorCatalog } from '../features/catalog/composition/getNavigatorCatalog';
+import packageJson from '../../package.json';
+import { collectNavigatorVerificationKinds } from '../features/catalog/domain/collectNavigatorVerificationKinds';
+import { createNavigatorCatalog } from '../features/catalog/domain/createNavigatorCatalog';
 import type { NavigatorVerificationResult } from '../types/navigatorVerification';
 import { generateNavigator } from './generateNavigator';
 
@@ -19,7 +21,7 @@ export function verifyNavigator(
   const second = generateNavigator(plan, bindings, options);
   const deterministic = JSON.stringify(first) === JSON.stringify(second);
   const hasErrors = first.diagnostics.some(({ severity }) => severity === 'error');
-  const checks = collectDeclaredChecks(plan).map(
+  const checks = collectNavigatorVerificationKinds(createCatalog(), plan).map(
     (kind): NavigatorVerificationResult['checks'][number] => {
       if (kind === 'structural') {
         return {
@@ -58,13 +60,11 @@ export function verifyNavigator(
   };
 }
 
-/*** Collect the verification layers declared by every resolved capability for one target. */
-function collectDeclaredChecks(plan: NavigatorPlan): readonly NavigatorVerificationKind[] {
-  const catalog = getNavigatorCatalog();
-  const kinds = plan.capabilityIds.flatMap((capabilityId) => {
-    const descriptor = catalog.capabilities.find(({ id }) => id === capabilityId);
-    const target = descriptor?.targets.find(({ platform }) => platform === plan.context.platform);
-    return target?.verification.map(({ kind }) => kind) ?? [];
+/*** Compose deterministic catalog policy for verification without depending on outer composition. */
+function createCatalog(): NavigatorCatalog {
+  return createNavigatorCatalog({
+    packageName: packageJson.name,
+    version: packageJson.version,
+    peerDependencies: packageJson.peerDependencies,
   });
-  return [...new Set(kinds)];
 }

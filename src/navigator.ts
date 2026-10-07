@@ -1,5 +1,8 @@
+export { generateNavigatorExamples } from './features/catalog/composition/generateNavigatorExamples';
 export { getNavigatorCatalog } from './features/catalog/composition/getNavigatorCatalog';
 export { getNavigatorExampleCatalog } from './features/catalog/composition/getNavigatorExampleCatalog';
+export { verifyNavigatorExamplesAsync } from './features/catalog/composition/verifyNavigatorExamplesAsync';
+export { resolveNavigatorPreset } from './features/catalog/domain/resolveNavigatorPreset';
 export { defineCustomNavigatorRegistry } from './features/custom/domain/defineCustomNavigatorRegistry';
 export { resolveNavigatorHeaderOwnership } from './features/stack/domain/resolveNavigatorHeaderOwnership';
 export { resolveTabsNavigatorPlan } from './features/tabs/application/resolveTabsNavigatorPlan';
@@ -15,11 +18,8 @@ export type {
 export type { NavigatorVerificationResult } from './types/navigatorVerification';
 export { createNavigatorPlan } from './utils/createNavigatorPlan';
 export { generateNavigator } from './utils/generateNavigator';
-export { generateNavigatorExamples } from './utils/generateNavigatorExamples';
 export { isNavigatorGenerationBindings } from './utils/isNavigatorGenerationBindings';
-export { resolveNavigatorPreset } from './utils/resolveNavigatorPreset';
 export { validateNavigator } from './utils/validateNavigator';
 export { validateNavigatorBindings } from './utils/validateNavigatorBindings';
 export { validateNavigatorManifest } from './utils/validateNavigatorManifest';
 export { verifyNavigator } from './utils/verifyNavigator';
-export { verifyNavigatorExamplesAsync } from './utils/verifyNavigatorExamplesAsync';

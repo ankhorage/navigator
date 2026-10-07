@@ -6,7 +6,7 @@ import type {
   NavigatorValidationContext,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
 
 /*** Validate all deliberately registered custom navigator extension nodes. */
 export function addCustomNavigatorDiagnostics(

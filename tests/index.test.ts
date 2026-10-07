@@ -10,7 +10,7 @@ import {
   resolveTabsNavigatorPlan,
   validateNavigatorManifest,
 } from '../src/navigator';
-import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/constants/navigator';
 import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 
 const SCREEN_BINDINGS = {

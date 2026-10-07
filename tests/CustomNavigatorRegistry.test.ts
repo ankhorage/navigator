@@ -8,7 +8,7 @@ import { expect, test } from 'bun:test';
 import { defineCustomNavigatorRegistry } from '../src/features/custom/domain/defineCustomNavigatorRegistry';
 import { generateNavigator } from '../src/navigator';
 import { createNavigatorPlan } from '../src/utils/createNavigatorPlan';
-import { NAVIGATOR_ROUTER_POLICY } from '../src/utils/NAVIGATOR_ROUTER_POLICY';
+import { NAVIGATOR_ROUTER_POLICY } from '../src/constants/navigator';
 import { generateFiles } from './generateFiles';
 import { EXPO_ROUTER_VERSION, expoRouterVersionBefore } from './routerPolicy';
 

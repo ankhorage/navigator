@@ -40,12 +40,16 @@
       "default": "./dist/navigator.js"
     },
     "./metadata": {
-      "types": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.d.ts",
-      "default": "./dist/utils/NAVIGATOR_PACKAGE_METADATA.js"
+      "types": "./dist/metadata.d.ts",
+      "default": "./dist/metadata.js"
     },
     "./cli": {
       "types": "./dist/cli/createCliProvider.d.ts",
       "default": "./dist/cli/createCliProvider.js"
+    },
+    "./capabilities": {
+      "types": "./dist/capabilities/index.d.ts",
+      "default": "./dist/capabilities/index.js"
     },
     "./tabs": {
       "types": "./dist/features/tabs/tabs.d.ts",
@@ -65,13 +69,97 @@
     "category": "navigator",
     "provider": "./dist/cli/createCliProvider.js",
     "capabilities": [
-      "navigator.catalog",
-      "navigator.validate",
-      "navigator.plan",
-      "navigator.generate",
-      "navigator.verify",
-      "navigator.examples.generate",
-      "navigator.examples.verify"
+      {
+        "id": "navigator.catalog",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      },
+      {
+        "id": "navigator.validate",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      },
+      {
+        "id": "navigator.plan",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      },
+      {
+        "id": "navigator.generate",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      },
+      {
+        "id": "navigator.verify",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      },
+      {
+        "id": "navigator.examples.generate",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      },
+      {
+        "id": "navigator.examples.verify",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        }
+      }
     ]
   },
   "publishConfig": {
@@ -101,7 +189,7 @@
     "release:synchronize": "bun run examples:synchronize && bun run docs && bun run format"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^22.8.99",
+    "@ankhorage/contracts": "^24.1.0",
     "@ankhorage/utility": "^1.9.82"
   },
   "peerDependencies": {
@@ -141,7 +229,7 @@
     }
   },
   "devDependencies": {
-    "@ankhorage/ankh": "^0.10.80",
+    "@ankhorage/ankh": "^0.12.0",
     "@ankhorage/devtools": "^2.0.115",
     "@ankhorage/paradox": "^0.2.27",
     "@ankhorage/surface": "^9.1.112",
