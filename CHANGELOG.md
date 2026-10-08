@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.0
+
+### Minor Changes
+
+- b01c786: Publish the canonical `navigator.navigate` runtime capability with its portable route and params input schema.
+
 ## 3.4.0
 
 ### Minor Changes
