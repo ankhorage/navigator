@@ -6,7 +6,7 @@ Kind: `value`
 Module: `src/capabilities/index.ts`
 Source: `src/capabilities/index.ts:4:14`
 
-Publish the portable action capabilities implemented by Navigator's Ankh provider.
+Publish the portable capabilities owned by Navigator.
 
 ## createNavigatorPlan
 

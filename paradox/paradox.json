@@ -1419,7 +1419,7 @@
     {
       "name": "CAPABILITIES",
       "title": null,
-      "description": "Publish the portable action capabilities implemented by Navigator's Ankh provider.",
+      "description": "Publish the portable capabilities owned by Navigator.",
       "isReadme": false,
       "see": [],
       "security": [],
