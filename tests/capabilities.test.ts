@@ -23,15 +23,37 @@ describe('Navigator capability catalog', () => {
     expect(createCliProvider.capabilities.every(isCapability)).toBe(true);
   });
 
+  test('publishes the proven portable navigation invocation without a speculative result', () => {
+    const navigation = CAPABILITIES.find(({ id }) => id === 'navigator.navigate');
+
+    expect(navigation).toEqual({
+      id: 'navigator.navigate',
+      owner: '@ankhorage/navigator',
+      access: ['invoke'],
+      binding: { kind: 'action', bindableAs: ['target'] },
+      label: 'Navigate',
+      input: {
+        schema: {
+          type: 'object',
+          required: ['route'],
+          properties: {
+            route: { type: 'string' },
+            params: { type: 'object', additionalProperties: true },
+          },
+        },
+      },
+    });
+    expect(navigation).not.toHaveProperty('output');
+  });
+
   test('assigns every command to one distinct published Navigator capability', () => {
-    const publishedIds = CAPABILITIES.map(({ id }) => id).sort();
     const commandIds = createCliProvider.commands.map(({ capability }) => capability).sort();
 
-    expect(commandIds).toEqual(publishedIds);
     expect(new Set(commandIds).size).toBe(commandIds.length);
     for (const command of createCliProvider.commands) {
       expect(CAPABILITIES.some(({ id }) => id === command.capability)).toBe(true);
     }
+    expect(commandIds).not.toContain('navigator.navigate');
   });
 
   test('does not publish obsolete string-only capability metadata', () => {

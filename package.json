@@ -70,6 +70,37 @@
     "provider": "./dist/cli/createCliProvider.js",
     "capabilities": [
       {
+        "id": "navigator.navigate",
+        "owner": "@ankhorage/navigator",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Navigate",
+        "input": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "route"
+            ],
+            "properties": {
+              "route": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        }
+      },
+      {
         "id": "navigator.catalog",
         "owner": "@ankhorage/navigator",
         "access": [
