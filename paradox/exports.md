@@ -445,7 +445,7 @@ Source: `src/types/workspaceNavigation.ts:4:1`
 | --- | --- | --- | --- | --- |
 | description | property | `string \| undefined` | no |  |
 | href | property | `string \| null` | yes |  |
-| icon | property | `import("@ankhorage/contracts").NamedIconSpec \| undefined` | no |  |
+| icon | property | `import("@ankhorage/contracts/dist/types").NamedIconSpec \| undefined` | no |  |
 | id | property | `string` | yes |  |
 | label | property | `string` | yes |  |
 | parentId | property | `string \| undefined` | no |  |

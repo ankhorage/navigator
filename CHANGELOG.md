@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.3
+
+### Patch Changes
+
+- fa0dd22: Migrate capability validation to the standalone capability toolkit.
+
 ## 3.5.2
 
 ### Patch Changes
