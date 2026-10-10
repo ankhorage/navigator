@@ -1,4 +1,4 @@
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { Capability } from '@ankhorage/contracts/capability';
 
 /*** Publish the portable capabilities owned by Navigator. */
 export const CAPABILITIES = [
