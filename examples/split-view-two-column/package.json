@@ -14,7 +14,7 @@
     "@ankhorage/navigator": "3.5.3",
     "expo": "^57.0.26",
     "expo-router": "57.0.24",
-    "react": "19.3.0",
+    "react": "19.3.1",
     "react-native": "0.86.3"
   },
   "devDependencies": {
