@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.5
+
+### Patch Changes
+
+- a2716dd: Update dependencies: `@ankhorage/capability`.
+
 ## 3.5.4
 
 ### Patch Changes
