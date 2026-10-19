@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.6
+
+### Patch Changes
+
+- e1bd8e2: Update dependencies: `@react-native-vector-icons/fontawesome5`, `@react-native-vector-icons/fontawesome6`, `@react-native-vector-icons/fontawesome`, `@react-native-vector-icons/ionicons`, `@react-native-vector-icons/material-design-icons`.
+
 ## 3.5.5
 
 ### Patch Changes
