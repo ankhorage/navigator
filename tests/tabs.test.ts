@@ -1,6 +1,7 @@
 import type { AppNavigatorManifest } from '@ankhorage/contracts/navigator';
 import { describe, expect, test } from 'bun:test';
 import expoRouterPackage from 'expo-router/package.json' with { type: 'json' };
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import ts from 'typescript';
 
 import {
@@ -170,7 +171,158 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
     expect(layout).toContain("href: '/settings'");
     expect(layout).toContain('visible: false');
   });
+
+  test('emits consumer-lintable and formatter-stable simple and nested layouts with and without icons', async () => {
+    const simple = generatedHeadlessLayout({
+      type: 'tabs',
+      implementation: 'headless',
+      presentation: 'bottom',
+      routes: [{ name: 'home', path: '/', screenId: 'home' }],
+    });
+    const simpleWithIcon = generatedHeadlessLayout(
+      {
+        type: 'tabs',
+        implementation: 'headless',
+        presentation: 'responsive',
+        responsive: { compact: 'bottom', medium: 'rail', expanded: 'sidebar' },
+        initialRouteName: 'settings',
+        routes: [
+          { name: 'home', path: '/', screenId: 'home', icon: { source: { mediaId: 'home' } } },
+          {
+            name: 'settings',
+            path: '/settings',
+            screenId: 'settings',
+            icon: { source: { mediaId: 'settings' } },
+          },
+        ],
+      },
+      true,
+    );
+    const nested = generatedHeadlessLayout({
+      type: 'stack',
+      implementation: 'native',
+      routes: [
+        {
+          name: 'workspace',
+          navigator: {
+            type: 'tabs',
+            implementation: 'headless',
+            presentation: 'bottom',
+            routes: [{ name: 'home', path: '/', screenId: 'home' }],
+          },
+        },
+      ],
+    });
+    const nestedWithIcon = generatedHeadlessLayout(
+      {
+        type: 'stack',
+        implementation: 'native',
+        routes: [
+          {
+            name: 'workspace',
+            navigator: {
+              type: 'tabs',
+              implementation: 'headless',
+              presentation: 'responsive',
+              responsive: { compact: 'bottom', medium: 'rail', expanded: 'sidebar' },
+              routes: [
+                {
+                  name: 'home',
+                  path: '/',
+                  screenId: 'home',
+                  icon: { source: { mediaId: 'home' } },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      true,
+    );
+
+    for (const [id, layout] of [
+      ['simple', simple],
+      ['simple-with-icon', simpleWithIcon],
+      ['nested', nested],
+      ['nested-with-icon', nestedWithIcon],
+    ] as const) {
+      await expectConsumerChecksPass(id, layout);
+    }
+  }, 30_000);
 });
+
+/*** Generate the Headless Tabs layout from either a root or a nested navigator plan. */
+function generatedHeadlessLayout(
+  manifest: AppNavigatorManifest,
+  includeIconResolver = false,
+): string {
+  const plan = createNavigatorPlan(manifest, {
+    expoRouterVersion: EXPO_ROUTER_VERSION,
+    platform: 'web',
+  });
+  const files = generateNavigator(plan, {
+    guards: {},
+    screens,
+    ...(includeIconResolver
+      ? { iconSourceResolver: { module: '@/generated-icons', exportName: 'resolveIconSource' } }
+      : {}),
+  }).files;
+  const layout = files.find(({ contents }) => contents.includes('<HeadlessTabsLayout'))?.contents;
+  if (layout === undefined) throw new Error('Expected generated Headless Tabs layout.');
+  return layout;
+}
+
+/*** Run the generated source through the formatter and ESLint commands that consumer apps execute. */
+async function expectConsumerChecksPass(id: string, layout: string): Promise<void> {
+  const fixture = resolve(process.cwd(), 'src', '__generated-tabs-consumer', id);
+  const layoutPath = resolve(fixture, '_layout.tsx');
+  const iconPath = resolve(process.cwd(), 'src', 'generated-icons.ts');
+  const tsconfigPath = resolve(process.cwd(), 'tsconfig.json');
+  const tsconfig = await readFile(tsconfigPath, 'utf8');
+  const parsedTsconfig = JSON.parse(tsconfig) as { compilerOptions: Record<string, unknown> };
+  await mkdir(fixture, { recursive: true });
+  await writeFile(layoutPath, layout);
+  await writeFile(
+    iconPath,
+    "import type { MediaAssetReference } from '@ankhorage/contracts/media';\n\nexport function resolveIconSource(source: MediaAssetReference): string {\n  return source.mediaId;\n}\n",
+  );
+  await writeFile(
+    tsconfigPath,
+    `${JSON.stringify({
+      ...parsedTsconfig,
+      compilerOptions: {
+        ...parsedTsconfig.compilerOptions,
+        baseUrl: '.',
+        paths: { '@/*': ['./src/*'] },
+      },
+    })}\n`,
+  );
+  try {
+    for (const command of [
+      [resolve(process.cwd(), 'node_modules/.bin/ankhorage-prettier'), '--check', layoutPath],
+      [
+        resolve(process.cwd(), 'node_modules/.bin/ankhorage-eslint'),
+        layoutPath,
+        '--max-warnings=0',
+      ],
+    ]) {
+      const result = Bun.spawn(command, { cwd: process.cwd(), stderr: 'pipe', stdout: 'pipe' });
+      const [exitCode, stdout, stderr] = await Promise.all([
+        result.exited,
+        new Response(result.stdout).text(),
+        new Response(result.stderr).text(),
+      ]);
+      expect(exitCode, `${command.join(' ')}\n${stdout}${stderr}`).toBe(0);
+    }
+  } finally {
+    await rm(resolve(process.cwd(), 'src', '__generated-tabs-consumer'), {
+      force: true,
+      recursive: true,
+    });
+    await rm(iconPath, { force: true });
+    await writeFile(tsconfigPath, tsconfig);
+  }
+}
 
 describe('@ankhorage/navigator custom tabs registration', () => {
   test('requires a registered binding for explicitly custom presentation code', () => {
