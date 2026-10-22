@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.8
+
+### Patch Changes
+
+- 4d0d6fa: Align the React and React DOM peer contract with the Expo SDK 57 platform baseline.
+
 ## 3.5.7
 
 ### Patch Changes
