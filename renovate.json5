@@ -7,4 +7,12 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: ['github>ankhorage/renovate'],
+  packageRules: [
+    {
+      description: 'Expo SDK 57 platform React contract',
+      matchDepTypes: ['devDependencies', 'peerDependencies'],
+      matchPackageNames: ['react', 'react-dom'],
+      allowedVersions: '19.2.3',
+    },
+  ],
 }
