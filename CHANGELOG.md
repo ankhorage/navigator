@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.7
+
+### Patch Changes
+
+- 24afef3: Emit Headless Tabs layouts with consumer-stable imports and formatting.
+
 ## 3.5.6
 
 ### Patch Changes

@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.5.6",
+      "value": "v3.5.7",
       "color": "cb3837"
     },
     {
@@ -4475,7 +4475,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 33,
+        "line": 28,
         "column": 1
       }
     },
@@ -4486,7 +4486,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 77,
+        "line": 72,
         "column": 1
       }
     },
@@ -4497,7 +4497,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 96,
+        "line": 91,
         "column": 1
       }
     },
@@ -4508,7 +4508,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 114,
+        "line": 109,
         "column": 1
       }
     },
@@ -4519,7 +4519,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 152,
+        "line": 147,
         "column": 1
       }
     },
@@ -4530,7 +4530,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 165,
+        "line": 160,
         "column": 1
       }
     },
@@ -4541,7 +4541,84 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 173,
+        "line": 168,
+        "column": 1
+      }
+    },
+    {
+      "name": "createHeadlessTabRoutes",
+      "description": "Convert planned routes to the route records consumed by the Headless Tabs adapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 217,
+        "column": 1
+      }
+    },
+    {
+      "name": "createGeneratedImport",
+      "description": "Create one generated named import with its source available for canonical ordering.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 243,
+        "column": 1
+      }
+    },
+    {
+      "name": "sortGeneratedImports",
+      "description": "Sort generated imports with package imports before absolute application imports.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 255,
+        "column": 1
+      }
+    },
+    {
+      "name": "generatedImportSortKey",
+      "description": "Create the simple-import-sort-compatible ordering key for one generated module source.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 268,
+        "column": 1
+      }
+    },
+    {
+      "name": "generatedImportGroup",
+      "description": "Resolve the simple-import-sort group for one generated module source.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 273,
+        "column": 1
+      }
+    },
+    {
+      "name": "createHeadlessTabsComponent",
+      "description": "Create the responsive wrapper around one generated Headless Tabs runtime component.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 278,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderHeadlessTabsLayout",
+      "description": "Render the Headless Tabs runtime component without requiring a consumer formatter pass.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 291,
         "column": 1
       }
     },
@@ -4552,7 +4629,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 224,
+        "line": 309,
         "column": 1
       }
     },
@@ -4563,7 +4640,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 240,
+        "line": 325,
         "column": 1
       }
     },
@@ -8404,6 +8481,66 @@
       },
       {
         "fromSymbol": "tests/tabs.test.ts",
+        "toSymbol": "generatedHeadlessLayout",
+        "callExpression": "generatedHeadlessLayout",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "tests/tabs.test.ts",
+        "toSymbol": "expectConsumerChecksPass",
+        "callExpression": "expectConsumerChecksPass",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "generatedHeadlessLayout",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "createNavigatorPlan",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "generatedHeadlessLayout",
+        "toSymbol": "generateNavigator",
+        "callExpression": "generateNavigator",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "expectConsumerChecksPass",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "expectConsumerChecksPass",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "expectConsumerChecksPass",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "expectConsumerChecksPass",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "expectConsumerChecksPass",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "expectConsumerChecksPass",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "tests/tabs.test.ts"
+      },
+      {
+        "fromSymbol": "tests/tabs.test.ts",
         "toSymbol": "createNavigatorPlan",
         "callExpression": "createNavigatorPlan",
         "sourcePath": "tests/tabs.test.ts"
@@ -10828,14 +10965,32 @@
       },
       {
         "fromSymbol": "createHeadlessTabsFile",
-        "toSymbol": "quoteJavaScriptString",
-        "callExpression": "quoteJavaScriptString",
+        "toSymbol": "createGeneratedImport",
+        "callExpression": "createGeneratedImport",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "createHeadlessTabRoutes",
+        "callExpression": "createHeadlessTabRoutes",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
         "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "renderHeadlessTabRoutes",
         "callExpression": "renderHeadlessTabRoutes",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "createHeadlessTabsComponent",
+        "callExpression": "createHeadlessTabsComponent",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "sortGeneratedImports",
+        "callExpression": "sortGeneratedImports",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -10848,6 +11003,36 @@
         "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "renderHeadlessTabsReturn",
         "callExpression": "renderHeadlessTabsReturn",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedImport",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "toSymbol": "generatedImportSortKey",
+        "callExpression": "generatedImportSortKey",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "toSymbol": "generatedImportGroup",
+        "callExpression": "generatedImportGroup",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generatedImportSortKey",
+        "toSymbol": "generatedImportGroup",
+        "callExpression": "generatedImportGroup",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsComponent",
+        "toSymbol": "renderHeadlessTabsLayout",
+        "callExpression": "renderHeadlessTabsLayout",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
