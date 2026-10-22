@@ -24,11 +24,6 @@ export function generateTabsLayoutFile(
   return undefined;
 }
 
-const HEADLESS_TABS_IMPORTS = [
-  "import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';",
-  "import { ResponsiveProvider } from '@ankhorage/surface';",
-] as const;
-
 /*** Create the generated Native Tabs layout file and its narrow runtime imports. */
 function createNativeTabsFile(
   node: NavigatorNodePlan,
@@ -179,7 +174,7 @@ function createHeadlessTabsFile(
   if (tabs?.presentations === undefined) {
     throw new Error('Headless Tabs planning did not preserve responsive presentations.');
   }
-  const imports: string[] = [...HEADLESS_TABS_IMPORTS];
+  const imports: GeneratedImport[] = [...HEADLESS_TABS_IMPORTS];
   let customPresentation = '';
   let iconSourceResolver = '';
   if (tabs.customPresentationId !== undefined) {
@@ -189,7 +184,7 @@ function createHeadlessTabsFile(
     assertStaticImportBinding(binding.module, binding.exportName, 'Custom Tabs presentation');
     customPresentation = ' customPresentation={NavigatorCustomTabsPresentation}';
     imports.push(
-      `import { ${binding.exportName} as NavigatorCustomTabsPresentation } from ${quoteJavaScriptString(binding.module)};`,
+      createGeneratedImport(binding.module, binding.exportName, 'NavigatorCustomTabsPresentation'),
     );
   }
   if (node.routes.some((route) => route.icon !== undefined && 'source' in route.icon)) {
@@ -198,26 +193,116 @@ function createHeadlessTabsFile(
     assertStaticImportBinding(binding.module, binding.exportName, 'Tabs icon-source resolver');
     iconSourceResolver = ' resolveIconSource={NavigatorResolveTabsIconSource}';
     imports.push(
-      `import { ${binding.exportName} as NavigatorResolveTabsIconSource } from ${quoteJavaScriptString(binding.module)};`,
+      createGeneratedImport(binding.module, binding.exportName, 'NavigatorResolveTabsIconSource'),
     );
   }
-  const routes = node.routes.map((route) => ({
+  const routes = createHeadlessTabRoutes(node.routes);
+  const initialRoute =
+    node.initialRouteName === undefined
+      ? ''
+      : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
+  const routeSource = renderHeadlessTabRoutes(routes);
+  const component = createHeadlessTabsComponent(
+    customPresentation,
+    initialRoute,
+    iconSourceResolver,
+  );
+  return {
+    path: `${directory}/_layout.tsx`,
+    contents: `${sortGeneratedImports(imports)}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component)}\n}\n`,
+  };
+}
+
+/*** Convert planned routes to the route records consumed by the Headless Tabs adapter. */
+function createHeadlessTabRoutes(
+  routes: readonly NavigatorRoutePlan[],
+): readonly Record<string, unknown>[] {
+  return routes.map((route) => ({
     name: route.name,
     href: route.path,
     label: route.label ?? route.name,
     ...(route.icon === undefined ? {} : { icon: route.icon }),
     visible: route.showInPrimaryNavigation !== false,
   }));
-  const initialRoute =
-    node.initialRouteName === undefined
-      ? ''
-      : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
-  const routeSource = renderHeadlessTabRoutes(routes);
-  const component = `<ResponsiveProvider>\n      <HeadlessTabsLayout${customPresentation}${initialRoute} presentations={presentations}${iconSourceResolver} routes={routes} />\n    </ResponsiveProvider>`;
+}
+
+type GeneratedImport = Readonly<{ module: string; statement: string }>;
+
+const HEADLESS_TABS_IMPORTS: readonly GeneratedImport[] = [
+  {
+    module: '@ankhorage/navigator/tabs',
+    statement: "import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';",
+  },
+  {
+    module: '@ankhorage/surface',
+    statement: "import { ResponsiveProvider } from '@ankhorage/surface';",
+  },
+];
+
+/*** Create one generated named import with its source available for canonical ordering. */
+function createGeneratedImport(
+  module: string,
+  exportName: string,
+  localName: string,
+): GeneratedImport {
   return {
-    path: `${directory}/_layout.tsx`,
-    contents: `${imports.sort().join('\n')}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component)}\n}\n`,
+    module,
+    statement: `import { ${exportName} as ${localName} } from ${quoteJavaScriptString(module)};`,
   };
+}
+
+/*** Sort generated imports with package imports before absolute application imports. */
+function sortGeneratedImports(imports: readonly GeneratedImport[]): string {
+  const sorted = [...imports].sort((left, right) =>
+    generatedImportSortKey(left.module).localeCompare(generatedImportSortKey(right.module)),
+  );
+  return sorted
+    .map(
+      ({ statement, module }, index) =>
+        `${index > 0 && generatedImportGroup(module) !== generatedImportGroup(sorted[index - 1]?.module ?? '') ? '\n' : ''}${statement}`,
+    )
+    .join('\n');
+}
+
+/*** Create the simple-import-sort-compatible ordering key for one generated module source. */
+function generatedImportSortKey(module: string): string {
+  return `${generatedImportGroup(module)}${module}`;
+}
+
+/*** Resolve the simple-import-sort group for one generated module source. */
+function generatedImportGroup(module: string): string {
+  return /^@?\w/u.test(module) ? '0' : '1';
+}
+
+/*** Create the responsive wrapper around one generated Headless Tabs runtime component. */
+function createHeadlessTabsComponent(
+  customPresentation: string,
+  initialRoute: string,
+  iconSourceResolver: string,
+): string {
+  return `<ResponsiveProvider>\n${renderHeadlessTabsLayout(
+    customPresentation,
+    initialRoute,
+    iconSourceResolver,
+  )}\n    </ResponsiveProvider>`;
+}
+
+/*** Render the Headless Tabs runtime component without requiring a consumer formatter pass. */
+function renderHeadlessTabsLayout(
+  customPresentation: string,
+  initialRoute: string,
+  iconSourceResolver: string,
+): string {
+  const properties = [
+    customPresentation.trim(),
+    initialRoute.trim(),
+    'presentations={presentations}',
+    iconSourceResolver.trim(),
+    'routes={routes}',
+  ].filter((property) => property !== '');
+  const inline = `      <HeadlessTabsLayout ${properties.join(' ')} />`;
+  if (inline.length <= 100) return inline;
+  return `      <HeadlessTabsLayout\n${properties.map((property) => `        ${property}`).join('\n')}\n      />`;
 }
 
 /*** Render Headless Tabs route records as stable multiline source objects. */
