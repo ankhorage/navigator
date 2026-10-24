@@ -12,10 +12,10 @@ import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/ut
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
 import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/resolveDrawerRouteOptions';
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath';
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
-import { resolveExpoRouterRoutePath } from './resolveExpoRouterRoutePath';
 import { resolveNavigatorRootDirectory } from './resolveNavigatorRootDirectory';
 import { validateNavigatorBindings } from './validateNavigatorBindings';
 

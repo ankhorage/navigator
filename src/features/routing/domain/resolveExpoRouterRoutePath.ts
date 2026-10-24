@@ -1,6 +1,6 @@
 import type { RouteDefinition } from '@ankhorage/contracts/navigator';
 
-/*** Resolve one route's module-relative Expo Router path without changing its semantic identity. */
+/*** Resolve one route's Expo Router module path without changing its semantic identity. */
 export function resolveExpoRouterRoutePath(
   route: Pick<RouteDefinition, 'expoRouterPath' | 'name'>,
 ): string {

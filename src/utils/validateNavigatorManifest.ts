@@ -8,6 +8,7 @@ import type {
 } from '@ankhorage/contracts/navigator';
 
 import { addCustomNavigatorDiagnostics } from '../features/custom/domain/addCustomNavigatorDiagnostics';
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath';
 import { addSlotDiagnostics } from '../features/slot/domain/addSlotDiagnostics';
 import { addSplitViewDiagnostics } from '../features/split-view/domain/addSplitViewDiagnostics';
 import { addExperimentalStackDiagnostics } from '../features/stack/domain/addExperimentalStackDiagnostics';
@@ -16,7 +17,6 @@ import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEff
 import { validateStackRouteOptions } from '../features/stack/domain/validateStackRouteOptions';
 import { addTabsAdapterDiagnostics } from '../features/tabs/domain/addTabsAdapterDiagnostics';
 import { parseExpoRouterMajor } from './parseExpoRouterMajor';
-import { resolveExpoRouterRoutePath } from './resolveExpoRouterRoutePath';
 import { validatePresetTopology } from './validatePresetTopology';
 
 /*** Validate one navigator desired-state slice for a concrete Expo Router target. */

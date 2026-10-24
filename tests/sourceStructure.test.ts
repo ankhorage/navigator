@@ -18,7 +18,7 @@ const entrypoints = new Set(
   ),
 );
 
-test('keeps the catalog and navigation capabilities as peers, without legacy directories', () => {
+test('keeps the catalog, routing, and navigation capabilities as peers, without legacy directories', () => {
   expect(readdirSync(sourceRoot).sort()).toEqual([
     'capabilities',
     'cli',
@@ -34,6 +34,7 @@ test('keeps the catalog and navigation capabilities as peers, without legacy dir
     'catalog',
     'custom',
     'drawer',
+    'routing',
     'slot',
     'split-view',
     'stack',
