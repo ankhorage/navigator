@@ -8,6 +8,8 @@ import type {
 import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/utility/string';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
+import { resolveExpoRouterRoutePath } from '../../../../utils/resolveExpoRouterRoutePath';
+
 /*** Generate the specialized layout file for a supported tabs implementation. */
 export function generateTabsLayoutFile(
   node: NavigatorNodePlan,
@@ -112,10 +114,11 @@ function createNativeTabsContents(
   imports: string,
   accessoryName: string | undefined,
 ): string {
+  const initialRouteName = resolveNavigatorInitialRouteName(node);
   const initialRoute =
-    node.initialRouteName === undefined
+    initialRouteName === undefined
       ? ''
-      : `\n\nexport const unstable_settings = { initialRouteName: ${quoteJavaScriptString(node.initialRouteName)} };`;
+      : `\n\nexport const unstable_settings = { initialRouteName: ${quoteJavaScriptString(initialRouteName)} };`;
   const minimize =
     node.tabs?.minimizeBehavior === undefined
       ? ''
@@ -133,7 +136,7 @@ ${nativeIconSource(
   nativeIconName(route.icon),
 )}
         />`;
-      return `      <${componentName}.Trigger name=${JSON.stringify(route.name)}>\n        <${componentName}.Trigger.Label>{${quoteJavaScriptString(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
+      return `      <${componentName}.Trigger name=${JSON.stringify(resolveExpoRouterRoutePath(route))}>\n        <${componentName}.Trigger.Label>{${quoteJavaScriptString(label)}}</${componentName}.Trigger.Label>${icon}\n      </${componentName}.Trigger>`;
     })
     .join('\n');
   const accessory =
@@ -197,10 +200,9 @@ function createHeadlessTabsFile(
     );
   }
   const routes = createHeadlessTabRoutes(node.routes);
+  const initialRouteName = resolveNavigatorInitialRouteName(node);
   const initialRoute =
-    node.initialRouteName === undefined
-      ? ''
-      : ` initialRouteName=${JSON.stringify(node.initialRouteName)}`;
+    initialRouteName === undefined ? '' : ` initialRouteName=${JSON.stringify(initialRouteName)}`;
   const routeSource = renderHeadlessTabRoutes(routes);
   const component = createHeadlessTabsComponent(
     customPresentation,
@@ -218,12 +220,21 @@ function createHeadlessTabRoutes(
   routes: readonly NavigatorRoutePlan[],
 ): readonly Record<string, unknown>[] {
   return routes.map((route) => ({
-    name: route.name,
+    name: resolveExpoRouterRoutePath(route),
     href: route.path,
     label: route.label ?? route.name,
     ...(route.icon === undefined ? {} : { icon: route.icon }),
     visible: route.showInPrimaryNavigation !== false,
   }));
+}
+
+/*** Map semantic initial-route identity to the generated Expo Router module registration. */
+function resolveNavigatorInitialRouteName(node: NavigatorNodePlan): string | undefined {
+  if (node.initialRouteName === undefined) return undefined;
+  const route = node.routes.find(({ name }) => name === node.initialRouteName);
+  if (route === undefined)
+    throw new Error(`Missing initial route ${JSON.stringify(node.initialRouteName)}.`);
+  return resolveExpoRouterRoutePath(route);
 }
 
 type GeneratedImport = Readonly<{ module: string; statement: string }>;

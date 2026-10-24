@@ -186,6 +186,81 @@ describe('@ankhorage/navigator adapter diagnostics', () => {
 });
 
 describe('@ankhorage/navigator deterministic generation', () => {
+  test('keeps semantic names and public URLs while generating nested Expo Router module paths', () => {
+    const plan = createNavigatorPlan(
+      {
+        type: 'stack',
+        initialRouteName: 'training-setup',
+        routes: [
+          {
+            name: 'training-setup',
+            path: '/training-setup',
+            expoRouterPath: 'training-setup/index',
+            screenId: 'home',
+          },
+          {
+            name: 'training-table-size',
+            path: '/training-setup/table',
+            expoRouterPath: 'training-setup/table',
+            screenId: 'home',
+          },
+          {
+            name: 'training-article',
+            path: '/articles/42',
+            expoRouterPath: '(content)/articles/[id]',
+            screenId: 'home',
+          },
+          {
+            name: 'training-catch-all',
+            path: '/docs/a/b',
+            expoRouterPath: 'docs/[...slug]',
+            screenId: 'home',
+          },
+        ],
+      },
+      { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+    );
+    const result = generateNavigator(plan, { guards: {}, screens: SCREEN_BINDINGS });
+    const root = result.files.find((file) => file.path === 'src/app/_layout.tsx')?.contents ?? '';
+
+    expect(
+      plan.root.routes.map(({ name, path, expoRouterPath }) => ({ name, path, expoRouterPath })),
+    ).toEqual([
+      {
+        name: 'training-setup',
+        path: '/training-setup',
+        expoRouterPath: 'training-setup/index',
+      },
+      {
+        name: 'training-table-size',
+        path: '/training-setup/table',
+        expoRouterPath: 'training-setup/table',
+      },
+      {
+        name: 'training-article',
+        path: '/articles/42',
+        expoRouterPath: '(content)/articles/[id]',
+      },
+      {
+        name: 'training-catch-all',
+        path: '/docs/a/b',
+        expoRouterPath: 'docs/[...slug]',
+      },
+    ]);
+    expect(result.files.map(({ path }) => path)).toEqual([
+      'src/app/_layout.tsx',
+      'src/app/(content)/articles/[id].tsx',
+      'src/app/docs/[...slug].tsx',
+      'src/app/training-setup/index.tsx',
+      'src/app/training-setup/table.tsx',
+    ]);
+    expect(root).toContain('initialRouteName="training-setup/index"');
+    expect(root).toContain('<Stack.Screen name="training-setup/index" />');
+    expect(root).toContain('<Stack.Screen name="training-setup/table" />');
+    expect(root).toContain('<Stack.Screen name="(content)/articles/[id]" />');
+    expect(root).toContain('<Stack.Screen name="docs/[...slug]" />');
+  });
+
   test('generates nested layouts, guarded screens and a typed hidden Drawer route', () => {
     const plan = createNavigatorPlan(CORE_MANIFEST, {
       platform: 'web',
@@ -295,14 +370,32 @@ describe('@ankhorage/navigator generation safety', () => {
     expect(result.diagnostics.map(({ code }) => code)).toContain('missing-tabs-path');
   });
 
-  test('revalidates file segments from disposable plans at the generation boundary', () => {
+  test('rejects traversal from disposable Expo Router paths at the generation boundary', () => {
     const plan = createNavigatorPlan(
       { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
       { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
     );
-    (plan.root.routes[0] as { name: string }).name = '../outside';
+    (plan.root.routes[0] as { expoRouterPath?: string }).expoRouterPath = '../outside';
     expect(() => generateNavigator(plan, { screens: SCREEN_BINDINGS, guards: {} })).toThrow(
-      'safe generated file segment',
+      'safe relative module path',
+    );
+  });
+
+  test('reports invalid authored Expo Router traversal paths before generation', () => {
+    const plan = createNavigatorPlan(
+      {
+        type: 'stack',
+        routes: [{ name: 'settings', expoRouterPath: '../settings', screenId: 'home' }],
+      },
+      { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+    );
+
+    expect(plan.support).toBe('unsupported');
+    expect(plan.diagnostics).toContainEqual(
+      expect.objectContaining({
+        code: 'invalid-expo-router-path',
+        path: '/routes/0/expoRouterPath',
+      }),
     );
   });
 });

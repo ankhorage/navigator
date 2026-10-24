@@ -1,6 +1,8 @@
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+
+import { createNavigatorPlan, generateNavigator } from '../src/navigator';
 
 const repositoryRoot = resolve(import.meta.dir, '..');
 const consumerRoot = mkdtempSync(join(tmpdir(), 'navigator-expo-57-consumer-'));
@@ -12,6 +14,7 @@ const packageArchive = resolve(consumerRoot, `ankhorage-navigator-${navigatorVer
 try {
   packNavigator();
   writeConsumerManifest();
+  writeConsumerNavigatorFiles();
   runConsumerNpmCommand(['install']);
   verifyResolvedPlatform();
   runConsumerNpmCommand(['run', 'typecheck']);
@@ -58,6 +61,93 @@ function writeConsumerManifest(): void {
     },
   };
   writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+}
+
+/*** Generate nested group, index, dynamic, catch-all, and Headless Tabs routes into the Expo 57 consumer. */
+function writeConsumerNavigatorFiles(): void {
+  const result = generateNavigator(
+    createNavigatorPlan(
+      {
+        type: 'stack',
+        initialRouteName: 'application',
+        routes: [
+          {
+            name: 'application',
+            expoRouterPath: '(app)',
+            navigator: {
+              type: 'tabs',
+              implementation: 'headless',
+              presentation: 'bottom',
+              initialRouteName: 'training',
+              routes: [
+                {
+                  name: 'training',
+                  path: '/training-setup',
+                  expoRouterPath: '(train)',
+                  navigator: {
+                    type: 'stack',
+                    initialRouteName: 'training-setup',
+                    routes: [
+                      {
+                        name: 'training-setup',
+                        path: '/training-setup',
+                        expoRouterPath: 'training-setup/index',
+                        screenId: 'example',
+                      },
+                      {
+                        name: 'training-table-size',
+                        path: '/training-setup/table',
+                        expoRouterPath: 'training-setup/table',
+                        screenId: 'example',
+                      },
+                      {
+                        name: 'article',
+                        path: '/articles/42',
+                        expoRouterPath: 'articles/[id]',
+                        screenId: 'example',
+                      },
+                      {
+                        name: 'documentation',
+                        path: '/docs/a/b',
+                        expoRouterPath: 'docs/[...slug]',
+                        screenId: 'example',
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      { expoRouterVersion: '57.0.24', platform: 'web' },
+    ),
+    {
+      guards: {},
+      screens: { example: { module: '@/screens/example-screen', exportName: 'ExampleScreen' } },
+    },
+  );
+  if (result.diagnostics.length > 0) {
+    throw new Error(
+      `Generated Expo 57 consumer has diagnostics: ${JSON.stringify(result.diagnostics)}.`,
+    );
+  }
+  const paths = result.files.map(({ path }) => path);
+  for (const expectedPath of [
+    'src/app/(app)/(train)/training-setup/index.tsx',
+    'src/app/(app)/(train)/training-setup/table.tsx',
+    'src/app/(app)/(train)/articles/[id].tsx',
+    'src/app/(app)/(train)/docs/[...slug].tsx',
+  ]) {
+    if (!paths.includes(expectedPath)) {
+      throw new Error(`Generated Expo 57 consumer is missing ${JSON.stringify(expectedPath)}.`);
+    }
+  }
+  for (const file of result.files) {
+    const destination = resolve(consumerRoot, file.path);
+    mkdirSync(dirname(destination), { recursive: true });
+    writeFileSync(destination, file.contents);
+  }
 }
 
 /*** Install or execute inside the isolated consumer without peer-resolution bypasses. */
