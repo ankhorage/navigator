@@ -150,6 +150,7 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
           {
             name: 'settings',
             path: '/settings',
+            expoRouterPath: '(account)/settings/index',
             showInPrimaryNavigation: false,
             screenId: 'settings',
           },
@@ -165,9 +166,10 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
     });
     expect(layout).toContain("from '@ankhorage/navigator/tabs'");
     expect(layout).toContain("import { ResponsiveProvider } from '@ankhorage/surface';");
-    expect(layout).toContain('initialRouteName="settings"');
+    expect(layout).toContain('initialRouteName="(account)/settings/index"');
     expect(layout).toContain('return (\n    <ResponsiveProvider>');
     expect(layout).toContain('<HeadlessTabsLayout');
+    expect(layout).toContain("name: '(account)/settings/index'");
     expect(layout).toContain("href: '/settings'");
     expect(layout).toContain('visible: false');
   });

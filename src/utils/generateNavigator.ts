@@ -12,6 +12,7 @@ import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/ut
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
 import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/resolveDrawerRouteOptions';
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath';
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
@@ -76,8 +77,6 @@ function createGenerationResult(
 
 const APP_DIRECTORY = 'src/app';
 
-const SAFE_ROUTE_NAME = /^[A-Za-z0-9_.()[\]-]+$/u;
-
 /*** Traverse the plan to emit layouts and optional screen bindings in their route directories. */
 function collectFiles(
   node: NavigatorNodePlan,
@@ -87,7 +86,7 @@ function collectFiles(
 ): NavigatorGeneratedFile[] {
   const files = [createLayoutFile(node, directory, bindings)];
   for (const route of node.routes) {
-    assertRouteName(route.name);
+    const expoRouterPath = resolveExpoRouterRoutePath(route);
     if (includeScreenFiles) {
       const screen = createScreenFile(route, directory, bindings);
       if (screen !== undefined) files.push(screen);
@@ -96,7 +95,7 @@ function collectFiles(
       files.push(
         ...collectFiles(
           route.navigator,
-          `${directory}/${route.name}`,
+          `${directory}/${expoRouterPath}`,
           bindings,
           includeScreenFiles,
         ),
@@ -181,10 +180,11 @@ function createNavigatorContents(
       : node.type === 'drawer'
         ? node.drawer?.options
         : undefined;
+  const initialRouteName = resolveNavigatorInitialRouteName(node);
   const props = [
-    node.initialRouteName === undefined
+    initialRouteName === undefined
       ? undefined
-      : `initialRouteName=${JSON.stringify(node.initialRouteName)}`,
+      : `initialRouteName=${JSON.stringify(initialRouteName)}`,
     navigatorOptions === undefined
       ? undefined
       : `screenOptions={${serializeJavaScriptLiteral(navigatorOptions)}}`,
@@ -209,7 +209,7 @@ function renderScreen(
   const options = routeOptions(node, route);
   const screen = renderScreenElement(
     componentName,
-    route.name,
+    resolveExpoRouterRoutePath(route),
     options,
     route.guards.length === 0 ? '      ' : '        ',
   );
@@ -287,11 +287,13 @@ ${indentation}  }}
 ${indentation}/>`;
 }
 
-/*** Reject route segments that could escape or invalidate the generated directory. */
-function assertRouteName(name: string): void {
-  if (!SAFE_ROUTE_NAME.test(name) || name === '.' || name === '..') {
-    throw new Error(`Route name ${JSON.stringify(name)} is not a safe generated file segment.`);
-  }
+/*** Map a semantic initial route identity onto Expo Router's module registration name. */
+function resolveNavigatorInitialRouteName(node: NavigatorNodePlan): string | undefined {
+  if (node.initialRouteName === undefined) return undefined;
+  const route = node.routes.find(({ name }) => name === node.initialRouteName);
+  if (route === undefined)
+    throw new Error(`Missing initial route ${JSON.stringify(node.initialRouteName)}.`);
+  return resolveExpoRouterRoutePath(route);
 }
 
 /*** Emit a route module that re-exports its registered screen as the default component. */
@@ -301,7 +303,7 @@ function createScreenFile(
   bindings: NavigatorGenerationBindings,
 ): NavigatorGeneratedFile | undefined {
   if (route.screenId === undefined) return undefined;
-  assertRouteName(route.name);
+  const expoRouterPath = resolveExpoRouterRoutePath(route);
   const binding = Reflect.get(bindings.screens, route.screenId) as
     NavigatorScreenModule | undefined;
   if (binding === undefined)
@@ -312,7 +314,7 @@ function createScreenFile(
     `Screen ${JSON.stringify(route.screenId)}`,
   );
   return {
-    path: `${directory}/${route.name}.tsx`,
+    path: `${directory}/${expoRouterPath}.tsx`,
     contents: `export { ${binding.exportName} as default } from ${quoteJavaScriptString(binding.module)};\n`,
   };
 }

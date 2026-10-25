@@ -8,6 +8,7 @@ import type {
 } from '@ankhorage/contracts/navigator';
 
 import { addCustomNavigatorDiagnostics } from '../features/custom/domain/addCustomNavigatorDiagnostics';
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath';
 import { addSlotDiagnostics } from '../features/slot/domain/addSlotDiagnostics';
 import { addSplitViewDiagnostics } from '../features/split-view/domain/addSplitViewDiagnostics';
 import { addExperimentalStackDiagnostics } from '../features/stack/domain/addExperimentalStackDiagnostics';
@@ -132,7 +133,7 @@ function validateLocalRoute(
   validateStackRouteOptions(diagnostics, route, routePointer, stackImplementation);
 }
 
-/*** Reject duplicate names and unsafe Expo Router file segments within one navigator. */
+/*** Reject duplicate semantic names and unsafe Expo Router module paths within one navigator. */
 function validateRouteName(
   diagnostics: NavigatorDiagnostic[],
   route: NavigatorNode['routes'][number],
@@ -148,12 +149,14 @@ function validateRouteName(
     });
   }
   routeNames.add(route.name);
-  if (!/^[A-Za-z0-9_.()[\]-]+$/u.test(route.name) || route.name === '.' || route.name === '..') {
+  try {
+    resolveExpoRouterRoutePath(route);
+  } catch {
     diagnostics.push({
-      code: 'invalid-route-name',
+      code: 'invalid-expo-router-path',
       severity: 'error',
-      path: `${routePointer}/name`,
-      message: 'Route names must be safe Expo Router file segments.',
+      path: `${routePointer}/expoRouterPath`,
+      message: 'Expo Router paths must be safe relative module paths.',
     });
   }
 }

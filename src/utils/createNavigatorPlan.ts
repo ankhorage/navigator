@@ -145,6 +145,7 @@ function createRoutePlan(
   return {
     name: route.name,
     ...(route.path === undefined ? {} : { path: route.path }),
+    ...(route.expoRouterPath === undefined ? {} : { expoRouterPath: route.expoRouterPath }),
     ...(route.label === undefined ? {} : { label: route.label }),
     ...(route.icon === undefined ? {} : { icon: route.icon }),
     ...(route.showInPrimaryNavigation === undefined
