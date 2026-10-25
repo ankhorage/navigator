@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.12
+
+### Patch Changes
+
+- 1a8a339: Generate Expo Router module paths independently from semantic route names and public URLs.
+
 ## 3.5.11
 
 ### Patch Changes

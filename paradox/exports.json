@@ -132,7 +132,7 @@
     "modulePath": "src/utils/generateNavigator.ts",
     "sourceLocation": {
       "filePath": "src/utils/generateNavigator.ts",
-      "line": 22,
+      "line": 23,
       "column": 1
     },
     "exportPaths": [
@@ -1065,7 +1065,7 @@
     "modulePath": "src/utils/validateNavigatorManifest.ts",
     "sourceLocation": {
       "filePath": "src/utils/validateNavigatorManifest.ts",
-      "line": 22,
+      "line": 23,
       "column": 1
     },
     "exportPaths": [

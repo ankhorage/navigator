@@ -171,6 +171,8 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_drawer_adapters_outbound_resolveDrawerRouteOptions_ts
   module_src_features_drawer_application_createDrawerAdapter_ts["src/features/drawer/application/createDrawerAdapter.ts"]
   package__ankhorage_navigator -.-> module_src_features_drawer_application_createDrawerAdapter_ts
+  module_src_features_routing_domain_resolveExpoRouterRoutePath_ts["src/features/routing/domain/resolveExpoRouterRoutePath.ts"]
+  package__ankhorage_navigator -.-> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts["src/features/slot/adapters/outbound/generateSlotLayoutFile.ts"]
   package__ankhorage_navigator -.-> module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts
   module_src_features_slot_application_createSlotAdapter_ts["src/features/slot/application/createSlotAdapter.ts"]
@@ -242,6 +244,7 @@ graph TD
   module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_utils_resolveNavigatorIcon_ts
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts["src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"]
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
+  module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_features_tabs_application_createTabsAdapter_ts["src/features/tabs/application/createTabsAdapter.ts"]
   package__ankhorage_navigator -.-> module_src_features_tabs_application_createTabsAdapter_ts
   module_src_features_tabs_application_createTabsAdapter_ts --> module_src_constants_navigator_ts
@@ -328,6 +331,7 @@ graph TD
   module_src_utils_generateNavigator_ts["src/utils/generateNavigator.ts"]
   package__ankhorage_navigator -.-> module_src_utils_generateNavigator_ts
   module_src_utils_generateNavigator_ts --> module_src_features_drawer_adapters_outbound_resolveDrawerRouteOptions_ts
+  module_src_utils_generateNavigator_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_utils_generateNavigator_ts --> module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_split_view_adapters_outbound_generateSplitViewLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
@@ -386,6 +390,7 @@ graph TD
   module_src_utils_validateNavigatorManifest_ts["src/utils/validateNavigatorManifest.ts"]
   package__ankhorage_navigator -.-> module_src_utils_validateNavigatorManifest_ts
   module_src_utils_validateNavigatorManifest_ts --> module_src_features_custom_domain_addCustomNavigatorDiagnostics_ts
+  module_src_utils_validateNavigatorManifest_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_utils_validateNavigatorManifest_ts --> module_src_features_slot_domain_addSlotDiagnostics_ts
   module_src_utils_validateNavigatorManifest_ts --> module_src_features_split_view_domain_addSplitViewDiagnostics_ts
   module_src_utils_validateNavigatorManifest_ts --> module_src_features_stack_domain_addExperimentalStackDiagnostics_ts

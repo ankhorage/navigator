@@ -47,7 +47,7 @@ Define an immutable, duplicate-free custom navigator registry for one compositio
 
 Kind: `function`
 Module: `src/utils/generateNavigator.ts`
-Source: `src/utils/generateNavigator.ts:22:1`
+Source: `src/utils/generateNavigator.ts:23:1`
 
 Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.
 
@@ -376,7 +376,7 @@ Validate only the narrow generated-module bindings required by a resolved naviga
 
 Kind: `function`
 Module: `src/utils/validateNavigatorManifest.ts`
-Source: `src/utils/validateNavigatorManifest.ts:22:1`
+Source: `src/utils/validateNavigatorManifest.ts:23:1`
 
 Validate one navigator desired-state slice for a concrete Expo Router target.
 

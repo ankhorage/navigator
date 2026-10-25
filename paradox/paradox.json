@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.5.11",
+      "value": "v3.5.12",
       "color": "cb3837"
     },
     {
@@ -454,6 +454,14 @@
       ]
     },
     {
+      "path": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "resolveExpoRouterRoutePath"
+      ]
+    },
+    {
       "path": "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -677,7 +685,9 @@
     {
       "path": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": [
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts"
+      ],
       "exports": [
         "generateTabsLayoutFile"
       ]
@@ -977,6 +987,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/drawer/adapters/outbound/resolveDrawerRouteOptions.ts",
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
         "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
         "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
@@ -1153,6 +1164,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "src/features/slot/domain/addSlotDiagnostics.ts",
         "src/features/split-view/domain/addSplitViewDiagnostics.ts",
         "src/features/stack/domain/addExperimentalStackDiagnostics.ts",
@@ -1549,7 +1561,7 @@
       "modulePath": "src/utils/generateNavigator.ts",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 22,
+        "line": 23,
         "column": 1
       },
       "exportPaths": [
@@ -2482,7 +2494,7 @@
       "modulePath": "src/utils/validateNavigatorManifest.ts",
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 22,
+        "line": 23,
         "column": 1
       },
       "exportPaths": [
@@ -3919,6 +3931,17 @@
       }
     },
     {
+      "name": "resolveExpoRouterRoutePath",
+      "description": "Resolve one route's Expo Router module path without changing its semantic identity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
       "name": "generateSlotLayoutFile",
       "description": "Render a stateless Slot layout using the validated adapter import.",
       "see": [],
@@ -4464,7 +4487,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 12,
+        "line": 14,
         "column": 1
       }
     },
@@ -4475,7 +4498,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 28,
+        "line": 30,
         "column": 1
       }
     },
@@ -4486,7 +4509,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 72,
+        "line": 74,
         "column": 1
       }
     },
@@ -4497,7 +4520,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 91,
+        "line": 93,
         "column": 1
       }
     },
@@ -4508,7 +4531,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 109,
+        "line": 111,
         "column": 1
       }
     },
@@ -4519,7 +4542,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 147,
+        "line": 150,
         "column": 1
       }
     },
@@ -4530,7 +4553,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 160,
+        "line": 163,
         "column": 1
       }
     },
@@ -4541,7 +4564,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 168,
+        "line": 171,
         "column": 1
       }
     },
@@ -4552,7 +4575,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 217,
+        "line": 219,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveNavigatorInitialRouteName",
+      "description": "Map semantic initial-route identity to the generated Expo Router module registration.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 232,
         "column": 1
       }
     },
@@ -4563,7 +4597,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 243,
+        "line": 254,
         "column": 1
       }
     },
@@ -4574,7 +4608,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 255,
+        "line": 266,
         "column": 1
       }
     },
@@ -4585,7 +4619,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 268,
+        "line": 279,
         "column": 1
       }
     },
@@ -4596,7 +4630,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 273,
+        "line": 284,
         "column": 1
       }
     },
@@ -4607,7 +4641,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 278,
+        "line": 289,
         "column": 1
       }
     },
@@ -4618,7 +4652,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 291,
+        "line": 302,
         "column": 1
       }
     },
@@ -4629,7 +4663,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 309,
+        "line": 320,
         "column": 1
       }
     },
@@ -4640,7 +4674,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 325,
+        "line": 336,
         "column": 1
       }
     },
@@ -5289,7 +5323,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 171,
+        "line": 172,
         "column": 1
       }
     },
@@ -5300,7 +5334,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/createNavigatorPlan.ts",
-        "line": 197,
+        "line": 198,
         "column": 1
       }
     },
@@ -5311,7 +5345,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 22,
+        "line": 23,
         "column": 1
       }
     },
@@ -5322,7 +5356,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 62,
+        "line": 63,
         "column": 1
       }
     },
@@ -5333,7 +5367,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 82,
+        "line": 81,
         "column": 1
       }
     },
@@ -5344,7 +5378,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 110,
+        "line": 109,
         "column": 1
       }
     },
@@ -5355,7 +5389,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 154,
+        "line": 153,
         "column": 1
       }
     },
@@ -5366,7 +5400,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 172,
+        "line": 171,
         "column": 1
       }
     },
@@ -5415,8 +5449,8 @@
       }
     },
     {
-      "name": "assertRouteName",
-      "description": "Reject route segments that could escape or invalidate the generated directory.",
+      "name": "resolveNavigatorInitialRouteName",
+      "description": "Map a semantic initial route identity onto Expo Router's module registration name.",
       "see": [],
       "security": [],
       "sourceLocation": {
@@ -5432,7 +5466,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 298,
+        "line": 300,
         "column": 1
       }
     },
@@ -5872,7 +5906,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 22,
+        "line": 23,
         "column": 1
       }
     },
@@ -5883,7 +5917,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 51,
+        "line": 52,
         "column": 1
       }
     },
@@ -5894,7 +5928,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 85,
+        "line": 86,
         "column": 1
       }
     },
@@ -5905,7 +5939,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 102,
+        "line": 103,
         "column": 1
       }
     },
@@ -5916,18 +5950,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 122,
+        "line": 123,
         "column": 1
       }
     },
     {
       "name": "validateRouteName",
-      "description": "Reject duplicate names and unsafe Expo Router file segments within one navigator.",
+      "description": "Reject duplicate semantic names and unsafe Expo Router module paths within one navigator.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 136,
+        "line": 137,
         "column": 1
       }
     },
@@ -5938,7 +5972,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 162,
+        "line": 165,
         "column": 1
       }
     },
@@ -5949,7 +5983,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorManifest.ts",
-        "line": 178,
+        "line": 181,
         "column": 1
       }
     },
@@ -6712,6 +6746,11 @@
       },
       {
         "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
@@ -6818,6 +6857,11 @@
       {
         "fromPath": "src/utils/validateNavigatorManifest.ts",
         "toPath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts",
+        "sourcePath": "src/utils/validateNavigatorManifest.ts"
+      },
+      {
+        "fromPath": "src/utils/validateNavigatorManifest.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "sourcePath": "src/utils/validateNavigatorManifest.ts"
       },
       {
@@ -7504,6 +7548,11 @@
         "fromPath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "toPath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+      },
+      {
+        "fromPath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
         "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
@@ -8889,8 +8938,8 @@
       },
       {
         "fromSymbol": "collectFiles",
-        "toSymbol": "assertRouteName",
-        "callExpression": "assertRouteName",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -8961,6 +9010,12 @@
       },
       {
         "fromSymbol": "createNavigatorContents",
+        "toSymbol": "resolveNavigatorInitialRouteName",
+        "callExpression": "resolveNavigatorInitialRouteName",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "createNavigatorContents",
         "toSymbol": "serializeJavaScriptLiteral",
         "callExpression": "serializeJavaScriptLiteral",
         "sourcePath": "src/utils/generateNavigator.ts"
@@ -8984,6 +9039,12 @@
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
+        "fromSymbol": "renderScreen",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
         "fromSymbol": "routeOptions",
         "toSymbol": "shouldHideUnnamedGroupHeader",
         "callExpression": "shouldHideUnnamedGroupHeader",
@@ -9002,9 +9063,15 @@
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
+        "fromSymbol": "resolveNavigatorInitialRouteName",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
         "fromSymbol": "createScreenFile",
-        "toSymbol": "assertRouteName",
-        "callExpression": "assertRouteName",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9425,6 +9492,12 @@
         "fromSymbol": "validateLocalRoute",
         "toSymbol": "validateStackRouteOptions",
         "callExpression": "validateStackRouteOptions",
+        "sourcePath": "src/utils/validateNavigatorManifest.ts"
+      },
+      {
+        "fromSymbol": "validateRouteName",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
         "sourcePath": "src/utils/validateNavigatorManifest.ts"
       },
       {
@@ -10935,6 +11008,12 @@
       },
       {
         "fromSymbol": "createNativeTabsContents",
+        "toSymbol": "resolveNavigatorInitialRouteName",
+        "callExpression": "resolveNavigatorInitialRouteName",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createNativeTabsContents",
         "toSymbol": "quoteJavaScriptString",
         "callExpression": "quoteJavaScriptString",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
@@ -10949,6 +11028,12 @@
         "fromSymbol": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "toSymbol": "nativeIconName",
         "callExpression": "nativeIconName",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -10973,6 +11058,12 @@
         "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "createHeadlessTabRoutes",
         "callExpression": "createHeadlessTabRoutes",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "resolveNavigatorInitialRouteName",
+        "callExpression": "resolveNavigatorInitialRouteName",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -11003,6 +11094,12 @@
         "fromSymbol": "createHeadlessTabsFile",
         "toSymbol": "renderHeadlessTabsReturn",
         "callExpression": "renderHeadlessTabsReturn",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "resolveNavigatorInitialRouteName",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
