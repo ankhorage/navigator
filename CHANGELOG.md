@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.16
+
+### Patch Changes
+
+- 23fb69d: Update dependencies: `@ankhorage/contracts`, `@ankhorage/surface`.
+
 ## 3.5.15
 
 ### Patch Changes
