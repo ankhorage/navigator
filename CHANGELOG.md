@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.18
+
+### Patch Changes
+
+- fdf26ae: Update dependencies: `@ankhorage/contracts`.
+
 ## 3.5.17
 
 ### Patch Changes
