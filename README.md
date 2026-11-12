@@ -7,6 +7,20 @@
 
 Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.
 
+## Usage
+
+### CLI
+
+Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.
+
+```zsh
+# Install the Ankhorage CLI
+bun add --global @ankhorage/ankh
+
+# Show usage information for navigator
+ankh navigator --help
+```
+
 ## Generated documentation
 
 - [Interactive documentation app](././paradox/index.html)
