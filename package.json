@@ -221,9 +221,9 @@
     "release:synchronize": "bun run examples:synchronize && bun run docs && bun run format"
   },
   "dependencies": {
-    "@ankhorage/capability": "^0.2.2",
+    "@ankhorage/capability": "^0.2.3",
     "@ankhorage/contracts": "^26.11.1",
-    "@ankhorage/utility": "^1.10.0"
+    "@ankhorage/utility": "^1.10.1"
   },
   "peerDependencies": {
     "@ankhorage/surface": "^9.1.7",
