@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "library",
+  "title": "Ankhorage Navigator",
+  "summary": "Provides manifest-driven cataloging, validation, planning, generation, and verification for Expo Router navigation across native and web targets.",
+  "purpose": "Keep portable application navigation independently usable while generating and verifying the Expo Router files required by concrete applications.",
+  "domain": "cross-platform application navigation",
+  "responsibilities": [
+    "Validate portable navigation manifests, bindings, presets, tabs, and native icon declarations.",
+    "Plan and generate Expo Router navigation files for application workspaces.",
+    "Verify generated navigation through package, example, browser, and headless acceptance boundaries."
+  ],
+  "boundaries": [
+    "Does not own application screens, business workflows, or runtime capability execution.",
+    "Does not replace Expo Router or hard-code a consuming application's route catalog.",
+    "Does not require sibling repository source or a hidden workspace."
+  ],
+  "audience": [
+    "Application authors generating Expo Router navigation from portable manifests.",
+    "Tooling and template authors validating cross-platform navigation output."
+  ],
+  "useCases": [
+    "Validate an application's navigation topology before generation.",
+    "Generate Expo Router routes, tabs, and platform-specific icon bindings.",
+    "Verify a generated application workspace across React Native and React Native Web."
+  ],
+  "architecture": {
+    "role": "Standalone navigation capability with portable planning policy and explicit Expo Router generation and verification edges.",
+    "invariants": [
+      "Portable navigation values remain independent of application screen implementations.",
+      "Generated files are deterministic for the same validated manifest and bindings.",
+      "Native and web output is verified through independently installable consumer fixtures."
+    ]
+  },
+  "constraints": {
+    "platforms": ["Expo Router", "React Native", "React Native Web"],
+    "limitations": [
+      "Generation supports the Expo Router versions and navigation shapes explicitly validated by the package."
+    ]
+  }
+}
