@@ -24,6 +24,7 @@ test('keeps the catalog, routing, and navigation capabilities as peers, without 
     'cli',
     'constants',
     'features',
+    'metadata',
     'metadata.ts',
     'navigator.ts',
     'types',
