@@ -21,18 +21,17 @@ bun add --global @ankhorage/ankh
 ankh navigator --help
 ```
 
-## Generated documentation
+## Documentation
 
-- [Interactive documentation app](././paradox/index.html)
-- [Public API reference](././paradox/exports.md)
-- [Component registry](././paradox/components.md)
-- [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
-- [Module relationships](././paradox/diagrams/module-relationships.mmd)
-- [Export graph](././paradox/diagrams/export-graph.mmd)
-- [defineCustomNavigatorRegistry sequence](././paradox/diagrams/sequences/define-custom-navigator-registry.mmd)
-- [generateWorkspaceLayout sequence](././paradox/diagrams/sequences/generate-workspace-layout.mmd)
-- [HeadlessTabsLayout sequence](././paradox/diagrams/sequences/headless-tabs-layout.mmd)
-- [isNavigatorGenerationBindings sequence](././paradox/diagrams/sequences/is-navigator-generation-bindings.mmd)
-- [resolveHeadlessTabsPresentation sequence](././paradox/diagrams/sequences/resolve-headless-tabs-presentation.mmd)
-- [resolveNavigatorHeaderOwnership sequence](././paradox/diagrams/sequences/resolve-navigator-header-ownership.mmd)
-- [resolveTabsNavigatorPlan sequence](././paradox/diagrams/sequences/resolve-tabs-navigator-plan.mmd)
+Open `./paradox/index.html` locally in your browser to browse the complete documentation.
+
+## Contributors
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
+## Donation
+
+If this project is useful to you, you can support its continued development.
+
+[Support @ankhorage](https://github.com/sponsors/ankhorage)
