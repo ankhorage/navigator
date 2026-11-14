@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.5.22
+
+### Patch Changes
+
+- fee4ad8: Update dependencies: `@ankhorage/contracts`.
+
 ## 3.5.21
 
 ### Patch Changes
