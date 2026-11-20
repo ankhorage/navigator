@@ -6,7 +6,38 @@
 
 Package: `@ankhorage/navigator`
 
-Standalone manifest-driven navigator capability for Expo Router across React Native and React Native Web.
+Title: Ankhorage Navigator
+
+Provides manifest-driven cataloging, validation, planning, generation, and verification for Expo Router navigation across native and web targets.
+
+Purpose: Keep portable application navigation independently usable while generating and verifying the Expo Router files required by concrete applications.
+
+Audience:
+
+- Application authors generating Expo Router navigation from portable manifests.
+- Tooling and template authors validating cross-platform navigation output.
+
+## Scope and boundaries
+
+Responsibilities:
+
+- Validate portable navigation manifests, bindings, presets, tabs, and native icon declarations.
+- Plan and generate Expo Router navigation files for application workspaces.
+- Verify generated navigation through package, example, browser, and headless acceptance boundaries.
+
+Boundaries:
+
+- Does not own application screens, business workflows, or runtime capability execution.
+- Does not replace Expo Router or hard-code a consuming application's route catalog.
+- Does not require sibling repository source or a hidden workspace.
+
+Architecture role: Standalone navigation capability with portable planning policy and explicit Expo Router generation and verification edges.
+
+Architectural invariants:
+
+- Portable navigation values remain independent of application screen implementations.
+- Generated files are deterministic for the same validated manifest and bindings.
+- Native and web output is verified through independently installable consumer fixtures.
 
 ## Current architecture only
 
@@ -64,6 +95,26 @@ Paradox `/*** ... */` comments in `src` and leading `@usage` comments in real
 `examples/<example>/...` source files, plus any repository-owned manual documentation outside the
 generated output. The managed release workflow runs `bun run docs` after the package version bump
 and commits the regenerated artifacts in the release commit.
+
+## GitHub task lifecycle and workspace cleanup
+
+- **Start.** Treat each issue implementation, PR implementation, review, and change request (CR)
+  as an independent task. Fetch the current remote default branch and read the applicable issue,
+  PR, HEAD, review feedback, and CI state. Use a fresh, uniquely named task checkout or worktree.
+  Concurrent tasks must have distinct writable checkout, temporary, build, and cache paths.
+- **CRs.** Fetch and check out the current remote PR branch in the new workspace. Preserve PR
+  history and scope. Push corrections to the existing PR branch.
+- **Delivery.** Run applicable checks. Commit and push all intended changes, then verify that
+  GitHub has the intended commit on the correct remote branch. Report the exact HEAD, checks, CI,
+  findings, and blockers. Report acceptance that was not run as unverified. Read-only reviews hand
+  off their findings without creating a commit. Merge requires explicit authorization.
+- **Cleanup.** After handoff, resolve every candidate path and remove only task-owned directories
+  whose resolved paths are strictly under the resolved system path for `/tmp` (`/private/tmp` on
+  macOS). Refuse candidates that resolve outside that boundary, including through a symlink. Use
+  Git-aware removal for worktrees. Preserve workspaces outside the boundary, shared directories,
+  other tasks' directories, uncommitted changes, and unpushed commits. If blocked, persist
+  recoverable work first and document what must be retained. Report whether cleanup succeeded, was
+  skipped, or was blocked.
 
 ## Pull requests
 
