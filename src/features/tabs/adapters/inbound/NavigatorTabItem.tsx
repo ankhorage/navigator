@@ -17,7 +17,13 @@ export function NavigatorTabItem({ item, orientation }: NavigatorTabItemProps) {
       style={horizontal ? styles.horizontalButton : styles.verticalButton}
       testID={`navigator-tabs-item-${item.name}`}
     >
-      <View style={[styles.content, item.active ? styles.activeContent : undefined]}>
+      <View
+        style={[
+          styles.content,
+          rail ? styles.railContent : horizontal ? undefined : styles.sidebarContent,
+          item.active ? styles.activeContent : undefined,
+        ]}
+      >
         <Text numberOfLines={1} style={item.active ? styles.activeLabel : undefined}>
           {item.label}
         </Text>
@@ -39,10 +45,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
     justifyContent: 'center',
-    minHeight: 44,
     padding: 8,
   },
   horizontalButton: { flex: 1 },
   railBadge: { position: 'absolute', right: 2, top: 2 },
+  railContent: { minHeight: 64 },
+  sidebarContent: { minHeight: 48 },
   verticalButton: { width: '100%' },
 });

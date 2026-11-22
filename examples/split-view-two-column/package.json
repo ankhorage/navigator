@@ -7,7 +7,7 @@
     "start": "expo start",
     "ios": "expo start --ios",
     "typecheck": "tsc --noEmit",
-    "export:ios": "expo export --platform ios --output-dir dist/ios",
+    "export:ios": "expo export --platform ios --output-dir dist/ios --clear",
     "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform ios --expo-router-version 57.0.24 --target ."
   },
   "dependencies": {

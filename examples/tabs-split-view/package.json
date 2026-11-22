@@ -7,7 +7,7 @@
     "start": "expo start",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "export:web": "expo export --platform web --output-dir dist/web"
+    "export:web": "expo export --platform web --output-dir dist/web --clear"
   },
   "dependencies": {
     "@ankhorage/navigator": "3.5.23",
