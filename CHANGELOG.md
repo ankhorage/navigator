@@ -1,5 +1,16 @@
 # @ankhorage/navigator
 
+## 3.5.23
+
+### Patch Changes
+
+- f2e2a6e: Add canonical authored repository metadata for organization-wide tooling and documentation consumers.
+- f4a5108: Update dependencies: `@ankhorage/contracts`.
+- afe3a4f: Update dependencies: `@ankhorage/contracts`.
+- fdf5dd0: Update dependencies: `@ankhorage/capability`, `@ankhorage/utility`.
+- cb2ed4c: Update dependencies: `@ankhorage/contracts`.
+- f35e5e3: Update dependencies: `@ankhorage/contracts`.
+
 ## 3.5.22
 
 ### Patch Changes

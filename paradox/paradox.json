@@ -1,7 +1,9 @@
 {
   "packageName": "NAVIGATOR",
   "packageId": "@ankhorage/navigator",
-  "description": "Standalone manifest-driven Navigator capability for cataloging, validating, planning, generating, and verifying Expo Router navigation.",
+  "description": "Provides manifest-driven cataloging, validation, planning, generation, and verification for Expo Router navigation across native and web targets.",
+  "purpose": "Keep portable application navigation independently usable while generating and verifying the Expo Router files required by concrete applications.",
+  "productDocumentation": null,
   "collaborators": true,
   "donation": {
     "account": "ankhorage"
@@ -16,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.5.22",
+      "value": "v3.5.23",
       "color": "cb3837"
     },
     {
@@ -52,8 +54,8 @@
     {
       "id": "tests",
       "label": "tests",
-      "value": "checked",
-      "color": "0a7f3f"
+      "value": "configured",
+      "color": "6f42c1"
     },
     {
       "id": "docs",
