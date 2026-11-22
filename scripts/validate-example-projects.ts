@@ -1,6 +1,7 @@
 import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { getNavigatorExampleCatalog, verifyNavigatorExamplesAsync } from '../src/navigator';
 
@@ -39,18 +40,6 @@ try {
   rmSync(acceptanceRoot, { force: true, recursive: true });
 }
 
-run(
-  [
-    'bunx',
-    'ankhorage-eslint',
-    'examples',
-    '--config',
-    'eslint.examples.config.mjs',
-    '--max-warnings=0',
-  ],
-  REPOSITORY_ROOT,
-);
-
 console.log(
   `\nValidated ${actualIds.length} standalone Navigator example dependency graphs against the packed candidate.`,
 );
@@ -67,6 +56,41 @@ function validateExample(id: string, acceptanceRoot: string, packageArchive: str
   run(['bun', 'install'], projectRoot);
   run(['bun', 'install', '--frozen-lockfile'], projectRoot);
   run(['bun', 'run', 'typecheck'], projectRoot);
+  const eslintConfigPath = writeExampleEslintConfig(projectRoot);
+  run(
+    [
+      resolve(REPOSITORY_ROOT, 'node_modules', '.bin', 'ankhorage-eslint'),
+      '.',
+      '--config',
+      eslintConfigPath,
+      '--max-warnings=0',
+    ],
+    projectRoot,
+  );
+}
+
+/*** Materialize the repository's strict lint policy inside a disposable installed consumer. */
+function writeExampleEslintConfig(projectRoot: string): string {
+  const configPath = resolve(projectRoot, '.navigator-eslint.config.mjs');
+  const devtoolsEslint = pathToFileURL(
+    resolve(
+      REPOSITORY_ROOT,
+      'node_modules',
+      '@ankhorage',
+      'devtools',
+      'dist',
+      'tools',
+      'eslint',
+      'index.js',
+    ),
+  ).href;
+  const localConfig = pathToFileURL(resolve(REPOSITORY_ROOT, 'eslint.local.config.mjs')).href;
+  const prettierConfig = pathToFileURL(resolve(REPOSITORY_ROOT, '.prettierrc.js')).href;
+  writeFileSync(
+    configPath,
+    `import { createConfig } from '${devtoolsEslint}';\nimport localConfig from '${localConfig}';\nimport prettierConfig from '${prettierConfig}';\n\nconst localEntries = Array.isArray(localConfig) ? localConfig : [localConfig];\n\nexport default [...createConfig({ files: ['**/*.{ts,tsx}'], project: ['./tsconfig.json'], tsconfigRootDir: import.meta.dirname, overrides: [{ files: ['**/*.{ts,tsx}'], rules: { 'prettier/prettier': ['error', prettierConfig] } }] }), ...localEntries];\n`,
+  );
+  return configPath;
 }
 
 /*** Pack the exact checked-out Navigator artifact used by all pre-release standalone consumers. */
