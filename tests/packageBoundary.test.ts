@@ -73,8 +73,8 @@ describe('@ankhorage/navigator package boundary', () => {
       readonly peerDependencies?: Readonly<Record<string, string>>;
     };
 
-    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toMatch(/^\^9\.\d+\.\d+$/u);
-    expect(packageJson.devDependencies?.['@ankhorage/surface']).toMatch(/^\^9\.\d+\.\d+$/u);
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toBeUndefined();
+    expect(packageJson.devDependencies?.['@ankhorage/surface']).toBeUndefined();
     expect(packageJson.peerDependencies?.['react-dom']).toMatch(/^19\.\d+\.\d+$/u);
     expect(packageJson.devDependencies?.['react-dom']).toMatch(/^19\.\d+\.\d+$/u);
     expect(packageJson.peerDependencies?.react).toBe(packageJson.peerDependencies?.['react-dom']);
@@ -87,17 +87,16 @@ describe('@ankhorage/navigator package boundary', () => {
     );
   });
 
-  test('uses Surface 9 without importing removed navigation chrome', async () => {
+  test('has no Surface or ZORA dependency in production navigation code', async () => {
     const packageJson = (await Bun.file(join(process.cwd(), 'package.json')).json()) as {
       readonly peerDependencies?: Readonly<Record<string, string>>;
     };
-    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toMatch(/^\^9\./u);
+    expect(packageJson.peerDependencies?.['@ankhorage/surface']).toBeUndefined();
 
     const files = await collectProductionTypeScriptFiles(join(process.cwd(), 'src'));
     const contents = (await Promise.all(files.map((file) => readFile(file, 'utf8')))).join('\n');
-    for (const removedSymbol of ['NavigationItemIcon', 'NavigationItemSpec', 'TabBarItem']) {
-      expect(contents).not.toContain(removedSymbol);
-    }
+    expect(contents).not.toContain('@ankhorage/surface');
+    expect(contents).not.toContain('@ankhorage/zora');
   });
 
   test('never imports the full app manifest into production source', async () => {

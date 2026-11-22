@@ -1,228 +1,55 @@
-import {
-  Icon,
-  type IconSource,
-  Pressable,
-  type SurfaceTheme,
-  Text,
-  useTheme,
-  View,
-} from '@ankhorage/surface';
-import type { ReactNode } from 'react';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-/*** Render one Navigator-owned tab trigger using current Surface foundation primitives. */
-export function NavigatorTabItem({
-  active,
-  badge,
-  icon,
-  label,
-  onPress,
-  orientation,
-  testID,
-}: NavigatorTabItemProps) {
-  const { theme } = useTheme();
+import type { HeadlessTabsItem } from '../../../../types/headlessTabs';
+
+/*** Render the accessible unthemed fallback for one Navigator tab trigger. */
+export function NavigatorTabItem({ item, orientation }: NavigatorTabItemProps) {
   const horizontal = orientation === 'horizontal';
   const rail = orientation === 'rail';
 
   return (
     <Pressable
-      accessibilityLabel={label}
+      accessibilityLabel={item.label}
       accessibilityRole="tab"
-      accessibilityState={{ selected: active }}
-      onPress={onPress}
+      accessibilityState={item.accessibilityState}
+      disabled={item.disabled}
+      onPress={item.onPress}
       style={horizontal ? styles.horizontalButton : styles.verticalButton}
-      testID={testID}
+      testID={`navigator-tabs-item-${item.name}`}
     >
-      {(state) =>
-        renderNavigatorTabItemContent({
-          active,
-          badge,
-          horizontal,
-          icon,
-          label,
-          rail,
-          state,
-          theme,
-        })
-      }
+      <View
+        style={[
+          styles.content,
+          rail ? styles.railContent : horizontal ? undefined : styles.sidebarContent,
+          item.active ? styles.activeContent : undefined,
+        ]}
+      >
+        <Text numberOfLines={1} style={item.active ? styles.activeLabel : undefined}>
+          {item.label}
+        </Text>
+        {item.badge ? <View style={rail ? styles.railBadge : undefined}>{item.badge}</View> : null}
+      </View>
     </Pressable>
   );
 }
 
 interface NavigatorTabItemProps {
-  active: boolean;
-  badge?: ReactNode;
-  icon?: IconSource;
-  label: string;
-  onPress: () => void;
+  item: HeadlessTabsItem;
   orientation: 'horizontal' | 'rail' | 'sidebar';
-  testID: string;
-}
-
-interface NavigatorTabItemRenderState {
-  hovered: boolean;
-  pressed: boolean;
-}
-
-interface NavigatorTabItemContentInput extends Omit<
-  NavigatorTabItemProps,
-  'onPress' | 'orientation' | 'testID'
-> {
-  horizontal: boolean;
-  rail: boolean;
-  state: NavigatorTabItemRenderState;
-  theme: SurfaceTheme;
-}
-
-/*** Select the horizontal or vertical content renderer for one Navigator tab item. */
-function renderNavigatorTabItemContent(input: NavigatorTabItemContentInput) {
-  const colors = resolveNavigatorTabItemColors(input.theme, input.active, input.state);
-  if (input.horizontal) return renderHorizontalNavigatorTabItem(input, colors);
-  return input.rail
-    ? renderRailNavigatorTabItem(input, colors)
-    : renderSidebarNavigatorTabItem(input, colors);
-}
-
-interface NavigatorTabItemColors {
-  backgroundColor: string;
-  contentColor: string;
-}
-
-/*** Render a bottom/top Navigator tab item. */
-function renderHorizontalNavigatorTabItem(
-  { active, icon, label }: NavigatorTabItemContentInput,
-  colors: NavigatorTabItemColors,
-) {
-  return (
-    <View bg={colors.backgroundColor} px="m" py="m" style={styles.horizontalContent}>
-      {icon ? (
-        <View mb="xs">
-          <Icon {...icon} color={colors.contentColor} size="m" />
-        </View>
-      ) : null}
-      <Text
-        color={active ? 'primary' : undefined}
-        emphasis={active ? 'default' : 'muted'}
-        numberOfLines={1}
-        variant="label"
-        weight="medium"
-      >
-        {label}
-      </Text>
-    </View>
-  );
-}
-
-/*** Render a compact navigation-rail item with icon-first vertical rhythm. */
-function renderRailNavigatorTabItem(
-  { active, badge, icon, label, theme }: NavigatorTabItemContentInput,
-  colors: NavigatorTabItemColors,
-) {
-  return (
-    <View bg={colors.backgroundColor} px="xs" py="s" radius="m" style={styles.railContent}>
-      {icon ? (
-        <View mb="xs">
-          <Icon {...icon} color={colors.contentColor} size="m" />
-        </View>
-      ) : null}
-      <Text
-        align="center"
-        color={active ? 'primary' : undefined}
-        emphasis={active ? 'default' : 'muted'}
-        numberOfLines={1}
-        variant="bodySmall"
-        weight="medium"
-      >
-        {label}
-      </Text>
-      {badge ? (
-        <View position="absolute" right={theme.spacing.xs} top={theme.spacing.xs}>
-          {badge}
-        </View>
-      ) : null}
-    </View>
-  );
-}
-
-/*** Render a full-width navigation-sidebar item with comfortable horizontal rhythm. */
-function renderSidebarNavigatorTabItem(
-  { active, badge, icon, label }: NavigatorTabItemContentInput,
-  colors: NavigatorTabItemColors,
-) {
-  return (
-    <View bg={colors.backgroundColor} px="m" py="s" radius="m" style={styles.sidebarContent}>
-      {icon ? (
-        <View mr="s">
-          <Icon {...icon} color={colors.contentColor} size="l" />
-        </View>
-      ) : null}
-      <View flex={1}>
-        <Text
-          color={active ? 'primary' : undefined}
-          emphasis={active ? 'default' : 'muted'}
-          numberOfLines={1}
-          variant="body"
-          weight="medium"
-        >
-          {label}
-        </Text>
-      </View>
-      {badge ? <View ml="s">{badge}</View> : null}
-    </View>
-  );
-}
-
-/*** Resolve Navigator tab colors from the current Surface theme interaction tokens. */
-function resolveNavigatorTabItemColors(
-  theme: SurfaceTheme,
-  active: boolean,
-  state: NavigatorTabItemRenderState,
-): NavigatorTabItemColors {
-  if (active) {
-    return {
-      backgroundColor: state.pressed
-        ? theme.semantics.action.primary.softActive
-        : state.hovered
-          ? theme.semantics.action.primary.softHover
-          : theme.semantics.action.primary.softBg,
-      contentColor: state.pressed
-        ? theme.semantics.action.primary.onSoftActiveText
-        : state.hovered
-          ? theme.semantics.action.primary.onSoftHoverText
-          : theme.semantics.action.primary.onSoftText,
-    };
-  }
-
-  return {
-    backgroundColor: state.pressed
-      ? theme.semantics.neutral.surfaceActive
-      : state.hovered
-        ? theme.semantics.neutral.surfaceHover
-        : 'transparent',
-    contentColor: theme.semantics.content.default,
-  };
 }
 
 const styles = StyleSheet.create({
+  activeContent: { backgroundColor: '#e5e7eb' },
+  activeLabel: { fontWeight: '700' },
+  content: {
+    alignItems: 'center',
+    borderRadius: 8,
+    justifyContent: 'center',
+    padding: 8,
+  },
   horizontalButton: { flex: 1 },
-  horizontalContent: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  railContent: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 64,
-    position: 'relative',
-    width: '100%',
-  },
-  sidebarContent: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    minHeight: 48,
-    width: '100%',
-  },
+  railBadge: { position: 'absolute', right: 2, top: 2 },
+  railContent: { minHeight: 64 },
+  sidebarContent: { minHeight: 48 },
   verticalButton: { width: '100%' },
 });

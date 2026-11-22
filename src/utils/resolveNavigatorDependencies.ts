@@ -47,7 +47,7 @@ function addDrawerDependencies(
   packageNames.add('react-native-worklets');
 }
 
-/*** Add packages imported by Navigator and Surface headless Tabs runtime. */
+/*** Add packages imported by the Navigator-owned headless Tabs runtime. */
 function addHeadlessTabsDependencies(
   node: NavigatorNodePlan,
   platform: NavigatorRuntimePlatform,
@@ -56,7 +56,6 @@ function addHeadlessTabsDependencies(
   if (node.adapter.id !== 'tabs.headless') return;
   for (const packageName of [
     packageJson.name,
-    '@ankhorage/surface',
     'react',
     'react-native',
     'react-native-safe-area-context',

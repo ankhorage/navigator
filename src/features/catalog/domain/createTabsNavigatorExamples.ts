@@ -119,7 +119,7 @@ function javascriptTabs(
   return { type: 'tabs', implementation: 'javascript', presentation, routes };
 }
 
-/*** Define Headless Tabs with fixed or responsive Surface presentation. */
+/*** Define Headless Tabs with fixed or responsive application presentation. */
 function headlessTabs(routes: NavigatorNode['routes'], responsive = false): NavigatorNode {
   return responsive
     ? {

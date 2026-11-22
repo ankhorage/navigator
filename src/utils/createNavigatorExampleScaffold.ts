@@ -134,7 +134,7 @@ function createExampleScripts(
     ...Object.fromEntries(
       runnablePlatforms.map((platform) => [
         `export:${platform}`,
-        `expo export --platform ${platform} --output-dir dist/${platform}`,
+        `expo export --platform ${platform} --output-dir dist/${platform} --clear`,
       ]),
     ),
     ...(generationPlatform === undefined

@@ -9,14 +9,13 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "export:android": "expo export --platform android --output-dir dist/android",
-    "export:ios": "expo export --platform ios --output-dir dist/ios",
-    "export:web": "expo export --platform web --output-dir dist/web",
+    "export:android": "expo export --platform android --output-dir dist/android --clear",
+    "export:ios": "expo export --platform ios --output-dir dist/ios --clear",
+    "export:web": "expo export --platform web --output-dir dist/web --clear",
     "generate:navigator": "ankh navigator generate --manifest navigator.manifest.json --bindings navigator.bindings.json --platform web --expo-router-version 57.0.24 --target ."
   },
   "dependencies": {
-    "@ankhorage/navigator": "3.5.22",
-    "@ankhorage/surface": "^9.5.20",
+    "@ankhorage/navigator": "3.5.23",
     "expo": "^57.0.33",
     "expo-router": "57.0.24",
     "react": "19.2.3",

@@ -1,31 +1,27 @@
 import type { NavigatorResponsiveSize } from '@ankhorage/contracts/navigator';
-import { useBreakpoint } from '@ankhorage/surface';
 import { useSyncExternalStore } from 'react';
+import { Dimensions } from 'react-native';
 
-/*** Resolve a hydration-safe semantic size from the Surface breakpoint owner. */
+/*** Resolve Navigator-owned responsive policy from the current React Native viewport. */
 export function useHydrationSafeSize(): NavigatorResponsiveSize {
-  const breakpoint = useBreakpoint();
-  const hydrated = useSyncExternalStore(
-    subscribeToHydration,
-    getClientHydration,
-    getServerHydration,
-  );
-  if (!hydrated) return 'compact';
-  if (breakpoint === 'base' || breakpoint === 'sm') return 'compact';
-  return breakpoint === 'md' ? 'medium' : 'expanded';
+  return useSyncExternalStore(subscribeToWindowSize, resolveWindowSize, resolveServerSize);
 }
 
-/*** Provide the stable no-op subscription required for the hydration snapshot boundary. */
-function subscribeToHydration(): () => void {
-  return () => undefined;
+/*** Subscribe React to React Native viewport changes after browser hydration. */
+function subscribeToWindowSize(onStoreChange: () => void): () => void {
+  const subscription = Dimensions.addEventListener('change', onStoreChange);
+  return () => subscription.remove();
 }
 
-/*** Report that client rendering can consume the live responsive breakpoint. */
-function getClientHydration(): boolean {
-  return true;
+/*** Resolve the responsive policy from the current native window dimensions. */
+function resolveWindowSize(): NavigatorResponsiveSize {
+  const { width } = Dimensions.get('window');
+  if (width >= 1024) return 'expanded';
+  if (width >= 768) return 'medium';
+  return 'compact';
 }
 
-/*** Keep server output deterministic at the compact presentation. */
-function getServerHydration(): boolean {
-  return false;
+/*** Keep static and initial browser markup compact until React completes hydration. */
+function resolveServerSize(): NavigatorResponsiveSize {
+  return 'compact';
 }

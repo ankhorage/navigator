@@ -56,14 +56,6 @@ function validateSuppliedBindings(
       );
     }
   }
-  if (bindings.iconSourceResolver !== undefined) {
-    validateStaticImport(
-      diagnostics,
-      bindings.iconSourceResolver,
-      '/iconSourceResolver',
-      'icon source resolver',
-    );
-  }
 }
 
 /*** Traverse one node and validate every screen, guard, and presentation module it references. */
@@ -124,15 +116,6 @@ function validateTabsBindings(
       `${node.pointer}/tabs/customPresentationId`,
       'missing-tab-presentation-binding',
       `Tabs presentation ${JSON.stringify(node.tabs.customPresentationId)}`,
-    );
-  }
-  if (node.routes.some((route) => route.icon !== undefined && 'source' in route.icon)) {
-    validateModuleBinding(
-      diagnostics,
-      bindings.iconSourceResolver,
-      `${node.pointer}/tabs/iconSourceResolver`,
-      'missing-icon-source-resolver-binding',
-      'Tabs icon-source resolver',
     );
   }
 }

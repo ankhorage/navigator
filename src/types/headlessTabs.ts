@@ -1,5 +1,4 @@
 import type { RouteDefinition } from '@ankhorage/contracts/navigator';
-import type { IconSource } from '@ankhorage/surface';
 import type { ReactNode } from 'react';
 
 export interface HeadlessTabsRoute {
@@ -8,14 +7,39 @@ export interface HeadlessTabsRoute {
   label: string;
   icon?: RouteDefinition['icon'];
   badge?: ReactNode;
+  disabled?: boolean;
   visible: boolean;
 }
 
-export type HeadlessTabsIconSourceResolver = (source: IconMediaReference) => ResolvedSvgSource;
+/** A route binding resolved from the active Expo Router headless tab context. */
+export interface HeadlessTabsItem {
+  readonly name: string;
+  readonly href: string;
+  readonly label: string;
+  readonly icon?: RouteDefinition['icon'];
+  readonly badge?: ReactNode;
+  readonly active: boolean;
+  readonly disabled: boolean;
+  readonly accessibilityState: Readonly<{ disabled: boolean; selected: boolean }>;
+  readonly onPress: () => void;
+}
 
-type IconMediaReference = Extract<
-  NonNullable<RouteDefinition['icon']>,
-  { source: unknown }
->['source'];
+/**
+ * Presentation inputs resolved by Navigator while Expo Router remains the only routing state
+ * owner. A visual package consumes these values without importing Navigator internals.
+ */
+export interface HeadlessTabsPresentationProps {
+  readonly presentation: HeadlessTabsPresentation;
+  readonly routes: readonly HeadlessTabsRoute[];
+  readonly orientation: HeadlessTabsPresentationOrientation;
+  readonly renderItem: (
+    route: HeadlessTabsRoute,
+    render: (item: HeadlessTabsItem) => ReactNode,
+  ) => ReactNode;
+}
 
-type ResolvedSvgSource = Extract<IconSource, { source: unknown }>['source'];
+/** The presentation selected by Navigator's responsive policy. */
+export type HeadlessTabsPresentation = 'bottom' | 'top' | 'rail' | 'sidebar' | 'custom';
+
+/** Layout direction derived from Navigator's selected responsive presentation. */
+export type HeadlessTabsPresentationOrientation = 'horizontal' | 'vertical';

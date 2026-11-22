@@ -1,4 +1,3 @@
-import { Icon, useTheme } from '@ankhorage/surface';
 import { Slot, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -8,16 +7,14 @@ import type {
   ResolvedWorkspaceNavigationRoute,
   WorkspaceNavigatorProps,
 } from '../../../../types/workspaceNavigation';
-import { resolveNavigatorIcon } from '../../../../utils/resolveNavigatorIcon';
 import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize';
 import { resolveWorkspaceNavigation } from '../../domain/resolveWorkspaceNavigation';
 
-/*** Render Navigator-owned responsive workspace chrome around Expo Router page content. */
+/*** Render accessible unthemed workspace navigation around Expo Router page content. */
 export function WorkspaceNavigator(props: WorkspaceNavigatorProps) {
   const { routes, activeRouteId, title, exit, onNavigate } = props;
   const router = useRouter();
   const size = useHydrationSafeSize();
-  const { theme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const compact = size === 'compact';
   const navigation = resolveWorkspaceNavigation(routes, activeRouteId);
@@ -39,7 +36,7 @@ export function WorkspaceNavigator(props: WorkspaceNavigatorProps) {
   };
 
   return (
-    <SafeAreaView style={[styles.root, { backgroundColor: theme.colors.background }]}>
+    <SafeAreaView style={styles.root}>
       <WorkspaceHeader
         active={active}
         compact={compact}
@@ -114,22 +111,19 @@ function WorkspaceHeader({
   onOpenMenu: () => void;
   title: string;
 }) {
-  const { theme } = useTheme();
   return (
-    <View style={[styles.header, { borderColor: theme.colors.border }]}>
+    <View style={styles.header}>
       {exitLabel ? (
         <Pressable accessibilityRole="button" onPress={onExit} style={styles.headerAction}>
-          <Text style={[styles.headerActionText, { color: theme.colors.primary }]}>
-            {exitLabel}
-          </Text>
+          <Text style={styles.headerActionText}>{exitLabel}</Text>
         </Pressable>
       ) : null}
       <View style={styles.headerTitle}>
-        <Text style={[styles.title, { color: theme.colors.text }]} numberOfLines={1}>
+        <Text style={styles.title} numberOfLines={1}>
           {active?.label ?? title}
         </Text>
         {active?.description ? (
-          <Text style={{ color: theme.colors.textSecondary }} numberOfLines={1}>
+          <Text style={styles.description} numberOfLines={1}>
             {active.description}
           </Text>
         ) : null}
@@ -141,7 +135,7 @@ function WorkspaceHeader({
           onPress={onOpenMenu}
           style={styles.headerAction}
         >
-          <Text style={[styles.headerActionText, { color: theme.colors.primary }]}>Menu</Text>
+          <Text style={styles.headerActionText}>Menu</Text>
         </Pressable>
       ) : null}
     </View>
@@ -190,14 +184,13 @@ function WorkspaceNavigationList({
   title: string;
   width: number;
 }) {
-  const { theme } = useTheme();
   return (
     <ScrollView
       accessibilityLabel={`${title} navigation`}
       contentContainerStyle={styles.navigationContent}
-      style={[styles.navigation, { width, backgroundColor: theme.colors.surface }]}
+      style={[styles.navigation, { width }]}
     >
-      <Text style={[styles.navigationTitle, { color: theme.colors.textSecondary }]}>{title}</Text>
+      <Text style={styles.navigationTitle}>{title}</Text>
       {navigation.map((route) => (
         <WorkspaceNavigationItem key={route.id} onNavigate={onNavigate} route={route} />
       ))}
@@ -213,9 +206,6 @@ function WorkspaceNavigationItem({
   onNavigate: (route: ResolvedWorkspaceNavigationRoute) => void;
   route: ResolvedWorkspaceNavigationRoute;
 }) {
-  const { theme } = useTheme();
-  const icon = resolveNavigatorIcon(route.icon);
-  const color = route.active ? theme.colors.primary : theme.colors.text;
   return (
     <Pressable
       accessibilityLabel={route.label}
@@ -226,20 +216,21 @@ function WorkspaceNavigationItem({
       style={[
         styles.navigationItem,
         { marginLeft: route.depth * 16 },
-        route.active ? { backgroundColor: theme.colors.background } : null,
+        route.active ? styles.activeNavigationItem : null,
         route.href === null ? styles.disabled : null,
       ]}
     >
-      {icon ? <Icon {...icon} color={color} size="m" /> : null}
-      <Text style={[{ color }, route.selected ? styles.selectedText : null]}>{route.label}</Text>
+      <Text style={route.selected ? styles.selectedText : undefined}>{route.label}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, minHeight: 0 },
+  root: { backgroundColor: '#fff', flex: 1, minHeight: 0 },
+  activeNavigationItem: { backgroundColor: '#e5e7eb' },
   header: {
     alignItems: 'center',
+    borderBottomColor: '#d1d5db',
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     gap: 12,
@@ -252,9 +243,10 @@ const styles = StyleSheet.create({
   title: { fontSize: 17, fontWeight: '700' },
   body: { flex: 1, flexDirection: 'row', minHeight: 0 },
   content: { flex: 1, minHeight: 0 },
-  navigation: { flexGrow: 0, flexShrink: 0 },
+  description: { color: '#4b5563' },
+  navigation: { backgroundColor: '#f9fafb', flexGrow: 0, flexShrink: 0 },
   navigationContent: { gap: 4, padding: 12 },
-  navigationTitle: { fontSize: 12, fontWeight: '700', padding: 8 },
+  navigationTitle: { color: '#4b5563', fontSize: 12, fontWeight: '700', padding: 8 },
   navigationItem: {
     alignItems: 'center',
     borderRadius: 8,

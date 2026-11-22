@@ -57,13 +57,16 @@ async function exportTargetAsync(
   support: string,
 ): Promise<void> {
   const cwd = resolve(repositoryRoot, 'examples', id);
+  const temporaryRoot = resolve(cwd, '.expo', 'navigator-export', platform);
+  mkdirSync(temporaryRoot, { recursive: true });
   console.log(`\n> ${id}:${platform} (${support})`);
-  const process = Bun.spawn({
+  const exportProcess = Bun.spawn({
     cmd: ['bun', 'run', `export:${platform}`],
     cwd,
+    env: { ...process.env, TMPDIR: temporaryRoot },
     stderr: 'inherit',
     stdout: 'inherit',
   });
-  const exitCode = await process.exited;
+  const exitCode = await exportProcess.exited;
   if (exitCode !== 0) throw new Error(`Expo export failed for ${id}:${platform}.`);
 }

@@ -121,7 +121,7 @@ function addTabsRouteDiagnostics(
   }
 }
 
-/*** Validate route icon compatibility for native and Surface-backed tabs. */
+/*** Validate route icon compatibility for native and headless tabs. */
 function addTabsIconDiagnostics(
   diagnostics: NavigatorDiagnostic[],
   route: TabsNavigatorNode['routes'][number],

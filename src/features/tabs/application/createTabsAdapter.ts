@@ -29,7 +29,7 @@ export function createTabsAdapter(
             `Alpha API; unavailable on web and requires Expo Router ${NAVIGATOR_ROUTER_POLICY.nativeTabsMinimumMajor}.0.0 or newer.`,
           ]
         : tabs.implementation === 'headless'
-          ? ['Surface presentation over Expo Router headless tabs.']
+          ? ['Application presentation over one Expo Router headless tabs topology.']
           : [],
   };
 }

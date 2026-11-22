@@ -7,10 +7,10 @@
     "start": "expo start",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "export:web": "expo export --platform web --output-dir dist/web"
+    "export:web": "expo export --platform web --output-dir dist/web --clear"
   },
   "dependencies": {
-    "@ankhorage/navigator": "3.5.22",
+    "@ankhorage/navigator": "3.5.23",
     "expo": "^57.0.33",
     "expo-router": "57.0.24",
     "react": "19.2.3",

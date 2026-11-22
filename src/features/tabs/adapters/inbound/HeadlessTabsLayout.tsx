@@ -2,15 +2,15 @@ import type {
   NavigatorResponsiveSize,
   ResolvedTabsPresentation,
 } from '@ankhorage/contracts/navigator';
-import { Divider, View } from '@ankhorage/surface';
 import type { Href } from 'expo-router';
 import { TabList, Tabs, TabTrigger } from 'expo-router/ui';
 import { type ComponentType, type ReactNode } from 'react';
-import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
+import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import { type EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import type {
-  HeadlessTabsIconSourceResolver,
+  HeadlessTabsPresentationOrientation,
+  HeadlessTabsPresentationProps,
   HeadlessTabsRoute,
 } from '../../../../types/headlessTabs';
 import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize';
@@ -23,17 +23,21 @@ export function HeadlessTabsLayout({
   routes,
   presentations,
   initialRouteName,
-  resolveIconSource,
   customPresentation: CustomPresentation,
+  customPresentationOrientation = 'horizontal',
 }: HeadlessTabsLayoutProps) {
   const size = useHydrationSafeSize();
   const presentation = selectPresentation(presentations, size);
   const insets = useSafeAreaInsets();
-  const layout = resolveHeadlessTabsLayout(presentation, insets);
+  const orientation = resolveHeadlessTabsPresentationOrientation(
+    presentation,
+    customPresentationOrientation,
+  );
+  const layout = resolveHeadlessTabsLayout(presentation, orientation, insets);
   const navigation = createTabsNavigation({
     CustomPresentation,
+    orientation,
     presentation,
-    resolveIconSource,
     routes,
   });
   return (
@@ -80,22 +84,13 @@ function HeadlessTabsBody({
   vertical: boolean;
 }) {
   return (
-    <View bg="background" style={layoutStyle}>
+    <View style={layoutStyle}>
       {navigationFirst ? (
-        <View
-          bg={vertical ? 'surface' : 'background'}
-          style={[navigationPanelStyle, navigationInsets]}
-        >
-          {navigation}
-        </View>
+        <View style={[navigationPanelStyle, navigationInsets]}>{navigation}</View>
       ) : null}
-      {vertical ? <Divider orientation="vertical" /> : null}
+      {vertical ? <View style={styles.divider} /> : null}
       <HeadlessTabsViewport />
-      {!navigationFirst ? (
-        <View bg="background" style={bottomNavigationStyle}>
-          {navigation}
-        </View>
-      ) : null}
+      {!navigationFirst ? <View style={bottomNavigationStyle}>{navigation}</View> : null}
     </View>
   );
 }
@@ -108,21 +103,20 @@ interface HeadlessTabsLayoutProps {
   routes: readonly HeadlessTabsRoute[];
   presentations: Readonly<Record<NavigatorResponsiveSize, ResolvedTabsPresentation>>;
   initialRouteName?: string;
-  resolveIconSource?: HeadlessTabsIconSourceResolver;
   customPresentation?: ComponentType<HeadlessTabsPresentationProps>;
-}
-
-interface HeadlessTabsPresentationProps {
-  routes: readonly HeadlessTabsRoute[];
-  renderItem: (route: HeadlessTabsRoute, compact?: boolean) => ReactNode;
+  customPresentationOrientation?: HeadlessTabsPresentationOrientation;
 }
 
 /*** Resolve shell geometry and safe areas for the current built-in presentation. */
 function resolveHeadlessTabsLayout(
   presentation: ResolvedTabsPresentation,
+  orientation: HeadlessTabsPresentationOrientation,
   insets: EdgeInsets,
 ): ResolvedHeadlessTabsLayout {
-  const vertical = presentation === 'rail' || presentation === 'sidebar';
+  const vertical =
+    presentation === 'rail' ||
+    presentation === 'sidebar' ||
+    (presentation === 'custom' && orientation === 'vertical');
   const navigationInsets =
     presentation === 'top'
       ? { paddingTop: insets.top }
@@ -149,6 +143,16 @@ function resolveHeadlessTabsLayout(
     navigationPanelStyle,
     vertical,
   };
+}
+
+/*** Resolve the actual selected presentation direction without changing Navigator-owned geometry. */
+function resolveHeadlessTabsPresentationOrientation(
+  presentation: ResolvedTabsPresentation,
+  customPresentationOrientation: HeadlessTabsPresentationOrientation,
+): HeadlessTabsPresentationOrientation {
+  if (presentation === 'rail' || presentation === 'sidebar') return 'vertical';
+  if (presentation === 'custom') return customPresentationOrientation;
+  return 'horizontal';
 }
 
 interface ResolvedHeadlessTabsLayout {
@@ -178,42 +182,38 @@ function selectPresentation(
 /*** Select built-in or registered custom chrome for the currently visible routes. */
 function TabsNavigation({
   CustomPresentation,
+  orientation,
   presentation,
-  resolveIconSource,
   routes,
 }: {
   CustomPresentation: ComponentType<HeadlessTabsPresentationProps> | undefined;
+  orientation: HeadlessTabsPresentationOrientation;
   presentation: ResolvedTabsPresentation;
-  resolveIconSource: HeadlessTabsIconSourceResolver | undefined;
   routes: readonly HeadlessTabsRoute[];
 }) {
   const visibleRoutes = routes.filter((route) => route.visible);
-  /*** Bind one visible route to the shared Navigator trigger for registered custom chrome. */
-  const renderItem = (route: HeadlessTabsRoute, compact = false) => (
-    <NavigatorTabTrigger
-      key={route.name}
-      presentation={compact ? 'rail' : 'sidebar'}
-      resolveIconSource={resolveIconSource}
-      route={route}
-    />
+  /*** Bind a custom renderer to the active Expo Router tab context for one visible route. */
+  const renderItem: HeadlessTabsPresentationProps['renderItem'] = (route, render) => (
+    <NavigatorTabTrigger key={route.name} render={render} route={route} />
   );
-  if (presentation === 'custom') {
-    return CustomPresentation === undefined ? null : (
-      <CustomPresentation renderItem={renderItem} routes={visibleRoutes} />
+  if (CustomPresentation !== undefined) {
+    return (
+      <CustomPresentation
+        orientation={orientation}
+        presentation={presentation}
+        renderItem={renderItem}
+        routes={visibleRoutes}
+      />
     );
   }
-  return (
-    <BuiltInTabsPresentation
-      presentation={presentation}
-      resolveIconSource={resolveIconSource}
-      routes={visibleRoutes}
-    />
-  );
+  if (presentation === 'custom') return null;
+  return <BuiltInTabsPresentation presentation={presentation} routes={visibleRoutes} />;
 }
 
 const styles = StyleSheet.create({
   bottomNavigation: {},
   column: { flex: 1, flexDirection: 'column' },
+  divider: { alignSelf: 'stretch', backgroundColor: '#d1d5db', width: StyleSheet.hairlineWidth },
   hidden: { display: 'none' },
   railPanel: { flexShrink: 0, minHeight: 0, width: 88 },
   root: { flex: 1 },
