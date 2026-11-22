@@ -35,7 +35,14 @@ const publicSymbols = {
   './cli': ['default'],
   './capabilities': ['CAPABILITIES'],
   './metadata': ['NAVIGATOR_PACKAGE_METADATA'],
-  './tabs': ['HeadlessTabsLayout'],
+  './tabs': [
+    'HeadlessTabsItem',
+    'HeadlessTabsLayout',
+    'HeadlessTabsPresentation',
+    'HeadlessTabsPresentationOrientation',
+    'HeadlessTabsPresentationProps',
+    'HeadlessTabsRoute',
+  ],
   './tabs/native-icons': [
     'NativeFontAwesome5Family',
     'NativeFontAwesome6Family',

@@ -1,7 +1,9 @@
 import type { ResolvedTabsPresentation } from '@ankhorage/contracts/navigator';
+import type { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import type { HeadlessTabsRoute } from '../../../../types/headlessTabs';
+import type { HeadlessTabsItem, HeadlessTabsRoute } from '../../../../types/headlessTabs';
+import { NavigatorTabItem } from './NavigatorTabItem';
 import { NavigatorTabTrigger } from './NavigatorTabTrigger';
 
 /*** Render the accessible unthemed fallback for a built-in Navigator tab topology. */
@@ -17,7 +19,11 @@ export function BuiltInTabsPresentation({ presentation, routes }: BuiltInTabsPre
       >
         <View style={presentation === 'rail' ? styles.railItems : styles.sidebarItems}>
           {routes.map((route) => (
-            <NavigatorTabTrigger key={route.name} presentation={presentation} route={route} />
+            <NavigatorTabTrigger
+              key={route.name}
+              render={createItemRenderer(presentation)}
+              route={route}
+            />
           ))}
         </View>
       </ScrollView>
@@ -30,10 +36,21 @@ export function BuiltInTabsPresentation({ presentation, routes }: BuiltInTabsPre
       testID={`navigator-tabs-${presentation}`}
     >
       {routes.map((route) => (
-        <NavigatorTabTrigger key={route.name} presentation="horizontal" route={route} />
+        <NavigatorTabTrigger
+          key={route.name}
+          render={createItemRenderer('horizontal')}
+          route={route}
+        />
       ))}
     </View>
   );
+}
+
+/*** Adapt the shared item binding to Navigator's minimal standalone item chrome. */
+function createItemRenderer(
+  orientation: 'horizontal' | 'rail' | 'sidebar',
+): (item: HeadlessTabsItem) => ReactNode {
+  return (item) => <NavigatorTabItem item={item} orientation={orientation} />;
 }
 
 interface BuiltInTabsPresentationProps {

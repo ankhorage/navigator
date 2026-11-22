@@ -1,46 +1,35 @@
-import type { RouteDefinition } from '@ankhorage/contracts/navigator';
-import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import type { HeadlessTabsItem } from '../../../../types/headlessTabs';
+
 /*** Render the accessible unthemed fallback for one Navigator tab trigger. */
-export function NavigatorTabItem({
-  active,
-  badge,
-  label,
-  onPress,
-  orientation,
-  testID,
-}: NavigatorTabItemProps) {
+export function NavigatorTabItem({ item, orientation }: NavigatorTabItemProps) {
   const horizontal = orientation === 'horizontal';
   const rail = orientation === 'rail';
 
   return (
     <Pressable
-      accessibilityLabel={label}
+      accessibilityLabel={item.label}
       accessibilityRole="tab"
-      accessibilityState={{ selected: active }}
-      onPress={onPress}
+      accessibilityState={item.accessibilityState}
+      disabled={item.disabled}
+      onPress={item.onPress}
       style={horizontal ? styles.horizontalButton : styles.verticalButton}
-      testID={testID}
+      testID={`navigator-tabs-item-${item.name}`}
     >
-      <View style={[styles.content, active ? styles.activeContent : undefined]}>
-        <Text numberOfLines={1} style={active ? styles.activeLabel : undefined}>
-          {label}
+      <View style={[styles.content, item.active ? styles.activeContent : undefined]}>
+        <Text numberOfLines={1} style={item.active ? styles.activeLabel : undefined}>
+          {item.label}
         </Text>
-        {badge ? <View style={rail ? styles.railBadge : undefined}>{badge}</View> : null}
+        {item.badge ? <View style={rail ? styles.railBadge : undefined}>{item.badge}</View> : null}
       </View>
     </Pressable>
   );
 }
 
 interface NavigatorTabItemProps {
-  active: boolean;
-  badge?: ReactNode;
-  icon?: RouteDefinition['icon'];
-  label: string;
-  onPress: () => void;
+  item: HeadlessTabsItem;
   orientation: 'horizontal' | 'rail' | 'sidebar';
-  testID: string;
 }
 
 const styles = StyleSheet.create({

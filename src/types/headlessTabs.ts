@@ -7,7 +7,21 @@ export interface HeadlessTabsRoute {
   label: string;
   icon?: RouteDefinition['icon'];
   badge?: ReactNode;
+  disabled?: boolean;
   visible: boolean;
+}
+
+/** A route binding resolved from the active Expo Router headless tab context. */
+export interface HeadlessTabsItem {
+  readonly name: string;
+  readonly href: string;
+  readonly label: string;
+  readonly icon?: RouteDefinition['icon'];
+  readonly badge?: ReactNode;
+  readonly active: boolean;
+  readonly disabled: boolean;
+  readonly accessibilityState: Readonly<{ disabled: boolean; selected: boolean }>;
+  readonly onPress: () => void;
 }
 
 /**
@@ -18,7 +32,10 @@ export interface HeadlessTabsPresentationProps {
   readonly presentation: HeadlessTabsPresentation;
   readonly routes: readonly HeadlessTabsRoute[];
   readonly orientation: HeadlessTabsPresentationOrientation;
-  readonly renderItem: (route: HeadlessTabsRoute, compact?: boolean) => ReactNode;
+  readonly renderItem: (
+    route: HeadlessTabsRoute,
+    render: (item: HeadlessTabsItem) => ReactNode,
+  ) => ReactNode;
 }
 
 /** The presentation selected by Navigator's responsive policy. */

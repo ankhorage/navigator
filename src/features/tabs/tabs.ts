@@ -1,4 +1,5 @@
 export type {
+  HeadlessTabsItem,
   HeadlessTabsPresentation,
   HeadlessTabsPresentationOrientation,
   HeadlessTabsPresentationProps,

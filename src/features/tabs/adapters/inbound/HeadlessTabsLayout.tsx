@@ -178,13 +178,9 @@ function TabsNavigation({
   routes: readonly HeadlessTabsRoute[];
 }) {
   const visibleRoutes = routes.filter((route) => route.visible);
-  /*** Bind one visible route to the shared Navigator trigger for registered custom chrome. */
-  const renderItem = (route: HeadlessTabsRoute, compact = false) => (
-    <NavigatorTabTrigger
-      key={route.name}
-      presentation={compact ? 'rail' : 'sidebar'}
-      route={route}
-    />
+  /*** Bind a custom renderer to the active Expo Router tab context for one visible route. */
+  const renderItem: HeadlessTabsPresentationProps['renderItem'] = (route, render) => (
+    <NavigatorTabTrigger key={route.name} render={render} route={route} />
   );
   if (presentation === 'custom') {
     return CustomPresentation === undefined ? null : (
