@@ -1,15 +1,15 @@
 import type { AnkhCommandExecutionRequest, AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
 
-import packageJson from '../../package.json';
-import { CAPABILITIES } from '../capabilities';
-import type { NavigatorCliExecution } from '../types/navigatorCli';
-import { catalog } from './commands/catalog';
-import { generate as generateExamples } from './commands/examples/generate';
-import { verify as verifyExamples } from './commands/examples/verify';
-import { generate } from './commands/generate';
-import { plan } from './commands/plan';
-import { validate } from './commands/validate';
-import { verify } from './commands/verify';
+import packageJson from '../../package.json' with { type: 'json' };
+import { CAPABILITIES } from '../capabilities/index.js';
+import type { NavigatorCliExecution } from '../types/navigatorCli.js';
+import { catalog } from './commands/catalog.js';
+import { generate as generateExamples } from './commands/examples/generate.js';
+import { verify as verifyExamples } from './commands/examples/verify.js';
+import { generate } from './commands/generate.js';
+import { plan } from './commands/plan.js';
+import { validate } from './commands/validate.js';
+import { verify } from './commands/verify.js';
 
 export default {
   id: packageJson.name,

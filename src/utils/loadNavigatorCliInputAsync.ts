@@ -6,10 +6,10 @@ import type {
 } from '@ankhorage/contracts/navigator';
 import { isAppNavigatorManifest } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorCliOptions } from '../types/navigatorCli';
-import { isNavigatorGenerationBindings } from './isNavigatorGenerationBindings';
-import { loadCustomNavigatorRegistryAsync } from './loadCustomNavigatorRegistryAsync';
-import { readNavigatorCliJsonAsync } from './readNavigatorCliJsonAsync';
+import type { NavigatorCliOptions } from '../types/navigatorCli.js';
+import { isNavigatorGenerationBindings } from './isNavigatorGenerationBindings.js';
+import { loadCustomNavigatorRegistryAsync } from './loadCustomNavigatorRegistryAsync.js';
+import { readNavigatorCliJsonAsync } from './readNavigatorCliJsonAsync.js';
 
 /*** Load and narrow standalone manifest, binding, registry, and target-context CLI input. */
 export async function loadNavigatorCliInputAsync(

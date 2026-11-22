@@ -1,6 +1,6 @@
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons/static';
 
-import type { NativeVectorIconFamily } from '../../../../types/nativeIcons';
+import type { NativeVectorIconFamily } from '../../../../types/nativeIcons.js';
 
 /*** Material Design Icons family adapter for Expo Native Tabs. */
 export const NativeMaterialDesignIconsFamily =

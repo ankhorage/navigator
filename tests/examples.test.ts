@@ -133,4 +133,15 @@ describe('standalone Navigator examples', () => {
     expect(screen).toContain('Complete example');
     expect(unsupported).toContain('not a navigation fallback');
   });
+
+  test('keeps generated app-local imports resolvable by Expo Metro', () => {
+    const generated = generateNavigatorExamples();
+    const primaryColumn = generated.files.find(
+      ({ path }) =>
+        path === 'examples/split-view-three-column/src/screens/primary-column-screen.tsx',
+    )?.contents;
+
+    expect(primaryColumn).toContain("from './example-screen';");
+    expect(primaryColumn).not.toContain("from './example-screen.js';");
+  });
 });

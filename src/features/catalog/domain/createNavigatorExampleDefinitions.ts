@@ -1,9 +1,9 @@
-import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples';
-import { createCoreNavigatorExamples } from './createCoreNavigatorExamples';
-import { createCustomNavigatorExamples } from './createCustomNavigatorExamples';
-import { createDrawerNavigatorExamples } from './createDrawerNavigatorExamples';
-import { createSplitViewNavigatorExamples } from './createSplitViewNavigatorExamples';
-import { createTabsNavigatorExamples } from './createTabsNavigatorExamples';
+import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples.js';
+import { createCoreNavigatorExamples } from './createCoreNavigatorExamples.js';
+import { createCustomNavigatorExamples } from './createCustomNavigatorExamples.js';
+import { createDrawerNavigatorExamples } from './createDrawerNavigatorExamples.js';
+import { createSplitViewNavigatorExamples } from './createSplitViewNavigatorExamples.js';
+import { createTabsNavigatorExamples } from './createTabsNavigatorExamples.js';
 
 /*** Return every required standalone example composition in stable identifier order. */
 export function createNavigatorExampleDefinitions(): readonly NavigatorExampleDefinition[] {

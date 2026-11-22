@@ -1,4 +1,4 @@
-import packageJson from '../../package.json';
+import packageJson from '../../package.json' with { type: 'json' };
 
 /*** Publish static Navigator package metadata without composing the runtime catalog. */
 export const NAVIGATOR_PACKAGE_METADATA = {
@@ -8,7 +8,6 @@ export const NAVIGATOR_PACKAGE_METADATA = {
   contractSubpath: '@ankhorage/contracts/navigator',
   precedence: ['platform override', 'node configuration', 'manifest default', 'stable default'],
 } as const;
-
 /*** Define the Expo Router version policy shared by Navigator planning and validation. */
 export const NAVIGATOR_ROUTER_POLICY = {
   customNavigatorMinimumMajor: 56,

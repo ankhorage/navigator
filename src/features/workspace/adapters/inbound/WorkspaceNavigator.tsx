@@ -6,9 +6,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import type {
   ResolvedWorkspaceNavigationRoute,
   WorkspaceNavigatorProps,
-} from '../../../../types/workspaceNavigation';
-import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize';
-import { resolveWorkspaceNavigation } from '../../domain/resolveWorkspaceNavigation';
+} from '../../../../types/workspaceNavigation.js';
+import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize.js';
+import { resolveWorkspaceNavigation } from '../../domain/resolveWorkspaceNavigation.js';
 
 /*** Render accessible unthemed workspace navigation around Expo Router page content. */
 export function WorkspaceNavigator(props: WorkspaceNavigatorProps) {

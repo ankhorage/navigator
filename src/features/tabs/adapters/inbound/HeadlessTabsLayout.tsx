@@ -12,11 +12,11 @@ import type {
   HeadlessTabsPresentationOrientation,
   HeadlessTabsPresentationProps,
   HeadlessTabsRoute,
-} from '../../../../types/headlessTabs';
-import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize';
-import { BuiltInTabsPresentation } from './BuiltInTabsPresentation';
-import { HeadlessTabsViewport } from './HeadlessTabsViewport';
-import { NavigatorTabTrigger } from './NavigatorTabTrigger';
+} from '../../../../types/headlessTabs.js';
+import { useHydrationSafeSize } from '../../../../utils/useHydrationSafeSize.js';
+import { BuiltInTabsPresentation } from './BuiltInTabsPresentation.js';
+import { HeadlessTabsViewport } from './HeadlessTabsViewport.js';
+import { NavigatorTabTrigger } from './NavigatorTabTrigger.js';
 
 /*** Render one stable headless Expo Router tab topology with Navigator-owned presentations. */
 export function HeadlessTabsLayout({

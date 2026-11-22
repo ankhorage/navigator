@@ -7,17 +7,17 @@ import type {
   StackImplementation,
 } from '@ankhorage/contracts/navigator';
 
-import { addCustomNavigatorDiagnostics } from '../features/custom/domain/addCustomNavigatorDiagnostics';
-import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath';
-import { addSlotDiagnostics } from '../features/slot/domain/addSlotDiagnostics';
-import { addSplitViewDiagnostics } from '../features/split-view/domain/addSplitViewDiagnostics';
-import { addExperimentalStackDiagnostics } from '../features/stack/domain/addExperimentalStackDiagnostics';
-import { addStackAdapterDiagnostics } from '../features/stack/domain/addStackAdapterDiagnostics';
-import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEffectiveStackConfig';
-import { validateStackRouteOptions } from '../features/stack/domain/validateStackRouteOptions';
-import { addTabsAdapterDiagnostics } from '../features/tabs/domain/addTabsAdapterDiagnostics';
-import { parseExpoRouterMajor } from './parseExpoRouterMajor';
-import { validatePresetTopology } from './validatePresetTopology';
+import { addCustomNavigatorDiagnostics } from '../features/custom/domain/addCustomNavigatorDiagnostics.js';
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath.js';
+import { addSlotDiagnostics } from '../features/slot/domain/addSlotDiagnostics.js';
+import { addSplitViewDiagnostics } from '../features/split-view/domain/addSplitViewDiagnostics.js';
+import { addExperimentalStackDiagnostics } from '../features/stack/domain/addExperimentalStackDiagnostics.js';
+import { addStackAdapterDiagnostics } from '../features/stack/domain/addStackAdapterDiagnostics.js';
+import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEffectiveStackConfig.js';
+import { validateStackRouteOptions } from '../features/stack/domain/validateStackRouteOptions.js';
+import { addTabsAdapterDiagnostics } from '../features/tabs/domain/addTabsAdapterDiagnostics.js';
+import { parseExpoRouterMajor } from './parseExpoRouterMajor.js';
+import { validatePresetTopology } from './validatePresetTopology.js';
 
 /*** Validate one navigator desired-state slice for a concrete Expo Router target. */
 export function validateNavigatorManifest(

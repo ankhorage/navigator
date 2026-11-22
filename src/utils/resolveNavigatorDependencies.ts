@@ -4,7 +4,7 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
-import packageJson from '../../package.json';
+import packageJson from '../../package.json' with { type: 'json' };
 
 /*** Derive generated-app dependency requirements from the resolved navigator plan. */
 export function resolveNavigatorDependencies(

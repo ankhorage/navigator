@@ -5,8 +5,8 @@ import type {
 } from '@ankhorage/contracts/navigator';
 import { isAppNavigatorManifest } from '@ankhorage/contracts/navigator';
 
-import { createNavigatorPlan } from './createNavigatorPlan';
-import { validateNavigatorBindings } from './validateNavigatorBindings';
+import { createNavigatorPlan } from './createNavigatorPlan.js';
+import { validateNavigatorBindings } from './validateNavigatorBindings.js';
 
 /*** Structurally and semantically validate standalone navigator input without writing files. */
 export function validateNavigator(

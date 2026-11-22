@@ -4,8 +4,8 @@ import { resolve } from 'node:path';
 import type {
   NavigatorExampleId,
   NavigatorExampleVerificationResult,
-} from '../../../types/navigatorExamples';
-import { generateNavigatorExamples } from './generateNavigatorExamples';
+} from '../../../types/navigatorExamples.js';
+import { generateNavigatorExamples } from './generateNavigatorExamples.js';
 
 /*** Verify checked-in example bytes and app-owned lockfiles against deterministic generation. */
 export async function verifyNavigatorExamplesAsync(

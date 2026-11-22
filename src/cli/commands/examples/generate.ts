@@ -1,11 +1,11 @@
-import { generateNavigatorExamples } from '../../../features/catalog/composition/generateNavigatorExamples';
-import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../../types/navigatorCli';
-import type { NavigatorExampleGenerationResult } from '../../../types/navigatorExamples';
-import { assertNavigatorCliOptions } from '../../../utils/assertNavigatorCliOptions';
-import { isNavigatorExampleId } from '../../../utils/isNavigatorExampleId';
-import { parseNavigatorCliOptions } from '../../../utils/parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from '../../../utils/reportNavigatorCliResult';
-import { writeNavigatorGeneratedFilesAsync } from '../../../utils/writeNavigatorGeneratedFilesAsync';
+import { generateNavigatorExamples } from '../../../features/catalog/composition/generateNavigatorExamples.js';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../../types/navigatorCli.js';
+import type { NavigatorExampleGenerationResult } from '../../../types/navigatorExamples.js';
+import { assertNavigatorCliOptions } from '../../../utils/assertNavigatorCliOptions.js';
+import { isNavigatorExampleId } from '../../../utils/isNavigatorExampleId.js';
+import { parseNavigatorCliOptions } from '../../../utils/parseNavigatorCliOptions.js';
+import { reportNavigatorCliResult } from '../../../utils/reportNavigatorCliResult.js';
+import { writeNavigatorGeneratedFilesAsync } from '../../../utils/writeNavigatorGeneratedFilesAsync.js';
 
 /*** Generate one or every standalone example below a root examples directory. */
 export async function generate(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {

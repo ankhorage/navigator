@@ -7,8 +7,8 @@ import type {
   NavigatorType,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
-import { createNavigatorPresetCatalog } from './createNavigatorPresetCatalog';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator.js';
+import { createNavigatorPresetCatalog } from './createNavigatorPresetCatalog.js';
 
 /*** Create the package-owned navigation catalog from explicit owner dependency policy. */
 export function createNavigatorCatalog(policy: NavigatorCatalogDependencyPolicy): NavigatorCatalog {

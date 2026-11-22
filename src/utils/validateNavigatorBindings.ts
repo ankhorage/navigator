@@ -8,7 +8,7 @@ import type {
 } from '@ankhorage/contracts/navigator';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
-import { isNavigatorGenerationBindings } from './isNavigatorGenerationBindings';
+import { isNavigatorGenerationBindings } from './isNavigatorGenerationBindings.js';
 
 /*** Validate only the narrow generated-module bindings required by a resolved navigator plan. */
 export function validateNavigatorBindings(

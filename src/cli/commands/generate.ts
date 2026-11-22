@@ -1,11 +1,11 @@
-import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
-import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
-import { createNavigatorPlan } from '../../utils/createNavigatorPlan';
-import { generateNavigator } from '../../utils/generateNavigator';
-import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync';
-import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
-import { writeNavigatorGeneratedFilesAsync } from '../../utils/writeNavigatorGeneratedFilesAsync';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli.js';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions.js';
+import { createNavigatorPlan } from '../../utils/createNavigatorPlan.js';
+import { generateNavigator } from '../../utils/generateNavigator.js';
+import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync.js';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions.js';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult.js';
+import { writeNavigatorGeneratedFilesAsync } from '../../utils/writeNavigatorGeneratedFilesAsync.js';
 
 /*** Generate one structured Navigator file set and write it below an explicit target. */
 export async function generate(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {

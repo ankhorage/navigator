@@ -3,7 +3,7 @@ import type { NavigatorGeneratedFile, NavigatorNode } from '@ankhorage/contracts
 import type {
   NavigatorExampleDefinition,
   NavigatorExampleDescriptor,
-} from '../types/navigatorExamples';
+} from '../types/navigatorExamples.js';
 
 /*** Create the app-owned observable screens, guards, and registered integration for one example. */
 export function createNavigatorExampleScreenFiles(

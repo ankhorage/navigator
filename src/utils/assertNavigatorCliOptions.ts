@@ -1,4 +1,4 @@
-import type { NavigatorCliOptions } from '../types/navigatorCli';
+import type { NavigatorCliOptions } from '../types/navigatorCli.js';
 
 /*** Enforce each public command's required and accepted option surface. */
 export function assertNavigatorCliOptions(

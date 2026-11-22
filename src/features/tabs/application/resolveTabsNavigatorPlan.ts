@@ -8,7 +8,7 @@ import type {
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import { resolveHeadlessTabsPresentation } from '../domain/resolveHeadlessTabsPresentation';
+import { resolveHeadlessTabsPresentation } from '../domain/resolveHeadlessTabsPresentation.js';
 
 /*** Resolve the Expo Router module/export and presentation for one tabs implementation. */
 export function resolveTabsNavigatorPlan(

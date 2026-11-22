@@ -1,9 +1,9 @@
-import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
-import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
-import { createNavigatorPlan } from '../../utils/createNavigatorPlan';
-import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync';
-import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli.js';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions.js';
+import { createNavigatorPlan } from '../../utils/createNavigatorPlan.js';
+import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync.js';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions.js';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult.js';
 
 /*** Resolve and print one deterministic Navigator plan and its dependency requirements. */
 export async function plan(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {

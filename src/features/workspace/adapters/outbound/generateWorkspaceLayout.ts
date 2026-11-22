@@ -2,7 +2,7 @@ import type { NavigatorGeneratedFile, NavigatorScreenModule } from '@ankhorage/c
 import { quoteJavaScriptString } from '@ankhorage/utility/string';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
-import { resolveNavigatorRootDirectory } from '../../../../utils/resolveNavigatorRootDirectory';
+import { resolveNavigatorRootDirectory } from '../../../../utils/resolveNavigatorRootDirectory.js';
 
 /*** Generate an Expo Router workspace layout from consumer-owned runtime and access bindings. */
 export function generateWorkspaceLayout(input: {

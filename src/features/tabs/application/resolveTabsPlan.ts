@@ -5,7 +5,7 @@ import type {
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import { resolveTabsNavigatorPlan } from './resolveTabsNavigatorPlan';
+import { resolveTabsNavigatorPlan } from './resolveTabsNavigatorPlan.js';
 
 /*** Retain an unavailable native-web plan for diagnostics or resolve the supported Tabs adapter. */
 export function resolveTabsPlan(

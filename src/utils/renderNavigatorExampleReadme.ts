@@ -1,7 +1,7 @@
 import type {
   NavigatorExampleDefinition,
   NavigatorExampleDescriptor,
-} from '../types/navigatorExamples';
+} from '../types/navigatorExamples.js';
 
 /*** Render standalone install, generation, execution, and target-status documentation. */
 export function renderNavigatorExampleReadme(

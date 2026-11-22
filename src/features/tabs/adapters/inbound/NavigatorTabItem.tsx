@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import type { HeadlessTabsItem } from '../../../../types/headlessTabs';
+import type { HeadlessTabsItem } from '../../../../types/headlessTabs.js';
 
 /*** Render the accessible unthemed fallback for one Navigator tab trigger. */
 export function NavigatorTabItem({ item, orientation }: NavigatorTabItemProps) {

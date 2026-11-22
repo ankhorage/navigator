@@ -1,6 +1,6 @@
 import type { NavigatorDiagnostic } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorCliExecution, NavigatorCliRunResult } from '../types/navigatorCli';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../types/navigatorCli.js';
 
 /*** Render one stable human or JSON Navigator command result with deterministic exit semantics. */
 export function reportNavigatorCliResult(

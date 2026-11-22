@@ -5,7 +5,7 @@ import type {
   StackNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource';
+import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource.js';
 
 /*** Resolve effective Stack configuration using platform, node, default, and stable precedence. */
 export function resolveEffectiveStackConfig(

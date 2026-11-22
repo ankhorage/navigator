@@ -1,7 +1,7 @@
 import type { NavigatorNode } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples';
-import { createExampleScreenRoute } from './createExampleScreenRoute';
+import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples.js';
+import { createExampleScreenRoute } from './createExampleScreenRoute.js';
 
 /*** Define standalone native, JavaScript, Headless, nested, and top Tabs examples. */
 export function createTabsNavigatorExamples(): readonly NavigatorExampleDefinition[] {

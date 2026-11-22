@@ -5,8 +5,8 @@ import type {
   TabsNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
-import { resolveEffectiveTabsConfig } from './resolveEffectiveTabsConfig';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator.js';
+import { resolveEffectiveTabsConfig } from './resolveEffectiveTabsConfig.js';
 
 /*** Add tabs-specific semantic diagnostics for one manifest navigator node. */
 export function addTabsAdapterDiagnostics(

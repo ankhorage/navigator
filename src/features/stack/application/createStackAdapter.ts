@@ -4,7 +4,7 @@ import type {
   StackImplementationConfig,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator.js';
 
 /*** Resolve a Stack implementation to its version- and platform-aware Expo Router adapter. */
 export function createStackAdapter(

@@ -14,18 +14,18 @@ import type {
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import { resolveCustomNavigatorAdapterPlan } from '../features/custom/application/resolveCustomNavigatorAdapterPlan';
-import { createDrawerAdapter } from '../features/drawer/application/createDrawerAdapter';
-import { createSlotAdapter } from '../features/slot/application/createSlotAdapter';
-import { resolveSplitViewAdapterPlan } from '../features/split-view/application/resolveSplitViewAdapterPlan';
-import { createStackAdapter } from '../features/stack/application/createStackAdapter';
-import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEffectiveStackConfig';
-import { createTabsAdapter } from '../features/tabs/application/createTabsAdapter';
-import { resolveTabsPlan } from '../features/tabs/application/resolveTabsPlan';
-import { resolveEffectiveTabsConfig } from '../features/tabs/domain/resolveEffectiveTabsConfig';
-import { parseExpoRouterMajor } from './parseExpoRouterMajor';
-import { resolveNavigatorDependencies } from './resolveNavigatorDependencies';
-import { validateNavigatorManifest } from './validateNavigatorManifest';
+import { resolveCustomNavigatorAdapterPlan } from '../features/custom/application/resolveCustomNavigatorAdapterPlan.js';
+import { createDrawerAdapter } from '../features/drawer/application/createDrawerAdapter.js';
+import { createSlotAdapter } from '../features/slot/application/createSlotAdapter.js';
+import { resolveSplitViewAdapterPlan } from '../features/split-view/application/resolveSplitViewAdapterPlan.js';
+import { createStackAdapter } from '../features/stack/application/createStackAdapter.js';
+import { resolveEffectiveStackConfig } from '../features/stack/domain/resolveEffectiveStackConfig.js';
+import { createTabsAdapter } from '../features/tabs/application/createTabsAdapter.js';
+import { resolveTabsPlan } from '../features/tabs/application/resolveTabsPlan.js';
+import { resolveEffectiveTabsConfig } from '../features/tabs/domain/resolveEffectiveTabsConfig.js';
+import { parseExpoRouterMajor } from './parseExpoRouterMajor.js';
+import { resolveNavigatorDependencies } from './resolveNavigatorDependencies.js';
+import { validateNavigatorManifest } from './validateNavigatorManifest.js';
 
 /*** Create a disposable, provider-aware plan from only the navigator desired-state slice. */
 export function createNavigatorPlan(

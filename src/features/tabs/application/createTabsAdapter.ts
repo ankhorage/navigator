@@ -4,7 +4,7 @@ import type {
   TabsNavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator.js';
 
 /*** Describe Tabs adapter support, stability, and limitations for the target platform and version. */
 export function createTabsAdapter(

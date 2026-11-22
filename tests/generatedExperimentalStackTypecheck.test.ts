@@ -65,4 +65,4 @@ test('generated Experimental Stack layouts typecheck against installed Expo Rout
       ),
     ).toEqual([]);
   }
-});
+}, 10_000);

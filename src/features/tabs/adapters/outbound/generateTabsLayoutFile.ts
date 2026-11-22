@@ -8,7 +8,7 @@ import type {
 import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/utility/string';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
-import { resolveExpoRouterRoutePath } from '../../../routing/domain/resolveExpoRouterRoutePath';
+import { resolveExpoRouterRoutePath } from '../../../routing/domain/resolveExpoRouterRoutePath.js';
 
 /*** Generate the specialized layout file for a supported tabs implementation. */
 export function generateTabsLayoutFile(
