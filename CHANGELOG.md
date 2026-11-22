@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.6.0
+
+### Minor Changes
+
+- a173085: Separate Navigator's headless navigation runtime from Surface and expose presentation inputs for application-owned navigation chrome.
+
 ## 3.5.23
 
 ### Patch Changes

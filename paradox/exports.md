@@ -113,6 +113,26 @@ Return the standalone composition catalog with target truth derived from Navigat
 - `() => readonly NavigatorExampleDescriptor[]`
   - returns: `readonly NavigatorExampleDescriptor[]`
 
+## HeadlessTabsItem
+
+Kind: `type`
+Module: `src/types/headlessTabs.ts`
+Source: `src/types/headlessTabs.ts:15:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| accessibilityState | property | `Readonly<{ disabled: boolean; selected: boolean; }>` | yes |  |
+| active | property | `boolean` | yes |  |
+| badge | property | `ReactNode` | no |  |
+| disabled | property | `boolean` | yes |  |
+| href | property | `string` | yes |  |
+| icon | property | `import("@ankhorage/contracts/dist/types").IconSpec \| undefined` | no |  |
+| label | property | `string` | yes |  |
+| name | property | `string` | yes |  |
+| onPress | property | `() => void` | yes |  |
+
 ## HeadlessTabsLayout
 
 Kind: `function`
@@ -127,17 +147,62 @@ Render one stable headless Expo Router tab topology with Navigator-owned present
   routes,
   presentations,
   initialRouteName,
-  resolveIconSource,
   customPresentation: CustomPresentation,
+  customPresentationOrientation = 'horizontal',
 }: HeadlessTabsLayoutProps) => import("react").JSX.Element`
   - {
   routes,
   presentations,
   initialRouteName,
-  resolveIconSource,
   customPresentation: CustomPresentation,
+  customPresentationOrientation = 'horizontal',
 }: `HeadlessTabsLayoutProps`
   - returns: `import("react").JSX.Element`
+
+## HeadlessTabsPresentation
+
+Kind: `unknown`
+Module: `src/types/headlessTabs.ts`
+Source: `src/types/headlessTabs.ts:42:1`
+
+## HeadlessTabsPresentationOrientation
+
+Kind: `unknown`
+Module: `src/types/headlessTabs.ts`
+Source: `src/types/headlessTabs.ts:45:1`
+
+## HeadlessTabsPresentationProps
+
+Kind: `type`
+Module: `src/types/headlessTabs.ts`
+Source: `src/types/headlessTabs.ts:31:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| orientation | property | `HeadlessTabsPresentationOrientation` | yes |  |
+| presentation | property | `HeadlessTabsPresentation` | yes |  |
+| renderItem | property | `(route: HeadlessTabsRoute, render: (item: HeadlessTabsItem) => ReactNode) => ReactNode` | yes |  |
+| routes | property | `readonly HeadlessTabsRoute[]` | yes |  |
+
+## HeadlessTabsRoute
+
+Kind: `type`
+Module: `src/types/headlessTabs.ts`
+Source: `src/types/headlessTabs.ts:4:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| badge | property | `ReactNode` | no |  |
+| disabled | property | `boolean \| undefined` | no |  |
+| href | property | `string` | yes |  |
+| icon | property | `import("@ankhorage/contracts/dist/types").IconSpec \| undefined` | no |  |
+| label | property | `string` | yes |  |
+| name | property | `string` | yes |  |
+| visible | property | `boolean` | yes |  |
 
 ## isNavigatorGenerationBindings
 
@@ -445,7 +510,7 @@ Source: `src/types/workspaceNavigation.ts:4:1`
 | --- | --- | --- | --- | --- |
 | description | property | `string \| undefined` | no |  |
 | href | property | `string \| null` | yes |  |
-| icon | property | `import("@ankhorage/contracts").NamedIconSpec \| undefined` | no |  |
+| icon | property | `import("@ankhorage/contracts/dist/types").NamedIconSpec \| undefined` | no |  |
 | id | property | `string` | yes |  |
 | label | property | `string` | yes |  |
 | parentId | property | `string \| undefined` | no |  |
@@ -455,9 +520,9 @@ Source: `src/types/workspaceNavigation.ts:4:1`
 
 Kind: `function`
 Module: `src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx`
-Source: `src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx:16:1`
+Source: `src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx:14:1`
 
-Render Navigator-owned responsive workspace chrome around Expo Router page content.
+Render accessible unthemed workspace navigation around Expo Router page content.
 
 ### Signatures
 

@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.5.23",
+      "value": "v3.6.0",
       "color": "cb3837"
     },
     {
@@ -587,6 +587,7 @@
       "path": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
       "isEntrypoint": false,
       "dependencies": [
+        "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "src/types/headlessTabs.ts"
       ],
@@ -669,7 +670,9 @@
     {
       "path": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": [
+        "src/types/headlessTabs.ts"
+      ],
       "exports": [
         "NavigatorTabItem"
       ]
@@ -678,7 +681,6 @@
       "path": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
         "src/types/headlessTabs.ts",
         "src/utils/resolveNavigatorIcon.ts"
       ],
@@ -770,7 +772,12 @@
       "isEntrypoint": true,
       "dependencies": [],
       "exports": [
-        "HeadlessTabsLayout"
+        "HeadlessTabsItem",
+        "HeadlessTabsLayout",
+        "HeadlessTabsPresentation",
+        "HeadlessTabsPresentationOrientation",
+        "HeadlessTabsPresentationProps",
+        "HeadlessTabsRoute"
       ]
     },
     {
@@ -779,7 +786,6 @@
       "dependencies": [
         "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
         "src/types/workspaceNavigation.ts",
-        "src/utils/resolveNavigatorIcon.ts",
         "src/utils/useHydrationSafeSize.ts"
       ],
       "exports": [
@@ -865,7 +871,10 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
-        "HeadlessTabsIconSourceResolver",
+        "HeadlessTabsItem",
+        "HeadlessTabsPresentation",
+        "HeadlessTabsPresentationOrientation",
+        "HeadlessTabsPresentationProps",
         "HeadlessTabsRoute"
       ]
     },
@@ -1119,9 +1128,7 @@
     {
       "path": "src/utils/resolveNavigatorIcon.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/types/headlessTabs.ts"
-      ],
+      "dependencies": [],
       "exports": [
         "resolveNavigatorIcon"
       ]
@@ -1355,6 +1362,14 @@
       "exports": [
         "generateFiles"
       ]
+    },
+    {
+      "path": "tests/headlessTabsPresentation.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/headlessTabs.ts"
+      ],
+      "exports": []
     },
     {
       "path": "tests/index.test.ts",
@@ -1738,6 +1753,92 @@
       "structuredRows": []
     },
     {
+      "name": "HeadlessTabsItem",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/headlessTabs.ts",
+      "sourceLocation": {
+        "filePath": "src/types/headlessTabs.ts",
+        "line": 15,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/features/tabs/tabs.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "accessibilityState",
+          "kind": "property",
+          "type": "Readonly<{ disabled: boolean; selected: boolean; }>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "active",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "badge",
+          "kind": "property",
+          "type": "ReactNode",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "disabled",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "href",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "icon",
+          "kind": "property",
+          "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "label",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "onPress",
+          "kind": "property",
+          "type": "() => void",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
       "name": "HeadlessTabsLayout",
       "title": null,
       "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
@@ -1757,10 +1858,10 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
+          "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  customPresentation: CustomPresentation,\n  customPresentationOrientation = 'horizontal',\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
           "parameters": [
             {
-              "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+              "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  customPresentation: CustomPresentation,\n  customPresentationOrientation = 'horizontal',\n}",
               "type": "HeadlessTabsLayoutProps",
               "required": true,
               "description": null
@@ -1771,6 +1872,178 @@
         }
       ],
       "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "HeadlessTabsPresentation",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/headlessTabs.ts",
+      "sourceLocation": {
+        "filePath": "src/types/headlessTabs.ts",
+        "line": 42,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/features/tabs/tabs.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "HeadlessTabsPresentationOrientation",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/headlessTabs.ts",
+      "sourceLocation": {
+        "filePath": "src/types/headlessTabs.ts",
+        "line": 45,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/features/tabs/tabs.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "HeadlessTabsPresentationProps",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/headlessTabs.ts",
+      "sourceLocation": {
+        "filePath": "src/types/headlessTabs.ts",
+        "line": 31,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/features/tabs/tabs.ts"
+      ],
+      "relatedSymbols": [
+        "HeadlessTabsItem",
+        "HeadlessTabsPresentation",
+        "HeadlessTabsPresentationOrientation",
+        "HeadlessTabsRoute"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "orientation",
+          "kind": "property",
+          "type": "HeadlessTabsPresentationOrientation",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "presentation",
+          "kind": "property",
+          "type": "HeadlessTabsPresentation",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "renderItem",
+          "kind": "property",
+          "type": "(route: HeadlessTabsRoute, render: (item: HeadlessTabsItem) => ReactNode) => ReactNode",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "routes",
+          "kind": "property",
+          "type": "readonly HeadlessTabsRoute[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "HeadlessTabsRoute",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/headlessTabs.ts",
+      "sourceLocation": {
+        "filePath": "src/types/headlessTabs.ts",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/features/tabs/tabs.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "badge",
+          "kind": "property",
+          "type": "ReactNode",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "disabled",
+          "kind": "property",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "href",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "icon",
+          "kind": "property",
+          "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "label",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "visible",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        }
+      ],
       "structuredRows": []
     },
     {
@@ -2710,7 +2983,7 @@
         {
           "name": "icon",
           "kind": "property",
-          "type": "import(\"@ankhorage/contracts\").NamedIconSpec | undefined",
+          "type": "import(\"@ankhorage/contracts/dist/types\").NamedIconSpec | undefined",
           "required": false,
           "description": null
         },
@@ -2748,7 +3021,7 @@
     {
       "name": "WorkspaceNavigator",
       "title": null,
-      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "description": "Render accessible unthemed workspace navigation around Expo Router page content.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -2756,7 +3029,7 @@
       "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 16,
+        "line": 14,
         "column": 1
       },
       "exportPaths": [
@@ -2869,6 +3142,13 @@
           "description": null
         },
         {
+          "name": "customPresentationOrientation",
+          "type": "HeadlessTabsPresentationOrientation | undefined",
+          "required": false,
+          "defaultValue": "'horizontal'",
+          "description": null
+        },
+        {
           "name": "initialRouteName",
           "type": "string | undefined",
           "required": false,
@@ -2881,12 +3161,6 @@
           "description": null
         },
         {
-          "name": "resolveIconSource",
-          "type": "HeadlessTabsIconSourceResolver | undefined",
-          "required": false,
-          "description": null
-        },
-        {
           "name": "routes",
           "type": "readonly HeadlessTabsRoute[]",
           "required": true,
@@ -2896,14 +3170,14 @@
     },
     {
       "name": "WorkspaceNavigator",
-      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "description": "Render accessible unthemed workspace navigation around Expo Router page content.",
       "isReadme": false,
       "see": [],
       "security": [],
       "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 16,
+        "line": 14,
         "column": 1
       },
       "exportPaths": [
@@ -3622,7 +3896,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/catalog/domain/createNavigatorCatalog.ts",
-        "line": 253,
+        "line": 252,
         "column": 1
       }
     },
@@ -3771,7 +4045,7 @@
     },
     {
       "name": "headlessTabs",
-      "description": "Define Headless Tabs with fixed or responsive Surface presentation.",
+      "description": "Define Headless Tabs with fixed or responsive application presentation.",
       "see": [],
       "security": [],
       "sourceLocation": {
@@ -4310,12 +4584,23 @@
     },
     {
       "name": "BuiltInTabsPresentation",
-      "description": "Render Navigator-owned bottom, top, rail, or sidebar tab chrome.",
+      "description": "Render the accessible unthemed fallback for a built-in Navigator tab topology.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
-        "line": 12,
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "createItemRenderer",
+      "description": "Adapt the shared item binding to Navigator's minimal standalone item chrome.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
+        "line": 50,
         "column": 1
       }
     },
@@ -4337,7 +4622,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 60,
+        "line": 64,
         "column": 1
       }
     },
@@ -4348,7 +4633,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 65,
+        "line": 69,
         "column": 1
       }
     },
@@ -4359,7 +4644,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 121,
+        "line": 111,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveHeadlessTabsPresentationOrientation",
+      "description": "Resolve the actual selected presentation direction without changing Navigator-owned geometry.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
+        "line": 149,
         "column": 1
       }
     },
@@ -4370,7 +4666,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 164,
+        "line": 168,
         "column": 1
       }
     },
@@ -4381,18 +4677,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 179,
+        "line": 183,
         "column": 1
       }
     },
     {
       "name": "renderItem",
-      "description": "Bind one visible route to the shared Navigator trigger for registered custom chrome.",
+      "description": "Bind a custom renderer to the active Expo Router tab context for one visible route.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx",
-        "line": 192,
+        "line": 196,
         "column": 9
       }
     },
@@ -4409,78 +4705,34 @@
     },
     {
       "name": "NavigatorTabItem",
-      "description": "Render one Navigator-owned tab trigger using current Surface foundation primitives.",
+      "description": "Render the accessible unthemed fallback for one Navigator tab trigger.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "line": 14,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderNavigatorTabItemContent",
-      "description": "Select the horizontal or vertical content renderer for one Navigator tab item.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "line": 78,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderHorizontalNavigatorTabItem",
-      "description": "Render a bottom/top Navigator tab item.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "line": 92,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderRailNavigatorTabItem",
-      "description": "Render a compact navigation-rail item with icon-first vertical rhythm.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "line": 117,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderSidebarNavigatorTabItem",
-      "description": "Render a full-width navigation-sidebar item with comfortable horizontal rhythm.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "line": 148,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveNavigatorTabItemColors",
-      "description": "Resolve Navigator tab colors from the current Surface theme interaction tokens.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "line": 176,
+        "line": 6,
         "column": 1
       }
     },
     {
       "name": "NavigatorTabTrigger",
-      "description": "Bind one visible route to an Expo Router headless tab trigger and Surface route item.",
+      "description": "Bind one visible route to an Expo Router headless tab trigger and fallback route item.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
-        "line": 11,
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "createHeadlessTabsItem",
+      "description": "Expose one active Expo Router tab as a presentation-neutral item binding.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
+        "line": 19,
         "column": 1
       }
     },
@@ -4579,7 +4831,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 219,
+        "line": 205,
         "column": 1
       }
     },
@@ -4590,7 +4842,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 232,
+        "line": 218,
         "column": 1
       }
     },
@@ -4601,7 +4853,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 254,
+        "line": 236,
         "column": 1
       }
     },
@@ -4612,7 +4864,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 266,
+        "line": 248,
         "column": 1
       }
     },
@@ -4623,7 +4875,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 279,
+        "line": 261,
         "column": 1
       }
     },
@@ -4634,18 +4886,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 284,
+        "line": 266,
         "column": 1
       }
     },
     {
       "name": "createHeadlessTabsComponent",
-      "description": "Create the responsive wrapper around one generated Headless Tabs runtime component.",
+      "description": "Create one generated Headless Tabs runtime component without presentation dependencies.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 289,
+        "line": 271,
         "column": 1
       }
     },
@@ -4656,7 +4908,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 302,
+        "line": 276,
         "column": 1
       }
     },
@@ -4667,7 +4919,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 320,
+        "line": 289,
         "column": 1
       }
     },
@@ -4678,7 +4930,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 336,
+        "line": 305,
         "column": 1
       }
     },
@@ -4805,7 +5057,7 @@
     },
     {
       "name": "addTabsIconDiagnostics",
-      "description": "Validate route icon compatibility for native and Surface-backed tabs.",
+      "description": "Validate route icon compatibility for native and headless tabs.",
       "see": [],
       "security": [],
       "sourceLocation": {
@@ -4882,12 +5134,12 @@
     },
     {
       "name": "WorkspaceNavigator",
-      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "description": "Render accessible unthemed workspace navigation around Expo Router page content.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 16,
+        "line": 14,
         "column": 1
       }
     },
@@ -4898,7 +5150,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 27,
+        "line": 24,
         "column": 9
       }
     },
@@ -4909,7 +5161,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 35,
+        "line": 32,
         "column": 9
       }
     },
@@ -4920,7 +5172,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 71,
+        "line": 68,
         "column": 1
       }
     },
@@ -4931,7 +5183,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 102,
+        "line": 99,
         "column": 1
       }
     },
@@ -4942,7 +5194,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 152,
+        "line": 146,
         "column": 1
       }
     },
@@ -4953,7 +5205,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 182,
+        "line": 176,
         "column": 1
       }
     },
@@ -4964,7 +5216,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "line": 209,
+        "line": 202,
         "column": 1
       }
     },
@@ -5707,7 +5959,7 @@
     },
     {
       "name": "addHeadlessTabsDependencies",
-      "description": "Add packages imported by Navigator and Surface headless Tabs runtime.",
+      "description": "Add packages imported by the Navigator-owned headless Tabs runtime.",
       "see": [],
       "security": [],
       "sourceLocation": {
@@ -5723,7 +5975,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
-        "line": 71,
+        "line": 70,
         "column": 1
       }
     },
@@ -5734,7 +5986,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
-        "line": 81,
+        "line": 80,
         "column": 1
       }
     },
@@ -5745,18 +5997,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorDependencies.ts",
-        "line": 95,
+        "line": 94,
         "column": 1
       }
     },
     {
       "name": "resolveNavigatorIcon",
-      "description": "Convert portable route icon metadata to the current Surface icon contract.",
+      "description": "Preserve portable route icon metadata for the presentation package that owns icon rendering.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/resolveNavigatorIcon.ts",
-        "line": 7,
+        "line": 4,
         "column": 1
       }
     },
@@ -5773,7 +6025,7 @@
     },
     {
       "name": "useHydrationSafeSize",
-      "description": "Resolve a hydration-safe semantic size from the Surface breakpoint owner.",
+      "description": "Resolve Navigator-owned responsive policy from the current React Native viewport.",
       "see": [],
       "security": [],
       "sourceLocation": {
@@ -5783,35 +6035,35 @@
       }
     },
     {
-      "name": "subscribeToHydration",
-      "description": "Provide the stable no-op subscription required for the hydration snapshot boundary.",
+      "name": "subscribeToWindowSize",
+      "description": "Subscribe React to React Native viewport changes after browser hydration.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
-        "line": 19,
+        "line": 11,
         "column": 1
       }
     },
     {
-      "name": "getClientHydration",
-      "description": "Report that client rendering can consume the live responsive breakpoint.",
+      "name": "resolveWindowSize",
+      "description": "Resolve the responsive policy from the current native window dimensions.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
-        "line": 24,
+        "line": 17,
         "column": 1
       }
     },
     {
-      "name": "getServerHydration",
-      "description": "Keep server output deterministic at the compact presentation.",
+      "name": "resolveServerSize",
+      "description": "Keep static and initial browser markup compact until React completes hydration.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/useHydrationSafeSize.ts",
-        "line": 29,
+        "line": 25,
         "column": 1
       }
     },
@@ -5855,7 +6107,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 70,
+        "line": 62,
         "column": 1
       }
     },
@@ -5866,7 +6118,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 105,
+        "line": 97,
         "column": 1
       }
     },
@@ -5877,7 +6129,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 141,
+        "line": 124,
         "column": 1
       }
     },
@@ -5888,7 +6140,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 164,
+        "line": 147,
         "column": 1
       }
     },
@@ -5899,7 +6151,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 182,
+        "line": 165,
         "column": 1
       }
     },
@@ -6197,7 +6449,7 @@
       "name": "WorkspaceNavigator",
       "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
       "symbolName": "WorkspaceNavigator",
-      "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+      "description": "Render accessible unthemed workspace navigation around Expo Router page content.",
       "isReadme": false
     }
   ],
@@ -6497,6 +6749,11 @@
         "fromPath": "tests/generateFiles.ts",
         "toPath": "src/navigator.ts",
         "sourcePath": "tests/generateFiles.ts"
+      },
+      {
+        "fromPath": "tests/headlessTabsPresentation.test.ts",
+        "toPath": "src/types/headlessTabs.ts",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
       },
       {
         "fromPath": "tests/index.test.ts",
@@ -6839,11 +7096,6 @@
         "sourcePath": "src/utils/resolveNavigatorIcon.test.ts"
       },
       {
-        "fromPath": "src/utils/resolveNavigatorIcon.ts",
-        "toPath": "src/types/headlessTabs.ts",
-        "sourcePath": "src/utils/resolveNavigatorIcon.ts"
-      },
-      {
         "fromPath": "src/utils/validateNavigator.ts",
         "toPath": "src/utils/createNavigatorPlan.ts",
         "sourcePath": "src/utils/validateNavigator.ts"
@@ -7137,6 +7389,11 @@
         "fromPath": "src/features/tabs/nativeIcons.ts",
         "toPath": "src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts",
         "sourcePath": "src/features/tabs/nativeIcons.ts"
+      },
+      {
+        "fromPath": "src/features/tabs/tabs.ts",
+        "toPath": "src/types/headlessTabs.ts",
+        "sourcePath": "src/features/tabs/tabs.ts"
       },
       {
         "fromPath": "src/features/tabs/tabs.ts",
@@ -7485,6 +7742,11 @@
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
+        "toPath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "sourcePath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"
+      },
+      {
+        "fromPath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
         "toPath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "sourcePath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"
       },
@@ -7539,6 +7801,11 @@
         "sourcePath": "src/features/tabs/adapters/inbound/NativeMaterialDesignIconsFamily.ts"
       },
       {
+        "fromPath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
+        "toPath": "src/types/headlessTabs.ts",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
+      },
+      {
         "fromPath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
         "toPath": "src/types/headlessTabs.ts",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
@@ -7549,11 +7816,6 @@
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
       },
       {
-        "fromPath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
-        "toPath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
-      },
-      {
         "fromPath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
@@ -7561,11 +7823,6 @@
       {
         "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "toPath": "src/types/workspaceNavigation.ts",
-        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
-      },
-      {
-        "fromPath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-        "toPath": "src/utils/resolveNavigatorIcon.ts",
         "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
       },
       {
@@ -8123,6 +8380,66 @@
         "toSymbol": "generateNavigator",
         "callExpression": "generateNavigator",
         "sourcePath": "tests/generateFiles.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "NavigatorTabTrigger",
+        "callExpression": "NavigatorTabTrigger",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "createElement",
+        "callExpression": "createElement",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "onClick",
+        "callExpression": "onClick",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "onPress",
+        "callExpression": "item.onPress",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "HeadlessTabsLayout",
+        "callExpression": "HeadlessTabsLayout",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "tests/headlessTabsPresentation.test.ts",
+        "toSymbol": "onPress",
+        "callExpression": "item?.onPress",
+        "sourcePath": "tests/headlessTabsPresentation.test.ts"
       },
       {
         "fromSymbol": "tests/index.test.ts",
@@ -9287,18 +9604,6 @@
         "toSymbol": "resolveNavigatorIcon",
         "callExpression": "resolveNavigatorIcon",
         "sourcePath": "src/utils/resolveNavigatorIcon.test.ts"
-      },
-      {
-        "fromSymbol": "resolveNavigatorIcon",
-        "toSymbol": "resolveIconSource",
-        "callExpression": "resolveIconSource",
-        "sourcePath": "src/utils/resolveNavigatorIcon.ts"
-      },
-      {
-        "fromSymbol": "useHydrationSafeSize",
-        "toSymbol": "useBreakpoint",
-        "callExpression": "useBreakpoint",
-        "sourcePath": "src/utils/useHydrationSafeSize.ts"
       },
       {
         "fromSymbol": "useHydrationSafeSize",
@@ -10885,6 +11190,12 @@
         "sourcePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts"
       },
       {
+        "fromSymbol": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
+        "toSymbol": "createItemRenderer",
+        "callExpression": "createItemRenderer",
+        "sourcePath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"
+      },
+      {
         "fromSymbol": "HeadlessTabsLayout",
         "toSymbol": "useHydrationSafeSize",
         "callExpression": "useHydrationSafeSize",
@@ -10904,6 +11215,12 @@
       },
       {
         "fromSymbol": "HeadlessTabsLayout",
+        "toSymbol": "resolveHeadlessTabsPresentationOrientation",
+        "callExpression": "resolveHeadlessTabsPresentationOrientation",
+        "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
+      },
+      {
+        "fromSymbol": "HeadlessTabsLayout",
         "toSymbol": "resolveHeadlessTabsLayout",
         "callExpression": "resolveHeadlessTabsLayout",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
@@ -10915,42 +11232,6 @@
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
       },
       {
-        "fromSymbol": "NavigatorTabItem",
-        "toSymbol": "useTheme",
-        "callExpression": "useTheme",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
-      },
-      {
-        "fromSymbol": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx",
-        "toSymbol": "renderNavigatorTabItemContent",
-        "callExpression": "renderNavigatorTabItemContent",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
-      },
-      {
-        "fromSymbol": "renderNavigatorTabItemContent",
-        "toSymbol": "resolveNavigatorTabItemColors",
-        "callExpression": "resolveNavigatorTabItemColors",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
-      },
-      {
-        "fromSymbol": "renderNavigatorTabItemContent",
-        "toSymbol": "renderHorizontalNavigatorTabItem",
-        "callExpression": "renderHorizontalNavigatorTabItem",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
-      },
-      {
-        "fromSymbol": "renderNavigatorTabItemContent",
-        "toSymbol": "renderRailNavigatorTabItem",
-        "callExpression": "renderRailNavigatorTabItem",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
-      },
-      {
-        "fromSymbol": "renderNavigatorTabItemContent",
-        "toSymbol": "renderSidebarNavigatorTabItem",
-        "callExpression": "renderSidebarNavigatorTabItem",
-        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"
-      },
-      {
         "fromSymbol": "NavigatorTabTrigger",
         "toSymbol": "useTabTrigger",
         "callExpression": "useTabTrigger",
@@ -10958,12 +11239,24 @@
       },
       {
         "fromSymbol": "NavigatorTabTrigger",
+        "toSymbol": "render",
+        "callExpression": "render",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+      },
+      {
+        "fromSymbol": "NavigatorTabTrigger",
+        "toSymbol": "createHeadlessTabsItem",
+        "callExpression": "createHeadlessTabsItem",
+        "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsItem",
         "toSymbol": "resolveNavigatorIcon",
         "callExpression": "resolveNavigatorIcon",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
       },
       {
-        "fromSymbol": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx",
+        "fromSymbol": "onPress",
         "toSymbol": "switchTab",
         "callExpression": "switchTab",
         "sourcePath": "src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"
@@ -11156,12 +11449,6 @@
       },
       {
         "fromSymbol": "WorkspaceNavigator",
-        "toSymbol": "useTheme",
-        "callExpression": "useTheme",
-        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
-      },
-      {
-        "fromSymbol": "WorkspaceNavigator",
         "toSymbol": "useState",
         "callExpression": "useState",
         "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
@@ -11194,30 +11481,6 @@
         "fromSymbol": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
         "toSymbol": "setMenuOpen",
         "callExpression": "setMenuOpen",
-        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
-      },
-      {
-        "fromSymbol": "WorkspaceHeader",
-        "toSymbol": "useTheme",
-        "callExpression": "useTheme",
-        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
-      },
-      {
-        "fromSymbol": "WorkspaceNavigationList",
-        "toSymbol": "useTheme",
-        "callExpression": "useTheme",
-        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
-      },
-      {
-        "fromSymbol": "WorkspaceNavigationItem",
-        "toSymbol": "useTheme",
-        "callExpression": "useTheme",
-        "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
-      },
-      {
-        "fromSymbol": "WorkspaceNavigationItem",
-        "toSymbol": "resolveNavigatorIcon",
-        "callExpression": "resolveNavigatorIcon",
         "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
       },
       {
@@ -11545,6 +11808,56 @@
         "sourcePath": "src/utils/verifyNavigator.ts"
       },
       {
+        "fromSymbol": "HeadlessTabsItem",
+        "toType": "IconSpec",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsItem",
+        "toType": "ReactNode",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsItem",
+        "toType": "Readonly",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsPresentationProps",
+        "toType": "HeadlessTabsItem",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsPresentationProps",
+        "toType": "HeadlessTabsPresentation",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsPresentationProps",
+        "toType": "HeadlessTabsPresentationOrientation",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsPresentationProps",
+        "toType": "HeadlessTabsRoute",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsPresentationProps",
+        "toType": "ReactNode",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsRoute",
+        "toType": "IconSpec",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
+        "fromSymbol": "HeadlessTabsRoute",
+        "toType": "ReactNode",
+        "sourcePath": "src/types/headlessTabs.ts"
+      },
+      {
         "fromSymbol": "HeadlessTabsLayout",
         "toType": "HeadlessTabsLayoutProps",
         "sourcePath": "src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"
@@ -11598,7 +11911,7 @@
       {
         "fromComponent": "WorkspaceNavigator",
         "toComponent": "SafeAreaView",
-        "jsxElement": "<SafeAreaView style={[styles.root, { backgroundColor: theme.colors.background }]}>",
+        "jsxElement": "<SafeAreaView style={styles.root}>",
         "sourcePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx"
       },
       {

@@ -305,6 +305,92 @@
     "structuredRows": []
   },
   {
+    "name": "HeadlessTabsItem",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/headlessTabs.ts",
+    "sourceLocation": {
+      "filePath": "src/types/headlessTabs.ts",
+      "line": 15,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/features/tabs/tabs.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "accessibilityState",
+        "kind": "property",
+        "type": "Readonly<{ disabled: boolean; selected: boolean; }>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "active",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "badge",
+        "kind": "property",
+        "type": "ReactNode",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "disabled",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "href",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "icon",
+        "kind": "property",
+        "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "label",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "onPress",
+        "kind": "property",
+        "type": "() => void",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "HeadlessTabsLayout",
     "title": null,
     "description": "Render one stable headless Expo Router tab topology with Navigator-owned presentations.",
@@ -324,10 +410,10 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
+        "label": "({\n  routes,\n  presentations,\n  initialRouteName,\n  customPresentation: CustomPresentation,\n  customPresentationOrientation = 'horizontal',\n}: HeadlessTabsLayoutProps) => import(\"react\").JSX.Element",
         "parameters": [
           {
-            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  resolveIconSource,\n  customPresentation: CustomPresentation,\n}",
+            "name": "{\n  routes,\n  presentations,\n  initialRouteName,\n  customPresentation: CustomPresentation,\n  customPresentationOrientation = 'horizontal',\n}",
             "type": "HeadlessTabsLayoutProps",
             "required": true,
             "description": null
@@ -338,6 +424,178 @@
       }
     ],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "HeadlessTabsPresentation",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/headlessTabs.ts",
+    "sourceLocation": {
+      "filePath": "src/types/headlessTabs.ts",
+      "line": 42,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/features/tabs/tabs.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "HeadlessTabsPresentationOrientation",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/headlessTabs.ts",
+    "sourceLocation": {
+      "filePath": "src/types/headlessTabs.ts",
+      "line": 45,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/features/tabs/tabs.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "HeadlessTabsPresentationProps",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/headlessTabs.ts",
+    "sourceLocation": {
+      "filePath": "src/types/headlessTabs.ts",
+      "line": 31,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/features/tabs/tabs.ts"
+    ],
+    "relatedSymbols": [
+      "HeadlessTabsItem",
+      "HeadlessTabsPresentation",
+      "HeadlessTabsPresentationOrientation",
+      "HeadlessTabsRoute"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "orientation",
+        "kind": "property",
+        "type": "HeadlessTabsPresentationOrientation",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "presentation",
+        "kind": "property",
+        "type": "HeadlessTabsPresentation",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "renderItem",
+        "kind": "property",
+        "type": "(route: HeadlessTabsRoute, render: (item: HeadlessTabsItem) => ReactNode) => ReactNode",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "routes",
+        "kind": "property",
+        "type": "readonly HeadlessTabsRoute[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "HeadlessTabsRoute",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/headlessTabs.ts",
+    "sourceLocation": {
+      "filePath": "src/types/headlessTabs.ts",
+      "line": 4,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/features/tabs/tabs.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "badge",
+        "kind": "property",
+        "type": "ReactNode",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "disabled",
+        "kind": "property",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "href",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "icon",
+        "kind": "property",
+        "type": "import(\"@ankhorage/contracts/dist/types\").IconSpec | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "label",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "visible",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {
@@ -1277,7 +1535,7 @@
       {
         "name": "icon",
         "kind": "property",
-        "type": "import(\"@ankhorage/contracts\").NamedIconSpec | undefined",
+        "type": "import(\"@ankhorage/contracts/dist/types\").NamedIconSpec | undefined",
         "required": false,
         "description": null
       },
@@ -1315,7 +1573,7 @@
   {
     "name": "WorkspaceNavigator",
     "title": null,
-    "description": "Render Navigator-owned responsive workspace chrome around Expo Router page content.",
+    "description": "Render accessible unthemed workspace navigation around Expo Router page content.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1323,7 +1581,7 @@
     "modulePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
     "sourceLocation": {
       "filePath": "src/features/workspace/adapters/inbound/WorkspaceNavigator.tsx",
-      "line": 16,
+      "line": 14,
       "column": 1
     },
     "exportPaths": [

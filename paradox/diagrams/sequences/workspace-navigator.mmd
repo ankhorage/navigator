@@ -1,0 +1,22 @@
+sequenceDiagram
+  participant participant_resolveAncestorIds as resolveAncestorIds
+  participant participant_resolveWorkspaceNavigation as resolveWorkspaceNavigation
+  participant participant_useHydrationSafeSize as useHydrationSafeSize
+  participant participant_useRouter as useRouter
+  participant participant_useState as useState
+  participant participant_useSyncExternalStore as useSyncExternalStore
+  participant participant_WorkspaceNavigator as WorkspaceNavigator
+  participant_WorkspaceNavigator->>participant_useRouter: useRouter()
+  participant_useRouter-->>participant_WorkspaceNavigator: return
+  participant_WorkspaceNavigator->>participant_useHydrationSafeSize: useHydrationSafeSize()
+  participant_useHydrationSafeSize->>participant_useSyncExternalStore: useSyncExternalStore()
+  participant_useSyncExternalStore-->>participant_useHydrationSafeSize: return
+  participant_useHydrationSafeSize-->>participant_WorkspaceNavigator: return
+  participant_WorkspaceNavigator->>participant_useState: useState()
+  participant_useState-->>participant_WorkspaceNavigator: return
+  participant_WorkspaceNavigator->>participant_resolveWorkspaceNavigation: resolveWorkspaceNavigation()
+  participant_resolveWorkspaceNavigation->>participant_resolveAncestorIds: resolveAncestorIds()
+  participant_resolveAncestorIds->>participant_resolveAncestorIds: resolveAncestorIds()
+  participant_resolveAncestorIds-->>participant_resolveAncestorIds: return
+  participant_resolveAncestorIds-->>participant_resolveWorkspaceNavigation: return
+  participant_resolveWorkspaceNavigation-->>participant_WorkspaceNavigator: return

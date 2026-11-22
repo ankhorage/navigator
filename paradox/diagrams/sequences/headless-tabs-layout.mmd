@@ -2,14 +2,12 @@ sequenceDiagram
   participant participant_createTabsNavigation as createTabsNavigation
   participant participant_HeadlessTabsLayout as HeadlessTabsLayout
   participant participant_resolveHeadlessTabsLayout as resolveHeadlessTabsLayout
+  participant participant_resolveHeadlessTabsPresentationOrientation as resolveHeadlessTabsPresentationOrientation
   participant participant_selectPresentation as selectPresentation
-  participant participant_useBreakpoint as useBreakpoint
   participant participant_useHydrationSafeSize as useHydrationSafeSize
   participant participant_useSafeAreaInsets as useSafeAreaInsets
   participant participant_useSyncExternalStore as useSyncExternalStore
   participant_HeadlessTabsLayout->>participant_useHydrationSafeSize: useHydrationSafeSize()
-  participant_useHydrationSafeSize->>participant_useBreakpoint: useBreakpoint()
-  participant_useBreakpoint-->>participant_useHydrationSafeSize: return
   participant_useHydrationSafeSize->>participant_useSyncExternalStore: useSyncExternalStore()
   participant_useSyncExternalStore-->>participant_useHydrationSafeSize: return
   participant_useHydrationSafeSize-->>participant_HeadlessTabsLayout: return
@@ -17,6 +15,8 @@ sequenceDiagram
   participant_selectPresentation-->>participant_HeadlessTabsLayout: return
   participant_HeadlessTabsLayout->>participant_useSafeAreaInsets: useSafeAreaInsets()
   participant_useSafeAreaInsets-->>participant_HeadlessTabsLayout: return
+  participant_HeadlessTabsLayout->>participant_resolveHeadlessTabsPresentationOrientation: resolveHeadlessTabsPresentationOrientation()
+  participant_resolveHeadlessTabsPresentationOrientation-->>participant_HeadlessTabsLayout: return
   participant_HeadlessTabsLayout->>participant_resolveHeadlessTabsLayout: resolveHeadlessTabsLayout()
   participant_resolveHeadlessTabsLayout-->>participant_HeadlessTabsLayout: return
   participant_HeadlessTabsLayout->>participant_createTabsNavigation: createTabsNavigation()

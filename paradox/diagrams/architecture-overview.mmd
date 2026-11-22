@@ -209,6 +209,7 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_stack_domain_validateStackRouteOptions_ts
   module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx["src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"]
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx
+  module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --> module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --> module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
   module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx --> module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx["src/features/tabs/adapters/inbound/HeadlessTabsLayout.tsx"]
@@ -237,9 +238,9 @@ graph TD
   module_src_features_tabs_adapters_inbound_NativeMaterialDesignIconsFamily_ts --> module_src_types_nativeIcons_ts
   module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx["src/features/tabs/adapters/inbound/NavigatorTabItem.tsx"]
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
+  module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx --> module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx["src/features/tabs/adapters/inbound/NavigatorTabTrigger.tsx"]
   package__ankhorage_navigator -.-> module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx
-  module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_features_tabs_adapters_inbound_NavigatorTabItem_tsx
   module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_types_headlessTabs_ts
   module_src_features_tabs_adapters_inbound_NavigatorTabTrigger_tsx --> module_src_utils_resolveNavigatorIcon_ts
   module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts["src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"]
@@ -268,7 +269,6 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx
   module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_features_workspace_domain_resolveWorkspaceNavigation_ts
   module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_types_workspaceNavigation_ts
-  module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_utils_resolveNavigatorIcon_ts
   module_src_features_workspace_adapters_inbound_WorkspaceNavigator_tsx --> module_src_utils_useHydrationSafeSize_ts
   module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_test_ts["src/features/workspace/adapters/outbound/generateWorkspaceLayout.test.ts"]
   package__ankhorage_navigator -.-> module_src_features_workspace_adapters_outbound_generateWorkspaceLayout_test_ts
@@ -375,7 +375,6 @@ graph TD
   module_src_utils_resolveNavigatorIcon_test_ts --> module_src_utils_resolveNavigatorIcon_ts
   module_src_utils_resolveNavigatorIcon_ts["src/utils/resolveNavigatorIcon.ts"]
   package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorIcon_ts
-  module_src_utils_resolveNavigatorIcon_ts --> module_src_types_headlessTabs_ts
   module_src_utils_resolveNavigatorRootDirectory_ts["src/utils/resolveNavigatorRootDirectory.ts"]
   package__ankhorage_navigator -.-> module_src_utils_resolveNavigatorRootDirectory_ts
   module_src_utils_useHydrationSafeSize_ts["src/utils/useHydrationSafeSize.ts"]
@@ -476,6 +475,9 @@ graph TD
   module_tests_generateFiles_ts["tests/generateFiles.ts"]
   package__ankhorage_navigator -.-> module_tests_generateFiles_ts
   module_tests_generateFiles_ts --> module_src_navigator_ts
+  module_tests_headlessTabsPresentation_test_ts["tests/headlessTabsPresentation.test.ts"]
+  package__ankhorage_navigator -.-> module_tests_headlessTabsPresentation_test_ts
+  module_tests_headlessTabsPresentation_test_ts --> module_src_types_headlessTabs_ts
   module_tests_index_test_ts["tests/index.test.ts"]
   package__ankhorage_navigator -.-> module_tests_index_test_ts
   module_tests_index_test_ts --> module_src_constants_navigator_ts

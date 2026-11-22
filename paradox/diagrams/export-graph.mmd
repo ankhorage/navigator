@@ -117,6 +117,7 @@ graph LR
   module_tests_generatedTabsTypecheck_test_ts["tests/generatedTabsTypecheck.test.ts"]
   module_tests_generatedWorkspaceTypecheck_test_ts["tests/generatedWorkspaceTypecheck.test.ts"]
   module_tests_generateFiles_ts["tests/generateFiles.ts"]
+  module_tests_headlessTabsPresentation_test_ts["tests/headlessTabsPresentation.test.ts"]
   module_tests_index_test_ts["tests/index.test.ts"]
   module_tests_packageBoundary_test_ts["tests/packageBoundary.test.ts"]
   module_tests_publicEntrypoints_test_ts["tests/publicEntrypoints.test.ts"]
@@ -146,8 +147,22 @@ graph LR
   export_getNavigatorExampleCatalog["getNavigatorExampleCatalog"]
   module_src_features_catalog_composition_getNavigatorExampleCatalog_ts --> export_getNavigatorExampleCatalog
   export_getNavigatorExampleCatalog -.-> export_NavigatorExampleDescriptor
+  export_HeadlessTabsItem["HeadlessTabsItem"]
+  module_src_types_headlessTabs_ts --> export_HeadlessTabsItem
   export_HeadlessTabsLayout["HeadlessTabsLayout"]
   module_src_features_tabs_adapters_inbound_HeadlessTabsLayout_tsx --> export_HeadlessTabsLayout
+  export_HeadlessTabsPresentation["HeadlessTabsPresentation"]
+  module_src_types_headlessTabs_ts --> export_HeadlessTabsPresentation
+  export_HeadlessTabsPresentationOrientation["HeadlessTabsPresentationOrientation"]
+  module_src_types_headlessTabs_ts --> export_HeadlessTabsPresentationOrientation
+  export_HeadlessTabsPresentationProps["HeadlessTabsPresentationProps"]
+  module_src_types_headlessTabs_ts --> export_HeadlessTabsPresentationProps
+  export_HeadlessTabsPresentationProps -.-> export_HeadlessTabsItem
+  export_HeadlessTabsPresentationProps -.-> export_HeadlessTabsPresentation
+  export_HeadlessTabsPresentationProps -.-> export_HeadlessTabsPresentationOrientation
+  export_HeadlessTabsPresentationProps -.-> export_HeadlessTabsRoute
+  export_HeadlessTabsRoute["HeadlessTabsRoute"]
+  module_src_types_headlessTabs_ts --> export_HeadlessTabsRoute
   export_isNavigatorGenerationBindings["isNavigatorGenerationBindings"]
   module_src_utils_isNavigatorGenerationBindings_ts --> export_isNavigatorGenerationBindings
   export_NativeFontAwesome5Family["NativeFontAwesome5Family"]
