@@ -1,4 +1,4 @@
-import { ExampleScreen } from './example-screen';
+import { ExampleScreen } from './example-screen.js';
 
 /*** Render one observable Split View region. */
 export function SupplementaryColumnScreen() {
