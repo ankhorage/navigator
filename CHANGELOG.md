@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.6.1
+
+### Patch Changes
+
+- d37bde5: Fix Node.js ESM resolution for packed public entrypoints.
+
 ## 3.6.0
 
 ### Minor Changes
