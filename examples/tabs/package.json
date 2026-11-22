@@ -15,13 +15,13 @@
   "dependencies": {
     "@ankhorage/navigator": "3.5.22",
     "@react-native-vector-icons/ionicons": "^14.0.0",
-    "expo": "^57.0.26",
+    "expo": "^57.0.33",
     "expo-router": "57.0.24",
     "react": "19.2.3",
     "react-native": "0.86.3"
   },
   "devDependencies": {
-    "@ankhorage/ankh": "^0.12.0",
+    "@ankhorage/ankh": "^0.13.7",
     "@types/react": "^19.3.0",
     "typescript": "~6.0.3"
   },
