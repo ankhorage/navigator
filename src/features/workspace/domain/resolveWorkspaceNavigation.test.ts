@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test';
 
-import { resolveWorkspaceNavigation } from './resolveWorkspaceNavigation';
+import { resolveWorkspaceNavigation } from './resolveWorkspaceNavigation.js';
 
 const routes = [
   { id: 'home', label: 'Home', href: '/admin' },

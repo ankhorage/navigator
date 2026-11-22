@@ -1,8 +1,8 @@
 import { useTabTrigger } from 'expo-router/ui';
 import type { ReactNode } from 'react';
 
-import type { HeadlessTabsItem, HeadlessTabsRoute } from '../../../../types/headlessTabs';
-import { resolveNavigatorIcon } from '../../../../utils/resolveNavigatorIcon';
+import type { HeadlessTabsItem, HeadlessTabsRoute } from '../../../../types/headlessTabs.js';
+import { resolveNavigatorIcon } from '../../../../utils/resolveNavigatorIcon.js';
 
 /*** Bind one visible route to an Expo Router headless tab trigger and fallback route item. */
 export function NavigatorTabTrigger({ render, route }: NavigatorTabTriggerProps) {

@@ -1,12 +1,12 @@
 import type { CreateNavigatorPlanOptions } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
-import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
-import { loadCustomNavigatorRegistryAsync } from '../../utils/loadCustomNavigatorRegistryAsync';
-import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
-import { readNavigatorCliJsonAsync } from '../../utils/readNavigatorCliJsonAsync';
-import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
-import { validateNavigator } from '../../utils/validateNavigator';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli.js';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions.js';
+import { loadCustomNavigatorRegistryAsync } from '../../utils/loadCustomNavigatorRegistryAsync.js';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions.js';
+import { readNavigatorCliJsonAsync } from '../../utils/readNavigatorCliJsonAsync.js';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult.js';
+import { validateNavigator } from '../../utils/validateNavigator.js';
 
 /*** Structurally and semantically validate a manifest and narrow bindings without writes. */
 export async function validate(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {

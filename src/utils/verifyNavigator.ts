@@ -5,11 +5,11 @@ import type {
   NavigatorPlan,
 } from '@ankhorage/contracts/navigator';
 
-import packageJson from '../../package.json';
-import { collectNavigatorVerificationKinds } from '../features/catalog/domain/collectNavigatorVerificationKinds';
-import { createNavigatorCatalog } from '../features/catalog/domain/createNavigatorCatalog';
-import type { NavigatorVerificationResult } from '../types/navigatorVerification';
-import { generateNavigator } from './generateNavigator';
+import packageJson from '../../package.json' with { type: 'json' };
+import { collectNavigatorVerificationKinds } from '../features/catalog/domain/collectNavigatorVerificationKinds.js';
+import { createNavigatorCatalog } from '../features/catalog/domain/createNavigatorCatalog.js';
+import type { NavigatorVerificationResult } from '../types/navigatorVerification.js';
+import { generateNavigator } from './generateNavigator.js';
 
 /*** Verify deterministic Navigator-owned structure and report stronger runtime evidence separately. */
 export function verifyNavigator(

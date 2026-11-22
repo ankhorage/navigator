@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test';
 
-import { generateWorkspaceLayout } from './generateWorkspaceLayout';
+import { generateWorkspaceLayout } from './generateWorkspaceLayout.js';
 
 test('generates a Navigator-owned workspace layout from consumer runtime and access bindings', () => {
   const generated = generateWorkspaceLayout({

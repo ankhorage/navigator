@@ -1,7 +1,7 @@
 import type { NavigatorNode } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples';
-import { createExampleScreenRoute } from './createExampleScreenRoute';
+import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples.js';
+import { createExampleScreenRoute } from './createExampleScreenRoute.js';
 
 /*** Define standalone Drawer compositions without introducing product-flow semantics. */
 export function createDrawerNavigatorExamples(): readonly NavigatorExampleDefinition[] {

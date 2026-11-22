@@ -1,4 +1,4 @@
-import type { NavigatorExampleDescriptor } from '../types/navigatorExamples';
+import type { NavigatorExampleDescriptor } from '../types/navigatorExamples.js';
 
 /*** Render the root catalog index from the same public descriptors used for verification. */
 export function renderNavigatorExamplesIndex(

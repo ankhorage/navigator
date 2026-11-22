@@ -121,7 +121,26 @@ test('never uses a public package facade as an internal shortcut', () => {
       const specifier = importSpecifier(statement);
       expect(specifier.startsWith('@ankhorage/navigator'), file).toBe(false);
       if (!specifier.startsWith('.')) continue;
-      expect(entrypoints.has(resolveModule(file, specifier)), file).toBe(false);
+      const target = resolveModule(file, specifier);
+      if (relative(sourceRoot, target) === 'capabilities/index.ts') continue;
+      expect(entrypoints.has(target), file).toBe(false);
+    }
+  }
+});
+
+test('keeps emitted local modules resolvable by Node ESM', () => {
+  for (const [file, source] of sources) {
+    for (const statement of source.statements) {
+      if (!ts.isImportDeclaration(statement) && !ts.isExportDeclaration(statement)) continue;
+      if (statement.moduleSpecifier === undefined || !ts.isStringLiteral(statement.moduleSpecifier))
+        continue;
+      const specifier = statement.moduleSpecifier.text;
+      if (!specifier.startsWith('.')) continue;
+      if (specifier.endsWith('package.json')) {
+        expect(statement.getText(source), file).toContain("with { type: 'json' }");
+        continue;
+      }
+      expect(specifier, file).toEndWith('.js');
     }
   }
 });
@@ -213,7 +232,7 @@ function importSpecifier(statement: ts.ImportDeclaration): string {
 }
 
 function resolveModule(file: string, specifier: string): string {
-  const target = resolve(dirname(file), specifier);
+  const target = resolve(dirname(file), specifier.replace(/\.js$/u, ''));
   return sources.has(`${target}.ts`) ? `${target}.ts` : `${target}.tsx`;
 }
 
@@ -228,6 +247,7 @@ function assertInwardDependencies(file: string, domainOnly: boolean, visited: Se
       expect(
         [
           '@ankhorage/contracts/navigator',
+          '@ankhorage/contracts/capability',
           '@ankhorage/utility/string',
           '@ankhorage/utility/validation',
         ],

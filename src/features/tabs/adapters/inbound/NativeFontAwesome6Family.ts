@@ -4,7 +4,7 @@ import {
 } from '@react-native-vector-icons/fontawesome6/static';
 import type { ColorValue, ImageSourcePropType } from 'react-native';
 
-import type { NativeVectorIconFamily } from '../../../../types/nativeIcons';
+import type { NativeVectorIconFamily } from '../../../../types/nativeIcons.js';
 
 /*** Regular-style Font Awesome 6 family adapter for Expo Native Tabs. */
 export const NativeFontAwesome6Family: NativeVectorIconFamily = {

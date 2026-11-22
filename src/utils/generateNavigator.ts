@@ -11,13 +11,13 @@ import type {
 import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/utility/string';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
-import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/resolveDrawerRouteOptions';
-import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath';
-import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile';
-import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile';
-import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile';
-import { resolveNavigatorRootDirectory } from './resolveNavigatorRootDirectory';
-import { validateNavigatorBindings } from './validateNavigatorBindings';
+import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/resolveDrawerRouteOptions.js';
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath.js';
+import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile.js';
+import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile.js';
+import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile.js';
+import { resolveNavigatorRootDirectory } from './resolveNavigatorRootDirectory.js';
+import { validateNavigatorBindings } from './validateNavigatorBindings.js';
 
 /*** Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings. */
 export function generateNavigator(

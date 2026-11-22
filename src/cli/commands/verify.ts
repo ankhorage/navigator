@@ -1,11 +1,11 @@
-import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli';
-import type { NavigatorVerificationResult } from '../../types/navigatorVerification';
-import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions';
-import { createNavigatorPlan } from '../../utils/createNavigatorPlan';
-import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync';
-import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions';
-import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult';
-import { verifyNavigator } from '../../utils/verifyNavigator';
+import type { NavigatorCliExecution, NavigatorCliRunResult } from '../../types/navigatorCli.js';
+import type { NavigatorVerificationResult } from '../../types/navigatorVerification.js';
+import { assertNavigatorCliOptions } from '../../utils/assertNavigatorCliOptions.js';
+import { createNavigatorPlan } from '../../utils/createNavigatorPlan.js';
+import { loadNavigatorCliInputAsync } from '../../utils/loadNavigatorCliInputAsync.js';
+import { parseNavigatorCliOptions } from '../../utils/parseNavigatorCliOptions.js';
+import { reportNavigatorCliResult } from '../../utils/reportNavigatorCliResult.js';
+import { verifyNavigator } from '../../utils/verifyNavigator.js';
 
 /*** Verify Navigator-owned structural and deterministic generation evidence without writes. */
 export async function verify(input: NavigatorCliExecution): Promise<NavigatorCliRunResult> {

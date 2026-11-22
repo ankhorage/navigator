@@ -3,7 +3,7 @@ import type { NavigatorGeneratedFile, NavigatorNode } from '@ankhorage/contracts
 import type {
   NavigatorExampleDefinition,
   NavigatorExampleDescriptor,
-} from '../types/navigatorExamples';
+} from '../types/navigatorExamples.js';
 
 /*** Create the app-owned observable screens, guards, and registered integration for one example. */
 export function createNavigatorExampleScreenFiles(
@@ -255,7 +255,7 @@ function FinalAction({ completed, onComplete }: { completed: boolean; onComplete
 function columnScreen(fileName: string, exportName: string): NavigatorGeneratedFile {
   return {
     path: `src/screens/${fileName}.tsx`,
-    contents: `import { ExampleScreen } from './example-screen';\n\n/*** Render one observable Split View region. */\nexport function ${exportName}() {\n  return <ExampleScreen />;\n}\n`,
+    contents: `import { ExampleScreen } from './example-screen.js';\n\n/*** Render one observable Split View region. */\nexport function ${exportName}() {\n  return <ExampleScreen />;\n}\n`,
   };
 }
 

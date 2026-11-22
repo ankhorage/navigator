@@ -7,7 +7,7 @@ import type {
   SplitViewNavigatorNode,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator.js';
 
 /*** Add constrained placement, binding, version, and fallback diagnostics for Split View. */
 export function addSplitViewDiagnostics(

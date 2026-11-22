@@ -4,13 +4,13 @@ import type {
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
 
-import packageJson from '../../package.json';
+import packageJson from '../../package.json' with { type: 'json' };
 import type {
   NavigatorExampleDefinition,
   NavigatorExampleDescriptor,
-} from '../types/navigatorExamples';
-import { createNavigatorExampleScreenFiles } from './createNavigatorExampleScreenFiles';
-import { renderNavigatorExampleReadme } from './renderNavigatorExampleReadme';
+} from '../types/navigatorExamples.js';
+import { createNavigatorExampleScreenFiles } from './createNavigatorExampleScreenFiles.js';
+import { renderNavigatorExampleReadme } from './renderNavigatorExampleReadme.js';
 
 /*** Create one complete app-owned Expo shell around Navigator-generated route files. */
 export function createNavigatorExampleScaffold(

@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test';
 
-import { resolveNavigatorIcon } from './resolveNavigatorIcon';
+import { resolveNavigatorIcon } from './resolveNavigatorIcon.js';
 
 test('preserves named font icon metadata for the presentation owner', () => {
   expect(

@@ -2,9 +2,9 @@ import type { ResolvedTabsPresentation } from '@ankhorage/contracts/navigator';
 import type { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import type { HeadlessTabsItem, HeadlessTabsRoute } from '../../../../types/headlessTabs';
-import { NavigatorTabItem } from './NavigatorTabItem';
-import { NavigatorTabTrigger } from './NavigatorTabTrigger';
+import type { HeadlessTabsItem, HeadlessTabsRoute } from '../../../../types/headlessTabs.js';
+import { NavigatorTabItem } from './NavigatorTabItem.js';
+import { NavigatorTabTrigger } from './NavigatorTabTrigger.js';
 
 /*** Render the accessible unthemed fallback for a built-in Navigator tab topology. */
 export function BuiltInTabsPresentation({ presentation, routes }: BuiltInTabsPresentationProps) {

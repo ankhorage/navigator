@@ -1,7 +1,7 @@
 import type {
   ResolvedWorkspaceNavigationRoute,
   WorkspaceNavigationRoute,
-} from '../../../types/workspaceNavigation';
+} from '../../../types/workspaceNavigation.js';
 
 /*** Resolve visible destinations and selected ancestors from one consumer-owned route tree. */
 export function resolveWorkspaceNavigation(

@@ -6,11 +6,11 @@ import type {
 import type {
   NavigatorExampleDescriptor,
   NavigatorExampleTarget,
-} from '../../../types/navigatorExamples';
-import { createNavigatorExamplePlan } from '../../../utils/createNavigatorExamplePlan';
-import { verifyNavigator } from '../../../utils/verifyNavigator';
-import { createNavigatorExampleDefinitions } from '../domain/createNavigatorExampleDefinitions';
-import { getNavigatorCatalog } from './getNavigatorCatalog';
+} from '../../../types/navigatorExamples.js';
+import { createNavigatorExamplePlan } from '../../../utils/createNavigatorExamplePlan.js';
+import { verifyNavigator } from '../../../utils/verifyNavigator.js';
+import { createNavigatorExampleDefinitions } from '../domain/createNavigatorExampleDefinitions.js';
+import { getNavigatorCatalog } from './getNavigatorCatalog.js';
 
 /*** Return the standalone composition catalog with target truth derived from Navigator policy. */
 export function getNavigatorExampleCatalog(): readonly NavigatorExampleDescriptor[] {

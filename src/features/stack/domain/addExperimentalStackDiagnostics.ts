@@ -7,8 +7,8 @@ import type {
   StackScreenOptions,
 } from '@ankhorage/contracts/navigator';
 
-import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator';
-import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource';
+import { NAVIGATOR_ROUTER_POLICY } from '../../../constants/navigator.js';
+import { resolveEffectiveStackConfigSource } from './resolveEffectiveStackConfigSource.js';
 
 /*** Add app-wide platform, version, option, and runtime requirements for Experimental Stack. */
 export function addExperimentalStackDiagnostics(

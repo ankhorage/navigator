@@ -4,5 +4,5 @@ export type {
   HeadlessTabsPresentationOrientation,
   HeadlessTabsPresentationProps,
   HeadlessTabsRoute,
-} from '../../types/headlessTabs';
-export { HeadlessTabsLayout } from './adapters/inbound/HeadlessTabsLayout';
+} from '../../types/headlessTabs.js';
+export { HeadlessTabsLayout } from './adapters/inbound/HeadlessTabsLayout.js';

@@ -10,13 +10,13 @@ import type {
   NavigatorExampleGenerationResult,
   NavigatorExampleId,
   NavigatorExampleTarget,
-} from '../../../types/navigatorExamples';
-import { createNavigatorExamplePlan } from '../../../utils/createNavigatorExamplePlan';
-import { createNavigatorExampleScaffold } from '../../../utils/createNavigatorExampleScaffold';
-import { generateNavigator } from '../../../utils/generateNavigator';
-import { renderNavigatorExamplesIndex } from '../../../utils/renderNavigatorExamplesIndex';
-import { createNavigatorExampleDefinitions } from '../domain/createNavigatorExampleDefinitions';
-import { getNavigatorExampleCatalog } from './getNavigatorExampleCatalog';
+} from '../../../types/navigatorExamples.js';
+import { createNavigatorExamplePlan } from '../../../utils/createNavigatorExamplePlan.js';
+import { createNavigatorExampleScaffold } from '../../../utils/createNavigatorExampleScaffold.js';
+import { generateNavigator } from '../../../utils/generateNavigator.js';
+import { renderNavigatorExamplesIndex } from '../../../utils/renderNavigatorExamplesIndex.js';
+import { createNavigatorExampleDefinitions } from '../domain/createNavigatorExampleDefinitions.js';
+import { getNavigatorExampleCatalog } from './getNavigatorExampleCatalog.js';
 
 /*** Generate one or every complete root examples application as a deterministic file set. */
 export function generateNavigatorExamples(

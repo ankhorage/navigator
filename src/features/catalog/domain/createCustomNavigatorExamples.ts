@@ -1,7 +1,7 @@
 import type { CustomNavigatorRegistration } from '@ankhorage/contracts/navigator';
 
-import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples';
-import { createExampleScreenRoute } from './createExampleScreenRoute';
+import type { NavigatorExampleDefinition } from '../../../types/navigatorExamples.js';
+import { createExampleScreenRoute } from './createExampleScreenRoute.js';
 
 /*** Define the registered custom navigator example and its narrow integration record. */
 export function createCustomNavigatorExamples(): readonly NavigatorExampleDefinition[] {
