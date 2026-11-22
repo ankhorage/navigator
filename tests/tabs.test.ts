@@ -137,7 +137,7 @@ describe('@ankhorage/navigator JavaScript tabs generation', () => {
 });
 
 describe('@ankhorage/navigator responsive tabs generation', () => {
-  test('keeps one headless route topology across responsive Surface presentations', () => {
+  test('keeps one headless route topology across responsive application presentations', () => {
     const { layout, plan } = generatedLayout(
       {
         type: 'tabs',
@@ -165,9 +165,9 @@ describe('@ankhorage/navigator responsive tabs generation', () => {
       medium: 'rail',
     });
     expect(layout).toContain("from '@ankhorage/navigator/tabs'");
-    expect(layout).toContain("import { ResponsiveProvider } from '@ankhorage/surface';");
+    expect(layout).not.toContain('@ankhorage/surface');
     expect(layout).toContain('initialRouteName="(account)/settings/index"');
-    expect(layout).toContain('return (\n    <ResponsiveProvider>');
+    expect(layout).toContain('return (\n    <HeadlessTabsLayout');
     expect(layout).toContain('<HeadlessTabsLayout');
     expect(layout).toContain("name: '(account)/settings/index'");
     expect(layout).toContain("href: '/settings'");
@@ -391,8 +391,8 @@ describe('@ankhorage/navigator tabs route diagnostics', () => {
   });
 });
 
-describe('@ankhorage/navigator tabs SVG source registration', () => {
-  test('passes media-backed SVG icons through a registered Surface resolver on native', () => {
+describe('@ankhorage/navigator tabs icon presentation', () => {
+  test('preserves media-backed icon descriptors without a presentation resolver binding', () => {
     const plan = createNavigatorPlan(
       {
         type: 'tabs',
@@ -405,19 +405,12 @@ describe('@ankhorage/navigator tabs SVG source registration', () => {
       { expoRouterVersion: EXPO_ROUTER_VERSION, platform: 'ios' },
     );
     expect(plan.diagnostics).toEqual([]);
-    const missing = generateNavigator(plan, { guards: {}, screens });
-    expect(missing.files).toEqual([]);
-    expect(missing.diagnostics.map(({ code }) => code)).toContain(
-      'missing-icon-source-resolver-binding',
-    );
     const layout = generateNavigator(plan, {
       guards: {},
       screens,
-      iconSourceResolver: { module: '@/media/icons', exportName: 'resolveIconSource' },
     }).files[0]?.contents;
-    expect(layout).toContain('resolveIconSource as NavigatorResolveTabsIconSource');
-    expect(layout).toContain('resolveIconSource={NavigatorResolveTabsIconSource}');
     expect(layout).toContain("source: { mediaId: 'home' }");
+    expect(layout).not.toContain('resolveIconSource');
   });
 });
 

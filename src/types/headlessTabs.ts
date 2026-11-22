@@ -1,5 +1,4 @@
 import type { RouteDefinition } from '@ankhorage/contracts/navigator';
-import type { IconSource } from '@ankhorage/surface';
 import type { ReactNode } from 'react';
 
 export interface HeadlessTabsRoute {
@@ -11,11 +10,19 @@ export interface HeadlessTabsRoute {
   visible: boolean;
 }
 
-export type HeadlessTabsIconSourceResolver = (source: IconMediaReference) => ResolvedSvgSource;
+/**
+ * Presentation inputs resolved by Navigator while Expo Router remains the only routing state
+ * owner. A visual package consumes these values without importing Navigator internals.
+ */
+export interface HeadlessTabsPresentationProps {
+  readonly presentation: HeadlessTabsPresentation;
+  readonly routes: readonly HeadlessTabsRoute[];
+  readonly orientation: HeadlessTabsPresentationOrientation;
+  readonly renderItem: (route: HeadlessTabsRoute, compact?: boolean) => ReactNode;
+}
 
-type IconMediaReference = Extract<
-  NonNullable<RouteDefinition['icon']>,
-  { source: unknown }
->['source'];
+/** The presentation selected by Navigator's responsive policy. */
+export type HeadlessTabsPresentation = 'bottom' | 'top' | 'rail' | 'sidebar' | 'custom';
 
-type ResolvedSvgSource = Extract<IconSource, { source: unknown }>['source'];
+/** Layout direction supplied to a presentation so vertical custom chrome is explicit. */
+export type HeadlessTabsPresentationOrientation = 'horizontal' | 'vertical';

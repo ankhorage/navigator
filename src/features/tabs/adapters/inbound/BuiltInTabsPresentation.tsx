@@ -1,19 +1,11 @@
 import type { ResolvedTabsPresentation } from '@ankhorage/contracts/navigator';
-import { ScrollView, View } from '@ankhorage/surface';
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import type {
-  HeadlessTabsIconSourceResolver,
-  HeadlessTabsRoute,
-} from '../../../../types/headlessTabs';
+import type { HeadlessTabsRoute } from '../../../../types/headlessTabs';
 import { NavigatorTabTrigger } from './NavigatorTabTrigger';
 
-/*** Render Navigator-owned bottom, top, rail, or sidebar tab chrome. */
-export function BuiltInTabsPresentation({
-  presentation,
-  routes,
-  resolveIconSource,
-}: BuiltInTabsPresentationProps) {
+/*** Render the accessible unthemed fallback for a built-in Navigator tab topology. */
+export function BuiltInTabsPresentation({ presentation, routes }: BuiltInTabsPresentationProps) {
   const horizontal = presentation === 'bottom' || presentation === 'top';
   if (!horizontal) {
     return (
@@ -23,14 +15,9 @@ export function BuiltInTabsPresentation({
         style={styles.verticalNavigation}
         testID={`navigator-tabs-${presentation}`}
       >
-        <View gap="s" px={presentation === 'rail' ? 's' : 'm'} py="l" width="100%">
+        <View style={presentation === 'rail' ? styles.railItems : styles.sidebarItems}>
           {routes.map((route) => (
-            <NavigatorTabTrigger
-              key={route.name}
-              presentation={presentation}
-              resolveIconSource={resolveIconSource}
-              route={route}
-            />
+            <NavigatorTabTrigger key={route.name} presentation={presentation} route={route} />
           ))}
         </View>
       </ScrollView>
@@ -43,12 +30,7 @@ export function BuiltInTabsPresentation({
       testID={`navigator-tabs-${presentation}`}
     >
       {routes.map((route) => (
-        <NavigatorTabTrigger
-          key={route.name}
-          presentation="horizontal"
-          resolveIconSource={resolveIconSource}
-          route={route}
-        />
+        <NavigatorTabTrigger key={route.name} presentation="horizontal" route={route} />
       ))}
     </View>
   );
@@ -57,10 +39,11 @@ export function BuiltInTabsPresentation({
 interface BuiltInTabsPresentationProps {
   presentation: Exclude<ResolvedTabsPresentation, 'custom'>;
   routes: readonly HeadlessTabsRoute[];
-  resolveIconSource: HeadlessTabsIconSourceResolver | undefined;
 }
 
 const styles = StyleSheet.create({
   horizontalNavigation: { flexDirection: 'row' },
+  railItems: { gap: 8, padding: 8, width: '100%' },
+  sidebarItems: { gap: 8, padding: 16, width: '100%' },
   verticalNavigation: { flex: 1, minHeight: 0, width: '100%' },
 });

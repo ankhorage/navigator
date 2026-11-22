@@ -78,7 +78,7 @@ function createTabsCapabilities(
           presentation === 'custom'
             ? [requires('registered-presentation', 'Requires a registered presentation binding.')]
             : [],
-        limitations: ['Visual chrome is Surface-owned over one Expo Router headless topology.'],
+        limitations: ['Applications supply visual chrome over one Expo Router headless topology.'],
       }),
   );
   return [
@@ -239,7 +239,6 @@ function headlessTabsDependencies(
 ): readonly NavigatorDependencyRequirement[] {
   return [
     policy.packageName,
-    '@ankhorage/surface',
     'expo-router',
     'react',
     'react-dom',

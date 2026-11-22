@@ -2,21 +2,13 @@ import { expect, test } from 'bun:test';
 
 import { resolveNavigatorIcon } from './resolveNavigatorIcon';
 
-test('keeps named font icons when the optional source field is undefined', () => {
+test('preserves named font icon metadata for the presentation owner', () => {
   expect(
     resolveNavigatorIcon({ name: 'home-outline', provider: 'Ionicons', source: undefined }),
-  ).toEqual({
-    name: 'home-outline',
-    provider: 'Ionicons',
-    variant: undefined,
-  });
+  ).toEqual({ name: 'home-outline', provider: 'Ionicons', source: undefined });
 });
 
-test('uses a consumer resolver for media icons in adapters that accept them', () => {
+test('preserves media icon metadata without requiring a Surface resolver', () => {
   const reference = { mediaId: 'brand-mark' };
-  expect(
-    resolveNavigatorIcon({ source: reference }, (source) => ({ uri: source.mediaId })),
-  ).toEqual({
-    source: { uri: 'brand-mark' },
-  });
+  expect(resolveNavigatorIcon({ source: reference })).toEqual({ source: reference });
 });

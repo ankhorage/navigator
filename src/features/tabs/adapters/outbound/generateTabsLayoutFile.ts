@@ -179,7 +179,6 @@ function createHeadlessTabsFile(
   }
   const imports: GeneratedImport[] = [...HEADLESS_TABS_IMPORTS];
   let customPresentation = '';
-  let iconSourceResolver = '';
   if (tabs.customPresentationId !== undefined) {
     const binding = Reflect.get(bindings.tabPresentations ?? {}, tabs.customPresentationId) as
       NavigatorScreenModule | undefined;
@@ -190,25 +189,12 @@ function createHeadlessTabsFile(
       createGeneratedImport(binding.module, binding.exportName, 'NavigatorCustomTabsPresentation'),
     );
   }
-  if (node.routes.some((route) => route.icon !== undefined && 'source' in route.icon)) {
-    const binding = bindings.iconSourceResolver;
-    if (binding === undefined) throw new Error('Missing registered Tabs icon-source resolver.');
-    assertStaticImportBinding(binding.module, binding.exportName, 'Tabs icon-source resolver');
-    iconSourceResolver = ' resolveIconSource={NavigatorResolveTabsIconSource}';
-    imports.push(
-      createGeneratedImport(binding.module, binding.exportName, 'NavigatorResolveTabsIconSource'),
-    );
-  }
   const routes = createHeadlessTabRoutes(node.routes);
   const initialRouteName = resolveNavigatorInitialRouteName(node);
   const initialRoute =
     initialRouteName === undefined ? '' : ` initialRouteName=${JSON.stringify(initialRouteName)}`;
   const routeSource = renderHeadlessTabRoutes(routes);
-  const component = createHeadlessTabsComponent(
-    customPresentation,
-    initialRoute,
-    iconSourceResolver,
-  );
+  const component = createHeadlessTabsComponent(customPresentation, initialRoute);
   return {
     path: `${directory}/_layout.tsx`,
     contents: `${sortGeneratedImports(imports)}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component)}\n}\n`,
@@ -243,10 +229,6 @@ const HEADLESS_TABS_IMPORTS: readonly GeneratedImport[] = [
   {
     module: '@ankhorage/navigator/tabs',
     statement: "import { HeadlessTabsLayout } from '@ankhorage/navigator/tabs';",
-  },
-  {
-    module: '@ankhorage/surface',
-    statement: "import { ResponsiveProvider } from '@ankhorage/surface';",
   },
 ];
 
@@ -285,35 +267,22 @@ function generatedImportGroup(module: string): string {
   return /^@?\w/u.test(module) ? '0' : '1';
 }
 
-/*** Create the responsive wrapper around one generated Headless Tabs runtime component. */
-function createHeadlessTabsComponent(
-  customPresentation: string,
-  initialRoute: string,
-  iconSourceResolver: string,
-): string {
-  return `<ResponsiveProvider>\n${renderHeadlessTabsLayout(
-    customPresentation,
-    initialRoute,
-    iconSourceResolver,
-  )}\n    </ResponsiveProvider>`;
+/*** Create one generated Headless Tabs runtime component without presentation dependencies. */
+function createHeadlessTabsComponent(customPresentation: string, initialRoute: string): string {
+  return renderHeadlessTabsLayout(customPresentation, initialRoute);
 }
 
 /*** Render the Headless Tabs runtime component without requiring a consumer formatter pass. */
-function renderHeadlessTabsLayout(
-  customPresentation: string,
-  initialRoute: string,
-  iconSourceResolver: string,
-): string {
+function renderHeadlessTabsLayout(customPresentation: string, initialRoute: string): string {
   const properties = [
     customPresentation.trim(),
     initialRoute.trim(),
     'presentations={presentations}',
-    iconSourceResolver.trim(),
     'routes={routes}',
   ].filter((property) => property !== '');
-  const inline = `      <HeadlessTabsLayout ${properties.join(' ')} />`;
+  const inline = `<HeadlessTabsLayout ${properties.join(' ')} />`;
   if (inline.length <= 100) return inline;
-  return `      <HeadlessTabsLayout\n${properties.map((property) => `        ${property}`).join('\n')}\n      />`;
+  return `<HeadlessTabsLayout\n${properties.map((property) => `      ${property}`).join('\n')}\n    />`;
 }
 
 /*** Render Headless Tabs route records as stable multiline source objects. */
