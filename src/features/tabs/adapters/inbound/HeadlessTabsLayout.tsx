@@ -29,10 +29,14 @@ export function HeadlessTabsLayout({
   const size = useHydrationSafeSize();
   const presentation = selectPresentation(presentations, size);
   const insets = useSafeAreaInsets();
-  const layout = resolveHeadlessTabsLayout(presentation, customPresentationOrientation, insets);
+  const orientation = resolveHeadlessTabsPresentationOrientation(
+    presentation,
+    customPresentationOrientation,
+  );
+  const layout = resolveHeadlessTabsLayout(presentation, orientation, insets);
   const navigation = createTabsNavigation({
     CustomPresentation,
-    customPresentationOrientation,
+    orientation,
     presentation,
     routes,
   });
@@ -106,13 +110,13 @@ interface HeadlessTabsLayoutProps {
 /*** Resolve shell geometry and safe areas for the current built-in presentation. */
 function resolveHeadlessTabsLayout(
   presentation: ResolvedTabsPresentation,
-  customPresentationOrientation: HeadlessTabsPresentationOrientation,
+  orientation: HeadlessTabsPresentationOrientation,
   insets: EdgeInsets,
 ): ResolvedHeadlessTabsLayout {
   const vertical =
     presentation === 'rail' ||
     presentation === 'sidebar' ||
-    (presentation === 'custom' && customPresentationOrientation === 'vertical');
+    (presentation === 'custom' && orientation === 'vertical');
   const navigationInsets =
     presentation === 'top'
       ? { paddingTop: insets.top }
@@ -139,6 +143,16 @@ function resolveHeadlessTabsLayout(
     navigationPanelStyle,
     vertical,
   };
+}
+
+/*** Resolve the actual selected presentation direction without changing Navigator-owned geometry. */
+function resolveHeadlessTabsPresentationOrientation(
+  presentation: ResolvedTabsPresentation,
+  customPresentationOrientation: HeadlessTabsPresentationOrientation,
+): HeadlessTabsPresentationOrientation {
+  if (presentation === 'rail' || presentation === 'sidebar') return 'vertical';
+  if (presentation === 'custom') return customPresentationOrientation;
+  return 'horizontal';
 }
 
 interface ResolvedHeadlessTabsLayout {
@@ -168,12 +182,12 @@ function selectPresentation(
 /*** Select built-in or registered custom chrome for the currently visible routes. */
 function TabsNavigation({
   CustomPresentation,
-  customPresentationOrientation,
+  orientation,
   presentation,
   routes,
 }: {
   CustomPresentation: ComponentType<HeadlessTabsPresentationProps> | undefined;
-  customPresentationOrientation: HeadlessTabsPresentationOrientation;
+  orientation: HeadlessTabsPresentationOrientation;
   presentation: ResolvedTabsPresentation;
   routes: readonly HeadlessTabsRoute[];
 }) {
@@ -182,16 +196,17 @@ function TabsNavigation({
   const renderItem: HeadlessTabsPresentationProps['renderItem'] = (route, render) => (
     <NavigatorTabTrigger key={route.name} render={render} route={route} />
   );
-  if (presentation === 'custom') {
-    return CustomPresentation === undefined ? null : (
+  if (CustomPresentation !== undefined) {
+    return (
       <CustomPresentation
-        orientation={customPresentationOrientation}
+        orientation={orientation}
         presentation={presentation}
         renderItem={renderItem}
         routes={visibleRoutes}
       />
     );
   }
+  if (presentation === 'custom') return null;
   return <BuiltInTabsPresentation presentation={presentation} routes={visibleRoutes} />;
 }
 

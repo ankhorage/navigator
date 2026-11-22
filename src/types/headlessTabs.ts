@@ -41,5 +41,5 @@ export interface HeadlessTabsPresentationProps {
 /** The presentation selected by Navigator's responsive policy. */
 export type HeadlessTabsPresentation = 'bottom' | 'top' | 'rail' | 'sidebar' | 'custom';
 
-/** Layout direction supplied to a presentation so vertical custom chrome is explicit. */
+/** Layout direction derived from Navigator's selected responsive presentation. */
 export type HeadlessTabsPresentationOrientation = 'horizontal' | 'vertical';
