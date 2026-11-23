@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.6.6
+
+### Patch Changes
+
+- 762279b: Update dependencies: `@ankhorage/contracts`.
+
 ## 3.6.5
 
 ### Patch Changes
