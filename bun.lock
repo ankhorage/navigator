@@ -6,7 +6,7 @@
       "name": "@ankhorage/navigator",
       "dependencies": {
         "@ankhorage/capability": "^0.2.3",
-        "@ankhorage/contracts": "^26.13.0",
+        "@ankhorage/contracts": "^26.13.1",
         "@ankhorage/utility": "^1.10.1",
       },
       "devDependencies": {
