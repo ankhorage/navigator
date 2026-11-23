@@ -1,5 +1,12 @@
 # @ankhorage/navigator
 
+## 3.6.2
+
+### Patch Changes
+
+- aef7eb6: Update dependencies: `@ankhorage/contracts`.
+- 4d040de: Synchronize managed release workflows with @ankhorage/devtools 2.10.11.
+
 ## 3.6.1
 
 ### Patch Changes
