@@ -46,6 +46,39 @@ describe('Navigator capability catalog', () => {
     expect(navigation).not.toHaveProperty('output');
   });
 
+  test('publishes the readable router-owned state and canonical back intent', () => {
+    expect(CAPABILITIES.find(({ id }) => id === 'navigator.route')).toEqual({
+      id: 'navigator.route',
+      owner: '@ankhorage/navigator',
+      access: ['read', 'subscribe'],
+      binding: { kind: 'state', bindableAs: ['source'] },
+      label: 'Current route',
+      output: {
+        schema: {
+          type: 'object',
+          required: ['pathname', 'params', 'canGoBack'],
+          properties: {
+            pathname: { type: 'string' },
+            params: {
+              type: 'object',
+              additionalProperties: {
+                oneOf: [{ type: 'string' }, { type: 'array', items: { type: 'string' } }],
+              },
+            },
+            canGoBack: { type: 'boolean' },
+          },
+        },
+      },
+    });
+    expect(CAPABILITIES.find(({ id }) => id === 'navigator.back')).toEqual({
+      id: 'navigator.back',
+      owner: '@ankhorage/navigator',
+      access: ['invoke'],
+      binding: { kind: 'action', bindableAs: ['target'] },
+      label: 'Back',
+    });
+  });
+
   test('assigns every command to one distinct published Navigator capability', () => {
     const commandIds = createCliProvider.commands.map(({ capability }) => capability).sort();
 
