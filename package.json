@@ -262,7 +262,7 @@
   },
   "devDependencies": {
     "@ankhorage/ankh": "^0.13.7",
-    "@ankhorage/devtools": "^2.9.10",
+    "@ankhorage/devtools": "^2.10.11",
     "@ankhorage/paradox": "^0.6.0",
     "@playwright/test": "^1.65.1",
     "@react-native-vector-icons/fontawesome": "^14.0.0",
