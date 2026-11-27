@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.6.7
+
+### Patch Changes
+
+- eadc2fb: Update dependencies: `@ankhorage/contracts`, `@ankhorage/utility`.
+
 ## 3.6.6
 
 ### Patch Changes
