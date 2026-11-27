@@ -13,7 +13,7 @@ export function generateRootRedirectFile(
   if (route === undefined)
     throw new Error(`Missing initial route ${JSON.stringify(root.initialRouteName)}.`);
   const expoRouterPath = resolveExpoRouterRoutePath(route);
-  if (expoRouterPath === 'index') return undefined;
+  if (expoRouterPath === 'index' || route.path === '/') return undefined;
   if (route.path === undefined) {
     throw new Error(
       `Root redirect target ${JSON.stringify(root.initialRouteName)} requires a public route path.`,

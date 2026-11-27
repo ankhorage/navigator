@@ -15,6 +15,7 @@ import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/
 import { createNavigatorLayoutImports } from '../features/routing/adapters/outbound/createNavigatorLayoutImports.js';
 import { generateRootRedirectFile } from '../features/routing/adapters/outbound/generateRootRedirectFile.js';
 import { generateScreenFile } from '../features/routing/adapters/outbound/generateScreenFile.js';
+import { createRootOutputPlan } from '../features/routing/domain/createRootOutputPlan.js';
 import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath.js';
 import { resolveNavigatorInitialRouteName } from '../features/routing/domain/resolveNavigatorInitialRouteName.js';
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile.js';
@@ -49,15 +50,16 @@ export function generateNavigator(
   ) {
     return createGenerationResult(plan, diagnostics, []);
   }
+  const root = createRootOutputPlan(plan.root, options);
   const files = collectFiles(
-    plan.root,
+    root,
     rootDirectory,
     bindings,
     options.includeScreenFiles ?? true,
     options.rootLayoutWrapper,
   );
   if (options.rootRedirect === true) {
-    const redirect = generateRootRedirectFile(plan.root, rootDirectory);
+    const redirect = generateRootRedirectFile(root, rootDirectory);
     if (redirect !== undefined) files.push(redirect);
   }
   files.sort((left, right) => left.path.localeCompare(right.path));
