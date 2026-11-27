@@ -11,7 +11,7 @@
       },
       "devDependencies": {
         "@ankhorage/ankh": "^0.13.7",
-        "@ankhorage/devtools": "^2.12.2",
+        "@ankhorage/devtools": "^2.12.3",
         "@ankhorage/paradox": "^0.6.1",
         "@playwright/test": "^1.65.1",
         "@react-native-vector-icons/fontawesome": "^14.0.0",
@@ -74,7 +74,7 @@
 
     "@ankhorage/contracts": ["@ankhorage/contracts@26.19.0", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.4", "@ankhorage/utility": "^1.11.0" } }, "sha512-Oe/A98tQisSWcJ6fWITCL/4kfzCaOePPjNgYOF8jq5Gws+i9CZgZA7kzdJOcOoT7WEFE0mPcNmLF0HWjRuC5FA=="],
 
-    "@ankhorage/devtools": ["@ankhorage/devtools@2.12.2", "", { "dependencies": { "@ankhorage/apm": "^0.8.15", "@ankhorage/capability": "^0.2.3", "@ankhorage/contracts": "^26.17.1", "@ankhorage/project-detector": "^0.3.6", "@ankhorage/rules-repository": "^0.6.0", "@ankhorage/utility": "^0.5.5", "@changesets/cli": "^3.0.3", "@eslint/compat": "^2.1.1", "@eslint/js": "^10.0.1", "@next/eslint-plugin-next": "^16.4.6", "eslint": "^10.15.0", "eslint-config-prettier": "^10.1.9", "eslint-plugin-import": "^2.32.0", "eslint-plugin-prettier": "^5.5.7", "eslint-plugin-react": "^7.37.5", "eslint-plugin-react-hooks": "^7.1.1", "eslint-plugin-react-native": "^5.0.0", "eslint-plugin-security": "^4.2.1", "eslint-plugin-simple-import-sort": "^14.0.0", "eslint-plugin-unused-imports": "^4.4.1", "knip": "^6.48.0", "prettier": "^3.10.1", "typescript": "~6.0.3", "typescript-eslint": "^8.74.0", "yaml": "^2.9.1" }, "bin": { "ankhorage-knip": "dist/cli/bin/knip.js", "ankhorage-eslint": "dist/cli/bin/eslint.js", "ankhorage-prettier": "dist/cli/bin/prettier.js", "ankhorage-changeset": "dist/cli/bin/changeset.js", "ankhorage-ci-impact": "dist/cli/bin/ci-impact.js", "ankhorage-structure": "dist/cli/bin/structure.js", "ankhorage-repository": "dist/cli/bin/repository.js", "ankhorage-apm-release": "dist/cli/bin/apm-release.js" } }, "sha512-HnMU/xaHRCDZXpfOVm/P/JESSkxTXOPL6S1VmyO7YwcyskaKtDeG1udm2U8cu0sAI8bdYjFmnDeZws0969TyDA=="],
+    "@ankhorage/devtools": ["@ankhorage/devtools@2.12.3", "", { "dependencies": { "@ankhorage/apm": "^0.8.15", "@ankhorage/capability": "^0.2.3", "@ankhorage/contracts": "^26.17.1", "@ankhorage/project-detector": "^0.3.6", "@ankhorage/rules-repository": "^0.6.0", "@ankhorage/utility": "^0.5.5", "@changesets/cli": "^3.0.3", "@eslint/compat": "^2.1.1", "@eslint/js": "^10.0.1", "@next/eslint-plugin-next": "^16.4.6", "eslint": "^10.15.0", "eslint-config-prettier": "^10.1.9", "eslint-plugin-import": "^2.32.0", "eslint-plugin-prettier": "^5.5.7", "eslint-plugin-react": "^7.37.5", "eslint-plugin-react-hooks": "^7.1.1", "eslint-plugin-react-native": "^5.0.0", "eslint-plugin-security": "^4.2.1", "eslint-plugin-simple-import-sort": "^14.0.0", "eslint-plugin-unused-imports": "^4.4.1", "knip": "^6.48.0", "prettier": "^3.10.1", "typescript": "~6.0.3", "typescript-eslint": "^8.74.0", "yaml": "^2.9.1" }, "bin": { "ankhorage-knip": "dist/cli/bin/knip.js", "ankhorage-eslint": "dist/cli/bin/eslint.js", "ankhorage-prettier": "dist/cli/bin/prettier.js", "ankhorage-changeset": "dist/cli/bin/changeset.js", "ankhorage-ci-impact": "dist/cli/bin/ci-impact.js", "ankhorage-structure": "dist/cli/bin/structure.js", "ankhorage-repository": "dist/cli/bin/repository.js", "ankhorage-apm-release": "dist/cli/bin/apm-release.js" } }, "sha512-Te0CkgbvFRv99yZfFzJZ172QfDhqvtdbPZWobDyAcLE1BVXyCLn7nHYUXDyWFA6raliqnwlsgQvq5gTb9exNOg=="],
 
     "@ankhorage/paradox": ["@ankhorage/paradox@0.6.1", "", { "dependencies": { "@ankhorage/ankh": "^0.13.3", "@ankhorage/capability": "^0.2.1", "@ankhorage/contracts": "^26.11.1", "@ankhorage/rules": "^0.2.0", "@ankhorage/rules-documentation": "^0.3.4", "@ankhorage/rules-repository": "^0.4.1", "@ankhorage/utility": "^1.9.63", "ts-morph": "^28.0.0" }, "bin": { "paradox": "dist/cli/standalone.js" } }, "sha512-rntvQu2x3tTkh3kV2MuImLltHnQcpxTupoYLEn7kvgEUAAOfwls0/ehablcBM1emCYS0Z4VCpRXFTRWVGFGiaA=="],
 
@@ -359,8 +359,6 @@
     "@expo/sudo-prompt": ["@expo/sudo-prompt@9.3.2", "", {}, "sha512-HHQigo3rQWKMDzYDLkubN5WQOYXJJE2eNqIQC2axC2iO3mHdwnIR7FgZVvHWtBwAdzBgAP0ECp8KqS8TiMKvgw=="],
 
     "@expo/ui": ["@expo/ui@57.0.26", "", { "dependencies": { "sf-symbols-typescript": "^2.1.0", "vaul": "^1.1.2" }, "peerDependencies": { "@babel/core": "*", "expo": "*", "react": "*", "react-dom": "*", "react-native": "*", "react-native-worklets": "*" }, "optionalPeers": ["@babel/core", "react-dom", "react-native-worklets"] }, "sha512-sEvRjKK08nCq4sXo5PjDckA9OBpxFokCXs5MakWlI1wT1gQNvyliWn/Dwic8XC6YPTN/TbnEp2X/SEduD9+I3Q=="],
-
-    "@expo/ws-tunnel": ["@expo/ws-tunnel@2.0.1", "", { "peerDependencies": { "ws": "^8.0.0" } }, "sha512-mljsRffbOHzmSimYQbQu9h9NR3alwCCwEEouRGFL4QRTt8dNvsNtKEPa/5jHmtDLDtsh4xXsWKwzjN9BTpeXHQ=="],
 
     "@expo/xcpretty": ["@expo/xcpretty@4.4.7", "", { "dependencies": { "@babel/code-frame": "^7.20.0", "chalk": "^4.1.0", "js-yaml": "^4.1.0" }, "bin": { "excpretty": "build/cli.js" } }, "sha512-EbxYllZ7/ozONVZd425cm4XnolfW+AmSFT5aP7Jdno6oc3WrYQcHz2CO20z/2rwWwYgztmV2PXvYH+BQ8YFjqg=="],
 
@@ -1776,6 +1774,8 @@
 
     "@eslint/config-array/minimatch": ["minimatch@11.0.9", "", { "dependencies": { "@isaacs/nonrecursive-glob-match": "^1.1.0", "brace-expansion": "^5.0.12" } }, "sha512-KCFkfyjqerNlSstjlhIGNXIKZGA/6O4V4RlhZ+Dsr621SPPw0mzlypE9D9ZOoPiVefHID+j7/XuMMlqfD/F60Q=="],
 
+    "@expo/cli/@expo/ws-tunnel": ["@expo/ws-tunnel@2.0.1", "", { "peerDependencies": { "ws": "^8.0.0" } }, "sha512-mljsRffbOHzmSimYQbQu9h9NR3alwCCwEEouRGFL4QRTt8dNvsNtKEPa/5jHmtDLDtsh4xXsWKwzjN9BTpeXHQ=="],
+
     "@expo/cli/ws": ["ws@8.23.0", "", { "peerDependencies": { "bufferutil": "^4.0.1", "utf-8-validate": ">=5.0.2" }, "optionalPeers": ["bufferutil", "utf-8-validate"] }, "sha512-wCkmX8QMOrKjgO8HW2WyDbTSGeqkocxgDzS9iR79rEAexty6/2qzilx3Ag8Tqf9ykop3irLKle0MtVn5qjVnoQ=="],
 
     "@expo/config-plugins/@expo/json-file": ["@expo/json-file@11.0.1", "", { "dependencies": { "@babel/code-frame": "^7.20.0", "json5": "^2.2.3" } }, "sha512-zxHWj4MKKMAL29ZQSY/Fssx4Thluk40JmuGNaeS078wy/NhlFhnVi+rHHunulE3xJAJ0CM73m8VK2+GkF9eRwQ=="],
@@ -1793,8 +1793,6 @@
     "@expo/metro-config/hermes-parser": ["hermes-parser@0.36.1", "", { "dependencies": { "hermes-estree": "0.36.1" } }, "sha512-GApNk4zLHi2UWoWZZkx7LNCOSzLSc5lB55pZ/PhK7ycFeg7u5LcF88p/WbpIi1XUDtE0MpHE3uRR3u3KB7TjSQ=="],
 
     "@expo/plist/@xmldom/xmldom": ["@xmldom/xmldom@0.8.15", "", {}, "sha512-/5NV/vDALVFDXgLmfsy9TRCBlKwO2LNBFzpzvb9iIj+jR+eSc6DLYYvVOdivT/jm7MtU6TebYuRmzEOI7w40UA=="],
-
-    "@expo/ws-tunnel/ws": ["ws@8.23.0", "", { "peerDependencies": { "bufferutil": "^4.0.1", "utf-8-validate": ">=5.0.2" }, "optionalPeers": ["bufferutil", "utf-8-validate"] }, "sha512-wCkmX8QMOrKjgO8HW2WyDbTSGeqkocxgDzS9iR79rEAexty6/2qzilx3Ag8Tqf9ykop3irLKle0MtVn5qjVnoQ=="],
 
     "@react-native-vector-icons/common/find-up": ["find-up@8.0.0", "", { "dependencies": { "locate-path": "^8.0.0", "unicorn-magic": "^0.3.0" } }, "sha512-JGG8pvDi2C+JxidYdIwQDyS/CgcrIdh18cvgxcBge3wSHRQOrooMD3GlFBcmMJAN9M42SAZjDp5zv1dglJjwww=="],
 
