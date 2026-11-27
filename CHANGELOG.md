@@ -1,5 +1,11 @@
 # @ankhorage/navigator
 
+## 3.7.1
+
+### Patch Changes
+
+- 8645f00: Generate a configured root public path as the matching Expo Router index screen instead of a self redirect.
+
 ## 3.7.0
 
 ### Minor Changes

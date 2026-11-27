@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.7.0",
+      "value": "v3.7.1",
       "color": "cb3837"
     },
     {
@@ -483,6 +483,14 @@
       ],
       "exports": [
         "generateScreenFile"
+      ]
+    },
+    {
+      "path": "src/features/routing/domain/createRootOutputPlan.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "createRootOutputPlan"
       ]
     },
     {
@@ -1049,6 +1057,7 @@
         "src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts",
         "src/features/routing/adapters/outbound/generateRootRedirectFile.ts",
         "src/features/routing/adapters/outbound/generateScreenFile.ts",
+        "src/features/routing/domain/createRootOutputPlan.ts",
         "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "src/features/routing/domain/resolveNavigatorInitialRouteName.ts",
         "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
@@ -1632,7 +1641,7 @@
       "modulePath": "src/utils/generateNavigator.ts",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 28,
+        "line": 29,
         "column": 1
       },
       "exportPaths": [
@@ -4294,6 +4303,17 @@
       }
     },
     {
+      "name": "createRootOutputPlan",
+      "description": "Give an opted-in public root route its matching Expo module without changing nested semantics.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/routing/domain/createRootOutputPlan.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveExpoRouterRoutePath",
       "description": "Resolve one route's Expo Router module path without changing its semantic identity.",
       "see": [],
@@ -5719,7 +5739,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 28,
+        "line": 29,
         "column": 1
       }
     },
@@ -5730,7 +5750,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 74,
+        "line": 76,
         "column": 1
       }
     },
@@ -5741,7 +5761,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 100,
+        "line": 102,
         "column": 1
       }
     },
@@ -5752,7 +5772,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 130,
+        "line": 132,
         "column": 1
       }
     },
@@ -5763,7 +5783,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 184,
+        "line": 186,
         "column": 1
       }
     },
@@ -5774,7 +5794,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 197,
+        "line": 199,
         "column": 1
       }
     },
@@ -5785,7 +5805,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 215,
+        "line": 217,
         "column": 1
       }
     },
@@ -5796,7 +5816,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 252,
+        "line": 254,
         "column": 1
       }
     },
@@ -5807,7 +5827,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 281,
+        "line": 283,
         "column": 1
       }
     },
@@ -5818,7 +5838,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 307,
+        "line": 309,
         "column": 1
       }
     },
@@ -7125,6 +7145,11 @@
       {
         "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/routing/adapters/outbound/generateScreenFile.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/routing/domain/createRootOutputPlan.ts",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9395,6 +9420,12 @@
         "fromSymbol": "generateNavigator",
         "toSymbol": "createGenerationResult",
         "callExpression": "createGenerationResult",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "generateNavigator",
+        "toSymbol": "createRootOutputPlan",
+        "callExpression": "createRootOutputPlan",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {

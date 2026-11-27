@@ -47,7 +47,7 @@ Define an immutable, duplicate-free custom navigator registry for one compositio
 
 Kind: `function`
 Module: `src/utils/generateNavigator.ts`
-Source: `src/utils/generateNavigator.ts:28:1`
+Source: `src/utils/generateNavigator.ts:29:1`
 
 Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.
 
