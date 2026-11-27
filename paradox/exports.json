@@ -132,7 +132,7 @@
     "modulePath": "src/utils/generateNavigator.ts",
     "sourceLocation": {
       "filePath": "src/utils/generateNavigator.ts",
-      "line": 23,
+      "line": 28,
       "column": 1
     },
     "exportPaths": [
@@ -141,7 +141,7 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult",
+        "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptionsWithRootShell) => NavigatorGenerationResult",
         "parameters": [
           {
             "name": "bindings",
@@ -151,7 +151,7 @@
           },
           {
             "name": "options",
-            "type": "NavigatorGenerationOptions",
+            "type": "NavigatorGenerationOptionsWithRootShell",
             "required": false,
             "description": null
           },
@@ -1275,7 +1275,7 @@
     "modulePath": "src/utils/validateNavigatorBindings.ts",
     "sourceLocation": {
       "filePath": "src/utils/validateNavigatorBindings.ts",
-      "line": 14,
+      "line": 15,
       "column": 1
     },
     "exportPaths": [
@@ -1284,7 +1284,7 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]",
+        "label": "(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptionsWithRootShell) => readonly NavigatorDiagnostic[]",
         "parameters": [
           {
             "name": "bindings",
@@ -1294,7 +1294,7 @@
           },
           {
             "name": "options",
-            "type": "NavigatorGenerationOptions",
+            "type": "NavigatorGenerationOptionsWithRootShell",
             "required": false,
             "description": null
           },

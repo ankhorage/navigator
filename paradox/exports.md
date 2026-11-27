@@ -47,15 +47,15 @@ Define an immutable, duplicate-free custom navigator registry for one compositio
 
 Kind: `function`
 Module: `src/utils/generateNavigator.ts`
-Source: `src/utils/generateNavigator.ts:23:1`
+Source: `src/utils/generateNavigator.ts:28:1`
 
 Generate a structured deterministic Expo Router result from one resolved plan and narrow bindings.
 
 ### Signatures
 
-- `(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult`
+- `(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptionsWithRootShell) => NavigatorGenerationResult`
   - bindings: `NavigatorGenerationBindings`
-  - options: `NavigatorGenerationOptions` (optional)
+  - options: `NavigatorGenerationOptionsWithRootShell` (optional)
   - plan: `NavigatorPlan`
   - returns: `NavigatorGenerationResult`
 
@@ -425,15 +425,15 @@ Structurally and semantically validate standalone navigator input without writin
 
 Kind: `function`
 Module: `src/utils/validateNavigatorBindings.ts`
-Source: `src/utils/validateNavigatorBindings.ts:14:1`
+Source: `src/utils/validateNavigatorBindings.ts:15:1`
 
 Validate only the narrow generated-module bindings required by a resolved navigator plan.
 
 ### Signatures
 
-- `(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]`
+- `(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptionsWithRootShell) => readonly NavigatorDiagnostic[]`
   - bindings: `unknown`
-  - options: `NavigatorGenerationOptions` (optional)
+  - options: `NavigatorGenerationOptionsWithRootShell` (optional)
   - plan: `NavigatorPlan`
   - returns: `readonly NavigatorDiagnostic[]`
 

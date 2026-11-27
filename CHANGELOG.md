@@ -1,5 +1,16 @@
 # @ankhorage/navigator
 
+## 3.7.0
+
+### Minor Changes
+
+- 9cdcb2a: Add opt-in generated Expo Router root redirects and validated root layout wrappers.
+
+### Patch Changes
+
+- 9725b97: Update dependencies: `@ankhorage/contracts`.
+- 373077f: Update dependencies: `@ankhorage/contracts`.
+
 ## 3.6.7
 
 ### Patch Changes

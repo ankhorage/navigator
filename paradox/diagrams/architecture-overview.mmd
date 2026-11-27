@@ -171,8 +171,19 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_drawer_adapters_outbound_resolveDrawerRouteOptions_ts
   module_src_features_drawer_application_createDrawerAdapter_ts["src/features/drawer/application/createDrawerAdapter.ts"]
   package__ankhorage_navigator -.-> module_src_features_drawer_application_createDrawerAdapter_ts
+  module_src_features_routing_adapters_outbound_createNavigatorLayoutImports_ts["src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts"]
+  package__ankhorage_navigator -.-> module_src_features_routing_adapters_outbound_createNavigatorLayoutImports_ts
+  module_src_features_routing_adapters_outbound_generateRootRedirectFile_ts["src/features/routing/adapters/outbound/generateRootRedirectFile.ts"]
+  package__ankhorage_navigator -.-> module_src_features_routing_adapters_outbound_generateRootRedirectFile_ts
+  module_src_features_routing_adapters_outbound_generateRootRedirectFile_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
+  module_src_features_routing_adapters_outbound_generateScreenFile_ts["src/features/routing/adapters/outbound/generateScreenFile.ts"]
+  package__ankhorage_navigator -.-> module_src_features_routing_adapters_outbound_generateScreenFile_ts
+  module_src_features_routing_adapters_outbound_generateScreenFile_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_features_routing_domain_resolveExpoRouterRoutePath_ts["src/features/routing/domain/resolveExpoRouterRoutePath.ts"]
   package__ankhorage_navigator -.-> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
+  module_src_features_routing_domain_resolveNavigatorInitialRouteName_ts["src/features/routing/domain/resolveNavigatorInitialRouteName.ts"]
+  package__ankhorage_navigator -.-> module_src_features_routing_domain_resolveNavigatorInitialRouteName_ts
+  module_src_features_routing_domain_resolveNavigatorInitialRouteName_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts["src/features/slot/adapters/outbound/generateSlotLayoutFile.ts"]
   package__ankhorage_navigator -.-> module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts
   module_src_features_slot_application_createSlotAdapter_ts["src/features/slot/application/createSlotAdapter.ts"]
@@ -205,6 +216,8 @@ graph TD
   package__ankhorage_navigator -.-> module_src_features_stack_domain_resolveEffectiveStackConfigSource_ts
   module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts["src/features/stack/domain/resolveNavigatorHeaderOwnership.ts"]
   package__ankhorage_navigator -.-> module_src_features_stack_domain_resolveNavigatorHeaderOwnership_ts
+  module_src_features_stack_domain_shouldHideUnnamedGroupHeader_ts["src/features/stack/domain/shouldHideUnnamedGroupHeader.ts"]
+  package__ankhorage_navigator -.-> module_src_features_stack_domain_shouldHideUnnamedGroupHeader_ts
   module_src_features_stack_domain_validateStackRouteOptions_ts["src/features/stack/domain/validateStackRouteOptions.ts"]
   package__ankhorage_navigator -.-> module_src_features_stack_domain_validateStackRouteOptions_ts
   module_src_features_tabs_adapters_inbound_BuiltInTabsPresentation_tsx["src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx"]
@@ -331,9 +344,14 @@ graph TD
   module_src_utils_generateNavigator_ts["src/utils/generateNavigator.ts"]
   package__ankhorage_navigator -.-> module_src_utils_generateNavigator_ts
   module_src_utils_generateNavigator_ts --> module_src_features_drawer_adapters_outbound_resolveDrawerRouteOptions_ts
+  module_src_utils_generateNavigator_ts --> module_src_features_routing_adapters_outbound_createNavigatorLayoutImports_ts
+  module_src_utils_generateNavigator_ts --> module_src_features_routing_adapters_outbound_generateRootRedirectFile_ts
+  module_src_utils_generateNavigator_ts --> module_src_features_routing_adapters_outbound_generateScreenFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
+  module_src_utils_generateNavigator_ts --> module_src_features_routing_domain_resolveNavigatorInitialRouteName_ts
   module_src_utils_generateNavigator_ts --> module_src_features_slot_adapters_outbound_generateSlotLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_features_split_view_adapters_outbound_generateSplitViewLayoutFile_ts
+  module_src_utils_generateNavigator_ts --> module_src_features_stack_domain_shouldHideUnnamedGroupHeader_ts
   module_src_utils_generateNavigator_ts --> module_src_features_tabs_adapters_outbound_generateTabsLayoutFile_ts
   module_src_utils_generateNavigator_ts --> module_src_utils_resolveNavigatorRootDirectory_ts
   module_src_utils_generateNavigator_ts --> module_src_utils_validateNavigatorBindings_ts
@@ -385,6 +403,7 @@ graph TD
   module_src_utils_validateNavigator_ts --> module_src_utils_validateNavigatorBindings_ts
   module_src_utils_validateNavigatorBindings_ts["src/utils/validateNavigatorBindings.ts"]
   package__ankhorage_navigator -.-> module_src_utils_validateNavigatorBindings_ts
+  module_src_utils_validateNavigatorBindings_ts --> module_src_features_routing_domain_resolveExpoRouterRoutePath_ts
   module_src_utils_validateNavigatorBindings_ts --> module_src_utils_isNavigatorGenerationBindings_ts
   module_src_utils_validateNavigatorManifest_ts["src/utils/validateNavigatorManifest.ts"]
   package__ankhorage_navigator -.-> module_src_utils_validateNavigatorManifest_ts

@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.6.7",
+      "value": "v3.7.0",
       "color": "cb3837"
     },
     {
@@ -458,11 +458,49 @@
       ]
     },
     {
+      "path": "src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "createNavigatorLayoutImports"
+      ]
+    },
+    {
+      "path": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts"
+      ],
+      "exports": [
+        "generateRootRedirectFile"
+      ]
+    },
+    {
+      "path": "src/features/routing/adapters/outbound/generateScreenFile.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts"
+      ],
+      "exports": [
+        "generateScreenFile"
+      ]
+    },
+    {
       "path": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
         "resolveExpoRouterRoutePath"
+      ]
+    },
+    {
+      "path": "src/features/routing/domain/resolveNavigatorInitialRouteName.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts"
+      ],
+      "exports": [
+        "resolveNavigatorInitialRouteName"
       ]
     },
     {
@@ -573,6 +611,14 @@
       "dependencies": [],
       "exports": [
         "resolveNavigatorHeaderOwnership"
+      ]
+    },
+    {
+      "path": "src/features/stack/domain/shouldHideUnnamedGroupHeader.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "shouldHideUnnamedGroupHeader"
       ]
     },
     {
@@ -1000,9 +1046,14 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/drawer/adapters/outbound/resolveDrawerRouteOptions.ts",
+        "src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts",
+        "src/features/routing/adapters/outbound/generateRootRedirectFile.ts",
+        "src/features/routing/adapters/outbound/generateScreenFile.ts",
         "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "src/features/routing/domain/resolveNavigatorInitialRouteName.ts",
         "src/features/slot/adapters/outbound/generateSlotLayoutFile.ts",
         "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
+        "src/features/stack/domain/shouldHideUnnamedGroupHeader.ts",
         "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "src/utils/resolveNavigatorRootDirectory.ts",
         "src/utils/validateNavigatorBindings.ts"
@@ -1164,6 +1215,7 @@
       "path": "src/utils/validateNavigatorBindings.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "src/utils/isNavigatorGenerationBindings.ts"
       ],
       "exports": [
@@ -1580,7 +1632,7 @@
       "modulePath": "src/utils/generateNavigator.ts",
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 23,
+        "line": 28,
         "column": 1
       },
       "exportPaths": [
@@ -1589,7 +1641,7 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptions) => NavigatorGenerationResult",
+          "label": "(plan: NavigatorPlan, bindings: NavigatorGenerationBindings, options?: NavigatorGenerationOptionsWithRootShell) => NavigatorGenerationResult",
           "parameters": [
             {
               "name": "bindings",
@@ -1599,7 +1651,7 @@
             },
             {
               "name": "options",
-              "type": "NavigatorGenerationOptions",
+              "type": "NavigatorGenerationOptionsWithRootShell",
               "required": false,
               "description": null
             },
@@ -2723,7 +2775,7 @@
       "modulePath": "src/utils/validateNavigatorBindings.ts",
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       },
       "exportPaths": [
@@ -2732,7 +2784,7 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptions) => readonly NavigatorDiagnostic[]",
+          "label": "(plan: NavigatorPlan, bindings: unknown, options?: NavigatorGenerationOptionsWithRootShell) => readonly NavigatorDiagnostic[]",
           "parameters": [
             {
               "name": "bindings",
@@ -2742,7 +2794,7 @@
             },
             {
               "name": "options",
-              "type": "NavigatorGenerationOptions",
+              "type": "NavigatorGenerationOptionsWithRootShell",
               "required": false,
               "description": null
             },
@@ -4209,6 +4261,39 @@
       }
     },
     {
+      "name": "createNavigatorLayoutImports",
+      "description": "Render static adapter, optional root-wrapper, and guard imports for one generated layout.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "generateRootRedirectFile",
+      "description": "Generate an opt-in Expo Router root redirect from the root navigator's configured initial route.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "generateScreenFile",
+      "description": "Generate one routed screen re-export from its validated consumer binding.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/routing/adapters/outbound/generateScreenFile.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveExpoRouterRoutePath",
       "description": "Resolve one route's Expo Router module path without changing its semantic identity.",
       "see": [],
@@ -4216,6 +4301,17 @@
       "sourceLocation": {
         "filePath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
         "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveNavigatorInitialRouteName",
+      "description": "Map a semantic initial route identity onto Expo Router's module registration name.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/routing/domain/resolveNavigatorInitialRouteName.ts",
+        "line": 6,
         "column": 1
       }
     },
@@ -4270,7 +4366,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
-        "line": 37,
+        "line": 48,
         "column": 1
       }
     },
@@ -4281,7 +4377,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
-        "line": 66,
+        "line": 77,
         "column": 1
       }
     },
@@ -4292,7 +4388,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
-        "line": 88,
+        "line": 99,
         "column": 1
       }
     },
@@ -4303,7 +4399,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
-        "line": 99,
+        "line": 110,
         "column": 1
       }
     },
@@ -4572,6 +4668,17 @@
       }
     },
     {
+      "name": "shouldHideUnnamedGroupHeader",
+      "description": "Keep Expo Router implementation groups from becoming visible Stack headers by default.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/stack/domain/shouldHideUnnamedGroupHeader.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
       "name": "validateStackRouteOptions",
       "description": "Reject Stack options on other navigator types and native-only options on JavaScript Stack.",
       "see": [],
@@ -4754,7 +4861,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 30,
+        "line": 31,
         "column": 1
       }
     },
@@ -4765,7 +4872,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 74,
+        "line": 80,
         "column": 1
       }
     },
@@ -4776,7 +4883,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 93,
+        "line": 99,
         "column": 1
       }
     },
@@ -4787,7 +4894,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 111,
+        "line": 117,
         "column": 1
       }
     },
@@ -4798,7 +4905,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 150,
+        "line": 161,
         "column": 1
       }
     },
@@ -4809,7 +4916,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 163,
+        "line": 174,
         "column": 1
       }
     },
@@ -4820,7 +4927,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 171,
+        "line": 182,
         "column": 1
       }
     },
@@ -4831,7 +4938,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 205,
+        "line": 223,
         "column": 1
       }
     },
@@ -4842,7 +4949,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 218,
+        "line": 236,
+        "column": 1
+      }
+    },
+    {
+      "name": "createRootLayoutWrapperImport",
+      "description": "Render the validated root-only provider import consistently across specialized layouts.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
+        "line": 247,
         "column": 1
       }
     },
@@ -4853,7 +4971,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 236,
+        "line": 259,
         "column": 1
       }
     },
@@ -4864,7 +4982,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 248,
+        "line": 271,
         "column": 1
       }
     },
@@ -4875,7 +4993,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 261,
+        "line": 284,
         "column": 1
       }
     },
@@ -4886,7 +5004,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 266,
+        "line": 289,
         "column": 1
       }
     },
@@ -4897,7 +5015,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 271,
+        "line": 294,
         "column": 1
       }
     },
@@ -4908,7 +5026,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 276,
+        "line": 299,
         "column": 1
       }
     },
@@ -4919,7 +5037,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 289,
+        "line": 312,
         "column": 1
       }
     },
@@ -4930,7 +5048,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
-        "line": 305,
+        "line": 328,
         "column": 1
       }
     },
@@ -5601,7 +5719,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 23,
+        "line": 28,
         "column": 1
       }
     },
@@ -5612,7 +5730,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 63,
+        "line": 74,
         "column": 1
       }
     },
@@ -5623,7 +5741,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 81,
+        "line": 100,
         "column": 1
       }
     },
@@ -5634,7 +5752,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 109,
+        "line": 130,
+        "column": 1
+      }
+    },
+    {
+      "name": "createSpecializedLayout",
+      "description": "Delegate layouts with an adapter-owned rendering contract before shared Screen rendering.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/utils/generateNavigator.ts",
+        "line": 184,
         "column": 1
       }
     },
@@ -5645,7 +5774,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 153,
+        "line": 197,
         "column": 1
       }
     },
@@ -5656,7 +5785,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 171,
+        "line": 215,
         "column": 1
       }
     },
@@ -5667,7 +5796,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 203,
+        "line": 252,
         "column": 1
       }
     },
@@ -5678,18 +5807,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 232,
-        "column": 1
-      }
-    },
-    {
-      "name": "shouldHideUnnamedGroupHeader",
-      "description": "Keep Expo Router implementation groups from becoming visible Stack headers by default.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/utils/generateNavigator.ts",
-        "line": 258,
+        "line": 281,
         "column": 1
       }
     },
@@ -5700,29 +5818,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/generateNavigator.ts",
-        "line": 269,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveNavigatorInitialRouteName",
-      "description": "Map a semantic initial route identity onto Expo Router's module registration name.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/utils/generateNavigator.ts",
-        "line": 291,
-        "column": 1
-      }
-    },
-    {
-      "name": "createScreenFile",
-      "description": "Emit a route module that re-exports its registered screen as the default component.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/utils/generateNavigator.ts",
-        "line": 300,
+        "line": 307,
         "column": 1
       }
     },
@@ -6085,7 +6181,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 14,
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateRootGenerationOptions",
+      "description": "Validate optional root-only output before it can add imports or replace an index module.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/utils/validateNavigatorBindings.ts",
+        "line": 43,
         "column": 1
       }
     },
@@ -6096,7 +6203,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 41,
+        "line": 99,
         "column": 1
       }
     },
@@ -6107,7 +6214,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 62,
+        "line": 120,
         "column": 1
       }
     },
@@ -6118,7 +6225,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 97,
+        "line": 155,
         "column": 1
       }
     },
@@ -6129,7 +6236,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 124,
+        "line": 182,
         "column": 1
       }
     },
@@ -6140,7 +6247,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 147,
+        "line": 205,
         "column": 1
       }
     },
@@ -6151,7 +6258,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/utils/validateNavigatorBindings.ts",
-        "line": 165,
+        "line": 223,
         "column": 1
       }
     },
@@ -7007,7 +7114,27 @@
       },
       {
         "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/routing/adapters/outbound/generateScreenFile.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/routing/domain/resolveNavigatorInitialRouteName.ts",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -7018,6 +7145,11 @@
       {
         "fromPath": "src/utils/generateNavigator.ts",
         "toPath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/generateNavigator.ts",
+        "toPath": "src/features/stack/domain/shouldHideUnnamedGroupHeader.ts",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -7104,6 +7236,11 @@
         "fromPath": "src/utils/validateNavigator.ts",
         "toPath": "src/utils/validateNavigatorBindings.ts",
         "sourcePath": "src/utils/validateNavigator.ts"
+      },
+      {
+        "fromPath": "src/utils/validateNavigatorBindings.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
       },
       {
         "fromPath": "src/utils/validateNavigatorBindings.ts",
@@ -7661,6 +7798,11 @@
         "sourcePath": "src/features/custom/domain/addCustomNavigatorDiagnostics.ts"
       },
       {
+        "fromPath": "src/features/routing/domain/resolveNavigatorInitialRouteName.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/features/routing/domain/resolveNavigatorInitialRouteName.ts"
+      },
+      {
         "fromPath": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts",
         "toPath": "src/constants/navigator.ts",
         "sourcePath": "src/features/split-view/application/resolveSplitViewAdapterPlan.ts"
@@ -7734,6 +7876,16 @@
         "fromPath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts",
         "toPath": "src/types/workspaceNavigation.ts",
         "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
+      },
+      {
+        "fromPath": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts"
+      },
+      {
+        "fromPath": "src/features/routing/adapters/outbound/generateScreenFile.ts",
+        "toPath": "src/features/routing/domain/resolveExpoRouterRoutePath.ts",
+        "sourcePath": "src/features/routing/adapters/outbound/generateScreenFile.ts"
       },
       {
         "fromPath": "src/features/tabs/adapters/inbound/BuiltInTabsPresentation.tsx",
@@ -9252,6 +9404,12 @@
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
+        "fromSymbol": "generateNavigator",
+        "toSymbol": "generateRootRedirectFile",
+        "callExpression": "generateRootRedirectFile",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
         "fromSymbol": "collectFiles",
         "toSymbol": "createLayoutFile",
         "callExpression": "createLayoutFile",
@@ -9265,8 +9423,8 @@
       },
       {
         "fromSymbol": "collectFiles",
-        "toSymbol": "createScreenFile",
-        "callExpression": "createScreenFile",
+        "toSymbol": "generateScreenFile",
+        "callExpression": "generateScreenFile",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9277,14 +9435,8 @@
       },
       {
         "fromSymbol": "createLayoutFile",
-        "toSymbol": "generateTabsLayoutFile",
-        "callExpression": "generateTabsLayoutFile",
-        "sourcePath": "src/utils/generateNavigator.ts"
-      },
-      {
-        "fromSymbol": "createLayoutFile",
-        "toSymbol": "generateSplitViewLayoutFile",
-        "callExpression": "generateSplitViewLayoutFile",
+        "toSymbol": "createSpecializedLayout",
+        "callExpression": "createSpecializedLayout",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9301,8 +9453,8 @@
       },
       {
         "fromSymbol": "createLayoutFile",
-        "toSymbol": "quoteJavaScriptString",
-        "callExpression": "quoteJavaScriptString",
+        "toSymbol": "createNavigatorLayoutImports",
+        "callExpression": "createNavigatorLayoutImports",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9315,6 +9467,18 @@
         "fromSymbol": "createLayoutFile",
         "toSymbol": "createNavigatorContents",
         "callExpression": "createNavigatorContents",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "createSpecializedLayout",
+        "toSymbol": "generateTabsLayoutFile",
+        "callExpression": "generateTabsLayoutFile",
+        "sourcePath": "src/utils/generateNavigator.ts"
+      },
+      {
+        "fromSymbol": "createSpecializedLayout",
+        "toSymbol": "generateSplitViewLayoutFile",
+        "callExpression": "generateSplitViewLayoutFile",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9381,30 +9545,6 @@
         "fromSymbol": "src/utils/generateNavigator.ts",
         "toSymbol": "serializeJavaScriptLiteral",
         "callExpression": "serializeJavaScriptLiteral",
-        "sourcePath": "src/utils/generateNavigator.ts"
-      },
-      {
-        "fromSymbol": "resolveNavigatorInitialRouteName",
-        "toSymbol": "resolveExpoRouterRoutePath",
-        "callExpression": "resolveExpoRouterRoutePath",
-        "sourcePath": "src/utils/generateNavigator.ts"
-      },
-      {
-        "fromSymbol": "createScreenFile",
-        "toSymbol": "resolveExpoRouterRoutePath",
-        "callExpression": "resolveExpoRouterRoutePath",
-        "sourcePath": "src/utils/generateNavigator.ts"
-      },
-      {
-        "fromSymbol": "createScreenFile",
-        "toSymbol": "assertStaticImportBinding",
-        "callExpression": "assertStaticImportBinding",
-        "sourcePath": "src/utils/generateNavigator.ts"
-      },
-      {
-        "fromSymbol": "createScreenFile",
-        "toSymbol": "quoteJavaScriptString",
-        "callExpression": "quoteJavaScriptString",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -9643,8 +9783,32 @@
       },
       {
         "fromSymbol": "validateNavigatorBindings",
+        "toSymbol": "validateRootGenerationOptions",
+        "callExpression": "validateRootGenerationOptions",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateNavigatorBindings",
         "toSymbol": "validateNodeBindings",
         "callExpression": "validateNodeBindings",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateRootGenerationOptions",
+        "toSymbol": "validateStaticImport",
+        "callExpression": "validateStaticImport",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "validateRootGenerationOptions",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/utils/validateNavigatorBindings.ts"
+      },
+      {
+        "fromSymbol": "src/utils/validateNavigatorBindings.ts",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
         "sourcePath": "src/utils/validateNavigatorBindings.ts"
       },
       {
@@ -10890,6 +11054,12 @@
         "sourcePath": "src/features/custom/domain/defineCustomNavigatorRegistry.ts"
       },
       {
+        "fromSymbol": "resolveNavigatorInitialRouteName",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/features/routing/domain/resolveNavigatorInitialRouteName.ts"
+      },
+      {
         "fromSymbol": "addSplitViewDiagnostics",
         "toSymbol": "collectSplitViews",
         "callExpression": "collectSplitViews",
@@ -11160,9 +11330,51 @@
         "sourcePath": "src/features/workspace/domain/resolveWorkspaceNavigation.ts"
       },
       {
+        "fromSymbol": "createNavigatorLayoutImports",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
+        "sourcePath": "src/features/routing/adapters/outbound/createNavigatorLayoutImports.ts"
+      },
+      {
+        "fromSymbol": "generateRootRedirectFile",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts"
+      },
+      {
+        "fromSymbol": "generateRootRedirectFile",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
+        "sourcePath": "src/features/routing/adapters/outbound/generateRootRedirectFile.ts"
+      },
+      {
+        "fromSymbol": "generateScreenFile",
+        "toSymbol": "assertStaticImportBinding",
+        "callExpression": "assertStaticImportBinding",
+        "sourcePath": "src/features/routing/adapters/outbound/generateScreenFile.ts"
+      },
+      {
+        "fromSymbol": "generateScreenFile",
+        "toSymbol": "resolveExpoRouterRoutePath",
+        "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/features/routing/adapters/outbound/generateScreenFile.ts"
+      },
+      {
+        "fromSymbol": "generateScreenFile",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
+        "sourcePath": "src/features/routing/adapters/outbound/generateScreenFile.ts"
+      },
+      {
         "fromSymbol": "generateSplitViewLayoutFile",
         "toSymbol": "collectSplitViewBindings",
         "callExpression": "collectSplitViewBindings",
+        "sourcePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "generateSplitViewLayoutFile",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
         "sourcePath": "src/features/split-view/adapters/outbound/generateSplitViewLayoutFile.ts"
       },
       {
@@ -11293,6 +11505,12 @@
       },
       {
         "fromSymbol": "createNativeTabsFile",
+        "toSymbol": "createRootLayoutWrapperImport",
+        "callExpression": "createRootLayoutWrapperImport",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createNativeTabsFile",
         "toSymbol": "assertStaticImportBinding",
         "callExpression": "assertStaticImportBinding",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
@@ -11337,6 +11555,12 @@
         "fromSymbol": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts",
         "toSymbol": "quoteJavaScriptString",
         "callExpression": "quoteJavaScriptString",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createHeadlessTabsFile",
+        "toSymbol": "createRootLayoutWrapperImport",
+        "callExpression": "createRootLayoutWrapperImport",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -11397,6 +11621,12 @@
         "fromSymbol": "resolveNavigatorInitialRouteName",
         "toSymbol": "resolveExpoRouterRoutePath",
         "callExpression": "resolveExpoRouterRoutePath",
+        "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
+      },
+      {
+        "fromSymbol": "createRootLayoutWrapperImport",
+        "toSymbol": "quoteJavaScriptString",
+        "callExpression": "quoteJavaScriptString",
         "sourcePath": "src/features/tabs/adapters/outbound/generateTabsLayoutFile.ts"
       },
       {
@@ -11724,7 +11954,7 @@
       },
       {
         "fromSymbol": "generateNavigator",
-        "toType": "NavigatorGenerationOptions",
+        "toType": "NavigatorGenerationOptionsWithRootShell",
         "sourcePath": "src/utils/generateNavigator.ts"
       },
       {
@@ -11759,7 +11989,7 @@
       },
       {
         "fromSymbol": "validateNavigatorBindings",
-        "toType": "NavigatorGenerationOptions",
+        "toType": "NavigatorGenerationOptionsWithRootShell",
         "sourcePath": "src/utils/validateNavigatorBindings.ts"
       },
       {
