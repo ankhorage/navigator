@@ -238,6 +238,27 @@ describe('@ankhorage/navigator deterministic generation', () => {
     expect(redirect).toContain("<Redirect href='/acquisition' />");
   });
 
+  test('generates the configured public root initial screen as index without a self redirect', () => {
+    const result = generateNavigator(
+      createNavigatorPlan(
+        {
+          type: 'stack',
+          initialRouteName: 'acquisition',
+          routes: [{ name: 'acquisition', path: '/', screenId: 'home' }],
+        },
+        { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+      ),
+      { guards: {}, screens: SCREEN_BINDINGS },
+      { rootRedirect: true },
+    );
+    const index = result.files.find(({ path }) => path === 'src/app/index.tsx')?.contents ?? '';
+    const layout = result.files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+    expect(index).toContain('HomeScreen as default');
+    expect(index).not.toContain('Redirect');
+    expect(layout).toContain('initialRouteName="index"');
+    expect(layout).toContain('name="index"');
+  });
+
   test('preserves Stack, Tabs, Drawer, and Slot generation unless root output is explicitly requested', () => {
     const manifests: readonly AppNavigatorManifest[] = [
       { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
