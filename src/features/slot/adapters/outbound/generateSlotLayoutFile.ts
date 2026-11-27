@@ -5,9 +5,10 @@ export function generateSlotLayoutFile(
   directory: string,
   componentName: string,
   imports: string,
+  hasRootLayoutWrapper = false,
 ): NavigatorGeneratedFile {
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${imports}\n\nexport default function NavigatorLayout() {\n  return <${componentName} />;\n}\n`,
+    contents: `${imports}\n\nexport default function NavigatorLayout() {\n  return ${hasRootLayoutWrapper ? `<NavigatorRootLayoutWrapper><${componentName} /></NavigatorRootLayoutWrapper>` : `<${componentName} />`};\n}\n`,
   };
 }
