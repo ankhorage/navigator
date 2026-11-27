@@ -20,6 +20,36 @@ export const CAPABILITIES = [
     },
   },
   {
+    id: 'navigator.route',
+    owner: '@ankhorage/navigator',
+    access: ['read', 'subscribe'],
+    binding: { kind: 'state', bindableAs: ['source'] },
+    label: 'Current route',
+    output: {
+      schema: {
+        type: 'object',
+        required: ['pathname', 'params', 'canGoBack'],
+        properties: {
+          pathname: { type: 'string' },
+          params: {
+            type: 'object',
+            additionalProperties: {
+              oneOf: [{ type: 'string' }, { type: 'array', items: { type: 'string' } }],
+            },
+          },
+          canGoBack: { type: 'boolean' },
+        },
+      },
+    },
+  },
+  {
+    id: 'navigator.back',
+    owner: '@ankhorage/navigator',
+    access: ['invoke'],
+    binding: { kind: 'action', bindableAs: ['target'] },
+    label: 'Back',
+  },
+  {
     id: 'navigator.catalog',
     owner: '@ankhorage/navigator',
     access: ['invoke'],
