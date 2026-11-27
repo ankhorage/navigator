@@ -186,6 +186,224 @@ describe('@ankhorage/navigator adapter diagnostics', () => {
 });
 
 describe('@ankhorage/navigator deterministic generation', () => {
+  test('optionally emits a canonical root redirect and wraps only the root layout', () => {
+    const plan = createNavigatorPlan(
+      {
+        type: 'stack',
+        initialRouteName: 'acquisition',
+        routes: [
+          {
+            name: 'acquisition',
+            path: '/acquisition',
+            expoRouterPath: '(app)/acquisition',
+            navigator: {
+              type: 'drawer',
+              routes: [{ name: 'overview', screenId: 'home' }],
+            },
+          },
+        ],
+      },
+      { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+    );
+
+    const result = generateNavigator(
+      plan,
+      { guards: {}, screens: SCREEN_BINDINGS },
+      {
+        rootRedirect: true,
+        rootLayoutWrapper: {
+          module: '@/generated/runtimeShell',
+          exportName: 'GeneratedRuntimeShell',
+        },
+      },
+    );
+
+    expect(result.diagnostics).toEqual([]);
+    expect(result.files.map(({ path }) => path)).toEqual([
+      'src/app/_layout.tsx',
+      'src/app/(app)/acquisition/_layout.tsx',
+      'src/app/(app)/acquisition/overview.tsx',
+      'src/app/index.tsx',
+    ]);
+    const root = result.files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+    const nested =
+      result.files.find(({ path }) => path === 'src/app/(app)/acquisition/_layout.tsx')?.contents ??
+      '';
+    const redirect = result.files.find(({ path }) => path === 'src/app/index.tsx')?.contents ?? '';
+    expect(root).toContain(
+      "import { GeneratedRuntimeShell as NavigatorRootLayoutWrapper } from '@/generated/runtimeShell';",
+    );
+    expect(root).toContain('<NavigatorRootLayoutWrapper>');
+    expect(nested).not.toContain('NavigatorRootLayoutWrapper');
+    expect(redirect).toContain("<Redirect href='/acquisition' />");
+  });
+
+  test('preserves Stack, Tabs, Drawer, and Slot generation unless root output is explicitly requested', () => {
+    const manifests: readonly AppNavigatorManifest[] = [
+      { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
+      {
+        type: 'tabs',
+        implementation: 'javascript',
+        presentation: 'bottom',
+        routes: [{ name: 'home', path: '/', screenId: 'home' }],
+      },
+      { type: 'drawer', routes: [{ name: 'home', screenId: 'home' }] },
+      { type: 'slot', routes: [{ name: 'home', screenId: 'home' }] },
+    ];
+    for (const manifest of manifests) {
+      const files = generateNavigator(
+        createNavigatorPlan(manifest, { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION }),
+        { guards: {}, screens: SCREEN_BINDINGS },
+      ).files;
+      expect(files.some(({ path }) => path === 'src/app/index.tsx')).toBe(false);
+    }
+  });
+
+  test('binds a validated root wrapper across Stack, Tabs, Drawer, and Slot without changing routes', () => {
+    const manifests: readonly AppNavigatorManifest[] = [
+      { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
+      {
+        type: 'tabs',
+        implementation: 'javascript',
+        presentation: 'bottom',
+        routes: [{ name: 'home', path: '/', screenId: 'home' }],
+      },
+      { type: 'drawer', routes: [{ name: 'home', screenId: 'home' }] },
+      { type: 'slot', routes: [{ name: 'home', screenId: 'home' }] },
+    ];
+    for (const manifest of manifests) {
+      const result = generateNavigator(
+        createNavigatorPlan(manifest, { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION }),
+        { guards: {}, screens: SCREEN_BINDINGS },
+        {
+          rootLayoutWrapper: {
+            module: '@/generated/runtimeShell',
+            exportName: 'GeneratedRuntimeShell',
+          },
+        },
+      );
+      const root = result.files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+      expect(result.diagnostics.some(({ severity }) => severity === 'error')).toBe(false);
+      expect(root).toContain('<NavigatorRootLayoutWrapper>');
+      expect(root).toContain('</NavigatorRootLayoutWrapper>');
+      expect(root).toContain(manifest.type === 'slot' ? '<Slot />' : 'name="home"');
+    }
+  });
+
+  test('binds the root wrapper for native and headless Tabs plus Split View layouts', () => {
+    const cases: readonly {
+      manifest: AppNavigatorManifest;
+      platform: 'ios' | 'web';
+    }[] = [
+      {
+        platform: 'ios',
+        manifest: {
+          type: 'tabs',
+          implementation: 'native',
+          routes: [{ name: 'home', icon: { name: 'home' }, screenId: 'home' }],
+        },
+      },
+      {
+        platform: 'web',
+        manifest: {
+          type: 'tabs',
+          implementation: 'headless',
+          presentation: 'bottom',
+          routes: [{ name: 'home', path: '/', screenId: 'home' }],
+        },
+      },
+      {
+        platform: 'ios',
+        manifest: {
+          type: 'split-view',
+          columns: { primary: { screenId: 'home' } },
+          routes: [{ name: 'home', screenId: 'home' }],
+        },
+      },
+    ];
+    for (const { manifest, platform } of cases) {
+      const result = generateNavigator(
+        createNavigatorPlan(manifest, { platform, expoRouterVersion: EXPO_ROUTER_VERSION }),
+        { guards: {}, screens: SCREEN_BINDINGS },
+        {
+          rootLayoutWrapper: {
+            module: '@/generated/runtimeShell',
+            exportName: 'GeneratedRuntimeShell',
+          },
+        },
+      );
+      const root = result.files.find(({ path }) => path === 'src/app/_layout.tsx')?.contents ?? '';
+      expect(result.diagnostics.some(({ severity }) => severity === 'error')).toBe(false);
+      expect(root).toContain('<NavigatorRootLayoutWrapper>');
+      expect(root).toContain('</NavigatorRootLayoutWrapper>');
+    }
+  });
+
+  test('rejects root redirect output that lacks an initial target or overwrites an index route', () => {
+    const noInitial = generateNavigator(
+      createNavigatorPlan(
+        { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
+        { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+      ),
+      { guards: {}, screens: SCREEN_BINDINGS },
+      { rootRedirect: true },
+    );
+    expect(noInitial.files).toEqual([]);
+    expect(noInitial.diagnostics.map(({ code }) => code)).toContain('missing-root-redirect-target');
+
+    const indexConflict = generateNavigator(
+      createNavigatorPlan(
+        {
+          type: 'stack',
+          initialRouteName: 'home',
+          routes: [
+            { name: 'index', screenId: 'home' },
+            { name: 'home', path: '/home', screenId: 'home' },
+          ],
+        },
+        { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+      ),
+      { guards: {}, screens: SCREEN_BINDINGS },
+      { rootRedirect: true },
+    );
+    expect(indexConflict.files).toEqual([]);
+    expect(indexConflict.diagnostics.map(({ code }) => code)).toContain(
+      'root-redirect-index-conflict',
+    );
+
+    const missingPublicPath = generateNavigator(
+      createNavigatorPlan(
+        {
+          type: 'stack',
+          initialRouteName: 'home',
+          routes: [{ name: 'home', expoRouterPath: '(private)/home', screenId: 'home' }],
+        },
+        { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+      ),
+      { guards: {}, screens: SCREEN_BINDINGS },
+      { rootRedirect: true },
+    );
+    expect(missingPublicPath.files).toEqual([]);
+    expect(missingPublicPath.diagnostics.map(({ code }) => code)).toContain(
+      'missing-root-redirect-public-path',
+    );
+  });
+
+  test('validates the static root layout wrapper binding', () => {
+    const result = generateNavigator(
+      createNavigatorPlan(
+        { type: 'slot', routes: [{ name: 'home', screenId: 'home' }] },
+        { platform: 'web', expoRouterVersion: EXPO_ROUTER_VERSION },
+      ),
+      { guards: {}, screens: SCREEN_BINDINGS },
+      {
+        rootLayoutWrapper: { module: '@/generated/runtime', exportName: 'RuntimeShell;evil' },
+      },
+    );
+    expect(result.files).toEqual([]);
+    expect(result.diagnostics.map(({ code }) => code)).toContain('invalid-module-binding');
+  });
+
   test('keeps semantic names and public URLs while generating nested Expo Router module paths', () => {
     const plan = createNavigatorPlan(
       {

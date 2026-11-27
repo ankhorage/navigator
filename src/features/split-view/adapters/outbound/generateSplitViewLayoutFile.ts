@@ -12,6 +12,7 @@ export function generateSplitViewLayoutFile(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
 ): NavigatorGeneratedFile | undefined {
   if (node.type !== 'split-view' || node.splitView === undefined) return undefined;
   const referencedScreens = collectSplitViewBindings(node.splitView, bindings);
@@ -24,12 +25,22 @@ export function generateSplitViewLayoutFile(
   const openingTag = `<SplitView${props.length === 0 ? '' : ` ${props.join(' ')}`}>`;
   const imports = [
     "import { SplitView } from 'expo-router/unstable-split-view';",
+    ...(rootLayoutWrapper === undefined
+      ? []
+      : [
+          `import { ${rootLayoutWrapper.exportName} as NavigatorRootLayoutWrapper } from ${quoteJavaScriptString(rootLayoutWrapper.module)};`,
+        ]),
     renderSplitViewImports(referencedScreens),
   ].join('\n\n');
   const children = referencedScreens.map(renderSplitViewChild).join('\n');
+  const splitView = `${openingTag}\n${children}\n    </SplitView>`;
+  const content =
+    rootLayoutWrapper === undefined
+      ? splitView
+      : `<NavigatorRootLayoutWrapper>\n      ${splitView}\n    </NavigatorRootLayoutWrapper>`;
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${imports}\n\nexport default function NavigatorLayout() {\n  return (\n    ${openingTag}\n${children}\n    </SplitView>\n  );\n}\n`,
+    contents: `${imports}\n\nexport default function NavigatorLayout() {\n  return (\n    ${content}\n  );\n}\n`,
   };
 }
 

@@ -12,9 +12,14 @@ import { quoteJavaScriptString, serializeJavaScriptLiteral } from '@ankhorage/ut
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
 import { resolveDrawerRouteOptions } from '../features/drawer/adapters/outbound/resolveDrawerRouteOptions.js';
+import { createNavigatorLayoutImports } from '../features/routing/adapters/outbound/createNavigatorLayoutImports.js';
+import { generateRootRedirectFile } from '../features/routing/adapters/outbound/generateRootRedirectFile.js';
+import { generateScreenFile } from '../features/routing/adapters/outbound/generateScreenFile.js';
 import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath.js';
+import { resolveNavigatorInitialRouteName } from '../features/routing/domain/resolveNavigatorInitialRouteName.js';
 import { generateSlotLayoutFile } from '../features/slot/adapters/outbound/generateSlotLayoutFile.js';
 import { generateSplitViewLayoutFile } from '../features/split-view/adapters/outbound/generateSplitViewLayoutFile.js';
+import { shouldHideUnnamedGroupHeader } from '../features/stack/domain/shouldHideUnnamedGroupHeader.js';
 import { generateTabsLayoutFile } from '../features/tabs/adapters/outbound/generateTabsLayoutFile.js';
 import { resolveNavigatorRootDirectory } from './resolveNavigatorRootDirectory.js';
 import { validateNavigatorBindings } from './validateNavigatorBindings.js';
@@ -23,7 +28,7 @@ import { validateNavigatorBindings } from './validateNavigatorBindings.js';
 export function generateNavigator(
   plan: NavigatorPlan,
   bindings: NavigatorGenerationBindings,
-  options: NavigatorGenerationOptions = {},
+  options: NavigatorGenerationOptionsWithRootShell = {},
 ): NavigatorGenerationResult {
   const diagnostics = [...plan.diagnostics, ...validateNavigatorBindings(plan, bindings, options)];
   let rootDirectory: string;
@@ -49,7 +54,13 @@ export function generateNavigator(
     rootDirectory,
     bindings,
     options.includeScreenFiles ?? true,
-  ).sort((left, right) => left.path.localeCompare(right.path));
+    options.rootLayoutWrapper,
+  );
+  if (options.rootRedirect === true) {
+    const redirect = generateRootRedirectFile(plan.root, rootDirectory);
+    if (redirect !== undefined) files.push(redirect);
+  }
+  files.sort((left, right) => left.path.localeCompare(right.path));
   const paths = new Set<string>();
   for (const file of files) {
     if (paths.has(file.path))
@@ -77,18 +88,27 @@ function createGenerationResult(
 
 const APP_DIRECTORY = 'src/app';
 
+/*** Generation additions owned by Navigator until their Contracts release is consumed. */
+type NavigatorGenerationOptionsWithRootShell = NavigatorGenerationOptions & {
+  /** Emit the canonical Expo Router root entry for the configured root initial route. */
+  readonly rootRedirect?: true;
+  /** Statically imported provider component that wraps only the generated root layout. */
+  readonly rootLayoutWrapper?: NavigatorScreenModule;
+};
+
 /*** Traverse the plan to emit layouts and optional screen bindings in their route directories. */
 function collectFiles(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
   includeScreenFiles: boolean,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
 ): NavigatorGeneratedFile[] {
-  const files = [createLayoutFile(node, directory, bindings)];
+  const files = [createLayoutFile(node, directory, bindings, rootLayoutWrapper)];
   for (const route of node.routes) {
     const expoRouterPath = resolveExpoRouterRoutePath(route);
     if (includeScreenFiles) {
-      const screen = createScreenFile(route, directory, bindings);
+      const screen = generateScreenFile(route, directory, bindings.screens);
       if (screen !== undefined) files.push(screen);
     }
     if (route.navigator !== undefined) {
@@ -98,6 +118,7 @@ function collectFiles(
           `${directory}/${expoRouterPath}`,
           bindings,
           includeScreenFiles,
+          undefined,
         ),
       );
     }
@@ -110,6 +131,7 @@ function createLayoutFile(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
 ): NavigatorGeneratedFile {
   if (
     node.adapter.support === 'unsupported' ||
@@ -121,11 +143,8 @@ function createLayoutFile(
     );
   }
 
-  const tabsLayout = generateTabsLayoutFile(node, directory, bindings);
-  if (tabsLayout !== undefined) return tabsLayout;
-  const splitViewLayout = generateSplitViewLayoutFile(node, directory, bindings);
-  if (splitViewLayout !== undefined) return splitViewLayout;
-
+  const specializedLayout = createSpecializedLayout(node, directory, bindings, rootLayoutWrapper);
+  if (specializedLayout !== undefined) return specializedLayout;
   const componentName = node.adapter.exportName;
   assertStaticImportBinding(
     node.adapter.module,
@@ -134,19 +153,44 @@ function createLayoutFile(
   );
   const guardAliases = new Map<string, string>();
   const guardImports = createGuardImports(node, bindings, guardAliases);
-  const imports = [
-    `import { ${componentName} } from ${quoteJavaScriptString(node.adapter.module)};`,
-    ...(guardImports.length > 0 ? ['', ...guardImports] : []),
-  ].join('\n');
+  const imports = createNavigatorLayoutImports(
+    node.adapter.module,
+    componentName,
+    guardImports,
+    rootLayoutWrapper,
+  );
 
   if (node.type === 'slot') {
-    return generateSlotLayoutFile(directory, componentName, imports);
+    return generateSlotLayoutFile(
+      directory,
+      componentName,
+      imports,
+      rootLayoutWrapper !== undefined,
+    );
   }
-
   return {
     path: `${directory}/_layout.tsx`,
-    contents: createNavigatorContents(node, componentName, imports, guardAliases),
+    contents: createNavigatorContents(
+      node,
+      componentName,
+      imports,
+      guardAliases,
+      rootLayoutWrapper !== undefined,
+    ),
   };
+}
+
+/*** Delegate layouts with an adapter-owned rendering contract before shared Screen rendering. */
+function createSpecializedLayout(
+  node: NavigatorNodePlan,
+  directory: string,
+  bindings: NavigatorGenerationBindings,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
+): NavigatorGeneratedFile | undefined {
+  return (
+    generateTabsLayoutFile(node, directory, bindings, rootLayoutWrapper) ??
+    generateSplitViewLayoutFile(node, directory, bindings, rootLayoutWrapper)
+  );
 }
 
 /*** Validate and alias every distinct guard binding used by a navigator's routes. */
@@ -173,6 +217,7 @@ function createNavigatorContents(
   componentName: string,
   imports: string,
   guardAliases: ReadonlyMap<string, string>,
+  hasRootLayoutWrapper: boolean,
 ): string {
   const navigatorOptions =
     node.type === 'stack'
@@ -196,7 +241,11 @@ function createNavigatorContents(
   const screens = node.routes
     .map((route) => renderScreen(componentName, node, route, guardAliases))
     .join('\n');
-  return `${imports}\n\nexport default function NavigatorLayout() {\n  return (\n    ${openingTag}\n${screens}\n    </${componentName}>\n  );\n}\n`;
+  const navigator = `${openingTag}\n${screens}\n    </${componentName}>`;
+  const content = hasRootLayoutWrapper
+    ? `<NavigatorRootLayoutWrapper>\n      ${navigator}\n    </NavigatorRootLayoutWrapper>`
+    : navigator;
+  return `${imports}\n\nexport default function NavigatorLayout() {\n  return (\n    ${content}\n  );\n}\n`;
 }
 
 /*** Wrap a generated screen in the conjunction of its registered route guards. */
@@ -254,17 +303,6 @@ function routeOptions(
   return Object.keys(options).length === 0 ? undefined : options;
 }
 
-/*** Keep Expo Router implementation groups from becoming visible Stack headers by default. */
-function shouldHideUnnamedGroupHeader(node: NavigatorNodePlan, route: NavigatorRoutePlan): boolean {
-  return (
-    node.type === 'stack' &&
-    route.navigator !== undefined &&
-    route.label === undefined &&
-    route.stackOptions?.headerShown === undefined &&
-    /^\([^/()]+\)$/.test(route.name)
-  );
-}
-
 /*** Render one generated Screen with a stable multiline options object when route options exist. */
 function renderScreenElement(
   componentName: string,
@@ -285,36 +323,4 @@ ${indentation}  options={{
 ${optionLines}
 ${indentation}  }}
 ${indentation}/>`;
-}
-
-/*** Map a semantic initial route identity onto Expo Router's module registration name. */
-function resolveNavigatorInitialRouteName(node: NavigatorNodePlan): string | undefined {
-  if (node.initialRouteName === undefined) return undefined;
-  const route = node.routes.find(({ name }) => name === node.initialRouteName);
-  if (route === undefined)
-    throw new Error(`Missing initial route ${JSON.stringify(node.initialRouteName)}.`);
-  return resolveExpoRouterRoutePath(route);
-}
-
-/*** Emit a route module that re-exports its registered screen as the default component. */
-function createScreenFile(
-  route: NavigatorRoutePlan,
-  directory: string,
-  bindings: NavigatorGenerationBindings,
-): NavigatorGeneratedFile | undefined {
-  if (route.screenId === undefined) return undefined;
-  const expoRouterPath = resolveExpoRouterRoutePath(route);
-  const binding = Reflect.get(bindings.screens, route.screenId) as
-    NavigatorScreenModule | undefined;
-  if (binding === undefined)
-    throw new Error(`Missing screen binding for ${JSON.stringify(route.screenId)}.`);
-  assertStaticImportBinding(
-    binding.module,
-    binding.exportName,
-    `Screen ${JSON.stringify(route.screenId)}`,
-  );
-  return {
-    path: `${directory}/${expoRouterPath}.tsx`,
-    contents: `export { ${binding.exportName} as default } from ${quoteJavaScriptString(binding.module)};\n`,
-  };
 }

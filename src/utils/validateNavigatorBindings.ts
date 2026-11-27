@@ -8,13 +8,14 @@ import type {
 } from '@ankhorage/contracts/navigator';
 import { assertStaticImportBinding } from '@ankhorage/utility/validation';
 
+import { resolveExpoRouterRoutePath } from '../features/routing/domain/resolveExpoRouterRoutePath.js';
 import { isNavigatorGenerationBindings } from './isNavigatorGenerationBindings.js';
 
 /*** Validate only the narrow generated-module bindings required by a resolved navigator plan. */
 export function validateNavigatorBindings(
   plan: NavigatorPlan,
   bindings: unknown,
-  options: NavigatorGenerationOptions = {},
+  options: NavigatorGenerationOptionsWithRootShell = {},
 ): readonly NavigatorDiagnostic[] {
   if (!isNavigatorGenerationBindings(bindings)) {
     return [
@@ -29,6 +30,7 @@ export function validateNavigatorBindings(
   }
   const diagnostics: NavigatorDiagnostic[] = [];
   validateSuppliedBindings(diagnostics, bindings);
+  validateRootGenerationOptions(diagnostics, plan.root, options);
   validateNodeBindings(diagnostics, plan.root, bindings, options.includeScreenFiles ?? true);
   return diagnostics.sort((left, right) =>
     `${left.path}\0${left.code}\0${left.message}`.localeCompare(
@@ -36,6 +38,62 @@ export function validateNavigatorBindings(
     ),
   );
 }
+
+/*** Validate optional root-only output before it can add imports or replace an index module. */
+function validateRootGenerationOptions(
+  diagnostics: NavigatorDiagnostic[],
+  root: NavigatorNodePlan,
+  options: NavigatorGenerationOptionsWithRootShell,
+): void {
+  if (options.rootLayoutWrapper !== undefined) {
+    validateStaticImport(
+      diagnostics,
+      options.rootLayoutWrapper,
+      '/rootLayoutWrapper',
+      'Root layout wrapper',
+    );
+  }
+  if (options.rootRedirect !== true) return;
+  if (root.initialRouteName === undefined) {
+    diagnostics.push({
+      code: 'missing-root-redirect-target',
+      severity: 'error',
+      path: '/rootRedirect',
+      message: 'Root redirect generation requires the root navigator to declare initialRouteName.',
+    });
+    return;
+  }
+  const initialRoute = root.routes.find((route) => route.name === root.initialRouteName);
+  if (initialRoute === undefined) return;
+  const initialRoutePath = resolveExpoRouterRoutePath(initialRoute);
+  if (initialRoutePath === 'index') return;
+  if (initialRoute.path === undefined) {
+    diagnostics.push({
+      code: 'missing-root-redirect-public-path',
+      severity: 'error',
+      path: '/rootRedirect',
+      message:
+        'Root redirect generation requires the root initial route to declare a public route path.',
+    });
+    return;
+  }
+  const indexRoute = root.routes.find((route) => resolveExpoRouterRoutePath(route) === 'index');
+  if (indexRoute !== undefined) {
+    diagnostics.push({
+      code: 'root-redirect-index-conflict',
+      severity: 'error',
+      path: '/rootRedirect',
+      message:
+        'Root redirect generation cannot replace an authored Expo Router index route; choose one canonical root entry.',
+    });
+  }
+}
+
+/*** Temporary local projection of the released Contracts option shape. */
+type NavigatorGenerationOptionsWithRootShell = NavigatorGenerationOptions & {
+  readonly rootRedirect?: true;
+  readonly rootLayoutWrapper?: NavigatorScreenModule;
+};
 
 /*** Validate every supplied module record, including currently unreferenced bindings. */
 function validateSuppliedBindings(

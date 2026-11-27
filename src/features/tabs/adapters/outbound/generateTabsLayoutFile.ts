@@ -15,13 +15,14 @@ export function generateTabsLayoutFile(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
 ): NavigatorGeneratedFile | undefined {
   if (node.type !== 'tabs') return undefined;
   if (node.tabs?.implementation === 'native') {
-    return createNativeTabsFile(node, directory, bindings);
+    return createNativeTabsFile(node, directory, bindings, rootLayoutWrapper);
   }
   if (node.tabs?.implementation === 'headless') {
-    return createHeadlessTabsFile(node, directory, bindings);
+    return createHeadlessTabsFile(node, directory, bindings, rootLayoutWrapper);
   }
   return undefined;
 }
@@ -31,6 +32,7 @@ function createNativeTabsFile(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
 ): NavigatorGeneratedFile {
   const componentName = node.adapter.exportName ?? 'NativeTabs';
   const imports = [
@@ -47,6 +49,9 @@ function createNativeTabsFile(
     imports.push(
       `import { ${iconFamilies.join(', ')} } from '@ankhorage/navigator/tabs/native-icons';`,
     );
+  }
+  if (rootLayoutWrapper !== undefined) {
+    imports.push(createRootLayoutWrapperImport(rootLayoutWrapper));
   }
   let accessoryName: string | undefined;
   if (node.tabs?.bottomAccessoryScreenId !== undefined) {
@@ -66,6 +71,7 @@ function createNativeTabsFile(
       componentName,
       imports.sort().join('\n'),
       accessoryName,
+      rootLayoutWrapper !== undefined,
     ),
   };
 }
@@ -113,6 +119,7 @@ function createNativeTabsContents(
   componentName: string,
   imports: string,
   accessoryName: string | undefined,
+  hasRootLayoutWrapper: boolean,
 ): string {
   const initialRouteName = resolveNavigatorInitialRouteName(node);
   const initialRoute =
@@ -143,7 +150,11 @@ ${nativeIconSource(
     accessoryName === undefined
       ? ''
       : `\n      <${componentName}.BottomAccessory>\n        <${accessoryName} />\n      </${componentName}.BottomAccessory>`;
-  return `${imports}${initialRoute}\n\nexport default function NavigatorLayout() {\n  return (\n    <${componentName}${minimize}>\n${triggers}${accessory}\n    </${componentName}>\n  );\n}\n`;
+  const tabs = `<${componentName}${minimize}>\n${triggers}${accessory}\n    </${componentName}>`;
+  const content = hasRootLayoutWrapper
+    ? `<NavigatorRootLayoutWrapper>\n      ${tabs}\n    </NavigatorRootLayoutWrapper>`
+    : tabs;
+  return `${imports}${initialRoute}\n\nexport default function NavigatorLayout() {\n  return (\n    ${content}\n  );\n}\n`;
 }
 
 /*** Render a Native Tabs vector icon source within the canonical generated-code print width. */
@@ -172,12 +183,19 @@ function createHeadlessTabsFile(
   node: NavigatorNodePlan,
   directory: string,
   bindings: NavigatorGenerationBindings,
+  rootLayoutWrapper: NavigatorScreenModule | undefined,
 ): NavigatorGeneratedFile {
   const { tabs } = node;
   if (tabs?.presentations === undefined) {
     throw new Error('Headless Tabs planning did not preserve responsive presentations.');
   }
   const imports: GeneratedImport[] = [...HEADLESS_TABS_IMPORTS];
+  if (rootLayoutWrapper !== undefined) {
+    imports.push({
+      module: rootLayoutWrapper.module,
+      statement: createRootLayoutWrapperImport(rootLayoutWrapper),
+    });
+  }
   let customPresentation = '';
   if (tabs.customPresentationId !== undefined) {
     const binding = Reflect.get(bindings.tabPresentations ?? {}, tabs.customPresentationId) as
@@ -197,7 +215,7 @@ function createHeadlessTabsFile(
   const component = createHeadlessTabsComponent(customPresentation, initialRoute);
   return {
     path: `${directory}/_layout.tsx`,
-    contents: `${sortGeneratedImports(imports)}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component)}\n}\n`,
+    contents: `${sortGeneratedImports(imports)}\n\nconst routes = ${routeSource} as const;\nconst presentations = ${serializeJavaScriptLiteral(tabs.presentations)} as const;\n\nexport default function NavigatorLayout() {\n${renderHeadlessTabsReturn(component, rootLayoutWrapper !== undefined)}\n}\n`,
   };
 }
 
@@ -224,6 +242,11 @@ function resolveNavigatorInitialRouteName(node: NavigatorNodePlan): string | und
 }
 
 type GeneratedImport = Readonly<{ module: string; statement: string }>;
+
+/*** Render the validated root-only provider import consistently across specialized layouts. */
+function createRootLayoutWrapperImport(rootLayoutWrapper: NavigatorScreenModule): string {
+  return `import { ${rootLayoutWrapper.exportName} as NavigatorRootLayoutWrapper } from ${quoteJavaScriptString(rootLayoutWrapper.module)};`;
+}
 
 const HEADLESS_TABS_IMPORTS: readonly GeneratedImport[] = [
   {
@@ -302,7 +325,10 @@ ${Object.entries(route)
 }
 
 /*** Render the Headless Tabs return statement without exceeding the canonical print width. */
-function renderHeadlessTabsReturn(component: string): string {
-  const directReturn = `  return ${component};`;
-  return directReturn.length <= 100 ? directReturn : `  return (\n    ${component}\n  );`;
+function renderHeadlessTabsReturn(component: string, hasRootLayoutWrapper: boolean): string {
+  const content = hasRootLayoutWrapper
+    ? `<NavigatorRootLayoutWrapper>\n      ${component}\n    </NavigatorRootLayoutWrapper>`
+    : component;
+  const directReturn = `  return ${content};`;
+  return directReturn.length <= 100 ? directReturn : `  return (\n    ${content}\n  );`;
 }
