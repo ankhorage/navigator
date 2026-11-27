@@ -29,8 +29,7 @@ Open `./paradox/index.html` locally in your browser to browse the complete docum
 
 ## Contributors
 
-<!-- readme: contributors -start -->
-<!-- readme: contributors -end -->
+<a href="https://github.com/artiphishle"><img src="https://avatars.githubusercontent.com/u/137318798?s=64" width="40" height="40" alt="artiphishle" /></a>
 
 ## Donation
 
